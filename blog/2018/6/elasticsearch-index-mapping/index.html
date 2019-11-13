@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>Kucw&#39;s Blog</title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="介紹 Elastic Search 的 index mapping">
+  <meta property="og:title" content="ElasticSearch - index mapping（5.x以上）" />
+  <meta name="author" content="Kucw">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.59.1" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">Kucw&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">ElasticSearch - index mapping（5.x以上）</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2018/06/07</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="https://kucw.github.io/categories/elastic-search">
+              <span class="text-primary">Elastic search</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          <ul>
+<li>Elasticsearch支持的基本類型
+
+<ul>
+<li>字符串 : text, keyword
+
+<ul>
+<li>text : 存儲數據的時候，會自動分詞，並生成索引</li>
+<li>keyword : 存儲數據的時候，不會分詞，而是直接整個詞拿去建索引</li>
+</ul></li>
+<li>整數 : byte, short, integer, long</li>
+<li>浮點數 : float, double</li>
+<li>布爾型 : boolean</li>
+<li>日期 : date</li>
+</ul></li>
+
+<li><p>自定義 mapping</p>
+
+<ul>
+<li><code>index</code> : 設置此字段能不能被查詢，就是決定要不要將這個字段放進倒排索引裡
+
+<ul>
+<li>若 index 設置為 true（默認是 true），則表示這個這個字段會被放進倒排索引裡，如果是 text 就是分詞過後放進索引，如果是 keyword、integer&hellip;就直接整段放進索引裡</li>
+<li>若 index 設置為 false，則表示這個字段不放進倒排索引裡，因此不能查詢這個字段（因為他不存在於倒排索引裡）
+
+<ul>
+<li>通常這種被設成 false 的字段，可以想像成是屬於一種附屬的字段，就是不能被 match、term 查詢，但是當該文檔被其他搜索條件搜出來時，他可以附帶的一起被找出來，因為他們同屬於同一個文檔</li>
+</ul></li>
+</ul></li>
+<li><code>analyzer</code> : 主要用在 text 類型的字段上，就是設定要使用哪種分詞器來建立索引
+
+<ul>
+<li>可以使用內建的分詞器，或是使用自定義的分詞器</li>
+</ul></li>
+
+<li><p>可以使用 <code>/_analyze</code> 測試分析器具體會將句子分詞成什麼樣子，它能幫助我們理解 Elasticsearch 索引內部發生了什麼</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">_analyze</span>
+<span class="p">{</span>
+    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;Text to analyze&#34;</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>具體實例</p>
+
+<ul>
+<li><p>mapping</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
+<span class="p">{</span>
+    <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="kc">false</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>搜索 uid 時，name 會一起被找出來</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;1-hello&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;1-nickname&#34;</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>搜索 name，會報 error</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;1-hello&#34;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;error&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;illegal_argument_exception&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;Cannot search on field [name] since it is not indexed.&#34;</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+
+<li><p>更新 mapping</p>
+
+<ul>
+<li><p>當首次創建一個 index 的時候，可以指定類型的 mapping，但假設後來想要增加一個新的映射字段，可以使用 <code>/_mapping</code> 把新的字段加進 mapping 映射裡</p>
+
+<ul>
+<li>可以增加一個新的映射，但是不能修改存在的映射，原因是因為這個映射可能有文檔去用，如果改了映射的類型，可能會導致 index 的數據出錯，因此只能新加字段進去，不能修改</li>
+</ul></li>
+
+<li><p>具體實例</p>
+
+<ul>
+<li><p>在 mytest 映射中的 <code>doc</code> 類型增加一個新的名爲 <code>tag</code> 的 keyword</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest/_mapping/doc</span>
+<span class="p">{</span>
+    <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;tag&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>在 ES 中更新 mapping（新增一個字段）會產生的問題</p>
+
+<ul>
+<li><p>雖然 ES 支持更新映射在 mapping 中新增字段，但是這樣會造成一個問題，就是舊的文檔並不會自動更新產生新的字段</p>
+
+<ul>
+<li><p>假設舊文檔有 <code>name、nickname</code> 這兩個字段，並且已經插入了兩筆數據</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jackson&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;jack&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;a&#34;</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>此時插入一個新的字段 <code>sex</code>，並且插入一筆新的數據</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;NewYork&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;new&#34;</span><span class="p">,</span> <span class="nt">&#34;sex&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>執行 <code>&quot;match_all&quot;: {}</code> 查詢時，結果如下</p>
+
+<ul>
+<li><p>由於 Jackson 和 Amy 並沒有 sex 這個字段，所以雖然執行 match_all 搜索時能被搜出來，但是搜索 <code>&quot;term&quot;: { &quot;sex&quot;: 1 }</code> 的話，就搜索不出來</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jackson&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;jack&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;a&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;NewYork&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;new&#34;</span><span class="p">,</span> <span class="nt">&#34;sex&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>我們希望的狀況是，增加一個新字段，舊文檔應該也要設置一個預設值，像是 sex=0，而不是整個字段消失，如此在查詢時邏輯才不會有問題</p></li>
+</ul></li>
+</ul></li>
+
+<li><p>解決舊文檔沒有新字段這個問題主要有3種方法</p>
+
+<ul>
+<li><p>新建一個 index，使用 scroll + bulk insert 將數據從舊的索引批量插入到新索引中</p>
+
+<ul>
+<li>可以在 java 裡自定義舊文檔預設值的邏輯
+<br /></li>
+</ul></li>
+
+<li><p>新建一個 index，使用 ES 提供的 reindex API 將數據從舊的索引 reindex 到新索引</p>
+
+<ul>
+<li><p>需要使用 ES 的腳本 script，在 reindex 的請求裡定義舊文檔預設值的邏輯</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">_reindex</span>
+<span class="p">{</span>
+    <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;dest&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest2&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;if (ctx._source.new == null) {ctx._source.new = params.new}&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;new&#34;</span><span class="p">:</span> <span class="s2">&#34;good&#34;</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;lang&#34;</span><span class="p">:</span> <span class="s2">&#34;painless&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>使用 update_by_query 更新所有舊文檔，給他們加上新的字段</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="og:title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-151537961-2', 'auto');
+  ga('send', 'pageview');
+</script></body>
+</html>
