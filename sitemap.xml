@@ -3,31 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2019-11-09T10:07:47+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2019-11-09T10:07:47+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/go-language/</loc>
-    <lastmod>2019-11-09T10:07:47+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/</loc>
-    <lastmod>2019-11-09T10:07:47+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/blog/2019/11/test-template/</loc>
-    <lastmod>2019-11-09T10:07:47+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kucw.github.io/about/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
   </url>
@@ -35,6 +10,41 @@
   <url>
     <loc>https://kucw.github.io/search/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/</loc>
+    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/</loc>
+    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/java/</loc>
+    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2018/7/java-thread-local/</loc>
+    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/</loc>
+    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/spring/</loc>
+    <lastmod>2018-07-09T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2018/7/spring-annotation-vs-xml/</loc>
+    <lastmod>2018-07-09T00:00:00+08:00</lastmod>
   </url>
   
   <url>
@@ -90,11 +100,6 @@
   <url>
     <loc>https://kucw.github.io/blog/2018/6/intellij-remote-debug/</loc>
     <lastmod>2018-06-12T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/java/</loc>
-    <lastmod>2018-06-11T00:00:00+08:00</lastmod>
   </url>
   
   <url>

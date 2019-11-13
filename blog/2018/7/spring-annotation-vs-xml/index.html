@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    Kucw&#39;s Blog
+    Spring - 注解 vs XML 哪个好？ - Kucw&#39;s Blog
     
   </title>
 
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="This is meta description">
+  <meta name="description" content="分析在 Spring framework 中，使用注解注入 Bean 好，還是使用 xml 注入 Bean 好">
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
@@ -90,17 +90,76 @@
 </header>
 <!-- /navigation -->
 
-<section class="section">
+<section class="section-sm">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div id="search-results"></div>
-        <script id="search-result-template" type="text/x-js-template">
-          <div class="py-4 border-bottom" id="summary-${key}">
-            <a href="${link}"><h4 class="text-primary">${title}</h4></a>
-            <p>${snippet}</p>
-            ${ isset categories }<p>Categories: ${categories}</p>${ end }
-          </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">Spring - 注解 vs XML 哪个好？</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2018/07/09</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="https://kucw.github.io/categories/spring">
+              <span class="text-primary">Spring</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          <ul>
+<li>Spring 中，使用注解 @Autowired 進行注入好，還是使用 xml 配置進行注入好？
+
+<ul>
+<li>先講結論，使用注解 @Autowired 注入比較好</li>
+<li>當時 Spring 開發的初衷是為了解決類與類之間的強耦合 <code>new</code>，所以當時提出了 xml 配置注入bean的方法，就是讓代碼只關注我需要什麼 service，但此 service 是由哪個實現類提供的我並不關心
+
+<ul>
+<li>使用 xml 的好處就是，實現類更換的時候並不需要去改動代碼，只要去改動 xml 配置，將注入的 bean 改成另一個實現類就可以了，如此可以達到類與類之間的松耦合</li>
+</ul></li>
+<li>但是到了 Spring3.0 之後，他們開始提出了使用 @Autowired 注解來進行 bean 的注入
+
+<ul>
+<li>有的人可能會覺得，如果使用 @Autowired、@Qualifier 來注入，那麼假設我要改注入實現類的話，得去改 java 代碼中的 @Qualifier，那這樣還是得改代碼，那這樣使用 Spring 注入和使用 <code>new</code>，又有什麼差別？是不是還是使用 xml 比較好？</li>
+<li>事實上，使用注解確實會有這個問題沒錯，不過經過長時間的項目經驗下來，你會發現，我們其實很少會去改注入的實現類的（天天改服務還要不要命?）</li>
+<li>而注解提供的好處卻是不少，像是簡化 xml 配置的冗長、使用注解比較直觀且容易、並且是類型安全的（compiler 可以掃描注解，判斷注入的類型是否正確，但他掃描不了 xml 文件)</li>
+<li>因此就算使用注解 @Autowired 去改變注入的實現類比 xml 更困難，但他其他大量的優點足以掩蓋過這個缺點，這也是為什麼 Spring 覺得使用注解配置比使用 xml 配置更好的理由</li>
+</ul></li>
+<li>所以到目前為止（Spring4.0），雖然 Spring 官方本身沒有明說拋棄 xml 配置，不過事實上 Spring 已經轉往注解配置方向前進了，SpringBoot 就是最好的例子
+
+<ul>
+<li>SpringBoot 中只有一個 properties 文件負責配置一些不可避免的設定，像是數據庫連接、mvc 模板配置&hellip;.，除此之外沒有任何一個 xml 文件來定義 bean，全部都是使用注解來配置</li>
+</ul></li>
+</ul></li>
+<li>注解 vs xml 優缺點比較
+
+<ul>
+<li>注解
+
+<ul>
+<li>優點 : 簡化配置、使用起來直觀且容易，提升開發效率、類型安全</li>
+<li>缺點 : 改變實現類比 xml 困難</li>
+</ul></li>
+<li>xml
+
+<ul>
+<li>優點 : 類與類間的松耦合，容易擴展、更換、對象間的關係一目了然</li>
+<li>缺點 : 配置冗長，且還要額外多維護一份配置，類型不安全，compiler 無法幫忙校驗，運行期才會發現錯誤</li>
+</ul></li>
+</ul></li>
+</ul>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
         </script>
       </div>
     </div>
