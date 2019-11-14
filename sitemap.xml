@@ -14,26 +14,31 @@
   
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/java/</loc>
-    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kucw.github.io/blog/2018/7/java-thread-local/</loc>
-    <lastmod>2018-07-16T00:00:00+08:00</lastmod>
+    <loc>https://kucw.github.io/blog/2019/10/java-graalvm-introduction/</loc>
+    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://kucw.github.io/</loc>
+    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2018/7/java-thread-local/</loc>
     <lastmod>2018-07-16T00:00:00+08:00</lastmod>
   </url>
   
