@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    ElasticSearch - 批量操作 bulk - Kucw&#39;s Blog
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="分析在 Spring framework 中，使用注解注入 Bean 好，還是使用 xml 注入 Bean 好">
+  <meta name="author" content="Kucw">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">Kucw&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">ElasticSearch - 批量操作 bulk</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2018/07/30</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="https://kucw.github.io/categories/elastic-search">
+              <span class="text-primary">Elastic search</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          <ul>
+<li><p>ES 的 <code>bulk</code> 語法允許在一個請求中進行多個操作（create、index、update、delete），也就是可以在一次請求裡做很多事情</p>
+
+<ul>
+<li>也由於這個關係，因此 bulk 的請求體和其他請求的格式會有點不同</li>
+</ul></li>
+
+<li><p>bulk 的請求模板</p>
+
+<ul>
+<li>分成 action 和 metadata 兩部份</li>
+<li>action : 必須是以下 4 種選項之一
+
+<ul>
+<li><code>index</code>(最常用） : 如果文檔不存在就創建他，如果文檔存在就更新他</li>
+<li><code>create</code> : 如果文檔不存在就創建他，但如果文檔存在就返回錯誤
+
+<ul>
+<li>使用時一定要在 metadata 設置 <code>_id</code> 值，他才能去判斷這個文檔是否存在</li>
+</ul></li>
+<li><code>update</code> : 更新一個文檔，如果文檔不存在就返回錯誤
+
+<ul>
+<li>使用時也要給 <code>_id</code> 值，且後面文檔的格式和其他人不一樣</li>
+</ul></li>
+<li><code>delete</code> : 刪除一個文檔，如果要刪除的文檔 id 不存在，就返回錯誤
+
+<ul>
+<li>使用時也必須在 metadata 中設置文檔 <code>_id</code>，且後面不能帶一個 doc，因為沒意義，他是用 <code>_id</code> 去刪除文檔的</li>
+</ul></li>
+</ul></li>
+
+<li><p>metadata : 設置這個文檔的 metadata，像是 <code>_id</code>、<code>_index</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_bulk</span>
+<span class="p">{</span> <span class="err">action</span> <span class="err">:</span> <span class="err">{</span> <span class="err">metadata</span> <span class="p">}</span> <span class="err">}</span>
+<span class="p">{</span> <span class="err">doc</span> <span class="p">}</span>
+<span class="p">{</span> <span class="err">action</span> <span class="err">:</span> <span class="err">{</span> <span class="err">metadata</span> <span class="p">}</span> <span class="err">}</span>
+<span class="p">{</span> <span class="err">doc</span> <span class="p">}</span>
+<span class="err">....</span></code></pre></div></li>
+</ul></li>
+
+<li><p>具體實例</p>
+
+<ul>
+<li><p>bulk請求</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_bulk</span>
+
+<span class="err">//創建一筆數據</span>
+<span class="p">{</span> <span class="nt">&#34;create&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;create black&#34;</span> <span class="p">}</span>
+
+<span class="err">//創建一筆數據，因為id=</span><span class="mi">1</span><span class="err">的文檔已經存在，所以會創建失敗</span>
+<span class="p">{</span> <span class="nt">&#34;create&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;create black2&#34;</span> <span class="p">}</span>
+
+<span class="err">//索引一筆數據</span>
+<span class="p">{</span> <span class="nt">&#34;index&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;index red&#34;</span> <span class="p">}</span>
+
+<span class="err">//索引一筆數據，但是index可以創建也可以更新，所以執行成功</span>
+<span class="p">{</span> <span class="nt">&#34;index&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;index red2&#34;</span> <span class="p">}</span>
+
+<span class="err">//索引一筆數據，不一定要設置id(index又能創建又能更新又不用設id，超好用)</span>
+<span class="p">{</span> <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;index blue&#34;</span> <span class="p">}</span>
+
+<span class="err">//刪除一筆文檔，注意delete後面不接一個doc</span>
+<span class="p">{</span> <span class="nt">&#34;delete&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="err">//找不到此id的文檔，刪除失敗</span>
+<span class="p">{</span> <span class="nt">&#34;delete&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="err">//更新一筆文檔，注意doc格式不太一樣</span>
+<span class="p">{</span> <span class="nt">&#34;update&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;update green&#34;</span><span class="p">}</span> <span class="p">}</span>
+
+<span class="err">//更新一筆文檔，但因為此id的文檔不存在，所以更新失敗</span>
+<span class="p">{</span> <span class="nt">&#34;update&#34;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;update green2&#34;</span><span class="p">}</span> <span class="p">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>bulk 的返回結果</p>
+
+<ul>
+<li><p>因為在 bulk 中，每個 action 的執行結果都是獨立的，所以有幾個 action，就會有幾個返回結果，返回結果如下</p>
+
+<ul>
+<li>最上面會有一個 <code>errors</code>，表示這一次 bulk 請求中，是否有 action 出錯了</li>
+<li>因此寫代碼時可以先檢查 <code>errors</code> 這個值，如果是 false，表示這次 bulk 請求全部通過，就不用再一一去檢查是否有 action 出錯，但如果是 true，則必須去 <code>items</code> 一個一個檢查到底是哪個 action 出錯了</li>
+</ul></li>
+
+<li><p><code>items</code> 是一個 array，裡面則放著每個 action 對應的結果，上面的請求執行了 9 個 action，所以返回結果的 items 就會有 9 個</p>
+
+<ul>
+<li><p>返回結果會依照 action 的順序排好，因此 <code>items</code> 的第一個結果就是請求時第一個 action 的執行結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;took&#34;</span><span class="p">:</span> <span class="mi">145</span><span class="p">,</span>
+    <span class="nt">&#34;errors&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&#34;items&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;create&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;_index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_type&#34;</span><span class="p">:</span> <span class="s2">&#34;_doc&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="s2">&#34;created&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">201</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;create&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;_index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_type&#34;</span><span class="p">:</span> <span class="s2">&#34;_doc&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">409</span><span class="p">,</span>
+                <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;version_conflict_engine_exception&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;[1]: version conflict, document already exists (current version [1])&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;index_uuid&#34;</span><span class="p">:</span> <span class="s2">&#34;PfdgdTyiRgaCIM6uKRQAPQ&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;shard&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;_index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_type&#34;</span><span class="p">:</span> <span class="s2">&#34;_doc&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="s2">&#34;created&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">201</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;_index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_type&#34;</span><span class="p">:</span> <span class="s2">&#34;_doc&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="s2">&#34;updated&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="mi">200</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="err">...</span> <span class="mi">5</span> <span class="err">RESULTS</span> <span class="err">REMOVED</span> <span class="err">...</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+
+<li><p>使用 bulk 要注意的地方</p>
+
+<ul>
+<li>如果使用 <code>127.0.0.1/_bulk</code>，那麼就是在整個 ES 的範圍中插入數據，因此在 metadata 中要指定插入的 index，優點是可以一次插入多筆數據到不同的索引
+
+<ul>
+<li>而如果使用 <code>127.0.0.1/mytest/_bulk</code>，就不用在 metadata 再次指定要插入的 index，可以想像成是 <code>_bulk</code> API幫我們自動填好了 metadata 的 <code>_index</code>，很方便</li>
+</ul></li>
+<li>還有因為 bulk 和其他請求的格式不同，或是說基本上他已經不是正常的 json 格式了，所以在使用 bulk 時，HTTP header 要使用 <code>application/x-ndjson</code>
+
+<ul>
+<li>而且每一行的結尾，都要使用 <code>\n</code>，如果是一般在 postman 寫請求不會有問題，但是如果是使用 <code>curl</code> 來發送請求，就要使用 <code>--data-binary</code>，才會使每一句的結尾都是 <code>\n</code></li>
+</ul></li>
+</ul></li>
+
+<li><p>多大是太大了？</p>
+
+<ul>
+<li>由於整個  <code>bulk</code>  批量請求都需要由接收到請求的節點加載到內存中，因此該請求越大，其他請求所能獲得的內存就越少</li>
+<li>批量請求的大小有一個最佳值，大於這個值，性能將不再提升，甚至會下降，但是最佳值不是一個固定的值，它完全取決於硬件、文檔的大小和複雜度、索引和搜索的負載的整體情況</li>
+<li>幸運的是，很容易找到這個最佳點 ：可以通過批量索引文檔，並不斷增加批量大小進行嘗試，當性能開始下降時，那就表示你的批量大小太大了
+
+<ul>
+<li>一個好的辦法是開始時將 1000 到 5000 個文檔作爲一個批次慢慢增長，試圖找到最佳點</li>
+<li>但是如果你的文檔非常大，那麼就必須減少批量的文檔個數，密切關注你的批量請求的物理大小往往非常有用，一千個 1KB 的文檔是完全不同於一千個 1MB 文檔所佔的物理大小，一個好的批量大小在開始處理後所佔用的物理大小約爲 5-15 MB</li>
+</ul></li>
+</ul></li>
+</ul>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-151537961-2', 'auto');
+  ga('send', 'pageview');
+</script></body>
+</html>

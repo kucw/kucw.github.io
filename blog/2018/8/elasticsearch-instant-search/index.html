@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    ElasticSearch - 輸入即搜索 edge n-gram - Kucw&#39;s Blog
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="當 user 在輸入查詢內容時，能不能為他們展現當下的搜索結果？Elastic Search 能做得到！這篇文章將介紹如何使用 ES 的 edge n-gram 達到這種效果">
+  <meta name="author" content="Kucw">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">Kucw&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">ElasticSearch - 輸入即搜索 edge n-gram</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2018/08/19</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="https://kucw.github.io/categories/elastic-search">
+              <span class="text-primary">Elastic search</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          <blockquote>
+<p>閱讀本文需要先了解 Elastic Search 的 index 和 analyzer 的相關知識</p>
+
+<p><a href="https://kucw.github.io/blog/2018/6/elasticsearch-index-mapping/">ElasticSearch - index mapping（5.x以上）</a></p>
+
+<p><a href="https://kucw.github.io/blog/2018/6/elasticsearch-analysis/">ElasticSearch - 自定義 analysis</a></p>
+</blockquote>
+
+<ul>
+<li><p>在此之前，ES 所有的查詢都是針對整個詞進行操作，也就是說倒排索引存了 <code>hello</code> 這個詞，一定得輸入 hello 才能找到這個詞，輸入 h 或是 he 都找不到倒排索引中的 <code>hello</code></p>
+
+<ul>
+<li>然而在現實情況下，用戶已經漸漸習慣在輸入完查詢內容之前，就能為他們展現搜索結果，這就是所謂的即時搜索（instant search），或是可以稱為 輸入即搜索（search-as-you-type）
+
+<ul>
+<li><img src="https://kucw.github.io/images/es_ngram.gif" alt="" /></li>
+</ul></li>
+<li>雖然 ES 提供了一系列的前綴搜索 match_phrase、prefix、wildcard、regexp，然而這樣的查詢的性能非常差，要知道用戶每多輸入一個新的字母，就意味著要重新進行一次搜索，在實時的 web 系統中，100 ms 可能就會是一個難以忍受的延遲</li>
+<li>因此為了加快 輸入即搜索 的查詢效率，可以改使用 <code>edge n-gram</code> 建立索引，如此可以避免使用前綴查詢，在建立索引時就進行優化，使用空間換取時間，讓查詢的速率增快</li>
+</ul></li>
+
+<li><p>使用 <code>edge n-gram</code> 建立索引</p>
+
+<ul>
+<li><p>假設有一個詞 <code>hello</code>，普通建索引時，就是把這個詞 <code>hello</code> 放入倒排索引</p>
+
+<ul>
+<li>用戶輸入 h、he時會找不到索引（倒排索引中只有 hello），因此匹配失敗</li>
+</ul></li>
+
+<li><p>而對於輸入即搜索這種應用場景，可以使用一種特殊的 n-gram，稱爲 edge n-grams</p>
+
+<ul>
+<li><p>所謂的 edge n-gram，就是指它會固定詞語開始的一邊滑動窗口，他的結果取決於 n 的選擇長度</p></li>
+
+<li><p>以單詞 <code>hello</code> 爲例，它的 edge n-gram 的結果如下</p>
+
+<pre><code>h
+he
+hel
+hell
+hello
+</code></pre></li>
+
+<li><p>因此可以發現到，在使用 edge n-gram 建索引時，一個單詞會生成好幾個索引，而這些索引一定是重頭開始</p></li>
+
+<li><p>這符合了輸入即搜索的特性，即是用戶打 h、he 能找到倒排中的索引 <code>h</code>、<code>he</code>，而這些索引對應著的數據就是 hello</p></li>
+</ul></li>
+
+<li><p>具體實例</p>
+
+<ul>
+<li><p>建立索引時使用 edge n-gram 的 token 過濾器，為每個經過這個 token 過濾器的詞條們，都生成從頭開始的字符組合</p>
+
+<ul>
+<li>假設有一個輸入 <code>QUICK! RUN!</code>，分詞器會先將它分詞成兩個詞 <code>quick</code> 和 <code>run</code>，此時這些詞再一一的通過 edge n-gram token 過濾器，產生了 8 個索引 q、qu、qui、quic、quick、r、ru、run，接著存入倒排索引中</li>
+<li>如此，任何詞條像是 quick、run，都能生成他們自己的 n-gram</li>
+</ul></li>
+
+<li><p>另外要注意，要額外定義一個 <code>search_analyzer</code> 分析器，供查詢使用</p>
+
+<ul>
+<li>原因是因為我們為了要保證倒排索引中包含各種組合的詞，所以在建索引時才加入了 edge n-gram 過濾器，然而在查詢時，我們只想匹配用戶輸入的完整詞組，像是用戶的輸入 <code>run</code> 或 <code>qu</code></li>
+
+<li><p>因此需要定義兩套分析器，一套是建索引的分析器（包含edge n-gram 過濾器），另一套是查詢使用的正常的分析器</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">my_index</span>
+<span class="p">{</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;number_of_shards&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="err">//定義一個edge</span> <span class="err">n-gram的token過濾器</span>
+                <span class="err">//並設置任何通過這個過濾器的詞條，都會生成一個最小固定值為1，最大固定值為20的n-gram</span>
+                <span class="nt">&#34;my_autocomplete_filter&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;edge_ngram&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;min_gram&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&#34;max_gram&#34;</span><span class="p">:</span> <span class="mi">20</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="err">//自定義一個分析器，並使用自定義的edge</span> <span class="err">n-gram過濾器</span>
+                <span class="nt">&#34;my_autocomplete_analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;custom&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&#34;lowercase&#34;</span><span class="p">,</span>
+                        <span class="s2">&#34;my_autocomplete_filter&#34;</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;mapping&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_type&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;my_autocomplete_analyzer&#34;</span><span class="p">,</span> <span class="err">//在索引時用，生成edge</span> <span class="err">n-gram的每個詞</span>
+                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>  <span class="err">//查詢用，只搜索用戶輸入的詞</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+</ul></li>
+
+<li><p>讓非 text 字段也能使用 edge n-gram</p>
+
+<ul>
+<li><p>由於 edge n-gram 是一個 token 過濾器，他包含在 analyzer 分析器裡面，因此只有 <code>text</code> 類型的字段才能使用（其他類型的字段不會被分詞，所以不會使用到 analyzer，因此不能用 edge n-gram）</p></li>
+
+<li><p>但是可能會有一種情況是，有些精確值也希望能通過 edge n-gram 生成組合，這時就要搭配使用一個叫做 <code>keyword</code> 的分詞器</p>
+
+<ul>
+<li>注意，此 <code>keyword</code> 分詞器和 <code>keyword</code> 字段類型是不同的東西</li>
+<li>keyword 分詞器主要的功用是，將輸入的詞條，原封不動的 output 出來，不對其內容做任何改變</li>
+<li>因此可以利用這個特性，將精確值的字段類型改成 text，但是分詞器使用 keyword，如此就可以避免分詞的效果，又能使用 edge n-gram</li>
+</ul></li>
+
+<li><p>具體實例</p>
+
+<ul>
+<li>將 postcode 這個本來是 keyword 類型的精確值，改成使用 text 類型並搭配 keyword 分詞器</li>
+
+<li><p>因此假設有一個輸入 <code>ABC EF</code>，先經過 keyword 分詞器分詞成 <code>ABC EF</code>（和輸入一模一樣），接著再經過 edge n-gram 生成 A、AB、ABC、ABC （有一個空格） 、ABC E、ABC EF</p></li>
+
+<li><p>如果是使用正常的分詞器，生成的 edge n-gram 會是 A、AB、ABC、E、EF，他們是有差別的</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">my_index</span>
+<span class="p">{</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;postcode_filter&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;edge_ngram&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;min_gram&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&#34;max_gram&#34;</span><span class="p">:</span> <span class="mi">8</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;postcode_index&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&#34;postcode_filter&#34;</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;postcode_search&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;mapping&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_type&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;postcode&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;postcode_index&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;postcode_search&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+</ul>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-151537961-2', 'auto');
+  ga('send', 'pageview');
+</script></body>
+</html>

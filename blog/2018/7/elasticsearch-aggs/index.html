@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    ElasticSearch - 聚合 aggs - Kucw&#39;s Blog
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="介紹 Elastic Search 中 aggs 聚合 的概念以及使用方法">
+  <meta name="author" content="Kucw">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">Kucw&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">ElasticSearch - 聚合 aggs</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2018/07/23</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="https://kucw.github.io/categories/elastic-search">
+              <span class="text-primary">Elastic search</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          
+
+<h3 id="聚合概念-aggs">聚合概念 aggs</h3>
+
+<ul>
+<li>ElasticSearch 除了致力於搜索之外，也提供了聚合實時分析數據的功能
+
+<ul>
+<li>如果把搜索比喻為大海撈針（從海量的文檔中找出符合條件的那一個），那麼聚合就是去分析大海中的針們的特性，像是
+
+<ul>
+<li>在大海里有多少針？</li>
+<li>針的平均長度是多少？</li>
+<li>按照針的製造商來劃分，針的長度中位值是多少？</li>
+<li>每月加入到海中的針有多少？</li>
+<li>這裏面有異常的針麼？</li>
+</ul></li>
+<li>因此透過聚合，我們可以得到一個數據的概覽，聚合能做的是分析和總結全套的數據，而不是查找單個文檔（這是搜索做的事）</li>
+</ul></li>
+<li>聚合允許我們向數據提出一些複雜的問題，雖然他的功能完全不同於搜索，但他們其實使用了相同的數據結構，這表示聚合的執行速度很快，並且就像搜索一樣幾乎是實時的
+
+<ul>
+<li>並且由於聚合和搜索是使用同樣的數據結構，因此聚合和搜索可以是一起執行的</li>
+<li>這表示我們可以在一次 json 請求裡，同時對相同的數據進行 搜索/過濾 + 分析，兩個願望一次滿足</li>
+</ul></li>
+<li>聚合的兩個主要的概念，分別是 桶 和 指標
+
+<ul>
+<li>桶（Buckets）: 滿足特定條件的文檔的集合
+
+<ul>
+<li>當聚合開始被執行，每個文檔會決定符合哪個桶的條件，如果匹配到，文檔將放入相應的桶並接着進行聚合操作
+
+<ul>
+<li>像是一個員工屬於男性桶或者女性桶，日期 2014-10-28 屬於十月桶，也屬於 2014 年桶</li>
+</ul></li>
+<li>桶可以被嵌套在其他桶裏面
+
+<ul>
+<li>像是北京能放在中國桶裡，而中國桶能放在亞洲桶裡</li>
+</ul></li>
+<li>Elasticsearch 提供了很多種類型的桶，像是時間、最受歡迎的詞、年齡區間、地理位置桶等等，不過他們在根本上都是通過同樣的原理進行操作，也就是基於條件來劃分文檔，一個文檔只要符合條件，就可以加入那個桶，因此一個文檔可以同時加入很多桶</li>
+</ul></li>
+<li>指標（Metrics） : 對桶內的文檔進行統計計算
+
+<ul>
+<li>桶能讓我們劃分文檔到有意義的集合， 但是最終我們需要的是對這些桶內的文檔進行一些指標的計算</li>
+<li>指標通常是簡單的數學運算（像是min、max、avg、sum），而這些是通過當前桶中的文檔的值來計算的，利用指標能讓你計算像平均薪資、最高出售價格、95 % 的查詢延遲這樣的數據</li>
+</ul></li>
+
+<li><p>aggs 聚合的模板</p>
+
+<ul>
+<li>當 query 和 aggs 一起存在時，會先執行 query 的主查詢，主查詢 query 執行完後會搜出一批結果，而這些結果才會被拿去 aggs 拿去做聚合
+
+<ul>
+<li>另外要注意 aggs 後面會先接一層自定義的這個聚合的名字，然後才是接上要使用的聚合桶</li>
+<li>如果有些情況不在意查詢結果是什麼，而只在意 aggs 的結果，可以把 size 設為 0，如此可以讓返回的 hits 結果集是 0，加快返回的速度</li>
+</ul></li>
+<li>一個 aggs 裡可以有很多個聚合，每個聚合彼此間都是獨立的，因此可以一個聚合拿來統計數量、一個聚合拿來分析數據、一個聚合拿來計算標準差&hellip;，讓一次搜索就可以把想要做的事情一次做完
+
+<ul>
+<li>像是此例就定義了 3 個聚合，分別是 custom_name1、custom_name2、custom_name3</li>
+</ul></li>
+
+<li><p>aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+  <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">},</span>
+  <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;custom_name1&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//aggs後面接著的是一個自定義的name</span>
+        <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>  <span class="err">//再來才是接桶</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;custom_name2&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//一個aggs裡可以有很多聚合</span>
+          <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;custom_name3&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="err">.....</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//aggs可以嵌套在別的aggs裡面</span>
+              <span class="nt">&#34;in_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//記得使用aggs需要先自定義一個name</span>
+                  <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span> <span class="err">//in_name的桶作用的文檔是custom_name</span><span class="mi">3</span><span class="err">的桶的結果</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;hits&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="nt">&#34;max_score&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&#34;hits&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="err">//因為size設為</span><span class="mi">0</span><span class="err">，所以沒有查詢結果返回</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;aggregations&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;custom_name1&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">...</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;custom_name2&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">...</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;custom_name3&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">...</span> <span class="err">,</span>
+          <span class="nt">&#34;in_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="err">....</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h3 id="terms桶">terms桶</h3>
+
+<ul>
+<li>功能 : 針對某個 field 的值進行分組，field 有幾種值就分成幾組</li>
+<li>terms 桶在進行分組時，會爲此 field 中的每種值創建一個新的桶</li>
+<li>要注意此 &ldquo;terms桶&rdquo; 和平常用在主查詢 query 中的 &ldquo;查找terms&rdquo; 是不同的東西</li>
+<li>具體實例
+
+<ul>
+<li><p>首先插入幾筆數據，其中 color 是一個 keyword 類型</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>執行 terms 桶聚合</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span> <span class="err">//使用color來進行分組</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+
+<ul>
+<li>因為 color 總共有 3 種值，red、blue、green，所以 terms 桶為他們產生了 3 個 bucket，並計算了每個 bucket 中符合的文檔有哪些</li>
+
+<li><p>bucket 和 bucket 間是獨立的，也就是說一個文檔可以同時符合好幾個 bucket，像是 <code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code> 就同時符合了 red 和 blue bucket</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>  <span class="err">//terms桶產生的buckets數組，裡面每個json對象都是一個bucket</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                <span class="err">//表示color為red的文檔有2個，此例中就是</span> <span class="err">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">}</span> <span class="err">和</span> <span class="p">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]}</span><span class="err">這兩個文檔</span>
+                <span class="s2">&#34;doc_count&#34;</span><span class="err">:</span> <span class="mi">2</span>
+            <span class="err">}</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+
+<li><p>可以在參數帶上 <code>min_doc_count</code> 限制當 doc 數大於等於 n 筆時才會被搜出來，也可以帶上 <code>size</code> 參數，指名要顯示 bucket 中多少筆數據，默認是 10</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="err">//可以設置size，指定返回的桶數量，預設是10，如果總共桶數不超過100，那就會全部返回</span>
+                <span class="nt">&#34;min_doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">//bucket中只有當doc_count</span> <span class="err">&gt;=</span> <span class="mi">2</span><span class="err">的人，才會被搜出來</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//因為設置了min_doc_count:</span><span class="mi">2</span><span class="err">，所有只有red桶被搜出來</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+<li>具體實例二
+
+<ul>
+<li>將 terms 桶搭配度量指標（avg、min、max、sum&hellip;）一起使用
+
+<ul>
+<li>其實度量指標也可以看成一種&rdquo;桶&rdquo;，他可以和其他正常的桶們進行嵌套作用，差別只在指標關注的是這些文檔中的某個數值的統計，而桶關注的是文檔</li>
+</ul></li>
+
+<li><p>首先準備數據，color 一樣為 keyword 類型，而 price 為 integer 類型</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">500</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">],</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>將 avg 指標嵌套在 terms 桶裡一起使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//嵌套兩個指標avg、min在terms桶中</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_avg_price計算每個bucket的平均price</span>
+                    <span class="nt">&#34;avg&#34;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;price&#34;</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_min_price計算每個bucket中的最小price</span>
+                    <span class="nt">&#34;min&#34;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;price&#34;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//terms桶中的每個bucket都會計算avg和min兩個指標</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//avg指標</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">1000</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//min指標</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">100</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="err">//avg指標計算的值，因為符合color為red的文檔有兩筆，所以平均price為100+1000/2</span> <span class="err">=</span> <span class="err">550</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">550</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">100</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">500</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">500</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+<li>具體實例三
+
+<ul>
+<li>使用 terms 桶時，只聚合感興趣的 bucket，其他 bucket 都不聚合
+
+<ul>
+<li>使用 terms 桶支持的 <code>include</code> 和 <code>exclude</code> 參數來設定哪些 bucket 的值要聚合，哪些 bucket 的值不聚合
+
+<ul>
+<li>當 include 和 exclude 的規則有重疊的部份時，優先使用 exclude 的</li>
+</ul></li>
+<li><code>include</code> 和 <code>exclude</code> 都支持設置特定值、數組、以及正則</li>
+</ul></li>
+
+<li><p>準備數據</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;green&#34;</span><span class="p">]</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>聚合時只聚合我們感興趣的 bucket，也就是 color 為 red 的文檔有多少，其他的 bucket 不聚合</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;include&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span>  <span class="err">//include也支持數組和正則</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="err">//本來是有三個bucket的，但是因為設置了include，所以只聚合計算了一個bucket</span> <span class="err">red</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h3 id="filter桶">filter桶</h3>
+
+<ul>
+<li>功能 : 一個用來過濾的桶</li>
+<li>此處的 &ldquo;filter 桶&rdquo; 和用在主查詢 query 的 &ldquo;過濾 filter&rdquo; 的用法是一模一樣的，都是過濾</li>
+<li>不過差別是 &ldquo;filter 桶&rdquo; 會自己給創建一個新的桶，而不會像 &ldquo;過濾 filter&rdquo; 一樣依附在 query 下
+
+<ul>
+<li>因為 filter 桶畢竟還是一個聚合桶，因此他可以和別的桶進行嵌套，但他不是依附在別的桶上</li>
+</ul></li>
+<li>具體實例
+
+<ul>
+<li><p>取得 color 為 red 或是 blue 的文檔</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//此處是一個filter桶，因為他用法跟一般的過濾filter一樣，所以也能使用bool嵌套</span>
+                <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//注意此terms是查找terms，不是terms桶</span>
+                            <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span> <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">//filter桶計算出來的文檔數量</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+<li>具體實例二
+
+<ul>
+<li><p>filter 桶和 terms 桶嵌套使用，先過濾出 color 為 red 或 blue 的文檔，再對這些文檔進行 color 分組</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_name聚合</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//filter桶</span>
+                <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span> <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;my_name2&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_name2聚合，嵌套在my_name聚合裡</span>
+                    <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//terms桶</span>
+                        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+
+<ul>
+<li>因為 terms 桶嵌套在 filter 桶內，所以 query 查詢出來的文檔們會先經過 filter 桶，如果符合 filter 桶，才會進入到 terms 桶內</li>
+<li>此處通過 filter 桶的文檔只有兩筆，分別是 <code>{&quot;color&quot;: &quot;red&quot;}</code>以及<code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code>，所以 terms 桶只會對這兩筆文檔做分組</li>
+
+<li><p>這也是為什麼 terms 桶裡沒有出現 color 為 green 的分組，因為這個文檔在 filter 桶就被擋下來了</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="err">//filter桶計算的數量，通過此處的文檔只有2筆</span>
+        <span class="nt">&#34;my_name2&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>  <span class="err">//terms桶計算的數量</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>  <span class="err">//terms桶計算的數量</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h3 id="多桶排序">多桶排序</h3>
+
+<ul>
+<li>terms 桶、histogram 桶、data_histogram 桶這些桶屬於多值桶，也就是說他們會動態生成很多桶，對於這些生成出來的桶們，ES 默認會使用 <code>doc_value</code> 進行降序排序，也就是說哪個生成桶的 <code>doc_value</code> 文檔數較多，哪個生成桶就排在前面
+
+<ul>
+<li>如果想要改變這個生成桶與生成桶之間的排序，可以在使用 terms 桶、histogram 桶、data_histogram 桶時，使用 <code>order</code> 進行排序</li>
+<li><code>order</code> 支持的參數
+
+<ul>
+<li><code>_count</code> : 按照文檔數排序</li>
+<li><code>_term</code> : 按照每個桶的字符串值的字母順序排序</li>
+</ul></li>
+</ul></li>
+<li>具體實例
+
+<ul>
+<li><p>準備數據，color 是 keyword 類型</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">],</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span></code></pre></div></li>
+
+<li><p>使用 terms 桶進行分組，並且規定按照桶的字母順序升序，因此 a 生成桶會排在最前面而 z 生成桶會排在最後面</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">{</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;order&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;_term&#34;</span><span class="p">:</span> <span class="s2">&#34;asc&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>結果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ul></li>
+</ul>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-151537961-2', 'auto');
+  ga('send', 'pageview');
+</script></body>
+</html>
