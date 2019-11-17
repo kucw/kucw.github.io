@@ -34,7 +34,7 @@ function executeSearch(searchQuery){
     if(result.length > 0){
       populateResults(result);
     }else{
-      $('#search-results').append("<div class=\"text-center\"><img class=\"img-fluid mb-5\" src=\"{{ .Site.Params.imageUrl }}/oops.png\"><h3>No Search Found</h3></div>");
+      $('#search-results').append("<div class=\"text-center\"><img class=\"img-fluid mb-5\" src=\"{{ .Site.Params.url }}/images/oops.png\"><h3>No Search Found</h3></div>");
     }
   });
 }
