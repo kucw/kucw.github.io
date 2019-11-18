@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kucw.github.io/blog/</loc>
+    <lastmod>2019-11-18T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/</loc>
+    <lastmod>2019-11-18T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/java/</loc>
+    <lastmod>2019-11-18T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2019/11/java-time-measurment/</loc>
+    <lastmod>2019-11-18T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/</loc>
+    <lastmod>2019-11-18T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kucw.github.io/about/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
   </url>
@@ -13,27 +38,7 @@
   </url>
   
   <url>
-    <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/java/</loc>
-    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kucw.github.io/blog/2019/10/java-graalvm/</loc>
-    <lastmod>2019-10-09T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/</loc>
     <lastmod>2019-10-09T00:00:00+08:00</lastmod>
   </url>
   
