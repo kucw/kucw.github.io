@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,38 +108,44 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li><p>假設有2台機器，一台機器是本地平常寫 code 的電腦，另一台是 remote server</p></li>
-
-<li><p>首先在遠端運行的 server 上運行以下指令</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">socat TCP4-LISTEN:9097,fork,range<span class="o">=</span><span class="m">100</span>.80.169.15/32 TCP4:127.0.0.1:9015</code></pre></div>
+<li>
+<p>假設有2台機器，一台機器是本地平常寫 code 的電腦，另一台是 remote server</p>
+</li>
+<li>
+<p>首先在遠端運行的 server 上運行以下指令</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">socat TCP4-LISTEN:9097,fork,range<span class="o">=</span>100.80.169.15/32 TCP4:127.0.0.1:9015
+</code></pre></div><ul>
+<li>
+<p>100.80.169.15是本地寫 code 的機器的ip</p>
+</li>
+<li>
+<p>9097是指將 java 服務透過 socket 轉發出來的端口 (9097 可以換，只要跟 Intellij 的配置一致就可以)</p>
+</li>
+<li>
+<p>9015是 java remote service 服務監聽的 port</p>
 <ul>
-<li><p>100.80.169.15是本地寫 code 的機器的ip</p></li>
-
-<li><p>9097是指將 java 服務透過 socket 轉發出來的端口 (9097 可以換，只要跟 Intellij 的配置一致就可以)</p></li>
-
-<li><p>9015是 java remote service 服務監聽的 port</p>
-
-<ul>
-<li><p>可以在啟動 jvm 的 config 中修改，加上以下這段代碼</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="nv">$JAVA_OPTS</span> <span class="s2">&#34; -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:9015&#34;</span></code></pre></div></li>
-</ul></li>
-</ul></li>
-
-<li><p>在本地電腦上的 Intellij 進行配置</p>
-
+<li>可以在啟動 jvm 的 config 中修改，加上以下這段代碼</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="nv">$JAVA_OPTS</span> <span class="s2">&#34; -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:9015&#34;</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>在本地電腦上的 Intellij 進行配置</p>
 <ul>
 <li>新增一個remote連接
-
 <ul>
-<li><img src="https://kucw.github.io/images/intellij_remotedebug1.png" alt="" /></li>
-</ul></li>
+<li><img src="https://kucw.github.io/images/intellij_remotedebug1.png" alt=""></li>
+</ul>
+</li>
 <li>將Host設為 remote server 的ip，Port 設為 9097 (只要和 TCP-LISTEN 的端口一致即可)
-
 <ul>
-<li><img src="https://kucw.github.io/images/intellij_remotedebug2.png" alt="" /></li>
-</ul></li>
+<li><img src="https://kucw.github.io/images/intellij_remotedebug2.png" alt=""></li>
+</ul>
+</li>
 <li>如此就可以在本地的 code 上打 break point，這個 break point 位置會透過 socket 傳到 remote server 上，因此我們就可以在本地對 remote server 上的 code 進行 debug，完美！</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         </div>

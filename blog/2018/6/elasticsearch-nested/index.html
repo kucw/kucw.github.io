@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,87 +108,102 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li><p>由於在 ES 中，所有單個文檔的增刪改都是原子性的操作，因此將相關的實體數據都儲存在同一個文檔是很好的，且由於所有信息都在一個文檔中，因此當我們查詢時就沒有必要像 mysql 一樣去關聯很多張表，只要搜一遍文檔就可以查出所有需要的數據，查詢效率非常高</p></li>
-
-<li><p>因此除了基本數據類型之外，ES 也支持使用複雜的數據類型，像是數組、內部對象，而要使用內部對象的話，需要使用 <code>nested</code> 來定義索引，使文檔內可以包含一個內部對象</p>
-
+<li>
+<p>由於在 ES 中，所有單個文檔的增刪改都是原子性的操作，因此將相關的實體數據都儲存在同一個文檔是很好的，且由於所有信息都在一個文檔中，因此當我們查詢時就沒有必要像 mysql 一樣去關聯很多張表，只要搜一遍文檔就可以查出所有需要的數據，查詢效率非常高</p>
+</li>
+<li>
+<p>因此除了基本數據類型之外，ES 也支持使用複雜的數據類型，像是數組、內部對象，而要使用內部對象的話，需要使用 <code>nested</code> 來定義索引，使文檔內可以包含一個內部對象</p>
 <ul>
-<li><p>為什麼不用 object 而要使用 nested 來定義索引的原因是，object 類型會使得內部對象的關聯性丟失</p></li>
-
-<li><p>這是因為 Lucene 底層其實沒有內部對象的概念，所以 ES 會利用簡單的列表儲存字段名和值，將 object 類型的對象層次攤平，再傳給 Lucene</p></li>
-
-<li><p>假設 user 類型是 object，當插入一筆新的數據時，ES 會將他轉換為下面的內部文檔，其中可以看見 alice 和 white 的關聯性丟失了</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest/doc/</span><span class="mi">1</span>
+<li>
+<p>為什麼不用 object 而要使用 nested 來定義索引的原因是，object 類型會使得內部對象的關聯性丟失</p>
+</li>
+<li>
+<p>這是因為 Lucene 底層其實沒有內部對象的概念，所以 ES 會利用簡單的列表儲存字段名和值，將 object 類型的對象層次攤平，再傳給 Lucene</p>
+</li>
+<li>
+<p>假設 user 類型是 object，當插入一筆新的數據時，ES 會將他轉換為下面的內部文檔，其中可以看見 alice 和 white 的關聯性丟失了</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="mi">1</span>
 <span class="p">{</span>
     <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
     <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span> <span class="p">}</span><span class="p">,</span>
         <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Alice&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span> <span class="p">}</span>
     <span class="p">]</span>
-<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">轉換後的內部文檔</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">轉</span><span class="err">換</span><span class="err">後</span><span class="err">的</span><span class="err">內</span><span class="err">部</span><span class="err">文</span><span class="err">檔</span>
 <span class="p">{</span>
     <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span><span class="p">,</span> <span class="s2">&#34;john&#34;</span> <span class="p">],</span>
+    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span><span class="p">,</span> <span class="s2">&#34;john&#34;</span> <span class="p">]</span><span class="p">,</span>
     <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;smith&#34;</span><span class="p">,</span> <span class="s2">&#34;white&#34;</span> <span class="p">]</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>理論上從插入的數據來看，應該搜索 &ldquo;first 為 Alice 且 last 為 White&rdquo; 時，這個文檔才算符合條件被搜出來，其他的條件都不算符合，但是因為 ES 把 object 類型的對象攤平了，所以實際上如果搜索 &ldquo;first 為 Alice 且 last 為 Smith&rdquo;，這個文檔也會當作符合的文檔被搜出來，但這樣就違反我們的意願了，我們希望內部對象自己的關聯性還是存在的</p></li>
-
-<li><p>因此在使用內部對象時，要改使用 <code>nested</code> 類型來取代 <code>object</code> 類型 (因為 nested 類型不會被攤平，下面說明)</p></li>
-</ul></li>
-
-<li><p>nested 類型就是為了解決 object 類型在對象數組上丟失關聯性的問題的，如果將字段設置為 nested 類型，那個每一個嵌套對象都會被索引為一個 &ldquo;隱藏的獨立文檔&rdquo;</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>理論上從插入的數據來看，應該搜索 &ldquo;first 為 Alice 且 last 為 White&rdquo; 時，這個文檔才算符合條件被搜出來，其他的條件都不算符合，但是因為 ES 把 object 類型的對象攤平了，所以實際上如果搜索 &ldquo;first 為 Alice 且 last 為 Smith&rdquo;，這個文檔也會當作符合的文檔被搜出來，但這樣就違反我們的意願了，我們希望內部對象自己的關聯性還是存在的</p>
+</li>
+<li>
+<p>因此在使用內部對象時，要改使用 <code>nested</code> 類型來取代 <code>object</code> 類型 (因為 nested 類型不會被攤平，下面說明)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>nested 類型就是為了解決 object 類型在對象數組上丟失關聯性的問題的，如果將字段設置為 nested 類型，那個每一個嵌套對象都會被索引為一個 &ldquo;隱藏的獨立文檔&rdquo;</p>
 <ul>
-<li><p>其本質上就是將數組中的每個對象作為分離出來的隱藏文檔進行索引，因此這也意味著每個嵌套對象可以獨立於其他對象被查詢</p></li>
-
-<li><p>假設將上面的例子的 user 改為 nested 類型，經過 ES 轉換後的文檔如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//嵌套文檔</span><span class="mi">1</span>
+<li>
+<p>其本質上就是將數組中的每個對象作為分離出來的隱藏文檔進行索引，因此這也意味著每個嵌套對象可以獨立於其他對象被查詢</p>
+</li>
+<li>
+<p>假設將上面的例子的 user 改為 nested 類型，經過 ES 轉換後的文檔如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">/</span><span class="err">/</span><span class="err">嵌</span><span class="err">套</span><span class="err">文</span><span class="err">檔</span><span class="mi">1</span>
 <span class="p">{</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span> <span class="p">],</span>
+    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span> <span class="p">]</span><span class="p">,</span>
     <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;white&#34;</span> <span class="p">]</span>
 <span class="p">}</span>
-<span class="err">//嵌套文檔</span><span class="mi">2</span>
+<span class="err">/</span><span class="err">/</span><span class="err">嵌</span><span class="err">套</span><span class="err">文</span><span class="err">檔</span><span class="mi">2</span>
 <span class="p">{</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;john&#34;</span> <span class="p">],</span>
+    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;john&#34;</span> <span class="p">]</span><span class="p">,</span>
     <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;smith&#34;</span> <span class="p">]</span>
 <span class="p">}</span>
-<span class="err">//根文檔，或者也可以稱為父文檔</span>
+<span class="err">/</span><span class="err">/</span><span class="err">根</span><span class="err">文</span><span class="err">檔</span><span class="err">，</span><span class="err">或</span><span class="err">者</span><span class="err">也</span><span class="err">可</span><span class="err">以</span><span class="err">稱</span><span class="err">為</span><span class="err">父</span><span class="err">文</span><span class="err">檔</span>
 <span class="p">{</span>
     <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>在獨立索引每一個嵌套對象後，對象中每個字段的相關性得以保留，因此我們查詢時，也僅返回那些真正符合條件的文檔</p></li>
-
-<li><p>不僅如此，由於嵌套文檔直接儲存在文檔內部，因此查詢時嵌套文檔和根文檔的聯合成本很低，速度和單獨儲存幾乎一樣</p></li>
-
-<li><p>但是要注意，查詢的時候返回的是整個文檔，而不是嵌套文檔本身，並且如果要增刪改一個嵌套對象，必須把整個文檔重新索引才可以</p></li>
-</ul></li>
-
-<li><p>具體實例</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>在獨立索引每一個嵌套對象後，對象中每個字段的相關性得以保留，因此我們查詢時，也僅返回那些真正符合條件的文檔</p>
+</li>
+<li>
+<p>不僅如此，由於嵌套文檔直接儲存在文檔內部，因此查詢時嵌套文檔和根文檔的聯合成本很低，速度和單獨儲存幾乎一樣</p>
+</li>
+<li>
+<p>但是要注意，查詢的時候返回的是整個文檔，而不是嵌套文檔本身，並且如果要增刪改一個嵌套對象，必須把整個文檔重新索引才可以</p>
+</li>
+</ul>
+</li>
+<li>
+<p>具體實例</p>
 <ul>
-<li><p>索引準備</p>
-
+<li>
+<p>索引準備</p>
 <ul>
-<li><p>定義一個 nested 類型的 mapping，user 是一個內部對象，裡面包含了 first、last 和 age，因為 user 設置了 nested 類型，因此 user 對象會被索引在獨立的嵌套文檔中</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
+<li>
+<p>定義一個 nested 類型的 mapping，user 是一個內部對象，裡面包含了 first、last 和 age，因為 user 設置了 nested 類型，因此 user 對象會被索引在獨立的嵌套文檔中</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span>
 <span class="p">{</span>
     <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="err">//group是正常的keyword字段</span>
-                <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span> <span class="p">},</span>
-                <span class="err">//user是一個nested類型，表示他底下還會包含子對象</span>
+                <span class="err">/</span><span class="err">/</span><span class="err">g</span><span class="err">r</span><span class="err">o</span><span class="err">u</span><span class="err">p</span><span class="err">是</span><span class="err">正</span><span class="err">常</span><span class="err">的</span><span class="err">k</span><span class="err">e</span><span class="err">y</span><span class="err">w</span><span class="err">o</span><span class="err">r</span><span class="err">d</span><span class="err">字</span><span class="err">段</span>
+                <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span> <span class="p">}</span><span class="p">,</span>
+                <span class="err">/</span><span class="err">/</span><span class="err">u</span><span class="err">s</span><span class="err">e</span><span class="err">r</span><span class="err">是</span><span class="err">一</span><span class="err">個</span><span class="err">n</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">e</span><span class="err">d</span><span class="err">類</span><span class="err">型</span><span class="err">，</span><span class="err">表</span><span class="err">示</span><span class="err">他</span><span class="err">底</span><span class="err">下</span><span class="err">還</span><span class="err">會</span><span class="err">包</span><span class="err">含</span><span class="err">子</span><span class="err">對</span><span class="err">象</span>
                 <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;nested&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
-                        <span class="p">},</span>
+                        <span class="p">}</span><span class="p">,</span>
                         <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
-                        <span class="p">},</span>
+                        <span class="p">}</span><span class="p">,</span>
                         <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
                         <span class="p">}</span>
@@ -197,10 +212,11 @@
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>插入兩筆數據</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/doc</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>插入兩筆數據</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
 <span class="p">{</span>
     <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
     <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -209,8 +225,8 @@
         <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span>
     <span class="p">}</span>
 <span class="p">}</span>
-            
-<span class="err">POST</span> <span class="err">mytest/doc</span>
+          
+<span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
 <span class="p">{</span>
     <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
     <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
@@ -218,16 +234,17 @@
             <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
             <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
             <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-        <span class="p">},</span>
+        <span class="p">}</span><span class="p">,</span>
         <span class="p">{</span>
             <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
             <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
             <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span>
         <span class="p">}</span>
     <span class="p">]</span>    
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>因此在ES中存在的文檔如下</p>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>因此在ES中存在的文檔如下</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -238,7 +255,7 @@
                 <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
@@ -247,7 +264,7 @@
                     <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-                <span class="p">},</span>
+                <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
@@ -256,25 +273,28 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-</ul></li>
-</ul></li>
-
-<li><p>嵌套對象查詢 nested</p>
-
+<span class="p">]</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>嵌套對象查詢 nested</p>
 <ul>
-<li><p>由於嵌套對象被索引在獨立的隱藏文檔中，因此我們無法直接使用一般的 query 去查詢他，我們必須改使用 &ldquo;nested查詢&rdquo; 去查詢他們</p>
-
+<li>
+<p>由於嵌套對象被索引在獨立的隱藏文檔中，因此我們無法直接使用一般的 query 去查詢他，我們必須改使用 &ldquo;nested查詢&rdquo; 去查詢他們</p>
 <ul>
 <li>nested 查詢是一個葉子子句，因此外層需要使用 query 或是 bool 來包含他，且因為 nested 查詢是一個葉子子句，所以他也可以像一般的葉子子句一樣被 bool 層層嵌套</li>
 <li>nested 查詢的內部必須要包含一個 <code>path</code> 參數，負責指定要用的是哪個 nested 類型的字段，且要包含一個 <code>query</code>，負責進行此嵌套對象內的查詢</li>
-</ul></li>
-
-<li><p>如果是將 bool 子句寫在 nested 裡面，表示要查詢某個子對象中，必須同時包含這兩個條件</p>
-
+</ul>
+</li>
+<li>
+<p>如果是將 bool 子句寫在 nested 裡面，表示要查詢某個子對象中，必須同時包含這兩個條件</p>
 <ul>
-<li><p>也就是說，下面的查詢實際上是查找必須存在一個子對象，然後此對象必須同時滿足 <code>user.first</code> 為 Taylor，且 <code>user.last</code> 為 Swift，所以能夠找到一個存在的文檔</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>也就是說，下面的查詢實際上是查找必須存在一個子對象，然後此對象必須同時滿足 <code>user.first</code> 為 Taylor，且 <code>user.last</code> 為 Swift，所以能夠找到一個存在的文檔</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -282,14 +302,15 @@
             <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">}</span><span class="p">,</span>
                         <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;Swift&#34;</span> <span class="p">}</span> <span class="p">}</span>
                     <span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
@@ -300,10 +321,11 @@
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-
-<li><p>但將查詢改寫成下面這樣的話，則搜索不到任何結果，因為沒有一個子對象同時滿足 <code>user.first</code> 為 Taylor 且 <code>user.last</code> 為xxx</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">]</span>
+</code></pre></div></li>
+<li>
+<p>但將查詢改寫成下面這樣的話，則搜索不到任何結果，因為沒有一個子對象同時滿足 <code>user.first</code> 為 Taylor 且 <code>user.last</code> 為xxx</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -311,23 +333,26 @@
             <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">}</span><span class="p">,</span>
                         <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;xxx&#34;</span> <span class="p">}</span> <span class="p">}</span>
                     <span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>而如果是將 bool 子句寫在 nested 的外面，表示要查詢此 nested 對象兩次，而這兩次是分別使用不同的條件，因此不需要一定要同一個子對象中同時滿足這兩個條件</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>而如果是將 bool 子句寫在 nested 的外面，表示要查詢此 nested 對象兩次，而這兩次是分別使用不同的條件，因此不需要一定要同一個子對象中同時滿足這兩個條件</p>
 <ul>
-<li>下面的查詢表示只要 user 中包含 <code>user.first</code> 為 Amy，且也包含 <code>user.last</code> 為 Smith 就行了，但不是要求一定要有一個子對象是 <code>user.first</code> 為 Amy 且他的 <code>user.last</code> 剛好也是 Smith，所以結果才能搜出一個文檔</li>
-
-<li><p>如果這裡將 bool 改寫在 nested 裡面，那就搜不出任何文檔了</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>下面的查詢表示只要 user 中包含 <code>user.first</code> 為 Amy，且也包含 <code>user.last</code> 為 Smith 就行了，但不是要求一定要有一個子對象是 <code>user.first</code> 為 Amy 且他的 <code>user.last</code> 剛好也是 Smith，所以結果才能搜出一個文檔</p>
+</li>
+<li>
+<p>如果這裡將 bool 改寫在 nested 裡面，那就搜不出任何文檔了</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -341,7 +366,7 @@
                             <span class="p">}</span>
                         <span class="p">}</span>
                     <span class="p">}</span>
-                <span class="p">},</span>
+                <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
@@ -355,7 +380,8 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
@@ -364,7 +390,7 @@
                     <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-                <span class="p">},</span>
+                <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
@@ -373,11 +399,13 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-</ul></li>
-
-<li><p>和 bool 的其他葉子子句（term、range&hellip;）一起搭配使用的 nested 查詢</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<span class="p">]</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>和 bool 的其他葉子子句（term、range&hellip;）一起搭配使用的 nested 查詢</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -386,7 +414,7 @@
                     <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span>
                     <span class="p">}</span>
-                <span class="p">},</span>
+                <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
@@ -400,67 +428,75 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>嵌套對象的評分 score_mode</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>嵌套對象的評分 score_mode</p>
 <ul>
-<li><p>假設 nested 類型的 user，儲存的是一個數組，那麼在進行嵌套查詢時，可能會匹配到多個嵌套的文檔，而每一個匹配的嵌套文檔都有自己的相關度得分</p>
-
+<li>
+<p>假設 nested 類型的 user，儲存的是一個數組，那麼在進行嵌套查詢時，可能會匹配到多個嵌套的文檔，而每一個匹配的嵌套文檔都有自己的相關度得分</p>
 <ul>
-<li><p>假設有一個文檔如下，一個根文檔內，包含了3個嵌套文檔</p></li>
-
-<li><p>當查詢 &ldquo;user.first = July 或 user.last = Month&rdquo; 時，第一個嵌套文檔的分數最高，第二個嵌套文檔次之，第三個嵌套文檔的分數最低</p>
+<li>
+<p>假設有一個文檔如下，一個根文檔內，包含了3個嵌套文檔</p>
+</li>
+<li>
+<p>當查詢 &ldquo;user.first = July 或 user.last = Month&rdquo; 時，第一個嵌套文檔的分數最高，第二個嵌套文檔次之，第三個嵌套文檔的分數最低</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
             <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Aug&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span> <span class="p">}</span><span class="p">,</span>
+                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Aug&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span> <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Monday&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Day&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">25</span> <span class="p">}</span>
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-</ul></li>
-
-<li><p>為了匯集這眾多的嵌套文檔分數到根文檔，就需要設置 score_mode 來指定怎樣去計算這些嵌套文檔的總分</p>
-
+<span class="p">]</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>為了匯集這眾多的嵌套文檔分數到根文檔，就需要設置 score_mode 來指定怎樣去計算這些嵌套文檔的總分</p>
 <ul>
-<li><p>默認情況下，根文檔的分數是這些嵌套文檔分數的平均值，就是默認 score_mode = avg</p></li>
-
-<li><p>可以透過設置 score_mode 為 avg、max、sum、none (直接返回1.0常數值分數)，來控制根文檔的得分策略</p></li>
-
-<li><p>不過要注意，如果 nested 查詢放在一個 filter 子句中，就算定義了 score_mode 也不會生效，因為 filter 不打分，所以 score_mode 就沒有任何意義</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>默認情況下，根文檔的分數是這些嵌套文檔分數的平均值，就是默認 score_mode = avg</p>
+</li>
+<li>
+<p>可以透過設置 score_mode 為 avg、max、sum、none (直接返回1.0常數值分數)，來控制根文檔的得分策略</p>
+</li>
+<li>
+<p>不過要注意，如果 nested 查詢放在一個 filter 子句中，就算定義了 score_mode 也不會生效，因為 filter 不打分，所以 score_mode 就沒有任何意義</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;max&#34;</span><span class="p">,</span> <span class="err">//返回最佳匹配嵌套文檔的_score給根文檔使用</span>
+            <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;max&#34;</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">返</span><span class="err">回</span><span class="err">最</span><span class="err">佳</span><span class="err">匹</span><span class="err">配</span><span class="err">嵌</span><span class="err">套</span><span class="err">文</span><span class="err">檔</span><span class="err">的</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span><span class="err">給</span><span class="err">根</span><span class="err">文</span><span class="err">檔</span><span class="err">使</span><span class="err">用</span>
             <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;should&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span> <span class="p">}</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span> <span class="p">}</span> <span class="p">}</span><span class="p">,</span>
                         <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span> <span class="p">}</span> <span class="p">}</span>
                     <span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-</ul></li>
-
-<li><p>使用嵌套對象的字段來排序</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>使用嵌套對象的字段來排序</p>
 <ul>
 <li>儘管嵌套對象儲存於獨立的隱藏文檔中，但依然有方法按照嵌套字段的值排序</li>
-
-<li><p>假設我們想要查出 user.first 為 Amy，且依照 user.age 這個內部對象的字段，由小到大進行排序，查詢語句如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>假設我們想要查出 user.first 為 Amy，且依照 user.age 這個內部對象的字段，由小到大進行排序，查詢語句如下
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -471,17 +507,19 @@
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="nt">&#34;sort&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;user.age&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span>
-            <span class="p">},</span>
+            <span class="p">}</span><span class="p">,</span>
             <span class="nt">&#34;order&#34;</span><span class="p">:</span> <span class="s2">&#34;asc&#34;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</li>
 </ul>
 
         </div>

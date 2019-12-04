@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -109,31 +109,31 @@
         <div class="content mb-4">
           <ul>
 <li>ES 中的 term 和 match 牽扯到了分詞器、mapping、倒排索引等，如果不熟悉相關知識，請先看 <a href="https://kucw.github.io/blog/2018/6/elasticsearch-index-mapping/">ElasticSearch - index mapping（5.x以上）</a> 這篇文章
-
 <ul>
 <li>term 是直接把 field 拿去查詢倒排索引中確切的 term</li>
 <li>match 會先對 field 進行分詞操作，然後再去倒排索引中查詢</li>
-</ul></li>
+</ul>
+</li>
 <li>具體實例
-
 <ul>
 <li>假設有一個字段 nickname，存放的類型是 text，因此當新增一筆文檔時，內容會被分詞器分詞，然後才儲存進倒排索引</li>
 <li>假設插入了一筆文檔，其中 <code>&quot;nickname&quot;: &quot;1 hello&quot;</code>，分詞過後變為 <code>1</code>、<code>hello</code>，因此倒排索引中儲存的是兩筆索引 <code>1</code> 和 <code>hello</code>，而不是一筆索引 <code>1 hello</code></li>
 <li>使用 match 做查詢
-
 <ul>
 <li><code>&quot;match&quot;: &quot;1-hello&quot;</code> : 成功，因為 match 把 <code>1-hello</code> 分詞成 1、hello，而 1 和 hello 都存在在倒排索引中，所以不只能夠查到，_score 還很高</li>
 <li><code>&quot;match&quot;: &quot;1&quot;</code> : 成功，1 被分詞過後還是 1，而 1 存在在倒排索引中</li>
 <li><code>&quot;match&quot;: &quot;hello how r u&quot;</code> : 成功，match 把 <code>hello how r u</code> 分詞成 hello、how、r、u，而 hello 存在在倒排索引中</li>
-</ul></li>
+</ul>
+</li>
 <li>使用 term 做查詢
-
 <ul>
 <li><code>&quot;term&quot;: &quot;2222-hello</code> : 失敗，倒排索引只有 1、hello，並沒有 <code>2222-hello</code></li>
 <li><code>&quot;term&quot;: &quot;hello&quot;</code> : 成功，因為倒排索引中有 hello</li>
 <li><code>&quot;term&quot;: &quot;1 hello&quot;</code> : 失敗，雖然 <code>1 hello</code> 和我們當時插入的數據一模一樣，但是因為倒排索引在建立索引時把原始的數據分詞了才儲存進索引，裡面存的是 <code>1</code> 和 <code>hello</code>，並沒有存放 <code>1 hello</code>，因此查詢失敗</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>

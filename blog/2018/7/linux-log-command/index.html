@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,63 +108,77 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li><p><code>tail -f catalina.log</code> : 實時看log，會自動把新增的log直接顯示出來</p>
-
+<li>
+<p><code>tail -f catalina.log</code> : 實時看log，會自動把新增的log直接顯示出來</p>
 <ul>
-<li><p>在實時日誌上打印顏色，給每個狀態給上不同的顏色，INFO 綠色、WARN 黃色、ERROR 紅色</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tail -f catalina.out <span class="p">|</span> perl -pe <span class="s1">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span></code></pre></div></li>
-
-<li><p>只看 ERROR</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tail -f catalina.out <span class="p">|</span> grep <span class="s2">&#34;ERROR&#34;</span> --line-buffered <span class="p">|</span> perl -pe <span class="s1">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span></code></pre></div></li>
-
-<li><p>在 <code>.bashrc</code> 下加入這一段，可以讓 tail 輸出 log 時有顏色</p>
+<li>
+<p>在實時日誌上打印顏色，給每個狀態給上不同的顏色，INFO 綠色、WARN 黃色、ERROR 紅色</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tail -f catalina.out <span class="p">|</span> perl -pe <span class="s1">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+</code></pre></div></li>
+<li>
+<p>只看 ERROR</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tail -f catalina.out <span class="p">|</span> grep <span class="s2">&#34;ERROR&#34;</span> --line-buffered <span class="p">|</span> perl -pe <span class="s1">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+</code></pre></div></li>
+<li>
+<p>在 <code>.bashrc</code> 下加入這一段，可以讓 tail 輸出 log 時有顏色</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">tail</span><span class="o">=</span><span class="s2">&#34;_tail_log&#34;</span>
-_tail_log<span class="o">()</span> <span class="o">{</span>
+_tail_log<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
   <span class="s2">&#34;tail&#34;</span> <span class="nv">$@</span> <span class="p">|</span> perl -pe <span class="s1">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
-<span class="o">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p><code>less</code> : 通常用來翻找舊的日誌</p>
-
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>less</code> : 通常用來翻找舊的日誌</p>
 <ul>
-<li>輸入 <code>F</code>，也可以實時滾動日誌，就像 <code>tail -f</code> 的效果一樣</li>
-
-<li><p>在 <code>.bashrc</code> 下加入這一段，可以讓 less 在找 log 時輸出顏色</p>
-
+<li>
+<p>輸入 <code>F</code>，也可以實時滾動日誌，就像 <code>tail -f</code> 的效果一樣</p>
+</li>
+<li>
+<p>在 <code>.bashrc</code> 下加入這一段，可以讓 less 在找 log 時輸出顏色</p>
 <ul>
-<li><p>highlight 整條 log</p>
+<li>
+<p>highlight 整條 log</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">less</span><span class="o">=</span><span class="s2">&#34;_show_log&#34;</span>
-_show_log<span class="o">()</span> <span class="o">{</span>
+_show_log<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
 awk <span class="s1">&#39;
 </span><span class="s1">/ERROR/ {printf(&#34;\033[1;31m%s\033[0m\n&#34;, $0)}
 </span><span class="s1">/WARN/ {printf(&#34;\033[1;33m%s\033[0m\n&#34;, $0)}
 </span><span class="s1">!/(WARN|ERROR)/ {printf(&#34;%s\n&#34;, $0)}
 </span><span class="s1">&#39;</span> <span class="nv">$1</span> <span class="p">|</span> <span class="s2">&#34;less&#34;</span> -r
-<span class="o">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>只highlight INFO、WARN、ERROR 這種狀態</p>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>只highlight INFO、WARN、ERROR 這種狀態</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">less</span><span class="o">=</span><span class="s2">&#34;_show_log&#34;</span>
-_show_log<span class="o">()</span> <span class="o">{</span>
+_show_log<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
 awk <span class="s1">&#39;
 </span><span class="s1">/ERROR/ {sub(/ERROR/, &#34;\033[1;31mERROR\033[0m&#34;)}
 </span><span class="s1">/WARN/ {sub(/WARN/, &#34;\033[1;33mWARN\033[0m&#34;)}
 </span><span class="s1">/INFO/ {sub(/INFO/, &#34;\033[0;32mINFO\033[0m&#34;)}
 </span><span class="s1">{print}
 </span><span class="s1">&#39;</span> <span class="nv">$1</span> <span class="p">|</span> <span class="s2">&#34;less&#34;</span> -r
-<span class="o">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p><code>multitail</code> : 可同時開啟多視窗看 log，適合用在看部署在很多機器上的項目的 log</p>
-
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>multitail</code> : 可同時開啟多視窗看 log，適合用在看部署在很多機器上的項目的 log</p>
 <ul>
-<li><p><code>-cS [color_scheme]</code> : 可以選擇輸出的 log 的顏色，推薦使用 goldengate，也可自定義（修改/etc/multitail.conf）</p></li>
-
-<li><p><code>-s [column number]</code> : 設定看 log 時會分成幾個縱列</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">multitail -s <span class="m">2</span> -cS goldengate -l <span class="s1">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span class="s1">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span></code></pre></div></li>
-
-<li><p>multitail 開始運作後，點擊 <code>b</code>，可以選擇要 scroll 的檔案，點擊 <code>q</code> 退出</p></li>
-</ul></li>
+<li>
+<p><code>-cS [color_scheme]</code> : 可以選擇輸出的 log 的顏色，推薦使用 goldengate，也可自定義（修改/etc/multitail.conf）</p>
+</li>
+<li>
+<p><code>-s [column number]</code> : 設定看 log 時會分成幾個縱列</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">multitail -s <span class="m">2</span> -cS goldengate -l <span class="s1">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span class="s1">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span>
+</code></pre></div></li>
+<li>
+<p>multitail 開始運作後，點擊 <code>b</code>，可以選擇要 scroll 的檔案，點擊 <code>q</code> 退出</p>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>

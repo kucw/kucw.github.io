@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,226 +108,241 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li><p>ThreadLocal 是線程的局部變量， 是每一個線程所單獨持有的，其他線程不能對其進行訪問</p>
-
+<li>
+<p>ThreadLocal 是線程的局部變量， 是每一個線程所單獨持有的，其他線程不能對其進行訪問</p>
 <ul>
 <li>ThreadLocal 支持泛型，也就是支持 value 是可以設置類型的，像是 <code>ThreadLocal&lt;Date&gt;</code> 就是設置 value 為 Date 類型</li>
 <li>每個線程會有自己的一份 ThreadLocalMap 變量，去儲存這個線程自己想存放的 ThreadLocal 變量們，他內部儲存的是一個鍵值對 Map，其中 key 是某個 ThreadLocal，value 就是這個線程自己 set 的值，所以對於一個線程來說，一個 ThreadLocal 只能存一個值，而一個線程可以存放好多個 ThreadLocal</li>
-<li>因此當調用 ThreadLocal <code>tl</code> 的 <code>tl.get()</code> 方法時，其實就是先去取得此線程的 ThreadLocalMap，然後再去查找這個 Map 中的 key 為 <code>tl</code> 的那個 Entry 的 value 值
-<br /></li>
-</ul></li>
-
-<li><p>ThreadLocal 常用的方法</p>
-
+<li>因此當調用 ThreadLocal <code>tl</code> 的 <code>tl.get()</code> 方法時，其實就是先去取得此線程的 ThreadLocalMap，然後再去查找這個 Map 中的 key 為 <code>tl</code> 的那個 Entry 的 value 值</li>
+</ul>
+</li>
+<li>
+<p>ThreadLocal 常用的方法</p>
 <ul>
 <li><code>set(x)</code> : 設置此線程的想要放的值是多少</li>
 <li><code>get()</code> : 取得此線程當初存放的值，如果沒有存放過則返回 null</li>
 <li><code>remove()</code> : 刪除此線程的鍵值對，也就是如果先執行 remove 再執行 get，會返回 null</li>
-</ul></li>
-
-<li><p>ThreadLocal 通常用在 SimpleDateFormat，或是 SpringMVC 上</p>
-
+</ul>
+</li>
+<li>
+<p>ThreadLocal 通常用在 SimpleDateFormat，或是 SpringMVC 上</p>
 <ul>
 <li>因為 SimpleDateFormat 不是線程安全的，因此雖然可以每次要使用的時候重新 <code>new</code> 一個，但是這樣做會很浪費資源，所以如果使用 ThreadLocal 在每個線程裡都存放一個此線程專用的 SimpleDateFormat，就可以避免一直 <code>new</code> 的資源浪費，又確保線程安全</li>
 <li>因為 SpringMVC 會對每個請求分配一個線程，可以在攔截器將此線程的用戶信息（ip、名字&hellip;）使用 ThreadLocal 儲存，這樣在後續要用到用戶信息的地方時，就可以去 ThreadLocal 中取得，而且因為 ThreadLocal 可以隔離線程，因此每條請求對應的線程的用戶信息不會互相干擾</li>
-</ul></li>
-
-<li><p>ThreadLocal 可能造成的內存洩漏</p>
-
+</ul>
+</li>
+<li>
+<p>ThreadLocal 可能造成的內存洩漏</p>
 <ul>
-<li><p>在Java裡，每個線程都有自己的 ThreadLocalMap，裡面存著這個線程自己私有的 ThreadLocal 們，而 ThreadLocalMap 的 key 為 ThreadLocal 實例，value 為私有對象 T，即是透過 <code>set()</code> 設置的值</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class Thread implements </span><span class="n">Runnable</span> <span class="p">{</span>
+<li>
+<p>在Java裡，每個線程都有自己的 ThreadLocalMap，裡面存著這個線程自己私有的 ThreadLocal 們，而 ThreadLocalMap 的 key 為 ThreadLocal 實例，value 為私有對象 T，即是透過 <code>set()</code> 設置的值</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Thread</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
     <span class="c1">//Thread類裡的threadlocals存放此線程的專有的ThreadLocalMap
-</span><span class="c1"></span>    <span class="err">ThreadLocal.ThreadLocalMap threadLocals </span><span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="c1"></span>    <span class="n">ThreadLocal</span><span class="o">.</span><span class="na">ThreadLocalMap</span> <span class="n">threadLocals</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadLocal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="c1">//根據線程，取得那個線程自己的ThreadLocalMap
-</span><span class="c1"></span>    <span class="err">ThreadLocalMap getMap</span><span class="p">(</span><span class="err">Thread t</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">t</span><span class="p">.</span><span class="na">threadLocals</span><span class="p">;</span>
-    <span class="p">}</span>
-            
-    <span class="err">static class </span><span class="n">ThreadLocalMap</span> <span class="p">{</span>
+</span><span class="c1"></span>    <span class="n">ThreadLocalMap</span> <span class="nf">getMap</span><span class="o">(</span><span class="n">Thread</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="na">threadLocals</span><span class="o">;</span>
+    <span class="o">}</span>
+          
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ThreadLocalMap</span> <span class="o">{</span>
         <span class="c1">//ThreadLocalMap的key是使用 &#34;弱引用&#34; 的ThreadLocal
-</span><span class="c1"></span>        <span class="err">static class Entry extends </span><span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">ThreadLocal</span><span class="o">&gt;</span> <span class="p">{</span>
-            <span class="err">Object value</span><span class="p">;</span>
-        
+</span><span class="c1"></span>        <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Entry</span> <span class="kd">extends</span> <span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">ThreadLocal</span><span class="o">&gt;</span> <span class="o">{</span>
+            <span class="n">Object</span> <span class="n">value</span><span class="o">;</span>
+      
             <span class="c1">//ThreadLocalMap中的key就是ThreadLocal，value就是設置的值
-</span><span class="c1"></span>            <span class="n">Entry</span><span class="p">(</span><span class="err">ThreadLocal k</span><span class="p">,</span> <span class="err">Object v</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">super</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>可以創建許多個 ThreadLocal 對象，對每個 ThreadLocal 都設置不同的值</p>
-
+</span><span class="c1"></span>            <span class="n">Entry</span><span class="o">(</span><span class="n">ThreadLocal</span> <span class="n">k</span><span class="o">,</span> <span class="n">Object</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">(</span><span class="n">k</span><span class="o">)</span><span class="o">;</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>可以創建許多個 ThreadLocal 對象，對每個 ThreadLocal 都設置不同的值</p>
 <ul>
-<li><p>像是以下的例子，在 main 線程中的 ThreadLocalMap，就有兩個 key-value 的映射，分別是 userIdThreadLocal -&gt; 100、userNameThreadLocal -&gt; hello</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">){</span>
-        <span class="err">ThreadLocal&lt;Integer&gt; userIdThreadLocal </span><span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="err">ThreadLocal&lt;String&gt; userNameThreacLocal </span><span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-                    
-        <span class="n">userId</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">100</span><span class="p">);</span>
-        <span class="n">userName</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>之所以 ThreadLocal 會發生內存洩漏，原因是因為只要線程活著，這個線程的 ThreadLocalMap 就會一直活著，而當初透過 ThreadLocal <code>set()</code> 的值，也就會在 ThreadLocalMap 中一直存在這個鍵值對不消失，所以該 ThreadLocal 和該 value 的內存地址始終都有這個 ThreadLocalMap 在引用著，導致 GC 無法回收他，所以才會發生內存洩漏</p>
-
+<li>
+<p>像是以下的例子，在 main 線程中的 ThreadLocalMap，就有兩個 key-value 的映射，分別是 userIdThreadLocal -&gt; 100、userNameThreadLocal -&gt; hello</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span><span class="o">{</span>
+        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">userIdThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">userNameThreacLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+                  
+        <span class="n">userId</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">100</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">userName</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>之所以 ThreadLocal 會發生內存洩漏，原因是因為只要線程活著，這個線程的 ThreadLocalMap 就會一直活著，而當初透過 ThreadLocal <code>set()</code> 的值，也就會在 ThreadLocalMap 中一直存在這個鍵值對不消失，所以該 ThreadLocal 和該 value 的內存地址始終都有這個 ThreadLocalMap 在引用著，導致 GC 無法回收他，所以才會發生內存洩漏</p>
 <ul>
-<li><p>為了解決這個問題，java 做了一個小優化，也就是存放在 ThreadLocalMap 中的 ThreadLocal，會使用 <strong>弱引用</strong> 來儲存，也就是說，如果一個 ThreadLocal 內存地址沒有外部強引用來引用他，只有這條 ThreadLocalMap 的弱引用來引用他時，那麼當系統 GC 時，這些 ThreadLocal 就會被回收（因為是弱引用），如此一來，ThreadLocalMap 中就會出現 key 為 null 的 Entry 們</p>
-
+<li>
+<p>為了解決這個問題，java 做了一個小優化，也就是存放在 ThreadLocalMap 中的 ThreadLocal，會使用 <strong>弱引用</strong> 來儲存，也就是說，如果一個 ThreadLocal 內存地址沒有外部強引用來引用他，只有這條 ThreadLocalMap 的弱引用來引用他時，那麼當系統 GC 時，這些 ThreadLocal 就會被回收（因為是弱引用），如此一來，ThreadLocalMap 中就會出現 key 為 null 的 Entry 們</p>
 <ul>
 <li>下圖中，實線表示強引用，虛線表示弱引用</li>
-<li><img src="https://kucw.github.io/images/thread_threadlocalmap.png" alt="" />
-<br /></li>
-</ul></li>
-
-<li><p>這個弱引用優化只能使得 ThreadLocal 被正確回收，但是這些 key 為 null 的 Entry 們仍然會存在在 ThreadLocalMap 裡，因此 value 仍然無法被回收</p>
-
+<li><img src="https://kucw.github.io/images/thread_threadlocalmap.png" alt=""></li>
+</ul>
+</li>
+<li>
+<p>這個弱引用優化只能使得 ThreadLocal 被正確回收，但是這些 key 為 null 的 Entry 們仍然會存在在 ThreadLocalMap 裡，因此 value 仍然無法被回收</p>
 <ul>
-<li><p>所以 java 又做了一個優化，就是在 ThreadLocal 執行 <code>get()</code>、<code>set()</code>、<code>remove()</code> 方法時，都會將該線程 ThreadLocalMap 裡所有 key = null 的 value 也設置為 null，手動幫助 GC</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">ThreadLocal k </span><span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">e</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Help the GC
-</span><span class="c1"></span><span class="p">}</span> </code></pre></div></li>
-</ul></li>
-</ul></li>
-
-<li><p>但是根本上的解決辦法，還是在當前線程使用完這個 ThreadLocal 時，就即時的 <code>remove()</code> 掉該 value，也就是使得 ThreadLocalMap 中不要存在這個鍵值對，這樣才能確保 GC 能正確回收</p></li>
-</ul></li>
-
-<li><p>具體實例</p>
-
+<li>
+<p>所以 java 又做了一個優化，就是在 ThreadLocal 執行 <code>get()</code>、<code>set()</code>、<code>remove()</code> 方法時，都會將該線程 ThreadLocalMap 裡所有 key = null 的 value 也設置為 null，手動幫助 GC</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ThreadLocal</span> <span class="n">k</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Help the GC
+</span><span class="c1"></span><span class="o">}</span> 
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>但是根本上的解決辦法，還是在當前線程使用完這個 ThreadLocal 時，就即時的 <code>remove()</code> 掉該 value，也就是使得 ThreadLocalMap 中不要存在這個鍵值對，這樣才能確保 GC 能正確回收</p>
+</li>
+</ul>
+</li>
+<li>
+<p>具體實例</p>
 <ul>
-<li><p>每個線程都可以在 ThreadLocal 中放自己的值，且不會干擾到其他線程的值</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">class Tools </span><span class="p">{</span>
-    <span class="err">public static ThreadLocal threadLocal </span><span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="p">();</span>
-<span class="p">}</span>
-        
-<span class="err">class MyThread extends Thread </span><span class="p">{</span>
+<li>
+<p>每個線程都可以在 ThreadLocal 中放自己的值，且不會干擾到其他線程的值</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tools</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+      
+<span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="err">public void </span><span class="n">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Tools</span><span class="p">.</span><span class="na">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Tools</span><span class="p">.</span><span class="na">threadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">Math</span><span class="p">.</span><span class="na">random</span><span class="p">());</span>
-        <span class="p">}</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Tools</span><span class="p">.</span><span class="na">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">());</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-        
-<span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="err">int i </span><span class="o">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="err">MyThread thread </span><span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="p">();</span>
-            <span class="n">thread</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
-            <span class="n">thread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<pre><code>thread 1, 0.86
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+      
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>thread 1, 0.86
 thread 0, 0.42
 thread 2, 0.35
 thread 3, 0.41
 thread 4, 0.45
 </code></pre></li>
-
-<li><p>使用 ThreadLocal 在 SimpleDateFormat 上，並且給 ThreadLocal 加上泛型，指定 value 的類型是 SimpleDateFormat</p>
-
+<li>
+<p>使用 ThreadLocal 在 SimpleDateFormat 上，並且給 ThreadLocal 加上泛型，指定 value 的類型是 SimpleDateFormat</p>
 <ul>
-<li><p>因為使用了 ThreadLocal 確保每個線程有自己一份 SimpleDateFormat，所以線程安全，不會報錯</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">class Tools </span><span class="p">{</span>
-    <span class="err">public static ThreadLocal&lt;SimpleDateFormat&gt; threadLocal </span><span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="p">}</span>
-            
-<span class="err">class MyThread extends Thread </span><span class="p">{</span>
+<li>
+<p>因為使用了 ThreadLocal 確保每個線程有自己一份 SimpleDateFormat，所以線程安全，不會報錯</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tools</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+          
+<span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="err">public void </span><span class="n">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="err">SimpleDateFormat sdf </span><span class="o">=</span> <span class="n">Tools</span><span class="p">.</span><span class="na">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">sdf</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">&#34;yyyy-MM-dd&#34;</span><span class="p">);</span>
-            <span class="n">Tools</span><span class="p">.</span><span class="na">threadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">sdf</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sdf</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&#34;2018-07-15&#34;</span><span class="p">));</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">ParseException e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;報錯了&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-            
-<span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="err">int i </span><span class="o">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="err">MyThread thread </span><span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="p">();</span>
-            <span class="n">thread</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
-            <span class="n">thread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<pre><code>Sun Jul 15 00:00:00 CST 2018
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sdf</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd&#34;</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sdf</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2018-07-15&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;報錯了&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+          
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>Sun Jul 15 00:00:00 CST 2018
 Sun Jul 15 00:00:00 CST 2018
 Sun Jul 15 00:00:00 CST 2018
 Sun Jul 15 00:00:00 CST 2018
 Sun Jul 15 00:00:00 CST 2018
 </code></pre></li>
-</ul></li>
-
-<li><p>使用 ThreadLocal 在 SpringMVC上</p>
-
+</ul>
+</li>
+<li>
+<p>使用 ThreadLocal 在 SpringMVC上</p>
 <ul>
-<li>攔截器 MyInterceptor 先去從 cookie 中取得當前用戶信息，透過 UserUtils 放到 <code>ThreadLocal&lt;User&gt;</code> 裡</li>
-<li>然後當 MyController 要去取得這個請求（也就是這條線程）的用戶信息時，就去調用 UserUtils 取得放在 <code>ThreadLocal&lt;User&gt;</code> 裡面的 User 信息</li>
-
-<li><p>最後當請求結束時，刪除此條線程的 <code>ThreadLocal&lt;User&gt;</code> 信息，避免內存洩漏</p>
+<li>
+<p>攔截器 MyInterceptor 先去從 cookie 中取得當前用戶信息，透過 UserUtils 放到 <code>ThreadLocal&lt;User&gt;</code> 裡</p>
+</li>
+<li>
+<p>然後當 MyController 要去取得這個請求（也就是這條線程）的用戶信息時，就去調用 UserUtils 取得放在 <code>ThreadLocal&lt;User&gt;</code> 裡面的 User 信息</p>
+</li>
+<li>
+<p>最後當請求結束時，刪除此條線程的 <code>ThreadLocal&lt;User&gt;</code> 信息，避免內存洩漏</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UserUtils專門存取User信息
-</span><span class="c1"></span><span class="err">public class </span><span class="n">UserUtils</span> <span class="p">{</span>
-    <span class="err">public static ThreadLocal&lt;User&gt; userThreadLocal </span><span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-            
-    <span class="err">public static void setUser</span><span class="p">(</span><span class="err">User user</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">userThreadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
-    <span class="p">}</span>
-            
-    <span class="err">public static User getUser</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">userThreadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
-    <span class="p">}</span>
-                
-    <span class="err">public static void removeUser</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">userThreadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">userThreadLocal</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserUtils</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
           
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">user</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+          
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">User</span> <span class="nf">getUser</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+              
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">removeUser</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+        
 <span class="c1">//攔截器取得cookie中的User信息，並調用UserUtils放到ThreadLocal裡
-</span><span class="c1">//請求結束時要記得把ThreadLocal中的User刪除，因為這條線程之後還要去服務其他請求
-</span><span class="c1"></span><span class="err">public class MyInterceptor extends </span><span class="n">HandlerInterceptorAdapter</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="c1">//請求結束時要記得把ThreadLocal中的User刪除，因為這條線程之後還要去服務其他請求
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInterceptor</span> <span class="kd">extends</span> <span class="n">HandlerInterceptorAdapter</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="err">public boolean </span><span class="n">preHandle</span><span class="p">()</span> <span class="err">throws Exception </span><span class="p">{</span>
-        <span class="err">User user </span><span class="o">=</span> <span class="n">getUserFromCookie</span><span class="p">();</span>
-        <span class="n">UserUtils</span><span class="p">.</span><span class="na">setUser</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-            
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">getUserFromCookie</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">UserUtils</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">user</span><span class="o">)</span><span class="o">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+          
     <span class="nd">@Override</span>
-    <span class="err">public void </span><span class="n">postHandle</span><span class="p">()</span> <span class="err">throws Exception </span><span class="p">{</span>
-        <span class="n">UserUtils</span><span class="p">.</span><span class="na">removeUser</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-            
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">UserUtils</span><span class="o">.</span><span class="na">removeUser</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+          
 <span class="c1">//MyContoller調用UserUtils取得ThreadLocal&lt;User&gt;中的User
 </span><span class="c1"></span><span class="nd">@Controller</span>
-<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">)</span>
-<span class="err">public class </span><span class="n">MyController</span> <span class="p">{</span>
-    <span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">)</span>
-    <span class="err">public void </span><span class="n">test</span><span class="p">()</span> <span class="p">{</span>
-        <span class="err">User user </span><span class="o">=</span> <span class="n">UserUtils</span><span class="p">.</span><span class="na">getUser</span><span class="p">();</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-</ul></li>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="o">{</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">UserUtils</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">id</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>

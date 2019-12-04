@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -110,33 +110,35 @@
           <blockquote>
 <p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
 </blockquote>
-
 <ul>
-<li><p>在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率</p>
-
+<li>
+<p>在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率</p>
 <ul>
 <li>但是，在隨機的同時，除了想讓不同的用戶看到不同的隨機次序之外，但也希望如果是同一用戶翻頁瀏覽時，結果的相對次序能始終保持一致，這種行爲被稱爲 一致隨機（consistently random）</li>
 <li>因此 random_score 加強函數除了能隨機得到一個 0 ~ 1 的分數，也會使用一個 seed 值，來保障生成隨機的順序，當 seed 值相同時，生成的隨機結果是一致的</li>
-</ul></li>
-
-<li><p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
+</ul>
+</li>
+<li>
+<p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
 <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span></code></pre></div></li>
-
-<li><p>使用 random_score 生成隨機排序</p>
-
+<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>使用 random_score 生成隨機排序</p>
 <ul>
-<li><p>注意在 functions 裡，只有 weight 加強函數加了 filter，也就是說只有 like 數小於等於 5 的文檔，才會被 weight 加強函數加強</p></li>
-
-<li><p>而 random_score 加強函數沒有加 filter，表示所有的文檔都會被 random_score 隨機排序一遍</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>注意在 functions 裡，只有 weight 加強函數加了 filter，也就是說只有 like 數小於等於 5 的文檔，才會被 weight 加強函數加強</p>
+</li>
+<li>
+<p>而 random_score 加強函數沒有加 filter，表示所有的文檔都會被 random_score 隨機排序一遍</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">},</span>
+                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
+            <span class="p">}</span><span class="p">,</span>
             <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -145,9 +147,9 @@
                                 <span class="nt">&#34;lte&#34;</span><span class="p">:</span> <span class="mi">5</span>
                             <span class="p">}</span>
                         <span class="p">}</span>
-                    <span class="p">},</span>
+                    <span class="p">}</span><span class="p">,</span>
                     <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
-                <span class="p">},</span>
+                <span class="p">}</span><span class="p">,</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;random_score&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;seed&#34;</span><span class="p">:</span> <span class="mi">100</span>
@@ -156,40 +158,44 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>當 random_score 的 seed 設為 100，其結果為</p>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>當 random_score 的 seed 設為 100，其結果為</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2912227</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.1301208</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.9083528</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-
-<li><p>當 random_score 的 seed 設為 200，其結果為</p>
+<span class="p">]</span>
+</code></pre></div></li>
+<li>
+<p>當 random_score 的 seed 設為 200，其結果為</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2040303</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5595852</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.10916698</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">]</span></code></pre></div></li>
-</ul></li>
+<span class="p">]</span>
+</code></pre></div></li>
+</ul>
+</li>
 </ul>
 
         </div>

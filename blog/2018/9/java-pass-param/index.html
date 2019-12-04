@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,87 +108,92 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li>在探討 Java 傳遞參數是 pass by value 還是 pass by reference 之前，需要先了解 Java 中 <code>=</code> 的具體細節</li>
-
-<li><p>賦值 <code>=</code> 的用法</p>
-
+<li>
+<p>在探討 Java 傳遞參數是 pass by value 還是 pass by reference 之前，需要先了解 Java 中 <code>=</code> 的具體細節</p>
+</li>
+<li>
+<p>賦值 <code>=</code> 的用法</p>
 <ul>
-<li><p><code>=</code> 的意義是賦值，但是這個賦值用在 基本類型 和 對象類型 上會有非常大的差別</p>
-
+<li>
+<p><code>=</code> 的意義是賦值，但是這個賦值用在 基本類型 和 對象類型 上會有非常大的差別</p>
 <ul>
 <li>如果 <code>=</code> 用在基本類型上，因為基本類型儲存了實際的數值，所以在為其賦值時，是直接將值複製一份新的過去
-
 <ul>
 <li>因此假設 a、b 都是基本類型，如果執行了 <code>a=b</code>，那麼就是將 b 的內容直接複製一份新的給 a，之後如果改變了 a 的值，也不會影響到 b</li>
 <li>此處的基本類型，泛指 int、long、boolean&hellip;.和其包裝型態 Integer、Long、Boolean&hellip;.，只要是這些類型的變量，都適用基本類型的 <code>=</code> 規則</li>
-</ul></li>
+</ul>
+</li>
 <li>但如果 <code>=</code> 用在對象類型上，因為在使用對象操作時，實際儲存的其實是對象的引用，所以在為其賦值時，實際上只是把 &ldquo;引用&rdquo; 從一個地方複製到另一個地方
-
 <ul>
 <li>因此假設 c、d 都是對象類型，如果執行了 <code>c=d</code>，那麼 c 和 d 都會指向原本只有 d 指向的那個對象，而原本 c 的那個對象因為沒人引用了，所以會被垃圾回收清理掉</li>
-</ul></li>
+</ul>
+</li>
 <li>另外，只要是數組，不管你是基本類型 <code>int[]</code> 還是對象類型 <code>Tank[]</code>，一律存的都是引用，所以只要賦值了，也會互相影響</li>
-</ul></li>
-
-<li><p>具體實例</p>
-
+</ul>
+</li>
+<li>
+<p>具體實例</p>
 <ul>
-<li>t1、t2是基本類型的 <code>=</code> 效果（不會互相影響）</li>
-<li>t3、t4是對象類型的 <code>=</code> 效果（因為存的是引用，所以會互相影響）</li>
+<li>
+<p>t1、t2是基本類型的 <code>=</code> 效果（不會互相影響）</p>
+</li>
+<li>
+<p>t3、t4是對象類型的 <code>=</code> 效果（因為存的是引用，所以會互相影響）</p>
+</li>
+<li>
+<p>i5、i6是基本類型的數組的 <code>=</code> 效果（因為存的也是引用，所以也會互相影響）</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tank</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">level</span><span class="o">;</span>
+<span class="o">}</span>
 
-<li><p>i5、i6是基本類型的數組的 <code>=</code> 效果（因為存的也是引用，所以也會互相影響）</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">class Tank </span><span class="p">{</span>
-    <span class="err">int level</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Tank</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">Tank</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
-<span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="err">Tank t1 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-        <span class="err">Tank t2 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-
-        <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
-        <span class="n">t2</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">2</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//此處只是基本類型的賦值，所以t1、t2仍舊指到兩個不同對象
-</span><span class="c1"></span>        <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">100</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t1: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t2: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;----&#34;</span><span class="p">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;----&#34;</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="err">Tank t3 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-        <span class="err">Tank t4 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
+        <span class="n">Tank</span> <span class="n">t3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">Tank</span> <span class="n">t4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">t3</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">3</span><span class="p">;</span>
-        <span class="n">t4</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">4</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+        <span class="n">t3</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
+        <span class="n">t4</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//此處是對象類型的賦值，所以是t3和t4都指到了同一個對象上
 </span><span class="c1"></span>        <span class="c1">//而原本t3那個對象因為沒人引用了，所以會被垃圾回收清理掉
-</span><span class="c1"></span>        <span class="n">t3</span> <span class="o">=</span> <span class="n">t4</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="n">t3</span> <span class="o">=</span> <span class="n">t4</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">t3</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">100</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="p">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
+        <span class="n">t3</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t3: &#34;</span> <span class="o">+</span> <span class="n">t3</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, t4: &#34;</span> <span class="o">+</span> <span class="n">t4</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;----&#34;</span><span class="p">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;----&#34;</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="err">int[] i5 </span><span class="o">=</span> <span class="p">{</span><span class="n">5</span><span class="p">};</span>
-        <span class="err">int[] i6 </span><span class="o">=</span> <span class="p">{</span><span class="n">6</span><span class="p">};</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="p">[</span><span class="n">0</span><span class="p">]);</span>
+        <span class="kt">int</span><span class="o">[</span><span class="o">]</span> <span class="n">i5</span> <span class="o">=</span> <span class="o">{</span><span class="n">5</span><span class="o">}</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[</span><span class="o">]</span> <span class="n">i6</span> <span class="o">=</span> <span class="o">{</span><span class="n">6</span><span class="o">}</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//因為數组存的是引用，所以i5和i6會指到同一個地方上
-</span><span class="c1"></span>        <span class="n">i5</span> <span class="o">=</span> <span class="n">i6</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="p">[</span><span class="n">0</span><span class="p">]);</span>
+</span><span class="c1"></span>        <span class="n">i5</span> <span class="o">=</span> <span class="n">i6</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">i5</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">200</span><span class="p">;</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="p">[</span><span class="n">0</span><span class="p">]);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<pre><code>t1: 1, t2: 2
+        <span class="n">i5</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">200</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i5[0]: &#34;</span> <span class="o">+</span> <span class="n">i5</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, i6[0]: &#34;</span> <span class="o">+</span> <span class="n">i6</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>t1: 1, t2: 2
 t1: 2, t2: 2
 t1: 100, t2: 2
 ----
@@ -200,82 +205,86 @@ i5[0]: 5, i6[0]: 6
 i5[0]: 6, i6[0]: 6
 i5[0]: 200, i6[0]: 200
 </code></pre></li>
-</ul></li>
-</ul></li>
-
-<li><p>Pass by value or Pass by reference</p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Pass by value or Pass by reference</p>
 <ul>
-<li><p>和 <code>=</code> 一樣，只要掌握好基本類型實際儲存的是 &ldquo;值&rdquo;、對象類型儲存的是 &ldquo;引用&rdquo;、數組不論什類型存的都是 &ldquo;引用&rdquo;，就能了解 Java 到底什麼時候是 pass by value，什麼時候是 pass by reference</p></li>
-
-<li><p>基本類型 pass by value，對象類型 pass by reference，而數組因為存的都是引用，所以也是 pass by reference</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"> <span class="err">class Tank </span><span class="p">{</span>
-     <span class="err">int level</span><span class="p">;</span>
- <span class="p">}</span>
- <span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-     <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-         <span class="err">Tank t1 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-         <span class="err">Tank t2 </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-         <span class="n">t1</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
-         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t1.level: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
-         <span class="n">fooInt</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="na">level</span><span class="p">);</span> <span class="c1">//基本類型pass by value
-</span><span class="c1"></span>         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t1.level: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
-         <span class="n">t2</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">2</span><span class="p">;</span>
-         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t2.level: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
-         <span class="n">fooTank</span><span class="p">(</span><span class="n">t2</span><span class="p">);</span> <span class="c1">//對象類型pass by reference
-</span><span class="c1"></span>         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;t2.level: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">level</span><span class="p">);</span>
-     <span class="p">}</span>
-     <span class="err">public static void fooTank</span><span class="p">(</span><span class="err">Tank tank</span><span class="p">){</span>
-         <span class="n">tank</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1000</span><span class="p">;</span>
-     <span class="p">}</span>
-     <span class="err">public static void fooInt</span><span class="p">(</span><span class="err">int level</span><span class="p">){</span>
-         <span class="n">level</span> <span class="o">=</span> <span class="n">5</span><span class="p">;</span>
-     <span class="p">}</span>
- <span class="p">}</span></code></pre></div>
-<pre><code> t1.level: 1
- t1.level: 1
- t2.level: 2
- t2.level: 1000
+<li>
+<p>和 <code>=</code> 一樣，只要掌握好基本類型實際儲存的是 &ldquo;值&rdquo;、對象類型儲存的是 &ldquo;引用&rdquo;、數組不論什類型存的都是 &ldquo;引用&rdquo;，就能了解 Java 到底什麼時候是 pass by value，什麼時候是 pass by reference</p>
+</li>
+<li>
+<p>基本類型 pass by value，對象類型 pass by reference，而數組因為存的都是引用，所以也是 pass by reference</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tank</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">level</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Tank</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">Tank</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t1.level: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">fooInt</span><span class="o">(</span><span class="n">t1</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span> <span class="c1">//基本類型pass by value
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t1.level: &#34;</span> <span class="o">+</span> <span class="n">t1</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t2.level: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">fooTank</span><span class="o">(</span><span class="n">t2</span><span class="o">)</span><span class="o">;</span> <span class="c1">//對象類型pass by reference
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;t2.level: &#34;</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fooTank</span><span class="o">(</span><span class="n">Tank</span> <span class="n">tank</span><span class="o">)</span><span class="o">{</span>
+        <span class="n">tank</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">1000</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fooInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">level</span><span class="o">)</span><span class="o">{</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>t1.level: 1
+t1.level: 1
+t2.level: 2
+t2.level: 1000
 </code></pre></li>
-
-<li><p>基本類型的List、Set、Map 也是 pass by value，對象類型的 List、Set、Map 是 pass by reference</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">class Tank </span><span class="p">{</span>
-    <span class="err">int level</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="err">List&lt;Tank&gt; tankList </span><span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="err">List&lt;Integer&gt; intList </span><span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="err">int i </span><span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="err">Tank tank </span><span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="p">();</span>
-            <span class="n">tank</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="n">tankList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">tank</span><span class="p">);</span>
-            <span class="n">intList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">100</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;intList: &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">1</span><span class="p">));</span>
-        <span class="n">fooIntList</span><span class="p">(</span><span class="n">intList</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;intList: &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">1</span><span class="p">));</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;tankList: &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">1</span><span class="p">).</span><span class="na">level</span><span class="p">);</span>
-        <span class="n">fooTankList</span><span class="p">(</span><span class="n">tankList</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;tankList: &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">1</span><span class="p">).</span><span class="na">level</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="err">public static void fooTankList</span><span class="p">(</span><span class="err">List&lt;Tank&gt; tankList</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="err">Tank tank </span><span class="o">:</span> <span class="n">tankList</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">tank</span><span class="p">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">500</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="err">public static void fooIntList</span><span class="p">(</span><span class="err">List&lt;Integer&gt; intList</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="err">Integer i </span><span class="o">:</span> <span class="n">intList</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="n">2000</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<pre><code>intList: 100, 200
+<li>
+<p>基本類型的List、Set、Map 也是 pass by value，對象類型的 List、Set、Map 是 pass by reference</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tank</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">level</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Tank</span><span class="o">&gt;</span> <span class="n">tankList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Tank</span> <span class="n">tank</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tank</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">tank</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="n">tankList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tank</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">intList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">100</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;intList: &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">fooIntList</span><span class="o">(</span><span class="n">intList</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;intList: &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">intList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;tankList: &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">)</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">fooTankList</span><span class="o">(</span><span class="n">tankList</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;tankList: &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">)</span><span class="o">.</span><span class="na">level</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">tankList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">.</span><span class="na">level</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fooTankList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tank</span><span class="o">&gt;</span> <span class="n">tankList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Tank</span> <span class="n">tank</span> <span class="o">:</span> <span class="n">tankList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">tank</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">500</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fooIntList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">intList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">i</span> <span class="o">:</span> <span class="n">intList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">2000</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><pre><code>intList: 100, 200
 intList: 100, 200
 tankList: 1, 2
 tankList: 500, 500
 </code></pre></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         </div>

@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -109,61 +109,70 @@
         <div class="content mb-4">
           <blockquote>
 <p>function_score 內容較多，此篇主要是介紹 function_score 的基本概念</p>
-
+</blockquote>
+<blockquote>
 <p>具體實例請參考以下連接</p>
-
+</blockquote>
+<blockquote>
 <blockquote>
 <p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-field_value_factor/">ElasticSearch - function_score（field_value_factor 具體實例）</a></p>
-
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
 <p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-weight/">ElasticSearch - function_score（weight 具體實例）</a></p>
-
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
 <p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-random_score/">ElasticSearch - function_score（random_score 具體實例）</a></p>
-
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
 <p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-gauss/">ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</a></p>
 </blockquote>
 </blockquote>
-
 <ul>
-<li><p>在使用 ES 進行全文搜索時，搜索結果默認會以文檔的相關度進行排序，而這個 &ldquo;文檔的相關度&rdquo;，是可以透過 function_score 自己定義的，也就是說我們可以透過使用 function_score，來控制 &ldquo;怎麼樣的文檔相關度更高&rdquo; 這件事</p>
-
+<li>
+<p>在使用 ES 進行全文搜索時，搜索結果默認會以文檔的相關度進行排序，而這個 &ldquo;文檔的相關度&rdquo;，是可以透過 function_score 自己定義的，也就是說我們可以透過使用 function_score，來控制 &ldquo;怎麼樣的文檔相關度更高&rdquo; 這件事</p>
 <ul>
 <li>function_score 是專門用於處理文檔 <code>_score</code> 的 DSL，它允許爲每個主查詢 query 匹配的文檔應用加強函數， 以達到改變原始查詢評分 score 的目的</li>
 <li>function_score 會在主查詢 query 結束後對每一個匹配的文檔進行一系列的重打分操作，能夠對多個字段一起進行綜合評估，且能夠使用 filter 將結果劃分爲多個子集（每個特性一個filter），並爲每個子集使用不同的加強函數</li>
-</ul></li>
-
-<li><p>function_score 提供了幾種加強 <code>_score</code> 計算的函數</p>
-
+</ul>
+</li>
+<li>
+<p>function_score 提供了幾種加強 <code>_score</code> 計算的函數</p>
 <ul>
 <li><code>weight</code> : 設置一個簡單而不被規範化的權重提升值
-
 <ul>
 <li>weight 加強函數 和 boost 參數 類似，可以用於任何查詢，不過有一點差別是 weight 不會被 Lucene normalize 成難以理解的浮點數，而是直接被應用（boost 會被 normalize）</li>
 <li>例如當 weight 爲 2 時，最終結果爲 <code>new_score = old_score * 2</code></li>
-</ul></li>
+</ul>
+</li>
 <li><code>field_value_factor</code> : 將某個字段的值乘上 <code>old_score</code>
-
 <ul>
 <li>像是將 字段 shareCount 或是 字段 likeCount 作爲考慮因素，<code>new_score = old_score * 那個文檔的 likeCount 的值</code></li>
-</ul></li>
+</ul>
+</li>
 <li><code>random_score</code> : 爲每個用戶都使用一個不同的隨機評分對結果排序，但對某一具體用戶來說，看到的順序始終是一致的</li>
 <li><code>衰減函數 (linear、exp、guass)</code> : 以某個字段的值為基準，距離某個值越近得分越高</li>
 <li><code>script_score</code> : 當需求超出以上範圍時，可以用自定義腳本完全控制評分計算，不過因為還要額外維護腳本不好維護，因此盡量使用 ES 提供的評分函數，需求真的無法滿足再使用 script_score</li>
-</ul></li>
-
-<li><p>function_scroe其他輔助的參數</p>
-
+</ul>
+</li>
+<li>
+<p>function_scroe其他輔助的參數</p>
 <ul>
 <li><code>boost_mode</code> : 決定 old_score 和 加強score 如何合併
-
 <ul>
 <li>multiply（默認） : <code>new_score = old_score * 加強score</code></li>
 <li>sum : <code>new_score = old_score + 加強score</code></li>
 <li>min :  old_score 和 加強 score 取較小值，<code>new_score = min(old_score, 加強score)</code></li>
 <li>max : old_score 和 加強 score 取較大值，<code>new_score = max(old_score, 加強score)</code></li>
 <li>replace : 加強 score 直接替換掉 old_score，<code>new_score = 加強score</code></li>
-</ul></li>
+</ul>
+</li>
 <li><code>score_mode</code> : 決定 functions 裡面的加強 score 們怎麼合併，會先合併加強 score 們成一個總加強 score，再使用總加強 score 去和 old_score 做合併，換言之就是會先執行 score_mode，再執行 boost_mode
-
 <ul>
 <li>multiply（默認）</li>
 <li>sum</li>
@@ -171,93 +180,104 @@
 <li>first : 使用首個函數（可以有filter，也可以沒有）的結果作為最終結果</li>
 <li>max</li>
 <li>min</li>
-</ul></li>
+</ul>
+</li>
 <li><code>max_boost</code> : 限制加強函數的最大效果，就是限制加強 score 最大能多少，但要注意不會限制 old_score
-
 <ul>
 <li>如果加強 score 超過了 max_boost 限制的值，會把加強 score 的值設成 max_boost 的值</li>
 <li>假設加強 score 是5，而 max_boost 是2，因為加強 score 超出了 max_boost 的限制，所以 max_boost 就會把加強 score 改為2</li>
 <li>簡單的說，就是 <code>加強score = min(加強score, max_boost)</code></li>
-</ul></li>
-</ul></li>
-
-<li><p>function_score 查詢模板</p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>function_score 查詢模板</p>
 <ul>
-<li><p>如果要使用 function_score 改變分數，要使用 function_score 查詢</p></li>
-
-<li><p>簡單的說，就是在一個 function_score 內部的 query 的全文搜索得到的 <code>_score</code> 基礎上，給他加上其他字段的評分標準，就能夠得到把 &ldquo;全文搜索 + 其他字段&rdquo; 綜合起來評分的效果</p></li>
-
-<li><p>單個加強函數的查詢模板</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>如果要使用 function_score 改變分數，要使用 function_score 查詢</p>
+</li>
+<li>
+<p>簡單的說，就是在一個 function_score 內部的 query 的全文搜索得到的 <code>_score</code> 基礎上，給他加上其他字段的評分標準，就能夠得到把 &ldquo;全文搜索 + 其他字段&rdquo; 綜合起來評分的效果</p>
+</li>
+<li>
+<p>單個加強函數的查詢模板</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span class="err">old_score</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.....</span><span class="p">},</span> 
-              
-            <span class="err">//在</span> <span class="err">old_score</span> <span class="err">的基礎上，給他加強其他字段的評分</span>
-            <span class="err">//這裡會產生一個加強</span> <span class="err">score，如果只有一個加強</span> <span class="err">function</span> <span class="err">時，直接將加強函數名寫在</span> <span class="err">query</span> <span class="err">下面就可以了</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">...</span><span class="p">},</span> 
-              
-            <span class="err">//指定用哪種方式結合</span> <span class="err">old_score</span> <span class="err">和加強</span> <span class="err">score</span> <span class="err">成為</span> <span class="err">new_score</span>
+            <span class="err">/</span><span class="err">/</span><span class="err">主</span><span class="err">查</span><span class="err">詢</span><span class="err">，</span><span class="err">查</span><span class="err">詢</span><span class="err">完</span><span class="err">後</span><span class="err">這</span><span class="err">裡</span><span class="err">自</span><span class="err">己</span><span class="err">會</span><span class="err">有</span><span class="err">一</span><span class="err">個</span><span class="err">評</span><span class="err">分</span><span class="err">，</span><span class="err">就</span><span class="err">是</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
+            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span><span class="p">,</span> 
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">在</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">的</span><span class="err">基</span><span class="err">礎</span><span class="err">上</span><span class="err">，</span><span class="err">給</span><span class="err">他</span><span class="err">加</span><span class="err">強</span><span class="err">其</span><span class="err">他</span><span class="err">字</span><span class="err">段</span><span class="err">的</span><span class="err">評</span><span class="err">分</span>
+            <span class="err">/</span><span class="err">/</span><span class="err">這</span><span class="err">裡</span><span class="err">會</span><span class="err">產</span><span class="err">生</span><span class="err">一</span><span class="err">個</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span><span class="err">，</span><span class="err">如</span><span class="err">果</span><span class="err">只</span><span class="err">有</span><span class="err">一</span><span class="err">個</span><span class="err">加</span><span class="err">強</span> <span class="err">f</span><span class="err">u</span><span class="err">n</span><span class="err">c</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span> <span class="err">時</span><span class="err">，</span><span class="err">直</span><span class="err">接</span><span class="err">將</span><span class="err">加</span><span class="err">強</span><span class="err">函</span><span class="err">數</span><span class="err">名</span><span class="err">寫</span><span class="err">在</span> <span class="err">q</span><span class="err">u</span><span class="err">e</span><span class="err">r</span><span class="err">y</span> <span class="err">下</span><span class="err">面</span><span class="err">就</span><span class="err">可</span><span class="err">以</span><span class="err">了</span>
+            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span><span class="p">,</span> 
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">指</span><span class="err">定</span><span class="err">用</span><span class="err">哪</span><span class="err">種</span><span class="err">方</span><span class="err">式</span><span class="err">結</span><span class="err">合</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">和</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">成</span><span class="err">為</span> <span class="err">n</span><span class="err">e</span><span class="err">w</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
             <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span><span class="p">,</span> 
-              
-            <span class="err">//限制加強</span> <span class="err">score</span> <span class="err">的最高分，但是不會限制</span> <span class="err">old_score</span>
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">限</span><span class="err">制</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">的</span><span class="err">最</span><span class="err">高</span><span class="err">分</span><span class="err">，</span><span class="err">但</span><span class="err">是</span><span class="err">不</span><span class="err">會</span><span class="err">限</span><span class="err">制</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
             <span class="nt">&#34;max_boost&#34;</span><span class="p">:</span> <span class="mf">1.5</span> 
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>多個加強函數的查詢模板</p>
-
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>多個加強函數的查詢模板</p>
 <ul>
-<li><p>如果有多個加強函數，那就要使用functions來包含這些加強函數們，functions是一個數組，裡面放著的是將要被使用的加強函數列表</p></li>
-
-<li><p>可以為functions裡的加強函數指定一個filter，這樣做的話，只有在文檔滿足此filter的要求，此filter的加強函數才會應用到文擋上，也可以不指定filter，這樣的話此加強函數就會應用到全部的文擋上</p></li>
-
-<li><p>一個文檔可以一次滿足多條加強函數和多個filter，如果一次滿足多個，那麼就會產生多個加強score，因此ES會使用score_mode定義的方式來合併這些加強score們，得到一個總加強score，得到總加強score之後，才會再使用boost_mode定義的方式去和old_score做合併</p></li>
-
-<li><p>像是下面的例子，field_value_factor和gauss這兩個加強函數會應用到所有文檔上，而weight只會應用到滿足filter的文檔上，假設有個文檔滿足了filter的條件，那他就會得到3個加強score，這3個加強score會使用sum的方式合併成一個總加強score，然後才和old_score使用multiply的方式合併</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
+<li>
+<p>如果有多個加強函數，那就要使用functions來包含這些加強函數們，functions是一個數組，裡面放著的是將要被使用的加強函數列表</p>
+</li>
+<li>
+<p>可以為functions裡的加強函數指定一個filter，這樣做的話，只有在文檔滿足此filter的要求，此filter的加強函數才會應用到文擋上，也可以不指定filter，這樣的話此加強函數就會應用到全部的文擋上</p>
+</li>
+<li>
+<p>一個文檔可以一次滿足多條加強函數和多個filter，如果一次滿足多個，那麼就會產生多個加強score，因此ES會使用score_mode定義的方式來合併這些加強score們，得到一個總加強score，得到總加強score之後，才會再使用boost_mode定義的方式去和old_score做合併</p>
+</li>
+<li>
+<p>像是下面的例子，field_value_factor和gauss這兩個加強函數會應用到所有文檔上，而weight只會應用到滿足filter的文檔上，假設有個文檔滿足了filter的條件，那他就會得到3個加強score，這3個加強score會使用sum的方式合併成一個總加強score，然後才和old_score使用multiply的方式合併</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span class="err">old_score</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.....</span><span class="p">},</span>
-              
-            <span class="err">//可以有多個加強函數（或是</span> <span class="err">filter</span> <span class="err">+</span> <span class="err">加強函數）</span>
-            <span class="err">//每一個加強函數會產生一個加強</span> <span class="err">score，因此</span> <span class="err">functions</span> <span class="err">會有多個加強</span> <span class="err">score</span>
+            <span class="err">/</span><span class="err">/</span><span class="err">主</span><span class="err">查</span><span class="err">詢</span><span class="err">，</span><span class="err">查</span><span class="err">詢</span><span class="err">完</span><span class="err">後</span><span class="err">這</span><span class="err">裡</span><span class="err">自</span><span class="err">己</span><span class="err">會</span><span class="err">有</span><span class="err">一</span><span class="err">個</span><span class="err">評</span><span class="err">分</span><span class="err">，</span><span class="err">就</span><span class="err">是</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
+            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span><span class="p">,</span>
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">可</span><span class="err">以</span><span class="err">有</span><span class="err">多</span><span class="err">個</span><span class="err">加</span><span class="err">強</span><span class="err">函</span><span class="err">數</span><span class="err">（</span><span class="err">或</span><span class="err">是</span> <span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span> <span class="err">+</span> <span class="err">加</span><span class="err">強</span><span class="err">函</span><span class="err">數</span><span class="err">）</span>
+            <span class="err">/</span><span class="err">/</span><span class="err">每</span><span class="err">一</span><span class="err">個</span><span class="err">加</span><span class="err">強</span><span class="err">函</span><span class="err">數</span><span class="err">會</span><span class="err">產</span><span class="err">生</span><span class="err">一</span><span class="err">個</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span><span class="err">，</span><span class="err">因</span><span class="err">此</span> <span class="err">f</span><span class="err">u</span><span class="err">n</span><span class="err">c</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span><span class="err">s</span> <span class="err">會</span><span class="err">有</span><span class="err">多</span><span class="err">個</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
             <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>   
-                <span class="p">{</span> <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;gauss&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">...</span><span class="p">},</span> <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">}</span>
-            <span class="p">],</span>
-              
-            <span class="err">//決定加強</span> <span class="err">score</span> <span class="err">們怎麼合併成一個總加強</span> <span class="err">score</span>
+                <span class="p">{</span> <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span><span class="p">,</span>
+                <span class="p">{</span> <span class="nt">&#34;gauss&#34;</span><span class="p">:</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span><span class="p">,</span>
+                <span class="p">{</span> <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span><span class="p">,</span> <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span>
+            <span class="p">]</span><span class="p">,</span>
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">決</span><span class="err">定</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">們</span><span class="err">怎</span><span class="err">麼</span><span class="err">合</span><span class="err">併</span><span class="err">成</span><span class="err">一</span><span class="err">個</span><span class="err">總</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span>
             <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span><span class="p">,</span>
-              
-            <span class="err">//決定總加強</span> <span class="err">score</span> <span class="err">怎麼和</span> <span class="err">old_score</span> <span class="err">合併</span>
+            
+            <span class="err">/</span><span class="err">/</span><span class="err">決</span><span class="err">定</span><span class="err">總</span><span class="err">加</span><span class="err">強</span> <span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">怎</span><span class="err">麼</span><span class="err">和</span> <span class="err">o</span><span class="err">l</span><span class="err">d</span><span class="err">_</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">r</span><span class="err">e</span> <span class="err">合</span><span class="err">併</span>
             <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span> 
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p><img src="https://kucw.github.io/images/es_functions.png" alt="" /></p></li>
-</ul></li>
-</ul></li>
-
-<li><p>不要執著在調整 function_score 上</p>
-
+<span class="p">}</span>
+</code></pre></div><p><img src="https://kucw.github.io/images/es_functions.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>不要執著在調整 function_score 上</p>
 <ul>
-<li>文檔相關度的調整非常玄，&rdquo;最相關的文檔&rdquo; 是一個難以觸及的模糊概念，每個人對文檔排序有著不同的想法，這很容易使人陷入持續反覆調整，但是確沒有明顯的進展</li>
+<li>文檔相關度的調整非常玄，&ldquo;最相關的文檔&rdquo; 是一個難以觸及的模糊概念，每個人對文檔排序有著不同的想法，這很容易使人陷入持續反覆調整，但是確沒有明顯的進展</li>
 <li>為了避免跳入這種死循環，在調整 function_score 時，一定要搭配監控用戶操作，才有意義
-
 <ul>
 <li>像是如果返回的文檔是用戶想要的高相關的文檔，那麼用戶就會選擇前 10 個中的一個文檔，得到想要的結果，反之，用戶可能會來回點擊，或是嘗試新的搜索條件</li>
 <li>一旦有了這些監控手段，想要調適完美的 function_score 就不是問題</li>
-</ul></li>
+</ul>
+</li>
 <li>因此調整 function_score 的重點在於，要透過監控用戶、和用戶互動，慢慢去調整我們的搜索條件，而不要妄想一步登天，第一次就把文檔的相關度調整到最好，這幾乎是不可能的，因為，連用戶自己也不知道他自己想要什麼</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         </div>

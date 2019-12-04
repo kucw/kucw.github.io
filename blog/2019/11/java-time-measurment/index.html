@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -107,30 +107,26 @@
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
-          
-
-<p>Stopwatch 是 Guava 提供，可以用來測量程式運行時間的工具（Guava 是 Google 開發的 Java library，是一個非常好用的工具包）</p>
-
-<h3 id="常用方法">常用方法</h3>
-
+          <p>Stopwatch 是 Guava 提供，可以用來測量程式運行時間的工具（Guava 是 Google 開發的 Java library，是一個非常好用的工具包）</p>
+<h3 id="heading">常用方法</h3>
 <ul>
 <li><code>Stopwatch.creatStarted()</code> : 創建一個碼表，並且開始計時</li>
 <li><code>stop()</code> : 碼表停止計時</li>
 <li><code>elapsed(TimeUnit unit)</code> : 取得從開始到結束的時間</li>
 </ul>
+<h3 id="heading1">具體實例</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Stopwatch</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">Stopwatch</span><span class="o">.</span><span class="na">createStarted</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
-<h3 id="具體實例">具體實例</h3>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="err">Stopwatch stopwatch </span><span class="o">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="na">createStarted</span><span class="p">();</span>
+        <span class="n">doSomething</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">doSomething</span><span class="p">();</span>
-
-        <span class="n">stopwatch</span><span class="p">.</span><span class="na">stop</span><span class="p">();</span>
-        <span class="err">long millis </span><span class="o">=</span> <span class="n">stopwatch</span><span class="p">.</span><span class="na">elapsed</span><span class="p">(</span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MILLISECONDS</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;time: &#34;</span> <span class="o">+</span> <span class="n">millis</span> <span class="o">+</span> <span class="s">&#34; ms&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+        <span class="n">stopwatch</span><span class="o">.</span><span class="na">stop</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="kt">long</span> <span class="n">millis</span> <span class="o">=</span> <span class="n">stopwatch</span><span class="o">.</span><span class="na">elapsed</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;time: &#34;</span> <span class="o">+</span> <span class="n">millis</span> <span class="o">+</span> <span class="s">&#34; ms&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 

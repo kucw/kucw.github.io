@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.59.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,129 +108,144 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <ul>
-<li><p>所有的集合類（List、Set&hellip;）都實現自 Collection 接口，而 Collection 接口又繼承於 Iterable 接口，因此可以說所有的集合類（List、Set&hellip;）都實現了 Iterable 接口</p></li>
-
-<li><p>當某個類實現 Iterable 接口時，我們就能稱這個類是一個 &ldquo;可數&rdquo; 的類，也就是可以使用 <code>iterator()</code> 獲取一個迭代器 Iterator，然後使用這個 Iterator 實例去遍歷這個類，因此所有的 Collection 類都能夠使用迭代器 Iterator 來遍歷</p>
-
+<li>
+<p>所有的集合類（List、Set&hellip;）都實現自 Collection 接口，而 Collection 接口又繼承於 Iterable 接口，因此可以說所有的集合類（List、Set&hellip;）都實現了 Iterable 接口</p>
+</li>
+<li>
+<p>當某個類實現 Iterable 接口時，我們就能稱這個類是一個 &ldquo;可數&rdquo; 的類，也就是可以使用 <code>iterator()</code> 獲取一個迭代器 Iterator，然後使用這個 Iterator 實例去遍歷這個類，因此所有的 Collection 類都能夠使用迭代器 Iterator 來遍歷</p>
 <ul>
-<li><p>Iterable 接口</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public interface </span><span class="n">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<li>
+<p>Iterable 接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="c1">//當某個類實現Iterable接口的話，就能獲取到迭代器iterator，然後就能使用這個iterator去遍歷此類
-</span><span class="c1"></span>    <span class="err">Iterator&lt;T&gt; iterator</span><span class="p">();</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>Iterator 接口</p>
-
+</span><span class="c1"></span>    <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>Iterator 接口</p>
 <ul>
-<li><p>如果某個類實現了 Iterable 接口，那麼他也需要創建一個內部類去實現一個 Iterator 類，讓調用 Iterable 接口中的 iterator() 時，能夠獲取到一個 iterator 實例</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public interface </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<li>
+<p>如果某個類實現了 Iterable 接口，那麼他也需要創建一個內部類去實現一個 Iterator 類，讓調用 Iterable 接口中的 iterator() 時，能夠獲取到一個 iterator 實例</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="c1">//是否有下一個元素
-</span><span class="c1"></span>    <span class="err">boolean hasNext</span><span class="p">();</span>
+</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
     <span class="c1">//取得下一個元素
-</span><span class="c1"></span>    <span class="err">E next</span><span class="p">();</span>
+</span><span class="c1"></span>    <span class="n">E</span> <span class="nf">next</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
     <span class="c1">//刪除最後一個獲取的元素，因此調用remove()前一定得先調用一次next()
-</span><span class="c1"></span>    <span class="err">void remove</span><span class="p">();</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>至於此 Iterator 接口怎麼實現，就看各個集合實現類如何定義 &ldquo;下一個元素&rdquo;，像是 ArrayList 的下一個元素就是 element[index+1]，而 HashMap 的下一個元素則是 hash table 數組中儲存的下一個 entry</p></li>
-
-<li><p>另外可以想像 Iterator 像是一個游標一樣，一開始停在最前面，然後不停的往後走（只能向後移動），且此游標每次都是停在元素和元素的中間，當調用 next 時，迭代器就越過下一個元素，並返回剛剛越過的那個元素的引用</p></li>
-
-<li><p><img src="https://kucw.github.io/images/iterator_next.png" alt="" /></p></li>
-</ul></li>
-
-<li><p>使用迭代器 Iterator 遍歷 ArrayList</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>至於此 Iterator 接口怎麼實現，就看各個集合實現類如何定義 &ldquo;下一個元素&rdquo;，像是 ArrayList 的下一個元素就是 element[index+1]，而 HashMap 的下一個元素則是 hash table 數組中儲存的下一個 entry</p>
+</li>
+<li>
+<p>另外可以想像 Iterator 像是一個游標一樣，一開始停在最前面，然後不停的往後走（只能向後移動），且此游標每次都是停在元素和元素的中間，當調用 next 時，迭代器就越過下一個元素，並返回剛剛越過的那個元素的引用</p>
+</li>
+<li>
+<p><img src="https://kucw.github.io/images/iterator_next.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>使用迭代器 Iterator 遍歷 ArrayList</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="c1">//ArrayList實現了Collection接口，因此他也實現了Iterable接口，所以他可以使用iterator迭代器來遍歷
-</span><span class="c1"></span>        <span class="err">List&lt;String&gt; list </span><span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;world&#34;</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//調用Iterable接口中的iterator()取得此ArrayList的迭代器實例
-</span><span class="c1"></span>        <span class="err">Iterator&lt;String&gt; its </span><span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+</span><span class="c1"></span>        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">its</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//使用Iterator接口的hasNext()、next()來遍歷此ArrayList集合實現類
-</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">its</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
-                <span class="err">String s </span><span class="o">=</span> <span class="n">its</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>而再進一步說，當某個類能使用迭代器 Iterator 來遍歷時，就能使用 java 提供的 foreach 語法糖來遍歷此類（foreach語法糖其實就是簡化的 <code>iterator()</code>）</p>
-
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">its</span><span class="o">.</span><span class="na">hasNext</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">its</span><span class="o">.</span><span class="na">next</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>而再進一步說，當某個類能使用迭代器 Iterator 來遍歷時，就能使用 java 提供的 foreach 語法糖來遍歷此類（foreach語法糖其實就是簡化的 <code>iterator()</code>）</p>
 <ul>
-<li>foreach 實際上會被編譯器編譯成使用迭代器 <code>iterator()</code> 去遍歷集合，因此能使用 foreach 的，都是得實現 Iterable 接口的集合類 Collection 們，像是 List、Set</li>
-
-<li><p>所以 Map 就沒有辦法直接使用 foreach（因為 Map 沒有實現 Iterable 接口），只有他的 <code>map.entrySet()</code>、<code>map.keySet()</code>、<code>map.values()</code> 這種返回一個集合類的方法，才能使用 foreach</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">public class </span><span class="n">Main</span> <span class="p">{</span>
-    <span class="err">public static void main</span><span class="p">(</span><span class="err">String[] args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="err">List&lt;String&gt; list </span><span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span>
-        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">);</span>
+<li>
+<p>foreach 實際上會被編譯器編譯成使用迭代器 <code>iterator()</code> 去遍歷集合，因此能使用 foreach 的，都是得實現 Iterable 接口的集合類 Collection 們，像是 List、Set</p>
+</li>
+<li>
+<p>所以 Map 就沒有辦法直接使用 foreach（因為 Map 沒有實現 Iterable 接口），只有他的 <code>map.entrySet()</code>、<code>map.keySet()</code>、<code>map.values()</code> 這種返回一個集合類的方法，才能使用 foreach</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;world&#34;</span><span class="o">)</span><span class="o">;</span>
 
         <span class="c1">//原代碼，使用語法糖的foreach
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="err">String s </span><span class="o">:</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-        <span class="p">}</span>
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
 
         <span class="c1">//實際上會被編譯成使用iterator去遍歷
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="err">Iterator&lt;String&gt; its </span><span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span> <span class="n">its</span><span class="p">.</span><span class="na">hasNext</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="err">String s </span><span class="o">=</span> <span class="n">its</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-</ul></li>
-
-<li><p>為什麼 Iterator 要額外使用內部類去實現，而不是 ArrayList 直接實現此接口 ?</p>
-
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">its</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">(</span><span class="o">)</span><span class="o">;</span> <span class="n">its</span><span class="o">.</span><span class="na">hasNext</span><span class="o">(</span><span class="o">)</span><span class="o">;</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">its</span><span class="o">.</span><span class="na">next</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">)</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>為什麼 Iterator 要額外使用內部類去實現，而不是 ArrayList 直接實現此接口 ?</p>
 <ul>
-<li><p>如果看過 Collection 類的源碼（以ArrayList為例），可以發現 ArrayList 類並不是由 ArrayList 去實現 Iterator 接口，而是 ArrayList 有一個內部類 Itr，專門去實現 Iterator 接口，而 ArrayList 的 <code>iterator()</code> 方法，只是去創建一個內部類 ArrayList.Itr 的實例而已</p>
+<li>
+<p>如果看過 Collection 類的源碼（以ArrayList為例），可以發現 ArrayList 類並不是由 ArrayList 去實現 Iterator 接口，而是 ArrayList 有一個內部類 Itr，專門去實現 Iterator 接口，而 ArrayList 的 <code>iterator()</code> 方法，只是去創建一個內部類 ArrayList.Itr 的實例而已</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//ArrayList不實現Iterator接口，反而是由他的內部類進行實現
-</span><span class="c1"></span><span class="err">public class ArrayList&lt;E&gt; extends </span><span class="n">AbstractList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AbstractList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="c1">//調用list.iterator()可以取得此list的迭代器
-</span><span class="c1"></span>    <span class="err">public Iterator</span><span class="o">&lt;</span><span class="err">E&gt; iterator</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">Itr</span><span class="p">();</span> <span class="c1">//實際上就是去創建一個內部類的實例
-</span><span class="c1"></span>    <span class="p">}</span>
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Itr</span><span class="o">(</span><span class="o">)</span><span class="o">;</span> <span class="c1">//實際上就是去創建一個內部類的實例
+</span><span class="c1"></span>    <span class="o">}</span>
 
     <span class="c1">//ArrayList中的內部類Itr，專門實現Iterator接口
-</span><span class="c1"></span>    <span class="err">private class Itr implements </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-        <span class="err">int cursor</span><span class="p">;</span> <span class="c1">//記錄當前迭代到哪裡
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Itr</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">cursor</span><span class="o">;</span> <span class="c1">//記錄當前迭代到哪裡
 </span><span class="c1"></span>
-        <span class="err">public boolean </span><span class="n">hasNext</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-        <span class="err">public E </span><span class="n">next</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-        <span class="err">public void </span><span class="n">remove</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>要這樣設計是因為一個集合類可能同時有多個迭代器去遍歷他，而每個迭代器遍歷到集合的哪裡，是每個迭代器自己的事情，彼此不互相干涉，因此才需要額外使用一個內部類去實現迭代器的 Iterator 接口</p>
-
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span><span class="o">.</span><span class="o">.</span> <span class="o">}</span>
+        <span class="kd">public</span> <span class="n">E</span> <span class="nf">next</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span><span class="o">.</span><span class="o">.</span> <span class="o">}</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span><span class="o">.</span><span class="o">.</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>要這樣設計是因為一個集合類可能同時有多個迭代器去遍歷他，而每個迭代器遍歷到集合的哪裡，是每個迭代器自己的事情，彼此不互相干涉，因此才需要額外使用一個內部類去實現迭代器的 Iterator 接口</p>
 <ul>
 <li>如此當需要用到 Iterator 來遍歷集合時，只需要調用 <code>list.iterator()</code>，就能取得一個全新的、不受別人影響的迭代器供自己使用，而迭代器彼此之間也不會互相干涉</li>
 <li>至於為什麼要特別使用內部類來實現 Iterator 接口，而不是創建一個 Iterator 公共類來供所有集合一起使用，是因為迭代器需要知道集合的內部結構，他才能知道要怎麼去實現 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 方法，而使用內部類才能無條件的取用外部類的所有信息（包含 private 的變量和方法），因此才需要將 Iterator 提取成接口，讓每個集合自己使用內部類去實現 Iterator 接口</li>
-</ul></li>
-</ul></li>
-
-<li><p>為什麼 Iterator 接口，只有 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 方法，而沒有 <code>add(E)</code> 方法 ?</p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>為什麼 Iterator 接口，只有 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 方法，而沒有 <code>add(E)</code> 方法 ?</p>
 <ul>
 <li>邏輯上來說，迭代器是一個一個去遍歷集合中的元素，而當前 iterator 停下的地方，就是迭代到一半的地方
-
 <ul>
 <li>如果當迭代到一半時調用 <code>iterator.add()</code> 方法，理論上來說，應該是要在當前這個元素 E1 後面新增一個元素 E2，使得下次遍歷此集合時，E2 一定會出現在 E1 後面，也就是 [&hellip;.E1, E2, &hellip;.]</li>
 <li>假設 <code>add()</code> 方法是以這個語意為前提的話，那麼迭代器不提供此方法是很合理的，對於有序的集合（像是ArrayList）來說，在此元素後面新增一個元素是一個很簡單的事情，但是對於無序的集合（像是HashSet）來說，不能保證新插入的這個元素 E2 一定會在 E1 後面（因為還得計算 HashCode），如此就違反了 <code>add()</code> 的語意了，這也就是為什麼 Iterator 接口不提供 <code>add()</code> 方法</li>
-</ul></li>
+</ul>
+</li>
 <li>另一個說法是，在使用迭代器時，通常就是 &ldquo;遍歷&rdquo; 的場景，這種場景下很少會去使用 <code>add()</code> 方法，因此 Iterator 接口沒必要提供這個方法</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         </div>
