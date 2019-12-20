@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    Kucw&#39;s Blog
+    Superset 安裝教學 - Kucw&#39;s Blog
     
   </title>
 
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="A tech blog about Java backend ecosystem, such as Java programming, Spring framework, ElasticSearch...and so on.">
+  <meta name="description" content="Superset 手把手安裝教學">
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
@@ -90,83 +90,47 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
-  <div class="container">
+  <div class="container pl-4 pr-4">
     <div class="row">
-      
-      <div class="col-lg-4 pr-lg-5 order-about-me">
-        
-        <div class="widget">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">Superset 安裝教學</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2019/12/20</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
           
-          <h4 class="widget-title">About Me</h4>
-          <img src="https://kucw.github.io/images/about/author.jpg" alt=""
-               class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-          <p>Java Backend Developer</p>
-          <a href="https://kucw.github.io/about/" class="btn btn-outline-primary">Know More</a>
-          
-        </div>
-        
-        <div class="widget">
-          <h4 class="widget-title">Category</h4>
-          <ul class="list-unstyled">
-            <li><a
-                href="https://kucw.github.io/categories/elastic-search">Elastic search</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/intellij">Intellij</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/java">Java</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/linux">Linux</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/others">Others</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/spring-framework">Spring framework</a>
-            </li>
-            <li><a
-                href="https://kucw.github.io/categories/%e6%97%a5%e5%b8%b8%e7%94%9f%e6%b4%bb">日常生活</a>
-            </li>
-          </ul>
-        </div>
-        <div class="widget">
-          <h4 class="widget-title">Social</h4>
-          <ul class="list-inline social-links">
-            
-            <li class="list-inline-item"><a href="https://github.com/kucw"><i class="ti-github"></i></a></li>
-            
-            <li class="list-inline-item"><a href="https://www.linkedin.com/in/%E5%90%9B%E8%91%B3-%E5%8F%A4-279918115/"><i class="ti-linkedin"></i></a></li>
-            
-          </ul>
-        </div>
-        
-        
-          
-        
-      </div>
-      
-      
-      <div class="col-lg-8 order-post-list">
-        <div class="row">
-          
+            <a href="https://kucw.github.io/categories/others">
+              <span class="text-primary">Others</span>
+            </a>
           
         </div>
-      </div>
-      
-      
-      <div class="col-12 mt-5 order-pagination">
-        
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+        <div class="content mb-4">
+          <p>安裝環境 : CentOS Linux release 7.7.1908 (Core)</p>
+<pre><code>sudo yum install python36-pip python3-devel gcc-c++
+sudo pip3 install apache-superset
+superset db upgrade
+flask fab create-admin
+superset load_examples
+superset run -p 8088
+</code></pre>
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 
-
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
       </div>
     </div>
   </div>
 </section>
-
 
 
 
