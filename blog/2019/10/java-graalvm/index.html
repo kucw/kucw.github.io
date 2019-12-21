@@ -117,14 +117,14 @@
 <h3 id="highperformance-modern-java">High-performance modern Java</h3>
 <p>High-performance modern Java 使用到了 Graal compiler 技術，Graal compiler 是一個 JIT compiler，並且是使用 Java 撰寫的，目的是拿來替換掉原本 HotSpot VM 的C2 compiler</p>
 <p>為了讓 Graal compiler 可以更彈性的被更新（總不能每發布一次 Graal compiler 更新就要重新 compile 整個 java），Oracle 加上了一層JVM Compiler Interface，簡稱 JVMCI，把原本那些應該由 C2 執行的請求抽象化成 interface，解耦 C1 compiler 和 Graal compiler 的連結，讓 Graal 可以更輕易的被更新</p>
-<p><img src="https://kucw.github.io/images/graalvm_graal.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_graal.png" alt=""></p>
 <p>雖然 Graal 是使用 java 寫的，難免會讓人聯想到性能會比不上 C2 compiler，但是在各種實驗之後，得到的數據顯示對於 Java program，Graal 和 C2 compiler 的能力幾乎不相上下（在已經預熱完畢的前提下），而對於 Scala program，Graal 更是達到 10% 以上的優化，這也是為什麼 Twitter 大規模的使用 GraalVM 替換掉原本的 HotspotVM</p>
 <p>不過在啟動時，GraalVM 會比 HotspotVM 還慢，原因是必須先將 Graal 編譯成 machine code，這個是無可避免的，只是當預熱完畢時，Graal 和 C2 compiler 的性能不相上下，並且根據 Graal 的版本不斷更新，這個數據只可能會更好</p>
 <h3 id="polyglot">Polyglot</h3>
 <p>GraalVM 最一開始被發明出來，就是為了讓 Java 可以在一次 runtime 中同時使用多種語言，從官網稱呼 GraalVM 為 High-performance polyglot VM，也可以發現 Oracle 對 GraalVM 定位是一個多語言 jvm</p>
 <p>為了實現 Polyglot，GraalVM 引入了一層 Truffle framework，只要實現了該語言的 interpreter，就可以在 Java program 中使用該語言</p>
 <p>目前官方支援的語言僅有 Python、R、JavaScript，後續會陸續增加</p>
-<p><img src="https://kucw.github.io/images/graalvm_truffle.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_truffle.png" alt=""></p>
 <p>具體實例</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
@@ -144,15 +144,15 @@ Hello World from Ruby!
 </code></pre><h3 id="instant-startup-low-footprint">Instant startup, low footprint</h3>
 <p>GraalVM 還有最後一項技術，就是 native image，他是在 compile time時，就將 Java program 直接 compiler 成 binary 的 machine code，讓這個程式可以像一般二進制的檔案被運行</p>
 <p>Native images compiled with GraalVM ahead-of-time improve the startup time and reduce the memory footprint of JVM-based applications.</p>
-<p><img src="https://kucw.github.io/images/graalvm_nativeimage1.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_nativeimage1.png" alt=""></p>
 <p>Native-image 帶來的好處是可以更快速的啟動一個 java program，以往如果要啟動 java 程式，需要先啟動 jvm 再載入 java code，然後再即時的 compile bytecode to machine code，非常耗時和耗 memory，而如果使用 native-image，可以取得一個更小更快速的鏡像，適合用在 cloud deploy</p>
 <p>native image 之所以可以快速啟動，是因為他做了 Ahead-of-time compile，在 compile time 時，會把所有相關的東西，包含一個 Substrate VM，一起 compile 成 machine code，這個 SubstrateVM 是 GraalVM 才有的東西，他只包含最基本的 thread scheduling、垃圾回收，盡可能的縮小必要的 jvm 體積</p>
-<p><img src="https://kucw.github.io/images/graalvm_nativeimage2.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_nativeimage2.png" alt=""></p>
 <p>雖然 native image 感覺很猛，但是他也有不可抹滅的缺點，就是使用 native image 的程式，throughput 會下降，原因是因為 java 程式很大一部分的優化都在 JIT compiler 中</p>
 <p>還有另一個缺點是，native image 並沒有辦法動態的加載類（因為所有東西必須要在 compile time 就決定好），所以也沒辦法使用反射等相關機制，不過對於這個問題，GraalVM 也有提出相對應的解法，就是在 compile 時，把所有可能的類全部 compile 進來，所以反射機制還是可以支持的，不然的話，整個 Spring framework 就不能使用 native image 了</p>
 <p>目前 Spring 5 也打算開始支持 GraalVM native-image 的開箱即用設定，可以看到 serverless 的 java program 可能是之後的趨勢</p>
 <p>補充一下，serverless 就是指 Fuction as a Service，他的目的是希望 program 不用一直 run 著，當有請求來的時候，我快速啟動這個 program，然後請求走我就 shutdown 這個 program，不讓 program 一直啟動著，而是有需要的時候才開啟他，也就是說，FaaS 就是讓這個 program 像是 function 一樣，用完即走，因此 native-image 的快速啟動非常符合FaaS的需求</p>
-<p><img src="https://kucw.github.io/images/graalvm_nativeimage_faas.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_nativeimage_faas.png" alt=""></p>
 <h3 id="-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/">官網</a>下載 GraalVM community，如果電腦是 mac，選擇 graalvm-ce-darwin-amd64-19.2.0.1.tar.gz 下載，如果是 Linux/Windows，則選擇相對應版本下載</p>
 <p>下載完後解壓縮，放到 <code>/Library/Java/JavaVirtualMachines</code> 下，然後在 <code>.bashrc</code> 或 <code>.zshrc</code> 中加上以下設定</p>
@@ -162,9 +162,9 @@ Hello World from Ruby!
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gu install native-image ruby python R
 </code></pre></div><p>設好路徑後，也會發現 java 默認的 vm 改成了使用 GraalVM</p>
 <p>原本的樣子</p>
-<p><img src="https://kucw.github.io/images/graalvm_install1.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_install1.png" alt=""></p>
 <p>改好路徑後的樣子</p>
-<p><img src="https://kucw.github.io/images/graalvm_install2.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_install2.png" alt=""></p>
 <p>接著新增一個檔案，檔名叫做 Main.java，並在裡面寫入以下內容，測試我們是否有成功切換至 GraalVM</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.graalvm.polyglot.*</span><span class="o">;</span>
 
@@ -189,14 +189,14 @@ Hello World from Python!
 Hello World from Ruby!
 </code></pre><h3 id="-intellij--graalvm">在 Intellij 中使用 GraalVM</h3>
 <p>點擊 Project Structure 之後，選擇 SDKs，然後選擇加號新增一個 jdk</p>
-<p><img src="https://kucw.github.io/images/graalvm_intellij1.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_intellij1.png" alt=""></p>
 <p>選擇存放 GraalVM 的位置，如果有照剛剛的步驟安裝 GraalVM 的話，就選擇 <code>/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home</code></p>
-<p><img src="https://kucw.github.io/images/graalvm_intellij2.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_intellij2.png" alt=""></p>
 <p>接著點擊下方加號，加入 graal-sdk.jar，路徑在 <code>/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/boot/graal-sdk.jar</code></p>
-<p><img src="https://kucw.github.io/images/graalvm_intellij3.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_intellij3.png" alt=""></p>
 <p>最後再將該 module 使用 sdk 換成 GraalVM，這樣就可以在 Intellij 中直接使用 GraalVM 來 run code了</p>
-<p><img src="https://kucw.github.io/images/graalvm_intellij4.png" alt="">
-<img src="https://kucw.github.io/images/graalvm_intellij5.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/graalvm_intellij4.png" alt="">
+<img src="https://kucw.github.io/images/blog/graalvm_intellij5.png" alt=""></p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>

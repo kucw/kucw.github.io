@@ -229,13 +229,13 @@
 <li>none  : <code>new_score = old_score * like值</code>
 <ul>
 <li>默認狀態就是 none，線性</li>
-<li><img src="https://kucw.github.io/images/es_fieldvaluefactor1.png" alt=""></li>
+<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor1.png" alt=""></li>
 </ul>
 </li>
 <li>log1p : <code>new_score = old_score * log(1 + like值)</code>
 <ul>
 <li>最常用，可以讓 like 值字段的評分曲線更平滑</li>
-<li><img src="https://kucw.github.io/images/es_fieldvaluefactor2.png" alt=""></li>
+<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor2.png" alt=""></li>
 </ul>
 </li>
 <li>log2p : <code>new_score = old_score * log(2 + like值)</code></li>
@@ -252,7 +252,7 @@
 <ul>
 <li>factor 作為一個調節用的參數，沒有 modifier 那麼強大會改變整個曲線，他僅改變一些常量值，設置 factor &gt; 1 會提昇效果，factor &lt; 1 會降低效果</li>
 <li>假設 modifier 是 log1p，那麼加入了 factor 的公式就是 <code>new_score = old_score * log(1 + factor * like值)</code></li>
-<li><img src="https://kucw.github.io/images/es_fieldvaluefactor3.png" alt=""></li>
+<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor3.png" alt=""></li>
 </ul>
 </li>
 <li>
@@ -287,7 +287,7 @@
 <p>加入了 boost_mode = sum、且 factor = 0.1 的公式變為 <code>new_score = old_score + log(1 + 0.1 * like值)</code></p>
 </li>
 <li>
-<p><img src="https://kucw.github.io/images/es_fieldvaluefactor4.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor4.png" alt=""></p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
