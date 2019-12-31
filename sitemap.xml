@@ -4,36 +4,36 @@
   
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2019-12-30T00:00:00+08:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2019-12-30T00:00:00+08:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/</loc>
-    <lastmod>2019-12-30T00:00:00+08:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/spring-framework/</loc>
-    <lastmod>2019-12-30T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter/</loc>
-    <lastmod>2019-12-30T00:00:00+08:00</lastmod>
+    <lastmod>2019-12-31T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/blog/2019/12/spring-oauth2-bind-github/</loc>
+    <lastmod>2019-12-31T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter/</loc>
     <lastmod>2019-12-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
