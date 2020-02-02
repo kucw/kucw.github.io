@@ -33,18 +33,6 @@
   </url>
   
   <url>
-    <loc>https://kucw.github.io/blog/2020/1/developer-make-money/</loc>
-    <lastmod>2020-01-01T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2020-01-01T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
     <loc>https://kucw.github.io/categories/spring-framework/</loc>
     <lastmod>2019-12-31T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -83,6 +71,12 @@
   <url>
     <loc>https://kucw.github.io/blog/2019/12/elasticsearch-geo-point/</loc>
     <lastmod>2019-12-07T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2019-12-03T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
