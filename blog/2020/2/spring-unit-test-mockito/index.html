@@ -108,9 +108,6 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <p>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試</p>
-<blockquote>
-<p>mock 是一個英文單字，其中文意思為模仿</p>
-</blockquote>
 <h3 id="1--mock-">1. 什麼是 mock 測試？</h3>
 <p>mock 測試就是在測試過程中，創建一個假的對象，避免你為了測試一個方法，卻要自行構建整個 bean 的 dependency chain</p>
 <p>像是以下這張圖，類 A 需要調用類 B 和類 C，而類 B 和類 C 又需要調用其他類如 D、E、F 等，假設類 D 是一個外部服務，那就會很難測，因為你的返回結果會直接的受外部服務影響，導致你的單元測試可能今天會過、但明天就過不了了</p>
