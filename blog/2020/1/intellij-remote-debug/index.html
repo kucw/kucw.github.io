@@ -117,27 +117,27 @@
 </code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel">接著在自己的電腦上開啟 tunnel</h3>
 <h4 id="如果自己的電腦是-windows">如果自己的電腦是 Windows</h4>
 <p>先下載 <a href="https://www.putty.org/">putty</a>，下載完成之後打開他，然後點選 Tunnels</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug1.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug1.png" alt=""></p>
 <p>在 Source port 填上本機的 port，這裡填 1993，但你可以挑一個自己喜歡的 port</p>
 <p>在 Destination上 填上 server ip 和 18090，其中 18090 要跟你剛剛在 server 上運行的參數 address 的值一樣</p>
 <p>填完之後按 Add，上面 Forwarded ports 就會出現你的設定值</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug2.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug2.png" alt=""></p>
 <p>接著按左邊的 session 回到主頁面，在 Host Name 填上 server 的 ip</p>
 <p>最後再按右下角 Open 連線，就可以在 Windows 上開啟 tunnel 了</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug3.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug3.png" alt=""></p>
 <h4 id="如果自己的電腦是-maclinux">如果自己的電腦是 Mac/Linux</h4>
 <p>Mac/Linux 開啟 tunnel 的方式比較簡單，只要運行以下指令就可以了</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh -X -N -L 1993:your-server-ip:18090 your-server-ip
 </code></pre></div><p>其中 18090 要跟你剛剛在 server 上運行的參數 address 的值一樣，而那個 1993 則是本機的 port，你挑一個自己喜歡的就可以了</p>
 <h3 id="配置intellij">配置Intellij</h3>
 <p>首先先在 Intellij 上新增一個 Remote configuration</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug4.png" alt="">
-<img src="https://kucw.github.io/images/blog/java_remote_debug5.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug4.png" alt="">
+<img src="https://kucw.github.io/images/blog/idea_remote_debug5.png" alt=""></p>
 <p>在 host 的地方填入 <code>localhost</code>，而 port 的地方填入你剛剛開的那個本機 port，我剛剛在本機開的是 <code>1993</code> port，所以我這裡就填 <code>1993</code>，填好按 OK 保存</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug6.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug6.png" alt=""></p>
 <p>接著就可以運行剛剛設置好的 remote configuration 來進行 remote debug 了！</p>
 <p>如果連線有成功，Intellij 下方會顯示 <code>Connected to the target VM...</code>，這時候就可以打 break point 來對 server 上的 project debug 了</p>
-<p><img src="https://kucw.github.io/images/blog/java_remote_debug7.png" alt=""></p>
+<p><img src="https://kucw.github.io/images/blog/idea_remote_debug7.png" alt=""></p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
