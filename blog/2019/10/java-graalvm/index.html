@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,13 +108,13 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <p>GraalVM 是 Oracle 發佈的下世代 jvm，2019.05 才發佈了第一個 release 版本，分別有 Community 版和 Enterprise 版</p>
-<h3 id="graalvm-">GraalVM 三大特點</h3>
+<h3 id="graalvm-三大特點">GraalVM 三大特點</h3>
 <ol>
 <li>High-performance modern Java : 使用 GraalVM 執行 Java 程式可以變得更快</li>
 <li>Polyglot : 可以在 Java 裡面同時使用多種語言，像是 JavaScript、R&hellip;</li>
 <li>Instant startup, low footprint : 直接把 Java program compile 成 machine code，執行起來體積更小、啟動更快</li>
 </ol>
-<h3 id="highperformance-modern-java">High-performance modern Java</h3>
+<h3 id="high-performance-modern-java">High-performance modern Java</h3>
 <p>High-performance modern Java 使用到了 Graal compiler 技術，Graal compiler 是一個 JIT compiler，並且是使用 Java 撰寫的，目的是拿來替換掉原本 HotSpot VM 的C2 compiler</p>
 <p>為了讓 Graal compiler 可以更彈性的被更新（總不能每發布一次 Graal compiler 更新就要重新 compile 整個 java），Oracle 加上了一層JVM Compiler Interface，簡稱 JVMCI，把原本那些應該由 C2 執行的請求抽象化成 interface，解耦 C1 compiler 和 Graal compiler 的連結，讓 Graal 可以更輕易的被更新</p>
 <p><img src="https://kucw.github.io/images/blog/graalvm_graal.png" alt=""></p>
@@ -153,7 +153,7 @@ Hello World from Ruby!
 <p>目前 Spring 5 也打算開始支持 GraalVM native-image 的開箱即用設定，可以看到 serverless 的 java program 可能是之後的趨勢</p>
 <p>補充一下，serverless 就是指 Fuction as a Service，他的目的是希望 program 不用一直 run 著，當有請求來的時候，我快速啟動這個 program，然後請求走我就 shutdown 這個 program，不讓 program 一直啟動著，而是有需要的時候才開啟他，也就是說，FaaS 就是讓這個 program 像是 function 一樣，用完即走，因此 native-image 的快速啟動非常符合FaaS的需求</p>
 <p><img src="https://kucw.github.io/images/blog/graalvm_nativeimage_faas.png" alt=""></p>
-<h3 id="-graalvm">安裝 GraalVM</h3>
+<h3 id="安裝-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/">官網</a>下載 GraalVM community，如果電腦是 mac，選擇 graalvm-ce-darwin-amd64-19.2.0.1.tar.gz 下載，如果是 Linux/Windows，則選擇相對應版本下載</p>
 <p>下載完後解壓縮，放到 <code>/Library/Java/JavaVirtualMachines</code> 下，然後在 <code>.bashrc</code> 或 <code>.zshrc</code> 中加上以下設定</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
@@ -187,7 +187,7 @@ java Main
 Hello World from JavaScript!
 Hello World from Python!
 Hello World from Ruby!
-</code></pre><h3 id="-intellij--graalvm">在 Intellij 中使用 GraalVM</h3>
+</code></pre><h3 id="在-intellij-中使用-graalvm">在 Intellij 中使用 GraalVM</h3>
 <p>點擊 Project Structure 之後，選擇 SDKs，然後選擇加號新增一個 jdk</p>
 <p><img src="https://kucw.github.io/images/blog/graalvm_intellij1.png" alt=""></p>
 <p>選擇存放 GraalVM 的位置，如果有照剛剛的步驟安裝 GraalVM 的話，就選擇 <code>/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home</code></p>

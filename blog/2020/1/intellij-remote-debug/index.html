@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,14 +108,14 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <p>如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug</p>
-<h3 id="-server--project">首先先運行起來在 server 上的 project</h3>
+<h3 id="首先先運行起來在-server-上的-project">首先先運行起來在 server 上的 project</h3>
 <p>如果是 SpringBoot project，需要在執行 build 出來的 jar 檔時，帶上 jvm 啟動參數</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">java -agentlib:jdwp<span class="o">=</span><span class="nv">transport</span><span class="o">=</span>dt_socket,address<span class="o">=</span>18090,server<span class="o">=</span>y,suspend<span class="o">=</span>n -jar myservice-0.0.1-SNAPSHOT.jar
 </code></pre></div><p>如果是傳統的 Spring + tomcat war 檔 project，則是在 <code>tomcat/bin/catalina.sh</code>裡，加入 JAVA_OPTS 設定 jvm 啟動參數</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
 </span><span class="cp"></span><span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="s2">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
-</code></pre></div><h3 id="-tunnel">接著在自己的電腦上開啟 tunnel</h3>
-<h4 id="-windows">如果自己的電腦是 Windows</h4>
+</code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel">接著在自己的電腦上開啟 tunnel</h3>
+<h4 id="如果自己的電腦是-windows">如果自己的電腦是 Windows</h4>
 <p>先下載 <a href="https://www.putty.org/">putty</a>，下載完成之後打開他，然後點選 Tunnels</p>
 <p><img src="https://kucw.github.io/images/blog/java_remote_debug1.png" alt=""></p>
 <p>在 Source port 填上本機的 port，這裡填 1993，但你可以挑一個自己喜歡的 port</p>
@@ -125,11 +125,11 @@
 <p>接著按左邊的 session 回到主頁面，在 Host Name 填上 server 的 ip</p>
 <p>最後再按右下角 Open 連線，就可以在 Windows 上開啟 tunnel 了</p>
 <p><img src="https://kucw.github.io/images/blog/java_remote_debug3.png" alt=""></p>
-<h4 id="-maclinux">如果自己的電腦是 Mac/Linux</h4>
+<h4 id="如果自己的電腦是-maclinux">如果自己的電腦是 Mac/Linux</h4>
 <p>Mac/Linux 開啟 tunnel 的方式比較簡單，只要運行以下指令就可以了</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh -X -N -L 1993:your-server-ip:18090 your-server-ip
 </code></pre></div><p>其中 18090 要跟你剛剛在 server 上運行的參數 address 的值一樣，而那個 1993 則是本機的 port，你挑一個自己喜歡的就可以了</p>
-<h3 id="intellij">配置Intellij</h3>
+<h3 id="配置intellij">配置Intellij</h3>
 <p>首先先在 Intellij 上新增一個 Remote configuration</p>
 <p><img src="https://kucw.github.io/images/blog/java_remote_debug4.png" alt="">
 <img src="https://kucw.github.io/images/blog/java_remote_debug5.png" alt=""></p>

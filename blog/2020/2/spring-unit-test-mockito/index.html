@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.60.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
 
   <!-- Plugins -->
   
@@ -108,19 +108,19 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <p>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試</p>
-<h3 id="1--mock-">1. 什麼是 mock 測試？</h3>
+<h3 id="1-什麼是-mock-測試">1. 什麼是 mock 測試？</h3>
 <p>mock 測試就是在測試過程中，創建一個假的對象，避免你為了測試一個方法，卻要自行構建整個 bean 的 dependency chain</p>
 <p>像是以下這張圖，類 A 需要調用類 B 和類 C，而類 B 和類 C 又需要調用其他類如 D、E、F 等，假設類 D 是一個外部服務，那就會很難測，因為你的返回結果會直接的受外部服務影響，導致你的單元測試可能今天會過、但明天就過不了了</p>
 <p><img src="https://kucw.github.io/images/blog/unittest_mock1.png" alt=""></p>
 <p>而當我們引入 mock 測試時，就可以創建一個假的對象，替換掉真實的 bean B 和 C，這樣在調用B、C的方法時，實際上就會去調用這個假的 mock 對象的方法，而我們就可以自己設定這個 mock 對象的參數和期望結果，讓我們可以專注在測試當前的類 A，而不會受到其他的外部服務影響，這樣測試效率就能提高很多</p>
 <p><img src="https://kucw.github.io/images/blog/unittest_mock2.png" alt=""></p>
-<h3 id="2-mockito-">2. Mockito 簡介</h3>
+<h3 id="2-mockito-簡介">2. Mockito 簡介</h3>
 <p>說完了 mock 測試的概念，接下來我們進入到今天的主題，Mockito</p>
 <p>Mockito 是一種 Java mock 框架，他主要就是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，他同時也會記錄調用這些模擬方法的參數、調用順序，從而可以校驗出這個 mock 對象是否有被正確的順序調用，以及按照期望的參數被調用</p>
 <p>像是 Mockito 可以在單元測試中模擬一個 service 返回的數據，而不會真正去調用該 service，這就是上面提到的 mock 測試精神，也就是通過模擬一個假的 service 對象，來快速的測試當前我想要測試的類</p>
 <p>目前在 Java 中主流的 mock 測試工具有 Mockito、JMock、EasyMock..等，而 SpringBoot 目前內建的是 Mockito 框架</p>
 <p>題外話說一下，Mockito 是命名自一種調酒莫吉托（Mojito），外國人也愛玩諧音梗。。。</p>
-<h3 id="3--springboot--mockito">3. 在 SpringBoot 單元測試中使用 Mockito</h3>
+<h3 id="3-在-springboot-單元測試中使用-mockito">3. 在 SpringBoot 單元測試中使用 Mockito</h3>
 <p>首先在 pom.xml 下新增 spring-boot-starter-test 依賴，該依賴內就有包含了 JUnit、Mockito</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
@@ -197,43 +197,44 @@
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><p>Mockito 除了最基本的 <code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )</code>，還提供了其他用法讓我們使用</p>
-<h4 id="thenreturn-">thenReturn 系列方法</h4>
-<p>當使用任何整數值調用 userService 的 getUserById() 方法時，就回傳一個名字為 I'm mock3 的 user 對象</p>
+<h4 id="thenreturn-系列方法">thenReturn 系列方法</h4>
+<p>當使用任何整數值調用 userService 的 getUserById() 方法時，就回傳一個名字為 I&rsquo;m mock3 的 user 對象</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">anyInt</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">thenReturn</span><span class="o">(</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="s">&#34;I&#39;m mock&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 <span class="n">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 回傳的user的名字為I&#39;m mock
 </span><span class="c1"></span><span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">200</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 回傳的user的名字也為I&#39;m mock
-</span></code></pre></div><p>限制只有當參數的數字是 3 時，才會回傳名字為 I'm mock 3 的 user 對象</p>
+</span></code></pre></div><p>限制只有當參數的數字是 3 時，才會回傳名字為 I&rsquo;m mock 3 的 user 對象</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">thenReturn</span><span class="o">(</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="s">&#34;I&#39;m mock&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 <span class="n">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 回傳的user的名字為I&#39;m mock
 </span><span class="c1"></span><span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">200</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 回傳的user為null
 </span></code></pre></div><p>當調用 userService 的 insertUser() 方法時，不管傳進來的 user 是什麼，都回傳 100</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">100</span><span class="o">)</span><span class="o">;</span>
 <span class="n">Integer</span> <span class="n">i</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span> <span class="c1">//會返回100
-</span></code></pre></div><h4 id="thenthrow-">thenThrow 系列方法</h4>
+</span></code></pre></div><h4 id="thenthrow-系列方法">thenThrow 系列方法</h4>
 <p>當調用 userService 的 getUserById() 時的參數是 9 時，拋出一個 RuntimeException</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">9</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">thenThrow</span><span class="o">(</span><span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;mock throw exception&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">9</span><span class="o">)</span><span class="o">;</span> <span class="c1">//會拋出一個RuntimeException
 </span></code></pre></div><p>如果方法沒有返回值的話（即是方法定義為<code>public void myMethod() {...}</code>），要改用 doThrow() 拋出 Exception</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">doThrow</span><span class="o">(</span><span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;mock throw exception&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">userService</span><span class="o">)</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 <span class="n">userService</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="o">)</span><span class="o">;</span> <span class="c1">//會拋出一個RuntimeException
-</span></code></pre></div><h4 id="verify-">verify 系列方法</h4>
+</span></code></pre></div><h4 id="verify-系列方法">verify 系列方法</h4>
 <p>檢查調用 userService 的 getUserById()、且參數為3的次數是否為1次</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userService</span><span class="o">,</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">)</span> <span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userService</span><span class="o">,</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="n">1</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 </code></pre></div><p>驗證調用順序，驗證 userService 是否先調用 getUserById() 兩次，並且第一次的參數是 3、第二次的參數是 5，然後才調用insertUser() 方法</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">InOrder</span> <span class="n">inOrder</span> <span class="o">=</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">inOrder</span><span class="o">(</span><span class="n">userService</span><span class="o">)</span><span class="o">;</span>
 <span class="n">inOrder</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userService</span><span class="o">)</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">3</span><span class="o">)</span><span class="o">;</span>
 <span class="n">inOrder</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userService</span><span class="o">)</span><span class="o">.</span><span class="na">getUserById</span><span class="o">(</span><span class="n">5</span><span class="o">)</span><span class="o">;</span>
 <span class="n">inOrder</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">userService</span><span class="o">)</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-</code></pre></div><h3 id="4-mockito-">4. Mockito 的限制</h3>
+</code></pre></div><h3 id="4-mockito-的限制">4. Mockito 的限制</h3>
 <p>上述就是 Mockito 的 mock 對象使用方法，不過當使用 Mockito 在 mock 對象時，有一些限制需要遵守</p>
 <ul>
 <li>不能 mock 靜態方法</li>
 <li>不能 mock private 方法</li>
 <li>不能 mock final class</li>
 </ul>
-<p>因此在寫代碼時，需要做良好的功能拆分，才能夠使用 Mockito 的 mock 技術，幫助我們降低測試時 bean 的耦合度</p>
-<h3 id="5-">5. 總結</h3>
-<p>Mockito 是一個非常強大的框架，可以在執行單元測試時幫助我們模擬一個 bean，提高單元測試的穩定性，並且大家可以嘗試在寫 code 時，從 mock 測試的角度來寫，更能夠寫出功能切分良好的 code modules，像是如果有把專門和外部 service 溝通的 code 抽出來成一個 bean，在進行單元測試時，只要透過 Mockito 更換掉那個 bean 就行了</p>
+<p>因此在寫 code 時，需要做良好的功能拆分，才能夠使用 Mockito 的 mock 技術，幫助我們降低測試時 bean 的 dependency</p>
+<h3 id="5-總結">5. 總結</h3>
+<p>Mockito 是一個非常強大的框架，可以在執行單元測試時幫助我們模擬一個 bean，提高單元測試的穩定性，並且大家可以嘗試在寫 code 時，從 mock 測試的角度來寫，更能夠寫出功能切分良好的 code modules</p>
+<p>像是如果有把專門和外部 service 溝通的 code 抽出來成一個 bean，在進行單元測試時，只要透過 Mockito 更換掉那個 bean 就行了</p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
