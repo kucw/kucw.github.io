@@ -33,6 +33,18 @@
   </url>
   
   <url>
+    <loc>https://kucw.github.io/categories/spring-framework/</loc>
+    <lastmod>2020-02-20T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/</loc>
+    <lastmod>2020-02-20T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
     <loc>https://kucw.github.io/categories/intellij/</loc>
     <lastmod>2020-02-15T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -41,18 +53,6 @@
   <url>
     <loc>https://kucw.github.io/blog/2020/2/intellij-how-to-debug/</loc>
     <lastmod>2020-02-15T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/spring-framework/</loc>
-    <lastmod>2020-02-02T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/</loc>
-    <lastmod>2020-02-02T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
