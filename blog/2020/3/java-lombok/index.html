@@ -189,8 +189,8 @@
 <h4 id="7-builder">7. @Builder</h4>
 <p>自動生成流式 set 值寫法，從此之後再也不用寫一堆 setter 了</p>
 <p><img src="https://kucw.github.io/images/blog/lombok_builder.png" alt=""></p>
-<p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的</p>
-<p>因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值，所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
+<p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的，因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值</p>
+<p>所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Data</span>
 <span class="nd">@Builder</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
