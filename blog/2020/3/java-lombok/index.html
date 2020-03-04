@@ -154,7 +154,8 @@
 <p><img src="https://kucw.github.io/images/blog/lombok_noargsconstructor.png" alt=""></p>
 <p><strong>@AllArgsConstructor</strong> : 生成一個包含所有參數的 constructor</p>
 <p><img src="https://kucw.github.io/images/blog/lombok_allargsconstructor.png" alt=""></p>
-<p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了，但是因為很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
+<p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了</p>
+<p>然而很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@AllArgsConstructor</span>
 <span class="nd">@NoArgsConstructor</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
