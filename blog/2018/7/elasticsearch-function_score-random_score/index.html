@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -132,13 +132,13 @@
 </li>
 <li>
 <p>而 random_score 加強函數沒有加 filter，表示所有的文檔都會被 random_score 隨機排序一遍</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">},</span>
             <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -147,9 +147,9 @@
                                 <span class="nt">&#34;lte&#34;</span><span class="p">:</span> <span class="mi">5</span>
                             <span class="p">}</span>
                         <span class="p">}</span>
-                    <span class="p">}</span><span class="p">,</span>
+                    <span class="p">},</span>
                     <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
-                <span class="p">}</span><span class="p">,</span>
+                <span class="p">},</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;random_score&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;seed&#34;</span><span class="p">:</span> <span class="mi">100</span>
@@ -166,11 +166,11 @@
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2912227</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.1301208</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.9083528</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
@@ -183,11 +183,11 @@
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2040303</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5595852</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.10916698</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>

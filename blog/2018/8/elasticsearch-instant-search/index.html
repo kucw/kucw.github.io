@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -178,22 +178,22 @@ hello
 </li>
 <li>
 <p>因此需要定義兩套分析器，一套是建索引的分析器（包含edge n-gram 過濾器），另一套是查詢使用的正常的分析器</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">i</span><span class="err">n</span><span class="err">d</span><span class="err">e</span><span class="err">x</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">my_index</span>
 <span class="p">{</span>
     <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;number_of_shards&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">定</span><span class="err">義</span><span class="err">一</span><span class="err">個</span><span class="err">e</span><span class="err">d</span><span class="err">g</span><span class="err">e</span> <span class="err">n</span><span class="err">-</span><span class="err">g</span><span class="err">r</span><span class="err">a</span><span class="err">m</span><span class="err">的</span><span class="err">t</span><span class="err">o</span><span class="err">k</span><span class="err">e</span><span class="err">n</span><span class="err">過</span><span class="err">濾</span><span class="err">器</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">並</span><span class="err">設</span><span class="err">置</span><span class="err">任</span><span class="err">何</span><span class="err">通</span><span class="err">過</span><span class="err">這</span><span class="err">個</span><span class="err">過</span><span class="err">濾</span><span class="err">器</span><span class="err">的</span><span class="err">詞</span><span class="err">條</span><span class="err">，</span><span class="err">都</span><span class="err">會</span><span class="err">生</span><span class="err">成</span><span class="err">一</span><span class="err">個</span><span class="err">最</span><span class="err">小</span><span class="err">固</span><span class="err">定</span><span class="err">值</span><span class="err">為</span><span class="err">1</span><span class="err">，</span><span class="err">最</span><span class="err">大</span><span class="err">固</span><span class="err">定</span><span class="err">值</span><span class="err">為</span><span class="err">2</span><span class="err">0</span><span class="err">的</span><span class="err">n</span><span class="err">-</span><span class="err">g</span><span class="err">r</span><span class="err">a</span><span class="err">m</span>
+                <span class="err">//定義一個edge</span> <span class="err">n-gram的token過濾器</span>
+                <span class="err">//並設置任何通過這個過濾器的詞條，都會生成一個最小固定值為1，最大固定值為20的n-gram</span>
                 <span class="nt">&#34;my_autocomplete_filter&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;edge_ngram&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;min_gram&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                     <span class="nt">&#34;max_gram&#34;</span><span class="p">:</span> <span class="mi">20</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">一</span><span class="err">個</span><span class="err">分</span><span class="err">析</span><span class="err">器</span><span class="err">，</span><span class="err">並</span><span class="err">使</span><span class="err">用</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">e</span><span class="err">d</span><span class="err">g</span><span class="err">e</span> <span class="err">n</span><span class="err">-</span><span class="err">g</span><span class="err">r</span><span class="err">a</span><span class="err">m</span><span class="err">過</span><span class="err">濾</span><span class="err">器</span>
+                <span class="err">//自定義一個分析器，並使用自定義的edge</span> <span class="err">n-gram過濾器</span>
                 <span class="nt">&#34;my_autocomplete_analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;custom&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>
@@ -204,14 +204,14 @@ hello
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="nt">&#34;mapping&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_type&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;my_autocomplete_analyzer&#34;</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">在</span><span class="err">索</span><span class="err">引</span><span class="err">時</span><span class="err">用</span><span class="err">，</span><span class="err">生</span><span class="err">成</span><span class="err">e</span><span class="err">d</span><span class="err">g</span><span class="err">e</span> <span class="err">n</span><span class="err">-</span><span class="err">g</span><span class="err">r</span><span class="err">a</span><span class="err">m</span><span class="err">的</span><span class="err">每</span><span class="err">個</span><span class="err">詞</span>
-                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>  <span class="err">/</span><span class="err">/</span><span class="err">查</span><span class="err">詢</span><span class="err">用</span><span class="err">，</span><span class="err">只</span><span class="err">搜</span><span class="err">索</span><span class="err">用</span><span class="err">戶</span><span class="err">輸</span><span class="err">入</span><span class="err">的</span><span class="err">詞</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;my_autocomplete_analyzer&#34;</span><span class="p">,</span> <span class="err">//在索引時用，生成edge</span> <span class="err">n-gram的每個詞</span>
+                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>  <span class="err">//查詢用，只搜索用戶輸入的詞</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -249,7 +249,7 @@ hello
 </li>
 <li>
 <p>如果是使用正常的分詞器，生成的 edge n-gram 會是 A、AB、ABC、E、EF，他們是有差別的</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">i</span><span class="err">n</span><span class="err">d</span><span class="err">e</span><span class="err">x</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">my_index</span>
 <span class="p">{</span>
     <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -259,20 +259,20 @@ hello
                     <span class="nt">&#34;min_gram&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                     <span class="nt">&#34;max_gram&#34;</span><span class="p">:</span> <span class="mi">8</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;postcode_index&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="s2">&#34;postcode_filter&#34;</span>
                     <span class="p">]</span>
-                <span class="p">}</span><span class="p">,</span>
+                <span class="p">},</span>
                 <span class="nt">&#34;postcode_search&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="nt">&#34;mapping&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_type&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>

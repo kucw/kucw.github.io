@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -127,14 +127,14 @@
 <p><img src="https://kucw.github.io/images/blog/graalvm_truffle.png" alt=""></p>
 <p>具體實例</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello World from Java!&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello World from Java!&#34;</span><span class="o">);</span>
 
-        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">allowAllAccess</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">allowAllAccess</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
 
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;js&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;python&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;ruby&#34;</span><span class="o">,</span> <span class="s">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;js&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;python&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;ruby&#34;</span><span class="o">,</span> <span class="s">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><pre><code>Hello World from Java!
@@ -156,7 +156,7 @@ Hello World from Ruby!
 <h3 id="安裝-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/">官網</a>下載 GraalVM community，如果電腦是 mac，選擇 graalvm-ce-darwin-amd64-19.2.0.1.tar.gz 下載，如果是 Linux/Windows，則選擇相對應版本下載</p>
 <p>下載完後解壓縮，放到 <code>/Library/Java/JavaVirtualMachines</code> 下，然後在 <code>.bashrc</code> 或 <code>.zshrc</code> 中加上以下設定</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
 <span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home&#34;</span>
 </code></pre></div><p>做完之後就可以使用 GraalVM Component Updater 的 <code>gu</code> 指令了，預設的 GraalVM 中只幫我們預載好了 Java 和 Javascript 而已，如果想要其他東西，需要再用 gu 額外下載</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gu install native-image ruby python R
@@ -169,14 +169,14 @@ Hello World from Ruby!
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.graalvm.polyglot.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello World from Java!&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello World from Java!&#34;</span><span class="o">);</span>
 
-        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">allowAllAccess</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">allowAllAccess</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
 
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;js&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;python&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;ruby&#34;</span><span class="o">,</span> <span class="s">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;js&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;python&#34;</span><span class="o">,</span> <span class="s">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">eval</span><span class="o">(</span><span class="s">&#34;ruby&#34;</span><span class="o">,</span> <span class="s">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><p>執行以下指令</p>

@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -114,13 +114,13 @@
 </ol>
 <h3 id="geo_point-經緯度座標格式">geo_point 經緯度座標格式</h3>
 <p>在 mapping 定義時將字段類型定義為 geo_point</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
 <span class="p">{</span>
     <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;geo_point&#34;</span>
             <span class="p">}</span>
@@ -131,7 +131,7 @@
 <ul>
 <li>
 <p>使用對象</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_doc</span>
 <span class="p">{</span>
     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Pala Pizza as an object&#34;</span><span class="p">,</span>
     <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -142,7 +142,7 @@
 </code></pre></div></li>
 <li>
 <p>使用數組 location : [ lon, lat ]</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_doc</span>
 <span class="p">{</span>
     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Pala Pizza as an array&#34;</span><span class="p">,</span>
     <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mf">-73.989</span><span class="p">,</span> <span class="mf">40.722</span><span class="p">]</span>
@@ -150,7 +150,7 @@
 </code></pre></div></li>
 <li>
 <p>使用字符串 location : &ldquo;lat, lon&rdquo;</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_doc</span>
 <span class="p">{</span>
     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Pala Pizza as a string&#34;</span><span class="p">,</span>
     <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="s2">&#34;40.722, -73.989&#34;</span>
@@ -158,7 +158,7 @@
 </code></pre></div></li>
 <li>
 <p>使用Geohash</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">O</span><span class="err">S</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">d</span><span class="err">o</span><span class="err">c</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/_doc</span>
 <span class="p">{</span>
     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Pala Pizza as a geohash&#34;</span><span class="p">,</span>
     <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="s2">&#34;drm3btev3e86&#34;</span>
@@ -176,7 +176,7 @@
 <p>指定一個矩形的頂部、底部、左邊界、右邊界，然後過濾器只需判斷座標的經度是否在左右邊界之間，緯度是否在上下邊界之間就可以判斷這個座標點是否在矩形範圍內</p>
 <p>可以選擇使用 <code>top_left + bottom_right</code> 或是 <code>top_right + bottom_left</code> 或是 <code>top + bottom + left + right</code></p>
 <h6 id="具體實例--找出那些位在-lat-407408且lon--73---74的座標點">具體實例 : 找出那些位在 lat 40.7~40.8，且lon -73 ~ -74的座標點</h6>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -186,7 +186,7 @@
                         <span class="nt">&#34;top_left&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.8</span><span class="p">,</span>
                             <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-74.0</span>
-                        <span class="p">}</span><span class="p">,</span>
+                        <span class="p">},</span>
                         <span class="nt">&#34;bottom_right&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.7</span><span class="p">,</span>
                             <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-73.0</span>
@@ -207,7 +207,7 @@
 <li><code>plane</code> : plane的計算方式把地球當成是平坦的，這種方式快一些但是精度略遜，在赤道附近的位置精度最好，而靠近兩極則變差</li>
 </ul>
 <h6 id="具體實例--給定一個位置-40715--73988找出距離他1km以內的所有點">具體實例 : 給定一個位置 (40.715, -73.988)，找出距離他1km以內的所有點</h6>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -228,7 +228,7 @@
 <p>geo_polygon 可以自定義一個多邊形，然後判斷這個座標點是否在該多邊形內</p>
 <p>在使用 geo_polygon 時，需要使用 <code>points</code> 數組自定義多邊形，需要把該多邊形的所有點列出來在此數組裡，順序不影響</p>
 <h6 id="具體實例--找出那些位在指定多邊形內的座標點">具體實例 : 找出那些位在指定多邊形內的座標點</h6>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span> <span class="p">:</span> <span class="p">{</span>
@@ -236,9 +236,9 @@
                 <span class="nt">&#34;geo_polygon&#34;</span> <span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;my_location&#34;</span> <span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;points&#34;</span> <span class="p">:</span> <span class="p">[</span>
-                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-70</span><span class="p">}</span><span class="p">,</span>
-                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-80</span><span class="p">}</span><span class="p">,</span>
-                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-70</span><span class="p">}</span><span class="p">,</span>
+                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-70</span><span class="p">},</span>
+                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-80</span><span class="p">},</span>
+                            <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-70</span><span class="p">},</span>
                             <span class="p">{</span><span class="nt">&#34;lat&#34;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nt">&#34;lon&#34;</span> <span class="p">:</span> <span class="mi">-80</span><span class="p">}</span>
                         <span class="p">]</span>
                     <span class="p">}</span>
@@ -250,7 +250,7 @@
 </code></pre></div><h3 id="按照距離大小進行排序">按照距離大小進行排序</h3>
 <h4 id="請求">請求</h4>
 <p>注意，會需要在請求時決定距離的單位的原因是因為，這些用於排序的距離的值，會設置在每個返回的結果的sort元素中，方便我們取得他們實際上距離那個點多少距離，而此時就必須知道距離的單位</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -260,7 +260,7 @@
                         <span class="nt">&#34;top_left&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.8</span><span class="p">,</span>
                             <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-74.0</span>
-                        <span class="p">}</span><span class="p">,</span>
+                        <span class="p">},</span>
                         <span class="nt">&#34;bottom_right&#34;</span><span class="p">:</span> <span class="p">{</span>
                             <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.4</span><span class="p">,</span>
                             <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-73.0</span>
@@ -269,17 +269,17 @@
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="nt">&#34;sort&#34;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="err">/</span><span class="err">/</span><span class="err">計</span><span class="err">算</span><span class="err">每</span><span class="err">個</span><span class="err">文</span><span class="err">檔</span><span class="err">中</span> <span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">l</span><span class="err">o</span><span class="err">c</span><span class="err">a</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span> <span class="err">字</span><span class="err">段</span><span class="err">與</span><span class="err">指</span><span class="err">定</span><span class="err">的</span> <span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">/</span><span class="err">l</span><span class="err">o</span><span class="err">n</span> <span class="err">點</span><span class="err">間</span><span class="err">的</span><span class="err">距</span><span class="err">離</span>
-            <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">l</span><span class="err">o</span><span class="err">c</span><span class="err">a</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span><span class="err">要</span><span class="err">先</span><span class="err">在</span><span class="err">索</span><span class="err">引</span><span class="err">中</span><span class="err">建</span><span class="err">為</span><span class="err">g</span><span class="err">e</span><span class="err">o</span><span class="err">_</span><span class="err">p</span><span class="err">o</span><span class="err">i</span><span class="err">n</span><span class="err">t</span><span class="err">類</span><span class="err">型</span><span class="err">的</span><span class="err">字</span><span class="err">段</span>
+            <span class="err">//計算每個文檔中</span> <span class="err">my_location</span> <span class="err">字段與指定的</span> <span class="err">lat/lon</span> <span class="err">點間的距離</span>
+            <span class="err">//my_location要先在索引中建為geo_point類型的字段</span>
             <span class="nt">&#34;_geo_distance&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;my_location&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.715</span><span class="p">,</span>
                     <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-73.998</span>
-                <span class="p">}</span><span class="p">,</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">將</span><span class="err">距</span><span class="err">離</span><span class="err">以</span> <span class="err">k</span><span class="err">m</span> <span class="err">爲</span><span class="err">單</span><span class="err">位</span><span class="err">寫</span><span class="err">入</span><span class="err">到</span><span class="err">每</span><span class="err">個</span><span class="err">返</span><span class="err">回</span><span class="err">結</span><span class="err">果</span><span class="err">的</span><span class="err">s</span><span class="err">o</span><span class="err">r</span><span class="err">t</span><span class="err">中</span>
+                <span class="p">},</span>
+                <span class="err">//將距離以</span> <span class="err">km</span> <span class="err">爲單位寫入到每個返回結果的sort中</span>
                 <span class="nt">&#34;unit&#34;</span><span class="p">:</span> <span class="s2">&#34;km&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;distance_type&#34;</span><span class="p">:</span> <span class="s2">&#34;arc&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;order&#34;</span><span class="p">:</span> <span class="s2">&#34;asc&#34;</span>
@@ -301,12 +301,12 @@
                 <span class="nt">&#34;lat&#34;</span><span class="p">:</span> <span class="mf">40.715</span><span class="p">,</span>
                 <span class="nt">&#34;lon&#34;</span><span class="p">:</span> <span class="mf">-73.997</span>
             <span class="p">}</span>
-        <span class="p">}</span><span class="p">,</span>
+        <span class="p">},</span>
         <span class="nt">&#34;sort&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="mf">0.08425653647614346</span>
         <span class="p">]</span>
-    <span class="p">}</span><span class="p">,</span>
-    <span class="err">.</span><span class="err">.</span><span class="err">.</span>
+    <span class="p">},</span>
+    <span class="err">...</span>
 <span class="p">]</span>
 </code></pre></div><h3 id="按照距離大小打分">按照距離大小打分</h3>
 <p>有可能距離是決定返回結果排序的唯一重要因素，不過更常見的情況是距離會和其它因素，比如全文檢索匹配度、流行程度或者價格一起決定排序結果</p>

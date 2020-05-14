@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -153,7 +153,7 @@
       
             <span class="c1">//ThreadLocalMap中的key就是ThreadLocal，value就是設置的值
 </span><span class="c1"></span>            <span class="n">Entry</span><span class="o">(</span><span class="n">ThreadLocal</span> <span class="n">k</span><span class="o">,</span> <span class="n">Object</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-                <span class="kd">super</span><span class="o">(</span><span class="n">k</span><span class="o">)</span><span class="o">;</span>
+                <span class="kd">super</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
@@ -166,12 +166,12 @@
 <li>
 <p>像是以下的例子，在 main 線程中的 ThreadLocalMap，就有兩個 key-value 的映射，分別是 userIdThreadLocal -&gt; 100、userNameThreadLocal -&gt; hello</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span><span class="o">{</span>
-        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">userIdThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">userNameThreacLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">userIdThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;();</span>
+        <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">userNameThreacLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;();</span>
                   
-        <span class="n">userId</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">100</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">userName</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">userId</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
+        <span class="n">userName</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></li>
@@ -192,8 +192,8 @@
 <ul>
 <li>
 <p>所以 java 又做了一個優化，就是在 ThreadLocal 執行 <code>get()</code>、<code>set()</code>、<code>remove()</code> 方法時，都會將該線程 ThreadLocalMap 裡所有 key = null 的 value 也設置為 null，手動幫助 GC</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ThreadLocal</span> <span class="n">k</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ThreadLocal</span> <span class="n">k</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Help the GC
 </span><span class="c1"></span><span class="o">}</span> 
 </code></pre></div></li>
@@ -212,25 +212,25 @@
 <li>
 <p>每個線程都可以在 ThreadLocal 中放自己的值，且不會干擾到其他線程的值</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tools</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">();</span>
 <span class="o">}</span>
       
 <span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
         <span class="o">}</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
       
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">)</span><span class="o">;</span>
-            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">();</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -246,31 +246,31 @@ thread 4, 0.45
 <li>
 <p>因為使用了 ThreadLocal 確保每個線程有自己一份 SimpleDateFormat，所以線程安全，不會報錯</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Tools</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;</span> <span class="n">threadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">SimpleDateFormat</span><span class="o">&gt;();</span>
 <span class="o">}</span>
           
 <span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">sdf</span> <span class="o">=</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd&#34;</span><span class="o">)</span><span class="o">;</span>
-            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sdf</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sdf</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;yyyy-MM-dd&#34;</span><span class="o">);</span>
+            <span class="n">Tools</span><span class="o">.</span><span class="na">threadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sdf</span><span class="o">);</span>
         <span class="o">}</span>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2018-07-15&#34;</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2018-07-15&#34;</span><span class="o">));</span>
         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;報錯了&#34;</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;報錯了&#34;</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
           
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">)</span><span class="o">;</span>
-            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">MyThread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyThread</span><span class="o">();</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;thread &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -295,36 +295,36 @@ Sun Jul 15 00:00:00 CST 2018
 <p>最後當請求結束時，刪除此條線程的 <code>ThreadLocal&lt;User&gt;</code> 信息，避免內存洩漏</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//UserUtils專門存取User信息
 </span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserUtils</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userThreadLocal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;();</span>
           
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">user</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
     <span class="o">}</span>
           
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">User</span> <span class="nf">getUser</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">User</span> <span class="nf">getUser</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
     <span class="o">}</span>
               
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">removeUser</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">removeUser</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">userThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">userThreadLocal</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
         
 <span class="c1">//攔截器取得cookie中的User信息，並調用UserUtils放到ThreadLocal裡
-</span><span class="c1"></span><span class="c1">//請求結束時要記得把ThreadLocal中的User刪除，因為這條線程之後還要去服務其他請求
+</span><span class="c1">//請求結束時要記得把ThreadLocal中的User刪除，因為這條線程之後還要去服務其他請求
 </span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyInterceptor</span> <span class="kd">extends</span> <span class="n">HandlerInterceptorAdapter</span> <span class="o">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">getUserFromCookie</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">UserUtils</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">user</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">getUserFromCookie</span><span class="o">();</span>
+        <span class="n">UserUtils</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">}</span>
           
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">UserUtils</span><span class="o">.</span><span class="na">removeUser</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">UserUtils</span><span class="o">.</span><span class="na">removeUser</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
           
@@ -333,9 +333,9 @@ Sun Jul 15 00:00:00 CST 2018
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="o">{</span>
     <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">UserUtils</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">id</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">UserUtils</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">id</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></li>

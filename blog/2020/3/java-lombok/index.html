@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -115,10 +115,10 @@
 <h3 id="安裝-lombok">安裝 Lombok</h3>
 <p>要在 project 中使用 lombok，除了要在 maven 中加入 lombok dependency，還要安裝 Intellij lombok 插件</p>
 <h4 id="1-加入maven-dependency">1. 加入maven dependency</h4>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.18.12<span class="nt">&lt;/version&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.18.12<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div><h4 id="2-在-intellij-中安裝-lombok-插件">2. 在 Intellij 中安裝 lombok 插件</h4>
 <h6 id="我使用的-intellij-版本是-201933可能會因為版本差異導致安裝方式有改變">我使用的 Intellij 版本是 2019.3.3，可能會因為版本差異導致安裝方式有改變</h6>
@@ -202,10 +202,10 @@
 <p><img src="https://kucw.github.io/images/blog/lombok_slf4j.png" alt=""></p>
 <p>除了 @Slf4j 之外，lombok 也提供其他日誌框架的變種注解可以用，像是 @Log、@Log4j&hellip;等，他們都是幫我們創建一個靜態常量 log，只是使用的 library 不一樣而已</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Log</span> <span class="c1">//對應的log語句如下
-</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">logging</span><span class="o">.</span><span class="na">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">logging</span><span class="o">.</span><span class="na">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LogExample</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">logging</span><span class="o">.</span><span class="na">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">logging</span><span class="o">.</span><span class="na">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LogExample</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
 
 <span class="nd">@Log4j</span> <span class="c1">//對應的log語句如下
-</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LogExample</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">;</span>
+</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LogExample</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </code></pre></div><p>SpringBoot默認支持的就是 slf4j + logback 的日誌框架，所以也不用再多做啥設定，直接就可以用在 SpringBoot project上，log 系列注解最常用的就是 @Slf4j</p>
 
         </div>

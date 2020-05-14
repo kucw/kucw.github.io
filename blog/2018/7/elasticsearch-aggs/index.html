@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -166,24 +166,24 @@
 </ul>
 </li>
 <li>aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span><span class="p">,</span>
+    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;custom_name1&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">/</span><span class="err">/</span><span class="err">a</span><span class="err">g</span><span class="err">g</span><span class="err">s</span><span class="err">後</span><span class="err">面</span><span class="err">接</span><span class="err">著</span><span class="err">的</span><span class="err">是</span><span class="err">一</span><span class="err">個</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span>
-          <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span>  <span class="err">/</span><span class="err">/</span><span class="err">再</span><span class="err">來</span><span class="err">才</span><span class="err">是</span><span class="err">接</span><span class="err">桶</span>
-        <span class="p">}</span><span class="p">,</span>
-        <span class="nt">&#34;custom_name2&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">/</span><span class="err">/</span><span class="err">一</span><span class="err">個</span><span class="err">a</span><span class="err">g</span><span class="err">g</span><span class="err">s</span><span class="err">裡</span><span class="err">可</span><span class="err">以</span><span class="err">有</span><span class="err">很</span><span class="err">多</span><span class="err">聚</span><span class="err">合</span>
-            <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span>
-        <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;custom_name1&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//aggs後面接著的是一個自定義的name</span>
+          <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>  <span class="err">//再來才是接桶</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;custom_name2&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//一個aggs裡可以有很多聚合</span>
+            <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+        <span class="p">},</span>
         <span class="nt">&#34;custom_name3&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span>
-               <span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span>
-            <span class="p">}</span><span class="p">,</span>
-            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">/</span><span class="err">/</span><span class="err">a</span><span class="err">g</span><span class="err">g</span><span class="err">s</span><span class="err">可</span><span class="err">以</span><span class="err">嵌</span><span class="err">套</span><span class="err">在</span><span class="err">別</span><span class="err">的</span><span class="err">a</span><span class="err">g</span><span class="err">g</span><span class="err">s</span><span class="err">裡</span><span class="err">面</span>
-                <span class="nt">&#34;in_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">記</span><span class="err">得</span><span class="err">使</span><span class="err">用</span><span class="err">a</span><span class="err">g</span><span class="err">g</span><span class="err">s</span><span class="err">需</span><span class="err">要</span><span class="err">先</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">一</span><span class="err">個</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span>
-                    <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="p">}</span> <span class="err">/</span><span class="err">/</span><span class="err">i</span><span class="err">n</span><span class="err">_</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span><span class="err">的</span><span class="err">桶</span><span class="err">作</span><span class="err">用</span><span class="err">的</span><span class="err">文</span><span class="err">檔</span><span class="err">是</span><span class="err">c</span><span class="err">u</span><span class="err">s</span><span class="err">t</span><span class="err">o</span><span class="err">m</span><span class="err">_</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span><span class="mi">3</span><span class="err">的</span><span class="err">桶</span><span class="err">的</span><span class="err">結</span><span class="err">果</span>
+               <span class="err">.....</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//aggs可以嵌套在別的aggs裡面</span>
+                <span class="nt">&#34;in_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//記得使用aggs需要先自定義一個name</span>
+                    <span class="nt">&#34;桶&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span> <span class="err">//in_name的桶作用的文檔是custom_name</span><span class="mi">3</span><span class="err">的桶的結果</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -195,19 +195,19 @@
     <span class="nt">&#34;hits&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
         <span class="nt">&#34;max_score&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nt">&#34;hits&#34;</span><span class="p">:</span> <span class="p">[</span><span class="p">]</span> <span class="err">/</span><span class="err">/</span><span class="err">因</span><span class="err">為</span><span class="err">s</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">設</span><span class="err">為</span><span class="mi">0</span><span class="err">，</span><span class="err">所</span><span class="err">以</span><span class="err">沒</span><span class="err">有</span><span class="err">查</span><span class="err">詢</span><span class="err">結</span><span class="err">果</span><span class="err">返</span><span class="err">回</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;hits&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="err">//因為size設為</span><span class="mi">0</span><span class="err">，所以沒有查詢結果返回</span>
+    <span class="p">},</span>
     <span class="nt">&#34;aggregations&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;custom_name1&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">.</span><span class="err">.</span><span class="err">.</span>
-        <span class="p">}</span><span class="p">,</span>
+            <span class="err">...</span>
+        <span class="p">},</span>
         <span class="nt">&#34;custom_name2&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">.</span><span class="err">.</span><span class="err">.</span>
-        <span class="p">}</span><span class="p">,</span>
+            <span class="err">...</span>
+        <span class="p">},</span>
         <span class="nt">&#34;custom_name3&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">.</span><span class="err">.</span><span class="err">.</span> <span class="err">,</span>
+            <span class="err">...</span> <span class="err">,</span>
             <span class="nt">&#34;in_name&#34;</span><span class="p">:</span> <span class="p">{</span>
-               <span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span>
+               <span class="err">....</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -232,16 +232,16 @@
 <span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>執行 terms 桶聚合
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">使</span><span class="err">用</span><span class="err">c</span><span class="err">o</span><span class="err">l</span><span class="err">o</span><span class="err">r</span><span class="err">來</span><span class="err">進</span><span class="err">行</span><span class="err">分</span><span class="err">組</span>
+                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span> <span class="err">//使用color來進行分組</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -255,14 +255,14 @@
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>  <span class="err">/</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span><span class="err">產</span><span class="err">生</span><span class="err">的</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">s</span><span class="err">數</span><span class="err">組</span><span class="err">，</span><span class="err">裡</span><span class="err">面</span><span class="err">每</span><span class="err">個</span><span class="err">j</span><span class="err">s</span><span class="err">o</span><span class="err">n</span><span class="err">對</span><span class="err">象</span><span class="err">都</span><span class="err">是</span><span class="err">一</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>  <span class="err">//terms桶產生的buckets數組，裡面每個json對象都是一個bucket</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">表</span><span class="err">示</span><span class="err">c</span><span class="err">o</span><span class="err">l</span><span class="err">o</span><span class="err">r</span><span class="err">為</span><span class="err">r</span><span class="err">e</span><span class="err">d</span><span class="err">的</span><span class="err">文</span><span class="err">檔</span><span class="err">有</span><span class="err">2</span><span class="err">個</span><span class="err">，</span><span class="err">此</span><span class="err">例</span><span class="err">中</span><span class="err">就</span><span class="err">是</span> <span class="err">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">}</span> <span class="err">和</span> <span class="p">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span><span class="p">}</span><span class="err">這</span><span class="err">兩</span><span class="err">個</span><span class="err">文</span><span class="err">檔</span>
+                <span class="err">//表示color為red的文檔有2個，此例中就是</span> <span class="err">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">}</span> <span class="err">和</span> <span class="p">{</span><span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]}</span><span class="err">這兩個文檔</span>
                 <span class="s2">&#34;doc_count&#34;</span><span class="err">:</span> <span class="mi">2</span>
             <span class="err">}</span><span class="p">,</span>
             <span class="p">{</span>
@@ -276,18 +276,18 @@
 </ul>
 </li>
 <li>可以在參數帶上 <code>min_doc_count</code> 限制當 doc 數大於等於 n 筆時才會被搜出來，也可以帶上 <code>size</code> 參數，指名要顯示 bucket 中多少筆數據，默認是 10
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">可</span><span class="err">以</span><span class="err">設</span><span class="err">置</span><span class="err">s</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">，</span><span class="err">指</span><span class="err">定</span><span class="err">返</span><span class="err">回</span><span class="err">的</span><span class="err">桶</span><span class="err">數</span><span class="err">量</span><span class="err">，</span><span class="err">預</span><span class="err">設</span><span class="err">是</span><span class="err">1</span><span class="err">0</span><span class="err">，</span><span class="err">如</span><span class="err">果</span><span class="err">總</span><span class="err">共</span><span class="err">桶</span><span class="err">數</span><span class="err">不</span><span class="err">超</span><span class="err">過</span><span class="err">1</span><span class="err">0</span><span class="err">0</span><span class="err">，</span><span class="err">那</span><span class="err">就</span><span class="err">會</span><span class="err">全</span><span class="err">部</span><span class="err">返</span><span class="err">回</span>
-                <span class="nt">&#34;min_doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">/</span><span class="err">/</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">中</span><span class="err">只</span><span class="err">有</span><span class="err">當</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">_</span><span class="err">c</span><span class="err">o</span><span class="err">u</span><span class="err">n</span><span class="err">t</span> <span class="err">&gt;</span><span class="err">=</span> <span class="mi">2</span><span class="err">的</span><span class="err">人</span><span class="err">，</span><span class="err">才</span><span class="err">會</span><span class="err">被</span><span class="err">搜</span><span class="err">出</span><span class="err">來</span>
+                <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="err">//可以設置size，指定返回的桶數量，預設是10，如果總共桶數不超過100，那就會全部返回</span>
+                <span class="nt">&#34;min_doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">//bucket中只有當doc_count</span> <span class="err">&gt;=</span> <span class="mi">2</span><span class="err">的人，才會被搜出來</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -298,7 +298,7 @@
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">/</span><span class="err">/</span><span class="err">因</span><span class="err">為</span><span class="err">設</span><span class="err">置</span><span class="err">了</span><span class="err">m</span><span class="err">i</span><span class="err">n</span><span class="err">_</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">_</span><span class="err">c</span><span class="err">o</span><span class="err">u</span><span class="err">n</span><span class="err">t</span><span class="err">:</span><span class="mi">2</span><span class="err">，</span><span class="err">所</span><span class="err">有</span><span class="err">只</span><span class="err">有</span><span class="err">r</span><span class="err">e</span><span class="err">d</span><span class="err">桶</span><span class="err">被</span><span class="err">搜</span><span class="err">出</span><span class="err">來</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//因為設置了min_doc_count:</span><span class="mi">2</span><span class="err">，所有只有red桶被搜出來</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>
@@ -319,27 +319,27 @@
 <li>首先準備數據，color 一樣為 keyword 類型，而 price 為 integer 類型
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span>
 <span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">500</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">],</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>將 avg 指標嵌套在 terms 桶裡一起使用
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span>
-            <span class="p">}</span><span class="p">,</span>
-            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">/</span><span class="err">/</span><span class="err">嵌</span><span class="err">套</span><span class="err">兩</span><span class="err">個</span><span class="err">指</span><span class="err">標</span><span class="err">a</span><span class="err">v</span><span class="err">g</span><span class="err">、</span><span class="err">m</span><span class="err">i</span><span class="err">n</span><span class="err">在</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span><span class="err">中</span>
-                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">a</span><span class="err">v</span><span class="err">g</span><span class="err">_</span><span class="err">p</span><span class="err">r</span><span class="err">i</span><span class="err">c</span><span class="err">e</span><span class="err">計</span><span class="err">算</span><span class="err">每</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">的</span><span class="err">平</span><span class="err">均</span><span class="err">p</span><span class="err">r</span><span class="err">i</span><span class="err">c</span><span class="err">e</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>  <span class="err">//嵌套兩個指標avg、min在terms桶中</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_avg_price計算每個bucket的平均price</span>
                     <span class="nt">&#34;avg&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;price&#34;</span>
                     <span class="p">}</span>
-                <span class="p">}</span><span class="p">,</span>
-                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">m</span><span class="err">i</span><span class="err">n</span><span class="err">_</span><span class="err">p</span><span class="err">r</span><span class="err">i</span><span class="err">c</span><span class="err">e</span><span class="err">計</span><span class="err">算</span><span class="err">每</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">中</span><span class="err">的</span><span class="err">最</span><span class="err">小</span><span class="err">p</span><span class="err">r</span><span class="err">i</span><span class="err">c</span><span class="err">e</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_min_price計算每個bucket中的最小price</span>
                     <span class="nt">&#34;min&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;price&#34;</span>
                     <span class="p">}</span>
@@ -354,34 +354,34 @@
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">/</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span><span class="err">中</span><span class="err">的</span><span class="err">每</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">都</span><span class="err">會</span><span class="err">計</span><span class="err">算</span><span class="err">a</span><span class="err">v</span><span class="err">g</span><span class="err">和</span><span class="err">m</span><span class="err">i</span><span class="err">n</span><span class="err">兩</span><span class="err">個</span><span class="err">指</span><span class="err">標</span>
+        <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//terms桶中的每個bucket都會計算avg和min兩個指標</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">a</span><span class="err">v</span><span class="err">g</span><span class="err">指</span><span class="err">標</span>
+                <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//avg指標</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">1000</span>
-                <span class="p">}</span><span class="p">,</span>
-                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">i</span><span class="err">n</span><span class="err">指</span><span class="err">標</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//min指標</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">100</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">a</span><span class="err">v</span><span class="err">g</span><span class="err">指</span><span class="err">標</span><span class="err">計</span><span class="err">算</span><span class="err">的</span><span class="err">值</span><span class="err">，</span><span class="err">因</span><span class="err">為</span><span class="err">符</span><span class="err">合</span><span class="err">c</span><span class="err">o</span><span class="err">l</span><span class="err">o</span><span class="err">r</span><span class="err">為</span><span class="err">r</span><span class="err">e</span><span class="err">d</span><span class="err">的</span><span class="err">文</span><span class="err">檔</span><span class="err">有</span><span class="err">兩</span><span class="err">筆</span><span class="err">，</span><span class="err">所</span><span class="err">以</span><span class="err">平</span><span class="err">均</span><span class="err">p</span><span class="err">r</span><span class="err">i</span><span class="err">c</span><span class="err">e</span><span class="err">為</span><span class="err">1</span><span class="err">0</span><span class="err">0</span><span class="err">+</span><span class="err">1</span><span class="err">0</span><span class="err">0</span><span class="err">0</span><span class="err">/</span><span class="err">2</span> <span class="err">=</span> <span class="err">5</span><span class="err">5</span><span class="err">0</span>
+                <span class="err">//avg指標計算的值，因為符合color為red的文檔有兩筆，所以平均price為100+1000/2</span> <span class="err">=</span> <span class="err">550</span>
                 <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">550</span>
-                <span class="p">}</span><span class="p">,</span>
+                <span class="p">},</span>
                 <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">100</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;green&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                 <span class="nt">&#34;my_avg_price&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">500</span>
-                <span class="p">}</span><span class="p">,</span>
+                <span class="p">},</span>
                 <span class="nt">&#34;my_min_price&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mi">500</span>
                 <span class="p">}</span>
@@ -409,17 +409,17 @@
 <span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>聚合時只聚合我們感興趣的 bucket，也就是 color 為 red 的文檔有多少，其他的 bucket 不聚合
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;include&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span>  <span class="err">/</span><span class="err">/</span><span class="err">i</span><span class="err">n</span><span class="err">c</span><span class="err">l</span><span class="err">u</span><span class="err">d</span><span class="err">e</span><span class="err">也</span><span class="err">支</span><span class="err">持</span><span class="err">數</span><span class="err">組</span><span class="err">和</span><span class="err">正</span><span class="err">則</span>
+                <span class="nt">&#34;include&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span>  <span class="err">//include也支持數組和正則</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -430,7 +430,7 @@
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="err">/</span><span class="err">/</span><span class="err">本</span><span class="err">來</span><span class="err">是</span><span class="err">有</span><span class="err">三</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span><span class="err">的</span><span class="err">，</span><span class="err">但</span><span class="err">是</span><span class="err">因</span><span class="err">為</span><span class="err">設</span><span class="err">置</span><span class="err">了</span><span class="err">i</span><span class="err">n</span><span class="err">c</span><span class="err">l</span><span class="err">u</span><span class="err">d</span><span class="err">e</span><span class="err">，</span><span class="err">所</span><span class="err">以</span><span class="err">只</span><span class="err">聚</span><span class="err">合</span><span class="err">計</span><span class="err">算</span><span class="err">了</span><span class="err">一</span><span class="err">個</span><span class="err">b</span><span class="err">u</span><span class="err">c</span><span class="err">k</span><span class="err">e</span><span class="err">t</span> <span class="err">r</span><span class="err">e</span><span class="err">d</span>
+        <span class="err">//本來是有三個bucket的，但是因為設置了include，所以只聚合計算了一個bucket</span> <span class="err">red</span>
         <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
@@ -456,18 +456,18 @@
 <li>具體實例
 <ul>
 <li>取得 color 為 red 或是 blue 的文檔
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">此</span><span class="err">處</span><span class="err">是</span><span class="err">一</span><span class="err">個</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">桶</span><span class="err">，</span><span class="err">因</span><span class="err">為</span><span class="err">他</span><span class="err">用</span><span class="err">法</span><span class="err">跟</span><span class="err">一</span><span class="err">般</span><span class="err">的</span><span class="err">過</span><span class="err">濾</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">一</span><span class="err">樣</span><span class="err">，</span><span class="err">所</span><span class="err">以</span><span class="err">也</span><span class="err">能</span><span class="err">使</span><span class="err">用</span><span class="err">b</span><span class="err">o</span><span class="err">o</span><span class="err">l</span><span class="err">嵌</span><span class="err">套</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//此處是一個filter桶，因為他用法跟一般的過濾filter一樣，所以也能使用bool嵌套</span>
                 <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">注</span><span class="err">意</span><span class="err">此</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">是</span><span class="err">查</span><span class="err">找</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">，</span><span class="err">不</span><span class="err">是</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span>
+                        <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//注意此terms是查找terms，不是terms桶</span>
                             <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span> <span class="p">]</span>
                         <span class="p">}</span>
                     <span class="p">}</span>
@@ -480,7 +480,7 @@
 <li>結果
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">/</span><span class="err">/</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">桶</span><span class="err">計</span><span class="err">算</span><span class="err">出</span><span class="err">來</span><span class="err">的</span><span class="err">文</span><span class="err">檔</span><span class="err">數</span><span class="err">量</span>
+        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="err">//filter桶計算出來的文檔數量</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
@@ -489,15 +489,15 @@
 <li>具體實例二
 <ul>
 <li>filter 桶和 terms 桶嵌套使用，先過濾出 color 為 red 或 blue 的文檔，再對這些文檔進行 color 分組
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span><span class="err">聚</span><span class="err">合</span>
-            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">桶</span>
+        <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_name聚合</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//filter桶</span>
                 <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -505,10 +505,10 @@
                         <span class="p">}</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;my_name2&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span><span class="err">2</span><span class="err">聚</span><span class="err">合</span><span class="err">，</span><span class="err">嵌</span><span class="err">套</span><span class="err">在</span><span class="err">m</span><span class="err">y</span><span class="err">_</span><span class="err">n</span><span class="err">a</span><span class="err">m</span><span class="err">e</span><span class="err">聚</span><span class="err">合</span><span class="err">裡</span>
-                    <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">/</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span>
+                <span class="nt">&#34;my_name2&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//my_name2聚合，嵌套在my_name聚合裡</span>
+                    <span class="nt">&#34;terms&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//terms桶</span>
                         <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;color&#34;</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
@@ -524,18 +524,18 @@
 <li>這也是為什麼 terms 桶裡沒有出現 color 為 green 的分組，因為這個文檔在 filter 桶就被擋下來了
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;aggregations&#34;</span><span class="err">:</span> <span class="p">{</span>
     <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">桶</span><span class="err">計</span><span class="err">算</span><span class="err">的</span><span class="err">數</span><span class="err">量</span><span class="err">，</span><span class="err">通</span><span class="err">過</span><span class="err">此</span><span class="err">處</span><span class="err">的</span><span class="err">文</span><span class="err">檔</span><span class="err">只</span><span class="err">有</span><span class="err">2</span><span class="err">筆</span>
+        <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="err">//filter桶計算的數量，通過此處的文檔只有2筆</span>
         <span class="nt">&#34;my_name2&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;doc_count_error_upper_bound&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
             <span class="nt">&#34;sum_other_doc_count&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
             <span class="nt">&#34;buckets&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>  <span class="err">/</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span><span class="err">計</span><span class="err">算</span><span class="err">的</span><span class="err">數</span><span class="err">量</span>
-                <span class="p">}</span><span class="p">,</span>
+                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>  <span class="err">//terms桶計算的數量</span>
+                <span class="p">},</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>  <span class="err">/</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">m</span><span class="err">s</span><span class="err">桶</span><span class="err">計</span><span class="err">算</span><span class="err">的</span><span class="err">數</span><span class="err">量</span>
+                    <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>  <span class="err">//terms桶計算的數量</span>
                 <span class="p">}</span>
             <span class="p">]</span>
         <span class="p">}</span>
@@ -565,14 +565,14 @@
 <ul>
 <li>準備數據，color 是 keyword 類型
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">100</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">]</span><span class="p">,</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;red&#34;</span><span class="p">,</span> <span class="s2">&#34;blue&#34;</span><span class="p">],</span> <span class="nt">&#34;price&#34;</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">}</span>
 </code></pre></div></li>
 <li>使用 terms 桶進行分組，並且規定按照桶的字母順序升序，因此 a 生成桶會排在最前面而 z 生成桶會排在最後面
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{</span><span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
     <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&#34;aggs&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;my_name&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -595,7 +595,7 @@
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;blue&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">1</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="p">{</span>
                 <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;doc_count&#34;</span><span class="p">:</span> <span class="mi">2</span>

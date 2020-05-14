@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -132,20 +132,20 @@
 <li>自定義 analysis
 <ul>
 <li>格式
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
 <span class="p">{</span>
     <span class="nt">&#34;setting&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;char_filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">字</span><span class="err">符</span><span class="err">過</span><span class="err">濾</span><span class="err">器</span> <span class="p">}</span><span class="p">,</span>
-            <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">分</span><span class="err">詞</span><span class="err">器</span> <span class="p">}</span><span class="p">,</span>
-            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">t</span><span class="err">o</span><span class="err">k</span><span class="err">e</span><span class="err">n</span><span class="err">過</span><span class="err">濾</span><span class="err">器</span> <span class="p">}</span><span class="p">,</span>
-            <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">分</span><span class="err">析</span><span class="err">器</span><span class="err">，</span><span class="err">可</span><span class="err">以</span><span class="err">將</span><span class="err">上</span><span class="err">面</span><span class="err">的</span><span class="err">c</span><span class="err">h</span><span class="err">a</span><span class="err">r</span><span class="err">_</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">、</span><span class="err">t</span><span class="err">o</span><span class="err">k</span><span class="err">e</span><span class="err">n</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">r</span><span class="err">、</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">用</span><span class="err">不</span><span class="err">同</span><span class="err">的</span><span class="err">組</span><span class="err">合</span><span class="err">拼</span><span class="err">起</span><span class="err">來</span><span class="err">，</span><span class="err">形</span><span class="err">成</span><span class="err">不</span><span class="err">同</span><span class="err">的</span><span class="err">分</span><span class="err">析</span><span class="err">器</span> <span class="p">}</span>
+            <span class="nt">&#34;char_filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自定義的字符過濾器</span> <span class="p">},</span>
+            <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自定義的分詞器</span> <span class="p">},</span>
+            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自定義的token過濾器</span> <span class="p">},</span>
+            <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">自定義的分析器，可以將上面的char_filter、tokenizer、filter用不同的組合拼起來，形成不同的分析器</span> <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>具體實例
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
 <span class="p">{</span>
     <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;analysis&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -153,34 +153,34 @@
                 <span class="nt">&#34;&amp;_to_and&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;mapping&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&amp;=&gt; and &#34;</span><span class="p">]</span>
-                <span class="p">}</span><span class="p">,</span>
-                <span class="nt">&#34;xxx&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span><span class="p">,</span>
-                <span class="nt">&#34;yyy&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="nt">&#34;xxx&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">....</span><span class="p">},</span>
+                <span class="nt">&#34;yyy&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">....</span><span class="p">}</span>
+            <span class="p">},</span>
             <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;my_stopwords&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;stop&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;stopwords&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;the&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">]</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">分</span><span class="err">析</span><span class="err">器</span><span class="err">，</span><span class="err">將</span><span class="err">想</span><span class="err">要</span><span class="err">的</span><span class="err">c</span><span class="err">h</span><span class="err">a</span><span class="err">r</span><span class="err">_</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">、</span><span class="err">t</span><span class="err">o</span><span class="err">k</span><span class="err">e</span><span class="err">n</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">r</span><span class="err">、</span><span class="err">f</span><span class="err">i</span><span class="err">l</span><span class="err">t</span><span class="err">e</span><span class="err">r</span><span class="err">給</span><span class="err">加</span><span class="err">載</span><span class="err">進</span><span class="err">來</span>
-                <span class="err">/</span><span class="err">/</span><span class="err">數</span><span class="err">組</span><span class="err">順</span><span class="err">序</span><span class="err">很</span><span class="err">重</span><span class="err">要</span><span class="err">，</span><span class="err">因</span><span class="err">為</span><span class="err">是</span><span class="err">照</span><span class="err">順</span><span class="err">序</span><span class="err">執</span><span class="err">行</span><span class="err">，</span><span class="err">先</span><span class="err">執</span><span class="err">行</span><span class="err">h</span><span class="err">t</span><span class="err">m</span><span class="err">p</span><span class="err">_</span><span class="err">s</span><span class="err">t</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">，</span><span class="err">再</span><span class="err">執</span><span class="err">行</span><span class="err">&amp;</span><span class="err">_</span><span class="err">t</span><span class="err">o</span><span class="err">_</span><span class="err">a</span><span class="err">n</span><span class="err">d</span><span class="err">，</span><span class="err">然</span><span class="err">後</span><span class="err">才</span><span class="err">去</span><span class="err">執</span><span class="err">行</span><span class="err">t</span><span class="err">o</span><span class="err">k</span><span class="err">e</span><span class="err">n</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">r</span>
+                <span class="err">//自定義分析器，將想要的char_filter、tokenizer、filter給加載進來</span>
+                <span class="err">//數組順序很重要，因為是照順序執行，先執行htmp_strip，再執行&amp;_to_and，然後才去執行tokenizer</span>
                 <span class="nt">&#34;my_analyzer&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;custom&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;char_filter&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;htmp_strip&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;_to_and&#34;</span><span class="p">]</span><span class="p">,</span>
+                    <span class="nt">&#34;char_filter&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;htmp_strip&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;_to_and&#34;</span><span class="p">],</span>
                     <span class="nt">&#34;tokenizer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>
                     <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;lowercase&#34;</span><span class="p">,</span> <span class="s2">&#34;my_stopwords&#34;</span><span class="p">]</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="p">{</span> 
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;my_analyzer&#34;</span> <span class="err">/</span><span class="err">/</span><span class="err">使</span><span class="err">用</span><span class="err">自</span><span class="err">定</span><span class="err">義</span><span class="err">的</span><span class="err">分</span><span class="err">析</span><span class="err">器</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;my_analyzer&#34;</span> <span class="err">//使用自定義的分析器</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -203,19 +203,19 @@
 </li>
 <li>
 <p>具體實例</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">P</span><span class="err">U</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
 <span class="p">{</span>
     <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="p">{</span> 
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>  <span class="err">/</span><span class="err">/</span><span class="err">索</span><span class="err">引</span><span class="err">時</span><span class="err">使</span><span class="err">用</span><span class="err">s</span><span class="err">t</span><span class="err">a</span><span class="err">n</span><span class="err">d</span><span class="err">a</span><span class="err">r</span><span class="err">d</span><span class="err">分</span><span class="err">詞</span><span class="err">器</span>
-                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;simple&#34;</span> <span class="err">/</span><span class="err">/</span><span class="err">查</span><span class="err">詢</span><span class="err">時</span><span class="err">使</span><span class="err">用</span><span class="err">s</span><span class="err">i</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">e</span><span class="err">分</span><span class="err">詞</span><span class="err">器</span>
-                <span class="p">}</span><span class="p">,</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>  <span class="err">//索引時使用standard分詞器</span>
+                    <span class="nt">&#34;search_analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;simple&#34;</span> <span class="err">//查詢時使用simple分詞器</span>
+                <span class="p">},</span>
                 <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span> <span class="err">/</span><span class="err">/</span><span class="err">索</span><span class="err">引</span><span class="err">和</span><span class="err">查</span><span class="err">詢</span><span class="err">都</span><span class="err">使</span><span class="err">用</span><span class="err">s</span><span class="err">t</span><span class="err">a</span><span class="err">n</span><span class="err">d</span><span class="err">a</span><span class="err">r</span><span class="err">d</span><span class="err">分</span><span class="err">詞</span><span class="err">器</span>
+                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span> <span class="err">//索引和查詢都使用standard分詞器</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>

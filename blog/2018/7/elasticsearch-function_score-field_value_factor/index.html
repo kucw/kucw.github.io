@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.63.2 with theme pure" />
+  <meta name="generator" content="Hugo 0.68.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -119,7 +119,7 @@
 </code></pre></div></li>
 <li>
 <p>先使用一般的 query，查看普通的查詢的評分會是如何</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -131,11 +131,11 @@
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.2876821</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.20309238</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
         <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.16540512</span><span class="p">,</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
@@ -147,7 +147,7 @@
 <ul>
 <li>
 <p>本來 &ldquo;ES 最高難度&rdquo; 的 score 是0.16540512，經過 field_value_factor 的改變，乘上了那個文檔中的like值（10）之後，新的 score 變為 1.6540513</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -155,7 +155,7 @@
                 <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
             <span class="p">}</span>
@@ -164,15 +164,15 @@
 <span class="p">}</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.6540513</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">1</span><span class="err">6</span><span class="err">5</span><span class="err">4</span><span class="err">0</span><span class="err">5</span><span class="err">1</span><span class="err">2</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.6540513</span><span class="p">,</span> <span class="err">//原本是0.16540512</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.0154619</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">2</span><span class="err">0</span><span class="err">3</span><span class="err">0</span><span class="err">9</span><span class="err">2</span><span class="err">3</span><span class="err">8</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.0154619</span><span class="p">,</span> <span class="err">//原本是0.20309238</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">2</span><span class="err">8</span><span class="err">7</span><span class="err">6</span><span class="err">8</span><span class="err">2</span><span class="err">1</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">//原本是0.2876821</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">]</span>
@@ -187,7 +187,7 @@
 </li>
 <li>
 <p>而 ES 進階和 ES 最高難度的 field_value_factor 函數產生的加強 score 因為超過 max_boost 的限制，所以被設為 3</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -195,25 +195,25 @@
                 <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;max_boost&#34;</span><span class="p">:</span> <span class="mi">3</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.6092771</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">2</span><span class="err">0</span><span class="err">3</span><span class="err">0</span><span class="err">9</span><span class="err">2</span><span class="err">3</span><span class="err">8</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.6092771</span><span class="p">,</span> <span class="err">//原本是0.20309238</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">2</span><span class="err">8</span><span class="err">7</span><span class="err">6</span><span class="err">8</span><span class="err">2</span><span class="err">1</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">//原本是0.2876821</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
     <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.49621537</span><span class="p">,</span> <span class="err">/</span><span class="err">/</span><span class="err">原</span><span class="err">本</span><span class="err">是</span><span class="err">0</span><span class="err">.</span><span class="err">1</span><span class="err">6</span><span class="err">5</span><span class="err">4</span><span class="err">0</span><span class="err">5</span><span class="err">1</span><span class="err">2</span>
+        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.49621537</span><span class="p">,</span> <span class="err">//原本是0.16540512</span>
         <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">]</span>
@@ -257,7 +257,7 @@
 </li>
 <li>
 <p>對剛剛的例子加上 modifier、factor</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -265,7 +265,7 @@
                 <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
@@ -288,7 +288,7 @@
 </li>
 <li>
 <p><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor4.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -296,12 +296,12 @@
                 <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;factor&#34;</span><span class="p">:</span> <span class="mf">0.1</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -311,7 +311,7 @@
 </li>
 <li>
 <p>另外使用 field_value_factor 時要注意，有的文檔可能會缺少這個字段的值，因此這時就要加上 <code>missing</code> 來給這些缺失字段值的文檔一個 default 的值</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">G</span><span class="err">E</span><span class="err">T</span> <span class="err">m</span><span class="err">y</span><span class="err">t</span><span class="err">e</span><span class="err">s</span><span class="err">t</span><span class="err">/</span><span class="err">d</span><span class="err">o</span><span class="err">c</span><span class="err">/</span><span class="err">_</span><span class="err">s</span><span class="err">e</span><span class="err">a</span><span class="err">r</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
 <span class="p">{</span>
     <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -319,13 +319,13 @@
                 <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
                 <span class="p">}</span>
-            <span class="p">}</span><span class="p">,</span>
+            <span class="p">},</span>
             <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
                 <span class="nt">&#34;factor&#34;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-                <span class="nt">&#34;missing&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="err">/</span><span class="err">/</span><span class="err">如</span><span class="err">果</span><span class="err">文</span><span class="err">檔</span><span class="err">沒</span><span class="err">有</span><span class="err">l</span><span class="err">i</span><span class="err">k</span><span class="err">e</span><span class="err">值</span><span class="err">，</span><span class="err">就</span><span class="err">給</span><span class="err">他</span><span class="mi">1</span><span class="err">的</span><span class="err">值</span><span class="err">讓</span><span class="err">他</span><span class="err">去</span><span class="err">做</span><span class="err">l</span><span class="err">o</span><span class="err">g</span><span class="mi">1</span><span class="err">p</span><span class="err">的</span><span class="err">運</span><span class="err">算</span>
-            <span class="p">}</span><span class="p">,</span>
+                <span class="nt">&#34;missing&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="err">//如果文檔沒有like值，就給他</span><span class="mi">1</span><span class="err">的值讓他去做log</span><span class="mi">1</span><span class="err">p的運算</span>
+            <span class="p">},</span>
             <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span>
         <span class="p">}</span>
     <span class="p">}</span>
