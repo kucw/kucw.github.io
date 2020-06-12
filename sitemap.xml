@@ -4,30 +4,36 @@
   
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2020-03-04T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2020-03-04T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/java/</loc>
-    <lastmod>2020-03-04T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
-    <loc>https://kucw.github.io/blog/2020/3/java-lombok/</loc>
-    <lastmod>2020-03-04T00:00:00+08:00</lastmod>
+    <loc>https://kucw.github.io/blog/2020/6/java-deserialize-generic-type/</loc>
+    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/</loc>
+    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2020/3/java-lombok/</loc>
     <lastmod>2020-03-04T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
