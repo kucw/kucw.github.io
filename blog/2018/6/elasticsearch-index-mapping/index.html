@@ -100,7 +100,7 @@
           <span>2018/06/07</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -145,68 +145,68 @@
 </li>
 <li>
 <p>可以使用 <code>/_analyze</code> 測試分析器具體會將句子分詞成什麼樣子，它能幫助我們理解 Elasticsearch 索引內部發生了什麼</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">_analyze</span>
-<span class="p">{</span>
-    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;Text to analyze&#34;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">_analyze</span>
+{
+    &#34;analyzer&#34;: <span style="color:#a31515">&#34;standard&#34;</span>,
+    &#34;text&#34;: <span style="color:#a31515">&#34;Text to analyze&#34;</span>
+}
 </code></pre></div></li>
 <li>
 <p>具體實例</p>
 <ul>
 <li>
 <p>mapping</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
-<span class="p">{</span>
-    <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="kc">false</span>
-                <span class="p">},</span>
-                <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
-                <span class="p">},</span>
-                <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;text&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;analyzer&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">PUT</span> <span style="">mytest</span>
+{
+    &#34;mappings&#34;: {
+        &#34;doc&#34;: {
+            &#34;properties&#34;: {
+                &#34;name&#34;: {
+                    &#34;type&#34;: <span style="color:#a31515">&#34;keyword&#34;</span>,
+                    &#34;index&#34;: <span style="color:#00f">false</span>
+                },
+                &#34;uid&#34;: {
+                    &#34;type&#34;: <span style="color:#a31515">&#34;integer&#34;</span>
+                },
+                &#34;nickname&#34;: {
+                    &#34;type&#34;: <span style="color:#a31515">&#34;text&#34;</span>,
+                    &#34;analyzer&#34;: <span style="color:#a31515">&#34;standard&#34;</span>
+                }
+            }
+        }
+    }
+}
 </code></pre></div></li>
 <li>
 <p>搜索 uid 時，name 會一起被找出來</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;1-hello&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;1-nickname&#34;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;term&#34;: {
+            &#34;uid&#34;: 1
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    &#34;uid&#34;: 1,
+    &#34;name&#34;: <span style="color:#a31515">&#34;1-hello&#34;</span>,
+    &#34;nickname&#34;: <span style="color:#a31515">&#34;1-nickname&#34;</span>
+}
 </code></pre></div></li>
 <li>
 <p>搜索 name，會報 error</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;1-hello&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;error&#34;</span><span class="err">:</span> <span class="p">{</span>
-    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;illegal_argument_exception&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;Cannot search on field [name] since it is not indexed.&#34;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;term&#34;: {
+            &#34;name&#34;: <span style="color:#a31515">&#34;1-hello&#34;</span>
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;error&#34;</span><span style="">:</span> {
+    &#34;type&#34;: <span style="color:#a31515">&#34;illegal_argument_exception&#34;</span>,
+    &#34;reason&#34;: <span style="color:#a31515">&#34;Cannot search on field [name] since it is not indexed.&#34;</span>
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -226,14 +226,14 @@
 <ul>
 <li>
 <p>在 mytest 映射中的 <code>doc</code> 類型增加一個新的名爲 <code>tag</code> 的 keyword</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest/_mapping/doc</span>
-<span class="p">{</span>
-    <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;tag&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">PUT</span> <span style="">mytest/_mapping/doc</span>
+{
+    &#34;properties&#34;: {
+        &#34;tag&#34;: {
+            &#34;type&#34;: <span style="color:#a31515">&#34;keyword&#34;</span>
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -245,21 +245,21 @@
 <ul>
 <li>
 <p>假設舊文檔有 <code>name、nickname</code> 這兩個字段，並且已經插入了兩筆數據</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jackson&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;jack&#34;</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;a&#34;</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;name&#34;: <span style="color:#a31515">&#34;Jackson&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;jack&#34;</span> }
+{ &#34;name&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;a&#34;</span> }
 </code></pre></div></li>
 <li>
 <p>此時插入一個新的字段 <code>sex</code>，並且插入一筆新的數據</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;NewYork&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;new&#34;</span><span class="p">,</span> <span class="nt">&#34;sex&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;name&#34;: <span style="color:#a31515">&#34;NewYork&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;new&#34;</span>, &#34;sex&#34;: 1 }
 </code></pre></div></li>
 <li>
 <p>執行 <code>&quot;match_all&quot;: {}</code> 查詢時，結果如下</p>
 <ul>
 <li>
 <p>由於 Jackson 和 Amy 並沒有 sex 這個字段，所以雖然執行 match_all 搜索時能被搜出來，但是搜索 <code>&quot;term&quot;: { &quot;sex&quot;: 1 }</code> 的話，就搜索不出來</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jackson&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;jack&#34;</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;a&#34;</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;NewYork&#34;</span><span class="p">,</span> <span class="nt">&#34;nickname&#34;</span><span class="p">:</span> <span class="s2">&#34;new&#34;</span><span class="p">,</span> <span class="nt">&#34;sex&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;name&#34;: <span style="color:#a31515">&#34;Jackson&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;jack&#34;</span> }
+{ &#34;name&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;a&#34;</span> }
+{ &#34;name&#34;: <span style="color:#a31515">&#34;NewYork&#34;</span>, &#34;nickname&#34;: <span style="color:#a31515">&#34;new&#34;</span>, &#34;sex&#34;: 1 }
 </code></pre></div></li>
 <li>
 <p>我們希望的狀況是，增加一個新字段，舊文檔應該也要設置一個預設值，像是 sex=0，而不是整個字段消失，如此在查詢時邏輯才不會有問題</p>
@@ -282,22 +282,22 @@
 <ul>
 <li>
 <p>需要使用 ES 的腳本 script，在 reindex 的請求裡定義舊文檔預設值的邏輯</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">_reindex</span>
-<span class="p">{</span>
-    <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest&#34;</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;dest&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="s2">&#34;mytest2&#34;</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;if (ctx._source.new == null) {ctx._source.new = params.new}&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;new&#34;</span><span class="p">:</span> <span class="s2">&#34;good&#34;</span>
-        <span class="p">},</span>
-        <span class="nt">&#34;lang&#34;</span><span class="p">:</span> <span class="s2">&#34;painless&#34;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">POST</span> <span style="">_reindex</span>
+{
+    &#34;source&#34;: {
+        &#34;index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>
+    },
+    &#34;dest&#34;: {
+        &#34;index&#34;: <span style="color:#a31515">&#34;mytest2&#34;</span>
+    },
+    &#34;script&#34;: {
+        &#34;source&#34;: <span style="color:#a31515">&#34;if (ctx._source.new == null) {ctx._source.new = params.new}&#34;</span>,
+        &#34;params&#34;: {
+            &#34;new&#34;: <span style="color:#a31515">&#34;good&#34;</span>
+        },
+        &#34;lang&#34;: <span style="color:#a31515">&#34;painless&#34;</span>
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>

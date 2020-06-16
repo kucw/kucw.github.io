@@ -100,7 +100,7 @@
           <span>2018/07/04</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -111,10 +111,10 @@
 <p>function_score 內容較多，此篇主要是介紹 function_score 的基本概念</p>
 <p>具體實例請參考以下連接</p>
 <blockquote>
-<p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-field_value_factor/">ElasticSearch - function_score（field_value_factor 具體實例）</a></p>
-<p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-weight/">ElasticSearch - function_score（weight 具體實例）</a></p>
-<p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-random_score/">ElasticSearch - function_score（random_score 具體實例）</a></p>
-<p><a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score-gauss/">ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</a></p>
+<p><a href="/blog/2018/7/elasticsearch-function_score-field_value_factor/">ElasticSearch - function_score（field_value_factor 具體實例）</a></p>
+<p><a href="/blog/2018/7/elasticsearch-function_score-weight/">ElasticSearch - function_score（weight 具體實例）</a></p>
+<p><a href="/blog/2018/7/elasticsearch-function_score-random_score/">ElasticSearch - function_score（random_score 具體實例）</a></p>
+<p><a href="/blog/2018/7/elasticsearch-function_score-gauss/">ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</a></p>
 </blockquote>
 </blockquote>
 <ul>
@@ -186,25 +186,25 @@
 </li>
 <li>
 <p>單個加強函數的查詢模板</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span class="err">old_score</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.....</span><span class="p">},</span> 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            <span style="">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span style="">old_score</span>
+            &#34;query&#34;: {<span style="">.....</span>}, 
             
-            <span class="err">//在</span> <span class="err">old_score</span> <span class="err">的基礎上，給他加強其他字段的評分</span>
-            <span class="err">//這裡會產生一個加強</span> <span class="err">score，如果只有一個加強</span> <span class="err">function</span> <span class="err">時，直接將加強函數名寫在</span> <span class="err">query</span> <span class="err">下面就可以了</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">...</span><span class="p">},</span> 
+            <span style="">//在</span> <span style="">old_score</span> <span style="">的基礎上，給他加強其他字段的評分</span>
+            <span style="">//這裡會產生一個加強</span> <span style="">score，如果只有一個加強</span> <span style="">function</span> <span style="">時，直接將加強函數名寫在</span> <span style="">query</span> <span style="">下面就可以了</span>
+            &#34;field_value_factor&#34;: {<span style="">...</span>}, 
             
-            <span class="err">//指定用哪種方式結合</span> <span class="err">old_score</span> <span class="err">和加強</span> <span class="err">score</span> <span class="err">成為</span> <span class="err">new_score</span>
-            <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span><span class="p">,</span> 
+            <span style="">//指定用哪種方式結合</span> <span style="">old_score</span> <span style="">和加強</span> <span style="">score</span> <span style="">成為</span> <span style="">new_score</span>
+            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;multiply&#34;</span>, 
             
-            <span class="err">//限制加強</span> <span class="err">score</span> <span class="err">的最高分，但是不會限制</span> <span class="err">old_score</span>
-            <span class="nt">&#34;max_boost&#34;</span><span class="p">:</span> <span class="mf">1.5</span> 
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+            <span style="">//限制加強</span> <span style="">score</span> <span style="">的最高分，但是不會限制</span> <span style="">old_score</span>
+            &#34;max_boost&#34;: 1.5 
+        }
+    }
+}
 </code></pre></div></li>
 <li>
 <p>多個加強函數的查詢模板</p>
@@ -220,30 +220,30 @@
 </li>
 <li>
 <p>像是下面的例子，field_value_factor和gauss這兩個加強函數會應用到所有文檔上，而weight只會應用到滿足filter的文檔上，假設有個文檔滿足了filter的條件，那他就會得到3個加強score，這3個加強score會使用sum的方式合併成一個總加強score，然後才和old_score使用multiply的方式合併</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="err">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span class="err">old_score</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">.....</span><span class="p">},</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            <span style="">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span style="">old_score</span>
+            &#34;query&#34;: {<span style="">.....</span>},
             
-            <span class="err">//可以有多個加強函數（或是</span> <span class="err">filter</span> <span class="err">+</span> <span class="err">加強函數）</span>
-            <span class="err">//每一個加強函數會產生一個加強</span> <span class="err">score，因此</span> <span class="err">functions</span> <span class="err">會有多個加強</span> <span class="err">score</span>
-            <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>   
-                <span class="p">{</span> <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;gauss&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">...</span><span class="p">},</span> <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="err">...</span> <span class="p">}</span>
-            <span class="p">],</span>
+            <span style="">//可以有多個加強函數（或是</span> <span style="">filter</span> <span style="">+</span> <span style="">加強函數）</span>
+            <span style="">//每一個加強函數會產生一個加強</span> <span style="">score，因此</span> <span style="">functions</span> <span style="">會有多個加強</span> <span style="">score</span>
+            &#34;functions&#34;: [   
+                { &#34;field_value_factor&#34;: <span style="">...</span> },
+                { &#34;gauss&#34;: <span style="">...</span> },
+                { &#34;filter&#34;: {<span style="">...</span>}, &#34;weight&#34;: <span style="">...</span> }
+            ],
             
-            <span class="err">//決定加強</span> <span class="err">score</span> <span class="err">們怎麼合併成一個總加強</span> <span class="err">score</span>
-            <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span><span class="p">,</span>
+            <span style="">//決定加強</span> <span style="">score</span> <span style="">們怎麼合併成一個總加強</span> <span style="">score</span>
+            &#34;score_mode&#34;: <span style="color:#a31515">&#34;sum&#34;</span>,
             
-            <span class="err">//決定總加強</span> <span class="err">score</span> <span class="err">怎麼和</span> <span class="err">old_score</span> <span class="err">合併</span>
-            <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span> 
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p><img src="https://kucw.github.io/images/blog/es_functions.png" alt=""></p>
+            <span style="">//決定總加強</span> <span style="">score</span> <span style="">怎麼和</span> <span style="">old_score</span> <span style="">合併</span>
+            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;multiply&#34;</span> 
+        }
+    }
+}
+</code></pre></div><p><img src="/images/blog/es_functions.png" alt=""></p>
 </li>
 </ul>
 </li>

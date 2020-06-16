@@ -100,7 +100,7 @@
           <span>2018/12/12</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/java">
+            <a href="/categories/java">
               <span class="text-primary">Java</span>
             </a>
           
@@ -113,27 +113,27 @@
 <ul>
 <li>
 <p>Iterator 只支持 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 三種操作，而 ListIterator 除了原本的 3 種之外，還支持了更多操作</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//Iterator接口
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">();</span>
-    <span class="n">E</span> <span class="nf">next</span><span class="o">();</span>
-    <span class="kt">void</span> <span class="nf">remove</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//ListIterator接口
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ListIterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="c1">//繼承自Iterator的接口
-</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="o">();</span>         <span class="c1">//後面是否有元素
-</span><span class="c1"></span>    <span class="n">E</span> <span class="nf">next</span><span class="o">();</span>                  <span class="c1">//游標向後移動，取得後面的元素
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">remove</span><span class="o">();</span>             <span class="c1">//刪除最後一個返回的元素
-</span><span class="c1"></span>
-    <span class="c1">//ListIterator新增的接口
-</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">hasPrevious</span><span class="o">();</span>     <span class="c1">//前面是否有元素
-</span><span class="c1"></span>    <span class="n">E</span> <span class="nf">previous</span><span class="o">();</span>              <span class="c1">//游標往前移動，取得前面的元素
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="nf">previousIndex</span><span class="o">();</span>       <span class="c1">//取得游標前的index
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="nf">nextIndex</span><span class="o">();</span>           <span class="c1">//取得游標後的index
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">set</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">);</span>             <span class="c1">//將當前元素改設成e
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">);</span>             <span class="c1">//增加一個元素
-</span><span class="c1"></span><span class="o">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//Iterator接口
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">interface</span> <span style="color:#2b91af">Iterator</span>&lt;E&gt; {
+    <span style="color:#2b91af">boolean</span> hasNext();
+    E next();
+    <span style="color:#2b91af">void</span> remove();
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//ListIterator接口
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">interface</span> <span style="color:#2b91af">ListIterator</span>&lt;E&gt; <span style="color:#00f">extends</span> Iterator&lt;E&gt; {
+    <span style="color:#008000">//繼承自Iterator的接口
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">boolean</span> hasNext();         <span style="color:#008000">//後面是否有元素
+</span><span style="color:#008000"></span>    E next();                  <span style="color:#008000">//游標向後移動，取得後面的元素
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">void</span> remove();             <span style="color:#008000">//刪除最後一個返回的元素
+</span><span style="color:#008000"></span>
+    <span style="color:#008000">//ListIterator新增的接口
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">boolean</span> hasPrevious();     <span style="color:#008000">//前面是否有元素
+</span><span style="color:#008000"></span>    E previous();              <span style="color:#008000">//游標往前移動，取得前面的元素
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">int</span> previousIndex();       <span style="color:#008000">//取得游標前的index
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">int</span> nextIndex();           <span style="color:#008000">//取得游標後的index
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">void</span> set(E e);             <span style="color:#008000">//將當前元素改設成e
+</span><span style="color:#008000"></span>    <span style="color:#2b91af">void</span> add(E e);             <span style="color:#008000">//增加一個元素
+</span><span style="color:#008000"></span>}
 </code></pre></div></li>
 </ul>
 </li>
@@ -154,28 +154,28 @@
 <ul>
 <li>
 <p>要注意的是，邊遍歷 List 邊使用 Iterator 和 ListIterator 的 <code>add()</code>、<code>remove()</code> 時，並不會影響當前 List 輸出結果，雖然他們修改的是同一個 List，但是迭代器故意將 add 和 remove 設計成就算執行了，也不影響當前迭代器的輸出結果</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span> {
+    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
+        List&lt;Integer&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
+        list.add(1);
+        list.add(2);
+        list.add(3);
 
-        <span class="n">ListIterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">listIterator</span><span class="o">();</span>
+        ListIterator&lt;Integer&gt; it = list.listIterator();
 
-        <span class="k">while</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">Integer</span> <span class="n">x</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
-            <span class="c1">//雖然使用it.add(100)去新增一個元素，使得list實際儲存的是 [1,2,100,3]
-</span><span class="c1"></span>            <span class="c1">//但是此處的遍歷仍然只顯示[1,2,3]，這是迭代器故意這樣設計的
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">it</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
+        <span style="color:#00f">while</span> (it.hasNext()) {
+            Integer x = it.next();
+            System.out.println(x);
+            <span style="color:#008000">//雖然使用it.add(100)去新增一個元素，使得list實際儲存的是 [1,2,100,3]
+</span><span style="color:#008000"></span>            <span style="color:#008000">//但是此處的遍歷仍然只顯示[1,2,3]，這是迭代器故意這樣設計的
+</span><span style="color:#008000"></span>            <span style="color:#00f">if</span> (x == 2) {
+                it.add(100);
+            }
+        }
 
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;list: &#34;</span> <span class="o">+</span> <span class="n">list</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+        System.out.println(<span style="color:#a31515">&#34;list: &#34;</span> + list);
+    }
+}
 </code></pre></div><pre><code>1
 2
 3

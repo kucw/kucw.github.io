@@ -100,7 +100,7 @@
           <span>2020/06/12</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/java">
+            <a href="/categories/java">
               <span class="text-primary">Java</span>
             </a>
           
@@ -115,95 +115,95 @@
 </ul>
 <h3 id="在-spring-boot-裡使用-jackson">在 Spring Boot 裡使用 Jackson</h3>
 <p>只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
 </code></pre></div><h3 id="jackson-和-objectlistmap-的互轉">Jackson 和 Object、List、Map 的互轉</h3>
 <p>先定義一個 User class</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="c1">// 省略constructor, getter, setter
-</span><span class="c1"></span><span class="o">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">User</span> {
+    <span style="color:#00f">private</span> <span style="color:#2b91af">int</span> id;
+    <span style="color:#00f">private</span> String name;
+    <span style="color:#008000">// 省略constructor, getter, setter
+</span><span style="color:#008000"></span>}
 </code></pre></div><p>使用 Jackson 完成 json 和 Object、List、Map 的互轉</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.core.type.TypeReference</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">import</span> java.util.*;
+<span style="color:#00f">import</span> com.fasterxml.jackson.core.type.TypeReference;
+<span style="color:#00f">import</span> com.fasterxml.jackson.databind.ObjectMapper;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainTest</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MainTest</span> {
+    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> Exception {
+        ObjectMapper objectMapper = <span style="color:#00f">new</span> ObjectMapper();
 
-        <span class="c1">// User Object 轉 json
-</span><span class="c1"></span>        <span class="n">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">123</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">user1</span><span class="o">);</span>
+        <span style="color:#008000">// User Object 轉 json
+</span><span style="color:#008000"></span>        User user1 = <span style="color:#00f">new</span> User(123, <span style="color:#a31515">&#34;John&#34;</span>);
+        String json = objectMapper.writeValueAsString(user1);
 
-        <span class="c1">// json 轉 User Object
-</span><span class="c1"></span>        <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span style="color:#008000">// json 轉 User Object
+</span><span style="color:#008000"></span>        User user2 = objectMapper.readValue(json, User.class);
 
-        <span class="c1">// List&lt;User&gt; 轉 json
-</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">ulist</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-        <span class="n">User</span> <span class="n">user4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">123</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">);</span>
-        <span class="n">ulist</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">user4</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">ujson</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">ulist</span><span class="o">);</span>
+        <span style="color:#008000">// List&lt;User&gt; 轉 json
+</span><span style="color:#008000"></span>        List&lt;User&gt; ulist = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
+        User user4 = <span style="color:#00f">new</span> User(123, <span style="color:#a31515">&#34;John&#34;</span>);
+        ulist.add(user4);
+        String ujson = objectMapper.writeValueAsString(ulist);
 
-        <span class="c1">// json 轉 List&lt;User&gt;
-</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">urlist</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">ujson</span><span class="o">,</span> <span class="k">new</span> <span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;()</span> <span class="o">{});</span>
+        <span style="color:#008000">// json 轉 List&lt;User&gt;
+</span><span style="color:#008000"></span>        List&lt;User&gt; urlist = objectMapper.readValue(ujson, <span style="color:#00f">new</span> TypeReference&lt;List&lt;User&gt;&gt;() {});
         
-        <span class="c1">// Map&lt;String, User&gt; 轉 json
-</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">User</span><span class="o">&gt;</span> <span class="n">umap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-        <span class="n">User</span> <span class="n">user3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">123</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">);</span>
-        <span class="n">umap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="n">user3</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">mjson2</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">umap</span><span class="o">);</span>
+        <span style="color:#008000">// Map&lt;String, User&gt; 轉 json
+</span><span style="color:#008000"></span>        HashMap&lt;String, User&gt; umap = <span style="color:#00f">new</span> HashMap&lt;&gt;();
+        User user3 = <span style="color:#00f">new</span> User(123, <span style="color:#a31515">&#34;John&#34;</span>);
+        umap.put(<span style="color:#a31515">&#34;John&#34;</span>, user3);
+        String mjson2 = objectMapper.writeValueAsString(umap);
 
-        <span class="c1">// json 轉 Map&lt;String, User&gt;
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">User</span><span class="o">&gt;</span> <span class="n">urMap</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">mjson2</span><span class="o">,</span> <span class="k">new</span> <span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">User</span><span class="o">&gt;&gt;()</span> <span class="o">{});</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+        <span style="color:#008000">// json 轉 Map&lt;String, User&gt;
+</span><span style="color:#008000"></span>        Map&lt;String, User&gt; urMap = objectMapper.readValue(mjson2, <span style="color:#00f">new</span> TypeReference&lt;HashMap&lt;String, User&gt;&gt;() {});
+    }
+}
 </code></pre></div><h3 id="deserialize-自定義的泛型-class">Deserialize 自定義的泛型 class</h3>
 <p>如果要 deserialize 的是自定義的泛型 class，那就需要特殊處理，不能夠像 <code>List&lt;T&gt;</code> 和 <code>Map&lt;T, R&gt;</code> 那樣直接用 TypeReference 互轉</p>
 <p>原因是因為 <code>List&lt;T&gt;</code> 實際上存的還是 Object，他只是取出來的時候強行轉換成 T 而已</p>
 <p>先定義一個泛型 class</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hit</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">T</span> <span class="n">source</span><span class="o">;</span>
-    <span class="c1">// 省略getter, setter
-</span><span class="c1"></span><span class="o">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Hit</span>&lt;T&gt; {
+    <span style="color:#00f">private</span> Integer id;
+    <span style="color:#00f">private</span> T source;
+    <span style="color:#008000">// 省略getter, setter
+</span><span style="color:#008000"></span>}
 </code></pre></div><p>再定義一個正常的 Apple class</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Apple</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">color</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">weight</span><span class="o">;</span>
-    <span class="c1">//省略getter/setter
-</span><span class="c1"></span><span class="o">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Apple</span> {
+    <span style="color:#00f">private</span> String color;
+    <span style="color:#00f">private</span> Integer weight;
+    <span style="color:#008000">//省略getter/setter
+</span><span style="color:#008000"></span>}
 </code></pre></div><p>待轉換的 json</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">111</span><span class="p">,</span>
-    <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;color&#34;</span><span class="p">:</span> <span class="s2">&#34;red&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">100</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    &#34;id&#34;: 111,
+    &#34;source&#34;: {
+        &#34;color&#34;: <span style="color:#a31515">&#34;red&#34;</span>,
+        &#34;weight&#34;: 100
+    }
+}
 </code></pre></div><p>使用 Jackson 將 json 轉換成帶有泛型的 class</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
-    <span class="c1">// 使用 Jackson 將 json 轉成泛型 class 的方法
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Hit</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">convert</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">targetClass</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MyTest</span> {
+    <span style="color:#008000">// 使用 Jackson 將 json 轉成泛型 class 的方法
+</span><span style="color:#008000"></span>    <span style="color:#00f">public</span> <span style="color:#00f">static</span> &lt;T&gt; Hit&lt;T&gt; convert(String json, Class&lt;T&gt; targetClass) <span style="color:#00f">throws</span> Exception {
+        ObjectMapper objectMapper = <span style="color:#00f">new</span> ObjectMapper();
 
-        <span class="n">Hit</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">hit</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        Hit&lt;T&gt; hit = <span style="color:#00f">null</span>;
 
-        <span class="n">JavaType</span> <span class="n">clazzType</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">getTypeFactory</span><span class="o">().</span><span class="na">constructParametricType</span><span class="o">(</span><span class="n">Hit</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">targetClass</span><span class="o">);</span>
-        <span class="n">hit</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">clazzType</span><span class="o">);</span>
+        JavaType clazzType = objectMapper.getTypeFactory().constructParametricType(Hit.class, targetClass);
+        hit = objectMapper.readValue(json, clazzType);
 
-        <span class="k">return</span> <span class="n">hit</span><span class="o">;</span>
-    <span class="o">}</span>
+        <span style="color:#00f">return</span> hit;
+    }
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 實際用起來會像這樣
-</span><span class="c1"></span>        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="s">&#34;{\&#34;id\&#34;: 111,\&#34;source\&#34;: {\&#34;color\&#34;: \&#34;red\&#34;,\&#34;weight\&#34;: 100}}&#34;</span><span class="o">;</span>
-        <span class="n">Hit</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">appleHit</span> <span class="o">=</span> <span class="n">convert</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">Apple</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
+        <span style="color:#008000">// 實際用起來會像這樣
+</span><span style="color:#008000"></span>        String json = <span style="color:#a31515">&#34;{\&#34;id\&#34;: 111,\&#34;source\&#34;: {\&#34;color\&#34;: \&#34;red\&#34;,\&#34;weight\&#34;: 100}}&#34;</span>;
+        Hit&lt;Apple&gt; appleHit = convert(json, Apple.class);
+    }
+}
 </code></pre></div>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>

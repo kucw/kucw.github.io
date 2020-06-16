@@ -100,7 +100,7 @@
           <span>2019/12/31</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/spring-framework">
+            <a href="/categories/spring-framework">
               <span class="text-primary">Spring framework</span>
             </a>
           
@@ -108,26 +108,26 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <blockquote>
-<p>本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 <a href="https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter">使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter</a></p>
+<p>本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 <a href="/blog/2019/12/spring-oauth1a-bind-twitter">使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter</a></p>
 </blockquote>
 <p>如果你想要在你的網站上取得某位 user 在 Github 上的資料，那麼就要使用 OAuth 2.0 將你的網站和 Github 做綁定，本文介紹如何使用 Spring Boot 來實現 Github OAuth 2.0 綁定</p>
 <p>首先，先進到 Github 的個人設定的 settings 頁面，點擊 Developer settings</p>
-<p><img src="https://kucw.github.io/images/blog/oauth_github1.png" alt=""></p>
+<p><img src="/images/blog/oauth_github1.png" alt=""></p>
 <p>點擊 OAuth Apps，創建一個 OAuth App，這一步就是你的網站和 Github 的協商</p>
-<p><img src="https://kucw.github.io/images/blog/oauth_github2.png" alt=""></p>
+<p><img src="/images/blog/oauth_github2.png" alt=""></p>
 <p>填入相關資料</p>
 <ul>
 <li>當 user 在 Github 按下授權按鈕之後，Github 會將 user 302 導到你指定的 Authorization callback URL，在此處就是 <code>http://localhost:8080/callback</code>，然後順便把 code 也傳給你</li>
 </ul>
-<p><img src="https://kucw.github.io/images/blog/oauth_github3.png" alt=""></p>
+<p><img src="/images/blog/oauth_github3.png" alt=""></p>
 <p>點擊創建之後，就會看到 Github 發給你的 OAuth 2.0 用的 Client Id 和 Client Secret 了</p>
-<p><img src="https://kucw.github.io/images/blog/oauth_github4.png" alt=""></p>
+<p><img src="/images/blog/oauth_github4.png" alt=""></p>
 <p>接下來就是實現和 Github 綁定的 SpringBoot code，demo code 放在<a href="https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-oauth2-github">這裡</a></p>
 <blockquote>
 <p>Github OAuth2 官方文件 : <a href="https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/">https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/</a></p>
 </blockquote>
 <p>假設你已經在 Github 上按下授權按鈕，然後你想要解綁的話，進到 Github 的 setting 頁面，點擊 Application，就可以看到剛剛綁的 oauth-test，在此處就可以刪掉你剛剛綁定的 token 了</p>
-<p><img src="https://kucw.github.io/images/blog/oauth_github5.png" alt=""></p>
+<p><img src="/images/blog/oauth_github5.png" alt=""></p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>

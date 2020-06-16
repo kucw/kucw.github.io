@@ -100,7 +100,7 @@
           <span>2018/07/05</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -108,74 +108,74 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <blockquote>
-<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
+<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
 </blockquote>
 <ul>
 <li>
 <p>首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
 </code></pre></div></li>
 <li>
 <p>先使用一般的 query，查看普通的查詢的評分會是如何</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.2876821</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.20309238</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.16540512</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;match&#34;: {
+            &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 0.2876821,
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+    },
+    {
+        &#34;_score&#34;: 0.20309238,
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 0.16540512,
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+    }
+]
 </code></pre></div></li>
 <li>
 <p>使用 function_score 的 field_value_factor 改變 <code>_score</code>，將 old_score 乘上 like 的值</p>
 <ul>
 <li>
 <p>本來 &ldquo;ES 最高難度&rdquo; 的 score 是0.16540512，經過 field_value_factor 的改變，乘上了那個文檔中的like值（10）之後，新的 score 變為 1.6540513</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.6540513</span><span class="p">,</span> <span class="err">//原本是0.16540512</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.0154619</span><span class="p">,</span> <span class="err">//原本是0.20309238</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">//原本是0.2876821</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match&#34;: {
+                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+                }
+            },
+            &#34;field_value_factor&#34;: {
+                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+            }
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 1.6540513, <span style="">//原本是0.16540512</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+    },
+    {
+        &#34;_score&#34;: 1.0154619, <span style="">//原本是0.20309238</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 0.5753642, <span style="">//原本是0.2876821</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -187,36 +187,36 @@
 </li>
 <li>
 <p>而 ES 進階和 ES 最高難度的 field_value_factor 函數產生的加強 score 因為超過 max_boost 的限制，所以被設為 3</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;max_boost&#34;</span><span class="p">:</span> <span class="mi">3</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.6092771</span><span class="p">,</span> <span class="err">//原本是0.20309238</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 進階&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5753642</span><span class="p">,</span> <span class="err">//原本是0.2876821</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 入門&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.49621537</span><span class="p">,</span> <span class="err">//原本是0.16540512</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES 最高難度&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match&#34;: {
+                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+                }
+            },
+            &#34;field_value_factor&#34;: {
+                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+            },
+            &#34;max_boost&#34;: 3
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 0.6092771, <span style="">//原本是0.20309238</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 0.5753642, <span style="">//原本是0.2876821</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+    },
+    {
+        &#34;_score&#34;: 0.49621537, <span style="">//原本是0.16540512</span>
+        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -229,13 +229,13 @@
 <li>none  : <code>new_score = old_score * like值</code>
 <ul>
 <li>默認狀態就是 none，線性</li>
-<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor1.png" alt=""></li>
+<li><img src="/images/blog/es_fieldvaluefactor1.png" alt=""></li>
 </ul>
 </li>
 <li>log1p : <code>new_score = old_score * log(1 + like值)</code>
 <ul>
 <li>最常用，可以讓 like 值字段的評分曲線更平滑</li>
-<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor2.png" alt=""></li>
+<li><img src="/images/blog/es_fieldvaluefactor2.png" alt=""></li>
 </ul>
 </li>
 <li>log2p : <code>new_score = old_score * log(2 + like值)</code></li>
@@ -252,28 +252,28 @@
 <ul>
 <li>factor 作為一個調節用的參數，沒有 modifier 那麼強大會改變整個曲線，他僅改變一些常量值，設置 factor &gt; 1 會提昇效果，factor &lt; 1 會降低效果</li>
 <li>假設 modifier 是 log1p，那麼加入了 factor 的公式就是 <code>new_score = old_score * log(1 + factor * like值)</code></li>
-<li><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor3.png" alt=""></li>
+<li><img src="/images/blog/es_fieldvaluefactor3.png" alt=""></li>
 </ul>
 </li>
 <li>
 <p>對剛剛的例子加上 modifier、factor</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;factor&#34;</span><span class="p">:</span> <span class="mi">2</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match&#34;: {
+                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+                }
+            },
+            &#34;field_value_factor&#34;: {
+                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
+                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
+                &#34;factor&#34;: 2
+            }
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -287,49 +287,49 @@
 <p>加入了 boost_mode = sum、且 factor = 0.1 的公式變為 <code>new_score = old_score + log(1 + 0.1 * like值)</code></p>
 </li>
 <li>
-<p><img src="https://kucw.github.io/images/blog/es_fieldvaluefactor4.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;factor&#34;</span><span class="p">:</span> <span class="mf">0.1</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p><img src="/images/blog/es_fieldvaluefactor4.png" alt=""></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match&#34;: {
+                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+                }
+            },
+            &#34;field_value_factor&#34;: {
+                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
+                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
+                &#34;factor&#34;: 0.1
+            },
+            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;sum&#34;</span>
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>另外使用 field_value_factor 時要注意，有的文檔可能會缺少這個字段的值，因此這時就要加上 <code>missing</code> 來給這些缺失字段值的文檔一個 default 的值</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;ES&#34;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;modifier&#34;</span><span class="p">:</span> <span class="s2">&#34;log1p&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;factor&#34;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-                <span class="nt">&#34;missing&#34;</span><span class="p">:</span> <span class="mi">1</span> <span class="err">//如果文檔沒有like值，就給他</span><span class="mi">1</span><span class="err">的值讓他去做log</span><span class="mi">1</span><span class="err">p的運算</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;sum&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match&#34;: {
+                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+                }
+            },
+            &#34;field_value_factor&#34;: {
+                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
+                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
+                &#34;factor&#34;: 0.1,
+                &#34;missing&#34;: 1 <span style="">//如果文檔沒有like值，就給他</span>1<span style="">的值讓他去做log</span>1<span style="">p的運算</span>
+            },
+            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;sum&#34;</span>
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 

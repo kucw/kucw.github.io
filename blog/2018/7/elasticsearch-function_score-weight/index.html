@@ -100,7 +100,7 @@
           <span>2018/07/06</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -108,14 +108,14 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <blockquote>
-<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
+<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
 </blockquote>
 <ul>
 <li>
 <p>一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+{ &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+{ &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
 </code></pre></div></li>
 <li>
 <p>functions 是一個數組，裡面放著的是將要被使用的加強函數列表，我們在裡面使用了 3 個 filter 去過濾數據，並且每個 filter 都設置了一個加強函數，並且還使用了一個會應用到所有文檔的 field_value_factor 加強函數</p>
@@ -128,78 +128,78 @@
 </li>
 <li>
 <p>因此 ES 會先使用 score_mode 定義的方式來合併這些加強 score 們，得到一個總加強 score，得到總加強 score之後，才會再使用 boost_mode 定義的方式去和 old_score 做合併</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>  <span class="err">//match_all查出來的所有文檔的_score都是</span><span class="mi">1</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="err">//第一個filter(使用weight加強函數)，如果language是java，加強score就是</span><span class="mi">2</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span>
-                        <span class="p">}</span>
-                    <span class="p">},</span>
-                    <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
-                <span class="p">},</span>
-                <span class="err">//第二個filter(使用weight加強函數)，如果language是go，加強score就是</span><span class="mi">3</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span>
-                        <span class="p">}</span>
-                    <span class="p">},</span>
-                    <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">3</span>
-                <span class="p">},</span>
-                <span class="err">//第三個filter(使用weight加強函數)，如果like數大於等於</span><span class="mi">10</span><span class="err">，加強score就是</span><span class="mi">5</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;range&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="nt">&#34;gte&#34;</span><span class="p">:</span> <span class="mi">10</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">},</span>
-                    <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">5</span>
-                <span class="p">},</span>
-                <span class="err">//field_value_factor加強函數，會應用到所有文檔上，加強score就是like值</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">],</span>
-            <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span><span class="p">,</span> <span class="err">//設置functions裡面的加強score們怎麼合併成一個總加強score</span>
-            <span class="nt">&#34;boost_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;multiply&#34;</span> <span class="err">//設置old_score怎麼和總加強score合併</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="err">//go同時滿足filter2、filter3</span>
-        <span class="err">//且還有一個加強函數field_value_factor產生的加強</span>
-        <span class="err">//因此加強score為3,</span> <span class="err">5,</span> <span class="err">10，總加強score為3*5*10=150</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="err">//java只滿足filter1</span>
-        <span class="err">//但是因為還有field_value_facotr產生的加強score</span>
-        <span class="err">//因此加強score為2,</span> <span class="err">5，總加強score為2*5=10</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="err">//python不滿足任何filter</span>
-        <span class="err">//因此加強score只有field_value_factor的like值</span>
-        <span class="err">//就是5</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match_all&#34;: {}  <span style="">//match_all查出來的所有文檔的_score都是</span>1
+            },
+            &#34;functions&#34;: [
+                <span style="">//第一個filter(使用weight加強函數)，如果language是java，加強score就是</span>2
+                {
+                    &#34;filter&#34;: {
+                        &#34;term&#34;: {
+                            &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>
+                        }
+                    },
+                    &#34;weight&#34;: 2
+                },
+                <span style="">//第二個filter(使用weight加強函數)，如果language是go，加強score就是</span>3
+                {
+                    &#34;filter&#34;: {
+                        &#34;term&#34;: {
+                            &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>
+                        }
+                    },
+                    &#34;weight&#34;: 3
+                },
+                <span style="">//第三個filter(使用weight加強函數)，如果like數大於等於</span>10<span style="">，加強score就是</span>5
+                {
+                    &#34;filter&#34;: {
+                        &#34;range&#34;: {
+                            &#34;like&#34;: {
+                                &#34;gte&#34;: 10
+                            }
+                        }
+                    },
+                    &#34;weight&#34;: 5
+                },
+                <span style="">//field_value_factor加強函數，會應用到所有文檔上，加強score就是like值</span>
+                {
+                    &#34;field_value_factor&#34;: {
+                        &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+                    }
+                }
+            ],
+            &#34;score_mode&#34;: <span style="color:#a31515">&#34;multiply&#34;</span>, <span style="">//設置functions裡面的加強score們怎麼合併成一個總加強score</span>
+            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;multiply&#34;</span> <span style="">//設置old_score怎麼和總加強score合併</span>
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        <span style="">//go同時滿足filter2、filter3</span>
+        <span style="">//且還有一個加強函數field_value_factor產生的加強</span>
+        <span style="">//因此加強score為3,</span> <span style="">5,</span> <span style="">10，總加強score為3*5*10=150</span>
+        &#34;_score&#34;: 150,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+    },
+    {
+        <span style="">//java只滿足filter1</span>
+        <span style="">//但是因為還有field_value_facotr產生的加強score</span>
+        <span style="">//因此加強score為2,</span> <span style="">5，總加強score為2*5=10</span>
+        &#34;_score&#34;: 10,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        <span style="">//python不滿足任何filter</span>
+        <span style="">//因此加強score只有field_value_factor的like值</span>
+        <span style="">//就是5</span>
+        &#34;_score&#34;: 5,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -208,35 +208,35 @@
 <ul>
 <li>
 <p>不過就 DSL 語法上來說，他也像其他加強函數一樣，是可以直接使用而不用加 filter 的</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="err">functions:</span> <span class="err">[</span>
-            <span class="err">{</span>
-                <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">3</span>
-            <span class="p">}</span>
-        <span class="err">]</span>
-    <span class="p">}</span>
-<span class="err">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match_all&#34;: {}
+            }
+        },
+        <span style="">functions:</span> <span style="">[</span>
+            <span style="">{</span>
+                &#34;weight&#34;: 3
+            }
+        <span style="">]</span>
+    }
+<span style="">}</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 3,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+    },
+    {
+        &#34;_score&#34;: 3,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 3,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -248,42 +248,42 @@
 </li>
 <li>
 <p>公式解析 : weight1 先加強 like 值（只能使用乘法），接著再透過 score_mode 定義的方法（sum）和另一個加強函數 weight2 合併，得到一個總加強 score，最後再使用 boost_mode 定義的方法（默認是 multiply）和 old_score 做合併，得到 new_score</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="err">functions:</span> <span class="err">[</span>
-            <span class="err">{</span>
-                <span class="nt">&#34;field_value_factor&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;field&#34;</span><span class="p">:</span> <span class="s2">&#34;like&#34;</span>
-                <span class="p">},</span>
-                <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">3</span>  <span class="err">//weight</span><span class="mi">1</span><span class="p">,</span> <span class="err">加強field_value_factor，只能使用乘法，無法改變</span>
-            <span class="p">},</span>
-            <span class="err">{</span>
-                <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">20</span> <span class="err">//weight</span><span class="mi">2</span>
-            <span class="p">}</span>
-        <span class="err">],</span>
-        <span class="s2">&#34;score_mode&#34;</span><span class="err">:</span> <span class="s2">&#34;sum&#34;</span>
-    <span class="err">}</span>
-<span class="err">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match_all&#34;: {}
+            }
+        },
+        <span style="">functions:</span> <span style="">[</span>
+            <span style="">{</span>
+                &#34;field_value_factor&#34;: {
+                    &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+                },
+                &#34;weight&#34;: 3  <span style="">//weight</span>1, <span style="">加強field_value_factor，只能使用乘法，無法改變</span>
+            },
+            <span style="">{</span>
+                &#34;weight&#34;: 20 <span style="">//weight</span>2
+            }
+        <span style="">],</span>
+        <span style="color:#a31515">&#34;score_mode&#34;</span><span style="">:</span> <span style="color:#a31515">&#34;sum&#34;</span>
+    <span style="">}</span>
+<span style="">}</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 50,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+    },
+    {
+        &#34;_score&#34;: 35,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 35,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>

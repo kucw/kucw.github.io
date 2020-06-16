@@ -100,7 +100,7 @@
           <span>2018/07/07</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -108,7 +108,7 @@
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
         <div class="content mb-4">
           <blockquote>
-<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="https://kucw.github.io/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
+<p>閱讀本文需要先了解 function_score 的相關知識，請看 <a href="/blog/2018/7/elasticsearch-function_score/">ElasticSearch - function_score 簡介</a></p>
 </blockquote>
 <ul>
 <li>
@@ -120,9 +120,9 @@
 </li>
 <li>
 <p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-<span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+{ &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+{ &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
 </code></pre></div></li>
 <li>
 <p>使用 random_score 生成隨機排序</p>
@@ -132,67 +132,67 @@
 </li>
 <li>
 <p>而 random_score 加強函數沒有加 filter，表示所有的文檔都會被 random_score 隨機排序一遍</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;function_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;match_all&#34;</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;functions&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;range&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="nt">&#34;lte&#34;</span><span class="p">:</span> <span class="mi">5</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">},</span>
-                    <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;random_score&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;seed&#34;</span><span class="p">:</span> <span class="mi">100</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;function_score&#34;: {
+            &#34;query&#34;: {
+                &#34;match_all&#34;: {}
+            },
+            &#34;functions&#34;: [
+                {
+                    &#34;filter&#34;: {
+                        &#34;range&#34;: {
+                            &#34;like&#34;: {
+                                &#34;lte&#34;: 5
+                            }
+                        }
+                    },
+                    &#34;weight&#34;: 2
+                },
+                {
+                    &#34;random_score&#34;: {
+                        &#34;seed&#34;: 100
+                    }
+                }
+            ]
+        }
+    }
+}
 </code></pre></div></li>
 <li>
 <p>當 random_score 的 seed 設為 100，其結果為</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2912227</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.1301208</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.9083528</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 1.2912227,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 1.1301208,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 0.9083528,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+    }
+]
 </code></pre></div></li>
 <li>
 <p>當 random_score 的 seed 設為 200，其結果為</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">1.2040303</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.5595852</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_score&#34;</span><span class="p">:</span> <span class="mf">0.10916698</span><span class="p">,</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="nt">&#34;like&#34;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_score&#34;: 1.2040303,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+    },
+    {
+        &#34;_score&#34;: 0.5595852,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+    },
+    {
+        &#34;_score&#34;: 0.10916698,
+        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>

@@ -100,7 +100,7 @@
           <span>2018/06/22</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="https://kucw.github.io/categories/elastic-search">
+            <a href="/categories/elastic-search">
               <span class="text-primary">Elastic search</span>
             </a>
           
@@ -122,20 +122,20 @@
 </li>
 <li>
 <p>假設 user 類型是 object，當插入一筆新的數據時，ES 會將他轉換為下面的內部文檔，其中可以看見 alice 和 white 的關聯性丟失了</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest/doc/</span><span class="mi">1</span>
-<span class="p">{</span>
-    <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Alice&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span> <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">轉換後的內部文檔</span>
-<span class="p">{</span>
-    <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span><span class="p">,</span> <span class="s2">&#34;john&#34;</span> <span class="p">],</span>
-    <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;smith&#34;</span><span class="p">,</span> <span class="s2">&#34;white&#34;</span> <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">PUT</span> <span style="">mytest/doc/</span>1
+{
+    &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+    &#34;user&#34;: [
+        { &#34;first&#34;: <span style="color:#a31515">&#34;John&#34;</span>, &#34;last&#34;: <span style="color:#a31515">&#34;Smith&#34;</span> },
+        { &#34;first&#34;: <span style="color:#a31515">&#34;Alice&#34;</span>, &#34;last&#34;: <span style="color:#a31515">&#34;White&#34;</span> }
+    ]
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">轉換後的內部文檔</span>
+{
+    &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+    &#34;user.first&#34;: [ <span style="color:#a31515">&#34;alice&#34;</span>, <span style="color:#a31515">&#34;john&#34;</span> ],
+    &#34;user.last&#34;: [ <span style="color:#a31515">&#34;smith&#34;</span>, <span style="color:#a31515">&#34;white&#34;</span> ]
+}
 </code></pre></div></li>
 <li>
 <p>理論上從插入的數據來看，應該搜索 &ldquo;first 為 Alice 且 last 為 White&rdquo; 時，這個文檔才算符合條件被搜出來，其他的條件都不算符合，但是因為 ES 把 object 類型的對象攤平了，所以實際上如果搜索 &ldquo;first 為 Alice 且 last 為 Smith&rdquo;，這個文檔也會當作符合的文檔被搜出來，但這樣就違反我們的意願了，我們希望內部對象自己的關聯性還是存在的</p>
@@ -153,20 +153,20 @@
 </li>
 <li>
 <p>假設將上面的例子的 user 改為 nested 類型，經過 ES 轉換後的文檔如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//嵌套文檔</span><span class="mi">1</span>
-<span class="p">{</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;alice&#34;</span> <span class="p">],</span>
-    <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;white&#34;</span> <span class="p">]</span>
-<span class="p">}</span>
-<span class="err">//嵌套文檔</span><span class="mi">2</span>
-<span class="p">{</span>
-    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;john&#34;</span> <span class="p">],</span>
-    <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&#34;smith&#34;</span> <span class="p">]</span>
-<span class="p">}</span>
-<span class="err">//根文檔，或者也可以稱為父文檔</span>
-<span class="p">{</span>
-    <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">//嵌套文檔</span>1
+{
+    &#34;user.first&#34;: [ <span style="color:#a31515">&#34;alice&#34;</span> ],
+    &#34;user.last&#34;: [ <span style="color:#a31515">&#34;white&#34;</span> ]
+}
+<span style="">//嵌套文檔</span>2
+{
+    &#34;user.first&#34;: [ <span style="color:#a31515">&#34;john&#34;</span> ],
+    &#34;user.last&#34;: [ <span style="color:#a31515">&#34;smith&#34;</span> ]
+}
+<span style="">//根文檔，或者也可以稱為父文檔</span>
+{
+    &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>
+}
 </code></pre></div></li>
 <li>
 <p>在獨立索引每一個嵌套對象後，對象中每個字段的相關性得以保留，因此我們查詢時，也僅返回那些真正符合條件的文檔</p>
@@ -187,93 +187,93 @@
 <ul>
 <li>
 <p>定義一個 nested 類型的 mapping，user 是一個內部對象，裡面包含了 first、last 和 age，因為 user 設置了 nested 類型，因此 user 對象會被索引在獨立的嵌套文檔中</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">PUT</span> <span class="err">mytest</span>
-<span class="p">{</span>
-    <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;doc&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="err">//group是正常的keyword字段</span>
-                <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span> <span class="p">},</span>
-                <span class="err">//user是一個nested類型，表示他底下還會包含子對象</span>
-                <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;nested&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
-                        <span class="p">},</span>
-                        <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;keyword&#34;</span>
-                        <span class="p">},</span>
-                        <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;integer&#34;</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">PUT</span> <span style="">mytest</span>
+{
+    &#34;mappings&#34;: {
+        &#34;doc&#34;: {
+            &#34;properties&#34;: {
+                <span style="">//group是正常的keyword字段</span>
+                &#34;group&#34;: { &#34;type&#34;: <span style="color:#a31515">&#34;keyword&#34;</span> },
+                <span style="">//user是一個nested類型，表示他底下還會包含子對象</span>
+                &#34;user&#34;: {
+                    &#34;type&#34;: <span style="color:#a31515">&#34;nested&#34;</span>,
+                    &#34;properties&#34;: {
+                        &#34;first&#34;: {
+                            &#34;type&#34;: <span style="color:#a31515">&#34;keyword&#34;</span>
+                        },
+                        &#34;last&#34;: {
+                            &#34;type&#34;: <span style="color:#a31515">&#34;keyword&#34;</span>
+                        },
+                        &#34;age&#34;: {
+                            &#34;type&#34;: <span style="color:#a31515">&#34;integer&#34;</span>
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 </code></pre></div></li>
 <li>
 <p>插入兩筆數據</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">POST</span> <span class="err">mytest/doc</span>
-<span class="p">{</span>
-    <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Swift&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">POST</span> <span style="">mytest/doc</span>
+{
+    &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+    &#34;user&#34;: {
+        &#34;first&#34;: <span style="color:#a31515">&#34;Taylor&#34;</span>,
+        &#34;last&#34;: <span style="color:#a31515">&#34;Swift&#34;</span>,
+        &#34;age&#34;: 30
+    }
+}
           
-<span class="err">POST</span> <span class="err">mytest/doc</span>
-<span class="p">{</span>
-    <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-            <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span>
-        <span class="p">}</span>
-    <span class="p">]</span>    
-<span class="p">}</span>
+<span style="">POST</span> <span style="">mytest/doc</span>
+{
+    &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+    &#34;user&#34;: [
+        {
+            &#34;first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>,
+            &#34;last&#34;: <span style="color:#a31515">&#34;White&#34;</span>,
+            &#34;age&#34;: 18
+        },
+        {
+            &#34;first&#34;: <span style="color:#a31515">&#34;John&#34;</span>,
+            &#34;last&#34;: <span style="color:#a31515">&#34;Smith&#34;</span>,
+            &#34;age&#34;: 22
+        }
+    ]    
+}
 </code></pre></div></li>
 <li>
 <p>因此在ES中存在的文檔如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Swift&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_source&#34;: {
+            &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+            &#34;user&#34;: {
+                &#34;first&#34;: <span style="color:#a31515">&#34;Taylor&#34;</span>,
+                &#34;last&#34;: <span style="color:#a31515">&#34;Swift&#34;</span>,
+                &#34;age&#34;: 30
+            }
+        }
+    },
+    {
+        &#34;_source&#34;: {
+            &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+            &#34;user&#34;: [
+                {
+                    &#34;first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>,
+                    &#34;last&#34;: <span style="color:#a31515">&#34;White&#34;</span>,
+                    &#34;age&#34;: 18
+                },
+                {
+                    &#34;first&#34;: <span style="color:#a31515">&#34;John&#34;</span>,
+                    &#34;last&#34;: <span style="color:#a31515">&#34;Smith&#34;</span>,
+                    &#34;age&#34;: 22
+                }
+            ]
+        }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -294,53 +294,53 @@
 <ul>
 <li>
 <p>也就是說，下面的查詢實際上是查找必須存在一個子對象，然後此對象必須同時滿足 <code>user.first</code> 為 Taylor，且 <code>user.last</code> 為 Swift，所以能夠找到一個存在的文檔</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">},</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;Swift&#34;</span> <span class="p">}</span> <span class="p">}</span>
-                    <span class="p">]</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Swift&#34;</span><span class="p">,</span>
-                <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;nested&#34;: {
+            &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+            &#34;query&#34;: {
+                &#34;bool&#34;: {
+                    &#34;must&#34;: [
+                        { &#34;term&#34;: { &#34;user.first&#34;: <span style="color:#a31515">&#34;Taylor&#34;</span> } },
+                        { &#34;term&#34;: { &#34;user.last&#34;: <span style="color:#a31515">&#34;Swift&#34;</span> } }
+                    ]
+                }
+            }
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_source&#34;: {
+            &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+            &#34;user&#34;: {
+                &#34;first&#34;: <span style="color:#a31515">&#34;Taylor&#34;</span>,
+                &#34;last&#34;: <span style="color:#a31515">&#34;Swift&#34;</span>,
+                &#34;age&#34;: 30
+            }
+        }
+    }
+]
 </code></pre></div></li>
 <li>
 <p>但將查詢改寫成下面這樣的話，則搜索不到任何結果，因為沒有一個子對象同時滿足 <code>user.first</code> 為 Taylor 且 <code>user.last</code> 為xxx</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;must&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Taylor&#34;</span> <span class="p">}</span> <span class="p">},</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;xxx&#34;</span> <span class="p">}</span> <span class="p">}</span>
-                    <span class="p">]</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;nested&#34;: {
+            &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+            &#34;query&#34;: {
+                &#34;bool&#34;: {
+                    &#34;must&#34;: [
+                        { &#34;term&#34;: { &#34;user.first&#34;: <span style="color:#a31515">&#34;Taylor&#34;</span> } },
+                        { &#34;term&#34;: { &#34;user.last&#34;: <span style="color:#a31515">&#34;xxx&#34;</span> } }
+                    ]
+                }
+            }
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -352,83 +352,83 @@
 </li>
 <li>
 <p>如果這裡將 bool 改寫在 nested 裡面，那就搜不出任何文檔了</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-                        <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-                        <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;White&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;John&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Smith&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;bool&#34;: {
+            &#34;filter&#34;: [
+                {
+                    &#34;nested&#34;: {
+                        &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+                        &#34;query&#34;: {
+                            &#34;term&#34;: {
+                                &#34;user.first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>
+                            }
+                        }
+                    }
+                },
+                {
+                    &#34;nested&#34;: {
+                        &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+                        &#34;query&#34;: {
+                            &#34;term&#34;: {
+                                &#34;user.last&#34;: <span style="color:#a31515">&#34;Smith&#34;</span>
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_source&#34;: {
+            &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+            &#34;user&#34;: [
+                {
+                    &#34;first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>,
+                    &#34;last&#34;: <span style="color:#a31515">&#34;White&#34;</span>,
+                    &#34;age&#34;: 18
+                },
+                {
+                    &#34;first&#34;: <span style="color:#a31515">&#34;John&#34;</span>,
+                    &#34;last&#34;: <span style="color:#a31515">&#34;Smith&#34;</span>,
+                    &#34;age&#34;: 22
+                }
+            ]
+        }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>和 bool 的其他葉子子句（term、range&hellip;）一起搭配使用的 nested 查詢</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;filter&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span>
-                    <span class="p">}</span>
-                <span class="p">},</span>
-                <span class="p">{</span>
-                    <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-                        <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;bool&#34;: {
+            &#34;filter&#34;: [
+                {
+                    &#34;term&#34;: {
+                        &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>
+                    }
+                },
+                {
+                    &#34;nested&#34;: {
+                        &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+                        &#34;query&#34;: {
+                            &#34;term&#34;: {
+                                &#34;user.first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -443,18 +443,18 @@
 </li>
 <li>
 <p>當查詢 &ldquo;user.first = July 或 user.last = Month&rdquo; 時，第一個嵌套文檔的分數最高，第二個嵌套文檔次之，第三個嵌套文檔的分數最低</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;hits&#34;</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&#34;_source&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;fans&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">18</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Aug&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">22</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="nt">&#34;first&#34;</span><span class="p">:</span> <span class="s2">&#34;Monday&#34;</span><span class="p">,</span> <span class="nt">&#34;last&#34;</span><span class="p">:</span> <span class="s2">&#34;Day&#34;</span><span class="p">,</span> <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">25</span> <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+    {
+        &#34;_source&#34;: {
+            &#34;group&#34;: <span style="color:#a31515">&#34;fans&#34;</span>,
+            &#34;user&#34;: [
+                { &#34;first&#34;: <span style="color:#a31515">&#34;July&#34;</span>, &#34;last&#34;: <span style="color:#a31515">&#34;Month&#34;</span>, &#34;age&#34;: 18 },
+                { &#34;first&#34;: <span style="color:#a31515">&#34;Aug&#34;</span>, &#34;last&#34;: <span style="color:#a31515">&#34;Month&#34;</span>, &#34;age&#34;: 22 },
+                { &#34;first&#34;: <span style="color:#a31515">&#34;Monday&#34;</span>, &#34;last&#34;: <span style="color:#a31515">&#34;Day&#34;</span>, &#34;age&#34;: 25 }
+            ]
+        }
+    }
+]
 </code></pre></div></li>
 </ul>
 </li>
@@ -469,23 +469,23 @@
 </li>
 <li>
 <p>不過要注意，如果 nested 查詢放在一個 filter 子句中，就算定義了 score_mode 也不會生效，因為 filter 不打分，所以 score_mode 就沒有任何意義</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;score_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;max&#34;</span><span class="p">,</span> <span class="err">//返回最佳匹配嵌套文檔的_score給根文檔使用</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;bool&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;should&#34;</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;July&#34;</span> <span class="p">}</span> <span class="p">},</span>
-                        <span class="p">{</span> <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;user.last&#34;</span><span class="p">:</span> <span class="s2">&#34;Month&#34;</span> <span class="p">}</span> <span class="p">}</span>
-                    <span class="p">]</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;nested&#34;: {
+            &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+            &#34;score_mode&#34;: <span style="color:#a31515">&#34;max&#34;</span>, <span style="">//返回最佳匹配嵌套文檔的_score給根文檔使用</span>
+            &#34;query&#34;: {
+                &#34;bool&#34;: {
+                    &#34;should&#34;: [
+                        { &#34;term&#34;: { &#34;user.first&#34;: <span style="color:#a31515">&#34;July&#34;</span> } },
+                        { &#34;term&#34;: { &#34;user.last&#34;: <span style="color:#a31515">&#34;Month&#34;</span> } }
+                    ]
+                }
+            }
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
@@ -496,27 +496,27 @@
 <ul>
 <li>儘管嵌套對象儲存於獨立的隱藏文檔中，但依然有方法按照嵌套字段的值排序</li>
 <li>假設我們想要查出 user.first 為 Amy，且依照 user.age 這個內部對象的字段，由小到大進行排序，查詢語句如下
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">GET</span> <span class="err">mytest/doc/_search</span>
-<span class="p">{</span>
-    <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;query&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;term&#34;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="nt">&#34;user.first&#34;</span><span class="p">:</span> <span class="s2">&#34;Amy&#34;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;sort&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;user.age&#34;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&#34;nested&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span>
-            <span class="p">},</span>
-            <span class="nt">&#34;order&#34;</span><span class="p">:</span> <span class="s2">&#34;asc&#34;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+{
+    &#34;query&#34;: {
+        &#34;nested&#34;: {
+            &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>,
+            &#34;query&#34;: {
+                &#34;term&#34;: {
+                    &#34;user.first&#34;: <span style="color:#a31515">&#34;Amy&#34;</span>
+                }
+            }
+        }
+    },
+    &#34;sort&#34;: {
+        &#34;user.age&#34;: {
+            &#34;nested&#34;: {
+                &#34;path&#34;: <span style="color:#a31515">&#34;user&#34;</span>
+            },
+            &#34;order&#34;: <span style="color:#a31515">&#34;asc&#34;</span>
+        }
+    }
+}
 </code></pre></div></li>
 </ul>
 </li>
