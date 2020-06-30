@@ -109,22 +109,22 @@
         <div class="content mb-4">
           <h3 id="1-什麼是-debug-模式">1. 什麼是 Debug 模式？</h3>
 <p>還記得以前不會使用 Intellij IDEA 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 <code>System.out.println()</code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 <code>System.out.println()</code>，所以到後來我的 code 就會長的像下圖這樣</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> User getMaleUser() {
-    List&lt;User&gt; userList = userDao.getUserList();
-    System.out.println(userList); <span style="color:#008000">// print userList，看一下userList裡面的內容長怎樣
-</span><span style="color:#008000"></span>
-    <span style="color:#008000">// 從userList中取出男生，然後回傳
-</span><span style="color:#008000"></span>    User resultUser;
-    <span style="color:#00f">for</span> (User user : userList) {
-        <span style="color:#00f">if</span> (user.getGender() == <span style="color:#a31515">&#34;男&#34;</span>) {
-            resultUser = user;
-        }
-    }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> User <span style="color:#900;font-weight:bold">getMaleUser</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> userList <span style="color:#000;font-weight:bold">=</span> userDao<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserList</span><span style="color:#000;font-weight:bold">();</span>
+    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>userList<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// print userList，看一下userList裡面的內容長怎樣
+</span><span style="color:#998;font-style:italic"></span>
+    <span style="color:#998;font-style:italic">// 從userList中取出男生，然後回傳
+</span><span style="color:#998;font-style:italic"></span>    User resultUser<span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>User user <span style="color:#000;font-weight:bold">:</span> userList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>user<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getGender</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;男&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            resultUser <span style="color:#000;font-weight:bold">=</span> user<span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
 
-    System.out.println(resultUser); <span style="color:#008000">// 再print resultUser，確認一下回傳的user到底是哪一個
-</span><span style="color:#008000"></span>
-    <span style="color:#00f">return</span> resultUser;
-}
+    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>resultUser<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 再print resultUser，確認一下回傳的user到底是哪一個
+</span><span style="color:#998;font-style:italic"></span>
+    <span style="color:#000;font-weight:bold">return</span> resultUser<span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>可想而知，這樣做的開發效率是非常差的，每多看一個 variable 就要多增加一行 <code>System.out.println()</code>，而且每次改了之後，都要重新運行程式，讓程式再 print 出一次數據，我想想都覺得痛苦，難道 Intellij 就沒有一個能夠快速反應出現在這個 variable 的值是什麼的功能嗎？</p>
 <p>事實上，Intellij 是有提供的！當我們在運行程式時，改成使用 <strong>Debug 模式</strong> 運行就可以了！</p>
 <h3 id="2-intellij-的-debug-模式">2. Intellij 的 Debug 模式</h3>

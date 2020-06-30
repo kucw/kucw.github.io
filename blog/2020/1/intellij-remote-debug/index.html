@@ -110,10 +110,10 @@
           <p>如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug</p>
 <h3 id="首先先運行起來在-server-上的-project">首先先運行起來在 server 上的 project</h3>
 <p>如果是 SpringBoot project，需要在執行 build 出來的 jar 檔時，帶上 jvm 啟動參數</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n -jar myservice-0.0.1-SNAPSHOT.jar
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -agentlib:jdwp<span style="color:#000;font-weight:bold">=</span><span style="color:#008080">transport</span><span style="color:#000;font-weight:bold">=</span>dt_socket,address<span style="color:#000;font-weight:bold">=</span>18090,server<span style="color:#000;font-weight:bold">=</span>y,suspend<span style="color:#000;font-weight:bold">=</span>n -jar myservice-0.0.1-SNAPSHOT.jar
 </code></pre></div><p>如果是傳統的 Spring + tomcat war 檔 project，則是在 <code>tomcat/bin/catalina.sh</code>裡，加入 JAVA_OPTS 設定 jvm 啟動參數</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/sh
-</span><span style="color:#00f"></span>JAVA_OPTS=<span style="color:#a31515">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/sh
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#008080">JAVA_OPTS</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
 </code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel">接著在自己的電腦上開啟 tunnel</h3>
 <h4 id="如果自己的電腦是-windows">如果自己的電腦是 Windows</h4>
 <p>先下載 <a href="https://www.putty.org/">putty</a>，下載完成之後打開他，然後點選 Tunnels</p>

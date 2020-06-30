@@ -144,24 +144,24 @@
 </li>
 <li>
 <p>具體實例</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Test</span> {
-    <span style="color:#008000">//定義了一個不建議使用了方法
-</span><span style="color:#008000"></span>    @Deprecated
-    <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> sayHello() {
-        System.out.println(<span style="color:#a31515">&#34;Hello&#34;</span>);
-    }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Test</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#998;font-style:italic">//定義了一個不建議使用了方法
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#3c5d5d;font-weight:bold">@Deprecated</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">sayHello</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello&#34;</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
       
-    <span style="color:#008000">//聲明以下的方法，自動忽略deprecation和unused的警告，不要在console上報出warn
-</span><span style="color:#008000"></span>    <span style="color:#008000">//以下的方法使用了被Deprecated的方法sayHello
-</span><span style="color:#008000"></span>    <span style="color:#008000">//也沒有使用到一個被定義的變量 i
-</span><span style="color:#008000"></span>    <span style="color:#008000">//但是因為設置了警告忽略所以不會有warning
-</span><span style="color:#008000"></span>    @SuppressWarnings({<span style="color:#a31515">&#34;deprecation&#34;</span>, <span style="color:#a31515">&#34;unused&#34;</span>})
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        <span style="color:#2b91af">int</span> i;
-        Test test = <span style="color:#00f">new</span> Test();
-        test.sayHello();
-    }
-}
+    <span style="color:#998;font-style:italic">//聲明以下的方法，自動忽略deprecation和unused的警告，不要在console上報出warn
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">//以下的方法使用了被Deprecated的方法sayHello
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">//也沒有使用到一個被定義的變量 i
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">//但是因為設置了警告忽略所以不會有warning
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#3c5d5d;font-weight:bold">@SuppressWarnings</span><span style="color:#000;font-weight:bold">({</span><span style="color:#d14">&#34;deprecation&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;unused&#34;</span><span style="color:#000;font-weight:bold">})</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">;</span>
+        Test test <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Test<span style="color:#000;font-weight:bold">();</span>
+        test<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">sayHello</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 <li>
 <p>@FunctionallInterface</p>
@@ -176,50 +176,50 @@
 <li>能夠包含多個default和static方法的原因是因為在使用函數式編程時，為了能夠使用lambda表達式，所以每個接口的實現類只允許實現一個方法</li>
 <li>而default方法和static方法不允許實現類實現，所以就不會影響lambda表達式，因此就可以存在在函數式接口裡</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#008000">//匿名實現類 new Function&lt;Integer, String&gt; 實現了Function接口
-</span><span style="color:#008000"></span>    List&lt;Integer&gt; intList = Lists.newArrayList(1, 2, 3);
-    List&lt;String&gt; stringList = Lists.transform(intList, <span style="color:#00f">new</span> com.google.common.base.Function&lt;Integer, String&gt;() {
-        @Override
-        <span style="color:#00f">public</span> String apply(Integer input) {
-            <span style="color:#00f">return</span> input + <span style="color:#a31515">&#34;aa&#34;</span>;
-        }
-    });
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#998;font-style:italic">//匿名實現類 new Function&lt;Integer, String&gt; 實現了Function接口
+</span><span style="color:#998;font-style:italic"></span>    List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> intList <span style="color:#000;font-weight:bold">=</span> Lists<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newArrayList</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">,</span> 2<span style="color:#000;font-weight:bold">,</span> 3<span style="color:#000;font-weight:bold">);</span>
+    List<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span> stringList <span style="color:#000;font-weight:bold">=</span> Lists<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">transform</span><span style="color:#000;font-weight:bold">(</span>intList<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> com<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">google</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">common</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">base</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Function</span><span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">,</span> String<span style="color:#000;font-weight:bold">&gt;()</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+        <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">apply</span><span style="color:#000;font-weight:bold">(</span>Integer input<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#000;font-weight:bold">return</span> input <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;aa&#34;</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">});</span>
           
-<span style="color:#008000">//可以轉換成下面的lambda表達式
-</span><span style="color:#008000"></span>List&lt;Integer&gt; intList = Lists.newArrayList(1, 2, 3);
-List&lt;String&gt; stringList = Lists.transform(intList, input -&gt; input + <span style="color:#a31515">&#34;aa&#34;</span>);
+<span style="color:#998;font-style:italic">//可以轉換成下面的lambda表達式
+</span><span style="color:#998;font-style:italic"></span>List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> intList <span style="color:#000;font-weight:bold">=</span> Lists<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newArrayList</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">,</span> 2<span style="color:#000;font-weight:bold">,</span> 3<span style="color:#000;font-weight:bold">);</span>
+List<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span> stringList <span style="color:#000;font-weight:bold">=</span> Lists<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">transform</span><span style="color:#000;font-weight:bold">(</span>intList<span style="color:#000;font-weight:bold">,</span> input <span style="color:#000;font-weight:bold">-&gt;</span> input <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;aa&#34;</span><span style="color:#000;font-weight:bold">);</span>
 </code></pre></div></li>
 <li>
 <p>使用 @FunctionallInterface 自定義函數式接口</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//自定義一個函數式接口，並且只有一個public的抽象方法
-</span><span style="color:#008000"></span>@FunctionalInterface
-<span style="color:#00f">public</span> <span style="color:#00f">interface</span> <span style="color:#2b91af">MyFunction</span> {
-    <span style="color:#00f">public</span> String myApply();
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//自定義一個函數式接口，並且只有一個public的抽象方法
+</span><span style="color:#998;font-style:italic"></span><span style="color:#3c5d5d;font-weight:bold">@FunctionalInterface</span>
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">MyFunction</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">myApply</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#000;font-weight:bold">}</span>
           
-<span style="color:#008000">//定義一個類，讓這個類去使用 MyFunction
-</span><span style="color:#008000"></span><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Hello</span> {
-    <span style="color:#2b91af">void</span> say(MyFunction myFunction) {
-        System.out.println(myFunction.myApply());
-    }
-}
+<span style="color:#998;font-style:italic">//定義一個類，讓這個類去使用 MyFunction
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hello</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">say</span><span style="color:#000;font-weight:bold">(</span>MyFunction myFunction<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>myFunction<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">myApply</span><span style="color:#000;font-weight:bold">());</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
           
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">MainTest</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        Hello hello = <span style="color:#00f">new</span> Hello();
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MainTest</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        Hello hello <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Hello<span style="color:#000;font-weight:bold">();</span>
                   
-        <span style="color:#008000">//輸出 Hello World
-</span><span style="color:#008000"></span>        hello.say(<span style="color:#00f">new</span> MyFunction() {
-            @Override
-            <span style="color:#00f">public</span> String myApply() {
-                <span style="color:#00f">return</span> <span style="color:#a31515">&#34;Hello World&#34;</span>;
-            }
-        });  
+        <span style="color:#998;font-style:italic">//輸出 Hello World
+</span><span style="color:#998;font-style:italic"></span>        hello<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> MyFunction<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#3c5d5d;font-weight:bold">@Override</span>
+            <span style="color:#000;font-weight:bold">public</span> String <span style="color:#900;font-weight:bold">myApply</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+                <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34;Hello World&#34;</span><span style="color:#000;font-weight:bold">;</span>
+            <span style="color:#000;font-weight:bold">}</span>
+        <span style="color:#000;font-weight:bold">});</span>  
                   
-        <span style="color:#008000">//可以轉換為以下的lambda表達式，同樣輸出 Hello World
-</span><span style="color:#008000"></span>        hello.say(() -&gt; <span style="color:#a31515">&#34;Hello World&#34;</span>);
-    }
-}
+        <span style="color:#998;font-style:italic">//可以轉換為以下的lambda表達式，同樣輸出 Hello World
+</span><span style="color:#998;font-style:italic"></span>        hello<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">say</span><span style="color:#000;font-weight:bold">(()</span> <span style="color:#000;font-weight:bold">-&gt;</span> <span style="color:#d14">&#34;Hello World&#34;</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -324,70 +324,70 @@ List&lt;String&gt; stringList = Lists.transform(intList, input -&gt; input + <sp
 <ul>
 <li>
 <p>如何使用一個自定義的注解</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//自定義注解 MyAnnotaion，使用 @interface 定義他是一個注解
-</span><span style="color:#008000"></span>@Target({ElementType.METHOD, ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@interface MyAnnotation {
-    String[] value();
-    String comment() <span style="color:#00f">default</span> <span style="color:#a31515">&#34;hello&#34;</span>;
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//自定義注解 MyAnnotaion，使用 @interface 定義他是一個注解
+</span><span style="color:#998;font-style:italic"></span><span style="color:#3c5d5d;font-weight:bold">@Target</span><span style="color:#000;font-weight:bold">({</span>ElementType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">METHOD</span><span style="color:#000;font-weight:bold">,</span> ElementType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">TYPE</span><span style="color:#000;font-weight:bold">})</span>
+<span style="color:#3c5d5d;font-weight:bold">@Retention</span><span style="color:#000;font-weight:bold">(</span>RetentionPolicy<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">RUNTIME</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#3c5d5d;font-weight:bold">@Documented</span>
+<span style="color:#3c5d5d;font-weight:bold">@interface</span> MyAnnotation <span style="color:#000;font-weight:bold">{</span>
+    String<span style="color:#000;font-weight:bold">[]</span> <span style="color:#900;font-weight:bold">value</span><span style="color:#000;font-weight:bold">();</span>
+    String <span style="color:#900;font-weight:bold">comment</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">default</span> <span style="color:#d14">&#34;hello&#34;</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
           
-<span style="color:#008000">//使用自定義的注解 MyAnnotation，並給value值&#34;John&#34;
-</span><span style="color:#008000"></span>@MyAnnotation(<span style="color:#a31515">&#34;John&#34;</span>)
-<span style="color:#00f">class</span> <span style="color:#2b91af">MyTest</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> test(){
-        <span style="color:#008000">//透過反射取得某個類上的某個注解
-</span><span style="color:#008000"></span>        MyAnnotation config = MyTest.class.getAnnotation(MyAnnotation.class);
-        System.out.println(<span style="color:#a31515">&#34;value: &#34;</span> + config.value() + <span style="color:#a31515">&#34;, comment: &#34;</span> + config.comment());
-    }
-}
+<span style="color:#998;font-style:italic">//使用自定義的注解 MyAnnotation，並給value值&#34;John&#34;
+</span><span style="color:#998;font-style:italic"></span><span style="color:#3c5d5d;font-weight:bold">@MyAnnotation</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">test</span><span style="color:#000;font-weight:bold">(){</span>
+        <span style="color:#998;font-style:italic">//透過反射取得某個類上的某個注解
+</span><span style="color:#998;font-style:italic"></span>        MyAnnotation config <span style="color:#000;font-weight:bold">=</span> MyTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getAnnotation</span><span style="color:#000;font-weight:bold">(</span>MyAnnotation<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;value: &#34;</span> <span style="color:#000;font-weight:bold">+</span> config<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">value</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, comment: &#34;</span> <span style="color:#000;font-weight:bold">+</span> config<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">comment</span><span style="color:#000;font-weight:bold">());</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
           
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span>{
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        MyTest.test();  <span style="color:#008000">//輸出 value: John, comment: hello 
-</span><span style="color:#008000"></span>    }
-}
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span><span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        MyTest<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">test</span><span style="color:#000;font-weight:bold">();</span>  <span style="color:#998;font-style:italic">//輸出 value: John, comment: hello 
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>使用 @Repeatable 元注解</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">FindFiles</span>{
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">FindFiles</span><span style="color:#000;font-weight:bold">{</span>
       
-    <span style="color:#008000">//此注解接住 FileType 注解，並把它存起來
-</span><span style="color:#008000"></span>    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    <span style="color:#00f">public</span> @interface FileTypes {
-        FileType[] value();
-    }
+    <span style="color:#998;font-style:italic">//此注解接住 FileType 注解，並把它存起來
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#3c5d5d;font-weight:bold">@Target</span><span style="color:#000;font-weight:bold">(</span>ElementType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">METHOD</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3c5d5d;font-weight:bold">@Retention</span><span style="color:#000;font-weight:bold">(</span>RetentionPolicy<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">RUNTIME</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#3c5d5d;font-weight:bold">@interface</span> FileTypes <span style="color:#000;font-weight:bold">{</span>
+        FileType<span style="color:#000;font-weight:bold">[]</span> <span style="color:#900;font-weight:bold">value</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
       
-    <span style="color:#008000">//自定義的注解，可以想像成是一個自定義的對象，裡面有很多成員變量
-</span><span style="color:#008000"></span>    <span style="color:#008000">//使用 @Repeatable 讓這個注解可以被重複使用
-</span><span style="color:#008000"></span>    <span style="color:#008000">//並且 @Repeatable 還指定這個 FileType 注解要放到 FileTypes 注解裡
-</span><span style="color:#008000"></span>    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @Repeatable(FileTypes.class)
-    <span style="color:#00f">public</span> @interface FileType {
-        String value();
-        String comment();
-    }
+    <span style="color:#998;font-style:italic">//自定義的注解，可以想像成是一個自定義的對象，裡面有很多成員變量
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">//使用 @Repeatable 讓這個注解可以被重複使用
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#998;font-style:italic">//並且 @Repeatable 還指定這個 FileType 注解要放到 FileTypes 注解裡
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#3c5d5d;font-weight:bold">@Target</span><span style="color:#000;font-weight:bold">(</span>ElementType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">METHOD</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3c5d5d;font-weight:bold">@Retention</span><span style="color:#000;font-weight:bold">(</span>RetentionPolicy<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">RUNTIME</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3c5d5d;font-weight:bold">@Repeatable</span><span style="color:#000;font-weight:bold">(</span>FileTypes<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#3c5d5d;font-weight:bold">@interface</span> FileType <span style="color:#000;font-weight:bold">{</span>
+        String <span style="color:#900;font-weight:bold">value</span><span style="color:#000;font-weight:bold">();</span>
+        String <span style="color:#900;font-weight:bold">comment</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
       
-    @FileType(value=<span style="color:#a31515">&#34;.java&#34;</span>, comment=<span style="color:#a31515">&#34;java&#34;</span>)
-    @FileType(value=<span style="color:#a31515">&#34;.html&#34;</span>, comment=<span style="color:#a31515">&#34;html&#34;</span>)
-    @FileType(value=<span style="color:#a31515">&#34;.css&#34;</span>, comment=<span style="color:#a31515">&#34;css&#34;</span>)
-    <span style="color:#00f">public</span> <span style="color:#2b91af">void</span> work() <span style="color:#00f">throws</span> Exception {
-        <span style="color:#008000">//透過反射取得類，並取得work方法，然後再work方法上的FileType注解們
-</span><span style="color:#008000"></span>        FileType[] fileTypes = <span style="color:#00f">this</span>.getClass().getMethod(<span style="color:#a31515">&#34;work&#34;</span>).getAnnotationsByType(FileType.class);
-        <span style="color:#00f">for</span> (FileType fileType : fileTypes) {
-            System.out.println(<span style="color:#a31515">&#34;value: &#34;</span> + fileType.value() + <span style="color:#a31515">&#34;, comment: &#34;</span> + fileType.comment());
-        }
-    }
+    <span style="color:#3c5d5d;font-weight:bold">@FileType</span><span style="color:#000;font-weight:bold">(</span>value<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;.java&#34;</span><span style="color:#000;font-weight:bold">,</span> comment<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;java&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3c5d5d;font-weight:bold">@FileType</span><span style="color:#000;font-weight:bold">(</span>value<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;.html&#34;</span><span style="color:#000;font-weight:bold">,</span> comment<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;html&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3c5d5d;font-weight:bold">@FileType</span><span style="color:#000;font-weight:bold">(</span>value<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;.css&#34;</span><span style="color:#000;font-weight:bold">,</span> comment<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;css&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">work</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#998;font-style:italic">//透過反射取得類，並取得work方法，然後再work方法上的FileType注解們
+</span><span style="color:#998;font-style:italic"></span>        FileType<span style="color:#000;font-weight:bold">[]</span> fileTypes <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">this</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getClass</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">getMethod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;work&#34;</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">getAnnotationsByType</span><span style="color:#000;font-weight:bold">(</span>FileType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>FileType fileType <span style="color:#000;font-weight:bold">:</span> fileTypes<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;value: &#34;</span> <span style="color:#000;font-weight:bold">+</span> fileType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">value</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, comment: &#34;</span> <span style="color:#000;font-weight:bold">+</span> fileType<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">comment</span><span style="color:#000;font-weight:bold">());</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
       
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) <span style="color:#00f">throws</span> Exception {
-        <span style="color:#00f">new</span> FindFiles().work();
-    }
-}
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000;font-weight:bold">new</span> FindFiles<span style="color:#000;font-weight:bold">().</span><span style="color:#008080">work</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><pre><code>//輸出
 value: .java, comment: java
 value: .html, comment: html

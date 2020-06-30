@@ -151,26 +151,26 @@
 <ul>
 <li>
 <p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
-{ &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 10 }
-{ &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 15 }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
+{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
+{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">15</span> }
 </code></pre></div></li>
 <li>
 <p>以 like = 15 為中心，使用 gauss 函數</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match_all&#34;: {}
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match_all&#34;</span>: {}
             },
-            &#34;functions&#34;: [
+            <span style="color:#000080">&#34;functions&#34;</span>: [
                 {
-                    &#34;gauss&#34;: {
-                        &#34;like&#34;: {
-                            &#34;origin&#34;: <span style="color:#a31515">&#34;15&#34;</span>, <span style="">//如果不設置offset，offset默認為0</span>
-                            &#34;scale&#34;: <span style="color:#a31515">&#34;5&#34;</span>,
-                            &#34;decay&#34;: <span style="color:#a31515">&#34;0.2&#34;</span>
+                    <span style="color:#000080">&#34;gauss&#34;</span>: {
+                        <span style="color:#000080">&#34;like&#34;</span>: {
+                            <span style="color:#000080">&#34;origin&#34;</span>: <span style="color:#d14">&#34;15&#34;</span>, <span style="color:#a61717;background-color:#e3d2d2">//如果不設置offset，offset默認為0</span>
+                            <span style="color:#000080">&#34;scale&#34;</span>: <span style="color:#d14">&#34;5&#34;</span>,
+                            <span style="color:#000080">&#34;decay&#34;</span>: <span style="color:#d14">&#34;0.2&#34;</span>
                         }
                     }
                 }
@@ -178,19 +178,19 @@
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 1,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 15 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">15</span> }
     },
     {
-        <span style="">//因為改變了decay=0.2，所以當位於</span> <span style="">origin-offset-scale=10</span> <span style="">的位置時，分數為decay，就是0.2</span>
-        &#34;_score&#34;: 0.2,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#a61717;background-color:#e3d2d2">//因為改變了decay=0.2，所以當位於</span> <span style="color:#a61717;background-color:#e3d2d2">origin-offset-scale=10</span> <span style="color:#a61717;background-color:#e3d2d2">的位置時，分數為decay，就是0.2</span>
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.2</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     },
     {
-        &#34;_score&#34;: 0.0016,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.0016</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     }
 ]
 </code></pre></div></li>
@@ -205,38 +205,38 @@
 <li>如果我們將 price 的 origin 點設置成100，那麼價格低於 100 元的酒店的評分反而會變低，這不是我們期望的結果，與其這樣不如將 origin 和 offset 同時設成 50，只讓 price 大於 100 元時評分才會變低</li>
 <li>雖然這樣設置也會使得 price 小於 0 元的酒店評分降低沒錯，不過現實生活中價格不會有負數，因此就算 price &lt; 0 的評分會下降，也不會對我們的搜索結果造成影響（酒店的價格一定都是正的）</li>
 <li>換句話說，其實只要把 <code>origin + offset</code> 的值設為 100，origin 或 offset 是什麼樣的值都無所謂，只要能確保酒店價格在 100 元以上的酒店會衰減就好了
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match_all&#34;: {}
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match_all&#34;</span>: {}
             }
-            <span style="color:#a31515">&#34;functions&#34;</span>: [
-                <span style="">//第一個gauss加強函數，決定距離的衰減率</span>
+            <span style="color:#d14">&#34;functions&#34;</span>: [
+                <span style="color:#a61717;background-color:#e3d2d2">//第一個gauss加強函數，決定距離的衰減率</span>
                 {
-                    &#34;gauss&#34;: {
-                        &#34;location&#34;: {
-                            &#34;origin&#34;: {  <span style="">//origin點設成市中心的經緯度座標</span>
-                                &#34;lat&#34;: 51.5,
-                                &#34;lon&#34;: 0.12
+                    <span style="color:#000080">&#34;gauss&#34;</span>: {
+                        <span style="color:#000080">&#34;location&#34;</span>: {
+                            <span style="color:#000080">&#34;origin&#34;</span>: {  <span style="color:#a61717;background-color:#e3d2d2">//origin點設成市中心的經緯度座標</span>
+                                <span style="color:#000080">&#34;lat&#34;</span>: <span style="color:#099">51.5</span>,
+                                <span style="color:#000080">&#34;lon&#34;</span>: <span style="color:#099">0.12</span>
                             },
-                            &#34;offset&#34;: <span style="color:#a31515">&#34;2km&#34;</span>, <span style="">//距離中心點2km以內都是滿分1.0，2km外開始衰減</span>
-                            &#34;scale&#34;: <span style="color:#a31515">&#34;3km&#34;</span>  <span style="">//衰減率</span>
+                            <span style="color:#000080">&#34;offset&#34;</span>: <span style="color:#d14">&#34;2km&#34;</span>, <span style="color:#a61717;background-color:#e3d2d2">//距離中心點2km以內都是滿分1.0，2km外開始衰減</span>
+                            <span style="color:#000080">&#34;scale&#34;</span>: <span style="color:#d14">&#34;3km&#34;</span>  <span style="color:#a61717;background-color:#e3d2d2">//衰減率</span>
                         }
                     }
                 },
-                <span style="">//第二個gauss加強函數，決定價格的衰減率</span>
-                <span style="">//因為用戶對價格更敏感，所以給了這個gauss加強函數</span>2<span style="">倍的權重</span>
+                <span style="color:#a61717;background-color:#e3d2d2">//第二個gauss加強函數，決定價格的衰減率</span>
+                <span style="color:#a61717;background-color:#e3d2d2">//因為用戶對價格更敏感，所以給了這個gauss加強函數</span><span style="color:#099">2</span><span style="color:#a61717;background-color:#e3d2d2">倍的權重</span>
                 {
-                    &#34;gauss&#34;: {
-                        &#34;price&#34;: {
-                            &#34;origin&#34;: <span style="color:#a31515">&#34;50&#34;</span>, 
-                            &#34;offset&#34;: <span style="color:#a31515">&#34;50&#34;</span>,
-                            &#34;scale&#34;: <span style="color:#a31515">&#34;20&#34;</span>
+                    <span style="color:#000080">&#34;gauss&#34;</span>: {
+                        <span style="color:#000080">&#34;price&#34;</span>: {
+                            <span style="color:#000080">&#34;origin&#34;</span>: <span style="color:#d14">&#34;50&#34;</span>, 
+                            <span style="color:#000080">&#34;offset&#34;</span>: <span style="color:#d14">&#34;50&#34;</span>,
+                            <span style="color:#000080">&#34;scale&#34;</span>: <span style="color:#d14">&#34;20&#34;</span>
                         }
                     },
-                    &#34;weight&#34;: 2
+                    <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#099">2</span>
                 }
             ]
         }

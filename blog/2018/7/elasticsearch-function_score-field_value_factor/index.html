@@ -113,32 +113,32 @@
 <ul>
 <li>
 <p>首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
-{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
-{ &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
+{ <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
+{ <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
 </code></pre></div></li>
 <li>
 <p>先使用一般的 query，查看普通的查詢的評分會是如何</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;match&#34;: {
-            &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;match&#34;</span>: {
+            <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 0.2876821,
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.2876821</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
     },
     {
-        &#34;_score&#34;: 0.20309238,
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.20309238</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 0.16540512,
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.16540512</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     }
 ]
 </code></pre></div></li>
@@ -147,33 +147,33 @@
 <ul>
 <li>
 <p>本來 &ldquo;ES 最高難度&rdquo; 的 score 是0.16540512，經過 field_value_factor 的改變，乘上了那個文檔中的like值（10）之後，新的 score 變為 1.6540513</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match&#34;: {
-                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match&#34;</span>: {
+                    <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
                 }
             },
-            &#34;field_value_factor&#34;: {
-                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+            <span style="color:#000080">&#34;field_value_factor&#34;</span>: {
+                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;like&#34;</span>
             }
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 1.6540513, <span style="">//原本是0.16540512</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.6540513</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.16540512</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     },
     {
-        &#34;_score&#34;: 1.0154619, <span style="">//原本是0.20309238</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.0154619</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.20309238</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 0.5753642, <span style="">//原本是0.2876821</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.5753642</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.2876821</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
     }
 ]
 </code></pre></div></li>
@@ -187,34 +187,34 @@
 </li>
 <li>
 <p>而 ES 進階和 ES 最高難度的 field_value_factor 函數產生的加強 score 因為超過 max_boost 的限制，所以被設為 3</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match&#34;: {
-                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match&#34;</span>: {
+                    <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
                 }
             },
-            &#34;field_value_factor&#34;: {
-                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>
+            <span style="color:#000080">&#34;field_value_factor&#34;</span>: {
+                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;like&#34;</span>
             },
-            &#34;max_boost&#34;: 3
+            <span style="color:#000080">&#34;max_boost&#34;</span>: <span style="color:#099">3</span>
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 0.6092771, <span style="">//原本是0.20309238</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 進階&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.6092771</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.20309238</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 0.5753642, <span style="">//原本是0.2876821</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 入門&#34;</span>, &#34;like&#34;: 2 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.5753642</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.2876821</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
     },
     {
-        &#34;_score&#34;: 0.49621537, <span style="">//原本是0.16540512</span>
-        &#34;_source&#34;: { &#34;title&#34;: <span style="color:#a31515">&#34;ES 最高難度&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.49621537</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.16540512</span>
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     }
 ]
 </code></pre></div></li>
@@ -257,19 +257,19 @@
 </li>
 <li>
 <p>對剛剛的例子加上 modifier、factor</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match&#34;: {
-                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match&#34;</span>: {
+                    <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
                 }
             },
-            &#34;field_value_factor&#34;: {
-                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
-                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
-                &#34;factor&#34;: 2
+            <span style="color:#000080">&#34;field_value_factor&#34;</span>: {
+                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;like&#34;</span>,
+                <span style="color:#000080">&#34;modifier&#34;</span>: <span style="color:#d14">&#34;log1p&#34;</span>,
+                <span style="color:#000080">&#34;factor&#34;</span>: <span style="color:#099">2</span>
             }
         }
     }
@@ -288,21 +288,21 @@
 </li>
 <li>
 <p><img src="/images/blog/es_fieldvaluefactor4.png" alt=""></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match&#34;: {
-                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match&#34;</span>: {
+                    <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
                 }
             },
-            &#34;field_value_factor&#34;: {
-                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
-                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
-                &#34;factor&#34;: 0.1
+            <span style="color:#000080">&#34;field_value_factor&#34;</span>: {
+                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;like&#34;</span>,
+                <span style="color:#000080">&#34;modifier&#34;</span>: <span style="color:#d14">&#34;log1p&#34;</span>,
+                <span style="color:#000080">&#34;factor&#34;</span>: <span style="color:#099">0.1</span>
             },
-            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;sum&#34;</span>
+            <span style="color:#000080">&#34;boost_mode&#34;</span>: <span style="color:#d14">&#34;sum&#34;</span>
         }
     }
 }
@@ -311,22 +311,22 @@
 </li>
 <li>
 <p>另外使用 field_value_factor 時要注意，有的文檔可能會缺少這個字段的值，因此這時就要加上 <code>missing</code> 來給這些缺失字段值的文檔一個 default 的值</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match&#34;: {
-                    &#34;title&#34;: <span style="color:#a31515">&#34;ES&#34;</span>
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match&#34;</span>: {
+                    <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES&#34;</span>
                 }
             },
-            &#34;field_value_factor&#34;: {
-                &#34;field&#34;: <span style="color:#a31515">&#34;like&#34;</span>,
-                &#34;modifier&#34;: <span style="color:#a31515">&#34;log1p&#34;</span>,
-                &#34;factor&#34;: 0.1,
-                &#34;missing&#34;: 1 <span style="">//如果文檔沒有like值，就給他</span>1<span style="">的值讓他去做log</span>1<span style="">p的運算</span>
+            <span style="color:#000080">&#34;field_value_factor&#34;</span>: {
+                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;like&#34;</span>,
+                <span style="color:#000080">&#34;modifier&#34;</span>: <span style="color:#d14">&#34;log1p&#34;</span>,
+                <span style="color:#000080">&#34;factor&#34;</span>: <span style="color:#099">0.1</span>,
+                <span style="color:#000080">&#34;missing&#34;</span>: <span style="color:#099">1</span> <span style="color:#a61717;background-color:#e3d2d2">//如果文檔沒有like值，就給他</span><span style="color:#099">1</span><span style="color:#a61717;background-color:#e3d2d2">的值讓他去做log</span><span style="color:#099">1</span><span style="color:#a61717;background-color:#e3d2d2">p的運算</span>
             },
-            &#34;boost_mode&#34;: <span style="color:#a31515">&#34;sum&#34;</span>
+            <span style="color:#000080">&#34;boost_mode&#34;</span>: <span style="color:#d14">&#34;sum&#34;</span>
         }
     }
 }

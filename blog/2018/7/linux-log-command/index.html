@@ -113,18 +113,18 @@
 <ul>
 <li>
 <p>在實時日誌上打印顏色，給每個狀態給上不同的顏色，INFO 綠色、WARN 黃色、ERROR 紅色</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | perl -pe <span style="color:#a31515">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | perl -pe <span style="color:#d14">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
 </code></pre></div></li>
 <li>
 <p>只看 ERROR</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | grep <span style="color:#a31515">&#34;ERROR&#34;</span> --line-buffered | perl -pe <span style="color:#a31515">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | grep <span style="color:#d14">&#34;ERROR&#34;</span> --line-buffered | perl -pe <span style="color:#d14">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
 </code></pre></div></li>
 <li>
 <p>在 <code>.bashrc</code> 下加入這一段，可以讓 tail 輸出 log 時有顏色</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias tail=<span style="color:#a31515">&#34;_tail_log&#34;</span>
-_tail_log() {
-  <span style="color:#a31515">&#34;tail&#34;</span> $@ | perl -pe <span style="color:#a31515">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">tail</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_tail_log&#34;</span>
+_tail_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#d14">&#34;tail&#34;</span> <span style="color:#008080">$@</span> | perl -pe <span style="color:#d14">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -139,28 +139,28 @@ _tail_log() {
 <ul>
 <li>
 <p>highlight 整條 log</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias less=<span style="color:#a31515">&#34;_show_log&#34;</span>
-_show_log() {
-awk <span style="color:#a31515">&#39;
-</span><span style="color:#a31515">/ERROR/ {printf(&#34;\033[1;31m%s\033[0m\n&#34;, $0)}
-</span><span style="color:#a31515">/WARN/ {printf(&#34;\033[1;33m%s\033[0m\n&#34;, $0)}
-</span><span style="color:#a31515">!/(WARN|ERROR)/ {printf(&#34;%s\n&#34;, $0)}
-</span><span style="color:#a31515">&#39;</span> $1 | <span style="color:#a31515">&#34;less&#34;</span> -r
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
+_show_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+awk <span style="color:#d14">&#39;
+</span><span style="color:#d14">/ERROR/ {printf(&#34;\033[1;31m%s\033[0m\n&#34;, $0)}
+</span><span style="color:#d14">/WARN/ {printf(&#34;\033[1;33m%s\033[0m\n&#34;, $0)}
+</span><span style="color:#d14">!/(WARN|ERROR)/ {printf(&#34;%s\n&#34;, $0)}
+</span><span style="color:#d14">&#39;</span> <span style="color:#008080">$1</span> | <span style="color:#d14">&#34;less&#34;</span> -r
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>只highlight INFO、WARN、ERROR 這種狀態</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias less=<span style="color:#a31515">&#34;_show_log&#34;</span>
-_show_log() {
-awk <span style="color:#a31515">&#39;
-</span><span style="color:#a31515">/ERROR/ {sub(/ERROR/, &#34;\033[1;31mERROR\033[0m&#34;)}
-</span><span style="color:#a31515">/WARN/ {sub(/WARN/, &#34;\033[1;33mWARN\033[0m&#34;)}
-</span><span style="color:#a31515">/INFO/ {sub(/INFO/, &#34;\033[0;32mINFO\033[0m&#34;)}
-</span><span style="color:#a31515">{print}
-</span><span style="color:#a31515">&#39;</span> $1 | <span style="color:#a31515">&#34;less&#34;</span> -r
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
+_show_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+awk <span style="color:#d14">&#39;
+</span><span style="color:#d14">/ERROR/ {sub(/ERROR/, &#34;\033[1;31mERROR\033[0m&#34;)}
+</span><span style="color:#d14">/WARN/ {sub(/WARN/, &#34;\033[1;33mWARN\033[0m&#34;)}
+</span><span style="color:#d14">/INFO/ {sub(/INFO/, &#34;\033[0;32mINFO\033[0m&#34;)}
+</span><span style="color:#d14">{print}
+</span><span style="color:#d14">&#39;</span> <span style="color:#008080">$1</span> | <span style="color:#d14">&#34;less&#34;</span> -r
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -172,7 +172,7 @@ awk <span style="color:#a31515">&#39;
 </li>
 <li>
 <p><code>-s [column number]</code> : 設定看 log 時會分成幾個縱列</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">multitail -s 2 -cS goldengate -l <span style="color:#a31515">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span style="color:#a31515">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">multitail -s <span style="color:#099">2</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span>
 </code></pre></div></li>
 <li>
 <p>multitail 開始運作後，點擊 <code>b</code>，可以選擇要 scroll 的檔案，點擊 <code>q</code> 退出</p>

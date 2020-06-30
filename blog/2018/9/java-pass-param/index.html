@@ -142,57 +142,57 @@
 </li>
 <li>
 <p>i5、i6是基本類型的數組的 <code>=</code> 效果（因為存的也是引用，所以也會互相影響）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#2b91af">Tank</span> {
-    <span style="color:#2b91af">int</span> level;
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Tank</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#458;font-weight:bold">int</span> level<span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        Tank t1 = <span style="color:#00f">new</span> Tank();
-        Tank t2 = <span style="color:#00f">new</span> Tank();
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        Tank t1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
+        Tank t2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
 
-        t1.level = 1;
-        t2.level = 2;
-        System.out.println(<span style="color:#a31515">&#34;t1: &#34;</span> + t1.level + <span style="color:#a31515">&#34;, t2: &#34;</span> + t2.level);
+        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 1<span style="color:#000;font-weight:bold">;</span>
+        t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 2<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t1: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t2: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        <span style="color:#008000">//此處只是基本類型的賦值，所以t1、t2仍舊指到兩個不同對象
-</span><span style="color:#008000"></span>        t1.level = t2.level;
-        System.out.println(<span style="color:#a31515">&#34;t1: &#34;</span> + t1.level + <span style="color:#a31515">&#34;, t2: &#34;</span> + t2.level);
+        <span style="color:#998;font-style:italic">//此處只是基本類型的賦值，所以t1、t2仍舊指到兩個不同對象
+</span><span style="color:#998;font-style:italic"></span>        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t1: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t2: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        t1.level = 100;
-        System.out.println(<span style="color:#a31515">&#34;t1: &#34;</span> + t1.level + <span style="color:#a31515">&#34;, t2: &#34;</span> + t2.level);
+        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 100<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t1: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t2: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        System.out.println(<span style="color:#a31515">&#34;----&#34;</span>);
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;----&#34;</span><span style="color:#000;font-weight:bold">);</span>
 
-        Tank t3 = <span style="color:#00f">new</span> Tank();
-        Tank t4 = <span style="color:#00f">new</span> Tank();
+        Tank t3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
+        Tank t4 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
 
-        t3.level = 3;
-        t4.level = 4;
-        System.out.println(<span style="color:#a31515">&#34;t3: &#34;</span> + t3.level + <span style="color:#a31515">&#34;, t4: &#34;</span> + t4.level);
+        t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 3<span style="color:#000;font-weight:bold">;</span>
+        t4<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 4<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t3: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t4: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t4<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        <span style="color:#008000">//此處是對象類型的賦值，所以是t3和t4都指到了同一個對象上
-</span><span style="color:#008000"></span>        <span style="color:#008000">//而原本t3那個對象因為沒人引用了，所以會被垃圾回收清理掉
-</span><span style="color:#008000"></span>        t3 = t4;
-        System.out.println(<span style="color:#a31515">&#34;t3: &#34;</span> + t3.level + <span style="color:#a31515">&#34;, t4: &#34;</span> + t4.level);
+        <span style="color:#998;font-style:italic">//此處是對象類型的賦值，所以是t3和t4都指到了同一個對象上
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#998;font-style:italic">//而原本t3那個對象因為沒人引用了，所以會被垃圾回收清理掉
+</span><span style="color:#998;font-style:italic"></span>        t3 <span style="color:#000;font-weight:bold">=</span> t4<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t3: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t4: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t4<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        t3.level = 100;
-        System.out.println(<span style="color:#a31515">&#34;t3: &#34;</span> + t3.level + <span style="color:#a31515">&#34;, t4: &#34;</span> + t4.level);
+        t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 100<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t3: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t3<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, t4: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t4<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
 
-        System.out.println(<span style="color:#a31515">&#34;----&#34;</span>);
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;----&#34;</span><span style="color:#000;font-weight:bold">);</span>
 
-        <span style="color:#2b91af">int</span>[] i5 = {5};
-        <span style="color:#2b91af">int</span>[] i6 = {6};
-        System.out.println(<span style="color:#a31515">&#34;i5[0]: &#34;</span> + i5[0] + <span style="color:#a31515">&#34;, i6[0]: &#34;</span> + i6[0]);
+        <span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">[]</span> i5 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>5<span style="color:#000;font-weight:bold">};</span>
+        <span style="color:#458;font-weight:bold">int</span><span style="color:#000;font-weight:bold">[]</span> i6 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>6<span style="color:#000;font-weight:bold">};</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;i5[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i5<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, i6[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i6<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]);</span>
 
-        <span style="color:#008000">//因為數组存的是引用，所以i5和i6會指到同一個地方上
-</span><span style="color:#008000"></span>        i5 = i6;
-        System.out.println(<span style="color:#a31515">&#34;i5[0]: &#34;</span> + i5[0] + <span style="color:#a31515">&#34;, i6[0]: &#34;</span> + i6[0]);
+        <span style="color:#998;font-style:italic">//因為數组存的是引用，所以i5和i6會指到同一個地方上
+</span><span style="color:#998;font-style:italic"></span>        i5 <span style="color:#000;font-weight:bold">=</span> i6<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;i5[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i5<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, i6[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i6<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]);</span>
 
-        i5[0] = 200;
-        System.out.println(<span style="color:#a31515">&#34;i5[0]: &#34;</span> + i5[0] + <span style="color:#a31515">&#34;, i6[0]: &#34;</span> + i6[0]);
-    }
-}
+        i5<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> 200<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;i5[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i5<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, i6[0]: &#34;</span> <span style="color:#000;font-weight:bold">+</span> i6<span style="color:#000;font-weight:bold">[</span>0<span style="color:#000;font-weight:bold">]);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><pre><code>t1: 1, t2: 2
 t1: 2, t2: 2
 t1: 100, t2: 2
@@ -217,29 +217,29 @@ i5[0]: 200, i6[0]: 200
 </li>
 <li>
 <p>基本類型 pass by value，對象類型 pass by reference，而數組因為存的都是引用，所以也是 pass by reference</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#2b91af">Tank</span> {
-    <span style="color:#2b91af">int</span> level;
-}
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        Tank t1 = <span style="color:#00f">new</span> Tank();
-        Tank t2 = <span style="color:#00f">new</span> Tank();
-        t1.level = 1;
-        System.out.println(<span style="color:#a31515">&#34;t1.level: &#34;</span> + t1.level);
-        fooInt(t1.level); <span style="color:#008000">//基本類型pass by value
-</span><span style="color:#008000"></span>        System.out.println(<span style="color:#a31515">&#34;t1.level: &#34;</span> + t1.level);
-        t2.level = 2;
-        System.out.println(<span style="color:#a31515">&#34;t2.level: &#34;</span> + t2.level);
-        fooTank(t2); <span style="color:#008000">//對象類型pass by reference
-</span><span style="color:#008000"></span>        System.out.println(<span style="color:#a31515">&#34;t2.level: &#34;</span> + t2.level);
-    }
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> fooTank(Tank tank){
-        tank.level = 1000;
-    }
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> fooInt(<span style="color:#2b91af">int</span> level){
-        level = 5;
-    }
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Tank</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#458;font-weight:bold">int</span> level<span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        Tank t1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
+        Tank t2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
+        t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 1<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t1.level: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+        fooInt<span style="color:#000;font-weight:bold">(</span>t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">//基本類型pass by value
+</span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t1.level: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t1<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+        t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 2<span style="color:#000;font-weight:bold">;</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t2.level: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+        fooTank<span style="color:#000;font-weight:bold">(</span>t2<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">//對象類型pass by reference
+</span><span style="color:#998;font-style:italic"></span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;t2.level: &#34;</span> <span style="color:#000;font-weight:bold">+</span> t2<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fooTank</span><span style="color:#000;font-weight:bold">(</span>Tank tank<span style="color:#000;font-weight:bold">){</span>
+        tank<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 1000<span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fooInt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> level<span style="color:#000;font-weight:bold">){</span>
+        level <span style="color:#000;font-weight:bold">=</span> 5<span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><pre><code>t1.level: 1
 t1.level: 1
 t2.level: 2
@@ -247,37 +247,37 @@ t2.level: 1000
 </code></pre></li>
 <li>
 <p>基本類型的List、Set、Map 也是 pass by value，對象類型的 List、Set、Map 是 pass by reference</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#2b91af">Tank</span> {
-    <span style="color:#2b91af">int</span> level;
-}
-<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span> {
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> main(String[] args) {
-        List&lt;Tank&gt; tankList = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-        List&lt;Integer&gt; intList = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-        <span style="color:#00f">for</span> (<span style="color:#2b91af">int</span> i = 1; i &lt;= 2; i++) {
-            Tank tank = <span style="color:#00f">new</span> Tank();
-            tank.level = i;
-            tankList.add(tank);
-            intList.add(i * 100);
-        }
-        System.out.println(<span style="color:#a31515">&#34;intList: &#34;</span> + intList.get(0) + <span style="color:#a31515">&#34;, &#34;</span> + intList.get(1));
-        fooIntList(intList);
-        System.out.println(<span style="color:#a31515">&#34;intList: &#34;</span> + intList.get(0) + <span style="color:#a31515">&#34;, &#34;</span> + intList.get(1));
-        System.out.println(<span style="color:#a31515">&#34;tankList: &#34;</span> + tankList.get(0).level + <span style="color:#a31515">&#34;, &#34;</span> + tankList.get(1).level);
-        fooTankList(tankList);
-        System.out.println(<span style="color:#a31515">&#34;tankList: &#34;</span> + tankList.get(0).level + <span style="color:#a31515">&#34;, &#34;</span> + tankList.get(1).level);
-    }
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> fooTankList(List&lt;Tank&gt; tankList) {
-        <span style="color:#00f">for</span> (Tank tank : tankList) {
-            tank.level = 500;
-        }
-    }
-    <span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> fooIntList(List&lt;Integer&gt; intList) {
-        <span style="color:#00f">for</span> (Integer i : intList) {
-            i = 2000;
-        }
-    }
-}
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Tank</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#458;font-weight:bold">int</span> level<span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        List<span style="color:#000;font-weight:bold">&lt;</span>Tank<span style="color:#000;font-weight:bold">&gt;</span> tankList <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+        List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> intList <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> 1<span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;=</span> 2<span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
+            Tank tank <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Tank<span style="color:#000;font-weight:bold">();</span>
+            tank<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> i<span style="color:#000;font-weight:bold">;</span>
+            tankList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>tank<span style="color:#000;font-weight:bold">);</span>
+            intList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>i <span style="color:#000;font-weight:bold">*</span> 100<span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000;font-weight:bold">}</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;intList: &#34;</span> <span style="color:#000;font-weight:bold">+</span> intList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>0<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, &#34;</span> <span style="color:#000;font-weight:bold">+</span> intList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">));</span>
+        fooIntList<span style="color:#000;font-weight:bold">(</span>intList<span style="color:#000;font-weight:bold">);</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;intList: &#34;</span> <span style="color:#000;font-weight:bold">+</span> intList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>0<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, &#34;</span> <span style="color:#000;font-weight:bold">+</span> intList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">));</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;tankList: &#34;</span> <span style="color:#000;font-weight:bold">+</span> tankList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>0<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, &#34;</span> <span style="color:#000;font-weight:bold">+</span> tankList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+        fooTankList<span style="color:#000;font-weight:bold">(</span>tankList<span style="color:#000;font-weight:bold">);</span>
+        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;tankList: &#34;</span> <span style="color:#000;font-weight:bold">+</span> tankList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>0<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;, &#34;</span> <span style="color:#000;font-weight:bold">+</span> tankList<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">level</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fooTankList</span><span style="color:#000;font-weight:bold">(</span>List<span style="color:#000;font-weight:bold">&lt;</span>Tank<span style="color:#000;font-weight:bold">&gt;</span> tankList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>Tank tank <span style="color:#000;font-weight:bold">:</span> tankList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            tank<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">level</span> <span style="color:#000;font-weight:bold">=</span> 500<span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">fooIntList</span><span style="color:#000;font-weight:bold">(</span>List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> intList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>Integer i <span style="color:#000;font-weight:bold">:</span> intList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            i <span style="color:#000;font-weight:bold">=</span> 2000<span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><pre><code>intList: 100, 200
 intList: 100, 200
 tankList: 1, 2

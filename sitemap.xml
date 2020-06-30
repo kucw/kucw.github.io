@@ -4,25 +4,31 @@
   
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/java/</loc>
-    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-30T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2020/6/java-date/</loc>
+    <lastmod>2020-06-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/</loc>
-    <lastmod>2020-06-12T00:00:00+08:00</lastmod>
+    <lastmod>2020-06-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
@@ -81,7 +87,7 @@
   </url>
   
   <url>
-    <loc>https://kucw.github.io/categories/others/</loc>
+    <loc>https://kucw.github.io/categories/other-tech/</loc>
     <lastmod>2019-12-20T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>

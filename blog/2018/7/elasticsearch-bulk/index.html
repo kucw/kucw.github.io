@@ -139,12 +139,12 @@
 </ul>
 </li>
 <li>metadata : 設置這個文檔的 metadata，像是 <code>_id</code>、<code>_index</code>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">POST</span> <span style="">mytest/_bulk</span>
-{ <span style="">action</span> <span style="">:</span> <span style="">{</span> <span style="">metadata</span> } <span style="">}</span>
-{ <span style="">doc</span> }
-{ <span style="">action</span> <span style="">:</span> <span style="">{</span> <span style="">metadata</span> } <span style="">}</span>
-{ <span style="">doc</span> }
-<span style="">....</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_bulk</span>
+{ <span style="color:#a61717;background-color:#e3d2d2">action</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#a61717;background-color:#e3d2d2">{</span> <span style="color:#a61717;background-color:#e3d2d2">metadata</span> } <span style="color:#a61717;background-color:#e3d2d2">}</span>
+{ <span style="color:#a61717;background-color:#e3d2d2">doc</span> }
+{ <span style="color:#a61717;background-color:#e3d2d2">action</span> <span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#a61717;background-color:#e3d2d2">{</span> <span style="color:#a61717;background-color:#e3d2d2">metadata</span> } <span style="color:#a61717;background-color:#e3d2d2">}</span>
+{ <span style="color:#a61717;background-color:#e3d2d2">doc</span> }
+<span style="color:#a61717;background-color:#e3d2d2">....</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -153,41 +153,41 @@
 <ul>
 <li>
 <p>bulk請求</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">POST</span> <span style="">mytest/_bulk</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_bulk</span>
 
-<span style="">//創建一筆數據</span>
-{ &#34;create&#34; : { &#34;_id&#34;: 1 } }
-{ &#34;color&#34;: <span style="color:#a31515">&#34;create black&#34;</span> }
+<span style="color:#a61717;background-color:#e3d2d2">//創建一筆數據</span>
+{ <span style="color:#000080">&#34;create&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">1</span> } }
+{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;create black&#34;</span> }
 
-<span style="">//創建一筆數據，因為id=</span>1<span style="">的文檔已經存在，所以會創建失敗</span>
-{ &#34;create&#34; : { &#34;_id&#34;: 1 } }
-{ &#34;color&#34;: <span style="color:#a31515">&#34;create black2&#34;</span> }
+<span style="color:#a61717;background-color:#e3d2d2">//創建一筆數據，因為id=</span><span style="color:#099">1</span><span style="color:#a61717;background-color:#e3d2d2">的文檔已經存在，所以會創建失敗</span>
+{ <span style="color:#000080">&#34;create&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">1</span> } }
+{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;create black2&#34;</span> }
 
-<span style="">//索引一筆數據</span>
-{ &#34;index&#34; : { &#34;_id&#34;: 2 } }
-{ &#34;color&#34;: <span style="color:#a31515">&#34;index red&#34;</span> }
+<span style="color:#a61717;background-color:#e3d2d2">//索引一筆數據</span>
+{ <span style="color:#000080">&#34;index&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">2</span> } }
+{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;index red&#34;</span> }
 
-<span style="">//索引一筆數據，但是index可以創建也可以更新，所以執行成功</span>
-{ &#34;index&#34; : { &#34;_id&#34;: 2 } }
-{ &#34;color&#34;: <span style="color:#a31515">&#34;index red2&#34;</span> }
+<span style="color:#a61717;background-color:#e3d2d2">//索引一筆數據，但是index可以創建也可以更新，所以執行成功</span>
+{ <span style="color:#000080">&#34;index&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">2</span> } }
+{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;index red2&#34;</span> }
 
-<span style="">//索引一筆數據，不一定要設置id(index又能創建又能更新又不用設id，超好用)</span>
-{ &#34;index&#34;: {} }
-{ &#34;color&#34;: <span style="color:#a31515">&#34;index blue&#34;</span> }
+<span style="color:#a61717;background-color:#e3d2d2">//索引一筆數據，不一定要設置id(index又能創建又能更新又不用設id，超好用)</span>
+{ <span style="color:#000080">&#34;index&#34;</span>: {} }
+{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;index blue&#34;</span> }
 
-<span style="">//刪除一筆文檔，注意delete後面不接一個doc</span>
-{ &#34;delete&#34; : { &#34;_id&#34;: <span style="color:#a31515">&#34;2&#34;</span> } }
+<span style="color:#a61717;background-color:#e3d2d2">//刪除一筆文檔，注意delete後面不接一個doc</span>
+{ <span style="color:#000080">&#34;delete&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;2&#34;</span> } }
 
-<span style="">//找不到此id的文檔，刪除失敗</span>
-{ &#34;delete&#34; : { &#34;_id&#34;: <span style="color:#a31515">&#34;2&#34;</span> } }
+<span style="color:#a61717;background-color:#e3d2d2">//找不到此id的文檔，刪除失敗</span>
+{ <span style="color:#000080">&#34;delete&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;2&#34;</span> } }
 
-<span style="">//更新一筆文檔，注意doc格式不太一樣</span>
-{ &#34;update&#34; : { &#34;_id&#34;: 1 } }
-{ &#34;doc&#34;: { &#34;color&#34;: <span style="color:#a31515">&#34;update green&#34;</span>} }
+<span style="color:#a61717;background-color:#e3d2d2">//更新一筆文檔，注意doc格式不太一樣</span>
+{ <span style="color:#000080">&#34;update&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">1</span> } }
+{ <span style="color:#000080">&#34;doc&#34;</span>: { <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;update green&#34;</span>} }
 
-<span style="">//更新一筆文檔，但因為此id的文檔不存在，所以更新失敗</span>
-{ &#34;update&#34; : { &#34;_id&#34;: 100 } }
-{ &#34;doc&#34;: { &#34;color&#34;: <span style="color:#a31515">&#34;update green2&#34;</span>} }
+<span style="color:#a61717;background-color:#e3d2d2">//更新一筆文檔，但因為此id的文檔不存在，所以更新失敗</span>
+{ <span style="color:#000080">&#34;update&#34;</span> : { <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#099">100</span> } }
+{ <span style="color:#000080">&#34;doc&#34;</span>: { <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;update green2&#34;</span>} }
 </code></pre></div></li>
 </ul>
 </li>
@@ -206,52 +206,52 @@
 <ul>
 <li>返回結果會依照 action 的順序排好，因此 <code>items</code> 的第一個結果就是請求時第一個 action 的執行結果
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    &#34;took&#34;: 145,
-    &#34;errors&#34;: <span style="color:#00f">true</span>,
-    &#34;items&#34;: [
+    <span style="color:#000080">&#34;took&#34;</span>: <span style="color:#099">145</span>,
+    <span style="color:#000080">&#34;errors&#34;</span>: <span style="color:#000;font-weight:bold">true</span>,
+    <span style="color:#000080">&#34;items&#34;</span>: [
         {
-            &#34;create&#34;: {
-                &#34;_index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>,
-                &#34;_type&#34;: <span style="color:#a31515">&#34;_doc&#34;</span>,
-                &#34;_id&#34;: <span style="color:#a31515">&#34;1&#34;</span>,
-                &#34;result&#34;: <span style="color:#a31515">&#34;created&#34;</span>,
-                &#34;status&#34;: 201
+            <span style="color:#000080">&#34;create&#34;</span>: {
+                <span style="color:#000080">&#34;_index&#34;</span>: <span style="color:#d14">&#34;mytest&#34;</span>,
+                <span style="color:#000080">&#34;_type&#34;</span>: <span style="color:#d14">&#34;_doc&#34;</span>,
+                <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;1&#34;</span>,
+                <span style="color:#000080">&#34;result&#34;</span>: <span style="color:#d14">&#34;created&#34;</span>,
+                <span style="color:#000080">&#34;status&#34;</span>: <span style="color:#099">201</span>
             }
         },
         {
-            &#34;create&#34;: {
-                &#34;_index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>,
-                &#34;_type&#34;: <span style="color:#a31515">&#34;_doc&#34;</span>,
-                &#34;_id&#34;: <span style="color:#a31515">&#34;1&#34;</span>,
-                &#34;status&#34;: 409,
-                &#34;error&#34;: {
-                    &#34;type&#34;: <span style="color:#a31515">&#34;version_conflict_engine_exception&#34;</span>,
-                    &#34;reason&#34;: <span style="color:#a31515">&#34;[1]: version conflict, document already exists (current version [1])&#34;</span>,
-                    &#34;index_uuid&#34;: <span style="color:#a31515">&#34;PfdgdTyiRgaCIM6uKRQAPQ&#34;</span>,
-                    &#34;shard&#34;: <span style="color:#a31515">&#34;0&#34;</span>,
-                    &#34;index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>
+            <span style="color:#000080">&#34;create&#34;</span>: {
+                <span style="color:#000080">&#34;_index&#34;</span>: <span style="color:#d14">&#34;mytest&#34;</span>,
+                <span style="color:#000080">&#34;_type&#34;</span>: <span style="color:#d14">&#34;_doc&#34;</span>,
+                <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;1&#34;</span>,
+                <span style="color:#000080">&#34;status&#34;</span>: <span style="color:#099">409</span>,
+                <span style="color:#000080">&#34;error&#34;</span>: {
+                    <span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;version_conflict_engine_exception&#34;</span>,
+                    <span style="color:#000080">&#34;reason&#34;</span>: <span style="color:#d14">&#34;[1]: version conflict, document already exists (current version [1])&#34;</span>,
+                    <span style="color:#000080">&#34;index_uuid&#34;</span>: <span style="color:#d14">&#34;PfdgdTyiRgaCIM6uKRQAPQ&#34;</span>,
+                    <span style="color:#000080">&#34;shard&#34;</span>: <span style="color:#d14">&#34;0&#34;</span>,
+                    <span style="color:#000080">&#34;index&#34;</span>: <span style="color:#d14">&#34;mytest&#34;</span>
                 }
             }
         },
         {
-            &#34;index&#34;: {
-                &#34;_index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>,
-                &#34;_type&#34;: <span style="color:#a31515">&#34;_doc&#34;</span>,
-                &#34;_id&#34;: <span style="color:#a31515">&#34;2&#34;</span>,
-                &#34;result&#34;: <span style="color:#a31515">&#34;created&#34;</span>,
-                &#34;status&#34;: 201
+            <span style="color:#000080">&#34;index&#34;</span>: {
+                <span style="color:#000080">&#34;_index&#34;</span>: <span style="color:#d14">&#34;mytest&#34;</span>,
+                <span style="color:#000080">&#34;_type&#34;</span>: <span style="color:#d14">&#34;_doc&#34;</span>,
+                <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;2&#34;</span>,
+                <span style="color:#000080">&#34;result&#34;</span>: <span style="color:#d14">&#34;created&#34;</span>,
+                <span style="color:#000080">&#34;status&#34;</span>: <span style="color:#099">201</span>
             }
         },
         {
-            &#34;index&#34;: {
-                &#34;_index&#34;: <span style="color:#a31515">&#34;mytest&#34;</span>,
-                &#34;_type&#34;: <span style="color:#a31515">&#34;_doc&#34;</span>,
-                &#34;_id&#34;: <span style="color:#a31515">&#34;2&#34;</span>,
-                &#34;result&#34;: <span style="color:#a31515">&#34;updated&#34;</span>,
-                &#34;status&#34;: 200
+            <span style="color:#000080">&#34;index&#34;</span>: {
+                <span style="color:#000080">&#34;_index&#34;</span>: <span style="color:#d14">&#34;mytest&#34;</span>,
+                <span style="color:#000080">&#34;_type&#34;</span>: <span style="color:#d14">&#34;_doc&#34;</span>,
+                <span style="color:#000080">&#34;_id&#34;</span>: <span style="color:#d14">&#34;2&#34;</span>,
+                <span style="color:#000080">&#34;result&#34;</span>: <span style="color:#d14">&#34;updated&#34;</span>,
+                <span style="color:#000080">&#34;status&#34;</span>: <span style="color:#099">200</span>
             }
         }
-        <span style="">...</span> 5 <span style="">RESULTS</span> <span style="">REMOVED</span> <span style="">...</span>
+        <span style="color:#a61717;background-color:#e3d2d2">...</span> <span style="color:#099">5</span> <span style="color:#a61717;background-color:#e3d2d2">RESULTS</span> <span style="color:#a61717;background-color:#e3d2d2">REMOVED</span> <span style="color:#a61717;background-color:#e3d2d2">...</span>
     ]
 }
 </code></pre></div></li>

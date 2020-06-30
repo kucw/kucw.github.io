@@ -120,9 +120,9 @@
 </li>
 <li>
 <p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
-{ &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
-{ &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
+{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
+{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
 </code></pre></div></li>
 <li>
 <p>使用 random_score 生成隨機排序</p>
@@ -132,27 +132,27 @@
 </li>
 <li>
 <p>而 random_score 加強函數沒有加 filter，表示所有的文檔都會被 random_score 隨機排序一遍</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">GET</span> <span style="">mytest/doc/_search</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
-    &#34;query&#34;: {
-        &#34;function_score&#34;: {
-            &#34;query&#34;: {
-                &#34;match_all&#34;: {}
+    <span style="color:#000080">&#34;query&#34;</span>: {
+        <span style="color:#000080">&#34;function_score&#34;</span>: {
+            <span style="color:#000080">&#34;query&#34;</span>: {
+                <span style="color:#000080">&#34;match_all&#34;</span>: {}
             },
-            &#34;functions&#34;: [
+            <span style="color:#000080">&#34;functions&#34;</span>: [
                 {
-                    &#34;filter&#34;: {
-                        &#34;range&#34;: {
-                            &#34;like&#34;: {
-                                &#34;lte&#34;: 5
+                    <span style="color:#000080">&#34;filter&#34;</span>: {
+                        <span style="color:#000080">&#34;range&#34;</span>: {
+                            <span style="color:#000080">&#34;like&#34;</span>: {
+                                <span style="color:#000080">&#34;lte&#34;</span>: <span style="color:#099">5</span>
                             }
                         }
                     },
-                    &#34;weight&#34;: 2
+                    <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#099">2</span>
                 },
                 {
-                    &#34;random_score&#34;: {
-                        &#34;seed&#34;: 100
+                    <span style="color:#000080">&#34;random_score&#34;</span>: {
+                        <span style="color:#000080">&#34;seed&#34;</span>: <span style="color:#099">100</span>
                     }
                 }
             ]
@@ -162,35 +162,35 @@
 </code></pre></div></li>
 <li>
 <p>當 random_score 的 seed 設為 100，其結果為</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 1.2912227,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.2912227</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 1.1301208,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.1301208</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 0.9083528,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.9083528</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     }
 ]
 </code></pre></div></li>
 <li>
 <p>當 random_score 的 seed 設為 200，其結果為</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;hits&#34;</span><span style="">:</span> [
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
-        &#34;_score&#34;: 1.2040303,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;java&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.2040303</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     },
     {
-        &#34;_score&#34;: 0.5595852,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;go&#34;</span>, &#34;like&#34;: 10 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.5595852</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
     },
     {
-        &#34;_score&#34;: 0.10916698,
-        &#34;_source&#34;: { &#34;language&#34;: <span style="color:#a31515">&#34;python&#34;</span>, &#34;like&#34;: 5 }
+        <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.10916698</span>,
+        <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
     }
 ]
 </code></pre></div></li>
