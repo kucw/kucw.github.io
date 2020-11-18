@@ -4,25 +4,43 @@
   
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2020-07-14T00:00:00+08:00</lastmod>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2020-07-14T00:00:00+08:00</lastmod>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/</loc>
-    <lastmod>2020-07-14T00:00:00+08:00</lastmod>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/categories/other-tech/</loc>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2020/11/rabbitmq/</loc>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
   <url>
     <loc>https://kucw.github.io/categories/spring-framework/</loc>
-    <lastmod>2020-07-14T00:00:00+08:00</lastmod>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://kucw.github.io/blog/2020/11/spring-rabbitmq/</loc>
+    <lastmod>2020-11-18T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
@@ -89,12 +107,6 @@
   <url>
     <loc>https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter/</loc>
     <lastmod>2019-12-30T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://kucw.github.io/categories/other-tech/</loc>
-    <lastmod>2019-12-20T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url>
   
