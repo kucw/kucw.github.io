@@ -133,6 +133,9 @@
 <li>Routing 模式</li>
 <li>Topics 模式</li>
 </ol>
+<blockquote>
+<p>有關如何在 SpringBoot 中使用 RabbitMQ 的這五種模式，可以參考我的另一篇文章 <a href="https://kucw.github.io/blog/2020/11/spring-rabbitmq">SpringBoot - RabbitMQ 使用方法</a></p>
+</blockquote>
 <h3 id="1-direct-模式">1. Direct 模式</h3>
 <p>最簡單的模式，只會有一個 Producer 負責發送 message 到 Queue 裡、而也只有一個 Consumer 去 Queue 裡消費 message</p>
 <p><img src="/images/blog/rabbitmq_direct.png" alt=""></p>
@@ -166,14 +169,44 @@
     sendMessageToQ2<span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
-<p>所以我們就可以用一個 Exhange，將 <code>info</code>, <code>error</code>, <code>warning</code> routing key 綁到一般的 log queue上，然後可以再將 <code>error</code> routing key 綁到另一個 error log queue 上，這樣就可以做出一個帶有全部 log 的 Queue、以及一個只包含 error log 的 Queue</p>
+<p>所以我們就可以用一個 Exchange，將 <code>info</code>, <code>error</code>, <code>warning</code> routing key 綁到一般的 log queue上，然後可以再將 <code>error</code> routing key 綁到另一個 error log queue 上，這樣就可以做出一個帶有全部 log 的 Queue、以及一個只包含 error log 的 Queue</p>
 <p><img src="/images/blog/rabbitmq_routing2.png" alt=""></p>
 <p>不過這種模式要慎用，因為他的重要邏輯都在 Exchange 上，所以如果是對 RabbitMQ 不熟的新手，從 code 中會看不出來原來還有這種用法，只會知道 Producer 把 message 丟給 Exchange，但卻不知道為什麼 log Queue 和 error log Queue 中卻都會有 message 出現</p>
 <h3 id="5-topics-模式">5. Topics 模式</h3>
 <p>用到了 Exchange 的 topic type，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
 <p><img src="/images/blog/rabbitmq_topics.png" alt=""></p>
 <h3 id="rabbitmq-安裝教學">RabbitMQ 安裝教學</h3>
-<p>待補</p>
+<blockquote>
+<p>需要先安裝 docker-desktop，可以到 Docker 官網下載 <a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></p>
+</blockquote>
+<p>可以使用 docker 在自己的電腦上快速架設起 RabbitMQ 以及 RabbitMQ 專屬的 Web 管理介面</p>
+<p>推薦使用 <code>rabbitmq:management</code> 的 docker image，不僅可以幫我們架設起一個 RabbitMQ，還可以順便為我們架設起一個用來管理該 RabbitMQ 的 web 管理介面，非常方便</p>
+<p>執行以下方法，就可以順利啟動這個 docker image</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
+-e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
+</span><span style="color:#d14"></span>rabbitmq:management
+</code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234</p>
+<p>啟動好 docker image 之後，RabbitMQ 使用的 port 默認是 5672，而 RabbitMQ 的 Web 管理介面使用的 port 默認是 15672，因此只要訪問 <code>http://localhost:15672</code>，就會出現 RabbitMQ 的 Web 管理介面，此時就可以在輸入剛剛運行 docker image 所設定的帳號密碼登入進去</p>
+<p><img src="/images/blog/rabbitmq_management1.png" alt=""></p>
+<p>到這裡 RabbitMQ 就安裝好了，所以就可以使用 SpringBoot 連接上此 RabbitMQ 了</p>
+<h4 id="web-管理介面導覽">Web 管理介面導覽</h4>
+<p>登入之後就會進到 Overview 頁面，在 Overview 頁面可以查看 Queue 的整體狀況以及 cluster node 的 cpu/memory 使用狀態</p>
+<p><img src="/images/blog/rabbitmq_management2.png" alt=""></p>
+<p>點擊上方的 Exchanges tab 可以進到 Exchanges 頁面，可以查看目前已存在的 Exchange，以及新增一個新的 Exchange</p>
+<p><img src="/images/blog/rabbitmq_management3.png" alt=""></p>
+<p>點擊其中一個已存在的 Exchange，可以查看該 Exchange 的詳細資訊</p>
+<p><img src="/images/blog/rabbitmq_management4.png" alt=""></p>
+<p>點擊上方的 Queue tab 可以進到 Queue 頁面，可以查看目前已存在的 Queue，也可以新增一個新的 Queue</p>
+<p><img src="/images/blog/rabbitmq_management5.png" alt=""></p>
+<p>同理，點擊其中一個已存在的 Queue，可以查看該 Queue 的詳細資訊，也可以對該 Queue 進行一系列的操作（跟 Exchange 的操作差不多，這裡就不列了）</p>
+<p><img src="/images/blog/rabbitmq_management6.png" alt=""></p>
+<p>點擊上方的 Admin tab 可以進到 Admin 頁面，然後在 Admin 裡點擊右側的 Users tab，可以查看/新增 RabbitMQ 的使用者，也可以查看該使用者允許 access 的 virtual host</p>
+<p><img src="/images/blog/rabbitmq_management7.png" alt=""></p>
+<p>點擊右側的 Virtual Hosts tab，可以查看/新增 RabbitMQ 的 virtual host</p>
+<p><img src="/images/blog/rabbitmq_management8.png" alt=""></p>
+<p><strong>補充：</strong> 在 RabbitMQ 裡面有一個 virtual host 的概念，可以想像成是分組，也就是一個 virtual host 就是一組</p>
+<p>當 RabbitMQ 運行時，預設會產生一個 virtual host 叫做 <code>/</code>，然後如果不特別調整的話，所有的 Queue 都是創建在這個 <code>/</code> 的 virtual host 裡面，而 user 預設也是被設定成能存取 <code>/</code></p>
+<p>所以如果想要在 RabbitMQ 裡面做分組的權限控管的話，只要多創建幾個 virtual host，user 就可以在不同的 virtual host 下創建 Queue 和 Exchange，不同 virtual host 裡的 Queue 和 Exchange 無法互通，然後也可以去限制說某些 user 只能存取某些 virtual host</p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
