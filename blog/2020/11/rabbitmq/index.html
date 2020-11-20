@@ -144,18 +144,18 @@
 <h3 id="3-publishsubscribe-模式">3. Publish/Subscribe 模式</h3>
 <p>從這個模式之後，在 Producer、Queue、Consumer 之間就多了一個叫做 Exchange 的東西出現，所以以後 Producer 不再是直接把 message 丟到 Queue 裡，而是讓 Producer 把 message 丟給 Exchange，再交由 Exchange 去決定要把這個 message 丟給哪個 Queue</p>
 <p><img src="/images/blog/rabbitmq_subscribe.png" alt=""></p>
-<p>Exchange 自己就有三種類型，用來表示要用什麼樣的規則把 message 丟到想要丟的 Queue 裡面</p>
+<p>Exchange 自己就有三種 type，用來表示要用什麼樣的規則把 message 丟到想要丟的 Queue 裡面</p>
 <ul>
 <li>direct</li>
 <li>fanout</li>
 <li>topic</li>
 </ul>
-<p>在 Publish/Subscribe 模式中，使用的是 Exchange 的 fanout 類型，當 Producer 把 message 丟給 Exchange 時，Exchange 會把這個 message 丟到他綁定的所有 Queue 上</p>
+<p>在 Publish/Subscribe 模式中，使用的是 Exchange 的 fanout type，當 Producer 把 message 丟給 Exchange 時，Exchange 會把這個 message 丟到他綁定的所有 Queue 上</p>
 <p>Publish/Subscribe 模式也是一個滿常用的模式，通常是用在需要訂閱的情況下</p>
 <p>譬如說當訂單服務有了一筆新訂單之後就要去通知簡訊服務、商品服務&hellip;等，那如果是用前面提到的 RabbitMQ 中的 Direct 模式，則在訂單服務裡就要自己指定要把這個 message 丟到哪個 Queue 上，這樣以後如果又有新的服務要來訂閱這個 message 的話，就還得要回去改訂單服務的 code</p>
 <p>但如果是使用這個 Publish/Subscribe 模式的話，訂單服務就可以直接將 message 丟給 Exchange，而我們只要把新的服務專屬的 Queue 和 Exchange 綁定一下，這樣子 Exchange 就可以自動把 message 也丟到新的 Queue 裡了，我們就不需要再去改 code</p>
 <h3 id="4-routing-模式">4. Routing 模式</h3>
-<p>Routing 模式也是一個用到了 Exchange 的模式，這個模式使用的是 Exchange 的 direct 類型</p>
+<p>Routing 模式也是一個用到了 Exchange 的模式，這個模式使用的是 Exchange 的 direct type</p>
 <p>當 Producer 把 message 丟給 Exchange 時，同時要在這個 message 上面帶上一個 routing key，而 Exchange 就會根據這個 routing key，將 message 丟到指定的 Queue 上</p>
 <p><img src="/images/blog/rabbitmq_routing1.png" alt=""></p>
 <p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
@@ -170,7 +170,7 @@
 <p><img src="/images/blog/rabbitmq_routing2.png" alt=""></p>
 <p>不過這種模式要慎用，因為他的重要邏輯都在 Exchange 上，所以如果是對 RabbitMQ 不熟的新手，從 code 中會看不出來原來還有這種用法，只會知道 Producer 把 message 丟給 Exchange，但卻不知道為什麼 log Queue 和 error log Queue 中卻都會有 message 出現</p>
 <h3 id="5-topics-模式">5. Topics 模式</h3>
-<p>用到了 Exchange 的 topic 類型，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
+<p>用到了 Exchange 的 topic type，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
 <p><img src="/images/blog/rabbitmq_topics.png" alt=""></p>
 <h3 id="rabbitmq-安裝教學">RabbitMQ 安裝教學</h3>
 <p>待補</p>
