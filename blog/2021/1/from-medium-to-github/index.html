@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    為什麼我離開 Medium，改在 GitHub 上自架個人網站
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="談談想離開 Medium 的原因，以及介紹如何在 Github 上使用 Hugo 架設個人網站">
+  <meta name="author" content="Kucw">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">Kucw&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h3 class="text-center">為什麼我離開 Medium，改在 GitHub 上自架個人網站</h3>
+        <div class="mb-3 text-center"><span>By Kucw</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2021/01/20</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="/categories/other-tech">
+              <span class="text-primary">Other tech</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+
+
+
+
+
+
+
+
+
+        <div class="content mb-4">
+          <p>最近 Medium 的付費牆、加上 SEO 政策調整，讓大多數在 Medium 寫文章的作者吃盡了苦頭，包含我自己也是</p>
+<p>有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，大家在找資料的時候，一定都是先點前幾個連結嘛</p>
+<p>所以在寫文章時，除了提升自己文章的內容之外，要怎麼樣讓自己的文章可以 <strong>「被看見」</strong>，也是非常重要的一件事</p>
+<h2 id="是-medium-還是-google-把我文章吃了">是 Medium 還是 Google 把我文章吃了？</h2>
+<p>鑑於 SEO 實在是太重要了，所以這也是為什麼我會離開 Medium 的主因</p>
+<p>回想 Medium 剛起家的時候，他憑藉著自身簡約的網站風格、再加上 SEO 的優化政策做得非常好，所以有非常多的作者轉移到 Medium 上寫文章</p>
+<p>但是近幾年 Medium 對 SEO 優化做了非常多調整，我自己曾在 Medium 上和 GitHub 個人網站上，分別寫了兩篇一模一樣的文章，但是當我用同樣的關鍵字去查詢的時候，GitHub 個人網站的文章可以排在前三名，而 Medium 的文章我翻到第 10 頁了還找不到，差距非常大</p>
+<p><img src="/images/blog/medium_github1.png" alt=""></p>
+<blockquote>
+<p>上圖為我使用同樣的關鍵字「lombok」去查詢的結果，我在自架的 GitHub 個人網站上寫的文章可以進到第 1 頁，但是 Medium 的文章卻連前 10 頁都找不到</p>
+<p>Medium 的文章連結：<a href="https://medium.com/@kujudy/java-lombok-cc4a2947ab5a">https://medium.com/@kujudy/java-lombok-cc4a2947ab5a</a><br>
+GitHub 個人網站的文章連結：<a href="https://kucw.github.io/blog/2020/3/java-lombok">https://kucw.github.io/blog/2020/3/java-lombok</a></p>
+</blockquote>
+<p>老實說，當時看到這種情況我真的是哭笑不得，我沒想到 Medium 對 SEO 的影響會大到這麼誇張，如果是差個幾頁就算了，但是在 10 頁之內都找不到自己寫的文章，知道的當下還是有點沮喪的</p>
+<p>有寫過文章的人就知道，產出一篇文章的背後，要花很多時間去研究、安排架構、調整用字遣詞，自己都花很多時間和熱情去寫文章了，但是卻因為這個 Medium 的 SEO 政策的關係，導致自己寫的內容沒辦法被別人看見，只能默默地在網路的世界不斷下沉</p>
+<p>想到這裡，就更加讓我下定決心要離開 Medium 了</p>
+<h2 id="下一站在哪裡">下一站在哪裡？</h2>
+<p>有鑒於曾經在 Medium 上投注了心血，卻沒辦法得到相對應成果的痛苦經驗，所以這次我決定，我不要再受限在任何一個平台上了，因為難保下一個平台不會發生和 Medium 同樣的事情，如果這一次轉換平台，又碰到和 Medium 一樣的問題，那到時候就又只能崩潰的尋找下一個替代方案</p>
+<p>花了很多時間在網路上查了各種方法，到最後發現了在國外很熱門的 <a href="https://github.com/gohugoio/hugo">Hugo 架站工具</a>，Hugo 在 GitHub 上有 52.4K 的 Stars，算是開發者非常活躍的 Repo</p>
+<p>只要使用這套 Hugo 架站工具，再搭配上 GitHub 提供的免費個人網站域名 GitHub Pages，這樣就可以架設出自己的個人網站了，聽起來好像滿簡單的，所以當時就花了一些時間去看官方文件，因此就開始了我的自架個人網站之路哈哈</p>
+<h2 id="如何使用-hugo-在-github-上架設個人網站">如何使用 Hugo 在 GitHub 上架設個人網站？</h2>
+<p>我覺得，如果你本身有工程師背景的話，照著 Hugo 官方的文件做，再花一些時間 debug，很快就能在 GitHub 上架出個人網站了</p>
+<p>但如果你完全沒有寫過任何一行程式的話，那要直接上手 Hugo 的難度還是滿高的，因為在使用 Hugo 的過程中，會有一些必要的背景知識，而這些是官方文件不會教你的</p>
+<p>在使用 Hugo 架站之前，你必須要知道的幾件事：</p>
+<ol>
+<li>如何使用 <code>brew</code> or <code>choco</code> 去安裝 Hugo？</li>
+<li>如何修改程式碼？（工程師通常都有自己用習慣的編輯器，像我是 VS Code + IntelliJ 雙棲）</li>
+<li>如何使用 Git，將程式碼上傳到 GitHub 上？</li>
+<li>如何撰寫 Markdown 文章？</li>
+</ol>
+<p>如果以上這四點你都了解的話，那麼直接看 Hugo 官方文件來架個人網站完全沒問題，但如果你對上面提到的 Git、Markdown 這些專有名詞有障礙的話，建議會需要先上網查一下相關資料，或是參考下面的線上課程</p>
+<h3 id="工商時間--一起在-github-上架設個人網站吧">工商時間 | 一起在 GitHub 上架設個人網站吧！</h3>
+<p>Hahow 線上課程：<a href="https://hahow.in/cr/kucw-github-hugo">Github 免費架站術！輕鬆打造個人品牌</a></p>
+<p>如果你沒有工程師背景，但也想擺脫各大文章平台的束縛，在 GitHub 上架設自己的個人網站的話，也許這門線上課程就是你在找的引路人</p>
+<blockquote>
+<p>如果你有工程師背景，可以直接參考這篇文章<a href="https://medium.com/pm%E7%9A%84%E7%94%9F%E7%94%A2%E5%8A%9B%E5%B7%A5%E5%85%B7%E7%AE%B1/%E6%87%B6%E4%BA%BA%E5%8C%85-%E4%BD%BF%E7%94%A8-hugo-5-%E5%88%86%E9%90%98%E5%85%A7%E5%BF%AB%E9%80%9F%E6%9E%B6%E8%A8%AD%E5%80%8B%E4%BA%BA%E7%B6%B2%E7%AB%99-%E8%99%9F%E7%A8%B1%E7%8F%BE%E5%9C%A8%E6%9C%80%E5%BF%AB%E7%9A%84%E8%87%AA%E6%9E%B6%E7%B6%B2%E7%AB%99%E6%96%B9%E5%BC%8F-99659c7c727a">【懶人包】使用 Hugo 5 分鐘內快速架設個人網站，號稱現在最快的自架網站方式</a>，這篇文章裡列的所有步驟，基本上就是這門課的懶人包，只要照著做，一樣是可以架設出自己的個人網站（在此感謝這位熱心的同學，把課程中的步驟簡化成這個懶人包）</p>
+</blockquote>
+<h2 id="架設了自己的個人網站然後呢">架設了自己的個人網站，然後呢？</h2>
+<p>架設出自己的個人網站之後，我才發現可以玩的東西多太多了！</p>
+<h3 id="1-文章終於可以分類了">1. 文章終於可以分類了</h3>
+<p>光這點我覺得就完勝 Medium，我真的很不解為什麼 Medium 不願意提供一個分類的機制給大家使用，難道 Medium 覺得我們寫的文章都很整齊不用分類整理嗎！！！</p>
+<h3 id="2-可以添加個人經歷頁面讓網站更豐富">2. 可以添加個人經歷頁面，讓網站更豐富</h3>
+<p>以前在 Medium 寫文章時，只能設定一些簡單的自我介紹，但是如果是自架個人網站的話，就可以自由發揮，用圖形化的方式去呈現一些個人經歷，同時也可以去整合自己的其他作品，讓別人進到這個網站，就可以了解你過去所有的經歷、作品集、以及所寫的所有文章</p>
+<p>不過要達到這個效果，會需要具備一些前端的 Html、Css 知識，但如果很熟悉前端的知識的話，做出來的網站豐富度真的不是 Medium 可以比的，完勝 Medium</p>
+<p><img src="/images/blog/medium_github4.png" alt=""></p>
+<h3 id="3-使用-google-search-console-查看搜尋成效">3. 使用 Google Search Console 查看搜尋成效</h3>
+<p>這個是 Google 提供的很酷的功能，我也是架了個人網站才接觸到這個功能</p>
+<p>當架設好個人網站之後，可以到 <a href="https://search.google.com/search-console/about">Google Search Console</a> 裡，去申請在 Google 搜尋引擎上註冊你的個人網站，這樣子，其他人就可以透過 Google 搜尋找到你的個人網站，而且你也可以透過 Google Search Console，去查看個人網站的搜尋成效了</p>
+<p>譬如說我可以查看某段時間內，網頁的 曝光量 / 點擊量 有多少，或是網頁的點擊率是多少</p>
+<p>如果網頁點擊率低的話，就表示別人在 Google 搜尋結果中看到我的文章，但是卻沒有點進來看內容，那原因可能就是因為我的文章標題下得不夠吸引人，所以我就可以朝這個方向去修改我的文章標題</p>
+<p><img src="/images/blog/medium_github2.png" alt=""></p>
+<h3 id="4-使用-google-analyticsga查看網站成效">4. 使用 Google Analytics（GA）查看網站成效</h3>
+<p>這個也是 Google 提供的功能，不過 GA 的名氣就比 Google Search Console 大多了，一般前端工程師和行銷的職位都會碰到 GA</p>
+<p>架設好個人網站之後，可以到 <a href="https://analytics.google.com/analytics/web/">Google Analytics</a> 申請使用 GA 的服務，接著就可以使用 GA 去查看個人網站的成效了</p>
+<p><img src="/images/blog/medium_github3.jpg" alt=""></p>
+<h3 id="5-使用-google-adsense-收取廣告費">5. 使用 Google AdSense 收取廣告費</h3>
+<p>Google 真的是佛心來著，不只提供了許多好用的功能給我們使用，現在竟然還可以讓我們靠寫文章來賺錢！！</p>
+<p>大家在瀏覽網站的時候，常常會看到有的網站下面有一個「Google 提供的廣告」對吧？這個就是 Google Adsense 的功能</p>
+<p><img src="/images/blog/medium_github5.png" alt=""></p>
+<p>Google AdSense 這個功能簡單的說，就是你將網站的一塊地租給 Google，而 Google 會在這裡投放廣告，並且 Google 會根據你的個人網站的瀏覽量和使用者點擊廣告的次數，去計算你應得的分潤，所以假設你寫的文章非常受歡迎，每月的瀏覽量非常高，那麼每個月就可以有一筆被動收入，就是網站放著也能賺錢的概念啦！</p>
+<p>只要個人網站的流量到達一定的標準之後，就可以到 <a href="https://www.google.com/intl/zh-TW_tw/adsense/start/">Google AdSense</a> 申請使用這個服務</p>
+<p>不過我自己是沒有申請過，一來是因為我覺得 Google 廣告有點惱人，二來是這個分潤的錢也不是非常多，所以目前沒辦法提供 Google AdSense 的數據給大家參考</p>
+<h2 id="自架個人網站聽起來很強但真的完全沒有缺點嗎">自架個人網站聽起來很強，但真的完全沒有缺點嗎？</h2>
+<p>不可否認的，使用 GitHub 架設個人網站還是會有一些缺點的</p>
+<p>首先，架設個人網站需要花費一定的時間，不僅需要上傳程式碼到 GitHub 上，包含後續申請 Google Search Console、以及申請 GA，都需要自己手動操作，無法享受 Medium 幫你包到好的服務</p>
+<p>再來文章功能的方面，追蹤（Follow）的功能無法使用，因此當你寫了新的文章時，想關注你的人無法接收到新文章的通知（除非有額外設定 RSS feed，不過目前一般人也不太會使用這個功能）。另外讀者也無法收藏文章、也無法畫重點，所以就只能夠手動將該文章加到瀏覽器的書籤列裡做保存</p>
+<p>最後是使用 Markdown 來撰寫文章的門檻較高，一開始接觸 Markdown 的人可能會覺得語法很多有點難背，相對來說，Medium 在這部分就表現得比較好，Medium 在文章的編輯上面非常平易近人，新手一下子就能上手</p>
+<h2 id="總結沒有最好的只有最適合你的">總結：沒有最好的，只有最適合你的</h2>
+<p>這篇文章主要是分享一些我自己從 Medium 換到自架 GitHub 個人網站的經驗和心得，但老實說，這兩種平台都各有優缺點，並沒有說哪一個一定是特別好的</p>
+<p>在 Medium 上寫文章是真的比較舒適，什麼都不用管，只要專心產出文章內容就好，但是缺點就是會被平台的演算法限制，而自架個人網站比較自由，且可以統整自己所有的經歷、作品集，但缺點則是無法和讀者產生互動</p>
+<p>所以還是那句話：「沒有最好的，只有最適合你的」，如果你是深受 SEO 困擾的 Medium 寫手，那麼自架個人網站增強曝光度可能會是更好的選擇，如果你是想嘗試培養寫文章習慣的新手，那麼 Medium 可能是更好的選擇，畢竟 Medium 優秀的文章編輯介面是大家有目共睹，如果一上手就使用比較複雜的 Markdown 語法的話，可能會降低你寫作的意願，凡事總是得先求有再求好</p>
+<p>不過我也是看過有的人會兩邊都做，同時在 Medium 和個人網站上寫一模一樣的文章（我全都要！），這樣做不僅可以利用 Medium 的 Follow 功能維持和讀者的互動，也可以享受自架個人網站帶來的 SEO 效益，唯一的缺點就是要花兩倍的時間去排版吧，因為要分別使用 Medium 和 Markdown 格式去寫兩次文章</p>
+<p>最後，說了這麼多，我自己還是非常推薦大家可以自架個人網站的～除了可以自己掌控主導權之外，還可以把你的人生全部濃縮記錄到這個個人網站裡面，而且說不定若干年後 Medium 倒了，你在 Medium 上寫的文章就全部付諸流水了，畢竟當初誰也沒想過 Yahoo 或是無名小站會倒閉對吧！</p>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-151537961-2', 'auto');
+  ga('send', 'pageview');
+</script></body>
+</html>
