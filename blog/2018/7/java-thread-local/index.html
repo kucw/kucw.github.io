@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.82.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.83.1 with theme pure" />
 
   <!-- Plugins -->
   
@@ -156,12 +156,12 @@
 </span><span style="color:#998;font-style:italic"></span>    ThreadLocalMap <span style="color:#900;font-weight:bold">getMap</span><span style="color:#000;font-weight:bold">(</span>Thread t<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000;font-weight:bold">return</span> t<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">threadLocals</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
-          
+
     <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">ThreadLocalMap</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#998;font-style:italic">//ThreadLocalMap的key是使用 &#34;弱引用&#34; 的ThreadLocal
 </span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Entry</span> <span style="color:#000;font-weight:bold">extends</span> WeakReference<span style="color:#000;font-weight:bold">&lt;</span>ThreadLocal<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
             Object value<span style="color:#000;font-weight:bold">;</span>
-      
+
             <span style="color:#998;font-style:italic">//ThreadLocalMap中的key就是ThreadLocal，value就是設置的值
 </span><span style="color:#998;font-style:italic"></span>            Entry<span style="color:#000;font-weight:bold">(</span>ThreadLocal k<span style="color:#000;font-weight:bold">,</span> Object v<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
                 <span style="color:#000;font-weight:bold">super</span><span style="color:#000;font-weight:bold">(</span>k<span style="color:#000;font-weight:bold">);</span>
@@ -180,7 +180,7 @@
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">){</span>
         ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> userIdThreadLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
         ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span> userNameThreacLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
-                  
+
         userId<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">set</span><span style="color:#000;font-weight:bold">(</span>100<span style="color:#000;font-weight:bold">);</span>
         userName<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">set</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;hello&#34;</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000;font-weight:bold">}</span>
@@ -225,7 +225,7 @@
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Tools</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> ThreadLocal threadLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span>
-      
+
 <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyThread</span> <span style="color:#000;font-weight:bold">extends</span> Thread <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#3c5d5d;font-weight:bold">@Override</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -235,7 +235,7 @@
         System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>Tools<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">threadLocal</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">());</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-      
+
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> 0<span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;</span> 5<span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -259,7 +259,7 @@ thread 4, 0.45
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Tools</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>SimpleDateFormat<span style="color:#000;font-weight:bold">&gt;</span> threadLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>SimpleDateFormat<span style="color:#000;font-weight:bold">&gt;();</span>
 <span style="color:#000;font-weight:bold">}</span>
-          
+
 <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyThread</span> <span style="color:#000;font-weight:bold">extends</span> Thread <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#3c5d5d;font-weight:bold">@Override</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">run</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -275,7 +275,7 @@ thread 4, 0.45
         <span style="color:#000;font-weight:bold">}</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-          
+
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#458;font-weight:bold">int</span> i <span style="color:#000;font-weight:bold">=</span> 0<span style="color:#000;font-weight:bold">;</span> i <span style="color:#000;font-weight:bold">&lt;</span> 5<span style="color:#000;font-weight:bold">;</span> i<span style="color:#000;font-weight:bold">++)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -307,22 +307,22 @@ Sun Jul 15 00:00:00 CST 2018
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//UserUtils專門存取User信息
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserUtils</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> userThreadLocal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ThreadLocal<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
-          
+
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">setUser</span><span style="color:#000;font-weight:bold">(</span>User user<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         userThreadLocal<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">set</span><span style="color:#000;font-weight:bold">(</span>user<span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000;font-weight:bold">}</span>
-          
+
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> User <span style="color:#900;font-weight:bold">getUser</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000;font-weight:bold">return</span> userThreadLocal<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#000;font-weight:bold">}</span>
-              
+
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">removeUser</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>userThreadLocal<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">get</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
             userThreadLocal<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">remove</span><span style="color:#000;font-weight:bold">();</span>
         <span style="color:#000;font-weight:bold">}</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-        
+
 <span style="color:#998;font-style:italic">//攔截器取得cookie中的User信息，並調用UserUtils放到ThreadLocal裡
 </span><span style="color:#998;font-style:italic">//請求結束時要記得把ThreadLocal中的User刪除，因為這條線程之後還要去服務其他請求
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyInterceptor</span> <span style="color:#000;font-weight:bold">extends</span> HandlerInterceptorAdapter <span style="color:#000;font-weight:bold">{</span>
@@ -332,13 +332,13 @@ Sun Jul 15 00:00:00 CST 2018
         UserUtils<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">setUser</span><span style="color:#000;font-weight:bold">(</span>user<span style="color:#000;font-weight:bold">);</span>
         <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
-          
+
     <span style="color:#3c5d5d;font-weight:bold">@Override</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">postHandle</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
         UserUtils<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">removeUser</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-          
+
 <span style="color:#998;font-style:italic">//MyContoller調用UserUtils取得ThreadLocal&lt;User&gt;中的User
 </span><span style="color:#998;font-style:italic"></span><span style="color:#3c5d5d;font-weight:bold">@Controller</span>
 <span style="color:#3c5d5d;font-weight:bold">@RequestMapping</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;/&#34;</span><span style="color:#000;font-weight:bold">)</span>
@@ -395,6 +395,8 @@ Sun Jul 15 00:00:00 CST 2018
       
         
         
+          
+          
           
           
           
