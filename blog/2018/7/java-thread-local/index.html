@@ -195,7 +195,13 @@
 <p>為了解決這個問題，java 做了一個小優化，也就是存放在 ThreadLocalMap 中的 ThreadLocal，會使用 <strong>弱引用</strong> 來儲存，也就是說，如果一個 ThreadLocal 內存地址沒有外部強引用來引用他，只有這條 ThreadLocalMap 的弱引用來引用他時，那麼當系統 GC 時，這些 ThreadLocal 就會被回收（因為是弱引用），如此一來，ThreadLocalMap 中就會出現 key 為 null 的 Entry 們</p>
 <ul>
 <li>下圖中，實線表示強引用，虛線表示弱引用</li>
-<li><img src="/images/blog/thread_threadlocalmap.png" alt=""></li>
+<li>
+
+<img
+  src="/images/blog/thread_threadlocalmap.png"
+  alt=""
+  loading="lazy"
+/></li>
 </ul>
 </li>
 <li>

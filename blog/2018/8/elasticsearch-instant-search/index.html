@@ -133,7 +133,13 @@
 <ul>
 <li>然而在現實情況下，用戶已經漸漸習慣在輸入完查詢內容之前，就能為他們展現搜索結果，這就是所謂的即時搜索（instant search），或是可以稱為 輸入即搜索（search-as-you-type）
 <ul>
-<li><img src="/images/blog/es_ngram.gif" alt=""></li>
+<li>
+
+<img
+  src="/images/blog/es_ngram.gif"
+  alt=""
+  loading="lazy"
+/></li>
 </ul>
 </li>
 <li>雖然 ES 提供了一系列的前綴搜索 match_phrase、prefix、wildcard、regexp，然而這樣的查詢的性能非常差，要知道用戶每多輸入一個新的字母，就意味著要重新進行一次搜索，在實時的 web 系統中，100 ms 可能就會是一個難以忍受的延遲</li>

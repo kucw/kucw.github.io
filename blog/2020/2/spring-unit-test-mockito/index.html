@@ -122,9 +122,21 @@
 <h3 id="1-什麼是-mock-測試">1. 什麼是 mock 測試？</h3>
 <p>mock 測試就是在測試過程中，創建一個假的對象，避免你為了測試一個方法，卻要自行構建整個 bean 的 dependency chain</p>
 <p>像是以下這張圖，類 A 需要調用類 B 和類 C，而類 B 和類 C 又需要調用其他類如 D、E、F 等，假設類 D 是一個外部服務，那就會很難測，因為你的返回結果會直接的受外部服務影響，導致你的單元測試可能今天會過、但明天就過不了了</p>
-<p><img src="/images/blog/unittest_mock1.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/unittest_mock1.png"
+  alt=""
+  loading="lazy"
+/></p>
 <p>而當我們引入 mock 測試時，就可以創建一個假的對象，替換掉真實的 bean B 和 C，這樣在調用B、C的方法時，實際上就會去調用這個假的 mock 對象的方法，而我們就可以自己設定這個 mock 對象的參數和期望結果，讓我們可以專注在測試當前的類 A，而不會受到其他的外部服務影響，這樣測試效率就能提高很多</p>
-<p><img src="/images/blog/unittest_mock2.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/unittest_mock2.png"
+  alt=""
+  loading="lazy"
+/></p>
 <h3 id="2-mockito-簡介">2. Mockito 簡介</h3>
 <p>說完了 mock 測試的概念，接下來我們進入到今天的主題，Mockito</p>
 <p>Mockito 是一種 Java mock 框架，他主要就是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，他同時也會記錄調用這些模擬方法的參數、調用順序，從而可以校驗出這個 mock 對象是否有被正確的順序調用，以及按照期望的參數被調用</p>

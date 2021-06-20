@@ -124,23 +124,53 @@
 <p>如果你想要在你的網站上取得某位 user 在 Twitter 上的資料，那麼就要使用 OAuth 1.0a 將你的網站和 Twitter 做綁定，本文將介紹如何使用 Spring Boot 來實現 Twitter OAuth 1.0a 綁定</p>
 <p>首先先進到 <a href="https://developer.twitter.com">Twitter developer 網站</a>，將你的 Twitter 帳號申請為 developer 帳號，申請通過之後會收到 Twitter 寄來的 email，點擊 confirm 按鈕會進入到 <a href="https://developer.twitter.com/en/account/get-started">Twitter developer dashboard get-started</a></p>
 <p>點擊 Create an app 創建一個 oauth app，這一步是你的網站和 Twitter 的協商</p>
-<p><img src="/images/blog/oauth_twitter1.png" alt="">
-<img src="/images/blog/oauth_twitter2.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/oauth_twitter1.png"
+  alt=""
+  loading="lazy"
+/>
+
+
+<img
+  src="/images/blog/oauth_twitter2.png"
+  alt=""
+  loading="lazy"
+/></p>
 <p>填入相關資料，需要填寫 app name、Application description、website url、callback Url</p>
 <ul>
 <li>注意此處的 callback Url 要和到時後申請 request token 帶的 callback Url 一致，不然會被 Twitter 擋下來</li>
 <li>另外也要注意他的 website url 強制需要 https 和 有域名 兩個條件，所以這時候就要使用 <a href="https://ngrok.com/">ngrok</a> 來幫我們轉發</li>
 </ul>
 <p>在這裡吐嘈 Twitter 一下，為什麼不管是申請個 Twitter 開發者帳號還是申請 Oauth app，都要寫一堆理由..</p>
-<p><img src="/images/blog/oauth_twitter3.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/oauth_twitter3.png"
+  alt=""
+  loading="lazy"
+/></p>
 <p>填完相關資料點擊 create 後，就成功在 Twiiter 創建 Oauth app了</p>
-<p><img src="/images/blog/oauth_twitter4.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/oauth_twitter4.png"
+  alt=""
+  loading="lazy"
+/></p>
 <p>點擊 Keys and tokens tab，就可以看到 Twitter 發給我們的 consumer key 和 secret 了</p>
 <ul>
 <li>Twitter 還算貼心，可以直接在開發者頁面一鍵新增 access token，幫你省去綁定的功夫，讓你可以快速使用這個 access token 去 call 他的 api</li>
 <li>當然這個 access token 只會提供你自己的 Twitter 帳號的 access token，如果要實現所有人都可以綁定的話，還是需要自己寫 oauth 1.0a 綁定 code，這個 access token 只是讓你能夠快速測試而已</li>
 </ul>
-<p><img src="/images/blog/oauth_twitter5.png" alt=""></p>
+<p>
+
+<img
+  src="/images/blog/oauth_twitter5.png"
+  alt=""
+  loading="lazy"
+/></p>
 <p>接下來就是實現和 Twitter 綁定的 SpringBoot code，demo code 放在<a href="https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-oauth1a-twitter">這裡</a></p>
 <blockquote>
 <p>Twitter OAuth1.0a 官方文件 : <a href="https://developer.twitter.com/en/docs/basics/authentication/oauth-1-0a/obtaining-user-access-tokens">https://developer.twitter.com/en/docs/basics/authentication/oauth-1-0a/obtaining-user-access-tokens</a></p>
