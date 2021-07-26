@@ -16,7 +16,7 @@
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.83.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
 
   <!-- Plugins -->
   
@@ -203,14 +203,14 @@
         <span style="color:#000080">&#34;function_score&#34;</span>: {
             <span style="color:#a61717;background-color:#e3d2d2">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span>
             <span style="color:#000080">&#34;query&#34;</span>: {<span style="color:#a61717;background-color:#e3d2d2">.....</span>}, 
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//在</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span> <span style="color:#a61717;background-color:#e3d2d2">的基礎上，給他加強其他字段的評分</span>
             <span style="color:#a61717;background-color:#e3d2d2">//這裡會產生一個加強</span> <span style="color:#a61717;background-color:#e3d2d2">score，如果只有一個加強</span> <span style="color:#a61717;background-color:#e3d2d2">function</span> <span style="color:#a61717;background-color:#e3d2d2">時，直接將加強函數名寫在</span> <span style="color:#a61717;background-color:#e3d2d2">query</span> <span style="color:#a61717;background-color:#e3d2d2">下面就可以了</span>
             <span style="color:#000080">&#34;field_value_factor&#34;</span>: {<span style="color:#a61717;background-color:#e3d2d2">...</span>}, 
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//指定用哪種方式結合</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span> <span style="color:#a61717;background-color:#e3d2d2">和加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span> <span style="color:#a61717;background-color:#e3d2d2">成為</span> <span style="color:#a61717;background-color:#e3d2d2">new_score</span>
             <span style="color:#000080">&#34;boost_mode&#34;</span>: <span style="color:#d14">&#34;multiply&#34;</span>, 
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//限制加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span> <span style="color:#a61717;background-color:#e3d2d2">的最高分，但是不會限制</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span>
             <span style="color:#000080">&#34;max_boost&#34;</span>: <span style="color:#099">1.5</span> 
         }
@@ -237,7 +237,7 @@
         <span style="color:#000080">&#34;function_score&#34;</span>: {
             <span style="color:#a61717;background-color:#e3d2d2">//主查詢，查詢完後這裡自己會有一個評分，就是</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span>
             <span style="color:#000080">&#34;query&#34;</span>: {<span style="color:#a61717;background-color:#e3d2d2">.....</span>},
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//可以有多個加強函數（或是</span> <span style="color:#a61717;background-color:#e3d2d2">filter</span> <span style="color:#a61717;background-color:#e3d2d2">+</span> <span style="color:#a61717;background-color:#e3d2d2">加強函數）</span>
             <span style="color:#a61717;background-color:#e3d2d2">//每一個加強函數會產生一個加強</span> <span style="color:#a61717;background-color:#e3d2d2">score，因此</span> <span style="color:#a61717;background-color:#e3d2d2">functions</span> <span style="color:#a61717;background-color:#e3d2d2">會有多個加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span>
             <span style="color:#000080">&#34;functions&#34;</span>: [   
@@ -245,10 +245,10 @@
                 { <span style="color:#000080">&#34;gauss&#34;</span>: <span style="color:#a61717;background-color:#e3d2d2">...</span> },
                 { <span style="color:#000080">&#34;filter&#34;</span>: {<span style="color:#a61717;background-color:#e3d2d2">...</span>}, <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#a61717;background-color:#e3d2d2">...</span> }
             ],
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//決定加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span> <span style="color:#a61717;background-color:#e3d2d2">們怎麼合併成一個總加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span>
             <span style="color:#000080">&#34;score_mode&#34;</span>: <span style="color:#d14">&#34;sum&#34;</span>,
-
+            
             <span style="color:#a61717;background-color:#e3d2d2">//決定總加強</span> <span style="color:#a61717;background-color:#e3d2d2">score</span> <span style="color:#a61717;background-color:#e3d2d2">怎麼和</span> <span style="color:#a61717;background-color:#e3d2d2">old_score</span> <span style="color:#a61717;background-color:#e3d2d2">合併</span>
             <span style="color:#000080">&#34;boost_mode&#34;</span>: <span style="color:#d14">&#34;multiply&#34;</span> 
         }

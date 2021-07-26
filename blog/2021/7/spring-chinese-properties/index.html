@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    Superset 安裝教學
+    SpringBoot - 解決 application.properties 中文亂碼
     
   </title>
 
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="Superset 手把手安裝教學">
+  <meta name="description" content="介紹如何解決 application.properties 中文亂碼的問題">
   <meta name="author" content="Kucw">
 
   <!-- Hugo version-->
@@ -94,14 +94,14 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h3 class="text-center">Superset 安裝教學</h3>
+        <h3 class="text-center">SpringBoot - 解決 application.properties 中文亂碼</h3>
         <div class="mb-3 text-center"><span>By Kucw</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>2019/12/20</span>
+          <span>2021/07/25</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/other-tech">
-              <span class="text-primary">Other tech</span>
+            <a href="/categories/spring-framework">
+              <span class="text-primary">Spring framework</span>
             </a>
           
         </div>
@@ -118,13 +118,11 @@
 
 
         <div class="content mb-4">
-          <p>安裝環境 : CentOS Linux release 7.7.1908 (Core)</p>
-<pre><code>sudo yum install python36-pip python3-devel gcc-c++
-sudo pip3 install apache-superset
-superset db upgrade
-flask fab create-admin
-superset load_examples
-superset run -p 8088
+          <p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 <code>@Value</code> 讀取時會產生中文亂碼</p>
+<pre><code class="language-properties" data-lang="properties">name=小明
+</code></pre><h3 id="解決辦法">解決辦法：</h3>
+<p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用<a href="https://www.chineseconverter.com/zh-tw/convert/unicode">此網頁</a>進行轉換）</p>
+<pre><code class="language-properties" data-lang="properties">name=\u5c0f\u660e
 </code></pre>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
