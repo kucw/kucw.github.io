@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Oracle 在 2019 5 月才 release 的下世代 Java Virtual Machine - GraalVM">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">GraalVM 介紹 + 安裝教學</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2019/10/09</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -149,7 +149,7 @@
   loading="lazy"
 /></p>
 <p>具體實例</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
 
@@ -160,7 +160,7 @@
         context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><pre><code>Hello World from Java!
+</code></pre></div><pre tabindex="0"><code>Hello World from Java!
 Hello World from JavaScript!
 Hello World from Python!
 Hello World from Ruby!
@@ -197,10 +197,10 @@ Hello World from Ruby!
 <h3 id="安裝-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/">官網</a>下載 GraalVM community，如果電腦是 mac，選擇 graalvm-ce-darwin-amd64-19.2.0.1.tar.gz 下載，如果是 Linux/Windows，則選擇相對應版本下載</p>
 <p>下載完後解壓縮，放到 <code>/Library/Java/JavaVirtualMachines</code> 下，然後在 <code>.bashrc</code> 或 <code>.zshrc</code> 中加上以下設定</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">export</span> <span style="color:#008080">PATH</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span style="color:#008080">$PATH</span><span style="color:#d14">&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">export</span> <span style="color:#008080">PATH</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span style="color:#008080">$PATH</span><span style="color:#d14">&#34;</span>
 <span style="color:#0086b3">export</span> <span style="color:#008080">JAVA_HOME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home&#34;</span>
 </code></pre></div><p>做完之後就可以使用 GraalVM Component Updater 的 <code>gu</code> 指令了，預設的 GraalVM 中只幫我們預載好了 Java 和 Javascript 而已，如果想要其他東西，需要再用 gu 額外下載</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gu install native-image ruby python R
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gu install native-image ruby python R
 </code></pre></div><p>設好路徑後，也會發現 java 默認的 vm 改成了使用 GraalVM</p>
 <p>原本的樣子</p>
 <p>
@@ -219,7 +219,7 @@ Hello World from Ruby!
   loading="lazy"
 /></p>
 <p>接著新增一個檔案，檔名叫做 Main.java，並在裡面寫入以下內容，測試我們是否有成功切換至 GraalVM</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">org.graalvm.polyglot.*</span><span style="color:#000;font-weight:bold">;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">org.graalvm.polyglot.*</span><span style="color:#000;font-weight:bold">;</span>
 
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -233,10 +233,10 @@ Hello World from Ruby!
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>執行以下指令</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">javac Main.java
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">javac Main.java
 java Main
 </code></pre></div><p>如果有成功輸出以下訊息，表示成功使用 GraalVM 來 run java bytecode</p>
-<pre><code>Hello World from Java!
+<pre tabindex="0"><code>Hello World from Java!
 Hello World from JavaScript!
 Hello World from Python!
 Hello World from Ruby!
@@ -418,7 +418,7 @@ Hello World from Ruby!
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

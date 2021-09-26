@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    使用 Jackson 完成 json 和 Java Object 互相轉換
+    SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換
     
   </title>
 
@@ -12,11 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="介紹如何使用 Jackson 來 serialize/deserialize，將 json 和 Java Object 互相轉換">
-  <meta name="author" content="Kucw">
+  <meta name="description" content="介紹如何使用 ObjectMapper 來 serialize/deserialize，將 json 和 Java Object 互相轉換">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -94,14 +94,14 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h3 class="text-center">使用 Jackson 完成 json 和 Java Object 互相轉換</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <h3 class="text-center">SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</h3>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/06/12</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/java">
-              <span class="text-primary">Java</span>
+            <a href="/categories/spring-boot">
+              <span class="text-primary">Spring Boot</span>
             </a>
           
         </div>
@@ -118,27 +118,27 @@
 
 
         <div class="content mb-4">
-          <p>Jackson 是一款非常好用的 json 轉換工具，可以幫助我們完成 json 和 Java 的 Object 的互相轉換</p>
+          <p>ObjectMapper 是一款非常好用的 json 轉換工具，可以幫助我們完成 json 和 Java 的 Object 的互相轉換</p>
 <h3 id="什麼是-serialize-和-deserialize">什麼是 Serialize 和 Deserialize？</h3>
 <ul>
 <li>Serialize : 將 Java Object 轉換成 json</li>
 <li>Deserialize : 將 json 轉換成 Java Object</li>
 </ul>
-<h3 id="在-spring-boot-裡使用-jackson">在 Spring Boot 裡使用 Jackson</h3>
-<p>只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
+<h3 id="在-spring-boot-裡使用-objectmapper">在 Spring Boot 裡使用 ObjectMapper</h3>
+<p>ObjectMapper 是由 Jackson library 所提供的一個功能，所以只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
     <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
     <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#000080">&lt;/artifactId&gt;</span>
 <span style="color:#000080">&lt;/dependency&gt;</span>
-</code></pre></div><h3 id="jackson-和-objectlistmap-的互轉">Jackson 和 Object、List、Map 的互轉</h3>
+</code></pre></div><h3 id="json-和-java-objectlistmap-的互轉">Json 和 Java Object、List、Map 的互轉</h3>
 <p>先定義一個 User class</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#998;font-style:italic">// 省略constructor, getter, setter
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>使用 Jackson 完成 json 和 Object、List、Map 的互轉</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">java.util.*</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><p>使用 ObjectMapper 完成 json 和 Java Object、List、Map 之間的互轉</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">java.util.*</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.core.type.TypeReference</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.databind.ObjectMapper</span><span style="color:#000;font-weight:bold">;</span>
 
@@ -176,28 +176,28 @@
 <p>如果要 deserialize 的是自定義的泛型 class，那就需要特殊處理，不能夠像 <code>List&lt;T&gt;</code> 和 <code>Map&lt;T, R&gt;</code> 那樣直接用 TypeReference 互轉</p>
 <p>原因是因為 <code>List&lt;T&gt;</code> 實際上存的還是 Object，他只是取出來的時候強行轉換成 T 而已</p>
 <p>先定義一個泛型 class</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hit</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hit</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">private</span> T source<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#998;font-style:italic">// 省略getter, setter
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>再定義一個正常的 Apple class</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Apple</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Apple</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> String color<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">private</span> Integer weight<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#998;font-style:italic">//省略getter/setter
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>待轉換的 json</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#000080">&#34;id&#34;</span>: <span style="color:#099">111</span>,
     <span style="color:#000080">&#34;source&#34;</span>: {
         <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
         <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#099">100</span>
     }
 }
-</code></pre></div><p>使用 Jackson 將 json 轉換成帶有泛型的 class</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">// 使用 Jackson 將 json 轉成泛型 class 的方法
+</code></pre></div><p>使用 ObjectMapper 將 json 轉換成帶有泛型的 class</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#998;font-style:italic">// 使用 ObjectMapper 將 json 轉成泛型 class 的方法
 </span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> Hit<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#900;font-weight:bold">convert</span><span style="color:#000;font-weight:bold">(</span>String json<span style="color:#000;font-weight:bold">,</span> Class<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> targetClass<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
         ObjectMapper objectMapper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ObjectMapper<span style="color:#000;font-weight:bold">();</span>
 
@@ -353,7 +353,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

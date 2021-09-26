@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹如何使用 Lombok 幫助我們提升開發效率">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">Java - 五分鐘學會 Lombok 用法</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/03/04</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -132,7 +132,7 @@
 <h3 id="安裝-lombok">安裝 Lombok</h3>
 <p>要在 project 中使用 lombok，除了要在 maven 中加入 lombok dependency，還要安裝 Intellij lombok 插件</p>
 <h4 id="1-加入maven-dependency">1. 加入maven dependency</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
     <span style="color:#000080">&lt;groupId&gt;</span>org.projectlombok<span style="color:#000080">&lt;/groupId&gt;</span>
     <span style="color:#000080">&lt;artifactId&gt;</span>lombok<span style="color:#000080">&lt;/artifactId&gt;</span>
     <span style="color:#000080">&lt;version&gt;</span>1.18.18<span style="color:#000080">&lt;/version&gt;</span>
@@ -233,7 +233,7 @@
 /></p>
 <p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了</p>
 <p>然而很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@AllArgsConstructor</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@AllArgsConstructor</span>
 <span style="color:#3c5d5d;font-weight:bold">@NoArgsConstructor</span>
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
@@ -292,7 +292,7 @@
 /></p>
 <p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的，因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值</p>
 <p>所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Data</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Data</span>
 <span style="color:#3c5d5d;font-weight:bold">@Builder</span>
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
@@ -308,7 +308,7 @@
   loading="lazy"
 /></p>
 <p>除了 @Slf4j 之外，lombok 也提供其他日誌框架的變種注解可以用，像是 @Log、@Log4j&hellip;等，他們都是幫我們創建一個靜態常量 log，只是使用的 library 不一樣而已</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Log</span> <span style="color:#998;font-style:italic">//對應的log語句如下
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Log</span> <span style="color:#998;font-style:italic">//對應的log語句如下
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">final</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">util</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">logging</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span> log <span style="color:#000;font-weight:bold">=</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">util</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">logging</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getLogger</span><span style="color:#000;font-weight:bold">(</span>LogExample<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">());</span>
 
 <span style="color:#3c5d5d;font-weight:bold">@Log4j</span> <span style="color:#998;font-style:italic">//對應的log語句如下
@@ -452,7 +452,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

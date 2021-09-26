@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Java 中的 Iterator 如何使用">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">Java - Iterable 接口、迭代器 Iterator</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/12/05</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -127,7 +127,7 @@
 <ul>
 <li>
 <p>Iterable 接口</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterable</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterable</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#998;font-style:italic">//當某個類實現Iterable接口的話，就能獲取到迭代器iterator，然後就能使用這個iterator去遍歷此類
 </span><span style="color:#998;font-style:italic"></span>    Iterator<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#900;font-weight:bold">iterator</span><span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span>
@@ -137,7 +137,7 @@
 <ul>
 <li>
 <p>如果某個類實現了 Iterable 接口，那麼他也需要創建一個內部類去實現一個 Iterator 類，讓調用 Iterable 接口中的 iterator() 時，能夠獲取到一個 iterator 實例</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#998;font-style:italic">//是否有下一個元素
 </span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>
 
@@ -167,7 +167,7 @@
 </li>
 <li>
 <p>使用迭代器 Iterator 遍歷 ArrayList</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#998;font-style:italic">//ArrayList實現了Collection接口，因此他也實現了Iterable接口，所以他可以使用iterator迭代器來遍歷
 </span><span style="color:#998;font-style:italic"></span>        List<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span> list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
@@ -199,7 +199,7 @@
 </li>
 <li>
 <p>所以 Map 就沒有辦法直接使用 foreach（因為 Map 沒有實現 Iterable 接口），只有他的 <code>map.entrySet()</code>、<code>map.keySet()</code>、<code>map.values()</code> 這種返回一個集合類的方法，才能使用 foreach</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         List<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">&gt;</span> list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
         list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;hello&#34;</span><span style="color:#000;font-weight:bold">);</span>
@@ -225,7 +225,7 @@
 <ul>
 <li>
 <p>如果看過 Collection 類的源碼（以ArrayList為例），可以發現 ArrayList 類並不是由 ArrayList 去實現 Iterator 接口，而是 ArrayList 有一個內部類 Itr，專門去實現 Iterator 接口，而 ArrayList 的 <code>iterator()</code> 方法，只是去創建一個內部類 ArrayList.Itr 的實例而已</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//ArrayList不實現Iterator接口，反而是由他的內部類進行實現
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//ArrayList不實現Iterator接口，反而是由他的內部類進行實現
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">ArrayList</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">extends</span> AbstractList<span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#998;font-style:italic">//調用list.iterator()可以取得此list的迭代器
 </span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> Iterator<span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#900;font-weight:bold">iterator</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
@@ -402,7 +402,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

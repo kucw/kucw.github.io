@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Elastic Search 中 function_score 的加強函數 weight 具體用法">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">ElasticSearch - function_score（weight 具體實例）</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/07/06</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
             <a href="/categories/elastic-search">
-              <span class="text-primary">Elastic search</span>
+              <span class="text-primary">Elastic Search</span>
             </a>
           
         </div>
@@ -124,7 +124,7 @@
 <ul>
 <li>
 <p>一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;java&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
 { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;python&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
 { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
 </code></pre></div></li>
@@ -139,7 +139,7 @@
 </li>
 <li>
 <p>因此 ES 會先使用 score_mode 定義的方式來合併這些加強 score 們，得到一個總加強 score，得到總加強 score之後，才會再使用 boost_mode 定義的方式去和 old_score 做合併</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -188,7 +188,7 @@
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#a61717;background-color:#e3d2d2">//go同時滿足filter2、filter3</span>
         <span style="color:#a61717;background-color:#e3d2d2">//且還有一個加強函數field_value_factor產生的加強</span>
@@ -219,7 +219,7 @@
 <ul>
 <li>
 <p>不過就 DSL 語法上來說，他也像其他加強函數一樣，是可以直接使用而不用加 filter 的</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -234,7 +234,7 @@
         <span style="color:#a61717;background-color:#e3d2d2">]</span>
     }
 <span style="color:#a61717;background-color:#e3d2d2">}</span>
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">3</span>,
         <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
@@ -259,7 +259,7 @@
 </li>
 <li>
 <p>公式解析 : weight1 先加強 like 值（只能使用乘法），接著再透過 score_mode 定義的方法（sum）和另一個加強函數 weight2 合併，得到一個總加強 score，最後再使用 boost_mode 定義的方法（默認是 multiply）和 old_score 做合併，得到 new_score</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -281,7 +281,7 @@
         <span style="color:#d14">&#34;score_mode&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> <span style="color:#d14">&#34;sum&#34;</span>
     <span style="color:#a61717;background-color:#e3d2d2">}</span>
 <span style="color:#a61717;background-color:#e3d2d2">}</span>
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">50</span>,
         <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;language&#34;</span>: <span style="color:#d14">&#34;go&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
@@ -437,7 +437,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

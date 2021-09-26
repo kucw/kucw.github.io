@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹如何解決 application.properties 中文亂碼的問題">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">SpringBoot - 解決 application.properties 中文亂碼</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2021/07/25</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/spring-framework">
-              <span class="text-primary">Spring framework</span>
+            <a href="/categories/spring-boot">
+              <span class="text-primary">Spring Boot</span>
             </a>
           
         </div>
@@ -119,10 +119,10 @@
 
         <div class="content mb-4">
           <p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 <code>@Value</code> 讀取時會產生中文亂碼</p>
-<pre><code class="language-properties" data-lang="properties">name=小明
+<pre tabindex="0"><code class="language-properties" data-lang="properties">name=小明
 </code></pre><h3 id="解決辦法">解決辦法：</h3>
 <p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用<a href="https://www.chineseconverter.com/zh-tw/convert/unicode">此網頁</a>進行轉換）</p>
-<pre><code class="language-properties" data-lang="properties">name=\u5c0f\u660e
+<pre tabindex="0"><code class="language-properties" data-lang="properties">name=\u5c0f\u660e
 </code></pre>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
@@ -261,7 +261,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

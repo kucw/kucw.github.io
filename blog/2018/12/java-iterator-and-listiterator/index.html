@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Java 中的 Iterator 和 ListIterator 的差別，以及他們分別適用在什麼場景">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">Java - Iterator 和 ListIterator</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/12/12</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -124,13 +124,13 @@
 <ul>
 <li>
 <p>Iterator 只支持 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 三種操作，而 ListIterator 除了原本的 3 種之外，還支持了更多操作</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//Iterator接口
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//Iterator接口
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>
     E <span style="color:#900;font-weight:bold">next</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">remove</span><span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//ListIterator接口
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//ListIterator接口
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">ListIterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">extends</span> Iterator<span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#998;font-style:italic">//繼承自Iterator的接口
 </span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>         <span style="color:#998;font-style:italic">//後面是否有元素
@@ -165,7 +165,7 @@
 <ul>
 <li>
 <p>要注意的是，邊遍歷 List 邊使用 Iterator 和 ListIterator 的 <code>add()</code>、<code>remove()</code> 時，並不會影響當前 List 輸出結果，雖然他們修改的是同一個 List，但是迭代器故意將 add 和 remove 設計成就算執行了，也不影響當前迭代器的輸出結果</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
         list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">);</span>
@@ -187,7 +187,7 @@
         System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;list: &#34;</span> <span style="color:#000;font-weight:bold">+</span> list<span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><pre><code>1
+</code></pre></div><pre tabindex="0"><code>1
 2
 3
 list: [1, 2, 100, 3]
@@ -341,7 +341,7 @@ list: [1, 2, 100, 3]
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

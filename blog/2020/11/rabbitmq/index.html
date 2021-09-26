@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 RabbitMQ 的原理和常用的五種模式，以及如何使用 docker 安裝 RabbitMQ">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">RabbitMQ 基本介紹、安裝教學</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/11/18</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
             <a href="/categories/other-tech">
-              <span class="text-primary">Other tech</span>
+              <span class="text-primary">Other Tech</span>
             </a>
           
         </div>
@@ -186,7 +186,7 @@
   loading="lazy"
 /></p>
 <p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String routingKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...&#34;</span><span style="color:#000;font-weight:bold">;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String routingKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...&#34;</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;orange&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
     sendMessageToQ1<span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">||</span> routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;green&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
@@ -218,7 +218,7 @@
 <p>可以使用 docker 在自己的電腦上快速架設起 RabbitMQ 以及 RabbitMQ 專屬的 Web 管理介面</p>
 <p>推薦使用 <code>rabbitmq:management</code> 的 docker image，不僅可以幫我們架設起一個 RabbitMQ，還可以順便為我們架設起一個用來管理該 RabbitMQ 的 web 管理介面，非常方便</p>
 <p>執行以下方法，就可以順利啟動這個 docker image</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
 -e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
 </span><span style="color:#d14"></span>rabbitmq:management
 </code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234</p>
@@ -429,7 +429,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

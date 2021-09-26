@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Elastic Search 中 function_score 的加強函數 field_value_factor 具體用法">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">ElasticSearch - function_score（field_value_factor 具體實例）</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/07/05</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
             <a href="/categories/elastic-search">
-              <span class="text-primary">Elastic search</span>
+              <span class="text-primary">Elastic Search</span>
             </a>
           
         </div>
@@ -124,13 +124,13 @@
 <ul>
 <li>
 <p>首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
 { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
 { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
 </code></pre></div></li>
 <li>
 <p>先使用一般的 query，查看普通的查詢的評分會是如何</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match&#34;</span>: {
@@ -138,7 +138,7 @@
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.2876821</span>,
         <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 入門&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">2</span> }
@@ -158,7 +158,7 @@
 <ul>
 <li>
 <p>本來 &ldquo;ES 最高難度&rdquo; 的 score 是0.16540512，經過 field_value_factor 的改變，乘上了那個文檔中的like值（10）之後，新的 score 變為 1.6540513</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -173,7 +173,7 @@
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">1.6540513</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.16540512</span>
         <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 最高難度&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">10</span> }
@@ -198,7 +198,7 @@
 </li>
 <li>
 <p>而 ES 進階和 ES 最高難度的 field_value_factor 函數產生的加強 score 因為超過 max_boost 的限制，所以被設為 3</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -214,7 +214,7 @@
         }
     }
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_score&#34;</span>: <span style="color:#099">0.6092771</span>, <span style="color:#a61717;background-color:#e3d2d2">//原本是0.20309238</span>
         <span style="color:#000080">&#34;_source&#34;</span>: { <span style="color:#000080">&#34;title&#34;</span>: <span style="color:#d14">&#34;ES 進階&#34;</span>, <span style="color:#000080">&#34;like&#34;</span>: <span style="color:#099">5</span> }
@@ -286,7 +286,7 @@
 </li>
 <li>
 <p>對剛剛的例子加上 modifier、factor</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -323,7 +323,7 @@
   alt=""
   loading="lazy"
 /></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -346,7 +346,7 @@
 </li>
 <li>
 <p>另外使用 field_value_factor 時要注意，有的文檔可能會缺少這個字段的值，因此這時就要加上 <code>missing</code> 來給這些缺失字段值的文檔一個 default 的值</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;function_score&#34;</span>: {
@@ -505,7 +505,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

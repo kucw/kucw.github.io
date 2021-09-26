@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">SpringBoot - 單元測試工具 Mockito</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/02/20</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/spring-framework">
-              <span class="text-primary">Spring framework</span>
+            <a href="/categories/spring-boot">
+              <span class="text-primary">Spring Boot</span>
             </a>
           
         </div>
@@ -145,13 +145,13 @@
 <p>題外話說一下，Mockito 是命名自一種調酒莫吉托（Mojito），外國人也愛玩諧音梗。。。</p>
 <h3 id="3-在-springboot-單元測試中使用-mockito">3. 在 SpringBoot 單元測試中使用 Mockito</h3>
 <p>首先在 pom.xml 下新增 spring-boot-starter-test 依賴，該依賴內就有包含了 JUnit、Mockito</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
     <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
     <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#000080">&lt;/artifactId&gt;</span>
     <span style="color:#000080">&lt;scope&gt;</span>test<span style="color:#000080">&lt;/scope&gt;</span>
 <span style="color:#000080">&lt;/dependency&gt;</span>
 </code></pre></div><p>先寫好一個 UserService，他裡面有兩個方法 <code>getUserById()</code> 和 <code>insertUser()</code>，而他們會分別去再去調用 UserDao 這個 bean的 <code>getUserById()</code> 和 <code>insertUser()</code> 方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Component</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@Component</span>
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserService</span> <span style="color:#000;font-weight:bold">{</span>
 
     <span style="color:#3c5d5d;font-weight:bold">@Autowired</span>
@@ -166,13 +166,13 @@
     <span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>User model 的定義如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
     <span style="color:#998;font-style:italic">//省略 getter/setter
 </span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><p>如果這時候我們先不使用 Mockito 模擬一個假的 userDao bean，而是真的去 call 一個正常的 Spring bean 的 userDao 的話，測試類寫法如下。其實就是很普通的注入 userService bean，然後去調用他的方法，而他會再去 call userDao 取得 DB 的 data，然後我們再對返回結果做 assert 檢查</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@RunWith</span><span style="color:#000;font-weight:bold">(</span>SpringRunner<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@RunWith</span><span style="color:#000;font-weight:bold">(</span>SpringRunner<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span>
 <span style="color:#3c5d5d;font-weight:bold">@SpringBootTest</span>
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserServiceTest</span> <span style="color:#000;font-weight:bold">{</span>
 
@@ -194,9 +194,9 @@
 </code></pre></div><p>但是如果 userDao 還沒寫好，又想先測 userService 的話，就需要使用 Mockito 去模擬一個假的 userDao 出來</p>
 <p>使用方法是在 userDao 上加上一個 <code>@MockBean</code> 注解，當 userDao 被加上這個注解之後，表示 Mockito 會幫我們創建一個假的 mock 對象，替換掉 Spring 中已存在的那個真實的 userDao bean，也就是說，注入進 userService 的 userDao bean，已經被我們替換成假的 mock 對象了，所以當我們再次調用 userService 的方法時，會去調用的實際上是 mock userDao bean 的方法，而不是真實的 userDao bean</p>
 <p>當我們創建了一個假的 userDao 後，我們需要為這個 mock userDao 自定義方法的返回值，這裡有一個公式用法，下面這段 code 的意思為，當調用了某個 mock 對象的方法時，就回傳我們想要的自定義結果</p>
-<pre><code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )
+<pre tabindex="0"><code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )
 </code></pre><p>使用 Mockito 模擬 bean 的單元測試具體實例如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@RunWith</span><span style="color:#000;font-weight:bold">(</span>SpringRunner<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#3c5d5d;font-weight:bold">@RunWith</span><span style="color:#000;font-weight:bold">(</span>SpringRunner<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">)</span>
 <span style="color:#3c5d5d;font-weight:bold">@SpringBootTest</span>
 <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserServiceTest</span> <span style="color:#000;font-weight:bold">{</span>
 
@@ -222,28 +222,28 @@
 </code></pre></div><p>Mockito 除了最基本的 <code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )</code>，還提供了其他用法讓我們使用</p>
 <h4 id="thenreturn-系列方法">thenReturn 系列方法</h4>
 <p>當使用任何整數值調用 userService 的 getUserById() 方法時，就回傳一個名字為 I&rsquo;m mock3 的 user 對象</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">anyInt</span><span style="color:#000;font-weight:bold">())).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;I&#39;m mock&#34;</span><span style="color:#000;font-weight:bold">));</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">anyInt</span><span style="color:#000;font-weight:bold">())).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;I&#39;m mock&#34;</span><span style="color:#000;font-weight:bold">));</span>
 User user1 <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 回傳的user的名字為I&#39;m mock
 </span><span style="color:#998;font-style:italic"></span>User user2 <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>200<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 回傳的user的名字也為I&#39;m mock
 </span></code></pre></div><p>限制只有當參數的數字是 3 時，才會回傳名字為 I&rsquo;m mock 3 的 user 對象</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;I&#39;m mock&#34;</span><span style="color:#000;font-weight:bold">));</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;I&#39;m mock&#34;</span><span style="color:#000;font-weight:bold">));</span>
 User user1 <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 回傳的user的名字為I&#39;m mock
 </span><span style="color:#998;font-style:italic"></span>User user2 <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>200<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 回傳的user為null
 </span></code></pre></div><p>當調用 userService 的 insertUser() 方法時，不管傳進來的 user 是什麼，都回傳 100</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">insertUser</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">any</span><span style="color:#000;font-weight:bold">(</span>User<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">))).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span>100<span style="color:#000;font-weight:bold">);</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">insertUser</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">any</span><span style="color:#000;font-weight:bold">(</span>User<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">))).</span><span style="color:#008080">thenReturn</span><span style="color:#000;font-weight:bold">(</span>100<span style="color:#000;font-weight:bold">);</span>
 Integer i <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">insertUser</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">());</span> <span style="color:#998;font-style:italic">//會返回100
 </span></code></pre></div><h4 id="thenthrow-系列方法">thenThrow 系列方法</h4>
 <p>當調用 userService 的 getUserById() 時的參數是 9 時，拋出一個 RuntimeException</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>9<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">thenThrow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> RuntimeException<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;mock throw exception&#34;</span><span style="color:#000;font-weight:bold">));</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>9<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">thenThrow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> RuntimeException<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;mock throw exception&#34;</span><span style="color:#000;font-weight:bold">));</span>
 User user <span style="color:#000;font-weight:bold">=</span> userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>9<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">//會拋出一個RuntimeException
 </span></code></pre></div><p>如果方法沒有返回值的話（即是方法定義為<code>public void myMethod() {...}</code>），要改用 doThrow() 拋出 Exception</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">doThrow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> RuntimeException<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;mock throw exception&#34;</span><span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">print</span><span style="color:#000;font-weight:bold">();</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">doThrow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">new</span> RuntimeException<span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;mock throw exception&#34;</span><span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">when</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">print</span><span style="color:#000;font-weight:bold">();</span>
 userService<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">print</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#998;font-style:italic">//會拋出一個RuntimeException
 </span></code></pre></div><h4 id="verify-系列方法">verify 系列方法</h4>
 <p>檢查調用 userService 的 getUserById()、且參數為3的次數是否為1次</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">verify</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">,</span> Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">times</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eq</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">));</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">verify</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">,</span> Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">times</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">)).</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eq</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">));</span>
 </code></pre></div><p>驗證調用順序，驗證 userService 是否先調用 getUserById() 兩次，並且第一次的參數是 3、第二次的參數是 5，然後才調用insertUser() 方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">InOrder inOrder <span style="color:#000;font-weight:bold">=</span> Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">inOrder</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">);</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">InOrder inOrder <span style="color:#000;font-weight:bold">=</span> Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">inOrder</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">);</span>
 inOrder<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">verify</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">);</span>
 inOrder<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">verify</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">getUserById</span><span style="color:#000;font-weight:bold">(</span>5<span style="color:#000;font-weight:bold">);</span>
 inOrder<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">verify</span><span style="color:#000;font-weight:bold">(</span>userService<span style="color:#000;font-weight:bold">).</span><span style="color:#008080">insertUser</span><span style="color:#000;font-weight:bold">(</span>Mockito<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">any</span><span style="color:#000;font-weight:bold">(</span>User<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">));</span>
@@ -396,7 +396,7 @@ inOrder<span style="color:#000;font-weight:bold">.</span><span style="color:#008
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

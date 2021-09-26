@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹幾種常用來查 Log 的指令">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">Linux - 查看 Log 的指令 tail、multitail、less</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/07/25</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -124,15 +124,15 @@
 <ul>
 <li>
 <p>在實時日誌上打印顏色，給每個狀態給上不同的顏色，INFO 綠色、WARN 黃色、ERROR 紅色</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | perl -pe <span style="color:#d14">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | perl -pe <span style="color:#d14">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
 </code></pre></div></li>
 <li>
 <p>只看 ERROR</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | grep <span style="color:#d14">&#34;ERROR&#34;</span> --line-buffered | perl -pe <span style="color:#d14">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f catalina.out | grep <span style="color:#d14">&#34;ERROR&#34;</span> --line-buffered | perl -pe <span style="color:#d14">&#39;s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
 </code></pre></div></li>
 <li>
 <p>在 <code>.bashrc</code> 下加入這一段，可以讓 tail 輸出 log 時有顏色</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">tail</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_tail_log&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">tail</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_tail_log&#34;</span>
 _tail_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
   <span style="color:#d14">&#34;tail&#34;</span> <span style="color:#008080">$@</span> | perl -pe <span style="color:#d14">&#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&#39;</span>
 <span style="color:#000;font-weight:bold">}</span>
@@ -150,7 +150,7 @@ _tail_log<span style="color:#000;font-weight:bold">()</span> <span style="color:
 <ul>
 <li>
 <p>highlight 整條 log</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
 _show_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 awk <span style="color:#d14">&#39;
 </span><span style="color:#d14">/ERROR/ {printf(&#34;\033[1;31m%s\033[0m\n&#34;, $0)}
@@ -163,7 +163,7 @@ awk <span style="color:#d14">&#39;
 </li>
 <li>
 <p>只highlight INFO、WARN、ERROR 這種狀態</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">alias</span> <span style="color:#008080">less</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;_show_log&#34;</span>
 _show_log<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 awk <span style="color:#d14">&#39;
 </span><span style="color:#d14">/ERROR/ {sub(/ERROR/, &#34;\033[1;31mERROR\033[0m&#34;)}
@@ -183,7 +183,7 @@ awk <span style="color:#d14">&#39;
 </li>
 <li>
 <p><code>-s [column number]</code> : 設定看 log 時會分成幾個縱列</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">multitail -s <span style="color:#099">2</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">multitail -s <span style="color:#099">2</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span> -cS goldengate -l <span style="color:#d14">&#39;ssh [ip] &#34;tail -100f /example/logs/catalina.out&#34;&#39;</span>
 </code></pre></div></li>
 <li>
 <p>multitail 開始運作後，點擊 <code>b</code>，可以選擇要 scroll 的檔案，點擊 <code>q</code> 退出</p>
@@ -329,7 +329,7 @@ awk <span style="color:#d14">&#39;
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

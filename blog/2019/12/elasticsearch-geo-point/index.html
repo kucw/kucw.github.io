@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹如何使用 Elastic Search 的地理座標點 geo_point ，來進行地理座標的 index 和 search">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">ElasticSearch - 地理座標點 geo_point</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2019/12/07</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
             <a href="/categories/elastic-search">
-              <span class="text-primary">Elastic search</span>
+              <span class="text-primary">Elastic Search</span>
             </a>
           
         </div>
@@ -125,7 +125,7 @@
 </ol>
 <h3 id="geo_point-經緯度座標格式">geo_point 經緯度座標格式</h3>
 <p>在 mapping 定義時將字段類型定義為 geo_point</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">PUT</span> <span style="color:#a61717;background-color:#e3d2d2">mytest</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">PUT</span> <span style="color:#a61717;background-color:#e3d2d2">mytest</span>
 {
     <span style="color:#000080">&#34;mappings&#34;</span>: {
         <span style="color:#000080">&#34;properties&#34;</span>: {
@@ -142,7 +142,7 @@
 <ul>
 <li>
 <p>使用對象</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
 {
     <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;Pala Pizza as an object&#34;</span>,
     <span style="color:#000080">&#34;my_location&#34;</span>: {
@@ -153,7 +153,7 @@
 </code></pre></div></li>
 <li>
 <p>使用數組 location : [ lon, lat ]</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
 {
     <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;Pala Pizza as an array&#34;</span>,
     <span style="color:#000080">&#34;my_location&#34;</span>: [<span style="color:#099">-73.989</span>, <span style="color:#099">40.722</span>]
@@ -161,7 +161,7 @@
 </code></pre></div></li>
 <li>
 <p>使用字符串 location : &ldquo;lat, lon&rdquo;</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
 {
     <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;Pala Pizza as a string&#34;</span>,
     <span style="color:#000080">&#34;my_location&#34;</span>: <span style="color:#d14">&#34;40.722, -73.989&#34;</span>
@@ -169,7 +169,7 @@
 </code></pre></div></li>
 <li>
 <p>使用Geohash</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_doc</span>
 {
     <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;Pala Pizza as a geohash&#34;</span>,
     <span style="color:#000080">&#34;my_location&#34;</span>: <span style="color:#d14">&#34;drm3btev3e86&#34;</span>
@@ -187,7 +187,7 @@
 <p>指定一個矩形的頂部、底部、左邊界、右邊界，然後過濾器只需判斷座標的經度是否在左右邊界之間，緯度是否在上下邊界之間就可以判斷這個座標點是否在矩形範圍內</p>
 <p>可以選擇使用 <code>top_left + bottom_right</code> 或是 <code>top_right + bottom_left</code> 或是 <code>top + bottom + left + right</code></p>
 <h6 id="具體實例--找出那些位在-lat-407408且lon--73---74的座標點">具體實例 : 找出那些位在 lat 40.7~40.8，且lon -73 ~ -74的座標點</h6>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;bool&#34;</span>: {
@@ -218,7 +218,7 @@
 <li><code>plane</code> : plane的計算方式把地球當成是平坦的，這種方式快一些但是精度略遜，在赤道附近的位置精度最好，而靠近兩極則變差</li>
 </ul>
 <h6 id="具體實例--給定一個位置-40715--73988找出距離他1km以內的所有點">具體實例 : 給定一個位置 (40.715, -73.988)，找出距離他1km以內的所有點</h6>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;bool&#34;</span>: {
@@ -239,7 +239,7 @@
 <p>geo_polygon 可以自定義一個多邊形，然後判斷這個座標點是否在該多邊形內</p>
 <p>在使用 geo_polygon 時，需要使用 <code>points</code> 數組自定義多邊形，需要把該多邊形的所有點列出來在此數組裡，順序不影響</p>
 <h6 id="具體實例--找出那些位在指定多邊形內的座標點">具體實例 : 找出那些位在指定多邊形內的座標點</h6>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;bool&#34;</span> : {
@@ -261,7 +261,7 @@
 </code></pre></div><h3 id="按照距離大小進行排序">按照距離大小進行排序</h3>
 <h4 id="請求">請求</h4>
 <p>注意，會需要在請求時決定距離的單位的原因是因為，這些用於排序的距離的值，會設置在每個返回的結果的sort元素中，方便我們取得他們實際上距離那個點多少距離，而此時就必須知道距離的單位</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;bool&#34;</span>: {
@@ -300,7 +300,7 @@
 }
 </code></pre></div><h4 id="返回結果">返回結果</h4>
 <p>在sort存放的數字，告訴我們此餐廳到指定的位置的距離是0.0842km</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
     {
         <span style="color:#000080">&#34;_index&#34;</span>: <span style="color:#d14">&#34;attractions&#34;</span>,
         <span style="color:#000080">&#34;_type&#34;</span>: <span style="color:#d14">&#34;restaurant&#34;</span>,
@@ -460,7 +460,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

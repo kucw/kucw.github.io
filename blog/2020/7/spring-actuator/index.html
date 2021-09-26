@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹如何使用 SpringBoot 提供的 Actuator 功能，來對 SpringBoot Application 進行監控">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">SpringBoot - 監控工具 Actuator</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/07/14</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/spring-framework">
-              <span class="text-primary">Spring framework</span>
+            <a href="/categories/spring-boot">
+              <span class="text-primary">Spring Boot</span>
             </a>
           
         </div>
@@ -124,7 +124,7 @@
 </blockquote>
 <h3 id="使用-springboot-actuator">使用 SpringBoot Actuator</h3>
 <p>如果要使用 SpringBoot Actuator 提供的監控功能，需要先加入相關的 maven dependency</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
     <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
     <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span style="color:#000080">&lt;/artifactId&gt;</span>
 <span style="color:#000080">&lt;/dependency&gt;</span>
@@ -217,7 +217,7 @@
 </table>
 <h3 id="開啟受保護的-endpoint-的方法">開啟受保護的 endpoint 的方法</h3>
 <p>因為安全的因素，所以 Actuator 默認只會開放<code>/actuator/health</code>和<code>/actuator/info</code>這兩個 endpoint，如果要開放其他 endpoint 的話，需要額外在 application.properties 中做設置</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># 可以這樣寫，就會開啟所有endpoints(不包含shutdown)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># 可以這樣寫，就會開啟所有endpoints(不包含shutdown)</span>
 management.endpoints.web.exposure.include<span style="color:#000;font-weight:bold">=</span>*
 
 <span style="color:#998;font-style:italic"># 也可以這樣寫，就只會開啟指定的endpoint，因此此處只會再額外開啟/actuator/beans和/actuator/mappings</span>
@@ -231,7 +231,7 @@ management.endpoints.web.exposure.include<span style="color:#000;font-weight:bol
 <span style="color:#998;font-style:italic"># 如果要開啟/actuator/shutdown，要額外再加這一行</span>
 management.endpoint.shutdown.enabled<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">true</span>
 </code></pre></div><p>除此之外，也可以改變<code>/actuator</code>的路徑，可以自定義成自己想要的路徑</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic">#這樣寫的話，原本內建的/actuator/xxx路徑，都會變成/manage/xxx，可以用來防止被其他人猜到</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic">#這樣寫的話，原本內建的/actuator/xxx路徑，都會變成/manage/xxx，可以用來防止被其他人猜到</span>
 management.endpoints.web.base-path<span style="color:#000;font-weight:bold">=</span>/manage
 </code></pre></div><h4 id="溫馨提醒">溫馨提醒</h4>
 <p>如果開啟了 Actuator 默認不打開的 endpoints，建議一定要加上 Spring security 之類的做 endpoint 保護，避免重要資訊外洩</p>
@@ -374,7 +374,7 @@ management.endpoints.web.base-path<span style="color:#000;font-weight:bold">=</s
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>

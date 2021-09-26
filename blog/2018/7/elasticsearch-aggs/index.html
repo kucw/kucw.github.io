@@ -13,10 +13,10 @@
 
   <!-- SEO -->
   <meta name="description" content="介紹 Elastic Search 中 aggs 聚合 的概念以及使用方法">
-  <meta name="author" content="Kucw">
+  <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.74.3 with theme pure" />
+  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -49,7 +49,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
       <a class="navbar-brand" href="https://kucw.github.io">
-        <span class="text-body">Kucw&#39;s Blog</span>
+        <span class="text-body">古古&#39;s Blog</span>
       </a>
 
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -95,13 +95,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">ElasticSearch - 聚合 aggs</h3>
-        <div class="mb-3 text-center"><span>By Kucw</span>
+        <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2018/07/23</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
             <a href="/categories/elastic-search">
-              <span class="text-primary">Elastic search</span>
+              <span class="text-primary">Elastic Search</span>
             </a>
           
         </div>
@@ -177,7 +177,7 @@
 </ul>
 </li>
 <li>aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: { <span style="color:#a61717;background-color:#e3d2d2">...</span> },
     <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
@@ -202,7 +202,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#000080">&#34;hits&#34;</span>: {
         <span style="color:#000080">&#34;total&#34;</span>: <span style="color:#099">8</span>,
         <span style="color:#000080">&#34;max_score&#34;</span>: <span style="color:#099">0</span>,
@@ -238,12 +238,12 @@
 <li>具體實例
 <ul>
 <li>首先插入幾筆數據，其中 color 是一個 keyword 類型
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span> }
 { <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;green&#34;</span> }
 { <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>] }
 </code></pre></div></li>
 <li>執行 terms 桶聚合
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -262,7 +262,7 @@
 <ul>
 <li>因為 color 總共有 3 種值，red、blue、green，所以 terms 桶為他們產生了 3 個 bucket，並計算了每個 bucket 中符合的文檔有哪些</li>
 <li>bucket 和 bucket 間是獨立的，也就是說一個文檔可以同時符合好幾個 bucket，像是 <code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code> 就同時符合了 red 和 blue bucket
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
         <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
@@ -287,7 +287,7 @@
 </ul>
 </li>
 <li>可以在參數帶上 <code>min_doc_count</code> 限制當 doc 數大於等於 n 筆時才會被搜出來，也可以帶上 <code>size</code> 參數，指名要顯示 bucket 中多少筆數據，默認是 10
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -305,7 +305,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
         <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
@@ -324,16 +324,16 @@
 <ul>
 <li>將 terms 桶搭配度量指標（avg、min、max、sum&hellip;）一起使用
 <ul>
-<li>其實度量指標也可以看成一種&quot;桶&rdquo;，他可以和其他正常的桶們進行嵌套作用，差別只在指標關注的是這些文檔中的某個數值的統計，而桶關注的是文檔</li>
+<li>其實度量指標也可以看成一種&quot;桶&quot;，他可以和其他正常的桶們進行嵌套作用，差別只在指標關注的是這些文檔中的某個數值的統計，而桶關注的是文檔</li>
 </ul>
 </li>
 <li>首先準備數據，color 一樣為 keyword 類型，而 price 為 integer 類型
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
 { <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;green&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">500</span> }
 { <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>], <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">1000</span> }
 </code></pre></div></li>
 <li>將 avg 指標嵌套在 terms 桶裡一起使用
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -361,7 +361,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
         <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
@@ -416,11 +416,11 @@
 </ul>
 </li>
 <li>準備數據
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;green&#34;</span>] }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;green&#34;</span>] }
 { <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>] }
 </code></pre></div></li>
 <li>聚合時只聚合我們感興趣的 bucket，也就是 color 為 red 的文檔有多少，其他的 bucket 不聚合
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -437,7 +437,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
         <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
@@ -467,7 +467,7 @@
 <li>具體實例
 <ul>
 <li>取得 color 為 red 或是 blue 的文檔
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -489,7 +489,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span> <span style="color:#a61717;background-color:#e3d2d2">//filter桶計算出來的文檔數量</span>
     }
@@ -500,7 +500,7 @@
 <li>具體實例二
 <ul>
 <li>filter 桶和 terms 桶嵌套使用，先過濾出 color 為 red 或 blue 的文檔，再對這些文檔進行 color 分組
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -533,7 +533,7 @@
 <li>因為 terms 桶嵌套在 filter 桶內，所以 query 查詢出來的文檔們會先經過 filter 桶，如果符合 filter 桶，才會進入到 terms 桶內</li>
 <li>此處通過 filter 桶的文檔只有兩筆，分別是 <code>{&quot;color&quot;: &quot;red&quot;}</code>以及<code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code>，所以 terms 桶只會對這兩筆文檔做分組</li>
 <li>這也是為什麼 terms 桶裡沒有出現 color 為 green 的分組，因為這個文檔在 filter 桶就被擋下來了
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>, <span style="color:#a61717;background-color:#e3d2d2">//filter桶計算的數量，通過此處的文檔只有2筆</span>
         <span style="color:#000080">&#34;my_name2&#34;</span>: {
@@ -575,11 +575,11 @@
 <li>具體實例
 <ul>
 <li>準備數據，color 是 keyword 類型
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
 { <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>], <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">1000</span> }
 </code></pre></div></li>
 <li>使用 terms 桶進行分組，並且規定按照桶的字母順序升序，因此 a 生成桶會排在最前面而 z 生成桶會排在最後面
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
 {
     <span style="color:#000080">&#34;query&#34;</span>: {
         <span style="color:#000080">&#34;match_all&#34;</span>: {}
@@ -598,7 +598,7 @@
 }
 </code></pre></div></li>
 <li>結果
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
     <span style="color:#000080">&#34;my_name&#34;</span>: {
         <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
         <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
@@ -756,7 +756,7 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
+  ga('create', '', 'auto');
   ga('send', 'pageview');
 </script></body>
 </html>
