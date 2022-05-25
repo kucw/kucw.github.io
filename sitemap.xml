@@ -3,11 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2021-07-25T00:00:00+08:00</lastmod>
+    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2021-07-25T00:00:00+08:00</lastmod>
+    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
+    <loc>https://kucw.github.io/categories/other-tech/</loc>
+    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
+    <loc>https://kucw.github.io/</loc>
+    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
+    <loc>https://kucw.github.io/blog/2022/4/efficient-learning/</loc>
+    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/categories/spring-boot/</loc>
@@ -18,20 +30,12 @@
     <lastmod>2021-07-25T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
-    <loc>https://kucw.github.io/</loc>
-    <lastmod>2021-07-25T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url><url>
     <loc>https://kucw.github.io/categories/intellij/</loc>
     <lastmod>2021-04-25T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/blog/2021/4/intellij-coupon/</loc>
     <lastmod>2021-04-25T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url><url>
-    <loc>https://kucw.github.io/categories/other-tech/</loc>
-    <lastmod>2021-01-20T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/blog/2021/1/from-medium-to-github/</loc>
