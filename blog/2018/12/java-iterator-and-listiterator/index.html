@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -128,28 +128,28 @@
 <ul>
 <li>
 <p>Iterator 只支持 <code>hasNext()</code>、<code>next()</code>、<code>remove()</code> 三種操作，而 ListIterator 除了原本的 3 種之外，還支持了更多操作</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//Iterator接口
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>
-    E <span style="color:#900;font-weight:bold">next</span><span style="color:#000;font-weight:bold">();</span>
-    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">remove</span><span style="color:#000;font-weight:bold">();</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#998;font-style:italic">//ListIterator接口
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">ListIterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">extends</span> Iterator<span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">//繼承自Iterator的接口
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>         <span style="color:#998;font-style:italic">//後面是否有元素
-</span><span style="color:#998;font-style:italic"></span>    E <span style="color:#900;font-weight:bold">next</span><span style="color:#000;font-weight:bold">();</span>                  <span style="color:#998;font-style:italic">//游標向後移動，取得後面的元素
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">remove</span><span style="color:#000;font-weight:bold">();</span>             <span style="color:#998;font-style:italic">//刪除最後一個返回的元素
-</span><span style="color:#998;font-style:italic"></span>
-    <span style="color:#998;font-style:italic">//ListIterator新增的接口
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasPrevious</span><span style="color:#000;font-weight:bold">();</span>     <span style="color:#998;font-style:italic">//前面是否有元素
-</span><span style="color:#998;font-style:italic"></span>    E <span style="color:#900;font-weight:bold">previous</span><span style="color:#000;font-weight:bold">();</span>              <span style="color:#998;font-style:italic">//游標往前移動，取得前面的元素
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">previousIndex</span><span style="color:#000;font-weight:bold">();</span>       <span style="color:#998;font-style:italic">//取得游標前的index
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">nextIndex</span><span style="color:#000;font-weight:bold">();</span>           <span style="color:#998;font-style:italic">//取得游標後的index
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">set</span><span style="color:#000;font-weight:bold">(</span>E e<span style="color:#000;font-weight:bold">);</span>             <span style="color:#998;font-style:italic">//將當前元素改設成e
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">add</span><span style="color:#000;font-weight:bold">(</span>E e<span style="color:#000;font-weight:bold">);</span>             <span style="color:#998;font-style:italic">//增加一個元素
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">//Iterator接口
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Iterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    E <span style="color:#900;font-weight:bold">next</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">remove</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">//ListIterator接口
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">ListIterator</span><span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">extends</span> Iterator<span style="color:#000;font-weight:bold">&lt;</span>E<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">//繼承自Iterator的接口
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasNext</span><span style="color:#000;font-weight:bold">();</span>         <span style="color:#998;font-style:italic">//後面是否有元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    E <span style="color:#900;font-weight:bold">next</span><span style="color:#000;font-weight:bold">();</span>                  <span style="color:#998;font-style:italic">//游標向後移動，取得後面的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">remove</span><span style="color:#000;font-weight:bold">();</span>             <span style="color:#998;font-style:italic">//刪除最後一個返回的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">//ListIterator新增的接口
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">boolean</span> <span style="color:#900;font-weight:bold">hasPrevious</span><span style="color:#000;font-weight:bold">();</span>     <span style="color:#998;font-style:italic">//前面是否有元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    E <span style="color:#900;font-weight:bold">previous</span><span style="color:#000;font-weight:bold">();</span>              <span style="color:#998;font-style:italic">//游標往前移動，取得前面的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">previousIndex</span><span style="color:#000;font-weight:bold">();</span>       <span style="color:#998;font-style:italic">//取得游標前的index
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">nextIndex</span><span style="color:#000;font-weight:bold">();</span>           <span style="color:#998;font-style:italic">//取得游標後的index
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">set</span><span style="color:#000;font-weight:bold">(</span>E e<span style="color:#000;font-weight:bold">);</span>             <span style="color:#998;font-style:italic">//將當前元素改設成e
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">add</span><span style="color:#000;font-weight:bold">(</span>E e<span style="color:#000;font-weight:bold">);</span>             <span style="color:#998;font-style:italic">//增加一個元素
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -169,29 +169,29 @@
 <ul>
 <li>
 <p>要注意的是，邊遍歷 List 邊使用 Iterator 和 ListIterator 的 <code>add()</code>、<code>remove()</code> 時，並不會影響當前 List 輸出結果，雖然他們修改的是同一個 List，但是迭代器故意將 add 和 remove 設計成就算執行了，也不影響當前迭代器的輸出結果</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
-        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">);</span>
-        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>2<span style="color:#000;font-weight:bold">);</span>
-        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">);</span>
-
-        ListIterator<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> it <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listIterator</span><span style="color:#000;font-weight:bold">();</span>
-
-        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hasNext</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
-            Integer x <span style="color:#000;font-weight:bold">=</span> it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">next</span><span style="color:#000;font-weight:bold">();</span>
-            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>x<span style="color:#000;font-weight:bold">);</span>
-            <span style="color:#998;font-style:italic">//雖然使用it.add(100)去新增一個元素，使得list實際儲存的是 [1,2,100,3]
-</span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">//但是此處的遍歷仍然只顯示[1,2,3]，這是迭代器故意這樣設計的
-</span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>x <span style="color:#000;font-weight:bold">==</span> 2<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-                it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>100<span style="color:#000;font-weight:bold">);</span>
-            <span style="color:#000;font-weight:bold">}</span>
-        <span style="color:#000;font-weight:bold">}</span>
-
-        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;list: &#34;</span> <span style="color:#000;font-weight:bold">+</span> list<span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><pre tabindex="0"><code>1
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> list <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>1<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>2<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>3<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ListIterator<span style="color:#000;font-weight:bold">&lt;</span>Integer<span style="color:#000;font-weight:bold">&gt;</span> it <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">listIterator</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">while</span> <span style="color:#000;font-weight:bold">(</span>it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">hasNext</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            Integer x <span style="color:#000;font-weight:bold">=</span> it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">next</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>x<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#998;font-style:italic">//雖然使用it.add(100)去新增一個元素，使得list實際儲存的是 [1,2,100,3]
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#998;font-style:italic">//但是此處的遍歷仍然只顯示[1,2,3]，這是迭代器故意這樣設計的
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>x <span style="color:#000;font-weight:bold">==</span> 2<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>                it<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>100<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;list: &#34;</span> <span style="color:#000;font-weight:bold">+</span> list<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><pre tabindex="0"><code>1
 2
 3
 list: [1, 2, 100, 3]

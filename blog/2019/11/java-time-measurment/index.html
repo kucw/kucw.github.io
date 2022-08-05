@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -130,18 +130,18 @@
 <li><code>elapsed(TimeUnit unit)</code> : 取得從開始到結束的時間</li>
 </ul>
 <h3 id="具體實例">具體實例</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        Stopwatch stopwatch <span style="color:#000;font-weight:bold">=</span> Stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">createStarted</span><span style="color:#000;font-weight:bold">();</span>
-
-        doSomething<span style="color:#000;font-weight:bold">();</span>
-
-        stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">stop</span><span style="color:#000;font-weight:bold">();</span>
-        <span style="color:#458;font-weight:bold">long</span> millis <span style="color:#000;font-weight:bold">=</span> stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">elapsed</span><span style="color:#000;font-weight:bold">(</span>TimeUnit<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">MILLISECONDS</span><span style="color:#000;font-weight:bold">);</span>
-        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;time: &#34;</span> <span style="color:#000;font-weight:bold">+</span> millis <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; ms&#34;</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        Stopwatch stopwatch <span style="color:#000;font-weight:bold">=</span> Stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">createStarted</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        doSomething<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">stop</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#458;font-weight:bold">long</span> millis <span style="color:#000;font-weight:bold">=</span> stopwatch<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">elapsed</span><span style="color:#000;font-weight:bold">(</span>TimeUnit<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">MILLISECONDS</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;time: &#34;</span> <span style="color:#000;font-weight:bold">+</span> millis <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34; ms&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 

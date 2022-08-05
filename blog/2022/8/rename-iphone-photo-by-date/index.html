@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    ElasticSearch - term 和 match 的差別
+    重新命名 iPhone 照片檔名為日期時間（Mac版）
     
   </title>
 
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="介紹 Elastic Search 中 term 和 match 的差別">
+  <meta name="description" content="介紹如何透過 Mac 大量重新命名 iPhone 的照片檔名">
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
@@ -98,14 +98,14 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-9 mx-auto">
-        <h3 class="text-center">ElasticSearch - term 和 match 的差別</h3>
+        <h3 class="text-center">重新命名 iPhone 照片檔名為日期時間（Mac版）</h3>
         <div class="mb-3 text-center"><span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>2018/06/20</span>
+          <span>2022/08/05</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           
-            <a href="/categories/elastic-search">
-              <span class="text-primary">Elastic Search</span>
+            <a href="/categories/other-tech">
+              <span class="text-primary">Other Tech</span>
             </a>
           
         </div>
@@ -122,34 +122,28 @@
 
 
         <div class="content mb-4">
-          <ul>
-<li>ES 中的 term 和 match 牽扯到了分詞器、mapping、倒排索引等，如果不熟悉相關知識，請先看 <a href="/blog/2018/6/elasticsearch-index-mapping/">ElasticSearch - index mapping（5.x以上）</a> 這篇文章
-<ul>
-<li>term 是直接把 field 拿去查詢倒排索引中確切的 term</li>
-<li>match 會先對 field 進行分詞操作，然後再去倒排索引中查詢</li>
-</ul>
-</li>
-<li>具體實例
-<ul>
-<li>假設有一個字段 nickname，存放的類型是 text，因此當新增一筆文檔時，內容會被分詞器分詞，然後才儲存進倒排索引</li>
-<li>假設插入了一筆文檔，其中 <code>&quot;nickname&quot;: &quot;1 hello&quot;</code>，分詞過後變為 <code>1</code>、<code>hello</code>，因此倒排索引中儲存的是兩筆索引 <code>1</code> 和 <code>hello</code>，而不是一筆索引 <code>1 hello</code></li>
-<li>使用 match 做查詢
-<ul>
-<li><code>&quot;match&quot;: &quot;1-hello&quot;</code> : 成功，因為 match 把 <code>1-hello</code> 分詞成 1、hello，而 1 和 hello 都存在在倒排索引中，所以不只能夠查到，_score 還很高</li>
-<li><code>&quot;match&quot;: &quot;1&quot;</code> : 成功，1 被分詞過後還是 1，而 1 存在在倒排索引中</li>
-<li><code>&quot;match&quot;: &quot;hello how r u&quot;</code> : 成功，match 把 <code>hello how r u</code> 分詞成 hello、how、r、u，而 hello 存在在倒排索引中</li>
-</ul>
-</li>
-<li>使用 term 做查詢
-<ul>
-<li><code>&quot;term&quot;: &quot;2222-hello</code> : 失敗，倒排索引只有 1、hello，並沒有 <code>2222-hello</code></li>
-<li><code>&quot;term&quot;: &quot;hello&quot;</code> : 成功，因為倒排索引中有 hello</li>
-<li><code>&quot;term&quot;: &quot;1 hello&quot;</code> : 失敗，雖然 <code>1 hello</code> 和我們當時插入的數據一模一樣，但是因為倒排索引在建立索引時把原始的數據分詞了才儲存進索引，裡面存的是 <code>1</code> 和 <code>hello</code>，並沒有存放 <code>1 hello</code>，因此查詢失敗</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <p>iPhone airdrop 到 Macbook 上的照片檔名為 IMG_0862.JPG，不利於照片整理，改命名成右邊這種 IMG_20220726_110204.JPG 格式會好整理很多</p>
+<p>
+
+<img
+  src="/images/blog/iphone_photo1.png"
+  alt=""
+  loading="lazy"
+/></p>
+<p>想要大量修改圖片檔案名稱為右邊這種格式，可以透過 <strong>ExifTool</strong> 工具解決</p>
+<h3 id="exiftool-使用教學mac-版">ExifTool 使用教學（Mac 版）</h3>
+<p>先到 <a href="https://exiftool.org/">ExifTool</a> 官網下載安裝檔，並且安裝該 dmg 程式</p>
+<p>
+
+<img
+  src="/images/blog/iphone_photo2.png"
+  alt=""
+  loading="lazy"
+/></p>
+<p>打開 Terminal，執行以下指令（最後一個參數值 ~/Downloads/image 為待轉換的照片資料夾，可自行更換路徑）</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exiftool -d <span style="color:#d14">&#39;IMG_%Y%m%d_%H%M%S&#39;</span> <span style="color:#d14">&#39;-Filename&lt;${DateTimeOriginal}.%e&#39;</span> ~/Downloads/image
+</span></span></code></pre></div><p>執行完成後，照片就會根據創建日期重新命名了，可喜可賀XD</p>
+<p>PS: 注意此指令會直接覆寫檔案檔名，不會備份照片，且此操作無法透過 Ctrl+Z 復原</p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>

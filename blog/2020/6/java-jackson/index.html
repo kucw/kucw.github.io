@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -130,96 +130,96 @@
 </ul>
 <h3 id="在-spring-boot-裡使用-objectmapper">在 Spring Boot 裡使用 ObjectMapper</h3>
 <p>ObjectMapper 是由 Jackson library 所提供的一個功能，所以只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;dependency&gt;</span>
-    <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
-    <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#000080">&lt;/artifactId&gt;</span>
-<span style="color:#000080">&lt;/dependency&gt;</span>
-</code></pre></div><h3 id="json-和-java-objectlistmap-的互轉">Json 和 Java Object、List、Map 的互轉</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#000080">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000080">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="json-和-java-objectlistmap-的互轉">Json 和 Java Object、List、Map 的互轉</h3>
 <p>先定義一個 User class</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#998;font-style:italic">// 省略constructor, getter, setter
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>使用 ObjectMapper 完成 json 和 Java Object、List、Map 之間的互轉</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">java.util.*</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.core.type.TypeReference</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.databind.ObjectMapper</span><span style="color:#000;font-weight:bold">;</span>
-
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MainTest</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
-        ObjectMapper objectMapper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ObjectMapper<span style="color:#000;font-weight:bold">();</span>
-
-        <span style="color:#998;font-style:italic">// User Object 轉 json
-</span><span style="color:#998;font-style:italic"></span>        User user1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        String json <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>user1<span style="color:#000;font-weight:bold">);</span>
-
-        <span style="color:#998;font-style:italic">// json 轉 User Object
-</span><span style="color:#998;font-style:italic"></span>        User user2 <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
-
-        <span style="color:#998;font-style:italic">// List&lt;User&gt; 轉 json
-</span><span style="color:#998;font-style:italic"></span>        List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> ulist <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
-        User user4 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        ulist<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>user4<span style="color:#000;font-weight:bold">);</span>
-        String ujson <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>ulist<span style="color:#000;font-weight:bold">);</span>
-
-        <span style="color:#998;font-style:italic">// json 轉 List&lt;User&gt;
-</span><span style="color:#998;font-style:italic"></span>        List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> urlist <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>ujson<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> TypeReference<span style="color:#000;font-weight:bold">&lt;</span>List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;&gt;()</span> <span style="color:#000;font-weight:bold">{});</span>
-        
-        <span style="color:#998;font-style:italic">// Map&lt;String, User&gt; 轉 json
-</span><span style="color:#998;font-style:italic"></span>        HashMap<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;</span> umap <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> HashMap<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
-        User user3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        umap<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">put</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">,</span> user3<span style="color:#000;font-weight:bold">);</span>
-        String mjson2 <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>umap<span style="color:#000;font-weight:bold">);</span>
-
-        <span style="color:#998;font-style:italic">// json 轉 Map&lt;String, User&gt;
-</span><span style="color:#998;font-style:italic"></span>        Map<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;</span> urMap <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>mjson2<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> TypeReference<span style="color:#000;font-weight:bold">&lt;</span>HashMap<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;&gt;()</span> <span style="color:#000;font-weight:bold">{});</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><h3 id="deserialize-自定義的泛型-class">Deserialize 自定義的泛型 class</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> <span style="color:#458;font-weight:bold">int</span> id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 省略constructor, getter, setter
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>使用 ObjectMapper 完成 json 和 Java Object、List、Map 之間的互轉</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">java.util.*</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.core.type.TypeReference</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">com.fasterxml.jackson.databind.ObjectMapper</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MainTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        ObjectMapper objectMapper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ObjectMapper<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// User Object 轉 json
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        User user1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        String json <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>user1<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// json 轉 User Object
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        User user2 <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// List&lt;User&gt; 轉 json
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> ulist <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ArrayList<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        User user4 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        ulist<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">add</span><span style="color:#000;font-weight:bold">(</span>user4<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        String ujson <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>ulist<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// json 轉 List&lt;User&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> urlist <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>ujson<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> TypeReference<span style="color:#000;font-weight:bold">&lt;</span>List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;&gt;()</span> <span style="color:#000;font-weight:bold">{});</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// Map&lt;String, User&gt; 轉 json
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        HashMap<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;</span> umap <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> HashMap<span style="color:#000;font-weight:bold">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        User user3 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> User<span style="color:#000;font-weight:bold">(</span>123<span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        umap<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">put</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;John&#34;</span><span style="color:#000;font-weight:bold">,</span> user3<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        String mjson2 <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">writeValueAsString</span><span style="color:#000;font-weight:bold">(</span>umap<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// json 轉 Map&lt;String, User&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        Map<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;</span> urMap <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>mjson2<span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">new</span> TypeReference<span style="color:#000;font-weight:bold">&lt;</span>HashMap<span style="color:#000;font-weight:bold">&lt;</span>String<span style="color:#000;font-weight:bold">,</span> User<span style="color:#000;font-weight:bold">&gt;&gt;()</span> <span style="color:#000;font-weight:bold">{});</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h3 id="deserialize-自定義的泛型-class">Deserialize 自定義的泛型 class</h3>
 <p>如果要 deserialize 的是自定義的泛型 class，那就需要特殊處理，不能夠像 <code>List&lt;T&gt;</code> 和 <code>Map&lt;T, R&gt;</code> 那樣直接用 TypeReference 互轉</p>
 <p>原因是因為 <code>List&lt;T&gt;</code> 實際上存的還是 Object，他只是取出來的時候強行轉換成 T 而已</p>
 <p>先定義一個泛型 class</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hit</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000;font-weight:bold">private</span> T source<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#998;font-style:italic">// 省略getter, setter
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>再定義一個正常的 Apple class</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Apple</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">private</span> String color<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000;font-weight:bold">private</span> Integer weight<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#998;font-style:italic">//省略getter/setter
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>待轉換的 json</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#000080">&#34;id&#34;</span>: <span style="color:#099">111</span>,
-    <span style="color:#000080">&#34;source&#34;</span>: {
-        <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-        <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#099">100</span>
-    }
-}
-</code></pre></div><p>使用 ObjectMapper 將 json 轉換成帶有泛型的 class</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#998;font-style:italic">// 使用 ObjectMapper 將 json 轉成泛型 class 的方法
-</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> Hit<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#900;font-weight:bold">convert</span><span style="color:#000;font-weight:bold">(</span>String json<span style="color:#000;font-weight:bold">,</span> Class<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> targetClass<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
-        ObjectMapper objectMapper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ObjectMapper<span style="color:#000;font-weight:bold">();</span>
-
-        Hit<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> hit <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>
-
-        JavaType clazzType <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTypeFactory</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">constructParametricType</span><span style="color:#000;font-weight:bold">(</span>Hit<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">,</span> targetClass<span style="color:#000;font-weight:bold">);</span>
-        hit <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> clazzType<span style="color:#000;font-weight:bold">);</span>
-
-        <span style="color:#000;font-weight:bold">return</span> hit<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000;font-weight:bold">}</span>
-
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#998;font-style:italic">// 實際用起來會像這樣
-</span><span style="color:#998;font-style:italic"></span>        String json <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;{\&#34;id\&#34;: 111,\&#34;source\&#34;: {\&#34;color\&#34;: \&#34;red\&#34;,\&#34;weight\&#34;: 100}}&#34;</span><span style="color:#000;font-weight:bold">;</span>
-        Hit<span style="color:#000;font-weight:bold">&lt;</span>Apple<span style="color:#000;font-weight:bold">&gt;</span> appleHit <span style="color:#000;font-weight:bold">=</span> convert<span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> Apple<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hit</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> T source<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 省略getter, setter
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>再定義一個正常的 Apple class</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Apple</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String color<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> Integer weight<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">//省略getter/setter
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>待轉換的 json</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;id&#34;</span>: <span style="color:#099">111</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;source&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;weight&#34;</span>: <span style="color:#099">100</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>使用 ObjectMapper 將 json 轉換成帶有泛型的 class</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 使用 ObjectMapper 將 json 轉成泛型 class 的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> Hit<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#900;font-weight:bold">convert</span><span style="color:#000;font-weight:bold">(</span>String json<span style="color:#000;font-weight:bold">,</span> Class<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> targetClass<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">throws</span> Exception <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        ObjectMapper objectMapper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> ObjectMapper<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Hit<span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span> hit <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        JavaType clazzType <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getTypeFactory</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">constructParametricType</span><span style="color:#000;font-weight:bold">(</span>Hit<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">,</span> targetClass<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        hit <span style="color:#000;font-weight:bold">=</span> objectMapper<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">readValue</span><span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> clazzType<span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">return</span> hit<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">// 實際用起來會像這樣
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        String json <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;{\&#34;id\&#34;: 111,\&#34;source\&#34;: {\&#34;color\&#34;: \&#34;red\&#34;,\&#34;weight\&#34;: 100}}&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        Hit<span style="color:#000;font-weight:bold">&lt;</span>Apple<span style="color:#000;font-weight:bold">&gt;</span> appleHit <span style="color:#000;font-weight:bold">=</span> convert<span style="color:#000;font-weight:bold">(</span>json<span style="color:#000;font-weight:bold">,</span> Apple<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 

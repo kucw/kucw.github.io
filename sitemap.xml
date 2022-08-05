@@ -3,19 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/categories/other-tech/</loc>
-    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/</loc>
-    <lastmod>2022-04-30T00:00:00+08:00</lastmod>
+    <lastmod>2022-08-05T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
+    <loc>https://kucw.github.io/blog/2022/8/rename-iphone-photo-by-date/</loc>
+    <lastmod>2022-08-05T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/blog/2022/4/efficient-learning/</loc>

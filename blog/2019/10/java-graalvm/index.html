@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -153,18 +153,18 @@
   loading="lazy"
 /></p>
 <p>具體實例</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
-
-        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
-
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><pre tabindex="0"><code>Hello World from Java!
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Hello World from Java!
 Hello World from JavaScript!
 Hello World from Python!
 Hello World from Ruby!
@@ -201,11 +201,11 @@ Hello World from Ruby!
 <h3 id="安裝-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/">官網</a>下載 GraalVM community，如果電腦是 mac，選擇 graalvm-ce-darwin-amd64-19.2.0.1.tar.gz 下載，如果是 Linux/Windows，則選擇相對應版本下載</p>
 <p>下載完後解壓縮，放到 <code>/Library/Java/JavaVirtualMachines</code> 下，然後在 <code>.bashrc</code> 或 <code>.zshrc</code> 中加上以下設定</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0086b3">export</span> <span style="color:#008080">PATH</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span style="color:#008080">$PATH</span><span style="color:#d14">&#34;</span>
-<span style="color:#0086b3">export</span> <span style="color:#008080">JAVA_HOME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home&#34;</span>
-</code></pre></div><p>做完之後就可以使用 GraalVM Component Updater 的 <code>gu</code> 指令了，預設的 GraalVM 中只幫我們預載好了 Java 和 Javascript 而已，如果想要其他東西，需要再用 gu 額外下載</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gu install native-image ruby python R
-</code></pre></div><p>設好路徑後，也會發現 java 默認的 vm 改成了使用 GraalVM</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#0086b3">export</span> <span style="color:#008080">PATH</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home/bin:</span><span style="color:#008080">$PATH</span><span style="color:#d14">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">export</span> <span style="color:#008080">JAVA_HOME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home&#34;</span>
+</span></span></code></pre></div><p>做完之後就可以使用 GraalVM Component Updater 的 <code>gu</code> 指令了，預設的 GraalVM 中只幫我們預載好了 Java 和 Javascript 而已，如果想要其他東西，需要再用 gu 額外下載</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gu install native-image ruby python R
+</span></span></code></pre></div><p>設好路徑後，也會發現 java 默認的 vm 改成了使用 GraalVM</p>
 <p>原本的樣子</p>
 <p>
 
@@ -223,23 +223,23 @@ Hello World from Ruby!
   loading="lazy"
 /></p>
 <p>接著新增一個檔案，檔名叫做 Main.java，並在裡面寫入以下內容，測試我們是否有成功切換至 GraalVM</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">org.graalvm.polyglot.*</span><span style="color:#000;font-weight:bold">;</span>
-
-<span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
-
-        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
-
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
-        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>執行以下指令</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">javac Main.java
-java Main
-</code></pre></div><p>如果有成功輸出以下訊息，表示成功使用 GraalVM 來 run java bytecode</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">org.graalvm.polyglot.*</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>執行以下指令</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>javac Main.java
+</span></span><span style="display:flex;"><span>java Main
+</span></span></code></pre></div><p>如果有成功輸出以下訊息，表示成功使用 GraalVM 來 run java bytecode</p>
 <pre tabindex="0"><code>Hello World from Java!
 Hello World from JavaScript!
 Hello World from Python!

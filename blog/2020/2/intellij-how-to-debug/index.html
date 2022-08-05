@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -124,23 +124,23 @@
         <div class="content mb-4">
           <h3 id="1-什麼是-debug-模式">1. 什麼是 Debug 模式？</h3>
 <p>還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 <code>System.out.println()</code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 <code>System.out.println()</code>，所以到後來我的 code 就會長的像下圖這樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#000;font-weight:bold">public</span> User <span style="color:#900;font-weight:bold">getMaleUser</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
-    List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> userList <span style="color:#000;font-weight:bold">=</span> userDao<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserList</span><span style="color:#000;font-weight:bold">();</span>
-    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>userList<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// print userList，看一下userList裡面的內容長怎樣
-</span><span style="color:#998;font-style:italic"></span>
-    <span style="color:#998;font-style:italic">// 從userList中取出男生，然後回傳
-</span><span style="color:#998;font-style:italic"></span>    User resultUser<span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>User user <span style="color:#000;font-weight:bold">:</span> userList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>user<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getGender</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;男&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-            resultUser <span style="color:#000;font-weight:bold">=</span> user<span style="color:#000;font-weight:bold">;</span>
-        <span style="color:#000;font-weight:bold">}</span>
-    <span style="color:#000;font-weight:bold">}</span>
-
-    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>resultUser<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 再print resultUser，確認一下回傳的user到底是哪一個
-</span><span style="color:#998;font-style:italic"></span>
-    <span style="color:#000;font-weight:bold">return</span> resultUser<span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>可想而知，這樣做的開發效率是非常差的，每多看一個 variable 就要多增加一行 <code>System.out.println()</code>，而且每次改了之後，都要重新運行程式，讓程式再 print 出一次數據，我想想都覺得痛苦，難道 IntelliJ 就沒有一個能夠快速反應出現在這個 variable 的值是什麼的功能嗎？</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> User <span style="color:#900;font-weight:bold">getMaleUser</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span> userList <span style="color:#000;font-weight:bold">=</span> userDao<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getUserList</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>userList<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// print userList，看一下userList裡面的內容長怎樣
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#998;font-style:italic">// 從userList中取出男生，然後回傳
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    User resultUser<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span>User user <span style="color:#000;font-weight:bold">:</span> userList<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>user<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getGender</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;男&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            resultUser <span style="color:#000;font-weight:bold">=</span> user<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span>resultUser<span style="color:#000;font-weight:bold">);</span> <span style="color:#998;font-style:italic">// 再print resultUser，確認一下回傳的user到底是哪一個
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">return</span> resultUser<span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>可想而知，這樣做的開發效率是非常差的，每多看一個 variable 就要多增加一行 <code>System.out.println()</code>，而且每次改了之後，都要重新運行程式，讓程式再 print 出一次數據，我想想都覺得痛苦，難道 IntelliJ 就沒有一個能夠快速反應出現在這個 variable 的值是什麼的功能嗎？</p>
 <p>事實上，IntelliJ 是有提供的！當我們在運行程式時，改成使用 <strong>Debug 模式</strong> 運行就可以了！</p>
 <h3 id="2-intellij-的-debug-模式">2. IntelliJ 的 Debug 模式</h3>
 <p>使用 IntelliJ 的 Debug 模式來運行程式的好處</p>
@@ -193,7 +193,7 @@
 /></p>
 <ol>
 <li>Rerun : 重新運行程式，他會關閉程式後再重新啓動一次，不過很少用到，通常都會直接關掉，再手動開啟一次</li>
-<li>Update &lsquo;tech&rsquo; application : 更新程式，就是執行當初定義的 update 選項，當 Debug 模式啟動後，再次點擊 debug 按鈕也會跳出此選項</li>
+<li>Update &rsquo;tech&rsquo; application : 更新程式，就是執行當初定義的 update 選項，當 Debug 模式啟動後，再次點擊 debug 按鈕也會跳出此選項</li>
 <li>Resume Program : 繼續執行程序，例如在第 20 行和 25 行有兩個 break point，而當前運行至第 20 行，按一下，則運行到下一個 break point（即第 25 行），再按一下，則運行完整個流程，因爲後面已經沒有 break point 了</li>
 <li>Pause Program : 暫停程式，很少用，不是很重要</li>
 <li>Stop : 連續按兩下關閉程式，有時候你會發現關閉程式再啓動時，說 port 被佔用，這是因爲沒完全關閉程式的原因</li>

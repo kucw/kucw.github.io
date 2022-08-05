@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.88.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -190,13 +190,13 @@
   loading="lazy"
 /></p>
 <p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String routingKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...&#34;</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;orange&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
-    sendMessageToQ1<span style="color:#000;font-weight:bold">();</span>
-<span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">||</span> routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;green&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
-    sendMessageToQ2<span style="color:#000;font-weight:bold">();</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String routingKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;orange&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    sendMessageToQ1<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">||</span> routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;green&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    sendMessageToQ2<span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
 <p>所以我們就可以用一個 Exchange，將 <code>info</code>, <code>error</code>, <code>warning</code> routing key 綁到一般的 log queue上，然後可以再將 <code>error</code> routing key 綁到另一個 error log queue 上，這樣就可以做出一個帶有全部 log 的 Queue、以及一個只包含 error log 的 Queue</p>
 <p>
 
@@ -222,10 +222,10 @@
 <p>可以使用 docker 在自己的電腦上快速架設起 RabbitMQ 以及 RabbitMQ 專屬的 Web 管理介面</p>
 <p>推薦使用 <code>rabbitmq:management</code> 的 docker image，不僅可以幫我們架設起一個 RabbitMQ，還可以順便為我們架設起一個用來管理該 RabbitMQ 的 web 管理介面，非常方便</p>
 <p>執行以下方法，就可以順利啟動這個 docker image</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
--e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
-</span><span style="color:#d14"></span>rabbitmq:management
-</code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
+</span></span><span style="display:flex;"><span>-e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
+</span></span></span><span style="display:flex;"><span><span style="color:#d14"></span>rabbitmq:management
+</span></span></code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234</p>
 <p>啟動好 docker image 之後，RabbitMQ 使用的 port 默認是 5672，而 RabbitMQ 的 Web 管理介面使用的 port 默認是 15672，因此只要訪問 <code>http://localhost:15672</code>，就會出現 RabbitMQ 的 Web 管理介面，此時就可以在輸入剛剛運行 docker image 所設定的帳號密碼登入進去</p>
 <p>
 
