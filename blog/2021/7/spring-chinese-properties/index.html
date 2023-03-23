@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.101.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.111.3 with theme pure" />
 
   <!-- Plugins -->
   
@@ -43,6 +43,17 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5137195898860539"
      crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ9N746V05"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TQ9N746V05');
+</script>
 </head>
 <body>
 <!-- preloader start -->
@@ -126,11 +137,11 @@
 
         <div class="content mb-4">
           <p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 <code>@Value</code> 讀取時會產生中文亂碼</p>
-<pre tabindex="0"><code class="language-properties" data-lang="properties">name=小明
-</code></pre><h3 id="解決辦法">解決辦法：</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">小明</span>
+</span></span></code></pre></div><h3 id="解決辦法">解決辦法：</h3>
 <p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用<a href="https://www.chineseconverter.com/zh-tw/convert/unicode">此網頁</a>進行轉換）</p>
-<pre tabindex="0"><code class="language-properties" data-lang="properties">name=\u5c0f\u660e
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">\u5c0f\u660e</span>
+</span></span></code></pre></div>
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
 
@@ -255,20 +266,5 @@
 <!-- Main Script -->
 
 <script src="https://kucw.github.io/js/script.min.js"></script>
-<!-- google analitycs -->
-<script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-151537961-2', 'auto');
-  ga('send', 'pageview');
-</script></body>
+</body>
 </html>
