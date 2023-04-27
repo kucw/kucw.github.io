@@ -2,19 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kucw.github.io/blog/2023/4/cebu-plan/</loc>
+    <lastmod>2023-04-27T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
     <loc>https://kucw.github.io/blog/</loc>
-    <lastmod>2023-04-02T00:00:00+08:00</lastmod>
+    <lastmod>2023-04-27T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/categories/</loc>
-    <lastmod>2023-04-02T00:00:00+08:00</lastmod>
+    <lastmod>2023-04-27T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
-    <loc>https://kucw.github.io/categories/other-tech/</loc>
-    <lastmod>2023-04-02T00:00:00+08:00</lastmod>
+    <loc>https://kucw.github.io/categories/life/</loc>
+    <lastmod>2023-04-27T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/</loc>
+    <lastmod>2023-04-27T00:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url><url>
+    <loc>https://kucw.github.io/categories/other-tech/</loc>
     <lastmod>2023-04-02T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
@@ -104,10 +112,6 @@
   </url><url>
     <loc>https://kucw.github.io/blog/2019/12/elasticsearch-geo-point/</loc>
     <lastmod>2019-12-07T00:00:00+08:00</lastmod>
-    <changefreq>daily</changefreq>
-  </url><url>
-    <loc>https://kucw.github.io/categories/life/</loc>
-    <lastmod>2019-12-03T00:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
   </url><url>
     <loc>https://kucw.github.io/blog/2019/12/how-to-lose-weight/</loc>
