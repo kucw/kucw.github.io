@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Boot on 古古&#39;s Blog</title>
+    <link>https://kucw.github.io/categories/spring-boot/</link>
+    <description>Recent content in Spring Boot on 古古&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.github.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot - 解決 application.properties 中文亂碼</title>
+      <link>https://kucw.github.io/blog/2021/7/spring-chinese-properties/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2021/7/spring-chinese-properties/</guid>
+      <description>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 @Value 讀取時會產生中文亂碼
+name=小明 解決辦法： 在 application.</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot - RabbitMQ 使用方法</title>
+      <link>https://kucw.github.io/blog/2020/11/spring-rabbitmq/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2020/11/spring-rabbitmq/</guid>
+      <description>寫稿中&amp;hellip;.✍️
+有需要的人可以先參考這個 Github repo 中的 code，感謝！
+https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-rabbitmq</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot - 監控工具 Actuator</title>
+      <link>https://kucw.github.io/blog/2020/7/spring-actuator/</link>
+      <pubDate>Tue, 14 Jul 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2020/7/spring-actuator/</guid>
+      <description>Actuator 是 SpringBoot 提供的監控功能，可以用來查看當前的 SpringBoot 程式運行的內部狀況，譬如知道自動化配置的資訊、創建的 Spring beans 和獲取當前的 properties 屬性值</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</title>
+      <link>https://kucw.github.io/blog/2020/6/java-jackson/</link>
+      <pubDate>Fri, 12 Jun 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2020/6/java-jackson/</guid>
+      <description>ObjectMapper 是一款非常好用的 json 轉換工具，可以幫助我們完成 json 和 Java 的 Object 的互相轉換</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot - 單元測試工具 Mockito</title>
+      <link>https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/</guid>
+      <description>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&amp;hellip;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試</description>
+    </item>
+    
+    <item>
+      <title>使用 SpringBoot 實作 OAuth 2.0 綁定 Github</title>
+      <link>https://kucw.github.io/blog/2019/12/spring-oauth2-bind-github/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2019/12/spring-oauth2-bind-github/</guid>
+      <description>本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 使用 SpringBoot 實作 OAuth 1.</description>
+    </item>
+    
+    <item>
+      <title>使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter</title>
+      <link>https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2019/12/spring-oauth1a-bind-twitter/</guid>
+      <description>本文只講解 OAuth 1.0a 的實作，有關 OAuth 2.0 實作，可參考我的另一篇文章 使用 SpringBoot 實作 OAuth 2.</description>
+    </item>
+    
+    <item>
+      <title>Spring Boot - 注解 vs XML 哪個好？</title>
+      <link>https://kucw.github.io/blog/2018/7/spring-annotation-vs-xml/</link>
+      <pubDate>Mon, 09 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2018/7/spring-annotation-vs-xml/</guid>
+      <description>Spring 中，使用注解 @Autowired 進行注入好，還是使用 xml 配置進行注入好？ 先講結論，使用注解 @Autowired 注入比較好 當時 Spring 開發的初衷是為了解決類與類之間的強耦合 new，所以當時提出了 xml 配置注入bean的方法，就是讓代碼只關注我需要什麼 service，但此 service 是由哪個實現類提供的我並不關心 使用 xml 的好處就是，實現類更換的時候並不需要去改動代碼，只要去改動 xml 配置，將注入的 bean 改成另一個實現類就可以了，如此可以達到類與類之間的松耦合 但是到了 Spring3.</description>
+    </item>
+    
+  </channel>
+</rss>
