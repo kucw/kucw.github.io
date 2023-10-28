@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    關閉 MacOS Sonoma 的 Caps Lock 游標
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="介紹如何透過三個步驟，關閉 MacOS Sonoma 的 Caps Lock 游標">
+  <meta name="author" content="古古">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.114.1 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.github.io/scss/style.min.css" integrity="" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- Facebook share link image -->
+  
+
+  <!-- Google Analytics -->
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FDFT2W6V4S');
+</script>
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
+      <a class="navbar-brand" href="https://kucw.github.io">
+        <span class="text-body">古古&#39;s Blog</span>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search p-3">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://kucw.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <h3 class="text-center">關閉 MacOS Sonoma 的 Caps Lock 游標</h3>
+        <div class="mb-3 text-center"><span>By 古古</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>2023/10/27</span>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          
+            <a href="/categories/other-tech">
+              <span class="text-primary">Other Tech</span>
+            </a>
+          
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+
+
+
+
+
+
+
+
+
+        <div class="content mb-4">
+          <p>當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock</p>
+<p>
+
+<img
+  src="/images/blog/sonoma_caps_lock_indicator.png"
+  alt=""
+  loading="lazy"
+/></p>
+<p>要關閉這個藍色游標的話，只需要以下三個步驟</p>
+<ol>
+<li>開啟 Terminal</li>
+<li>執行以下兩行指令（分別複製後執行）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p /Library/Preferences/FeatureFlags/Domain
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo /usr/libexec/PlistBuddy -c <span style="color:#d14">&#34;Add &#39;redesigned_text_cursor:Enabled&#39; bool false&#34;</span> /Library/Preferences/FeatureFlags/Domain/UIKit.plist
+</span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/disable_sonoma_caps_lock_indicator.png"
+  alt=""
+  loading="lazy"
+/></p>
+<ol start="3">
+<li>重新開機</li>
+</ol>
+<p>這樣就可以關閉那個討厭的藍色游標了，天下太平啦！！</p>
+
+        </div>
+        <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+    
+      
+        
+      
+      
+        
+        
+          
+                
+          
+          
+                
+          
+        
+      
+      
+        
+        
+          
+          
+          
+          
+          
+          
+          
+        
+      
+      
+        
+        
+        
+        
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+          
+              
+          
+          
+        
+        
+        
+      
+      
+        
+        
+          
+        
+      
+      
+        
+      
+    
+  
+
+
+<script>
+  var indexURL = "https://kucw.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.github.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.github.io/plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://kucw.github.io/js/script.min.js"></script>
+</body>
+</html>

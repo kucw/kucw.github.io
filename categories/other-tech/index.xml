@@ -6,7 +6,16 @@
     <description>Recent content in Other tech on 古古&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.github.io/categories/other-tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Oct 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.github.io/categories/other-tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>關閉 MacOS Sonoma 的 Caps Lock 游標</title>
+      <link>https://kucw.github.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</link>
+      <pubDate>Fri, 27 Oct 2023 00:00:00 +0800</pubDate>
+      
+      <guid>https://kucw.github.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</guid>
+      <description>當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock</description>
+    </item>
+    
     <item>
       <title>工程師如何累積程式實力？</title>
       <link>https://kucw.github.io/blog/2023/4/rename-iphone-photo-by-date-copy/</link>
