@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Spring Boot on 工程師古古</title>
+    <title>Spring Boot on 古古&#39;s blog</title>
     <link>https://kucw.github.io/categories/spring-boot/</link>
-    <description>Recent content in Spring Boot on 工程師古古</description>
+    <description>Recent content in Spring Boot on 古古&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.github.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml" />
