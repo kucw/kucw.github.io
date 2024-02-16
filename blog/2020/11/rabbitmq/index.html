@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.114.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.122.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -59,50 +59,55 @@
 <!-- preloader end -->
 <!-- navigation -->
 <header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
-      <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
-      <a class="navbar-brand" href="https://kucw.github.io">
-        <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-          src="https://kucw.github.io/images/logo.png" alt=""></span>
-        <span class="text-body">古古&#39;s blog</span>
-      </a>
+  <div class="container-fluid border-bottom">
+    <div class="container">
+      
+      <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
+        <a class="navbar-brand" href="https://kucw.github.io">
+          <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
+            src="https://kucw.github.io/images/logo.png" alt=""></span>
+          <span class="text-body">古古&#39;s blog</span>
+        </a>
 
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu h3"></i>
-      </button>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="ti-menu h3"></i>
+        </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
-          </li>
-          
-          
-        </ul>
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/">所有文章</a>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/about">關於我</a>
+            </li>
+            
+            
+          </ul>
 
-        
-        <!-- search -->
-        <div class="search p-3">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://kucw.github.io/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          
+          <!-- search -->
+          <div class="search pl-lg-4">
+            <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+            <div class="search-wrapper">
+              <form action="https://kucw.github.io/search" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+            </div>
           </div>
-        </div>
-        
+          
 
-        
-      </div>
-    </nav>
+          
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 <!-- /navigation -->
@@ -112,7 +117,8 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">RabbitMQ 基本介紹、安裝教學</h3>
-        <div class="mb-3 text-center"><span>By 古古</span>
+        <div class="mb-3 text-center">
+          <span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/11/18</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -203,13 +209,13 @@
   loading="lazy"
 /></p>
 <p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String routingKey <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...&#34;</span><span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;orange&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    sendMessageToQ1<span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span>routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">||</span> routingKey<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">equals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;green&#34;</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    sendMessageToQ2<span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>routingKey<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;...&#34;</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">if</span><span style="color:#bbb"> </span>(routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;orange&#34;</span>))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>sendMessageToQ1();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">else</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">if</span><span style="color:#bbb"> </span>(routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;black&#34;</span>)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">||</span><span style="color:#bbb"> </span>routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;green&#34;</span>))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>sendMessageToQ2();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
 <p>所以我們就可以用一個 Exchange，將 <code>info</code>, <code>error</code>, <code>warning</code> routing key 綁到一般的 log queue上，然後可以再將 <code>error</code> routing key 綁到另一個 error log queue 上，這樣就可以做出一個帶有全部 log 的 Queue、以及一個只包含 error log 的 Queue</p>
 <p>
 
@@ -433,5 +439,7 @@
 <!-- Main Script -->
 
 <script src="https://kucw.github.io/js/script.min.js"></script>
+
+
 </body>
 </html>

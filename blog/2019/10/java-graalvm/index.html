@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.114.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.122.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -59,50 +59,55 @@
 <!-- preloader end -->
 <!-- navigation -->
 <header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
-      <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
-      <a class="navbar-brand" href="https://kucw.github.io">
-        <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-          src="https://kucw.github.io/images/logo.png" alt=""></span>
-        <span class="text-body">古古&#39;s blog</span>
-      </a>
+  <div class="container-fluid border-bottom">
+    <div class="container">
+      
+      <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
+        <a class="navbar-brand" href="https://kucw.github.io">
+          <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
+            src="https://kucw.github.io/images/logo.png" alt=""></span>
+          <span class="text-body">古古&#39;s blog</span>
+        </a>
 
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu h3"></i>
-      </button>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="ti-menu h3"></i>
+        </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
-          </li>
-          
-          
-        </ul>
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/">所有文章</a>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/about">關於我</a>
+            </li>
+            
+            
+          </ul>
 
-        
-        <!-- search -->
-        <div class="search p-3">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://kucw.github.io/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          
+          <!-- search -->
+          <div class="search pl-lg-4">
+            <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+            <div class="search-wrapper">
+              <form action="https://kucw.github.io/search" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+            </div>
           </div>
-        </div>
-        
+          
 
-        
-      </div>
-    </nav>
+          
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 <!-- /navigation -->
@@ -112,7 +117,8 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">GraalVM 介紹 + 安裝教學</h3>
-        <div class="mb-3 text-center"><span>By 古古</span>
+        <div class="mb-3 text-center">
+          <span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2019/10/09</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -166,18 +172,18 @@
   loading="lazy"
 /></p>
 <p>具體實例</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><pre tabindex="0"><code>Hello World from Java!
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">main</span>(String<span style="color:#000;font-weight:bold">[]</span><span style="color:#bbb"> </span>args)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;Hello World from Java!&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Context<span style="color:#bbb"> </span>context<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>Context.<span style="color:#008080">newBuilder</span>().<span style="color:#008080">allowAllAccess</span>(<span style="color:#000;font-weight:bold">true</span>).<span style="color:#008080">build</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;js&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;python&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;ruby&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><pre tabindex="0"><code>Hello World from Java!
 Hello World from JavaScript!
 Hello World from Python!
 Hello World from Ruby!
@@ -236,20 +242,20 @@ Hello World from Ruby!
   loading="lazy"
 /></p>
 <p>接著新增一個檔案，檔名叫做 Main.java，並在裡面寫入以下內容，測試我們是否有成功切換至 GraalVM</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">org.graalvm.polyglot.*</span><span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">main</span><span style="color:#000;font-weight:bold">(</span>String<span style="color:#000;font-weight:bold">[]</span> args<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>        System<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">out</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">println</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;Hello World from Java!&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        Context context <span style="color:#000;font-weight:bold">=</span> Context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">newBuilder</span><span style="color:#000;font-weight:bold">().</span><span style="color:#008080">allowAllAccess</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">true</span><span style="color:#000;font-weight:bold">).</span><span style="color:#008080">build</span><span style="color:#000;font-weight:bold">();</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;js&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#d14">&#34;ruby&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span><span style="color:#000;font-weight:bold">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p>執行以下指令</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#555">org.graalvm.polyglot.*</span>;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">main</span>(String<span style="color:#000;font-weight:bold">[]</span><span style="color:#bbb"> </span>args)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;Hello World from Java!&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Context<span style="color:#bbb"> </span>context<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>Context.<span style="color:#008080">newBuilder</span>().<span style="color:#008080">allowAllAccess</span>(<span style="color:#000;font-weight:bold">true</span>).<span style="color:#008080">build</span>();<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;js&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;print(&#39;Hello World from JavaScript!&#39;);&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;python&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;print(&#39;Hello World from Python!&#39;)&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>context.<span style="color:#008080">eval</span>(<span style="color:#d14">&#34;ruby&#34;</span>,<span style="color:#bbb"> </span><span style="color:#d14">&#34;puts &#39;Hello World from Ruby!&#39;&#34;</span>);<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p>執行以下指令</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>javac Main.java
 </span></span><span style="display:flex;"><span>java Main
 </span></span></code></pre></div><p>如果有成功輸出以下訊息，表示成功使用 GraalVM 來 run java bytecode</p>
@@ -422,5 +428,7 @@ Hello World from Ruby!
 <!-- Main Script -->
 
 <script src="https://kucw.github.io/js/script.min.js"></script>
+
+
 </body>
 </html>

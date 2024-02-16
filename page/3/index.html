@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.114.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.122.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -59,50 +59,55 @@
 <!-- preloader end -->
 <!-- navigation -->
 <header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
-      <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
-      <a class="navbar-brand" href="https://kucw.github.io">
-        <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-          src="https://kucw.github.io/images/logo.png" alt=""></span>
-        <span class="text-body">古古&#39;s blog</span>
-      </a>
+  <div class="container-fluid border-bottom">
+    <div class="container">
+      
+      <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
+        <a class="navbar-brand" href="https://kucw.github.io">
+          <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
+            src="https://kucw.github.io/images/logo.png" alt=""></span>
+          <span class="text-body">古古&#39;s blog</span>
+        </a>
 
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu h3"></i>
-      </button>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="ti-menu h3"></i>
+        </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
-          </li>
-          
-          
-        </ul>
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/">所有文章</a>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/about">關於我</a>
+            </li>
+            
+            
+          </ul>
 
-        
-        <!-- search -->
-        <div class="search p-3">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://kucw.github.io/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          
+          <!-- search -->
+          <div class="search pl-lg-4">
+            <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+            <div class="search-wrapper">
+              <form action="https://kucw.github.io/search" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+            </div>
           </div>
-        </div>
-        
+          
 
-        
-      </div>
-    </nav>
+          
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 <!-- /navigation -->
@@ -111,168 +116,169 @@
 <section class="section-sm">
   <div class="container">
     <div class="row">
+
       
       <div class="col-lg-8">
-        <div class="row">
-          
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
+  <div class="row">
+    
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/6/java-date/" class="d-block my-3"><h3>Java - Java 8 新增的時間系列用法</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/06/30</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
               
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/6/java-date/" class="d-block my-3"><h3>Java - Java 8 新增的時間系列用法</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/06/30</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/java">
-                        <span class="text-primary">Java</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何使用 Java 8 的時間系列類 Instant、LocalDate、LocalTime、LocalDateTime、ZonedDateTime</p>
-                <a href="https://kucw.github.io/blog/2020/6/java-date/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
+                <a href="/categories/java">
+                  <span class="text-primary">Java</span>
+                </a>
               
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/6/java-jackson/" class="d-block my-3"><h3>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/06/12</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/spring-boot">
-                        <span class="text-primary">Spring Boot</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何使用 ObjectMapper 來 serialize/deserialize，將 json 和 Java Object 互相轉換</p>
-                <a href="https://kucw.github.io/blog/2020/6/java-jackson/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
+            </span>
           </div>
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
-              
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/3/java-lombok/" class="d-block my-3"><h3>Java - 五分鐘學會 Lombok 用法</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/03/04</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/java">
-                        <span class="text-primary">Java</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何使用 Lombok 幫助我們提升開發效率</p>
-                <a href="https://kucw.github.io/blog/2020/3/java-lombok/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
-              
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/" class="d-block my-3"><h3>SpringBoot - 單元測試工具 Mockito</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/02/20</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/spring-boot">
-                        <span class="text-primary">Spring Boot</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試</p>
-                <a href="https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
-              
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/2/intellij-how-to-debug/" class="d-block my-3"><h3>IntelliJ - Debug 的使用方法</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/02/15</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/intellij">
-                        <span class="text-primary">Intellij</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何使用 IntelliJ 的 Debug 來加速開發的效率</p>
-                <a href="https://kucw.github.io/blog/2020/2/intellij-how-to-debug/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-12 mb-4">
-            <article class="card">
-              
-              <div class="card-body">
-                <a href="https://kucw.github.io/blog/2020/1/intellij-remote-debug/" class="d-block my-3"><h3>IntelliJ - Remote Debug</h3></a>
-                <div class="mb-3"><span>By 古古</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>2020/01/15</span>
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>
-                    
-                      <a href="/categories/intellij">
-                        <span class="text-primary">Intellij</span>
-                      </a>
-                    
-                  </span>
-                </div>
-                <p class="card-text">介紹如何配置 IntelliJ 的 remote 設定，對 server 上的 SpringBoot 或是 Spring project 進行 remote debug</p>
-                <a href="https://kucw.github.io/blog/2020/1/intellij-remote-debug/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
+          <p class="card-text">介紹如何使用 Java 8 的時間系列類 Instant、LocalDate、LocalTime、LocalDateTime、ZonedDateTime</p>
+          <a href="https://kucw.github.io/blog/2020/6/java-date/" class="btn btn-outline-primary">read more</a>
         </div>
-      </div>
-      
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/6/java-jackson/" class="d-block my-3"><h3>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/06/12</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/spring-boot">
+                  <span class="text-primary">Spring Boot</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何使用 ObjectMapper 來 serialize/deserialize，將 json 和 Java Object 互相轉換</p>
+          <a href="https://kucw.github.io/blog/2020/6/java-jackson/" class="btn btn-outline-primary">read more</a>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/3/java-lombok/" class="d-block my-3"><h3>Java - 五分鐘學會 Lombok 用法</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/03/04</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/java">
+                  <span class="text-primary">Java</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何使用 Lombok 幫助我們提升開發效率</p>
+          <a href="https://kucw.github.io/blog/2020/3/java-lombok/" class="btn btn-outline-primary">read more</a>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/" class="d-block my-3"><h3>SpringBoot - 單元測試工具 Mockito</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/02/20</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/spring-boot">
+                  <span class="text-primary">Spring Boot</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試</p>
+          <a href="https://kucw.github.io/blog/2020/2/spring-unit-test-mockito/" class="btn btn-outline-primary">read more</a>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/2/intellij-how-to-debug/" class="d-block my-3"><h3>IntelliJ - Debug 的使用方法</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/02/15</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/intellij">
+                  <span class="text-primary">Intellij</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何使用 IntelliJ 的 Debug 來加速開發的效率</p>
+          <a href="https://kucw.github.io/blog/2020/2/intellij-how-to-debug/" class="btn btn-outline-primary">read more</a>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-4">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.github.io/blog/2020/1/intellij-remote-debug/" class="d-block my-3"><h3>IntelliJ - Remote Debug</h3></a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/01/15</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/intellij">
+                  <span class="text-primary">Intellij</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何配置 IntelliJ 的 remote 設定，對 server 上的 SpringBoot 或是 Spring project 進行 remote debug</p>
+          <a href="https://kucw.github.io/blog/2020/1/intellij-remote-debug/" class="btn btn-outline-primary">read more</a>
+        </div>
+      </article>
+    </div>
+    
+  </div>
+</div>
+
       
       <div class="col-lg-4 pr-lg-5 index-about-me">
+    
+    <div class="widget">
         
-        <div class="widget">
-          
-          <h4 class="widget-title">About Me</h4>
-          <img src="https://kucw.github.io/images/author.jpg" alt=""
-            class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-            <p>我是古君葳，目前是自由工作者，曾在 Garmin 擔任資深軟體工程師，並在 Hahow 開設過兩堂線上課程，同時也是科技類 Podcast 頻道「古古說」的主持人</p>
-          <a href="https://kucw.github.io/about/" class="btn btn-outline-primary">Know More</a>
-          
-        </div>
+        <h4 class="widget-title">About Me</h4>
+        <img src="https://kucw.github.io/images/author.jpg" alt=""
+             class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
+        <p>我是古君葳，目前是自由工作者，曾在 Garmin 擔任資深軟體工程師，並在 Hahow 開設過兩堂線上課程，同時也是科技類 Podcast 頻道「古古說」的主持人</p>
+        <a href="https://kucw.github.io/about/" class="btn btn-outline-primary">Know More</a>
         
-        <div class="widget">
-          <h4 class="widget-title">Category</h4>
-          <ul class="list-unstyled">
+    </div>
+    
+    <div class="widget">
+        <h4 class="widget-title">Category</h4>
+        <ul class="list-unstyled">
             <li><a href="/categories/elastic-search">Elastic Search</a></li>
             <li><a href="/categories/intellij">Intellij</a></li>
             <li><a href="/categories/java">Java</a></li>
@@ -280,11 +286,11 @@
             <li><a href="/categories/linux">Linux</a></li>
             <li><a href="/categories/other-tech">Other Tech</a></li>
             <li><a href="/categories/spring-boot">Spring Boot</a></li>
-          </ul>
-        </div>
-        <div class="widget">
-          <h4 class="widget-title">Social</h4>
-          <ul class="list-inline social-links">
+        </ul>
+    </div>
+    <div class="widget">
+        <h4 class="widget-title">Social</h4>
+        <ul class="list-inline social-links">
             
             <li class="list-inline-item"><a href="https://github.com/kucw" class=""><i class="ti-github"></i></a></li>
             
@@ -292,15 +298,15 @@
             
             <li class="list-inline-item"><a href="https://www.linkedin.com/in/judy-ku-279918115/" class=""><i class="ti-linkedin"></i></a></li>
             
-          </ul>
-        </div>
-        
-        
-        
-          
-        
-      </div>
-      
+        </ul>
+    </div>
+    
+    
+    
+    
+    
+</div>
+
       
       <div class="col-12 mt-5">
         
@@ -334,6 +340,7 @@
       </li>
     </ul>
       </div>
+
     </div>
   </div>
 </section>
@@ -446,5 +453,7 @@
 <!-- Main Script -->
 
 <script src="https://kucw.github.io/js/script.min.js"></script>
+
+
 </body>
 </html>

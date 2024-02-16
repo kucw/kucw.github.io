@@ -16,7 +16,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.114.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.122.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -59,50 +59,55 @@
 <!-- preloader end -->
 <!-- navigation -->
 <header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom">
-      <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
-      <a class="navbar-brand" href="https://kucw.github.io">
-        <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-          src="https://kucw.github.io/images/logo.png" alt=""></span>
-        <span class="text-body">古古&#39;s blog</span>
-      </a>
+  <div class="container-fluid border-bottom">
+    <div class="container">
+      
+      <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.github.io"></a>
+        <a class="navbar-brand" href="https://kucw.github.io">
+          <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
+            src="https://kucw.github.io/images/logo.png" alt=""></span>
+          <span class="text-body">古古&#39;s blog</span>
+        </a>
 
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu h3"></i>
-      </button>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="ti-menu h3"></i>
+        </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io"> Blog </a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://kucw.github.io/about">About Me</a>
-          </li>
-          
-          
-        </ul>
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/">所有文章</a>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.github.io/about">關於我</a>
+            </li>
+            
+            
+          </ul>
 
-        
-        <!-- search -->
-        <div class="search p-3">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://kucw.github.io/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          
+          <!-- search -->
+          <div class="search pl-lg-4">
+            <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+            <div class="search-wrapper">
+              <form action="https://kucw.github.io/search" class="h-100">
+                <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+              </form>
+              <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+            </div>
           </div>
-        </div>
-        
+          
 
-        
-      </div>
-    </nav>
+          
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 <!-- /navigation -->
@@ -112,7 +117,8 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <h3 class="text-center">Java - 五分鐘學會 Lombok 用法</h3>
-        <div class="mb-3 text-center"><span>By 古古</span>
+        <div class="mb-3 text-center">
+          <span>By 古古</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
           <span>2020/03/04</span>
           <span class="border-bottom border-primary px-2 mx-1"></span>
@@ -250,13 +256,13 @@
 /></p>
 <p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了</p>
 <p>然而很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@AllArgsConstructor</span>
-</span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@NoArgsConstructor</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p><strong>@RequiredArgsConstructor</strong> : 生成一個包含 &ldquo;特定參數&rdquo; 的 constructor，特定參數指的是那些有加上 final 修飾詞的變量們</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@AllArgsConstructor</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@NoArgsConstructor</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>Integer<span style="color:#bbb"> </span>id;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><p><strong>@RequiredArgsConstructor</strong> : 生成一個包含 &ldquo;特定參數&rdquo; 的 constructor，特定參數指的是那些有加上 final 修飾詞的變量們</p>
 <p>
 
 <img
@@ -309,13 +315,13 @@
 /></p>
 <p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的，因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值</p>
 <p>所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Data</span>
-</span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Builder</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> Integer id<span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">private</span> String name<span style="color:#000;font-weight:bold">;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><h4 id="8-slf4j">8. @Slf4j</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Data</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Builder</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>Integer<span style="color:#bbb"> </span>id;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></div><h4 id="8-slf4j">8. @Slf4j</h4>
 <p>自動生成該類的 log 靜態常量，要打日誌就可以直接打，不用再手動 new log 靜態常量了</p>
 <p>
 
@@ -325,12 +331,12 @@
   loading="lazy"
 /></p>
 <p>除了 @Slf4j 之外，lombok 也提供其他日誌框架的變種注解可以用，像是 @Log、@Log4j&hellip;等，他們都是幫我們創建一個靜態常量 log，只是使用的 library 不一樣而已</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log</span> <span style="color:#998;font-style:italic">//對應的log語句如下
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">final</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">util</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">logging</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span> log <span style="color:#000;font-weight:bold">=</span> java<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">util</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">logging</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getLogger</span><span style="color:#000;font-weight:bold">(</span>LogExample<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getName</span><span style="color:#000;font-weight:bold">());</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log4j</span> <span style="color:#998;font-style:italic">//對應的log語句如下
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">static</span> <span style="color:#000;font-weight:bold">final</span> org<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">apache</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">log4j</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span> log <span style="color:#000;font-weight:bold">=</span> org<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">apache</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">log4j</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">Logger</span><span style="color:#000;font-weight:bold">.</span><span style="color:#008080">getLogger</span><span style="color:#000;font-weight:bold">(</span>LogExample<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">class</span><span style="color:#000;font-weight:bold">);</span>
-</span></span></code></pre></div><p>SpringBoot默認支持的就是 slf4j + logback 的日誌框架，所以也不用再多做啥設定，直接就可以用在 SpringBoot project上，log 系列注解最常用的就是 @Slf4j</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//對應的log語句如下</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">final</span><span style="color:#bbb"> </span>java.<span style="color:#008080">util</span>.<span style="color:#008080">logging</span>.<span style="color:#008080">Logger</span><span style="color:#bbb"> </span>log<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>java.<span style="color:#008080">util</span>.<span style="color:#008080">logging</span>.<span style="color:#008080">Logger</span>.<span style="color:#008080">getLogger</span>(LogExample.<span style="color:#008080">class</span>.<span style="color:#008080">getName</span>());<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Log4j</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//對應的log語句如下</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">final</span><span style="color:#bbb"> </span>org.<span style="color:#008080">apache</span>.<span style="color:#008080">log4j</span>.<span style="color:#008080">Logger</span><span style="color:#bbb"> </span>log<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>org.<span style="color:#008080">apache</span>.<span style="color:#008080">log4j</span>.<span style="color:#008080">Logger</span>.<span style="color:#008080">getLogger</span>(LogExample.<span style="color:#008080">class</span>);<span style="color:#bbb">
+</span></span></span></code></pre></div><p>SpringBoot默認支持的就是 slf4j + logback 的日誌框架，所以也不用再多做啥設定，直接就可以用在 SpringBoot project上，log 系列注解最常用的就是 @Slf4j</p>
 
         </div>
         <div class="mt-1" style="border-top: 3px solid #dee2e6; height: 1rem;"></div>
@@ -456,5 +462,7 @@
 <!-- Main Script -->
 
 <script src="https://kucw.github.io/js/script.min.js"></script>
+
+
 </body>
 </html>
