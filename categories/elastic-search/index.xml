@@ -2,108 +2,108 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elastic Search on 古古&#39;s blog</title>
-    <link>https://kucw.github.io/categories/elastic-search/</link>
+    <link>https://kucw.io/categories/elastic-search/</link>
     <description>Recent content in Elastic Search on 古古&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sat, 07 Dec 2019 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://kucw.github.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kucw.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ElasticSearch - 地理座標點 geo_point</title>
-      <link>https://kucw.github.io/blog/2019/12/elasticsearch-geo-point/</link>
+      <link>https://kucw.io/blog/2019/12/elasticsearch-geo-point/</link>
       <pubDate>Sat, 07 Dec 2019 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2019/12/elasticsearch-geo-point/</guid>
+      <guid>https://kucw.io/blog/2019/12/elasticsearch-geo-point/</guid>
       <description>在 ElasticSearch 中，提供了兩種用來表示地理位置的方式，分別是 geo_point 和 geo_shape&#xA;用緯度、經度表示的座標點使用 geo_point 字段類型(較常用)，geo_point 允許你找到距離另一個座標點一定範圍內的座標點、計算出兩點之間的距離來排序或進行相關性打分、或者聚合到顯示在地圖上的一個網格 另一種是使用 GeoJSON 格式定義的複雜地理形狀，使用geo_shape字段類型 geo_point 經緯度座標格式 在 mapping 定義時將字段類型定義為 geo_point</description>
     </item>
     <item>
       <title>ElasticSearch - 輸入即搜索 edge n-gram</title>
-      <link>https://kucw.github.io/blog/2018/8/elasticsearch-instant-search/</link>
+      <link>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</link>
       <pubDate>Sun, 19 Aug 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/8/elasticsearch-instant-search/</guid>
+      <guid>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</guid>
       <description>閱讀本文需要先了解 Elastic Search 的 index 和 analyzer 的相關知識&#xA;ElasticSearch - index mapping（5.</description>
     </item>
     <item>
       <title>ElasticSearch - 批量操作 bulk</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-bulk/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-bulk/</link>
       <pubDate>Mon, 30 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-bulk/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-bulk/</guid>
       <description>ES 的 bulk 語法允許在一個請求中進行多個操作（create、index、update、delete），也就是可以在一次請求裡做很多事情&#xA;也由於這個關係，因此 bulk 的請求體和其他請求的格式會有點不同 bulk 的請求模板</description>
     </item>
     <item>
       <title>ElasticSearch - 聚合 aggs</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-aggs/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-aggs/</link>
       <pubDate>Mon, 23 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-aggs/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-aggs/</guid>
       <description>聚合概念 aggs ElasticSearch 除了致力於搜索之外，也提供了聚合實時分析數據的功能 如果把搜索比喻為大海撈針（從海量的文檔中找出符合條件的那一個），那麼聚合就是去分析大海中的針們的特性，像是 在大海里有多少針？ 針的平均長度是多少？ 按照針的製造商來劃分，針的長度中位值是多少？ 每月加入到海中的針有多少？ 這裏面有異常的針麼？ 因此透過聚合，我們可以得到一個數據的概覽，聚合能做的是分析和總結全套的數據，而不是查找單個文檔（這是搜索做的事） 聚合允許我們向數據提出一些複雜的問題，雖然他的功能完全不同於搜索，但他們其實使用了相同的數據結構，這表示聚合的執行速度很快，並且就像搜索一樣幾乎是實時的 並且由於聚合和搜索是使用同樣的數據結構，因此聚合和搜索可以是一起執行的 這表示我們可以在一次 json 請求裡，同時對相同的數據進行 搜索/過濾 + 分析，兩個願望一次滿足 聚合的兩個主要的概念，分別是 桶 和 指標 桶（Buckets）: 滿足特定條件的文檔的集合 當聚合開始被執行，每個文檔會決定符合哪個桶的條件，如果匹配到，文檔將放入相應的桶並接着進行聚合操作 像是一個員工屬於男性桶或者女性桶，日期 2014-10-28 屬於十月桶，也屬於 2014 年桶 桶可以被嵌套在其他桶裏面 像是北京能放在中國桶裡，而中國桶能放在亞洲桶裡 Elasticsearch 提供了很多種類型的桶，像是時間、最受歡迎的詞、年齡區間、地理位置桶等等，不過他們在根本上都是通過同樣的原理進行操作，也就是基於條件來劃分文檔，一個文檔只要符合條件，就可以加入那個桶，因此一個文檔可以同時加入很多桶 指標（Metrics） : 對桶內的文檔進行統計計算 桶能讓我們劃分文檔到有意義的集合， 但是最終我們需要的是對這些桶內的文檔進行一些指標的計算 指標通常是簡單的數學運算（像是min、max、avg、sum），而這些是通過當前桶中的文檔的值來計算的，利用指標能讓你計算像平均薪資、最高出售價格、95 % 的查詢延遲這樣的數據 aggs 聚合的模板 當 query 和 aggs 一起存在時，會先執行 query 的主查詢，主查詢 query 執行完後會搜出一批結果，而這些結果才會被拿去 aggs 拿去做聚合 另外要注意 aggs 後面會先接一層自定義的這個聚合的名字，然後才是接上要使用的聚合桶 如果有些情況不在意查詢結果是什麼，而只在意 aggs 的結果，可以把 size 設為 0，如此可以讓返回的 hits 結果集是 0，加快返回的速度 一個 aggs 裡可以有很多個聚合，每個聚合彼此間都是獨立的，因此可以一個聚合拿來統計數量、一個聚合拿來分析數據、一個聚合拿來計算標準差&amp;hellip;，讓一次搜索就可以把想要做的事情一次做完 像是此例就定義了 3 個聚合，分別是 custom_name1、custom_name2、custom_name3 aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集 GET mytest/doc/_search { &amp;#34;query&amp;#34;: { .</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-gauss/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</link>
       <pubDate>Sun, 08 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-gauss/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</guid>
       <description>閱讀本文需要先了解 function_score 的相關知識，請看 ElasticSearch - function_score 簡介&#xA;很多變量都可以影響用戶對於酒店的選擇，像是用戶可能希望酒店離市中心近一點，但是如果價格足夠便宜，也願意為了省錢，妥協選擇一個更遠的住處&#xA;如果我們只是使用一個 filter 排除所有市中心方圓 100 米以外的酒店，再用一個 filter 排除每晚價格超過 100 元的酒店，這種作法太過強硬，可能有一間房在 500 米，但是超級便宜一晚只要 10 元，用戶可能會因此願意妥協住這間房 為了解決這個問題，因此 function_score 查詢提供了一組 衰減函數（decay functions）， 讓我們有能力在兩個滑動標準（如地點和價格）之間權衡 function_score 支持的衰減函數有三種，分別是 linear、exp 和 gauss</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（random_score 具體實例）</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-random_score/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-random_score/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</guid>
       <description>閱讀本文需要先了解 function_score 的相關知識，請看 ElasticSearch - function_score 簡介&#xA;在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（weight 具體實例）</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-weight/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-weight/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</guid>
       <description>閱讀本文需要先了解 function_score 的相關知識，請看 ElasticSearch - function_score 簡介&#xA;一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（field_value_factor 具體實例）</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</link>
       <pubDate>Thu, 05 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</guid>
       <description>閱讀本文需要先了解 function_score 的相關知識，請看 ElasticSearch - function_score 簡介&#xA;首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）</description>
     </item>
     <item>
       <title>ElasticSearch - function_score 簡介</title>
-      <link>https://kucw.github.io/blog/2018/7/elasticsearch-function_score/</link>
+      <link>https://kucw.io/blog/2018/7/elasticsearch-function_score/</link>
       <pubDate>Wed, 04 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/7/elasticsearch-function_score/</guid>
+      <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score/</guid>
       <description>function_score 內容較多，此篇主要是介紹 function_score 的基本概念&#xA;具體實例請參考以下連接&#xA;ElasticSearch - function_score（field_value_factor 具體實例）</description>
     </item>
     <item>
       <title>ElasticSearch - 解決 ES 的深分頁問題（游標 scroll）</title>
-      <link>https://kucw.github.io/blog/2018/6/elasticsearch-scroll/</link>
+      <link>https://kucw.io/blog/2018/6/elasticsearch-scroll/</link>
       <pubDate>Tue, 26 Jun 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/6/elasticsearch-scroll/</guid>
+      <guid>https://kucw.io/blog/2018/6/elasticsearch-scroll/</guid>
       <description>ES 為了避免深分頁，不允許使用分頁（from &amp;amp; size）查詢 10000 條以後的數據，因此如果要查詢第 10000 條以後的數據，要使用 ES 提供的 scroll 游標 來查詢</description>
     </item>
     <item>
       <title>ElasticSearch - 嵌套對象 nested</title>
-      <link>https://kucw.github.io/blog/2018/6/elasticsearch-nested/</link>
+      <link>https://kucw.io/blog/2018/6/elasticsearch-nested/</link>
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/6/elasticsearch-nested/</guid>
+      <guid>https://kucw.io/blog/2018/6/elasticsearch-nested/</guid>
       <description>由於在 ES 中，所有單個文檔的增刪改都是原子性的操作，因此將相關的實體數據都儲存在同一個文檔是很好的，且由於所有信息都在一個文檔中，因此當我們查詢時就沒有必要像 mysql 一樣去關聯很多張表，只要搜一遍文檔就可以查出所有需要的數據，查詢效率非常高&#xA;因此除了基本數據類型之外，ES 也支持使用複雜的數據類型，像是數組、內部對象，而要使用內部對象的話，需要使用 nested 來定義索引，使文檔內可以包含一個內部對象</description>
     </item>
     <item>
       <title>ElasticSearch - term 和 match 的差別</title>
-      <link>https://kucw.github.io/blog/2018/6/elasticsearch-term-match/</link>
+      <link>https://kucw.io/blog/2018/6/elasticsearch-term-match/</link>
       <pubDate>Wed, 20 Jun 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/6/elasticsearch-term-match/</guid>
+      <guid>https://kucw.io/blog/2018/6/elasticsearch-term-match/</guid>
       <description>ES 中的 term 和 match 牽扯到了分詞器、mapping、倒排索引等，如果不熟悉相關知識，請先看 ElasticSearch - index mapping（5.</description>
     </item>
     <item>
       <title>ElasticSearch - 自定義 analysis</title>
-      <link>https://kucw.github.io/blog/2018/6/elasticsearch-analysis/</link>
+      <link>https://kucw.io/blog/2018/6/elasticsearch-analysis/</link>
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0800</pubDate>
-      <guid>https://kucw.github.io/blog/2018/6/elasticsearch-analysis/</guid>
+      <guid>https://kucw.io/blog/2018/6/elasticsearch-analysis/</guid>
       <description>ElasticSearch 的 analysis 實際上是將三個功能封裝在一起，這三個功能按照順序執行，而這三個功能都是能自定義的 字符過濾器 (char_filter) 首先，字符串按順序通過每個字符過濾器，他們的任務是在分詞前整理字符串 一個字符過濾器可以用來去掉HTML，或者將&amp;amp;轉化成and 分詞器 (tokenizer) 其次，字符串被分詞器分爲單個的詞條，一個簡單的分詞器遇到空格和標點的時候，可能會將文本拆分成詞條 Hello how are you?</description>
     </item>
     <item>
       <title>ElasticSearch - index mapping（5.x以上）</title>
-      <link>https://kucw.github.io/blog/2018/6/elasticsearch-index-mapping/</link>
+      <link>https://kucw.io/blog/2018/6/elasticsearch-index-mapping/</link>
       <pubDate>Thu, 07 Jun 2018 10:07:47 +0600</pubDate>
-      <guid>https://kucw.github.io/blog/2018/6/elasticsearch-index-mapping/</guid>
+      <guid>https://kucw.io/blog/2018/6/elasticsearch-index-mapping/</guid>
       <description>Elasticsearch支持的基本類型&#xA;字符串 : text, keyword text : 存儲數據的時候，會自動分詞，並生成索引 keyword : 存儲數據的時候，不會分詞，而是直接整個詞拿去建索引 整數 : byte, short, integer, long 浮點數 : float, double 布爾型 : boolean 日期 : date 自定義 mapping</description>
     </item>
   </channel>
