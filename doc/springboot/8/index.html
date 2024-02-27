@@ -126,7 +126,7 @@
 <!-- /navigation -->
 
   <div class="doc-container">
-    <div class="row">
+    <div class="row mx-0">
       
       <div class="col-lg-3">
         <div class="doc-sidebar">
@@ -199,8 +199,8 @@
 <p>在前一篇文章中有介紹到，我們是可以在變數上加上 <code>@Autowired</code>，將想要的 Bean 給注入進來的</p>
 <p>不過在使用 <code>@Autowired</code> 來注入 Bean 時，必須滿足以下事項：</p>
 <ol>
-<li>首先必須要確保**「自己也是一個 Bean」**（即是有在 class 上面加上 <code>@Component</code>）</li>
-<li>並且 <code>@Autowired</code> 是透過**「變數的類型」**來注入 Bean 的</li>
+<li>首先必須要確保 <strong>「自己也是一個 Bean」</strong>（即是有在 class 上面加上 <code>@Component</code>）</li>
+<li>並且 <code>@Autowired</code> 是透過 <strong>「變數的類型」</strong> 來注入 Bean 的</li>
 </ol>
 <p>所以在使用 <code>@Autowired</code> 去注入 Bean 進來時，Spring Boot 就是會透過「變數的類型」，去 Spring 容器中尋找是否有類型符合的 Bean，如果有同類型的 Bean 存在時，即可以注入成功，如果沒有 Bean 存在，則注入失敗，Spring Boot 就會報錯並且運行失敗</p>
 <p>
@@ -359,6 +359,25 @@
 
           </div>
         </div>
+
+        
+        
+<div class="row">
+  <div class="col-sm-6 p-2"><a href="/doc/springboot/7/">
+      <div class="doc-previous-page">
+        <i class="ti-arrow-left"></i>
+        <div class="doc-pager-title mt-1">Day 7 - Bean 的創建和注入 - @Component、@Autowired</div>
+      </div>
+    </a></div>
+
+  <div class="col-sm-6 p-2"><a href="/doc/springboot/9/">
+      <div class="doc-next-page">
+        <i class="ti-arrow-right"></i>
+        <div class="doc-pager-title mt-1">Day 9 - Bean 的初始化 - @PostConstruct</div>
+      </div>
+    </a></div>
+</div>
+
       </div>
 
       <div class="col-lg-1">
