@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GCP on 工程師古古</title>
+    <link>http://localhost:1313/categories/gcp/</link>
+    <description>Recent content in GCP on 工程師古古</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <atom:link href="http://localhost:1313/categories/gcp/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

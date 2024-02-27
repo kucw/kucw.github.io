@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    古古&#39;s blog
+    工程師古古
     
   </title>
 
@@ -15,7 +15,7 @@
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.122.0 with theme pure" />
+  <meta name="generator" content="Hugo 0.123.3 with theme pure" />
 
   <!-- Plugins -->
   
@@ -58,15 +58,15 @@
 <!-- preloader end -->
 <!-- navigation -->
 <header class="navigation">
-  <div class="container-fluid border-bottom">
+  <div class="container-fluid border-bottom fixed-top nav-background-color">
     <div class="container">
       
       <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
-        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.io"></a>
-        <a class="navbar-brand" href="https://kucw.io">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.io/"></a>
+        <a class="navbar-brand" href="https://kucw.io/">
           <span><img class="img-fluid logo-thumb-sm rounded-circle mx-1"
             src="https://kucw.io/images/logo.png" alt=""></span>
-          <span class="nav-brand-text">古古&#39;s blog</span>
+          <span class="nav-brand-text">工程師古古</span>
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -75,6 +75,20 @@
 
         <div class="collapse navbar-collapse text-center" id="navigation">
           <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                後端技術專欄文章
+              </a>
+              <div class="dropdown-menu">
+                
+                <a class="dropdown-item" href="https://kucw.io/doc/springboot/1">Spring Boot 零基礎入門</a>
+                
+              </div>
+            </li>
+            
             
             
             <li class="nav-item">
@@ -95,7 +109,7 @@
           <div class="search pl-lg-4">
             <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
             <div class="search-wrapper">
-              <form action="https://kucw.io/search" class="h-100">
+              <form action="https://kucw.io//search" class="h-100">
                 <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
               </form>
               <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
@@ -122,19 +136,48 @@
     
     
     
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-2">
       <article class="card">
         
         <div class="card-body">
-          <a href="https://kucw.io/blog/2019/10/java-graalvm/" class="d-block my-3">
+          <a href="https://kucw.io/blog/2020/6/java-jackson/" class="d-block my-3">
             <div class="post-list-title">
               
-              GraalVM 介紹 + 安裝教學
+              SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換
             </div>
           </a>
           <div class="mb-3"><span>By 古古</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2019/10/09</span>
+            <span>2020/06/12</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/spring-boot">
+                  <span class="text-primary">Spring Boot</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹如何使用 ObjectMapper 來 serialize/deserialize，將 json 和 Java Object 互相轉換</p>
+
+          <div class="card-divider pt-5"></div>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-2">
+      <article class="card">
+        
+        <div class="card-body">
+          <a href="https://kucw.io/blog/2020/3/java-lombok/" class="d-block my-3">
+            <div class="post-list-title">
+              
+              Java - 五分鐘學會 Lombok 用法
+            </div>
+          </a>
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2020/03/04</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
             <span>
               
@@ -144,148 +187,125 @@
               
             </span>
           </div>
-          <p class="card-text">介紹 Oracle 在 2019 5 月才 release 的下世代 Java Virtual Machine - GraalVM</p>
-          <a href="https://kucw.io/blog/2019/10/java-graalvm/" class="btn btn-outline-primary">read more</a>
+          <p class="card-text">介紹如何使用 Lombok 幫助我們提升開發效率</p>
+
+          <div class="card-divider pt-5"></div>
         </div>
       </article>
     </div>
     
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-2">
       <article class="card">
         
         <div class="card-body">
-          <a href="https://kucw.io/blog/2018/12/java-iterator-and-listiterator/" class="d-block my-3">
+          <a href="https://kucw.io/blog/2020/2/spring-unit-test-mockito/" class="d-block my-3">
             <div class="post-list-title">
               
-              Java - Iterator 和 ListIterator
+              SpringBoot - 單元測試工具 Mockito
             </div>
           </a>
           <div class="mb-3"><span>By 古古</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/12/12</span>
+            <span>2020/02/20</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
             <span>
               
-                <a href="/categories/java">
-                  <span class="text-primary">Java</span>
+                <a href="/categories/spring-boot">
+                  <span class="text-primary">Spring Boot</span>
                 </a>
               
             </span>
           </div>
-          <p class="card-text">介紹 Java 中的 Iterator 和 ListIterator 的差別，以及他們分別適用在什麼場景</p>
-          <a href="https://kucw.io/blog/2018/12/java-iterator-and-listiterator/" class="btn btn-outline-primary">read more</a>
+          <p class="card-text">介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試</p>
+
+          <div class="card-divider pt-5"></div>
         </div>
       </article>
     </div>
     
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-2">
       <article class="card">
         
         <div class="card-body">
-          <a href="https://kucw.io/blog/2018/12/java-iterator-without-add/" class="d-block my-3">
+          <a href="https://kucw.io/blog/2020/2/intellij-how-to-debug/" class="d-block my-3">
             <div class="post-list-title">
               
-              Java - 為什麼 Iterator 不提供 add（E）方法 ？
+              IntelliJ - Debug 的使用方法
             </div>
           </a>
           <div class="mb-3"><span>By 古古</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/12/06</span>
+            <span>2020/02/15</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
             <span>
               
-                <a href="/categories/java">
-                  <span class="text-primary">Java</span>
+                <a href="/categories/intellij">
+                  <span class="text-primary">Intellij</span>
                 </a>
               
             </span>
           </div>
-          <p class="card-text">探討為什麼 Java 中的 Iterator 只提供 hasNext()、next()、remove()，但不提供 add(E) 方法</p>
-          <a href="https://kucw.io/blog/2018/12/java-iterator-without-add/" class="btn btn-outline-primary">read more</a>
+          <p class="card-text">介紹如何使用 IntelliJ 的 Debug 來加速開發的效率</p>
+
+          <div class="card-divider pt-5"></div>
         </div>
       </article>
     </div>
     
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-2">
       <article class="card">
         
         <div class="card-body">
-          <a href="https://kucw.io/blog/2018/12/java-iterator/" class="d-block my-3">
+          <a href="https://kucw.io/blog/2020/1/intellij-remote-debug/" class="d-block my-3">
             <div class="post-list-title">
               
-              Java - Iterable 接口、迭代器 Iterator
+              IntelliJ - Remote Debug
             </div>
           </a>
           <div class="mb-3"><span>By 古古</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/12/05</span>
+            <span>2020/01/15</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
             <span>
               
-                <a href="/categories/java">
-                  <span class="text-primary">Java</span>
+                <a href="/categories/intellij">
+                  <span class="text-primary">Intellij</span>
                 </a>
               
             </span>
           </div>
-          <p class="card-text">介紹 Java 中的 Iterator 如何使用</p>
-          <a href="https://kucw.io/blog/2018/12/java-iterator/" class="btn btn-outline-primary">read more</a>
+          <p class="card-text">介紹如何配置 IntelliJ 的 remote 設定，對 server 上的 SpringBoot 或是 Spring project 進行 remote debug</p>
+
+          <div class="card-divider pt-5"></div>
         </div>
       </article>
     </div>
     
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 mb-2">
       <article class="card">
         
         <div class="card-body">
-          <a href="https://kucw.io/blog/2018/9/java-pass-param/" class="d-block my-3">
+          <a href="https://kucw.io/blog/2019/12/spring-oauth2-bind-github/" class="d-block my-3">
             <div class="post-list-title">
               
-              Java - Pass by value or Pass by reference？
+              使用 SpringBoot 實作 OAuth 2.0 綁定 Github
             </div>
           </a>
           <div class="mb-3"><span>By 古古</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/09/10</span>
+            <span>2019/12/31</span>
             <span class="border-bottom border-primary px-2 mx-1"></span>
             <span>
               
-                <a href="/categories/java">
-                  <span class="text-primary">Java</span>
+                <a href="/categories/spring-boot">
+                  <span class="text-primary">Spring Boot</span>
                 </a>
               
             </span>
           </div>
-          <p class="card-text">介紹 Java 的參數傳遞到底是 pass by value 還是 pass by reference</p>
-          <a href="https://kucw.io/blog/2018/9/java-pass-param/" class="btn btn-outline-primary">read more</a>
-        </div>
-      </article>
-    </div>
-    
-    <div class="col-md-12 mb-4">
-      <article class="card">
-        
-        <div class="card-body">
-          <a href="https://kucw.io/blog/2018/8/elasticsearch-instant-search/" class="d-block my-3">
-            <div class="post-list-title">
-              
-              ElasticSearch - 輸入即搜索 edge n-gram
-            </div>
-          </a>
-          <div class="mb-3"><span>By 古古</span>
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/08/19</span>
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>
-              
-                <a href="/categories/elastic-search">
-                  <span class="text-primary">Elastic Search</span>
-                </a>
-              
-            </span>
-          </div>
-          <p class="card-text">當 user 在輸入查詢內容時，能不能為他們展現當下的搜索結果？Elastic Search 能做得到！這篇文章將介紹如何使用 ES 的 edge n-gram 達到這種效果</p>
-          <a href="https://kucw.io/blog/2018/8/elasticsearch-instant-search/" class="btn btn-outline-primary">read more</a>
+          <p class="card-text">本文介紹如何使用 SpringBoot 實作 OAuth 2.0 綁定 Github，讓你可以在你的網站取得 user 在 Github 上的 data</p>
+
+          <div class="card-divider pt-5"></div>
         </div>
       </article>
     </div>
@@ -294,14 +314,14 @@
 </div>
 
       
-      <div class="col-lg-4 pr-lg-5">
+      <div class="col-lg-4 pr-lg-5 index-about-me">
   
   <div class="widget">
     
     <h4 class="widget-title">About Me</h4>
     <img src="https://kucw.io/images/author.jpg" alt=""
          class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-    <p>我是古君葳，目前是自由工作者，曾在 Garmin 擔任資深軟體工程師，並在 Hahow 開設過兩堂線上課程，同時也是科技類 Podcast 頻道「古古說」的主持人</p>
+    <p>我是古古（古君葳），畢業於台大資工所，曾在 Garmin 擔任資深軟體工程師，目前是自由工作者。已在 Hahow 開設 3 堂線上課程，累積 4000+ 位同學一起學習成長🚀</p>
     <a href="https://kucw.io/about/" class="btn btn-outline-primary">Know More</a>
     
   </div>
@@ -329,7 +349,7 @@
       
       <li class="list-inline-item"><a href="https://www.facebook.com/kukutalking" class=""><i class="ti-facebook"></i></a></li>
       
-      <li class="list-inline-item"><a href="https://www.linkedin.com/in/judy-ku-279918115/" class=""><i class="ti-linkedin"></i></a></li>
+      <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" class=""><i class="ti-instagram"></i></a></li>
       
     </ul>
   </div>
@@ -367,7 +387,7 @@
         <a href="/page/6/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/page/8/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/10/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
       </div>
@@ -379,8 +399,48 @@
 
 
 
+<footer>
+  <div class="container">
+    <div class="row justify-content-center pb-2">
+      <div class="col-12 text-center mb-5">
+        <a href="https://kucw.io/">
+          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
+               src="https://kucw.io/images/logo.png" alt="工程師古古">
+        </a>
+      </div>
+    </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="border-top py-4 text-center">
+      © 2024 工程師古古 | All Rights Reserved.
+    </div>
+    </div>
+  </div>
+</footer>
 
 
 <script>
