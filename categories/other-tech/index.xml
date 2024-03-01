@@ -48,7 +48,7 @@
       <link>https://kucw.io/blog/2020/11/rabbitmq/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/11/rabbitmq/</guid>
-      <description>RabbitMQ 是在各企業中最為廣泛使用的 message queue，而在 RabbitMQ 的世界裡面有三個角色，分別是 Producer、Queue、Consumer&#xA;Producer : 負責將 message 發送到 Queue 裡 Queue : 負責暫存 message Consumer : 負責去 Queue 中消費 message RabbitMQ 常見的五種模式 在 RabbitMQ 中，常見的五種模式如下，詳情也可參照官網</description>
+      <description>RabbitMQ 是在各企業中最為廣泛使用的 message queue，而在 RabbitMQ 的世界裡面有三個角色，分別是 Producer、Queue、Consumer&#xA;Producer : 負責將 message 發送到 Queue 裡 Queue : 負責暫存 message Consumer : 負責去 Queue 中消費 message RabbitMQ 常見的五種模式 在 RabbitMQ 中，常見的五種模式如下，詳情也可參照 官網 Direct 模式 Worker 模式 Publish/Subscribe 模式 Routing 模式 Topics 模式 有關如何在 SpringBoot 中使用 RabbitMQ 的這五種模式，可以參考我的另一篇文章 SpringBoot - RabbitMQ 使用方法 1.</description>
     </item>
     <item>
       <title>Superset 安裝教學</title>

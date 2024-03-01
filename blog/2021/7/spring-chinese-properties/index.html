@@ -157,7 +157,11 @@
           <p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 <code>@Value</code> 讀取時會產生中文亂碼</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">小明</span>
 </span></span></code></pre></div><h3 id="解決辦法">解決辦法：</h3>
-<p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用<a href="https://www.chineseconverter.com/zh-tw/convert/unicode">此網頁</a>進行轉換）</p>
+<p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用<a href="https://www.chineseconverter.com/zh-tw/convert/unicode"
+   
+   target="_blank" rel="noopener">
+此網頁
+</a>進行轉換）</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">\u5c0f\u660e</span>
 </span></span></code></pre></div>
         </div>
