@@ -20,7 +20,7 @@
       <link>https://kucw.io/doc/springboot/10/</link>
       <pubDate>Fri, 10 Nov 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/doc/springboot/10/</guid>
-      <description>哈囉大家好，我是古古&#xA;在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，那麼接著這篇文章，我們會延伸出去，介紹一下要如何透過 @Value ，將 Spring Boot 設定檔中的值給讀取到 Bean 裡面</description>
+      <description>哈囉大家好，我是古古&#xA;在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，那麼接著這篇文章，我們會延伸出去，介紹一下要如何透過 @Value，將 Spring Boot 設定檔中的值給讀取到 Bean 裡面</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (9) - Bean 的初始化 - @PostConstruct</title>
