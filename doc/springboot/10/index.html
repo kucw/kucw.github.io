@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -201,6 +203,7 @@
   src="/images/doc/springboot/10/properties1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="spring-boot-設定檔applicationproperties的寫法">Spring Boot 設定檔（application.properties）的寫法</h2>
 <p>大家如果點擊兩下打開 application.properties 檔案的話，可以看到右邊是空白一片，表示我們目前還沒有在這個 application.properties 檔案中，設定任何的設定值</p>
@@ -212,6 +215,7 @@
   src="/images/doc/springboot/10/properties2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="properties-的語法格式">properties 的語法格式</h3>
 <p>在 properties 的語法中，是使用 <code>key=value</code> 這樣子的格式來撰寫，並且「每一行」都是一組 key 和 value 的配對</p>
@@ -222,6 +226,7 @@
   src="/images/doc/springboot/10/properties3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>大家可以把這個 <code>key=value</code> 的寫法，想像成是 <code>變數=值</code> 的概念，所以前面的 key 其實就等同於是 Java 中的變數，而後面的 value，就是這個變數的值，就是這麼的簡單暴力！</p>
 <p>因此當我們在 application.properties 檔案中，去寫上了一行 <code>count=5</code> 的程式，就表示我們定義了一個變數 <code>count</code>，然後他的值是 <code>5</code> 這樣，僅此而已</p>
@@ -247,6 +252,7 @@
   src="/images/doc/springboot/10/properties4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>或是我們也可以在下面，再新增一行 <code>my.age=20</code> 的程式，而這一行程式所代表的，就是「我的年齡是 20 歲」的意思</p>
 <p>
@@ -255,6 +261,7 @@
   src="/images/doc/springboot/10/properties5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以大家以後就可以將 key 中的 <code>.</code>，去翻譯成是中文的「的」的意思，這樣就可以透過這種格式，去傳遞更豐富的意義出來</p>
 <h3 id="3-properties-語法的注意事項之三使用--來表示-comment">3. properties 語法的注意事項之三：使用 <code>#</code> 來表示 comment</h3>
@@ -265,6 +272,7 @@
   src="/images/doc/springboot/10/properties6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="讀取-spring-boot-設定檔applicationproperties中的值value">讀取 Spring Boot 設定檔（application.properties）中的值：@Value</h2>
 <p>了解了要如何在 application.properties 檔案中透過 <code>key=value</code> 的寫法，去添加一行行的設定之後，接著我們可以來看一下，要如何透過 <code>@Value</code>，將 application.properties 中的設定值讀取到 Bean 裡面</p>
@@ -288,6 +296,7 @@
   src="/images/doc/springboot/10/value1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>但是如果我們在這個 count 的變數上面，去添加一個 <code>@Value(&quot;${count}&quot;)</code> 的話，這樣子就可以從 Spring Boot 設定檔 (application.properties 檔案) 中，去讀取其中的 <code>count</code> 這個 key 的值，並且將這個值給賦予到 HpPrinter 中的 count 變數裡面</p>
 <p>
@@ -296,6 +305,7 @@
   src="/images/doc/springboot/10/value2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>而因為目前在 application.properties 檔案中，我們是在第 1 行，去寫上了 <code>count=5</code> 的設定</p>
 <p>
@@ -304,6 +314,7 @@
   src="/images/doc/springboot/10/value3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>因此到時候 HpPrinter 中的 count 變數的值，就會變成是 application.properties 檔案中所定義的「5」</p>
 <p>所以這也就表示，我們就成功的透過 <code>@Value</code> 的用法，將 Spring Boot 設定檔 (application.properties 檔案) 中的值，給成功的讀取到 Bean 裡面的變數中了！</p>
@@ -349,6 +360,7 @@
   src="/images/doc/springboot/10/value4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>如果大家想要避免這個問題的話，<code>@Value</code> 也是有提供另一種輔助方式可以讓我們使用，即是「設定預設值」</p>
 <p>我們可以在 <code>@Value</code> 的 key 的後面，加上一個 <code>:</code>，並且在後面寫上想要的值，譬如說這裡寫上 200</p>
@@ -409,6 +421,7 @@
   src="/images/doc/springboot/10/yml1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="總結">總結</h2>
 <p>這篇文章先介紹了什麼是 Spring Boot 的設定檔，也介紹了 application.properties 檔案的用途，以及 properties 的語法介紹</p>
@@ -519,6 +532,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

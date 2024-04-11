@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -148,6 +150,7 @@
   src="/images/blog/iphone_photo1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>想要大量修改圖片檔案名稱為右邊這種格式，可以透過 <strong>ExifTool</strong> 工具解決</p>
 <h3 id="exiftool-使用教學mac-版">ExifTool 使用教學（Mac 版）</h3>
@@ -162,6 +165,7 @@ ExifTool
   src="/images/blog/iphone_photo2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>打開 Terminal，執行以下指令（最後一個參數值 ~/Downloads/image 為待轉換的照片資料夾，可自行更換路徑）</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exiftool -d <span style="color:#d14">&#39;IMG_%Y%m%d_%H%M%S&#39;</span> <span style="color:#d14">&#39;-Filename&lt;${DateTimeOriginal}.%e&#39;</span> ~/Downloads/image
@@ -231,6 +235,8 @@ ExifTool
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

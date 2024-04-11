@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -202,6 +204,7 @@
   src="/images/doc/springboot/7/component1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>因此當 Spring Boot 程式運行起來之後，Spring Boot 就會去查看有哪些 class 上面加上了 <code>@Component</code>，然後 Spring Boot 就會去提前去 new 一個 object 出來，並且存放在 Spring 容器裡面，等著其他人後續來跟他借</p>
 <p>以此處為例，當 Spring Boot 看到 HpPrinter 上面有加上 <code>@Component</code> 之後，Spring Boot 就會去執行下面這行程式，提前去 new 出一個 HpPrinter 的 object 出來</p>
@@ -213,6 +216,7 @@
   src="/images/doc/springboot/7/component2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>也因為使用 <code>@Component</code> 來創建 Bean 可以說是非常神速，只需要在 class 上面加上一行程式就可以完成，因此 <code>@Component</code> 也可以說是在 Spring Boot 中使用頻率最高的註解之一</p>
 <h3 id="創建-bean-的注意事項">創建 Bean 的注意事項</h3>
@@ -224,6 +228,7 @@
   src="/images/doc/springboot/7/component3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以同樣的道理，假設我們今天改成是將 <code>@Component</code> 加在 CanonPrinter class 上面，那 Spring 所生成出來的 Bean，就會是 canonPrinter</p>
 <p>因此大家之後在創建 Bean 時，需要記得「Spring 生成出來的 Bean 的名字，會是 Class 名的第一個字母轉成小寫」，這個特性在下一篇文章中就會馬上用到，所以也是一個很重要的特性！</p>
@@ -239,6 +244,7 @@
   src="/images/doc/springboot/7/autowired1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>不過，在使用 <code>@Autowired</code> 去注入 Bean 進來時，有兩個很重要的限制一定得遵守才行！如果不遵守的話，是沒辦法正常去注入 Bean 進來的</p>
 <h3 id="1-使用-autowired-的限制之一該-class-也必須為-bean">1. 使用 @Autowired 的限制之一：該 Class 也必須為 Bean</h3>
@@ -251,6 +257,7 @@
   src="/images/doc/springboot/7/autowired2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <blockquote>
 <p>補充：所以基本上當我們使用了 Spring Boot 這套框架之後，我們就會盡量把所有的 Class 都變成 Bean，因為這樣才能夠去注入來注入去的，所以在 Spring Boot 程式裡面看到一堆 <code>@Component</code> 和 <code>@Autowired</code> 是很正常的～</p>
@@ -268,6 +275,7 @@
   src="/images/doc/springboot/7/autowired3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="小結所以autowired-到底要怎麼用">小結：所以，@Autowired 到底要怎麼用？</h3>
 <p>那說了這麼多，這裡先來總結一下 <code>@Autowired</code> 的具體用法和限制</p>
@@ -290,6 +298,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著我們可以去創建一個 Printer interface 出來，只要在 com.example.demo 這個 package 上點擊右鍵，然後選擇 New，接著選擇 Java class</p>
 <p>
@@ -298,6 +307,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>然後在下面選擇 interface，並且上面的名字輸入 Printer，這樣就可以去創建一個 Printer interface 出來</p>
 <p>
@@ -306,6 +316,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著在這個 Printer 的 interface 裡面，去新增一個 <code>print()</code> 方法的宣告</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Printer</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -318,6 +329,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="練習創建-bean-的方法component">練習創建 Bean 的方法：@Component</h3>
 <p>接著我們一樣可以在 com.example.demo 底下，再去創建一個 HpPrinter 的 class 出來，並且在 HpPrinter 的 class 中，撰寫以下的程式：</p>
@@ -335,6 +347,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>這裡值得注意的是，我們在 HpPrinter class 的第 5 行處，有添加了一個 <code>@Component</code> 在上面，所以這就表示說，我們將 HpPrinter 變成是一個 <strong>「由 Spring 容器所管理的 Bean」</strong></p>
 <p>因此到時候當 Spring Boot 運行起來時，就會預先去創建 hpPrinter 這個 Bean 出來，並且存放在 Spring 容器裡面了</p>
@@ -347,6 +360,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>在 MyController 這裡，我們先新增了一個 Printer 類型的變數，並且在這個變數上面加上一個 <code>@Autowired</code>，這樣到時候，<strong>Spring Boot 就會將「Spring 容器中類型為 Printer 的 Bean，給注入到這個 printer 變數上面」</strong></p>
 <p>所以換句話說的話，到時候 Spring Boot 就是會把存放在 Spring 容器中的 hpPrinter Bean，去注入到 MyController 的 printer 變數上，因此到時候這個 printer 變數所存放的，就會是一個 HpPrinter 的 object</p>
@@ -357,6 +371,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>當我們寫到這裡之後，使用 <code>@Autowired</code> 去注入一個 Bean 進來的程式也就完成了！</p>
 <h4 id="補充mycontroller-為什麼能使用-autowired">補充：MyController 為什麼能使用 <code>@Autowired</code>？</h4>
@@ -371,6 +386,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice8.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>運行起來之後，當看到下方的 console 出現「Started DemoApplication in 1.313 seconds」時，就表示 Spring Boot 程式運行成功了</p>
 <p>
@@ -379,6 +395,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice9.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著我們可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，然後按下 Enter 鍵</p>
 <p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示請求成功了，我們可以回到 IntelliJ 軟體上來看一下結果</p>
@@ -388,6 +405,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice10.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>這時回到 IntelliJ 上，就可以在 console 的下方看到一行「HP印表機: Hello World」</p>
 <p>
@@ -396,6 +414,7 @@ Day 4 - 第一個 Spring Boot 程式
   src="/images/doc/springboot/7/practice11.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>會出現這一行「HP印表機: Hello World」的原因是因為，當我們在瀏覽器輸入 http://localhost:8080/test 時，Spring Boot 會去執行 MyController 裡面的 <code>test()</code> 方法，因此才會執行到 <code>printer.print(&quot;Hello World&quot;)</code> 這行程式，所以才會在 console 上印出「HP印表機: Hello World」的字串</p>
 <p>因此只要看到「HP印表機: Hello World」這一行出現，就表示我們成功的透過 <code>@Component</code> 和 <code>@Autowired</code>，在 Spring Boot 中創建一個 HpPrinter Bean 出來，並且將他注入到 MyController 裡面了！</p>
@@ -501,6 +520,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

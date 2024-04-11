@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -236,6 +238,7 @@ IntelliJ 官網連結
   src="/images/doc/springboot/3/intellij1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好之後，點擊兩下執行安裝檔，安裝過程中先按下幾個 Next 繼續之後，當 IntelliJ 呈現下面這個視窗時，建議可以勾選左上角的「Create Desktop Shortcut」，這樣安裝程式就會在桌面建立一個 IntelliJ 的捷徑，方便大家日後執行 IntelliJ 程式</p>
 <p>
@@ -244,6 +247,7 @@ IntelliJ 官網連結
   src="/images/doc/springboot/3/intellij2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著後面就可以一路點擊 Next，完成 IntelliJ 的安裝了！（有關 IntelliJ 的用法，會在後續的文章中繼續介紹，此篇文章只要先安裝成功就可以了）</p>
 <h2 id="2-安裝-java-17">2. 安裝 Java 17</h2>
@@ -259,6 +263,7 @@ Adoptium 官網連結
   src="/images/doc/springboot/3/openjdk1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <blockquote>
 <p>補充：Adoptium 提供了非常多種的 Java 版本供大家安裝，如果大家之後有需要安裝其他版本的 Java，也可以到這個網站中下載</p>
@@ -278,6 +283,7 @@ Windows 的官網
   src="/images/doc/springboot/3/openjdk2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好之後，一樣點擊兩下執行安裝檔，在安裝過程中會出現下面這個視窗</p>
 <p>
@@ -286,6 +292,7 @@ Windows 的官網
   src="/images/doc/springboot/3/openjdk3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>建議可以在「Set JAVA_HOME variable」前面的叉叉點擊一下左鍵，然後選擇「將安裝在本機磁碟上」，這樣就可以在安裝 Java 版本的過程中，同步設定 JAVA_HOME 的環境變數，將來如果有需要使用透過 cmd 的指令執行 Java 時，就可以直接使用了！</p>
 <blockquote>
@@ -297,6 +304,7 @@ Windows 的官網
   src="/images/doc/springboot/3/openjdk4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>設定好之後，接著後面一樣是可以一路點擊下一步，完成 Java 的安裝</p>
 <h2 id="3-安裝-mysql-資料庫">3. 安裝 MySQL 資料庫</h2>
@@ -313,6 +321,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>篩選出來之後，下方一樣是有多個載點可以選擇，不論你的電腦是 x86 或是 x64，都可以點擊下方紅框處的 MySQL Installer，去下載 MySQL 的資料庫了</p>
 <p>
@@ -321,6 +330,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>跳轉到下個頁面之後，再點擊上方的 Download 按鈕，去下載 MySQL 的安裝程式檔下來</p>
 <p>
@@ -329,6 +339,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊下載按鈕之後，MySQL 會跳出一個頁面詢問你要不要註冊新帳號，可以直接往下拉，點擊下方的「No thanks, just start my download.」，直接繼續下載</p>
 <p>
@@ -337,6 +348,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql4.jpg"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="安裝和設定-mysql">安裝和設定 MySQL</h3>
 <p>下載好安裝檔之後，一樣點擊兩下執行安裝檔，開始安裝 MySQL</p>
@@ -347,6 +359,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著幾個視窗，都是直接按下 Next 繼續，直到出現下面這個視窗時，要開始特別注意一下，這個視窗是 MySQL 詢問我們要使用哪一種密碼加密，這裡就選擇上面的「Use Strong Password Encryption for Authentication (RECOMMENDED)」即可，然後點擊 Next 繼續</p>
 <p>
@@ -355,6 +368,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著 MySQL 會要你設定這個資料庫中，權力最大的 root user 的密碼，這裡建議大家就輸入<code>springboot</code> 這個字串當作密碼</p>
 <blockquote>
@@ -366,6 +380,7 @@ MySQL 官網連結
   src="/images/doc/springboot/3/mysql7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>設定好之後，就一路按下右下角的 Next，就可以完成 MySQL 的安裝了！</p>
 <h2 id="4-安裝-chrome-擴充功能---talend-api-tester">4. 安裝 Chrome 擴充功能 - Talend API Tester</h2>
@@ -384,6 +399,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/3/talend1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>安裝完成之後，點擊右上角的圖示，就可以打開 Talend API Tester</p>
 <p>
@@ -392,6 +408,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/3/talend2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>打開 Talend API Tester 後，大家可以先點擊右下角的箭頭，把下方的視窗給收起來，而後續我們就會透過這個工具，對 Spring Boot 的程式進行測試</p>
 <p>
@@ -400,6 +417,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/3/talend3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="5-安裝-git">5. 安裝 Git</h2>
 <p>最後一個要安裝的是 Git，Git 是軟體工程師在開發程式的過程中，幫助我們進行版本管理的工具，對於軟體工程師來說也是一個非常重要的技能</p>
@@ -414,6 +432,7 @@ Git 官網連結
   src="/images/doc/springboot/3/git1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好之後，一樣點擊兩下執行安裝檔，安裝過程中先按下幾個 Next 繼續之後，當 Git 呈現下面這個視窗時，建議可以勾選左上角的「Additional icons」，這樣安裝程式就會在桌面建立一個 Git Bash 的捷徑，方便大家日後使用</p>
 <p>
@@ -422,6 +441,7 @@ Git 官網連結
   src="/images/doc/springboot/3/git2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著就是一路按 Next，就可以完成 Git 的安裝了</p>
 <h2 id="總結">總結</h2>
@@ -525,6 +545,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -201,6 +203,7 @@
   src="/images/doc/springboot/4/activate-intellij1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>如果要使用 30 天的免費試用的話，只需要點擊右上角的「Start trial」，然後點擊下方的「Start Trial」按鈕，就可以取得 30 天的免費試用了</p>
 <p>
@@ -209,6 +212,7 @@
   src="/images/doc/springboot/4/activate-intellij2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <blockquote>
 <p>補充：點擊 Start Trial 按鈕之後，瀏覽器會跳出一個 IntelliJ 的頁面，問你要不要訂閱電子報，這部分可訂閱可不訂閱，不過不管有沒有訂閱，只要直接回到 IntelliJ 程式，都是可以正常啟用 30 天試用版成功的</p>
@@ -222,6 +226,7 @@
   src="/images/doc/springboot/4/springboot1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="設定-spring-boot-程式">設定 Spring Boot 程式</h3>
 <p>接著 IntelliJ 會跳出這個視窗，要我們進行 Project 設定，大家可以先點擊左側側邊欄的「Spring Initializr」，表示我們要創建的是 Spring Boot 的程式，接著右邊就是跟著下圖一樣，選擇一樣的設定即可</p>
@@ -231,6 +236,7 @@
   src="/images/doc/springboot/4/springboot2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>這邊也補充一下，大家在設定上圖中的「3. JDK」時，可能會找不到 temurin-17 在哪裡，這時只要點開 JDK 那個選項，然後在下方會有一個「Detected SDKs」的區塊，這裡就是你電腦上有安裝的 Java 版本，只要選中其中的「temurin-17.jdk」就可以了</p>
 <p>
@@ -239,6 +245,7 @@
   src="/images/doc/springboot/4/springboot3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>另外我們也可以回頭來看一下這個 Project 設定中，右邊的這些值分別代表什麼意思</p>
 <ul>
@@ -259,6 +266,7 @@
   src="/images/doc/springboot/4/springboot4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>像是在左上方的紅框處，就可以去選擇 Spring Boot 的版本，大家可以直接使用預設的最新版即可，不用特別去改變</p>
 <p>而在下方的部分，則是可以去選擇要載入哪些功能到這個 Spring Boot 程式裡面，這裡大家先展開 Web，然後勾選裡面的「Spring Web」即可</p>
@@ -271,6 +279,7 @@
   src="/images/doc/springboot/4/springboot5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>在 Spring Boot 程式創建的過程中，大家也可以先熟悉一下 IntelliJ 的軟體介面</p>
 <ul>
@@ -286,6 +295,7 @@
   src="/images/doc/springboot/4/springboot6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>另外也補充一下，因為 IntelliJ 預設的字體還滿小的，所以建議大家可以調大程式編輯區的字體，只要點擊左上方的「Preferences」，就可以叫出偏好設定，接著點擊 Editor 中的 Font，就可以在右側設定編輯區的字型、以及字體大小了！</p>
 <p>
@@ -294,6 +304,7 @@
   src="/images/doc/springboot/4/springboot7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="第一個-spring-boot-程式">第一個 Spring Boot 程式</h2>
 <p>設定好 IntelliJ 的偏好設定、並且確認右下角的進度條跑完之後，就可以開始來寫我們的第一個 Spring Boot 程式了</p>
@@ -305,6 +316,7 @@
   src="/images/doc/springboot/4/springboot8.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>第一次接觸 Spring 的大家，可能會覺得第 6 行這種前面帶有小老鼠 @ 的程式很奇怪，不過這種前面帶有小老鼠的寫法，在 Java 裡面稱作 annotation，中文是翻譯為「標註」或是「註解」</p>
 <blockquote>
@@ -320,6 +332,7 @@
   src="/images/doc/springboot/4/springboot9.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以到這邊為止，我們已經大致了解了 <code>@SpringBootApplication</code> 的用途（就是將該 class 變成 Spring Boot 的啟動入口），以及如何在 IntelliJ 中運行 Spring Boot 程式了，不過在我們真的去運行這個 Spring Boot 程式之前，我們可以先來寫一些 Java 程式在裡面</p>
 <h3 id="添加-demo-程式">添加 demo 程式</h3>
@@ -330,6 +343,7 @@
   src="/images/doc/springboot/4/springboot10.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>然後我們將這個 class 的名字取名成 MyController</p>
 <p>
@@ -338,6 +352,7 @@
   src="/images/doc/springboot/4/springboot10.5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著在這個 MyController 裡面，添加下列的程式</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@RestController</span><span style="color:#bbb">
@@ -358,6 +373,7 @@
   src="/images/doc/springboot/4/springboot10.6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>寫完這段程式之後，不了解 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的意思是正常的，這兩個註解的用途，會在後面提到「Spring MVC」章節的時候再做介紹，所以這裡大家就先照著寫就好</p>
 <h3 id="運行-spring-boot-程式">運行 Spring Boot 程式</h3>
@@ -369,6 +385,7 @@
   src="/images/doc/springboot/4/springboot11.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊運行之後，這時候下面就會顯示出一個 console 的視窗，在這個 console 的最一開始會出現一個 Spring 的 logo，接著後面就是實時呈現出 Spring Boot 程式的運行結果</p>
 <p>只要大家看到最後有一行「Started DemoApplication in 1.024 seconds」出現的時候，就表示你的 Spring Boot 程式運行成功了！</p>
@@ -378,6 +395,7 @@
   src="/images/doc/springboot/4/springboot12.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>當 Spring Boot 程式運行成功之後，就可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，接著按下 Enter 鍵</p>
 <p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示你的第一個 Spring Boot 程式運作成功了！！讚讚讚！！</p>
@@ -387,6 +405,7 @@
   src="/images/doc/springboot/4/springboot13.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="所以剛剛我們都做了什麼">所以，剛剛我們都做了什麼？</h3>
 <p>那到這邊，我們可以回頭來看一下我們剛剛都做了什麼，我們剛剛有去新增了一個 MyController 的 class，然後在裡面加上一個 <code>test()</code> 方法，並且在裡面去回傳一個 Hello World 的字串，同時也添加了兩個註解 <code>@RestController</code> 和 <code>@RequestMapping</code></p>
@@ -396,6 +415,7 @@
   src="/images/doc/springboot/4/springboot14.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>那這段程式的運作邏輯是這樣子的，當我們在 Google 瀏覽器輸入 http://localhost:8080/test 時，實際上 Spring Boot 程式就會去執行 MyController 裡面的 <code>test()</code> 方法裡面的程式，所以這也是為什麼在 console 上會印出一行「Hi!」，並且這個 <code>test()</code> 方法的返回值「Hello World」字串，就會顯示在 Google 瀏覽器上面</p>
 <p>
@@ -404,6 +424,7 @@
   src="/images/doc/springboot/4/springboot15.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>而之所以能達到這個效果，就是多虧了 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的幫助</p>
 <p>不過到目前為止，大家還不用先太深入了解這兩個註解的用法，只要先知道「當我們在 Google 中輸入 http://localhost:8080/test 時，Spring Boot 程式就會去執行這個 <code>test()</code> 方法就可以了」</p>
@@ -516,6 +537,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -157,6 +159,7 @@
   src="/images/blog/graalvm_graal.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>雖然 Graal 是使用 java 寫的，難免會讓人聯想到性能會比不上 C2 compiler，但是在各種實驗之後，得到的數據顯示對於 Java program，Graal 和 C2 compiler 的能力幾乎不相上下（在已經預熱完畢的前提下），而對於 Scala program，Graal 更是達到 10% 以上的優化，這也是為什麼 Twitter 大規模的使用 GraalVM 替換掉原本的 HotspotVM</p>
 <p>不過在啟動時，GraalVM 會比 HotspotVM 還慢，原因是必須先將 Graal 編譯成 machine code，這個是無可避免的，只是當預熱完畢時，Graal 和 C2 compiler 的性能不相上下，並且根據 Graal 的版本不斷更新，這個數據只可能會更好</p>
@@ -170,6 +173,7 @@
   src="/images/blog/graalvm_truffle.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>具體實例</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Main</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -196,6 +200,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_nativeimage1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>Native-image 帶來的好處是可以更快速的啟動一個 java program，以往如果要啟動 java 程式，需要先啟動 jvm 再載入 java code，然後再即時的 compile bytecode to machine code，非常耗時和耗 memory，而如果使用 native-image，可以取得一個更小更快速的鏡像，適合用在 cloud deploy</p>
 <p>native image 之所以可以快速啟動，是因為他做了 Ahead-of-time compile，在 compile time 時，會把所有相關的東西，包含一個 Substrate VM，一起 compile 成 machine code，這個 SubstrateVM 是 GraalVM 才有的東西，他只包含最基本的 thread scheduling、垃圾回收，盡可能的縮小必要的 jvm 體積</p>
@@ -205,6 +210,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_nativeimage2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>雖然 native image 感覺很猛，但是他也有不可抹滅的缺點，就是使用 native image 的程式，throughput 會下降，原因是因為 java 程式很大一部分的優化都在 JIT compiler 中</p>
 <p>還有另一個缺點是，native image 並沒有辦法動態的加載類（因為所有東西必須要在 compile time 就決定好），所以也沒辦法使用反射等相關機制，不過對於這個問題，GraalVM 也有提出相對應的解法，就是在 compile 時，把所有可能的類全部 compile 進來，所以反射機制還是可以支持的，不然的話，整個 Spring framework 就不能使用 native image 了</p>
@@ -216,6 +222,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_nativeimage_faas.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="安裝-graalvm">安裝 GraalVM</h3>
 <p>上<a href="https://www.graalvm.org/downloads/"
@@ -236,6 +243,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_install1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>改好路徑後的樣子</p>
 <p>
@@ -244,6 +252,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_install2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著新增一個檔案，檔名叫做 Main.java，並在裡面寫入以下內容，測試我們是否有成功切換至 GraalVM</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span><span style="color:#bbb"> </span><span style="color:#555">org.graalvm.polyglot.*</span>;<span style="color:#bbb">
@@ -275,6 +284,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_intellij1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>選擇存放 GraalVM 的位置，如果有照剛剛的步驟安裝 GraalVM 的話，就選擇 <code>/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.0.1/Contents/Home</code></p>
 <p>
@@ -283,6 +293,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_intellij2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著點擊下方加號，加入 graal-sdk.jar，路徑在 <code>/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/boot/graal-sdk.jar</code></p>
 <p>
@@ -291,6 +302,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_intellij3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>最後再將該 module 使用 sdk 換成 GraalVM，這樣就可以在 Intellij 中直接使用 GraalVM 來 run code了</p>
 <p>
@@ -299,6 +311,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_intellij4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 />
 
 
@@ -306,6 +319,7 @@ Hello World from Ruby!
   src="/images/blog/graalvm_intellij5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 
         </div>
@@ -371,6 +385,8 @@ Hello World from Ruby!
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

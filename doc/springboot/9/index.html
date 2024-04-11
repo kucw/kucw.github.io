@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -217,6 +219,7 @@
   src="/images/doc/springboot/9/count1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>如果我們想要讓 Spring Boot 在創建這個 hpPrinter 出來之後，同時也去為這個 count 變數賦予一個初始值，那麼我們就可以使用 <code>@PostConstruct</code> 來幫助我們達成這件事！</p>
 <h2 id="初始化-bean-的方法postconstruct">初始化 Bean 的方法：@PostConstruct</h2>
@@ -229,6 +232,7 @@
   src="/images/doc/springboot/9/postconstruct1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>像是我們在 HpPrinter 裡面，就去新增了一個 <code>initialize()</code> 的方法，並且在這個方法上面，去加上了 <code>@PostConstruct</code> 這行程式，因此我們就可以在這個 <code>initialize()</code> 的方法中，去初始化這個 Bean 的值，譬如說我們可以把 count 的值設成 5 之類的</p>
 <p>所以到時候，當 Spring Boot 創建完 Bean 時，Spring Boot 就會接著去執行 <strong>「有加上 <code>@PostConstruct</code> 的那個方法」</strong>（此處指的就是 <code>initialize()</code> 方法），進而去完成 Bean 的初始化！</p>
@@ -239,6 +243,7 @@
   src="/images/doc/springboot/9/postconstruct2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="1-使用-postconstruct-的注意事項之一方法有特定格式">1. 使用 @PostConstruct 的注意事項之一：方法有特定格式</h3>
 <p>在前面有提到，我們是可以在 class 中新增一個方法，然後在該方法上加上 <code>@PostConstruct</code>，這樣就可以在「該方法裡面」，去寫上初始化 Bean 的程式</p>
@@ -365,6 +370,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

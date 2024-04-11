@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -224,6 +226,7 @@
   src="/images/doc/springboot/5/printer1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="新增一個-teacher-class">新增一個 Teacher class</h3>
 <p>有了兩個印表機之後，我們可以再去設計一個 Teacher 的 class，然後在這個 Teacher 的 class 裡面宣告一個 Printer 類型的變數，並且在後面去 new 一個 HpPrinter 出來</p>
@@ -245,6 +248,7 @@
   src="/images/doc/springboot/5/printer2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="如果hpprinter-印表機壞掉了怎麼辦">如果&hellip;.HpPrinter 印表機壞掉了怎麼辦？</h3>
 <p>假設這個時候 HpPrinter 壞掉了，因此 Teacher 這個 class 想要改成是去使用 CanonPrinter 這個印表機，繼續去印東西出來</p>
@@ -255,6 +259,7 @@
   src="/images/doc/springboot/5/printer3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>那到這邊，我們可能就會產生了一個新的想法：就是身為一個 Teacher，我們其實只是想要一台印表機去印東西，不論這個印表機是 HP 牌的還是 Canon 牌的，只要他可以印出來就好了，我們根本不在意所使用的是哪個牌子的印表機</p>
 <p>但是因為我們在 Teacher 的 Java 程式裡面，具體的去指定了要使用的是哪一牌的印表機，所以每當我們換一次牌子，我們就必須要把有使用到印表機的地方全部修改一遍，那現在只有 Teacher 這個 class 需要被修改所以大家可能覺得還好，大不了就動手改一下，但是當你的 project 越寫越大之後，要這樣一個一個修改是非常困難的</p>
@@ -268,6 +273,7 @@
   src="/images/doc/springboot/5/printer4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>可以看到在 Teacher class 裡面，我們只定義了一個 Printer 的變數，但是我們並沒有為這個 Printer 去 new 一個 HpPrinter 或是 CanonPrinter，因此這個 Printer 變數的值就會是 null</p>
 <p>但是當程式運作起來之後，Spring 就會去啟動一個 Spring Container（又稱為 Spring 容器），然後 Spring 會預先去 new 一台印表機出來（此處以 HpPrinter 當作例子），並且存放在 Spring 容器裡面保存</p>
@@ -277,6 +283,7 @@
   src="/images/doc/springboot/5/printer5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>然後當 Teacher 想要使用印表機時，Spring 就會把這個預先 new 好、並且存放在 Spring 容器中的 HpPrinter 交給 Teacher，因此 Teacher 就可以正常的使用這個印表機去印東西了</p>
 <p>
@@ -285,6 +292,7 @@
   src="/images/doc/springboot/5/printer6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以大家也可以簡單的想像成是：Spring 他會預先去買一台印表機，然後儲存在「Spring 容器」裡面，而誰想要印東西，他就去跟 Spring 借，所以印東西的人就不用自己去準備一台印表機，只要一直去跟 Spring 借就好了，這個就是「Spring IoC」的概念了！！</p>
 <h2 id="spring-ioc-的定義">Spring IoC 的定義</h2>
@@ -298,6 +306,7 @@
   src="/images/doc/springboot/5/printer7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>也因為我們 <strong>將 HpPrinter 的「控制權」，從自己手上「轉移到」外部的 Spring 容器</strong>，由外部的 Spring 容器統一去做管理，所以就稱為是 Inversion of Control，簡稱為 IoC</p>
 <h2 id="spring-ioc-的優點">Spring IoC 的優點</h2>
@@ -421,6 +430,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

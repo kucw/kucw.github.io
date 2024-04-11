@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -174,6 +176,7 @@
   src="/images/blog/idea_debug1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <ol>
 <li>開啟 Debug 模式的開關，通常在寫 code 時都會改用 Debug 模式來跑程式，已經很少使用旁邊的 Run 模式了</li>
@@ -191,6 +194,7 @@
   src="/images/blog/idea_debug2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <ol>
 <li>Show Execution Point : 如果你在看其它行或其它頁面，點擊這個按鈕可跳轉到當前代碼執行的地方</li>
@@ -209,6 +213,7 @@
   src="/images/blog/idea_debug3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <ol>
 <li>Rerun : 重新運行程式，他會關閉程式後再重新啓動一次，不過很少用到，通常都會直接關掉，再手動開啟一次</li>
@@ -227,6 +232,7 @@
   src="/images/blog/idea_debug5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <ol>
 <li>參數所在行後面會顯示當前 variable 的值</li>
@@ -242,6 +248,7 @@
   src="/images/blog/idea_debug6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>或是說想要更改 variable 的值的話，也可以透過計算表達式來改變，像是下面這個例子，對 code 來說，list 裡只會有 first、second 兩個字串，但是因為我們在計算表達式裡使用了 <code>list.add(&quot;third&quot;)</code> 向 list 插入一個新的 Object <code>third</code>，所以下方 Variables 變量區才會顯示 list 裡面有三個字串 first、second、third</p>
 <p>
@@ -250,6 +257,7 @@
   src="/images/blog/idea_debug7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>題外話說一下，如果只是單純想要改變 variable 的值的話，還有另一種方法，不用透過計算表達式那麼麻煩。只要在 Variables 在直接對想要改的 variable 上點右鍵，使用 <code>setValue</code> 也能重新改變此 variable 的值的</p>
 <p>
@@ -258,6 +266,7 @@
   src="/images/blog/idea_debug15.png"
   alt=""
   loading="lazy"
+  data-zoomable
 />
 
 
@@ -265,6 +274,7 @@
   src="/images/blog/idea_debug16.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="6-break-point-條件設置">6. Break point 條件設置</h3>
 <p>有的時候在 for loop 一個集合或是數組的時候，可能只想要看 for loop 裡面的某個 i 值超過多少以上的 variable 情況，這時候就可以透過設置 break point 條件來達成，也就是說，只有在滿足了 break point 的條件時，才會停在該 break point 上，不然就會直接忽略此 break point</p>
@@ -275,6 +285,7 @@
   src="/images/blog/idea_debug8.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="7-查看所有的-break-point">7. 查看所有的 break point</h3>
 <p>在左下方點擊 View Breakpoints 可以查看目前已經設置的所有 break point，有時候自己 break point 打多了很容易忘記打在哪，可以透過這個功能知道自己都在哪些地方打了 break point，取消勾選可以使此 break point 失效</p>
@@ -284,6 +295,7 @@
   src="/images/blog/idea_debug9.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="8-設置異常-break-point">8. 設置異常 break point</h3>
 <p>當設置異常 break point時，在程式中出現需要攔截的異常時，會自動定位到 throw exception 的那行</p>
@@ -294,6 +306,7 @@
   src="/images/blog/idea_debug10.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>
 
@@ -301,6 +314,7 @@
   src="/images/blog/idea_debug11.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>當程式噴出 NullPointerException 時，IntelliJ 就會自動跳到拋出 NullPointerException 的那一行，省的我們再去定位問題點在哪，非常方便</p>
 <p>
@@ -309,6 +323,7 @@
   src="/images/blog/idea_debug12.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="9-總結">9. 總結</h3>
 <p>本文列出了 IntelliJ 中 Debug 模式的實用用法，讓你在開發路上更順暢</p>
@@ -382,6 +397,8 @@ IntelliJ - Remote Debug
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

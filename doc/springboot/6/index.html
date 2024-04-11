@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -203,6 +205,7 @@
   src="/images/doc/springboot/6/ioc.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="什麼是-di">什麼是 DI？</h2>
 <p>只要提到 IoC，就一定會提到另一個名詞 DI，這兩個名詞可以說是相輔相成的，缺一不可</p>
@@ -215,6 +218,7 @@
   src="/images/doc/springboot/6/di.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>因此基本上只要有用到「IoC 控制反轉」的地方，一定就要搭配「DI 依賴注入」，因為 IoC 會讓我們把 object 的控制權給交出去，所以後續必定需要搭配 DI，才能夠又把這個 object 給注入回來讓我們使用，因此 IoC + DI 這兩個名詞，可以說是同捆包的概念</p>
 <blockquote>
@@ -230,6 +234,7 @@
   src="/images/doc/springboot/6/bean.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以以後大家在開發 Spring Boot 的程式時，看到 Bean 就不用太緊張，想說是什麼神奇的東西，他其實就只是由 Spring 容器所管理的 object 而已，本質上和我們直接去 new 一個出來的沒什麼差別</p>
 <p>但也因為 Bean 在 Spring Boot 程式中的使用層面實在是太廣了，後面許多技術都會牽扯到 Bean 的概念，因此就建議大家還是要了解 Bean 的意義和用途會比較好！</p>
@@ -334,6 +339,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

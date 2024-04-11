@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -236,6 +238,7 @@ IntelliJ 官網連結
   src="/images/doc/springboot/2/intellij.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好之後，開啟 .dmg 檔案，將該 IntelliJ IDEA Ultimate 程式拉到 Application 資料夾裡面，即可安裝完成（有關 IntelliJ 的用法，會在後續的文章中繼續介紹，此篇文章只要先安裝成功就可以了）</p>
 <h2 id="2-安裝-java-17">2. 安裝 Java 17</h2>
@@ -251,6 +254,7 @@ Adoptium 官網連結
   src="/images/doc/springboot/2/openjdk1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <blockquote>
 <p>補充：Adoptium 提供了非常多種的 Java 版本供大家安裝，如果大家之後有需要安裝其他版本的 Java，也可以到這個網站中下載</p>
@@ -263,6 +267,7 @@ Adoptium 官網連結
   src="/images/doc/springboot/2/openjdk2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好之後，一樣是雙擊 .dmg 的下載檔，然後一路按下一步就可以完成安裝了</p>
 <h2 id="3-安裝-mysql-資料庫">3. 安裝 MySQL 資料庫</h2>
@@ -279,6 +284,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>篩選出來之後，在下方的載點中，一樣是需要根據你的 Mac 晶片，選擇對應的下載點</p>
 <p>如果你的 Mac 是 Intel 晶片，那就是點擊下方的 x86 的載點，如果你的 Mac 是 Apple 的 M1、M2&hellip;.等晶片，則是點擊上方的 ARM 載點，這裡大家也是要小心選擇，以免載錯版本</p>
@@ -288,6 +294,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊下載按鈕之後，MySQL 會跳出一個頁面詢問你要不要註冊新帳號，可以直接往下拉，點擊下方的「No thanks, just start my download.」，直接繼續下載</p>
 <p>
@@ -296,6 +303,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql3.jpg"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好安裝檔之後，一樣是雙擊 .dmg 的下載檔執行安裝，先一路不斷的按繼續和同意（同意啦哪次不同意），安裝到一半時，MySQL 會接著讓我們設定資料庫，注意這裡的設定非常重要，會影響到後續文章的操作</p>
 <h3 id="設定-mysql">設定 MySQL</h3>
@@ -306,6 +314,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>接著 MySQL 會要你設定這個資料庫中，權力最大的 root user 的密碼，這裡建議大家就輸入<code>springboot</code> 這個字串當作密碼</p>
 <blockquote>
@@ -317,6 +326,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>設定好之後，就可以按下右下角的 Finish，就可以完成 MySQL 的安裝了！</p>
 <p>安裝好 MySQL 之後，如果想要查看 MySQL 目前的運作狀況，可以打開「系統偏好設定」，MySQL 的標籤就會出現在左邊側邊欄的下方，點擊之後就可以查看 MySQL 的運作狀況了</p>
@@ -326,6 +336,7 @@ MySQL 官網連結
   src="/images/doc/springboot/2/mysql6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="4-安裝-chrome-擴充功能---talend-api-tester">4. 安裝 Chrome 擴充功能 - Talend API Tester</h2>
 <p>接著則是要安裝 Chrome 的擴充功能 - Talend API Tester，在後續的文章中，我們就會使用這個 Talend API Tester，去發起一個 API call</p>
@@ -343,6 +354,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/2/talend1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>安裝完成之後，點擊右上角的圖示，就可以打開 Talend API Tester</p>
 <p>
@@ -351,6 +363,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/2/talend2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>打開 Talend API Tester 後，大家可以先點擊右下角的箭頭，把下方的視窗給收起來，而後續我們就會透過這個工具，對 Spring Boot 的程式進行測試</p>
 <p>
@@ -359,6 +372,7 @@ Talend API Tester 擴充功能連結
   src="/images/doc/springboot/2/talend3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="5-安裝-iterm2--oh-my-zsh--homebrew">5. 安裝 iTerm2 + oh-my-zsh + Homebrew</h2>
 <h3 id="安裝-iterm2">安裝 iTerm2</h3>
@@ -375,6 +389,7 @@ iTerm2 官網連結
   src="/images/doc/springboot/2/iterm2.jpg"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>下載好 iTerm2 之後，可以點擊兩下直接打開 iTerm2 程式</p>
 <p>如果想要調整 iTerm2 主題顏色的話，可以到設定中的 Profiles -&gt; Colors 標籤底下調整</p>
@@ -384,6 +399,7 @@ iTerm2 官網連結
   src="/images/doc/springboot/2/iterm2-2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>如果想要調整 iTerm2 的視窗透明度的話，可以到設定中的 Profiles -&gt; Windows 標籤底下調整</p>
 <p>
@@ -392,6 +408,7 @@ iTerm2 官網連結
   src="/images/doc/springboot/2/iterm2-3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="安裝-oh-my-zsh">安裝 oh-my-zsh</h3>
 <p>不管你是使用 Mac 內建的終端機還是 iTerm2，只要提到下指令，那麼就會想到 oh-my-zsh 這個工具</p>
@@ -407,6 +424,7 @@ oh-my-zsh 官網連結
   src="/images/doc/springboot/2/oh-my-zsh1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>
 
@@ -414,6 +432,7 @@ oh-my-zsh 官網連結
   src="/images/doc/springboot/2/oh-my-zsh2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>只要複製這一行程式，接著貼到 iTerm2 上，然後按下 Enter 鍵，等他跑完就安裝完成了</p>
 <p>
@@ -422,6 +441,7 @@ oh-my-zsh 官網連結
   src="/images/doc/springboot/2/oh-my-zsh3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>安裝完成之後，這時候 iTerm2 上面會出現一個大大的 oh my zsh，只要看到這個 Logo，就表示 oh-my-zsh 也安裝完成了！</p>
 <p>
@@ -430,6 +450,7 @@ oh-my-zsh 官網連結
   src="/images/doc/springboot/2/oh-my-zsh4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="安裝-homebrew">安裝 Homebrew</h3>
 <p>接下來要安裝的是 Homebrew，他也是一個滿好用的工具</p>
@@ -445,6 +466,7 @@ Homebrew 官網連結
   src="/images/doc/springboot/2/homebrew1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>複製好程式貼到 iTerm2 上之後，這時候按下 Enter 鍵，會發現程式卡住了，停在「Password」這一行，這個是表示要我們輸入密碼的意思，所以大家就可以直接對著鍵盤輸入你的 Mac 密碼</p>
 <blockquote>
@@ -456,6 +478,7 @@ Homebrew 官網連結
   src="/images/doc/springboot/2/homebrew2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>按下 Enter 鍵之後，接著在 iTerm2 上會出現「Press RETURN to continue」的訊息，此時就再按一下 Enter 鍵就可以了，按完之後 Homebrew 就會開始進行安裝流程</p>
 <p>
@@ -464,6 +487,7 @@ Homebrew 官網連結
   src="/images/doc/springboot/2/homebrew3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>最後當大家看到「Installation successful」的訊息出現的時候，就表示 Homebrew 安裝完成了！</p>
 <p>
@@ -472,6 +496,7 @@ Homebrew 官網連結
   src="/images/doc/springboot/2/homebrew4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="6-安裝-git">6. 安裝 Git</h2>
 <p>最後一個要安裝的是 Git，Git 是軟體工程師在開發程式的過程中，幫助我們進行版本管理的工具，對於軟體工程師來說也是一個非常重要的技能</p>
@@ -485,6 +510,7 @@ Homebrew 官網連結
   src="/images/doc/springboot/2/git.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h2 id="總結">總結</h2>
 <p>這篇文章先帶了 Mac 的大家安裝好所有的開發工具，所以在後續的文章中，就可以直接透過這些工具來開發 Spring Boot 了，可喜可賀！</p>
@@ -594,6 +620,8 @@ Java 工程師必備！Spring Boot 零基礎入門
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

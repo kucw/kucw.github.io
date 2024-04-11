@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -175,6 +177,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_direct.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="2-worker-模式">2. Worker 模式</h3>
 <p>跟 Direct 模式很像，但是差別是 Worker 模式中會 <strong>同時</strong> 有多個 Consumer 會去消費 Queue 裡的 message，增加 message 消化的速率（一個人做很慢，大家一起做就很快）</p>
@@ -184,6 +187,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_worker.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>Worker 模式是滿常用的一種模式，通常是用在大量 asynchronous job 的處理上，可以想像成 n 個 Consumer 就是一堆 Worker or Thread，一起幫忙消化 message</p>
 <p>在現在 microservice 很流行的情形下，如果有大量的 asynchronous job 要執行，通常就不會使用 Java 裡的 ThreadPool，而是會改使用這種 Worker 模式，讓許多台 node 可以一起幫忙做</p>
@@ -195,6 +199,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_subscribe.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>Exchange 自己就有三種 type，用來表示要用什麼樣的規則把 message 丟到想要丟的 Queue 裡面</p>
 <ul>
@@ -215,6 +220,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_routing1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>routingKey<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;...&#34;</span>;<span style="color:#bbb">
@@ -231,6 +237,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_routing2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>不過這種模式要慎用，因為他的重要邏輯都在 Exchange 上，所以如果是對 RabbitMQ 不熟的新手，從 code 中會看不出來原來還有這種用法，只會知道 Producer 把 message 丟給 Exchange，但卻不知道為什麼 log Queue 和 error log Queue 中卻都會有 message 出現</p>
 <h3 id="5-topics-模式">5. Topics 模式</h3>
@@ -241,6 +248,7 @@ SpringBoot - RabbitMQ 使用方法
   src="/images/blog/rabbitmq_topics.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h3 id="rabbitmq-安裝教學">RabbitMQ 安裝教學</h3>
 <blockquote>
@@ -264,6 +272,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>到這裡 RabbitMQ 就安裝好了，所以就可以使用 SpringBoot 連接上此 RabbitMQ 了</p>
 <h4 id="web-管理介面導覽">Web 管理介面導覽</h4>
@@ -274,6 +283,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊上方的 Exchanges tab 可以進到 Exchanges 頁面，可以查看目前已存在的 Exchange，以及新增一個新的 Exchange</p>
 <p>
@@ -282,6 +292,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management3.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊其中一個已存在的 Exchange，可以查看該 Exchange 的詳細資訊</p>
 <p>
@@ -290,6 +301,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management4.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊上方的 Queue tab 可以進到 Queue 頁面，可以查看目前已存在的 Queue，也可以新增一個新的 Queue</p>
 <p>
@@ -298,6 +310,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management5.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>同理，點擊其中一個已存在的 Queue，可以查看該 Queue 的詳細資訊，也可以對該 Queue 進行一系列的操作（跟 Exchange 的操作差不多，這裡就不列了）</p>
 <p>
@@ -306,6 +319,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management6.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊上方的 Admin tab 可以進到 Admin 頁面，然後在 Admin 裡點擊右側的 Users tab，可以查看/新增 RabbitMQ 的使用者，也可以查看該使用者允許 access 的 virtual host</p>
 <p>
@@ -314,6 +328,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management7.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>點擊右側的 Virtual Hosts tab，可以查看/新增 RabbitMQ 的 virtual host</p>
 <p>
@@ -322,6 +337,7 @@ https://www.docker.com/products/docker-desktop
   src="/images/blog/rabbitmq_management8.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p><strong>補充：</strong> 在 RabbitMQ 裡面有一個 virtual host 的概念，可以想像成是分組，也就是一個 virtual host 就是一組</p>
 <p>當 RabbitMQ 運行時，預設會產生一個 virtual host 叫做 <code>/</code>，然後如果不特別調整的話，所有的 Queue 都是創建在這個 <code>/</code> 的 virtual host 裡面，而 user 預設也是被設定成能存取 <code>/</code></p>
@@ -390,6 +406,8 @@ https://www.docker.com/products/docker-desktop
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->

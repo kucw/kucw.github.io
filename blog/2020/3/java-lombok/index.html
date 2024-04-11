@@ -25,6 +25,8 @@
   
   <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
   
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
 
   <!-- Main Stylesheet -->
   
@@ -149,6 +151,7 @@
   src="/images/blog/lombok_intro.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>之所以加個 lombok 的 @Getter 注解就可以幫我們自動生成所有變量的 getter，是因為 lombok 參與了 Java 在 compile 階段生成 <code>.class</code> 檔的過程，lombok 會幫我們自動寫一堆 getter，然後塞進 <code>.class</code> 檔，所以真正被編譯出來的 User.class 檔案，是包含完整的 getter 的</p>
 <p>簡單的說，lombok可以算是一種語法糖，只是在幫我們增進開發效率而已，實際上所產生出來的<code>.class</code>檔仍然是完全正常的</p>
@@ -169,6 +172,7 @@
   src="/images/blog/lombok_install1.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>然後點擊左邊的Plugins，再點擊上面的Marketplace tab，然後就可以在搜尋欄中輸入<code>lombok</code>，並且找到lombok插件並安裝它</p>
 <p>
@@ -177,6 +181,7 @@
   src="/images/blog/lombok_install2.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h4 id="為什麼需要特地安裝-intellij-lombok-插件">為什麼需要特地安裝 Intellij lombok 插件？</h4>
 <p>其實在 maven 加入 lombok dependency 之後，使用 <code>mvn clean package</code> 就可以正常 build 過，在 Intellij 中點擊綠色按鈕也可以運行程式</p>
@@ -188,6 +193,7 @@
   src="/images/blog/lombok_why_need_plugin.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>所以 lombok 算侵入性很高的一個 library，只要團隊中有一個人用 lombok 開發，那麼所有的人都必須得安裝上 lombok 插件，才不會在 Intellij 中一打開 project 時，整片都是痛苦的紅字</p>
 <h3 id="lombok-用法">Lombok 用法</h3>
@@ -198,6 +204,7 @@
   src="/images/blog/lombok_overview.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h4 id="1-gettersetter">1. @Getter/@Setter</h4>
 <p>自動產生 getter/setter</p>
@@ -207,6 +214,7 @@
   src="/images/blog/lombok_getter_setter.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h4 id="2-tostring">2. @ToString</h4>
 <p>自動 override <code>toString()</code> 方法，會印出所有變量</p>
@@ -216,6 +224,7 @@
   src="/images/blog/lombok_tostring.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <h4 id="3-equalsandhashcode">3. @EqualsAndHashCode</h4>
 <p>自動生成 <code>equals(Object other)</code> 和 <code>hashcode()</code> 方法，包括所有非靜態變量和非 transient 的變量</p>
@@ -225,6 +234,7 @@
   src="/images/blog/lombok_equalsandhashcode.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>如果某些變量不想要加進判斷，可以透過 exclude 排除，也可以使用 of 指定某些字段</p>
 <p>
@@ -233,6 +243,7 @@
   src="/images/blog/lombok_equalsandhashcode_exclude.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>Q : 為什麼只有一個整體的 <code>@EqualsAndHashCode</code> 注解，而不是分開的兩個 <code>@Equals</code> 和 <code>@HashCode</code>？</p>
 <p>A : 在 Java 中有規定，當兩個 object equals 時，他們的 hashcode 一定要相同，反之，當 hashcode 相同時，object 不一定 equals。所以 equals 和 hashcode 要一起 implement，免得發生違反 Java 規定的情形發生</p>
@@ -245,6 +256,7 @@
   src="/images/blog/lombok_noargsconstructor.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p><strong>@AllArgsConstructor</strong> : 生成一個包含所有參數的 constructor</p>
 <p>
@@ -253,6 +265,7 @@
   src="/images/blog/lombok_allargsconstructor.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了</p>
 <p>然而很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
@@ -269,6 +282,7 @@
   src="/images/blog/lombok_requiredargsconstructor.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>補充一下，如果所有的變量都是正常的，都沒有用 final 修飾的話，那就會生成一個沒有參數的 constructor</p>
 <h4 id="5-data">5. @Data</h4>
@@ -285,6 +299,7 @@
   src="/images/blog/lombok_data.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>@Data 是使用頻率最高的lombok注解，通常 @Data 會加在一個值可以被更新的 Object 上，像是日常使用的 DTO 們、或是 JPA 裡的 Entity 們，就很適合加上 @Data 注解，也就是 @Data for mutable class</p>
 <h4 id="6-value">6. @Value</h4>
@@ -301,6 +316,7 @@
   src="/images/blog/lombok_value.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>上面那個 @Data 適合用在 POJO 或 DTO 上，而這個 @Value 注解，則是適合加在值不希望被改變的類上，像是某個類的值當創建後就不希望被更改，只希望我們讀它而已，就適合加上 @Value 注解，也就是 @Value for immutable class</p>
 <p>另外注意一下，此 lombok 的注解 @Value 和另一個 Spring 的注解 @Value 撞名，在 import 時不要 import 錯了</p>
@@ -312,6 +328,7 @@
   src="/images/blog/lombok_builder.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的，因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值</p>
 <p>所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
@@ -329,6 +346,7 @@
   src="/images/blog/lombok_slf4j.png"
   alt=""
   loading="lazy"
+  data-zoomable
 /></p>
 <p>除了 @Slf4j 之外，lombok 也提供其他日誌框架的變種注解可以用，像是 @Log、@Log4j&hellip;等，他們都是幫我們創建一個靜態常量 log，只是使用的 library 不一樣而已</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//對應的log語句如下</span><span style="color:#bbb">
@@ -401,6 +419,8 @@
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
 
 
 <!-- Main Script -->
