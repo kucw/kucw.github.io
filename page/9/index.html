@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="你好，我是古古！這裡是我的後端技術筆記，內容涵蓋 Spring Boot、後端開發、微服務架構、系統設計、雲端服務...等等的知識分享">
+  <meta name="description" content="哈囉，我是古古！這裡是我的後端技術筆記，內容涵蓋 Spring Boot、後端開發、微服務架構、系統設計、雲端服務...等等的知識分享">
   <meta name="author" content="古古">
 
   <!-- Hugo version-->
@@ -80,11 +80,25 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                後端技術專欄文章
+                後端技術專欄
               </a>
               <div class="dropdown-menu">
                 
                 <a class="dropdown-item" href="https://kucw.io/doc/springboot/1">Spring Boot 零基礎入門</a>
+                
+              </div>
+            </li>
+            
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                自媒體 &amp; 敗家專區
+              </a>
+              <div class="dropdown-menu">
+                
+                <a class="dropdown-item" href="https://kucw.io/doc/as-a-content-creator/1">軟體工程師的自媒體之路</a>
                 
               </div>
             </li>
@@ -130,10 +144,43 @@
         
         <div class="card-body">
           
+          
+          <a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/" class="d-block my-3">
+            <h2 class="post-list-title">
+              ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）
+            </h2>
+          </a>
+          
+
+          <div class="mb-3"><span>By 古古</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>2018/07/08</span>
+            <span class="border-bottom border-primary px-2 mx-1"></span>
+            <span>
+              
+                <a href="/categories/elastic-search">
+                  <span class="text-primary">Elastic Search</span>
+                </a>
+              
+            </span>
+          </div>
+          <p class="card-text">介紹 Elastic Search 中 function_score 的衰減函數 linear、exp、gauss 具體用法</p>
+
+          <div class="card-divider pt-5"></div>
+        </div>
+      </article>
+    </div>
+    
+    <div class="col-md-12 mb-2">
+      <article class="card">
+        
+        <div class="card-body">
+          
+          
           <a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/" class="d-block my-3">
-            <div class="post-list-title">
+            <h2 class="post-list-title">
               ElasticSearch - function_score（random_score 具體實例）
-            </div>
+            </h2>
           </a>
           
 
@@ -161,10 +208,11 @@
         
         <div class="card-body">
           
+          
           <a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/" class="d-block my-3">
-            <div class="post-list-title">
+            <h2 class="post-list-title">
               ElasticSearch - function_score（weight 具體實例）
-            </div>
+            </h2>
           </a>
           
 
@@ -192,10 +240,11 @@
         
         <div class="card-body">
           
+          
           <a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/" class="d-block my-3">
-            <div class="post-list-title">
+            <h2 class="post-list-title">
               ElasticSearch - function_score（field_value_factor 具體實例）
-            </div>
+            </h2>
           </a>
           
 
@@ -223,10 +272,11 @@
         
         <div class="card-body">
           
+          
           <a href="https://kucw.io/blog/2018/7/elasticsearch-function_score/" class="d-block my-3">
-            <div class="post-list-title">
+            <h2 class="post-list-title">
               ElasticSearch - function_score 簡介
-            </div>
+            </h2>
           </a>
           
 
@@ -254,10 +304,11 @@
         
         <div class="card-body">
           
+          
           <a href="https://kucw.io/blog/2018/6/elasticsearch-scroll/" class="d-block my-3">
-            <div class="post-list-title">
+            <h2 class="post-list-title">
               ElasticSearch - 解決 ES 的深分頁問題（游標 scroll）
-            </div>
+            </h2>
           </a>
           
 
@@ -274,37 +325,6 @@
             </span>
           </div>
           <p class="card-text">介紹如何使用 Elastic Search 中 scroll 來獲取大量數據</p>
-
-          <div class="card-divider pt-5"></div>
-        </div>
-      </article>
-    </div>
-    
-    <div class="col-md-12 mb-2">
-      <article class="card">
-        
-        <div class="card-body">
-          
-          <a href="https://kucw.io/blog/2018/6/elasticsearch-nested/" class="d-block my-3">
-            <div class="post-list-title">
-              ElasticSearch - 嵌套對象 nested
-            </div>
-          </a>
-          
-
-          <div class="mb-3"><span>By 古古</span>
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2018/06/22</span>
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>
-              
-                <a href="/categories/elastic-search">
-                  <span class="text-primary">Elastic Search</span>
-                </a>
-              
-            </span>
-          </div>
-          <p class="card-text">介紹在 Elastic Search 中如何定義嵌套對象 nested 的 index，以及如何查詢帶有 nested 的文檔</p>
 
           <div class="card-divider pt-5"></div>
         </div>
@@ -365,6 +385,7 @@
       <li><a href="/categories/linux">Linux</a></li>
       <li><a href="/categories/other-tech">Other Tech</a></li>
       <li><a href="/categories/spring-boot">Spring Boot</a></li>
+      <li><a href="/categories/%e8%87%aa%e5%aa%92%e9%ab%94%e7%b6%93%e7%87%9f">自媒體經營</a></li>
     </ul>
   </div>
 
