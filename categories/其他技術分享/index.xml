@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>其他技術分享 on 古古的後端筆記</title>
+    <link>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</link>
+    <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>iThome 鐵人賽 - 得《優選》獎項的寫作心法</title>
+      <link>https://kucw.io/blog/ithome-sharing/</link>
+      <pubDate>Thu, 08 Aug 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/ithome-sharing/</guid>
+      <description>哈囉，我是古古！最近又到了 iThome 鐵人賽的開賽期（每年 9 月附近），在 2023 年時我也有報名參加過 iThome 鐵人賽，題目是 《Spring Boot 零基礎入門》 ，當時有幸得到了《優選》的獎項（ 得獎名單 ），因此希望可以透過這篇文章，分享一些寫作心法給大家。</description>
+    </item>
+  </channel>
+</rss>
