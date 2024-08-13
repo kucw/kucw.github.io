@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 08 Aug 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RESTful API 是什麼？一文搞懂設計 RESTful API 必備的 3 個條件</title>
+      <link>https://kucw.io/blog/restful-api/</link>
+      <pubDate>Tue, 13 Aug 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/restful-api/</guid>
+      <description>哈囉，我是古古，又到了每週二的後端電子報了！&#xA;這週要討論的主題是 「RESTful API」，RESTful API 可以說是軟體界中很經典的主題，所以我們就直接開始吧！&#xA;什麼是 RESTful API？ 所謂的 RESTful API，他是一種設計 API 的風格，而他的目的，就是為了 「簡化工程師之間的溝通成本」。</description>
+    </item>
     <item>
       <title>iThome 鐵人賽 - 得《優選》獎項的寫作心法</title>
       <link>https://kucw.io/blog/ithome-sharing/</link>

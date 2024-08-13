@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>
+    
+    RESTful API 是什麼？一文搞懂設計 RESTful API 必備的 3 個條件
+    
+  </title>
+
+  <!-- Mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="介紹 RESTful API 的概念，以及介紹要如何設計出 RESTful API">
+  <meta name="author" content="古古">
+
+  <!-- Hugo version-->
+  <meta name="generator" content="Hugo 0.123.3 with theme pure" />
+
+  <!-- Plugins -->
+  
+  <link rel="stylesheet" href="https://kucw.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://kucw.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
+  
+  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.css" media="screen">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
+
+  <!-- Facebook share link image -->
+  
+
+  <!-- Google Analytics -->
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NKQ46H0SJW');
+</script>
+</head>
+<body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container-fluid border-bottom fixed-top nav-background-color">
+    <div class="container">
+      
+      <nav class="navbar navbar-expand-lg navbar-white bg-transparent pl-0">
+        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.io/"></a>
+        <a class="navbar-brand" href="https://kucw.io/">
+          <img class="img-fluid logo-thumb-sm rounded-circle mx-1"
+            src="https://kucw.io/images/logo.png" alt="">
+          <span class="nav-brand-text">古古的後端筆記</span>
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+          <i class="ti-menu h3"></i>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                後端技術專欄
+              </a>
+              <div class="dropdown-menu">
+                
+                <a class="dropdown-item" href="https://kucw.io/doc/springboot/1">Spring Boot 零基礎入門</a>
+                
+              </div>
+            </li>
+            
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                自媒體 &amp; 敗家專區
+              </a>
+              <div class="dropdown-menu">
+                
+                <a class="dropdown-item" href="https://kucw.io/doc/as-a-content-creator/1">軟體工程師的自媒體之路</a>
+                
+              </div>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.io/">所有文章</a>
+            </li>
+            
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://kucw.io/about">關於我</a>
+            </li>
+            
+            
+          </ul>
+
+          
+
+          
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container pl-4 pr-4">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h1 class="blog-title">RESTful API 是什麼？一文搞懂設計 RESTful API 必備的 3 個條件</h1>
+
+        <div class="author-details">
+          <div>
+            <img src="https://kucw.io/images/author-sm.jpg" alt="" class="author-thumb-blog rounded-circle">
+          </div>
+          <div>
+            <p>古古</p>
+            <p>2024/08/13</p>
+          </div>
+        </div>
+
+        <hr class="blog-start-divider">
+
+        
+
+
+
+
+
+
+
+
+
+        <div class="content mb-4">
+          <p>哈囉，我是古古，又到了每週二的後端電子報了！</p>
+<p>這週要討論的主題是 <strong>「RESTful API」</strong>，RESTful API 可以說是軟體界中很經典的主題，所以我們就直接開始吧！</p>
+<h2 id="什麼是-restful-api">什麼是 RESTful API？</h2>
+<p>所謂的 RESTful API，<strong>他是一種設計 API 的風格</strong>，而他的目的，就是為了 <strong>「簡化工程師之間的溝通成本」</strong>。</p>
+<p>所以 RESTful API，他的目的其實非常單純，就只是為了簡化工程師之間的溝通成本，才提出了一系列的方法，去統一不同工程師所設計出來 API 的風格。</p>
+<p>不過在這邊要先強調一下，RESTful API 他只是一種設計風格而已，並不是強制的規定，所以如果你在設計上，完全不遵守 RESTful API 的建議，也是完全沒問題的！</p>
+<p>只不過因為 RESTful API 的設計風格，他非常的通用，所以有非常多工程師，都很喜歡使用 RESTful API 的設計方式，因此了解 RESTful API 的設計理念，還是會非常吃香的～</p>
+<br>
+<p>OK 那所以，我們就來看一下，到底什麼是 RESTful API。</p>
+<p>那如果我們把「RESTful API」這兩個單字給拆解一下的話，就可以將他們拆解成是「RESTful」和「API」。</p>
+<p>那後面的 API 的部分就比較簡單，基本上就是設計出一個 url，然後讓前端可以去 call 這個 url，去和後端請求數據這樣，那不過前面的 RESTful，他就大有來頭了！</p>
+<br>
+<p>其實 RESTful，他是一個形容詞，意思是「符合 REST 風格的」，所以 RESTful API 合在一起看的話，就是指「設計出一套符合 REST 風格的 API」。</p>
+<p>那 RESTful 在這裡，他其實是用到了英文的文法邏輯，在英文的文法中，如果想要把一個「名詞」，變成是「形容詞」的話，那就只要在後面加一個 ful 就好。</p>
+<p>所以像是在英文裡面：</p>
+<ul>
+<li>beauty 是名詞（意思是漂亮），beautiful 是形容詞（意思是漂亮的）</li>
+<li>peace 是名詞（意思是和平），peaceful 是形容詞（意思是和平的）</li>
+</ul>
+<p>所以同樣的道理，REST 是名詞，表示「REST 設計風格」，而 RESTful 是形容詞，就是表示「符合 REST 設計風格的」。</p>
+<p>所以當我們在說 RESTful API 的時候，我們實際上所表示的，就是指「你的 API 設計的很符合 REST 的風格」，或是更白話一點，就是表示「欸～你的 API 很 REST 哦😏」，所以這個 RESTful，他本質上是一個形容詞，用途就是用來形容目前這個 API，是不是符合 REST 這個設計風格。</p>
+<p>那所以當大家看到某個 API 很符合 REST 的設計風格時，就可以稱呼這個 API，他是一個 RESTful API，那就表示他是一個「很符合 REST 風格的 API」了！</p>
+<h2 id="如何設計出-restful-api">如何設計出 RESTful API？</h2>
+<p>當大家了解了 RESTful API 的概念之後，接下來我們就可以來探討一下，什麼是「REST 設計風格」，而我們又要如何將我們的 API，去設計成「符合 REST 風格」的 API 了。</p>
+<p>如果我們想要設計出一個「符合 REST 設計風格」的 API，也就是設計出一個 RESTful API 的話，那這個 API，就必須要滿足 3 個條件。</p>
+<h3 id="1-成為-restful-api-的條件一使用-http-method表示要執行的資料庫操作">1. 成為 RESTful API 的條件一：使用 Http method，表示要執行的資料庫操作</h3>
+<p>如果想要設計出 RESTful API 的話，那麼這個 API，他就必須要使用 Http method，去表示這個 API 的行為動作。</p>
+<p>舉例來說的話，目前在 Http 的世界中，就有非常多的 Http method 可以選擇，像是大家如果有安裝 <a href="https://www.postman.com/"
+   
+   target="_blank" rel="noopener">
+Postman
+</a>、或是 <a href="https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
+   
+   target="_blank" rel="noopener">
+Chrome 的擴充功能 - Talend API Tester
+</a> 這類的 api 請求工具的話，那麼在請求的時候，就有非常多種的 Http method 可以選擇（如下圖所示）。</p>
+<p>
+
+<img
+  src="/images/blog/restful_1.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>
+
+<img
+  src="/images/blog/restful_2.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>而要怎麼樣在設計 API 的時候，去選擇合適的 Http method，這個就非常的重要了！</p>
+<p>如果我們想要去設計出 RESTful API（也就是設計出符合 REST 風格的 API）的話，那麼這個 API，他就必須要 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
+<br>
+<p>這邊我們先題外話補充一下「資料庫中的 CRUD 操作」的概念，在資料庫中，CRUD 就是描述了資料庫中的四個基本操作，也就是：</p>
+<ul>
+<li><strong>C</strong>reate（新增）</li>
+<li><strong>R</strong>ead（查詢）</li>
+<li><strong>U</strong>pdate（修改）</li>
+<li><strong>D</strong>elete（刪除）</li>
+</ul>
+<p>也因為這四個操作，他們可以說是資料庫中最基本的數據操作，因此他們也常常合稱為「CRUD」，即是「增查改刪」（或是也有人稱「增刪改查」）。</p>
+<p>而在我們了解了資料庫中的 CRUD 的概念之後，如果我們想要去設計出 RESTful API 的話，那我們在設計 API 的時候，就必須要去 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
+<br>
+<p>在 RESTful API 的定義中，假設這個 API 想要執行的，是 Create（新增數據）的操作的話，那麼 REST 風格就會建議，要在 Http method 中使用 POST 方法來請求；而如果這個 API 想要執行的，是 Delete（刪除數據）的操作，那麼 REST 風格就會建議，在 Http method 中要使用 DELETE 方法來請求。</p>
+<p>所以在設計一個 RESTful API 時，基本上我們就是會去依據這個 API 想要執行的操作，去設計成要使用哪一個 Http method 來請求。</p>
+<p>
+
+<img
+  src="/images/blog/restful_3.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>所以簡單的說的話，如果大家都使用 REST 的風格來設計 API 時，那麼以後當我們看到某個 API 是使用 GET 方法來請求時，那我們就可以快速的知道，這個 API 是要去執行 Read（讀取數據）的操作；而假設這個 API 是使用 POST 方法來請求時，那我們也可以快速的知道，這個 API 是要去執行 Create（新增數據）的操作。</p>
+<p>所以假設我們想要設計出 RESTful API 的話，那麼第一個必要條件，就是 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
+<h3 id="2-成為-restful-api-的條件二使用-url-路徑描述資源之間的階層關係">2. 成為 RESTful API 的條件二：使用 url 路徑，描述資源之間的階層關係</h3>
+<p>而至於成為 RESTful API 的第二個條件，則是 <strong>「使用 url 路徑，描述資源之間的階層關係」</strong>，那這個聽起來可能有點抽象，所以我們就直接透過一個例子，來了解一下這個概念是什麼。</p>
+<p>假設現在我們有一個使用 GET 方法來請求的 API，即是 <code>GET /users</code>，那麼當我們第一眼看到這個 API 時，因為這個 API 是使用 GET 方法來請求，所以我們可以知道他是要去執行 Read（讀取數據）的操作，所以這個 <code>GET /users</code> 的含義，就是「取得所有 user 的數據」。</p>
+<p>那麼假設現在，我們又有一個使用 GET 方法去請求的 API，即是 <code>GET /users/123</code>，那麼這個 <code>GET /users/123</code> 的含義，就是「取得 user id 為 123 的那個 user 的數據」。</p>
+<p>
+
+<img
+  src="/images/blog/restful_4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>那到這邊，REST 風格的階層概念就出現了！</p>
+<br>
+<p>大家可以把 url 中的每一個斜線 <code>/</code>，想像成是一個階層，也就是一個子集合的感覺，或是說得更白話一點，就是可以直接把這個斜線 <code>/</code>，替換成是中文的「的」。</p>
+<ul>
+<li>所以像是上面的 <code>GET /users</code>，就是表示去「取得所有的 user 數據」</li>
+<li>而至於下面的 <code>GET /users/123</code>，則是表示，去取得所有 user 裡面**「的」**user id 為 123 的那個 user，所以就是「取得 user id 為 123 的那個 user 的數據」</li>
+</ul>
+<p>所以透過 REST 風格中的「階層」的概念，我們就可以去使用 url 路徑，去表達我們想要取得的資源是什麼了。</p>
+<br>
+<p>所以如果舉更多例子來看的話，就會像是下面這張圖這樣，我們是可以透過不斷的添加斜線 <code>/</code>，去表達子集合的概念，也就是中文的「的」的概念。</p>
+<p>
+
+<img
+  src="/images/blog/restful_5.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>所以透過上面這些例子，我們就可以得出一個結論，當我們今天看到某個 API 是 <code>GET /users</code> 時，那就可以直接透過 <code>/users</code> 這個 url 路徑，就知道他是要取得所有的 user 數據，而如果我們看到 <code>GET /users/123/videos</code> 這個 API 時，那就可以直接透過 <code>/users/123/videos</code> 這個 url 路徑，去知道他是要取得「user id 為 123，他旗下的所有 videos 的數據」。</p>
+<p>所以透過這個 url 的階層概念，我們就可以直接利用 url 路徑，去表達「資源之間的階層關係」了。</p>
+<h3 id="3-成為-restful-api-的條件三response-body-返回-json-或是-xml-格式">3. 成為 RESTful API 的條件三：Response body 返回 JSON 或是 Xml 格式</h3>
+<p>而至於成為 RESTful API 的最後一個條件，這個就超級簡單了，就只要讓 Response body 所返回的數據，返回成是 JSON 或是 Xml 的格式，這樣子就滿足 RESTful API 的第三個條件了。</p>
+<p>
+
+<img
+  src="/images/blog/restful_6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<h2 id="設計-restful-api-的總結">設計 RESTful API 的總結</h2>
+<p>所以總結上面的三個條件的話，如果想要設計出 RESTful API 的話，那就只要同時滿足以下這三個條件：</p>
+<ol>
+<li>使用 Http method，表示要執行的資料庫操作</li>
+<li>使用 url 路徑，描述資源之間的階層關係</li>
+<li>Response body 返回 JSON 或是 Xml 格式</li>
+</ol>
+<p>只要同時滿足上面這三個條件，那麼這個 API，他就是一個符合 REST 設計風格的 API，所以也可以稱呼他為 RESTful API 了！因此大家之後如果想要設計出 RESTful API 的話，就只要滿足上面的三個條件，就也能夠設計出 RESTful API 了～</p>
+<p>
+
+<img
+  src="/images/blog/restful_8.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>也因為 REST 這個設計風格，他很明確的去定義出設計 API 的建議做法，所以就可以讓所有工程師，按照一個共同的默契來設計 API，因此就不會出現那種大家都隨便亂設計 API 的情況出現，進而就可以達到「簡化工程師之間溝通」的效果了！</p>
+<p>譬如說我們在查看別人所寫的 API 時，就可以直接先透過這個 API 的 Http method（ex: GET、POST…等等），就可以先快速的知道這個 API 的行為，是要去讀取資料庫中的數據、還是要去新增一筆數據到資料庫；並且我們也可以直接去查看他的 url 路徑 <code>/users/1/articles</code>，就可以知道當前這個 url 路徑，他的階層的意義是什麼（ex: <code>/users/1/articles</code> 的意思是「user id 為 1 的那個使用者，他所寫的那些文章們」）。</p>
+<p>所以透過 RESTful API，就可以讓彼此不認識的工程師們，快速的透過一些約定成俗的習慣，知道對方設計的 API 想幹嘛，這樣子就可以節省許多閱讀 API 文件的時間了！</p>
+<h2 id="補充我們真的需要-restful-api-嗎">補充：我們真的需要 RESTful API 嗎？</h2>
+<p>不過，這裡還是要特別強調的一點是，RESTful API 只是一種設計風格（或者說一種約定成俗的習慣），不是強制性的規定，所以大家在實作功能時，如果有一些特殊的考量，那也是完全不需要遵守 RESTful API 的建議的。</p>
+<p>譬如說今天你開發了一個「查詢使用者數據」的 API，那麼按照 REST 的設計風格，你可能會設計成 <code>GET /users/{userId}</code> 這樣子的 API。但是因為在你的系統中， user id 是使用「身分證字號」來記錄，所以假設這時候，你硬要去套用 REST 的設計風格的話，那就會變成是使用者要把他的身分證字號，去放在 url 路徑中來傳遞，所以就會像是 <code>GET /users/B123456789</code> 這樣。</p>
+<p>不過因為「身分證字號」，他可以說是非常敏感的資訊，因此基於資訊安全的考量，就會不建議將這類的敏感資訊，去放在 url 路徑中傳遞。</p>
+<p>所以在這個情境中，將「查詢使用者數據」的 API，改成是使用 POST 方法來實作，然後把 user id 的值放在 request body 來傳遞，這樣子才是最合理的設計。</p>
+<p>
+
+<img
+  src="/images/blog/restful_9.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>所以即使大部分的 API 在設計上，都會盡量遵守 REST 這個設計風格，但是如果真的有遇到一些特殊的情況，那就直接按照自己的需求來設計就可以了，並不是符合 REST 風格的 API 才是最好的，因此這部分，就要麻煩大家再留意一下～</p>
+<h2 id="結語">結語</h2>
+<p>好啦，這週我們有先去介紹了一下 RESTful API 的概念，並且也有介紹到，要如何去設計出符合 REST 風格的 API（就是滿足 3 個必要條件即可），那就希望可以透過這篇文章，讓大家對於 RESTful API 有更多的認識。</p>
+<p>如果你對後端技術有興趣的話，也歡迎訂閱<a href="https://kucw.io/bio"
+   
+   target="_blank" rel="noopener">
+《古古的後端筆記》電子報
+</a>，每週二為你送上一篇後端技術分享，大家一起變強💪，那我們就下週二見啦！</p>
+
+        </div>
+        <hr class="blog-end-divider">
+
+        
+        <script src="https://utteranc.es/client.js"
+                label="comment"
+                repo="kucw/kucw.github.io"
+                issue-term="title"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  <div class="container">
+    
+    <div class="row justify-content-center pb-4">
+      <div class="col-12 text-center mb-5">
+        <a href="https://kucw.io/">
+          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
+               src="https://kucw.io/images/logo.png" alt="古古的後端筆記">
+        </a>
+      </div>
+    </div>
+
+    
+    <div class="row pb-1">
+      
+      <div class="col-lg-8 text-center pb-5">
+        <h4>免費訂閱電子報，每週學習後端技術🚀</h4>
+        <div id="footer-newsletter" class="newsletter">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
+              <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
+            </div>
+          </div>
+          <form action="#" method="POST" class="row justify-content-center">
+            <div class="input-group col-md-8">
+              <input type="email" required="" name="email"
+                     class="form-control"
+                     placeholder="輸入你的 Email">
+              <div class="input-group-append">
+                <button type="submit"
+                        class="input-group-text btn btn-primary">
+                  免費訂閱
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      
+      <div class="col-lg-4 pb-3 footer-contact-me">
+        <h5 class="mb-4">追蹤古古</h5>
+        <ul class="list-inline footer-social-links">
+          
+          <li class="list-inline-item"><a href="https://github.com/kucw" target="_blank" rel="noopener"><i class="ti-github"></i></a></li>
+          
+          <li class="list-inline-item"><a href="https://www.facebook.com/kucw.io" target="_blank" rel="noopener"><i class="ti-facebook"></i></a></li>
+          
+          <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" target="_blank" rel="noopener"><i class="ti-instagram"></i></a></li>
+          
+        </ul>
+        <p>聯絡信箱: service@kucw.io</p>
+      </div>
+    </div>
+    
+
+    
+    <div class="border-top py-4 text-center">
+      © 2020-2024 古古的後端筆記 | All Rights Reserved.
+    </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  var indexURL = "https://kucw.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://kucw.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://kucw.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://kucw.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://kucw.io/plugins/search/mark.js"></script>
+
+<script src="https://kucw.io/plugins/search/search.js"></script>
+
+<script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
+
+<script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
+
+<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://kucw.io/js/script.min.js"></script>
+
+
+</body>
+</html>
