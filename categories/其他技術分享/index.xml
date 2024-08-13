@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/restful-api/</link>
       <pubDate>Tue, 13 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/restful-api/</guid>
-      <description>哈囉，我是古古，又到了每週二的後端電子報了！&#xA;這週要討論的主題是 「RESTful API」，RESTful API 可以說是軟體界中很經典的主題，所以我們就直接開始吧！&#xA;什麼是 RESTful API？ 所謂的 RESTful API，他是一種設計 API 的風格，而他的目的，就是為了 「簡化工程師之間的溝通成本」。</description>
+      <description>什麼是 RESTful API？ 所謂的 RESTful API，他是一種設計 API 的風格，而他的目的，就是為了 「簡化工程師之間的溝通成本」。&#xA;所以 RESTful API，他的目的其實非常單純，就只是為了簡化工程師之間的溝通成本，才提出了一系列的方法，去統一不同工程師所設計出來 API 的風格。</description>
     </item>
     <item>
       <title>iThome 鐵人賽 - 得《優選》獎項的寫作心法</title>
