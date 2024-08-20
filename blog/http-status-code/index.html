@@ -172,7 +172,7 @@
   data-zoomable
 /></p>
 <blockquote>
-<p>這裡也是題外話補充一下，滿推薦大家可以下載上面這個 <a href="https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
+<p>題外話補充一下，滿推薦大家可以下載上面這個 <a href="https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
    
    target="_blank" rel="noopener">
 Chrome 的擴充功能 - Talend API Tester
@@ -213,7 +213,7 @@ Chrome 的擴充功能 - Talend API Tester
 <p>在我們了解了 Http Status Code 的用途之後，接下來我們就可以來看一下，常見的 Http Status Code 有哪些（以下分別介紹各大類常使用的值）。</p>
 <h3 id="1xx資訊">1xx：資訊</h3>
 <p>很神奇的是，明明 Http Status Code 有定義 1xx 這個分類出來，但是在實際的應用中，基本上很少很少會用到 1xx 的返回值，因此在這個大類裡面，沒有常見的 Http Status Code。</p>
-<br>
+<div class="markdown-breakline"></div>
 <h3 id="2xx成功">2xx：成功</h3>
 <p>在 2xx 開頭的大類中，所有的 Http Status Code，就都是表示 <strong>「請求成功」</strong> 的意思。而在 2xx 的大類裡面，常見的 Http Status Code，就有 <strong>200、201、以及 202。</strong></p>
 <p>
@@ -242,7 +242,7 @@ RESTful API 設計指南
 <h4 id="202-accepted">202 Accepted</h4>
 <p>而在 2xx 的大類中，「202 Accepted」所代表的，是「這一次的請求已經被接受，但是尚未處理完成」這樣。</p>
 <p>所以當前端收到 202 的返回值時，前端就可以知道，後端已經有收到這一次的請求了，但是因為這個任務實在要做太久，所以後端就先返回 202 的 Http Status Code 給前端，用來表示「我已經開始做了！」的意思，所以當前端收到 202 之後，前端就可以先去處理其他的事情，而不用被這個 API 給 blocked 住這樣。</p>
-<br>
+<div class="markdown-breakline"></div>
 <h3 id="3xx--重新導向">3xx : 重新導向</h3>
 <p>看完了 2xx 的大類之後，接下來我們接著來看 3xx 的大類。</p>
 <p>在 3xx 開頭的大類中，所有的 Http Status Code，就都是表示**「重新導向」**的意思。而在 3xx 的大類中，常見的 Http Status Code，有 <strong>301 和 302</strong>。</p>
@@ -274,7 +274,7 @@ https://kucw.github.io
    
    target="_blank" rel="noopener">
 https://kucw.io
-</a>），放在 Response header 中的 Location 的值。</p>
+</a>），放在 Response header 中的 Location 的裡面。</p>
 <p>
 
 <img
@@ -286,12 +286,12 @@ https://kucw.io
 <h4 id="302-found">302 Found</h4>
 <p>如果說 301 是表示「永久的」搬家的話，那麼「302 Found」所表示的，就是 url「暫時性」的搬家。</p>
 <p>所以假設某個 API，他只是「暫時性」的搬家的話（ex: 這個 API 目前可能正在調整功能中），那麼就可以回傳 302 的值給前端，就是去告訴前端，你這一次先去請求這個臨時的 url 這樣。</p>
-<p>所以 302 和 301 一樣，就都是會 Response header 的 Location 裡面，告訴前端「我搬去了哪裡」，就讓前端可以再去 call Location 中所提供的網址，找到確切的新 url。</p>
-<br>
-<p>不過老實說，對於後端工程師而言，通常是感覺不太到 301 和 302 的差別，反正他們就都是表示 url 搬家，只不過 301 是永久性的搬家、而 302 是暫時性的搬家而已。</p>
+<p>所以 302 和 301 一樣，就都是會將新的 url，放在 Response header 的 Location 裡面，告訴前端「我搬去了哪裡」，就讓前端可以再去 call Location 中所提供的網址，找到確切的新 url。</p>
+<div class="markdown-breakline"></div>
+<p>不過老實說，對於後端工程師而言，通常是感覺不太到 301 和 302 的差別，反正他們就都是表示 url 搬家的意思，只不過 301 是永久性的搬家、而 302 是暫時性的搬家而已。</p>
 <p>但是對於 SEO 而言，301 和 302 可是天差地遠的！301 是能夠將網頁的權重、流量、排名，一口氣轉移到新的網站，而 302 則沒辦法，所以對於有在經營 SEO 的團隊而言，分清楚 301 和 302 所帶來的影響還是滿重要的。</p>
 <p>不過我也是因為有在經營自媒體，所以才會知道 301、302 對 SEO 的影響，大家如果是純後端工程師的話，其實不用了解的那麼詳細，只要知道 301 是「永久性」的搬家、302 是「暫時性」的搬家，這樣子就可以了～</p>
-<br>
+<div class="markdown-breakline"></div>
 <h3 id="4xx--前端請求錯誤">4xx : 前端請求錯誤</h3>
 <p>了解了 3xx 的大類之後，接下來我們終於可以進到 4xx 的大類了！</p>
 <p>在 4xx 開頭的大類中，所有的 Http Status Code，都是表示 <strong>「前端請求錯誤」</strong> 的意思，所以這也是變相的表示，只要看到 4xx，第一時間應該是要回頭去檢查，自己 call API 時的參數有沒有帶對、或是 url 有沒有填寫正確…等等，反正就是要回頭檢查請求的參數就對了。</p>
@@ -324,7 +324,7 @@ https://kucw.io
 <h4 id="404-not-found">404 Not Found</h4>
 <p>OK 那在 4xx 的大類中，最後一個常見的 Http Status Code，就是「404 Not Found」。</p>
 <p>404 可以說是一個大家在日常生活中，也滿接觸到的 Http Status Code，那 404 的意思，就是表示這個網頁不存在，也就是前端所請求的 url 已經失效、或是 url 的值輸入錯誤，反正就是這個網頁已經不存在就對了。</p>
-<br>
+<div class="markdown-breakline"></div>
 <h3 id="5xx--後端處理有問題">5xx : 後端處理有問題</h3>
 <p>呼～看完了前面那麼多的大類，最後我們就進到最後一個大類，也就是 5xx 這個大類。</p>
 <p>那在 5xx 開頭的大類中，所有的 Http Status Code，就都是表示 <strong>「後端處理有問題」</strong> 的意思，所以這也是變相的表示，只要看到 5xx，就是表示後端這邊的程式出了問題，所以就要第一時間去檢查後端的程式哪裡有寫錯、或是哪個 Server 又壞掉了這樣。</p>
@@ -349,7 +349,7 @@ https://kucw.io
 <p>最後一個常見的 Http Status Code，就是「504 Gateway Timeout」，504 所表示的，就是這一次的請求超時了，所以中間的代理層就直接強制結束，直接回傳 504 的錯誤給前端。</p>
 <p>所以舉例來說，當前端去請求後端的 API 時，如果後端處理了太久的時間（譬如說 20 分鐘之類的），這時候中間的 Cloudflare 代理層就會認為，這個後端實在是處理得太久了，這樣一直無止盡的等下去也不是辦法，所以中間的 Cloudflare 就會直接卡掉這個請求，並且回傳 504 的錯誤給前端，表示這個請求實在做太久，已經超過容許的等待時間了。</p>
 <p>所以當 504 出現的時候，這時候後端工程師就要去查看說，是否有哪一個環節出了問題，導致程式執行過久，才會出現 504 的超時錯誤。</p>
-<br>
+<div class="markdown-breakline"></div>
 <h2 id="http-status-code-總結">Http Status Code 總結</h2>
 <p>所以總結來說的話，透過上面的介紹，我們就是針對了常見的 Http Status Code，去解析每一個 Http Status Code 的意義分別是什麼。</p>
 <p>那如果我們回頭來看一下 Http Status Code 的定義的話，所謂的「Http Status Code」，就是 <strong>「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」</strong>。</p>
@@ -375,7 +375,7 @@ https://kucw.io
 </ul>
 <p>所以當大家以後看到 4xx 的值時，就可以快速的知道，他們就都是表示「前端請求錯誤」的意思；而看到 5xx 的值時，就也可以知道，這是表示出現了「後端處理有問題」的錯誤。</p>
 <p>因此透過這個 Http Status Code，就可以快速的去知道，這一次 API 的請求結果為何了～</p>
-<br>
+<div class="markdown-breakline"></div>
 <p>PS: 補充一下，其實 Http Status Code 有一個比較好記（但是也比較兇）的版本，這邊就也寫出來跟大家分享，但就…希望大家還是和平共處🤣，前端後端一家親的對吧！</p>
 <ul>
 <li><strong>1xx : 資訊</strong></li>
