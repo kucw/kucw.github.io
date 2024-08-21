@@ -6,8 +6,15 @@
     <description>Recent content in Spring Boot on 古古的後端筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 11 Nov 2023 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Boot - 監控工具 Actuator</title>
+      <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
+      <pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/2020/7/spring-actuator/</guid>
+      <description>Spring Boot 版本：3.3.2&#xA;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.</description>
+    </item>
     <item>
       <title>Spring Boot 零基礎入門 (11) - Spring AOP 簡介</title>
       <link>https://kucw.io/doc/springboot/11/</link>
@@ -98,13 +105,6 @@
       <pubDate>Fri, 20 Nov 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/11/spring-rabbitmq/</guid>
       <description>寫稿中&amp;hellip;.✍️&#xA;有需要的人可以先參考這個 Github repo 中的 code，感謝！&#xA;https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-rabbitmq </description>
-    </item>
-    <item>
-      <title>SpringBoot - 監控工具 Actuator</title>
-      <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
-      <pubDate>Tue, 14 Jul 2020 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/2020/7/spring-actuator/</guid>
-      <description>Actuator 是 SpringBoot 提供的監控功能，可以用來查看當前的 SpringBoot 程式運行的內部狀況，譬如知道自動化配置的資訊、創建的 Spring beans 和獲取當前的 properties 屬性值</description>
     </item>
     <item>
       <title>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</title>
