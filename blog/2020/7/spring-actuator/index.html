@@ -170,7 +170,11 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span style="color:#000080">&lt;/artifactId&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#000080">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><p>只要加上了這個 maven dependency，Spring Boot 在運行時，就會自動開啟 <code>/actuator/health</code> 這個 api 給我們使用，因此當我們去請求 http://localhost:8080/actuator/health 這個 api 時，就可以查看當前 Spring Boot 程式的運行狀況。</p>
+</span></span></code></pre></div><p>只要加上了這個 maven dependency，Spring Boot 在運行時，就會自動開啟 <code>/actuator/health</code> 這個 api 給我們使用，因此當我們去請求 <a href="http://localhost:8080/actuator/health"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/actuator/health
+</a> 這個 api 時，就可以查看當前 Spring Boot 程式的運行狀況。</p>
 <p>像是下圖中就顯示，當前的 Spring Boot 運行狀態為 UP，UP 即為正常運行的意思。</p>
 <p>
 
