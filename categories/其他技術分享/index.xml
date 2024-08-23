@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 20 Aug 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2024 03:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI 名詞和概念介紹 - NLP、LLM、RAG</title>
+      <link>https://kucw.io/blog/ai-intro/</link>
+      <pubDate>Sat, 24 Aug 2024 03:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/ai-intro/</guid>
+      <description>最近實在是看到太多 AI 的專有名詞了（ex: NLP、LLM、RAG），雖然我不搞 AI，但是稍微理解一下這些名詞在幹嘛還是有必要的，不然搞得好像全世界都在追一場很好看的劇，但是自己卻完全跟不上這樣🥹&#xA;所以這篇文章就會從頭來介紹一下 AI 的概念和邏輯（不需要任何程式背景也能看得懂），以及介紹常見的 AI 名詞，那麼我們就開始吧！</description>
+    </item>
     <item>
       <title>一文搞懂 Http Status Code，詳細解析 200、301、401、403、500、503</title>
       <link>https://kucw.io/blog/http-status-code/</link>
