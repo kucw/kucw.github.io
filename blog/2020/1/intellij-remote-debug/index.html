@@ -119,6 +119,12 @@
             </li>
             
             
+
+            
+            <li class="nav-item">
+              <button id="algolia-search-btn" class="algolia-search-btn"><i class="ti-search"></i></button>
+            </li>
+            
           </ul>
 
           
@@ -129,6 +135,26 @@
     </div>
   </div>
 </header>
+
+
+<div id="algolia-search-pop-overlay" class="algolia-search-pop-overlay">
+  <div class="popup algolia-search-popup">
+    <div class="algolia-search-header">
+      <span class="algolia-search-icon">
+        <i class="ti-search"></i>
+      </span>
+      <div id="algolia-search-input-container" class="algolia-search-input-container"></div>
+      <span id="algolia-popup-btn-close" class="algolia-popup-btn-close">
+        <i class="ti-close"></i>
+      </span>
+    </div>
+    <div id="algolia-results" class="algolia-results">
+      <div id="algolia-hits" class="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+  </div>
+</div>
+
 <!-- /navigation -->
 
 
@@ -344,19 +370,19 @@ putty
 
 <script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://kucw.io/plugins/venobox/venobox.min.js"></script>
-
-<script src="https://kucw.io/plugins/search/fuse.min.js"></script>
-
-<script src="https://kucw.io/plugins/search/mark.js"></script>
-
-<script src="https://kucw.io/plugins/search/search.js"></script>
-
 <script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
 
 <script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
 
+<script src="https://kucw.io/plugins/confetti/welcomeConfetti.js"></script>
+
 <script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
+
+<script src="https://kucw.io/plugins/algolia-search/algoliasearch.js"></script>
+
+<script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
+
+<script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
 
 
 <!-- Main Script -->
