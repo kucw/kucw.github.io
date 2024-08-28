@@ -1,0 +1,21 @@
+# source 來源: https://ichochy.com/posts/blog/20210612.html
+
+name: Algolia Upload Records
+on:
+  [push] #推送时执行
+jobs:
+  algolia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # 获取代码 Checkout
+        uses: actions/checkout@v2
+      - name: Upload Records
+        # 使用 Action
+        uses: iChochy/Algolia-Upload-Records@main
+        # 设置环境变量
+        env:
+          APPLICATION_ID: ${{secrets.APPLICATION_ID}}
+          ADMIN_API_KEY: ${{secrets.ADMIN_API_KEY}}
+          INDEX_NAME: ${{secrets.INDEX_NAME}}
+          FILE_PATH: ${{secrets.FILE_PATH}}
