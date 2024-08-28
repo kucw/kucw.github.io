@@ -26,7 +26,6 @@ jobs:
         with:
           node-version: 18.x
       - name: install dependency
-        run: npm install algolia-index-update --save-dev
-      - name: run upload
         run: |
+          npm install algolia-index-update --save-dev
           algolia-idxup algolia.json
