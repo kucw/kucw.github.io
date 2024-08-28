@@ -1,0 +1,21 @@
+on:
+#  push:
+#    branches: ["master"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run container for atomic-algolia
+        run: |
+          echo "開始上傳 algolia.json"
+          docker run --rm \
+            -e ALGOLIA_ADMIN_KEY=${{ secrets.ALGOLIA_ADMIN_KEY }} \
+            -e ALGOLIA_INDEX_FILE=/public/algolia.json \
+            -e ALGOLIA_APP_ID=${{ secrets.ALGOLIA_APP_ID }} \
+            -e ALGOLIA_INDEX_NAME=${{ secrets.ALGOLIA_INDEX_NAME }} \
+            -v $PWD/public:/public algolia atomic-algolia
+          echo "上傳完畢"
