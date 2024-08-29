@@ -76,7 +76,7 @@ function initAlgoliaSearchPopupForm() {
     }),
 
     instantsearch.widgets.configure({
-      hitsPerPage: 8,
+      hitsPerPage: 7,
     }),
 
     instantsearch.widgets.pagination({
