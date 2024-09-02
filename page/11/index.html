@@ -65,11 +65,14 @@
     <div class="container">
       
       <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
-        <a class="navbar-brand mx-auto desktop-view" href="https://kucw.io/"></a>
-        <a class="navbar-brand" href="https://kucw.io/">
+        <a class="navbar-brand desktop-view" href="https://kucw.io/">
           <img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-            src="https://kucw.io/images/logo.png" alt="">
+               src="https://kucw.io/images/logo.png" alt="">
           <span class="nav-brand-text">古古的後端筆記</span>
+        </a>
+        <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
+          <img class="img-fluid logo-thumb-sm rounded-circle"
+            src="https://kucw.io/images/logo.png" alt="">
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
@@ -376,8 +379,10 @@
 
       
       <div class="col-12 mt-5">
-        
-    <ul class="pagination pagination-default">
+        <div class="pagination">
+          
+
+    <ul class="pagination-default">
       <li class="page-item">
         <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
       </li>
@@ -406,6 +411,9 @@
         <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
+        </div>
+
+
       </div>
 
     </div>
