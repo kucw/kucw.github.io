@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/vertical_and_horizontal_scaling/</link>
       <pubDate>Tue, 27 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/vertical_and_horizontal_scaling/</guid>
-      <description>什麼是 Vertical Scaling 和 Horizontal Scaling？ 想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。</description>
+      <description>什麼是 Vertical Scaling 和 Horizontal Scaling？ # 想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。</description>
     </item>
     <item>
       <title>AI 名詞和概念介紹 - NLP、LLM、RAG</title>
@@ -27,14 +27,14 @@
       <link>https://kucw.io/blog/http-status-code/</link>
       <pubDate>Tue, 20 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/http-status-code/</guid>
-      <description>什麼是 Http Status Code（Http 狀態碼）？ 所謂的「Http Status Code」，中文是翻譯成「Http 狀態碼」，而他的目的，就是 「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」。所以舉例來說的話，大家常見的「200」的回覆，其實就是表示這一次的 API 請求成功了，就只是這麼簡單的用途而已。</description>
+      <description>什麼是 Http Status Code（Http 狀態碼）？ # 所謂的「Http Status Code」，中文是翻譯成「Http 狀態碼」，而他的目的，就是 「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」。所以舉例來說的話，大家常見的「200」的回覆，其實就是表示這一次的 API 請求成功了，就只是這麼簡單的用途而已。</description>
     </item>
     <item>
       <title>RESTful API 設計指南，3 個必備條件缺一不可！</title>
       <link>https://kucw.io/blog/restful-api/</link>
       <pubDate>Tue, 13 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/restful-api/</guid>
-      <description>什麼是 RESTful API？ 所謂的 RESTful API，他是一種設計 API 的風格，而他的目的，就是為了 「簡化工程師之間的溝通成本」。&#xA;所以 RESTful API，他的目的其實非常單純，就只是為了簡化工程師之間的溝通成本，才提出了一系列的方法，去統一不同工程師所設計出來 API 的風格。</description>
+      <description>什麼是 RESTful API？ # 所謂的 RESTful API，他是一種設計 API 的風格，而他的目的，就是為了 「簡化工程師之間的溝通成本」。</description>
     </item>
     <item>
       <title>iThome 鐵人賽 - 得《優選》獎項的寫作心法</title>

@@ -190,8 +190,10 @@
 
 
         <div class="content mb-4">
-          <h2 id="什麼是-vertical-scaling-和-horizontal-scaling">什麼是 Vertical Scaling 和 Horizontal Scaling？</h2>
-<p>想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。</p>
+          <h2 id="什麼是-vertical-scaling-和-horizontal-scaling" class="markdown-heading-anchor">
+  什麼是 Vertical Scaling 和 Horizontal Scaling？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-vertical-scaling-%e5%92%8c-horizontal-scaling">#</a>
+</h2><p>想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。</p>
 <p>但是，當你的業務慢慢擴張時，這時候當初租用的那台 Server 已經不夠用了，那麼這時候，你該怎麼辦？所以為了讓 Server 能夠應付更高的流量，這時候就是 Vertical Scaling 和 Horizontal Scaling 出場的時候了！</p>
 <p>
 
@@ -201,40 +203,57 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="什麼是-vertical-scaling垂直擴展">什麼是 Vertical Scaling（垂直擴展）？</h3>
-<p>所謂的 <strong>Vertical Scaling（垂直擴展）</strong>，就是表示「直接在該 VM 上加一堆 cpu 和 ram，讓這台 VM 變成一台超級強大的 VM」，讓他能夠對付更高的流量。</p>
+<h3 id="什麼是-vertical-scaling垂直擴展" class="markdown-heading-anchor">
+  什麼是 Vertical Scaling（垂直擴展）？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-vertical-scaling%e5%9e%82%e7%9b%b4%e6%93%b4%e5%b1%95">#</a>
+</h3><p>所謂的 <strong>Vertical Scaling（垂直擴展）</strong>，就是表示「直接在該 VM 上加一堆 cpu 和 ram，讓這台 VM 變成一台超級強大的 VM」，讓他能夠對付更高的流量。</p>
 <p>所以在 Vertical Scaling 中，你就只會有一台 VM，只是你把這台 VM 從一台小型的「2 核 cpu、4 GM ram」Server，變成是一台「64 核 cpu、128 GB ram」的超級電腦而已。</p>
 <p>另外英文口語中的「Scale Up」，就是表示 Vertical Scaling（垂直擴展）的意思。</p>
-<h3 id="什麼是-horizontal-scaling水平擴展">什麼是 Horizontal Scaling（水平擴展）？</h3>
-<p>而所謂的 <strong>Horizontal Scaling（水平擴展）</strong>，則是表示「多新增幾台小型的 VM 出來，大家人多勢眾，一起對付更高的流量」。</p>
+<h3 id="什麼是-horizontal-scaling水平擴展" class="markdown-heading-anchor">
+  什麼是 Horizontal Scaling（水平擴展）？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-horizontal-scaling%e6%b0%b4%e5%b9%b3%e6%93%b4%e5%b1%95">#</a>
+</h3><p>而所謂的 <strong>Horizontal Scaling（水平擴展）</strong>，則是表示「多新增幾台小型的 VM 出來，大家人多勢眾，一起對付更高的流量」。</p>
 <p>所以在 Horizontal Scaling 中，你就會從「只有一台小型的 VM」，變成是「擁有很多台小型的 VM」，所以你就可以聯合這些小型的 VM 們，一起去對付更高的流量。</p>
 <p>注意在 Horizontal Scaling 中，你所擁有的一定是「很多台小型的 VM」，而不是「很多台超級電腦」，因為 Horizontal Scaling 的定義就是水平擴展，即是聯合許多小型的 VM，一起去克服龐大的流量。所以假設今天其中一台 VM 倒下了、或是流量又撐不住了，那麼就趕快再招一個小型的 VM 來加入戰場，而不是為戰場中的 VM 們升級裝備（添加 cpu、ram），這個是在了解 Horizontal Scaling 的定義時，一定要特別注意的一點。</p>
 <p>另外在英文口語中的「Scale Out」，則是表示 Horizontal Scaling（水平擴展）的意思。</p>
-<h3 id="小結">小結</h3>
-<p>所以到這邊先小結一下的話，Vertical Scaling 是「為一個 VM 不斷增強他的添加 cpu、ram，將他變成一台超級電腦，以應付更高的流量」，而 Horizontal Scaling 則是「添加許多小型的 VM，一起聯合起來對付更高的流量」，而他們兩種方式所要解決的問題，就都是 <strong>克服更高流量的問題</strong>。</p>
+<h3 id="小結" class="markdown-heading-anchor">
+  小結
+  <a href="#%e5%b0%8f%e7%b5%90">#</a>
+</h3><p>所以到這邊先小結一下的話，Vertical Scaling 是「為一個 VM 不斷增強他的添加 cpu、ram，將他變成一台超級電腦，以應付更高的流量」，而 Horizontal Scaling 則是「添加許多小型的 VM，一起聯合起來對付更高的流量」，而他們兩種方式所要解決的問題，就都是 <strong>克服更高流量的問題</strong>。</p>
 <p>而在了解了 Vertical Scaling 和 Horizontal Scaling 的概念之後，接下來我們就可以來比較一下這兩種方式的優缺點，以及在什麼樣的情境下，更適合選擇哪一種 Scaling 機制了。</p>
-<div class="markdown-breakline"></div>
-<h2 id="vertical-scaling垂直擴展的優缺點以及適用的情境">Vertical Scaling（垂直擴展）的優缺點、以及適用的情境</h2>
-<h3 id="vertical-scaling-的優缺點">Vertical Scaling 的優缺點</h3>
-<p>因為 Vertical Scaling 的方式，就是不斷為一台 VM 中添加 cpu、ram，將他變成一台超級電腦，來應對更高的流量，所以在 Vertical Scaling 的世界中，就只會有一台 VM 來處理請求，因此<strong>他的優點，就是維護和升級非常容易</strong>，所以我們只要管好這一台 VM 就好，不需要處理多台 VM 所帶來的分散式系統（Distributed System）的問題。</p>
+<h2 id="vertical-scaling垂直擴展的優缺點以及適用的情境" class="markdown-heading-anchor">
+  Vertical Scaling（垂直擴展）的優缺點、以及適用的情境
+  <a href="#vertical-scaling%e5%9e%82%e7%9b%b4%e6%93%b4%e5%b1%95%e7%9a%84%e5%84%aa%e7%bc%ba%e9%bb%9e%e4%bb%a5%e5%8f%8a%e9%81%a9%e7%94%a8%e7%9a%84%e6%83%85%e5%a2%83">#</a>
+</h2><h3 id="vertical-scaling-的優缺點" class="markdown-heading-anchor">
+  Vertical Scaling 的優缺點
+  <a href="#vertical-scaling-%e7%9a%84%e5%84%aa%e7%bc%ba%e9%bb%9e">#</a>
+</h3><p>因為 Vertical Scaling 的方式，就是不斷為一台 VM 中添加 cpu、ram，將他變成一台超級電腦，來應對更高的流量，所以在 Vertical Scaling 的世界中，就只會有一台 VM 來處理請求，因此<strong>他的優點，就是維護和升級非常容易</strong>，所以我們只要管好這一台 VM 就好，不需要處理多台 VM 所帶來的分散式系統（Distributed System）的問題。</p>
 <p>不過 Vertical Scaling 的缺點，就是他的擴展是有限的，因為就算不斷的為一台 VM 添加 cpu、ram，在物理上總是有極限的，不可能真的無限擴展下去，所以 Vertical Scaling 的缺點，就是他的擴展是有限的，到一定程度之後一定得改成 Horizontal Scaling 擴展方式。</p>
-<h3 id="vertical-scaling-的適用情境">Vertical Scaling 的適用情境</h3>
-<p>其實在業務擴張的初期，Vertical Scaling 是非常好用的選擇，因為我們只要無腦的為那一台 VM 不斷的添加 cpu 和 ram 就好（錢給到位，什麼都給你加），不需要額外處理多台 VM 所帶來的分散式系統的問題。所以在業務擴張的初期，只要啟動資金足夠，Vertical Scaling 會是一個滿不錯的選擇。</p>
+<h3 id="vertical-scaling-的適用情境" class="markdown-heading-anchor">
+  Vertical Scaling 的適用情境
+  <a href="#vertical-scaling-%e7%9a%84%e9%81%a9%e7%94%a8%e6%83%85%e5%a2%83">#</a>
+</h3><p>其實在業務擴張的初期，Vertical Scaling 是非常好用的選擇，因為我們只要無腦的為那一台 VM 不斷的添加 cpu 和 ram 就好（錢給到位，什麼都給你加），不需要額外處理多台 VM 所帶來的分散式系統的問題。所以在業務擴張的初期，只要啟動資金足夠，Vertical Scaling 會是一個滿不錯的選擇。</p>
 <p>不過當業務漸漸擴展時，這時候用 Vertical Scaling 的效益就不太好、而且可能也無法應付大量的使用者流量，所以這時候就會需要一次大型的重建，將程式改為分散式系統，後續改為使用 Horizontal Scaling 來擴展。</p>
 <p>所以如果是去很早期的新創、或是自己做 Side Project 的話，就可以考慮先用 Vertical Scaling 來撐住，至少讓公司先活下去這樣，但是後續如果想要長期發展、或是想要進大公司的話，那就一定要了解 Horizontal Scaling 和分散式系統的概念，因為大公司的流量通常都不是一台 VM 可以抵擋得住的。</p>
-<div class="markdown-breakline"></div>
-<h2 id="horizontal-scaling水平擴展的優缺點以及適用的情境">Horizontal Scaling（水平擴展）的優缺點、以及適用的情境</h2>
-<h3 id="horizontal-scaling-的優缺點">Horizontal Scaling 的優缺點</h3>
-<p>因為 Horizontal Scaling 的方式，是聯合一群小型的 VM 們，一起應對更高的流量，所以 <strong>Horizontal Scaling 的優點，就是擴展沒有極限</strong>，只要流量變大，那我就多添加一台小型的 VM 到群組裡，增加更多的戰力來應對更高的流量。</p>
+<h2 id="horizontal-scaling水平擴展的優缺點以及適用的情境" class="markdown-heading-anchor">
+  Horizontal Scaling（水平擴展）的優缺點、以及適用的情境
+  <a href="#horizontal-scaling%e6%b0%b4%e5%b9%b3%e6%93%b4%e5%b1%95%e7%9a%84%e5%84%aa%e7%bc%ba%e9%bb%9e%e4%bb%a5%e5%8f%8a%e9%81%a9%e7%94%a8%e7%9a%84%e6%83%85%e5%a2%83">#</a>
+</h2><h3 id="horizontal-scaling-的優缺點" class="markdown-heading-anchor">
+  Horizontal Scaling 的優缺點
+  <a href="#horizontal-scaling-%e7%9a%84%e5%84%aa%e7%bc%ba%e9%bb%9e">#</a>
+</h3><p>因為 Horizontal Scaling 的方式，是聯合一群小型的 VM 們，一起應對更高的流量，所以 <strong>Horizontal Scaling 的優點，就是擴展沒有極限</strong>，只要流量變大，那我就多添加一台小型的 VM 到群組裡，增加更多的戰力來應對更高的流量。</p>
 <p>不過 Horizontal Scaling 的缺點，就是他在維護上會比較麻煩，因為有了多台 VM 的概念，所以就必須要建立一個分散式系統（Distributed System），並且處理分散式系統所會帶來的相關問題。</p>
 <p>所以 Horizontal Scaling，他就是屬於前期需要投入許多的成本，去架設分散式系統、並且處理分散式系統所帶來的問題，但是一但建立起來之後，後期可以無限制擴張的一種擴展方式（用遊戲的術語來描述的話，他就是一個前期發育緩慢、但是大後期很強的角色）。</p>
-<h3 id="horizontal-scaling-的適用情境">Horizontal Scaling 的適用情境</h3>
-<p>因為要使用 Horizontal Scaling 的話，首先就需要建立分散式系統，所以確實會對開發帶來一定的成本，但是如果只要後續業務有成長的話，後期通常都會轉成 Horizontal Scaling。</p>
+<h3 id="horizontal-scaling-的適用情境" class="markdown-heading-anchor">
+  Horizontal Scaling 的適用情境
+  <a href="#horizontal-scaling-%e7%9a%84%e9%81%a9%e7%94%a8%e6%83%85%e5%a2%83">#</a>
+</h3><p>因為要使用 Horizontal Scaling 的話，首先就需要建立分散式系統，所以確實會對開發帶來一定的成本，但是如果只要後續業務有成長的話，後期通常都會轉成 Horizontal Scaling。</p>
 <p>所以如果在開發時有餘裕的話，建議一開始在設計系統時，最好就直接朝「分散式系統」來設計，這樣子就可以直接套用 Horizontal Scaling 的好處，並且也省去了由 Vertical Scaling 轉成 Horizontal Scaling 的陣痛期。</p>
 <p>不過當然啦，如果你的情況是創業初期已經快活不下去、或是只是自己做 Side Project 的話，那麼就不用直上 Horizontal Scaling，回頭使用 Vertical Scaling 可能會是更好的選擇。</p>
-<div class="markdown-breakline"></div>
-<h2 id="vertical-scaling-和-horizontal-scaling-總結">Vertical Scaling 和 Horizontal Scaling 總結</h2>
-<p>所以總結上面的介紹的話，Vertical Scaling 就是「為一個 VM 不斷增強他的添加 cpu、ram，將他變成一台超級電腦，以應付更高的流量」，而 Horizontal Scaling 則是「添加許多小型的 VM，一起聯合起來對付更高的流量」，而他們兩種方式所要解決的問題，就都是為了 <strong>克服更高流量的問題</strong>。</p>
+<h2 id="vertical-scaling-和-horizontal-scaling-總結" class="markdown-heading-anchor">
+  Vertical Scaling 和 Horizontal Scaling 總結
+  <a href="#vertical-scaling-%e5%92%8c-horizontal-scaling-%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>所以總結上面的介紹的話，Vertical Scaling 就是「為一個 VM 不斷增強他的添加 cpu、ram，將他變成一台超級電腦，以應付更高的流量」，而 Horizontal Scaling 則是「添加許多小型的 VM，一起聯合起來對付更高的流量」，而他們兩種方式所要解決的問題，就都是為了 <strong>克服更高流量的問題</strong>。</p>
 <p>下表也將上述所提到的用途、以及優缺點統整在一起，提供給大家參考：</p>
 <table>
 <thead>
@@ -268,9 +287,10 @@
 </tbody>
 </table>
 <p>不過有一點也是要再提醒大家，就是 <strong>Scaling 只是一個選擇，重點是你是否能在有限的時間、金錢、以及開發階段中</strong>，為你的團隊選擇當下最好的作法，並且盡量不要留下技術債給後人🥹。</p>
-<div class="markdown-breakline"></div>
-<h2 id="結語">結語</h2>
-<p>這篇文章我們有去介紹了什麼是 Vertical Scaling 和 Horizontal Scaling，並且也有去探討他們之間的優缺點、以及適用的情境，希望可以透過這篇文章，讓大家對於 Scaling 的機制有更多的了解。</p>
+<h2 id="結語" class="markdown-heading-anchor">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2><p>這篇文章我們有去介紹了什麼是 Vertical Scaling 和 Horizontal Scaling，並且也有去探討他們之間的優缺點、以及適用的情境，希望可以透過這篇文章，讓大家對於 Scaling 的機制有更多的了解。</p>
 <p>如果你對後端技術有興趣的話，也歡迎訂閱<a href="https://kucw.io/bio"
    
    target="_blank" rel="noopener">

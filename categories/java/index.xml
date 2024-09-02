@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/2020/6/java-date/</link>
       <pubDate>Tue, 30 Jun 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/6/java-date/</guid>
-      <description>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識&#xA;1. 首先是要有時區的概念 在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</description>
+      <description>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識&#xA;1. 首先是要有時區的概念 # 在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</description>
     </item>
     <item>
       <title>Java - 五分鐘學會 Lombok 用法</title>
@@ -27,7 +27,7 @@
       <link>https://kucw.io/blog/2019/11/java-time-measurment/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2019/11/java-time-measurment/</guid>
-      <description>Stopwatch 是 Guava 提供，可以用來測量程式運行時間的工具（Guava 是 Google 開發的 Java library，是一個非常好用的工具包）&#xA;常用方法 Stopwatch.</description>
+      <description>Stopwatch 是 Guava 提供，可以用來測量程式運行時間的工具（Guava 是 Google 開發的 Java library，是一個非常好用的工具包）&#xA;常用方法 # Stopwatch.</description>
     </item>
     <item>
       <title>GraalVM 介紹 &#43; 安裝教學</title>

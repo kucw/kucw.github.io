@@ -242,8 +242,10 @@
         <div class="content mb-4">
           <p>哈囉大家好，我是古古</p>
 <p>上一篇文章有和大家介紹了 IoC、DI、Bean 這些 Spring IoC 中的重要名詞，那麼這篇文章，我們就實際的到 IntelliJ 中，來練習要如何在 Spring Boot 程式中去創建 Bean、以及要如何將 Bean 去注入到別的 class 中</p>
-<h2 id="創建-bean-的方法component">創建 Bean 的方法：@Component</h2>
-<p>在 Spring Boot 中，最最最最常見的去創建一個 Bean 的方法，就是在 class 上面加上一行 <code>@Component  </code> 的程式，這樣就可以了，Magic！！</p>
+<h2 id="創建-bean-的方法component" class="markdown-heading-anchor">
+  創建 Bean 的方法：@Component
+  <a href="#%e5%89%b5%e5%bb%ba-bean-%e7%9a%84%e6%96%b9%e6%b3%95component">#</a>
+</h2><p>在 Spring Boot 中，最最最最常見的去創建一個 Bean 的方法，就是在 class 上面加上一行 <code>@Component  </code> 的程式，這樣就可以了，Magic！！</p>
 <p>所以只要我們將 HpPrinter 改寫成是下面這個樣子（注意在最上面加了一行 <code>@Componenet</code>），就可以將 HpPrinter 變成是一個由 Spring 容器所管理的 Bean 了</p>
 <p>
 
@@ -266,8 +268,10 @@
   data-zoomable
 /></p>
 <p>也因為使用 <code>@Component</code> 來創建 Bean 可以說是非常神速，只需要在 class 上面加上一行程式就可以完成，因此 <code>@Component</code> 也可以說是在 Spring Boot 中使用頻率最高的註解之一</p>
-<h3 id="創建-bean-的注意事項">創建 Bean 的注意事項</h3>
-<p>在使用 <code>@Component</code> 來創建 Bean 時，有一個特別重要的地方要跟大家說一下，就是 <strong>這些被創建出來的 Bean，他們的名字，會是「Class 名的第一個字母轉成小寫」</strong></p>
+<h3 id="創建-bean-的注意事項" class="markdown-heading-anchor">
+  創建 Bean 的注意事項
+  <a href="#%e5%89%b5%e5%bb%ba-bean-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85">#</a>
+</h3><p>在使用 <code>@Component</code> 來創建 Bean 時，有一個特別重要的地方要跟大家說一下，就是 <strong>這些被創建出來的 Bean，他們的名字，會是「Class 名的第一個字母轉成小寫」</strong></p>
 <p>舉例來說，上面的 HpPrinter class，當我們在這個 class 上面加上一個 <code>@Component</code> 之後，Spring 所生成出來的 Bean 的名字，就會是 hpPrinter</p>
 <p>
 
@@ -282,8 +286,10 @@
 <blockquote>
 <p>補充：除了在 Class 上面加上 <code>@Component</code> 可以創建 Bean 之外，也是可以使用 <code>@Bean</code> + <code>@Configuration</code> 這種方式去創建 Bean 的，不過因為這部分相對複雜，因此在此系列文中不會特別介紹到</p>
 </blockquote>
-<h2 id="注入-bean-的方法autowired">注入 Bean 的方法：@Autowired</h2>
-<p>了解了創建 Bean 的方法之後，接著我們可以來看一下如何去注入 Bean</p>
+<h2 id="注入-bean-的方法autowired" class="markdown-heading-anchor">
+  注入 Bean 的方法：@Autowired
+  <a href="#%e6%b3%a8%e5%85%a5-bean-%e7%9a%84%e6%96%b9%e6%b3%95autowired">#</a>
+</h2><p>了解了創建 Bean 的方法之後，接著我們可以來看一下如何去注入 Bean</p>
 <p>要注入 Bean 也是很簡單，只需要在變數上面加上 <code>@Autowired</code> 這行程式，就可以將 Spring 容器中的 Bean 給注入進來了，Magic again！！</p>
 <p>
 
@@ -294,8 +300,10 @@
   data-zoomable
 /></p>
 <p>不過，在使用 <code>@Autowired</code> 去注入 Bean 進來時，有兩個很重要的限制一定得遵守才行！如果不遵守的話，是沒辦法正常去注入 Bean 進來的</p>
-<h3 id="1-使用-autowired-的限制之一該-class-也必須為-bean">1. 使用 @Autowired 的限制之一：該 Class 也必須為 Bean</h3>
-<p>當我們想要使用 <code>@Autowired</code> 去注入一個 Bean 進來時，我們必須也得變成是 Spring 容器所管理的 Bean 才可以，這樣子 Spring 容器才有辦法透過 DI (依賴注入)，將我們想要的 Bean 給注入進來</p>
+<h3 id="1-使用-autowired-的限制之一該-class-也必須為-bean" class="markdown-heading-anchor">
+  1. 使用 @Autowired 的限制之一：該 Class 也必須為 Bean
+  <a href="#1-%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e9%99%90%e5%88%b6%e4%b9%8b%e4%b8%80%e8%a9%b2-class-%e4%b9%9f%e5%bf%85%e9%a0%88%e7%82%ba-bean">#</a>
+</h3><p>當我們想要使用 <code>@Autowired</code> 去注入一個 Bean 進來時，我們必須也得變成是 Spring 容器所管理的 Bean 才可以，這樣子 Spring 容器才有辦法透過 DI (依賴注入)，將我們想要的 Bean 給注入進來</p>
 <p>所以假設我們是一個 Teacher，然後我們想要使用 <code>@Autowired</code> 把 HpPrinter 這個 Bean 給注入進來的話，那麼我們自己也必須成為一個 Bean 才可以</p>
 <p>而成為 Bean 的作法，就是在 Teacher class 上面加上 <code>@Component</code> ，這樣就可以成功的將 Teacher 也變成是由 Spring 容器所管理的 Bean 了！</p>
 <p>
@@ -309,8 +317,10 @@
 <blockquote>
 <p>補充：所以基本上當我們使用了 Spring Boot 這套框架之後，我們就會盡量把所有的 Class 都變成 Bean，因為這樣才能夠去注入來注入去的，所以在 Spring Boot 程式裡面看到一堆 <code>@Component</code> 和 <code>@Autowired</code> 是很正常的～</p>
 </blockquote>
-<h3 id="2-使用-autowired-的限制之二根據變數類型尋找-bean">2. 使用 @Autowired 的限制之二：根據變數類型尋找 Bean</h3>
-<p>使用 <code>@Autowired</code> 的第二個限制，即是 <code>@Autowired</code> 在注入 Bean 時，是會根據 <strong>「變數的類型來尋找 Bean」</strong></p>
+<h3 id="2-使用-autowired-的限制之二根據變數類型尋找-bean" class="markdown-heading-anchor">
+  2. 使用 @Autowired 的限制之二：根據變數類型尋找 Bean
+  <a href="#2-%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e9%99%90%e5%88%b6%e4%b9%8b%e4%ba%8c%e6%a0%b9%e6%93%9a%e8%ae%8a%e6%95%b8%e9%a1%9e%e5%9e%8b%e5%b0%8b%e6%89%be-bean">#</a>
+</h3><p>使用 <code>@Autowired</code> 的第二個限制，即是 <code>@Autowired</code> 在注入 Bean 時，是會根據 <strong>「變數的類型來尋找 Bean」</strong></p>
 <p>假設今天我們在 Teacher 裡面的 Printer 變數上面加上了 <code>@Autowired</code>，就表示我們想要注入一個 Printer 類型的 Bean，因此 Spring 容器就會看他裡面有沒有 Printer 類型的 Bean，如果有的話，就會把這個 Bean 給注入進去，如果沒有的話，就會出現錯誤並且停止程式</p>
 <p>而之所以 HpPrinter 這個 class，可以成功的被注入到 Printer 類型的變數裡面，<strong>原因就在於「Java 的多型 (polymorphism)」，使得 HpPrinter class 可以「向上轉型」成 Printer interface</strong>，因此就能夠成功的將 hpPrinter 這個 Bean，給注入到 Teacher 這個 class 裡面了！</p>
 <blockquote>
@@ -324,16 +334,20 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="小結所以autowired-到底要怎麼用">小結：所以，@Autowired 到底要怎麼用？</h3>
-<p>那說了這麼多，這裡先來總結一下 <code>@Autowired</code> 的具體用法和限制</p>
+<h3 id="小結所以autowired-到底要怎麼用" class="markdown-heading-anchor">
+  小結：所以，@Autowired 到底要怎麼用？
+  <a href="#%e5%b0%8f%e7%b5%90%e6%89%80%e4%bb%a5autowired-%e5%88%b0%e5%ba%95%e8%a6%81%e6%80%8e%e9%ba%bc%e7%94%a8">#</a>
+</h3><p>那說了這麼多，這裡先來總結一下 <code>@Autowired</code> 的具體用法和限制</p>
 <p>想要使用 <code>@Autowired</code> 去注入一個 Bean 時，必須滿足：</p>
 <ol>
 <li>必須要確保「自己也是一個 Bean」（即是有在 class 上面加上 <code>@Component</code>）</li>
 <li>並且 <code>@Autowired</code> 是透過「變數的類型」來注入 Bean 的（所以只要 Spring 容器中沒有那個類型的 Bean，就會注入失敗）</li>
 </ol>
 <p>只要記住以上兩點，就可以在想要的地方使用 <code>@Autowired</code>，去注入 Spring 容器中的 Bean 進來了！</p>
-<h2 id="在-spring-boot-中練習-component-和-autowired-的用法">在 Spring Boot 中練習 @Component 和 @Autowired 的用法</h2>
-<p>了解了 <code>@Component</code> 和 <code>@Autowired</code> 的概念之後，我們可以實際的到 Spring Boot 中來練習他們的用法</p>
+<h2 id="在-spring-boot-中練習-component-和-autowired-的用法" class="markdown-heading-anchor">
+  在 Spring Boot 中練習 @Component 和 @Autowired 的用法
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-component-%e5%92%8c-autowired-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
+</h2><p>了解了 <code>@Component</code> 和 <code>@Autowired</code> 的概念之後，我們可以實際的到 Spring Boot 中來練習他們的用法</p>
 <p>在 <a href="/blog/springboot/4/"
    
    target="_blank" rel="noopener">
@@ -378,8 +392,10 @@ Day 4 - 第一個 Spring Boot 程式
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="練習創建-bean-的方法component">練習創建 Bean 的方法：@Component</h3>
-<p>接著我們一樣可以在 com.example.demo 底下，再去創建一個 HpPrinter 的 class 出來，並且在 HpPrinter 的 class 中，撰寫以下的程式：</p>
+<h3 id="練習創建-bean-的方法component" class="markdown-heading-anchor">
+  練習創建 Bean 的方法：@Component
+  <a href="#%e7%b7%b4%e7%bf%92%e5%89%b5%e5%bb%ba-bean-%e7%9a%84%e6%96%b9%e6%b3%95component">#</a>
+</h3><p>接著我們一樣可以在 com.example.demo 底下，再去創建一個 HpPrinter 的 class 出來，並且在 HpPrinter 的 class 中，撰寫以下的程式：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Component</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">HpPrinter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">implements</span><span style="color:#bbb"> </span>Printer<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">  
@@ -398,8 +414,10 @@ Day 4 - 第一個 Spring Boot 程式
 /></p>
 <p>這裡值得注意的是，我們在 HpPrinter class 的第 5 行處，有添加了一個 <code>@Component</code> 在上面，所以這就表示說，我們將 HpPrinter 變成是一個 <strong>「由 Spring 容器所管理的 Bean」</strong></p>
 <p>因此到時候當 Spring Boot 運行起來時，就會預先去創建 hpPrinter 這個 Bean 出來，並且存放在 Spring 容器裡面了</p>
-<h3 id="練習注入-bean-的方法autowired">練習注入 Bean 的方法：@Autowired</h3>
-<p>創建好 HpPrinter 這個 Bean 之後，接著我們可以來嘗試把這個 HpPrinter 的 Bean，去注入到我們想要的地方</p>
+<h3 id="練習注入-bean-的方法autowired" class="markdown-heading-anchor">
+  練習注入 Bean 的方法：@Autowired
+  <a href="#%e7%b7%b4%e7%bf%92%e6%b3%a8%e5%85%a5-bean-%e7%9a%84%e6%96%b9%e6%b3%95autowired">#</a>
+</h3><p>創建好 HpPrinter 這個 Bean 之後，接著我們可以來嘗試把這個 HpPrinter 的 Bean，去注入到我們想要的地方</p>
 <p>在這裡大家可以回到 MyController 這個 class，然後在 MyController 裡面，加上如下的程式：</p>
 <p>
 
@@ -421,12 +439,16 @@ Day 4 - 第一個 Spring Boot 程式
   data-zoomable
 /></p>
 <p>當我們寫到這裡之後，使用 <code>@Autowired</code> 去注入一個 Bean 進來的程式也就完成了！</p>
-<h4 id="補充mycontroller-為什麼能使用-autowired">補充：MyController 為什麼能使用 <code>@Autowired</code>？</h4>
-<p>在這裡有一個地方要補充一下，就是我們在前面有提到，使用 <code>@Autowired</code> 的 class，本身也得是一個 Bean 才是，但是在上面的程式中，我們明明沒有在 MyController 上面加上 <code>@Component</code> 將他變成 Bean，為什麼 MyController 可以使用 <code>@Autowired</code> 去注入 Bean？</p>
+<h4 id="補充mycontroller-為什麼能使用-autowired" class="markdown-heading-anchor">
+  補充：MyController 為什麼能使用 <code>@Autowired</code>？
+  <a href="#%e8%a3%9c%e5%85%85mycontroller-%e7%82%ba%e4%bb%80%e9%ba%bc%e8%83%bd%e4%bd%bf%e7%94%a8-autowired">#</a>
+</h4><p>在這裡有一個地方要補充一下，就是我們在前面有提到，使用 <code>@Autowired</code> 的 class，本身也得是一個 Bean 才是，但是在上面的程式中，我們明明沒有在 MyController 上面加上 <code>@Component</code> 將他變成 Bean，為什麼 MyController 可以使用 <code>@Autowired</code> 去注入 Bean？</p>
 <p>其實 MyController 在這裡也是有偷偷成為一個 Bean 的，而這就是 <code>@RestController</code> 所造成的效果</p>
 <p>大家可以先把 <code>@RestController</code> 當成是一個厲害版的 <code>@Component</code>，他不僅可以將 class 變成 Bean，還有更多的功能在裡面，不過總結來說的話，MyController 本身在此處也是一個 Bean 的沒錯！所以他才有能力去使用 <code>@Autowired</code> 去注入 Bean 進來</p>
-<h3 id="運行-spring-boot-程式">運行 Spring Boot 程式</h3>
-<p>上述的程式都寫好之後，我們就可以回到 DemoApplication 這個 class，然後點擊播放鍵，去運行這個 Spring Boot 程式</p>
+<h3 id="運行-spring-boot-程式" class="markdown-heading-anchor">
+  運行 Spring Boot 程式
+  <a href="#%e9%81%8b%e8%a1%8c-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
+</h3><p>上述的程式都寫好之後，我們就可以回到 DemoApplication 這個 class，然後點擊播放鍵，去運行這個 Spring Boot 程式</p>
 <p>
 
 <img
@@ -465,12 +487,16 @@ Day 4 - 第一個 Spring Boot 程式
 /></p>
 <p>會出現這一行「HP印表機: Hello World」的原因是因為，當我們在瀏覽器輸入 http://localhost:8080/test 時，Spring Boot 會去執行 MyController 裡面的 <code>test()</code> 方法，因此才會執行到 <code>printer.print(&quot;Hello World&quot;)</code> 這行程式，所以才會在 console 上印出「HP印表機: Hello World」的字串</p>
 <p>因此只要看到「HP印表機: Hello World」這一行出現，就表示我們成功的透過 <code>@Component</code> 和 <code>@Autowired</code>，在 Spring Boot 中創建一個 HpPrinter Bean 出來，並且將他注入到 MyController 裡面了！</p>
-<h2 id="總結">總結</h2>
-<p>這篇文章先介紹了創建 Bean 的註解 <code>@Component</code> 的用法，也介紹了注入 Bean 的註解 <code>@Autowired</code> 的用法，最後也實際的在 Spring Boot 中練習了這兩個註解的用法，讓大家了解要如何在 Spring Boot 程式中去創建和注入 Bean</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章先介紹了創建 Bean 的註解 <code>@Component</code> 的用法，也介紹了注入 Bean 的註解 <code>@Autowired</code> 的用法，最後也實際的在 Spring Boot 中練習了這兩個註解的用法，讓大家了解要如何在 Spring Boot 程式中去創建和注入 Bean</p>
 <p>那麼到這邊可能有的人就會有疑惑了，既然 <code>@Autowired</code> 是透過「變數的類型」來注入 Bean，那假設在 Spring 容器中有 2 個以上同樣類型的 Bean 該怎麼辦？這時候 Spring 容器到底是會隨機挑選一個 Bean 來注入，還是會直接兩手一攤報錯？</p>
 <p>上面的問題 Spring Boot 都想到了！因此下一篇文章就會接著來介紹另一個註解 <code>@Qualifier</code>，去協助 <code>@Autowired</code> 選擇想要注入的 Bean，那我們就下一篇文章見啦！</p>
-<h2 id="相關連結">相關連結</h2>
-<ul>
+<h2 id="相關連結" class="markdown-heading-anchor">
+  相關連結
+  <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
+</h2><ul>
 <li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
    
    target="_blank" rel="noopener">

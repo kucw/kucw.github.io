@@ -243,10 +243,14 @@
           <p>哈囉大家好，我是古古</p>
 <p>在上一篇文章中，我們有成功的使用了 IntelliJ 這套軟體，去創建出了第一個 Spring Boot 程式，先對如何撰寫 Spring Boot 程式有了一個最基本的了解</p>
 <p>那麼從這篇文章開始，我們就會開始來介紹 Spring 框架中的一個非常重要的特性，也就是  IoC，所以我們就開始吧！</p>
-<h2 id="什麼是-ioc">什麼是 IoC？</h2>
-<p>IoC 的全稱是 Inversion of Control，中文翻譯成「控制反轉」，那這個控制是控制什麼，反轉又是反轉什麼，我們可以直接透過一個印表機的例子來了解一下</p>
-<h3 id="例子印表機的故事">例子：印表機的故事</h3>
-<p>假設今天我們先設計一個印表機 Printer 的 interface，這個印表機裡面只有一個方法，就是  <code>print()</code> 方法印東西，程式如下：</p>
+<h2 id="什麼是-ioc" class="markdown-heading-anchor">
+  什麼是 IoC？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-ioc">#</a>
+</h2><p>IoC 的全稱是 Inversion of Control，中文翻譯成「控制反轉」，那這個控制是控制什麼，反轉又是反轉什麼，我們可以直接透過一個印表機的例子來了解一下</p>
+<h3 id="例子印表機的故事" class="markdown-heading-anchor">
+  例子：印表機的故事
+  <a href="#%e4%be%8b%e5%ad%90%e5%8d%b0%e8%a1%a8%e6%a9%9f%e7%9a%84%e6%95%85%e4%ba%8b">#</a>
+</h3><p>假設今天我們先設計一個印表機 Printer 的 interface，這個印表機裡面只有一個方法，就是  <code>print()</code> 方法印東西，程式如下：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">interface</span> <span style="color:#458;font-weight:bold">Printer</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">print</span>(String<span style="color:#bbb"> </span>message);<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
@@ -275,8 +279,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="新增一個-teacher-class">新增一個 Teacher class</h3>
-<p>有了兩個印表機之後，我們可以再去設計一個 Teacher 的 class，然後在這個 Teacher 的 class 裡面宣告一個 Printer 類型的變數，並且在後面去 new 一個 HpPrinter 出來</p>
+<h3 id="新增一個-teacher-class" class="markdown-heading-anchor">
+  新增一個 Teacher class
+  <a href="#%e6%96%b0%e5%a2%9e%e4%b8%80%e5%80%8b-teacher-class">#</a>
+</h3><p>有了兩個印表機之後，我們可以再去設計一個 Teacher 的 class，然後在這個 Teacher 的 class 裡面宣告一個 Printer 類型的變數，並且在後面去 new 一個 HpPrinter 出來</p>
 <blockquote>
 <p>補充：這裡使用到 Java 中的多型 (polymorphism) 的概念，因此 HpPrinter 才可以被向上轉型成 Printer 類型</p>
 </blockquote>
@@ -297,8 +303,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="如果hpprinter-印表機壞掉了怎麼辦">如果&hellip;.HpPrinter 印表機壞掉了怎麼辦？</h3>
-<p>假設這個時候 HpPrinter 壞掉了，因此 Teacher 這個 class 想要改成是去使用 CanonPrinter 這個印表機，繼續去印東西出來</p>
+<h3 id="如果hpprinter-印表機壞掉了怎麼辦" class="markdown-heading-anchor">
+  如果&hellip;.HpPrinter 印表機壞掉了怎麼辦？
+  <a href="#%e5%a6%82%e6%9e%9chpprinter-%e5%8d%b0%e8%a1%a8%e6%a9%9f%e5%a3%9e%e6%8e%89%e4%ba%86%e6%80%8e%e9%ba%bc%e8%be%a6">#</a>
+</h3><p>假設這個時候 HpPrinter 壞掉了，因此 Teacher 這個 class 想要改成是去使用 CanonPrinter 這個印表機，繼續去印東西出來</p>
 <p>那這個時候，我們就只能去改寫 Teacher 裡面的程式，將裡面的 Printer 變數，改成是去 new 一個 CanonPrinter 出來，因此程式就會長得像是下面這個樣子</p>
 <p>
 
@@ -311,8 +319,10 @@
 <p>那到這邊，我們可能就會產生了一個新的想法：就是身為一個 Teacher，我們其實只是想要一台印表機去印東西，不論這個印表機是 HP 牌的還是 Canon 牌的，只要他可以印出來就好了，我們根本不在意所使用的是哪個牌子的印表機</p>
 <p>但是因為我們在 Teacher 的 Java 程式裡面，具體的去指定了要使用的是哪一牌的印表機，所以每當我們換一次牌子，我們就必須要把有使用到印表機的地方全部修改一遍，那現在只有 Teacher 這個 class 需要被修改所以大家可能覺得還好，大不了就動手改一下，但是當你的 project 越寫越大之後，要這樣一個一個修改是非常困難的</p>
 <p>所以這時候，Spring 就提出了一個新的概念來解決這個問題，也就是 IoC（Inversion of Control，控制反轉）</p>
-<h3 id="iocinversion-of-control">IoC（Inversion of Control）</h3>
-<p>為了解決上面的替換印表機的問題，Spring 就提出了一個新的想法，也就是：「將這個 Printer 的 object 交由 Spring 保管，當誰要使用印表機的時候，再去跟 Spring 拿就好」，反正我們作為 Teacher 來說，也不是很在意使用到的是 HP 牌的印表機還是 Canon 牌的印表機，我們只要能拿到一個印表機來印東西就好</p>
+<h3 id="iocinversion-of-control" class="markdown-heading-anchor">
+  IoC（Inversion of Control）
+  <a href="#iocinversion-of-control">#</a>
+</h3><p>為了解決上面的替換印表機的問題，Spring 就提出了一個新的想法，也就是：「將這個 Printer 的 object 交由 Spring 保管，當誰要使用印表機的時候，再去跟 Spring 拿就好」，反正我們作為 Teacher 來說，也不是很在意使用到的是 HP 牌的印表機還是 Canon 牌的印表機，我們只要能拿到一個印表機來印東西就好</p>
 <p>所以在這個情境下，HpPrinter 和 CanonPrinter 這兩個印表機就統一交由 Spring 進行保管，而我們作為 Teacher，不需要提前將 HpPrinter 和 CanonPrinter 的資訊寫死在 Java 裡面，所以 Teacher class 就可以改寫成像是這樣：</p>
 <p>
 
@@ -342,8 +352,10 @@
   data-zoomable
 /></p>
 <p>所以大家也可以簡單的想像成是：Spring 他會預先去買一台印表機，然後儲存在「Spring 容器」裡面，而誰想要印東西，他就去跟 Spring 借，所以印東西的人就不用自己去準備一台印表機，只要一直去跟 Spring 借就好了，這個就是「Spring IoC」的概念了！！</p>
-<h2 id="spring-ioc-的定義">Spring IoC 的定義</h2>
-<p>透過上面這個例子大概了解 Spring IoC 的概念之後，我們可以回頭再看一下 IoC 的定義</p>
+<h2 id="spring-ioc-的定義" class="markdown-heading-anchor">
+  Spring IoC 的定義
+  <a href="#spring-ioc-%e7%9a%84%e5%ae%9a%e7%be%a9">#</a>
+</h2><p>透過上面這個例子大概了解 Spring IoC 的概念之後，我們可以回頭再看一下 IoC 的定義</p>
 <p>IoC 的全稱是 Inversion of Control，中文是翻譯為控制反轉，<strong>而 IoC 的概念，就是「將 object 的控制權交給了外部的 Spring 容器來管理」</strong>，所謂的 Control (控制)，就是對於 object 的控制權</p>
 <p>像是以前我們在寫 Java 程式時，就是會在每個 class 中去 new 一個 HpPrinter 出來，因此這個 HpPrinter 的控制權就是在自己（Teacher class）手上（如下圖左）</p>
 <p>而當我們用了 Spring 框架之後，則是會由 Spring 容器統一去 new 一個 HpPrinter 出來供大家使用，因此 HpPrinter 的控制權，就是在外部容器（Spring 容器）手上（如下圖右）</p>
@@ -356,18 +368,26 @@
   data-zoomable
 /></p>
 <p>也因為我們 <strong>將 HpPrinter 的「控制權」，從自己手上「轉移到」外部的 Spring 容器</strong>，由外部的 Spring 容器統一去做管理，所以就稱為是 Inversion of Control，簡稱為 IoC</p>
-<h2 id="spring-ioc-的優點">Spring IoC 的優點</h2>
-<p>了解了 IoC 的定義之後，接著我們可以來看一些使用 Spring IoC 的優點</p>
+<h2 id="spring-ioc-的優點" class="markdown-heading-anchor">
+  Spring IoC 的優點
+  <a href="#spring-ioc-%e7%9a%84%e5%84%aa%e9%bb%9e">#</a>
+</h2><p>了解了 IoC 的定義之後，接著我們可以來看一些使用 Spring IoC 的優點</p>
 <p>使用 Spring IoC 來管理 object 基本上有三大好處，分別是：</p>
-<h3 id="1-loose-coupling鬆耦合">1. Loose coupling（鬆耦合）</h3>
-<p>第一個使用 Spring IoC 的優點，是可以達到 class 之間的鬆耦合，即是可以降低各個 class 之間的關聯性</p>
+<h3 id="1-loose-coupling鬆耦合" class="markdown-heading-anchor">
+  1. Loose coupling（鬆耦合）
+  <a href="#1-loose-coupling%e9%ac%86%e8%80%a6%e5%90%88">#</a>
+</h3><p>第一個使用 Spring IoC 的優點，是可以達到 class 之間的鬆耦合，即是可以降低各個 class 之間的關聯性</p>
 <p>像是我們本來得在 Teacher 中去指定要使用的是 HpPrinter 印表機，而這就會讓 Teacher 和 HpPrinter 的連結性變大，但是當我們改成使用了 Spring IoC 之後，Teacher 就只要直接拿印表機去做事就好，不需要了解這個印表機到底是 HP 牌子的還是 Canon 牌子的</p>
 <p>因此使用 Spring IoC 的第一個好處，就是可以讓 class 之間的關聯性變低</p>
-<h3 id="2-lifecycle-management生命週期管理">2. Lifecycle management（生命週期管理）</h3>
-<p>使用 Spring IoC 的第二個優點，則是統一的生命週期管理</p>
+<h3 id="2-lifecycle-management生命週期管理" class="markdown-heading-anchor">
+  2. Lifecycle management（生命週期管理）
+  <a href="#2-lifecycle-management%e7%94%9f%e5%91%bd%e9%80%b1%e6%9c%9f%e7%ae%a1%e7%90%86">#</a>
+</h3><p>使用 Spring IoC 的第二個優點，則是統一的生命週期管理</p>
 <p>因為我們將 HpPrinter 這個 object 改成是交由 Spring 容器來管理，因此 Spring 就會負責 HpPrinter 的創建、初始化、以及銷毀，所以就不需要我們親自去處理這件事情</p>
-<h3 id="3-more-testable方便測試程式">3. More testable（方便測試程式）</h3>
-<p>使用 Spring IoC 的第三個優點，即是更加方便的測試程式</p>
+<h3 id="3-more-testable方便測試程式" class="markdown-heading-anchor">
+  3. More testable（方便測試程式）
+  <a href="#3-more-testable%e6%96%b9%e4%be%bf%e6%b8%ac%e8%a9%a6%e7%a8%8b%e5%bc%8f">#</a>
+</h3><p>使用 Spring IoC 的第三個優點，即是更加方便的測試程式</p>
 <p>因為所有的 object 都是由外部的 Spring 容器來做管理，因此我們就可以容易的使用 Mock 的技術，在測試的過程中，將 Spring 容器中的 object 給替換掉</p>
 <blockquote>
 <p>補充：有關單元測試和 Mock 的部分，在此系列文中不會特別介紹到，有興趣的話可以參考另一篇文章的介紹：<a href="/blog/2020/2/spring-unit-test-mockito/"
@@ -376,11 +396,15 @@
 SpringBoot - 單元測試工具 Mockito
 </a></p>
 </blockquote>
-<h2 id="總結">總結</h2>
-<p>這篇文章先透過例子介紹了 Spring IoC 的原理，並且也一併介紹了使用 Spring IoC 的優點，讓大家可以透過印表機的例子，更好的去理解 Spring IoC 的概念</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章先透過例子介紹了 Spring IoC 的原理，並且也一併介紹了使用 Spring IoC 的優點，讓大家可以透過印表機的例子，更好的去理解 Spring IoC 的概念</p>
 <p>那麼下一篇文章，就會補充介紹 Spring IoC 的另外兩個重要的名詞：DI 和 Bean，讓大家更全面的了解 Spring IoC，那我們就下一篇文章見啦！</p>
-<h2 id="相關連結">相關連結</h2>
-<ul>
+<h2 id="相關連結" class="markdown-heading-anchor">
+  相關連結
+  <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
+</h2><ul>
 <li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
    
    target="_blank" rel="noopener">

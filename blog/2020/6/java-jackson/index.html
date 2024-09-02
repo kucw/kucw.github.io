@@ -191,19 +191,25 @@
 
         <div class="content mb-4">
           <p>ObjectMapper 是一款非常好用的 json 轉換工具，可以幫助我們完成 json 和 Java 的 Object 的互相轉換</p>
-<h3 id="什麼是-serialize-和-deserialize">什麼是 Serialize 和 Deserialize？</h3>
-<ul>
+<h3 id="什麼是-serialize-和-deserialize" class="markdown-heading-anchor">
+  什麼是 Serialize 和 Deserialize？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-serialize-%e5%92%8c-deserialize">#</a>
+</h3><ul>
 <li>Serialize : 將 Java Object 轉換成 json</li>
 <li>Deserialize : 將 json 轉換成 Java Object</li>
 </ul>
-<h3 id="在-spring-boot-裡使用-objectmapper">在 Spring Boot 裡使用 ObjectMapper</h3>
-<p>ObjectMapper 是由 Jackson library 所提供的一個功能，所以只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
+<h3 id="在-spring-boot-裡使用-objectmapper" class="markdown-heading-anchor">
+  在 Spring Boot 裡使用 ObjectMapper
+  <a href="#%e5%9c%a8-spring-boot-%e8%a3%a1%e4%bd%bf%e7%94%a8-objectmapper">#</a>
+</h3><p>ObjectMapper 是由 Jackson library 所提供的一個功能，所以只要在 maven 中加入 <code>spring-boot-starter-web</code> 的 dependency 就可以了</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#000080">&lt;/artifactId&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#000080">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><h3 id="json-和-java-objectlistmap-的互轉">Json 和 Java Object、List、Map 的互轉</h3>
-<p>先定義一個 User class</p>
+</span></span></code></pre></div><h3 id="json-和-java-objectlistmap-的互轉" class="markdown-heading-anchor">
+  Json 和 Java Object、List、Map 的互轉
+  <a href="#json-%e5%92%8c-java-objectlistmap-%e7%9a%84%e4%ba%92%e8%bd%89">#</a>
+</h3><p>先定義一個 User class</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>id;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
@@ -244,8 +250,10 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Map<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>User<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>urMap<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>objectMapper.<span style="color:#008080">readValue</span>(mjson2,<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">new</span><span style="color:#bbb"> </span>TypeReference<span style="color:#000;font-weight:bold">&lt;</span>HashMap<span style="color:#000;font-weight:bold">&lt;</span>String,<span style="color:#bbb"> </span>User<span style="color:#000;font-weight:bold">&gt;&gt;</span>()<span style="color:#bbb"> </span>{});<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><h3 id="deserialize-自定義的泛型-class">Deserialize 自定義的泛型 class</h3>
-<p>如果要 deserialize 的是自定義的泛型 class，那就需要特殊處理，不能夠像 <code>List&lt;T&gt;</code> 和 <code>Map&lt;T, R&gt;</code> 那樣直接用 TypeReference 互轉</p>
+</span></span></span></code></pre></div><h3 id="deserialize-自定義的泛型-class" class="markdown-heading-anchor">
+  Deserialize 自定義的泛型 class
+  <a href="#deserialize-%e8%87%aa%e5%ae%9a%e7%be%a9%e7%9a%84%e6%b3%9b%e5%9e%8b-class">#</a>
+</h3><p>如果要 deserialize 的是自定義的泛型 class，那就需要特殊處理，不能夠像 <code>List&lt;T&gt;</code> 和 <code>Map&lt;T, R&gt;</code> 那樣直接用 TypeReference 互轉</p>
 <p>原因是因為 <code>List&lt;T&gt;</code> 實際上存的還是 Object，他只是取出來的時候強行轉換成 T 而已</p>
 <p>先定義一個泛型 class</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Hit</span><span style="color:#000;font-weight:bold">&lt;</span>T<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>{<span style="color:#bbb">

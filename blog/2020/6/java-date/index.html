@@ -191,15 +191,21 @@
 
         <div class="content mb-4">
           <p>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識</p>
-<h4 id="1-首先是要有時區的概念">1. 首先是要有時區的概念</h4>
-<p>在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</p>
-<h4 id="2-要有-timestamp-時間戳的概念">2. 要有 Timestamp 時間戳的概念</h4>
-<p>在電腦的世界裡，有一個東西叫做 Timestamp（時間戳），這個 Timestamp 是一個整數，代表著從 UTC 1970 年 1 月 1 日 0 時 0 分 0 秒 起至現在的總秒數，UTC 代表的是英國格林威治時間，也就是 GMT+0（可以簡單的認為 UTC = GMT+0）</p>
+<h4 id="1-首先是要有時區的概念" class="markdown-heading-anchor">
+  1. 首先是要有時區的概念
+  <a href="#1-%e9%a6%96%e5%85%88%e6%98%af%e8%a6%81%e6%9c%89%e6%99%82%e5%8d%80%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
+</h4><p>在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</p>
+<h4 id="2-要有-timestamp-時間戳的概念" class="markdown-heading-anchor">
+  2. 要有 Timestamp 時間戳的概念
+  <a href="#2-%e8%a6%81%e6%9c%89-timestamp-%e6%99%82%e9%96%93%e6%88%b3%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
+</h4><p>在電腦的世界裡，有一個東西叫做 Timestamp（時間戳），這個 Timestamp 是一個整數，代表著從 UTC 1970 年 1 月 1 日 0 時 0 分 0 秒 起至現在的總秒數，UTC 代表的是英國格林威治時間，也就是 GMT+0（可以簡單的認為 UTC = GMT+0）</p>
 <p>所以說假設現在你人在英國格林威治，然後你現在看手錶上的時間是 2020/06/29 14:00:00，則這個當下的 Timestamp的值就為 1593439200（代表從 1970/1/1 00:00:00 到現在經過了 1593439200 秒），然後假設同一個瞬間你的朋友在台灣，因為台灣的時區為 GMT+8，所以你朋友在台灣看手錶的時間會是 2020/06/29 22:00:00，但是你朋友當下的 Timestamp 也會是 1593439200</p>
 <p>也就是說，雖然你和你朋友手錶上呈現的時間不一樣，但是你們兩個的 Timestamp 會是一模一樣的，因為 Timestamp 是唯一表示著 UTC 1970/1/1 00:00:00 起至現在的總秒數</p>
 <p>而在Java中，可以使用 <code>System.currentTimeMillis()</code>，取得當前的 Timestamp</p>
-<h3 id="為什麼-java-中舊版的-date-不好-">為什麼 Java 中舊版的 Date 不好 ?</h3>
-<p>因為 Date 硬是把 <strong>時區</strong> 和 <strong>Timestamp</strong> 這兩個概念混合在一起了，這就是為什麼 Date 不好的關係</p>
+<h3 id="為什麼-java-中舊版的-date-不好-" class="markdown-heading-anchor">
+  為什麼 Java 中舊版的 Date 不好 ?
+  <a href="#%e7%82%ba%e4%bb%80%e9%ba%bc-java-%e4%b8%ad%e8%88%8a%e7%89%88%e7%9a%84-date-%e4%b8%8d%e5%a5%bd-">#</a>
+</h3><p>因為 Date 硬是把 <strong>時區</strong> 和 <strong>Timestamp</strong> 這兩個概念混合在一起了，這就是為什麼 Date 不好的關係</p>
 <p>通常我們 <code>new</code> 一個 Date object時，都是使用 <code>Date date = new Date()</code>，而這個 Constructor 其實是會去取得當前的 Timestamp，然後把 Timestamp 存放在 Date 內部的 <code>fastTime</code> 變量裡，所以 Date 內部存放的，實際上是 Timestamp 的值</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Date</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">transient</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">long</span><span style="color:#bbb"> </span>fastTime;<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//存放timestamp的值</span><span style="color:#bbb">
@@ -231,8 +237,10 @@
 <li>Timestamp組 : Instant</li>
 <li>時間組 : LocalDate、LocalTime、LocalDateTime、ZonedDateTime</li>
 </ul>
-<h3 id="instant-用法">Instant 用法</h3>
-<p>在 Java 8 新增的這一堆時間系列裡面，每個類都有工廠方法可以使用，可以直接用這些工廠方法來產生出一個新的 object</p>
+<h3 id="instant-用法" class="markdown-heading-anchor">
+  Instant 用法
+  <a href="#instant-%e7%94%a8%e6%b3%95">#</a>
+</h3><p>在 Java 8 新增的這一堆時間系列裡面，每個類都有工廠方法可以使用，可以直接用這些工廠方法來產生出一個新的 object</p>
 <p>所以我們就可以直接使用 <code>Instant.of()</code> 去創建一個 instant object</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">   </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">main</span>(String<span style="color:#000;font-weight:bold">[]</span><span style="color:#bbb"> </span>args)<span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -243,8 +251,10 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>Instant<span style="color:#bbb"> </span>in2<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>Instant.<span style="color:#008080">ofEpochSecond</span>(1593439200L);<span style="color:#bbb"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><h3 id="localdatelocaltimelocaldatetime-用法">LocalDate、LocalTime、LocalDateTime 用法</h3>
-<ol>
+</span></span></span></code></pre></div><h3 id="localdatelocaltimelocaldatetime-用法" class="markdown-heading-anchor">
+  LocalDate、LocalTime、LocalDateTime 用法
+  <a href="#localdatelocaltimelocaldatetime-%e7%94%a8%e6%b3%95">#</a>
+</h3><ol>
 <li>
 <p>LocalDate : 只存日期 (2020/06/29)</p>
 <ul>
@@ -291,8 +301,10 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>String<span style="color:#bbb"> </span>format<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>DTF.<span style="color:#008080">format</span>(dateTime2);<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><h3 id="zoneddatetime-用法">ZonedDateTime 用法</h3>
-<p>ZonedDateTime 是 LocalDateTime 的進化版，增加了時區的概念，會自動幫我們計算時區之間的時差</p>
+</span></span></span></code></pre></div><h3 id="zoneddatetime-用法" class="markdown-heading-anchor">
+  ZonedDateTime 用法
+  <a href="#zoneddatetime-%e7%94%a8%e6%b3%95">#</a>
+</h3><p>ZonedDateTime 是 LocalDateTime 的進化版，增加了時區的概念，會自動幫我們計算時區之間的時差</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyTest</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">main</span>(String<span style="color:#000;font-weight:bold">[]</span><span style="color:#bbb"> </span>args)<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>DateTimeFormatter<span style="color:#bbb"> </span>DTF<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>DateTimeFormatter.<span style="color:#008080">ofPattern</span>(<span style="color:#d14">&#34;yyyy-MM-dd  HH:mm:ss&#34;</span>);<span style="color:#bbb">

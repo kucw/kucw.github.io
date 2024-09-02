@@ -191,15 +191,21 @@
 
         <div class="content mb-4">
           <p>如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug</p>
-<h3 id="首先先運行起來在-server-上的-project">首先先運行起來在 server 上的 project</h3>
-<p>如果是 SpringBoot project，需要在執行 build 出來的 jar 檔時，帶上 jvm 啟動參數</p>
+<h3 id="首先先運行起來在-server-上的-project" class="markdown-heading-anchor">
+  首先先運行起來在 server 上的 project
+  <a href="#%e9%a6%96%e5%85%88%e5%85%88%e9%81%8b%e8%a1%8c%e8%b5%b7%e4%be%86%e5%9c%a8-server-%e4%b8%8a%e7%9a%84-project">#</a>
+</h3><p>如果是 SpringBoot project，需要在執行 build 出來的 jar 檔時，帶上 jvm 啟動參數</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -agentlib:jdwp<span style="color:#000;font-weight:bold">=</span><span style="color:#008080">transport</span><span style="color:#000;font-weight:bold">=</span>dt_socket,address<span style="color:#000;font-weight:bold">=</span>18090,server<span style="color:#000;font-weight:bold">=</span>y,suspend<span style="color:#000;font-weight:bold">=</span>n -jar myservice-0.0.1-SNAPSHOT.jar
 </span></span></code></pre></div><p>如果是傳統的 Spring + tomcat war 檔 project，則是在 <code>tomcat/bin/catalina.sh</code>裡，加入 JAVA_OPTS 設定 jvm 啟動參數</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/sh
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#008080">JAVA_OPTS</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
-</span></span></code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel">接著在自己的電腦上開啟 tunnel</h3>
-<h4 id="如果自己的電腦是-windows">如果自己的電腦是 Windows</h4>
-<p>先下載 <a href="https://www.putty.org/"
+</span></span></code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel" class="markdown-heading-anchor">
+  接著在自己的電腦上開啟 tunnel
+  <a href="#%e6%8e%a5%e8%91%97%e5%9c%a8%e8%87%aa%e5%b7%b1%e7%9a%84%e9%9b%bb%e8%85%a6%e4%b8%8a%e9%96%8b%e5%95%9f-tunnel">#</a>
+</h3><h4 id="如果自己的電腦是-windows" class="markdown-heading-anchor">
+  如果自己的電腦是 Windows
+  <a href="#%e5%a6%82%e6%9e%9c%e8%87%aa%e5%b7%b1%e7%9a%84%e9%9b%bb%e8%85%a6%e6%98%af-windows">#</a>
+</h4><p>先下載 <a href="https://www.putty.org/"
    
    target="_blank" rel="noopener">
 putty
@@ -233,12 +239,16 @@ putty
   loading="lazy"
   data-zoomable
 /></p>
-<h4 id="如果自己的電腦是-maclinux">如果自己的電腦是 Mac/Linux</h4>
-<p>Mac/Linux 開啟 tunnel 的方式比較簡單，只要運行以下指令就可以了</p>
+<h4 id="如果自己的電腦是-maclinux" class="markdown-heading-anchor">
+  如果自己的電腦是 Mac/Linux
+  <a href="#%e5%a6%82%e6%9e%9c%e8%87%aa%e5%b7%b1%e7%9a%84%e9%9b%bb%e8%85%a6%e6%98%af-maclinux">#</a>
+</h4><p>Mac/Linux 開啟 tunnel 的方式比較簡單，只要運行以下指令就可以了</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -X -N -L 1993:your-server-ip:18090 your-server-ip
 </span></span></code></pre></div><p>其中 18090 要跟你剛剛在 server 上運行的參數 address 的值一樣，而那個 1993 則是本機的 port，你挑一個自己喜歡的就可以了</p>
-<h3 id="設定-intellij">設定 IntelliJ</h3>
-<p>首先先在 IntelliJ 上新增一個 Remote configuration</p>
+<h3 id="設定-intellij" class="markdown-heading-anchor">
+  設定 IntelliJ
+  <a href="#%e8%a8%ad%e5%ae%9a-intellij">#</a>
+</h3><p>首先先在 IntelliJ 上新增一個 Remote configuration</p>
 <p>
 
 <img

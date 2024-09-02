@@ -243,8 +243,10 @@
           <p>哈囉大家好，我是古古</p>
 <p>在上一篇文章中，我們先介紹了 Spring IoC 的原理，以及使用 Spring IoC 的優點，讓大家對 Spring IoC 有一個初步的認識</p>
 <p>那麼接著這篇文章，我們就會來介紹，在 Spring IoC 中也很重要的兩個名詞：DI 和 Bean，讓大家對 Spring IoC 有一個更全面的了解，並且這也是後續在實作 Spring Boot 程式中非常重要的一個概念</p>
-<h2 id="回顧什麼是-ioc">回顧：什麼是 IoC？</h2>
-<p>在上一篇文章中有提到，IoC 的全稱是 Inversion of Control，中文翻譯為控制反轉，<strong>而 IoC 的概念，就是「將 object 的控制權交給了外部的 Spring 容器來管理」</strong>，所謂的 Control (控制)，就是對於 object 的控制權</p>
+<h2 id="回顧什麼是-ioc" class="markdown-heading-anchor">
+  回顧：什麼是 IoC？
+  <a href="#%e5%9b%9e%e9%a1%a7%e4%bb%80%e9%ba%bc%e6%98%af-ioc">#</a>
+</h2><p>在上一篇文章中有提到，IoC 的全稱是 Inversion of Control，中文翻譯為控制反轉，<strong>而 IoC 的概念，就是「將 object 的控制權交給了外部的 Spring 容器來管理」</strong>，所謂的 Control (控制)，就是對於 object 的控制權</p>
 <p>所以有了 IoC 的概念之後，以後所有的 object 就都是由外部的 Spring 容器來進行管理，因此當 Teacher 想要去使用印表機時，就只要跟 Spring 容器去借就好了，Teacher 就不需要自己再去「控制」這個印表機的生命週期</p>
 <p>
 
@@ -254,8 +256,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="什麼是-di">什麼是 DI？</h2>
-<p>只要提到 IoC，就一定會提到另一個名詞 DI，這兩個名詞可以說是相輔相成的，缺一不可</p>
+<h2 id="什麼是-di" class="markdown-heading-anchor">
+  什麼是 DI？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-di">#</a>
+</h2><p>只要提到 IoC，就一定會提到另一個名詞 DI，這兩個名詞可以說是相輔相成的，缺一不可</p>
 <p>DI 的全稱是 Dependency Injection，中文翻譯為依賴注入，其實 DI 依賴注入的概念，我們已經有在前面的 IoC 的過程中使用到了！</p>
 <p>像是在上面那張圖中，Spring 容器是預先儲存了一個 HpPrinter 印表機，而每當 Teacher 想要使用的時候，Spring 容器就將這個 HpPrinter 借給 Teacher 使用，其中這個「我借你」的動作，其實就是「DI 依賴注入」</p>
 <p>所以換句話說的話，每當 Spring 容器想要把 HpPrinter 「借」給 Teacher 使用時，就是表示 <strong>Spring 容器把 HpPrinter 給「注入」到 Teacher 這個 class 裡面，因此才稱為是 「DI 依賴注入」</strong></p>
@@ -271,8 +275,10 @@
 <blockquote>
 <p>補充：這裡不得不佩服當初命名 DI 的人，到底是怎麼想的到「注入」這個這麼難的詞的，也太艱深了吧🥹</p>
 </blockquote>
-<h2 id="什麼是-bean">什麼是 Bean？</h2>
-<p>說完了 IoC 和 DI，最後來介紹什麼是 Bean</p>
+<h2 id="什麼是-bean" class="markdown-heading-anchor">
+  什麼是 Bean？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-bean">#</a>
+</h2><p>說完了 IoC 和 DI，最後來介紹什麼是 Bean</p>
 <p>還是前面的那個例子，當我們使用了 IoC，將 object 的控制權交給 Spring 容器來管理之後，往後的所有 object 就都是活在 Spring 容器裡面，由 Spring 容器來管理這個 object 的生命週期</p>
 <p>而這些 <strong>「由 Spring 容器來管理的 object，我們賦予他們一個新的名字，就叫做 Bean」</strong>，所以 Bean 其實就只是一個 object 而已，跟我們用 new 去創建的 HpPrinter 是一模一樣的，只是因為這些 object 被放在 Spring 容器中來管理，所以就改頭換面有了新名字叫做 Bean，真相大白啦！</p>
 <p>
@@ -285,11 +291,15 @@
 /></p>
 <p>所以以後大家在開發 Spring Boot 的程式時，看到 Bean 就不用太緊張，想說是什麼神奇的東西，他其實就只是由 Spring 容器所管理的 object 而已，本質上和我們直接去 new 一個出來的沒什麼差別</p>
 <p>但也因為 Bean 在 Spring Boot 程式中的使用層面實在是太廣了，後面許多技術都會牽扯到 Bean 的概念，因此就建議大家還是要了解 Bean 的意義和用途會比較好！</p>
-<h2 id="總結">總結</h2>
-<p>這篇文章延續了上一篇文章對 Spring IoC 的介紹，補足了 Spring IoC 中也很重要的兩個名詞概念：DI 和 Bean，讓大家對於 Spring IoC 有一個更全面的了解</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章延續了上一篇文章對 Spring IoC 的介紹，補足了 Spring IoC 中也很重要的兩個名詞概念：DI 和 Bean，讓大家對於 Spring IoC 有一個更全面的了解</p>
 <p>那麼下一篇文章，我們就會去實際的到 IntelliJ 中去應用這篇文章中的概念，試著在 Spring Boot 的程式中去生成一個 Bean，並且將這個 Bean 去注入到其他的 class 中，那我們就下一篇文章見啦！</p>
-<h2 id="相關連結">相關連結</h2>
-<ul>
+<h2 id="相關連結" class="markdown-heading-anchor">
+  相關連結
+  <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
+</h2><ul>
 <li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
    
    target="_blank" rel="noopener">

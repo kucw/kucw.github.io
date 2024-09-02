@@ -190,8 +190,10 @@
 
 
         <div class="content mb-4">
-          <h3 id="聚合概念-aggs">聚合概念 aggs</h3>
-<ul>
+          <h3 id="聚合概念-aggs" class="markdown-heading-anchor">
+  聚合概念 aggs
+  <a href="#%e8%81%9a%e5%90%88%e6%a6%82%e5%bf%b5-aggs">#</a>
+</h3><ul>
 <li>ElasticSearch 除了致力於搜索之外，也提供了聚合實時分析數據的功能
 <ul>
 <li>如果把搜索比喻為大海撈針（從海量的文檔中找出符合條件的那一個），那麼聚合就是去分析大海中的針們的特性，像是
@@ -302,8 +304,10 @@
 </li>
 </ul>
 <br>
-<h3 id="terms桶">terms桶</h3>
-<ul>
+<h3 id="terms桶" class="markdown-heading-anchor">
+  terms桶
+  <a href="#terms%e6%a1%b6">#</a>
+</h3><ul>
 <li>功能 : 針對某個 field 的值進行分組，field 有幾種值就分成幾組</li>
 <li>terms 桶在進行分組時，會爲此 field 中的每種值創建一個新的桶</li>
 <li>要注意此 &ldquo;terms桶&rdquo; 和平常用在主查詢 query 中的 &ldquo;查找terms&rdquo; 是不同的東西</li>
@@ -527,8 +531,10 @@
 </li>
 </ul>
 <br>
-<h3 id="filter桶">filter桶</h3>
-<ul>
+<h3 id="filter桶" class="markdown-heading-anchor">
+  filter桶
+  <a href="#filter%e6%a1%b6">#</a>
+</h3><ul>
 <li>功能 : 一個用來過濾的桶</li>
 <li>此處的 &ldquo;filter 桶&rdquo; 和用在主查詢 query 的 &ldquo;過濾 filter&rdquo; 的用法是一模一樣的，都是過濾</li>
 <li>不過差別是 &ldquo;filter 桶&rdquo; 會自己給創建一個新的桶，而不會像 &ldquo;過濾 filter&rdquo; 一樣依附在 query 下
@@ -631,8 +637,10 @@
 </li>
 </ul>
 <br>
-<h3 id="多桶排序">多桶排序</h3>
-<ul>
+<h3 id="多桶排序" class="markdown-heading-anchor">
+  多桶排序
+  <a href="#%e5%a4%9a%e6%a1%b6%e6%8e%92%e5%ba%8f">#</a>
+</h3><ul>
 <li>terms 桶、histogram 桶、data_histogram 桶這些桶屬於多值桶，也就是說他們會動態生成很多桶，對於這些生成出來的桶們，ES 默認會使用 <code>doc_value</code> 進行降序排序，也就是說哪個生成桶的 <code>doc_value</code> 文檔數較多，哪個生成桶就排在前面
 <ul>
 <li>如果想要改變這個生成桶與生成桶之間的排序，可以在使用 terms 桶、histogram 桶、data_histogram 桶時，使用 <code>order</code> 進行排序</li>

@@ -196,8 +196,10 @@
 <li>Queue : 負責暫存 message</li>
 <li>Consumer : 負責去 Queue 中消費 message</li>
 </ul>
-<h3 id="rabbitmq-常見的五種模式">RabbitMQ 常見的五種模式</h3>
-<p>在 RabbitMQ 中，常見的五種模式如下，詳情也可參照<a href="https://www.rabbitmq.com/getstarted.html"
+<h3 id="rabbitmq-常見的五種模式" class="markdown-heading-anchor">
+  RabbitMQ 常見的五種模式
+  <a href="#rabbitmq-%e5%b8%b8%e8%a6%8b%e7%9a%84%e4%ba%94%e7%a8%ae%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>在 RabbitMQ 中，常見的五種模式如下，詳情也可參照<a href="https://www.rabbitmq.com/getstarted.html"
    
    target="_blank" rel="noopener">
 官網
@@ -216,8 +218,10 @@
 SpringBoot - RabbitMQ 使用方法
 </a></p>
 </blockquote>
-<h3 id="1-direct-模式">1. Direct 模式</h3>
-<p>最簡單的模式，只會有一個 Producer 負責發送 message 到 Queue 裡、而也只有一個 Consumer 去 Queue 裡消費 message</p>
+<h3 id="1-direct-模式" class="markdown-heading-anchor">
+  1. Direct 模式
+  <a href="#1-direct-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>最簡單的模式，只會有一個 Producer 負責發送 message 到 Queue 裡、而也只有一個 Consumer 去 Queue 裡消費 message</p>
 <p>
 
 <img
@@ -226,8 +230,10 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="2-worker-模式">2. Worker 模式</h3>
-<p>跟 Direct 模式很像，但是差別是 Worker 模式中會 <strong>同時</strong> 有多個 Consumer 會去消費 Queue 裡的 message，增加 message 消化的速率（一個人做很慢，大家一起做就很快）</p>
+<h3 id="2-worker-模式" class="markdown-heading-anchor">
+  2. Worker 模式
+  <a href="#2-worker-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>跟 Direct 模式很像，但是差別是 Worker 模式中會 <strong>同時</strong> 有多個 Consumer 會去消費 Queue 裡的 message，增加 message 消化的速率（一個人做很慢，大家一起做就很快）</p>
 <p>
 
 <img
@@ -238,8 +244,10 @@ SpringBoot - RabbitMQ 使用方法
 /></p>
 <p>Worker 模式是滿常用的一種模式，通常是用在大量 asynchronous job 的處理上，可以想像成 n 個 Consumer 就是一堆 Worker or Thread，一起幫忙消化 message</p>
 <p>在現在 microservice 很流行的情形下，如果有大量的 asynchronous job 要執行，通常就不會使用 Java 裡的 ThreadPool，而是會改使用這種 Worker 模式，讓許多台 node 可以一起幫忙做</p>
-<h3 id="3-publishsubscribe-模式">3. Publish/Subscribe 模式</h3>
-<p>從這個模式之後，在 Producer、Queue、Consumer 之間就多了一個叫做 Exchange 的東西出現，所以以後 Producer 不再是直接把 message 丟到 Queue 裡，而是讓 Producer 把 message 丟給 Exchange，再交由 Exchange 去決定要把這個 message 丟給哪個 Queue</p>
+<h3 id="3-publishsubscribe-模式" class="markdown-heading-anchor">
+  3. Publish/Subscribe 模式
+  <a href="#3-publishsubscribe-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>從這個模式之後，在 Producer、Queue、Consumer 之間就多了一個叫做 Exchange 的東西出現，所以以後 Producer 不再是直接把 message 丟到 Queue 裡，而是讓 Producer 把 message 丟給 Exchange，再交由 Exchange 去決定要把這個 message 丟給哪個 Queue</p>
 <p>
 
 <img
@@ -258,8 +266,10 @@ SpringBoot - RabbitMQ 使用方法
 <p>Publish/Subscribe 模式也是一個滿常用的模式，通常是用在需要訂閱的情況下</p>
 <p>譬如說當訂單服務有了一筆新訂單之後就要去通知簡訊服務、商品服務&hellip;等，那如果是用前面提到的 RabbitMQ 中的 Direct 模式，則在訂單服務裡就要自己指定要把這個 message 丟到哪個 Queue 上，這樣以後如果又有新的服務要來訂閱這個 message 的話，就還得要回去改訂單服務的 code</p>
 <p>但如果是使用這個 Publish/Subscribe 模式的話，訂單服務就可以直接將 message 丟給 Exchange，而我們只要把新的服務專屬的 Queue 和 Exchange 綁定一下，這樣子 Exchange 就可以自動把 message 也丟到新的 Queue 裡了，我們就不需要再去改 code</p>
-<h3 id="4-routing-模式">4. Routing 模式</h3>
-<p>Routing 模式也是一個用到了 Exchange 的模式，這個模式使用的是 Exchange 的 direct type</p>
+<h3 id="4-routing-模式" class="markdown-heading-anchor">
+  4. Routing 模式
+  <a href="#4-routing-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>Routing 模式也是一個用到了 Exchange 的模式，這個模式使用的是 Exchange 的 direct type</p>
 <p>當 Producer 把 message 丟給 Exchange 時，同時要在這個 message 上面帶上一個 routing key，而 Exchange 就會根據這個 routing key，將 message 丟到指定的 Queue 上</p>
 <p>
 
@@ -287,8 +297,10 @@ SpringBoot - RabbitMQ 使用方法
   data-zoomable
 /></p>
 <p>不過這種模式要慎用，因為他的重要邏輯都在 Exchange 上，所以如果是對 RabbitMQ 不熟的新手，從 code 中會看不出來原來還有這種用法，只會知道 Producer 把 message 丟給 Exchange，但卻不知道為什麼 log Queue 和 error log Queue 中卻都會有 message 出現</p>
-<h3 id="5-topics-模式">5. Topics 模式</h3>
-<p>用到了 Exchange 的 topic type，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
+<h3 id="5-topics-模式" class="markdown-heading-anchor">
+  5. Topics 模式
+  <a href="#5-topics-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>用到了 Exchange 的 topic type，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
 <p>
 
 <img
@@ -297,8 +309,10 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="rabbitmq-安裝教學">RabbitMQ 安裝教學</h3>
-<blockquote>
+<h3 id="rabbitmq-安裝教學" class="markdown-heading-anchor">
+  RabbitMQ 安裝教學
+  <a href="#rabbitmq-%e5%ae%89%e8%a3%9d%e6%95%99%e5%ad%b8">#</a>
+</h3><blockquote>
 <p>需要先安裝 docker-desktop，可以到 Docker 官網下載 <a href="https://www.docker.com/products/docker-desktop"
    
    target="_blank" rel="noopener">
@@ -322,8 +336,10 @@ https://www.docker.com/products/docker-desktop
   data-zoomable
 /></p>
 <p>到這裡 RabbitMQ 就安裝好了，所以就可以使用 SpringBoot 連接上此 RabbitMQ 了</p>
-<h4 id="web-管理介面導覽">Web 管理介面導覽</h4>
-<p>登入之後就會進到 Overview 頁面，在 Overview 頁面可以查看 Queue 的整體狀況以及 cluster node 的 cpu/memory 使用狀態</p>
+<h4 id="web-管理介面導覽" class="markdown-heading-anchor">
+  Web 管理介面導覽
+  <a href="#web-%e7%ae%a1%e7%90%86%e4%bb%8b%e9%9d%a2%e5%b0%8e%e8%a6%bd">#</a>
+</h4><p>登入之後就會進到 Overview 頁面，在 Overview 頁面可以查看 Queue 的整體狀況以及 cluster node 的 cpu/memory 使用狀態</p>
 <p>
 
 <img

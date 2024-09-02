@@ -242,8 +242,10 @@
         <div class="content mb-4">
           <p>哈囉大家好，我是古古</p>
 <p>在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，那麼接著這篇文章，我們會延伸出去，介紹一下要如何透過 <code>@Value</code>，將 Spring Boot 設定檔中的值給讀取到 Bean 裡面</p>
-<h2 id="什麼是-spring-boot-設定檔">什麼是 Spring Boot 設定檔？</h2>
-<p>所謂的 Spring Boot 設定檔，指的是「放在 src/main/resources 這個資料夾底下的 <strong>applicaiton.properties 檔案</strong>」，而他的目的，就是去「存放 Spring Boot 程式的設定值」</p>
+<h2 id="什麼是-spring-boot-設定檔" class="markdown-heading-anchor">
+  什麼是 Spring Boot 設定檔？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-spring-boot-%e8%a8%ad%e5%ae%9a%e6%aa%94">#</a>
+</h2><p>所謂的 Spring Boot 設定檔，指的是「放在 src/main/resources 這個資料夾底下的 <strong>applicaiton.properties 檔案</strong>」，而他的目的，就是去「存放 Spring Boot 程式的設定值」</p>
 <p>
 
 <img
@@ -252,8 +254,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="spring-boot-設定檔applicationproperties的寫法">Spring Boot 設定檔（application.properties）的寫法</h2>
-<p>大家如果點擊兩下打開 application.properties 檔案的話，可以看到右邊是空白一片，表示我們目前還沒有在這個 application.properties 檔案中，設定任何的設定值</p>
+<h2 id="spring-boot-設定檔applicationproperties的寫法" class="markdown-heading-anchor">
+  Spring Boot 設定檔（application.properties）的寫法
+  <a href="#spring-boot-%e8%a8%ad%e5%ae%9a%e6%aa%94applicationproperties%e7%9a%84%e5%af%ab%e6%b3%95">#</a>
+</h2><p>大家如果點擊兩下打開 application.properties 檔案的話，可以看到右邊是空白一片，表示我們目前還沒有在這個 application.properties 檔案中，設定任何的設定值</p>
 <p>如果想要在這個 application.properties 的檔案裡面，添加 Spring Boot 的設定值的話，需要遵循一定的寫法格式才可以</p>
 <p>首先大家可以觀察一下，application.properties 這個檔案，他是一個「檔名為 application、並且副檔名為 .properties」的檔案，也因為如此，這個 application.properties 檔案，他就是使用 <strong>「properties 這個語法」</strong> 來撰寫的</p>
 <p>
@@ -264,8 +268,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="properties-的語法格式">properties 的語法格式</h3>
-<p>在 properties 的語法中，是使用 <code>key=value</code> 這樣子的格式來撰寫，並且「每一行」都是一組 key 和 value 的配對</p>
+<h3 id="properties-的語法格式" class="markdown-heading-anchor">
+  properties 的語法格式
+  <a href="#properties-%e7%9a%84%e8%aa%9e%e6%b3%95%e6%a0%bc%e5%bc%8f">#</a>
+</h3><p>在 properties 的語法中，是使用 <code>key=value</code> 這樣子的格式來撰寫，並且「每一行」都是一組 key 和 value 的配對</p>
 <p>像是下面這個例子，我們就在第 1 行寫上了 <code>count=5</code>，所以這一行程式就表示，我們定義了一個 key 的名字是 count，並且這個 count 的 value 值，就是 5</p>
 <p>
 
@@ -277,8 +283,10 @@
 /></p>
 <p>大家可以把這個 <code>key=value</code> 的寫法，想像成是 <code>變數=值</code> 的概念，所以前面的 key 其實就等同於是 Java 中的變數，而後面的 value，就是這個變數的值，就是這麼的簡單暴力！</p>
 <p>因此當我們在 application.properties 檔案中，去寫上了一行 <code>count=5</code> 的程式，就表示我們定義了一個變數 <code>count</code>，然後他的值是 <code>5</code> 這樣，僅此而已</p>
-<h3 id="1-properties-語法的注意事項之一不需要加上空白鍵排版">1. properties 語法的注意事項之一：不需要加上空白鍵排版</h3>
-<p>大概了解了 properties 語法的核心概念 <code>key=value</code> 之後，接著我們可以來看一些使用 properties 語法的注意事項</p>
+<h3 id="1-properties-語法的注意事項之一不需要加上空白鍵排版" class="markdown-heading-anchor">
+  1. properties 語法的注意事項之一：不需要加上空白鍵排版
+  <a href="#1-properties-%e8%aa%9e%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e4%b8%8d%e9%9c%80%e8%a6%81%e5%8a%a0%e4%b8%8a%e7%a9%ba%e7%99%bd%e9%8d%b5%e6%8e%92%e7%89%88">#</a>
+</h3><p>大概了解了 properties 語法的核心概念 <code>key=value</code> 之後，接著我們可以來看一些使用 properties 語法的注意事項</p>
 <p>當我們以前在寫 Java 程式的時候，習慣會在 <code>=</code> 的前後加上一堆空白鍵，去做排版的美化，像是下面這個樣子：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 美化前</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count<span style="color:#000;font-weight:bold">=</span>5;<span style="color:#bbb">
@@ -288,8 +296,10 @@
 </span></span></span></code></pre></div><p>不過在 properties 語法裡面，是 <strong>「不需要」</strong> 在 <code>=</code> 的前後，去加上空白鍵去做排版的美化，<strong>只要全部連在一起寫就好</strong>，多加空白鍵反而可能有機會導致程式運行出現問題</p>
 <p>所以在 properties 語法裡面，建議就是使用下面這種寫法，把你的空白鍵拔掉，一路連自連到底就對了</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
-</span></span></code></pre></div><h3 id="2-properties-語法的注意事項之二key-中的--表示的的概念">2. properties 語法的注意事項之二：key 中的 <code>.</code> 表示「的」的概念</h3>
-<p>在前面有提到，properties 語法中是使用 <code>key=value</code> 來撰寫程式的，而 key 所代表的，就是變數的名字</p>
+</span></span></code></pre></div><h3 id="2-properties-語法的注意事項之二key-中的--表示的的概念" class="markdown-heading-anchor">
+  2. properties 語法的注意事項之二：key 中的 <code>.</code> 表示「的」的概念
+  <a href="#2-properties-%e8%aa%9e%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8ckey-%e4%b8%ad%e7%9a%84--%e8%a1%a8%e7%a4%ba%e7%9a%84%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
+</h3><p>在前面有提到，properties 語法中是使用 <code>key=value</code> 來撰寫程式的，而 key 所代表的，就是變數的名字</p>
 <p>不過這個 key 在命名上，是允許裡面帶上 <code>.</code> 符號的，並且這個 <code>.</code> 的符號，他的邏輯意義就是中文的「的」的意思</p>
 <p>舉例來說，我們可以在 application.properties 檔案裡面，在第 2 行寫上 <code>my.name=John</code> 的程式，而當我們這樣寫之後，<code>my.name</code> 這個 key 就是變數的名字，其中文意義是表示「我的名字」（因為 <code>.</code> 是表示「的」的意思）</p>
 <p>所以 <code>my.name=John</code> 這一整行的意思，就是「我的名字叫做 John」</p>
@@ -311,8 +321,10 @@
   data-zoomable
 /></p>
 <p>所以大家以後就可以將 key 中的 <code>.</code>，去翻譯成是中文的「的」的意思，這樣就可以透過這種格式，去傳遞更豐富的意義出來</p>
-<h3 id="3-properties-語法的注意事項之三使用--來表示-comment">3. properties 語法的注意事項之三：使用 <code>#</code> 來表示 comment</h3>
-<p>在 properties 語法中，也是可以去添加 comment 的，只要在最前面加上一個 <code>#</code> 的符號，那一行就會被 properties 語法給忽略了（用法同 Java 中的 <code>//</code> 一樣）</p>
+<h3 id="3-properties-語法的注意事項之三使用--來表示-comment" class="markdown-heading-anchor">
+  3. properties 語法的注意事項之三：使用 <code>#</code> 來表示 comment
+  <a href="#3-properties-%e8%aa%9e%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%89%e4%bd%bf%e7%94%a8--%e4%be%86%e8%a1%a8%e7%a4%ba-comment">#</a>
+</h3><p>在 properties 語法中，也是可以去添加 comment 的，只要在最前面加上一個 <code>#</code> 的符號，那一行就會被 properties 語法給忽略了（用法同 Java 中的 <code>//</code> 一樣）</p>
 <p>
 
 <img
@@ -321,8 +333,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="讀取-spring-boot-設定檔applicationproperties中的值value">讀取 Spring Boot 設定檔（application.properties）中的值：@Value</h2>
-<p>了解了要如何在 application.properties 檔案中透過 <code>key=value</code> 的寫法，去添加一行行的設定之後，接著我們可以來看一下，要如何透過 <code>@Value</code>，將 application.properties 中的設定值讀取到 Bean 裡面</p>
+<h2 id="讀取-spring-boot-設定檔applicationproperties中的值value" class="markdown-heading-anchor">
+  讀取 Spring Boot 設定檔（application.properties）中的值：@Value
+  <a href="#%e8%ae%80%e5%8f%96-spring-boot-%e8%a8%ad%e5%ae%9a%e6%aa%94applicationproperties%e4%b8%ad%e7%9a%84%e5%80%bcvalue">#</a>
+</h2><p>了解了要如何在 application.properties 檔案中透過 <code>key=value</code> 的寫法，去添加一行行的設定之後，接著我們可以來看一下，要如何透過 <code>@Value</code>，將 application.properties 中的設定值讀取到 Bean 裡面</p>
 <p>還是之前的 HpPrinter 的例子，我們可以稍微改寫一下 HpPrinter 中的程式，讓他變成下面這個樣子</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Component</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">HpPrinter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">implements</span><span style="color:#bbb"> </span>Printer<span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -365,8 +379,10 @@
 /></p>
 <p>因此到時候 HpPrinter 中的 count 變數的值，就會變成是 application.properties 檔案中所定義的「5」</p>
 <p>所以這也就表示，我們就成功的透過 <code>@Value</code> 的用法，將 Spring Boot 設定檔 (application.properties 檔案) 中的值，給成功的讀取到 Bean 裡面的變數中了！</p>
-<h3 id="1-使用-value-的注意事項之一需要遵守固定格式寫法">1. 使用 @Value 的注意事項之一：需要遵守固定格式寫法</h3>
-<p>大概了解了 <code>@Value</code> 的用法之後，我們可以來看一下使用 <code>@Value</code> 的一些注意事項</p>
+<h3 id="1-使用-value-的注意事項之一需要遵守固定格式寫法" class="markdown-heading-anchor">
+  1. 使用 @Value 的注意事項之一：需要遵守固定格式寫法
+  <a href="#1-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e9%9c%80%e8%a6%81%e9%81%b5%e5%ae%88%e5%9b%ba%e5%ae%9a%e6%a0%bc%e5%bc%8f%e5%af%ab%e6%b3%95">#</a>
+</h3><p>大概了解了 <code>@Value</code> 的用法之後，我們可以來看一下使用 <code>@Value</code> 的一些注意事項</p>
 <p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值的時候，一定要在 <code>@Value</code> 後面的括號中，寫上如下的格式：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${XXXX}&#34;</span>)<span style="color:#bbb">
 </span></span></span></code></pre></div><p>其中 XXXX 可以替換成 application.properties 檔案中的任意一個 key，但是外層的 <code>&quot;${}&quot;</code> 是不能夠省略的，因此在寫法上會稍微複雜一點，建議大家之後可以直接複製貼上這段程式，再去改裡面的 XXX 的值即可</p>
@@ -376,15 +392,19 @@
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count}&#34;</span>)<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
 </span></span></span></code></pre></div><p>因此就可以透過這樣的寫法，將 application.properties 中的設定值，給注入到 Bean 中的變數了</p>
-<h3 id="2-使用-value-的注意事項之二只有在-bean-和-configuration-中才能生效">2. 使用 @Value 的注意事項之二：只有在 Bean 和 Configuration 中才能生效</h3>
-<p>只要是有使用到 <code>@Value</code> 的地方，<strong>該 class 本身得是一個 Bean、或是一個 Configuration 的設定 class</strong>，<code>@Value</code> 才能夠生效</p>
+<h3 id="2-使用-value-的注意事項之二只有在-bean-和-configuration-中才能生效" class="markdown-heading-anchor">
+  2. 使用 @Value 的注意事項之二：只有在 Bean 和 Configuration 中才能生效
+  <a href="#2-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8c%e5%8f%aa%e6%9c%89%e5%9c%a8-bean-%e5%92%8c-configuration-%e4%b8%ad%e6%89%8d%e8%83%bd%e7%94%9f%e6%95%88">#</a>
+</h3><p>只要是有使用到 <code>@Value</code> 的地方，<strong>該 class 本身得是一個 Bean、或是一個 Configuration 的設定 class</strong>，<code>@Value</code> 才能夠生效</p>
 <p>所以假設大家在使用 <code>@Value</code> 時，明明程式就寫得很對，但是不知道為什麼他不起作用，很大的原因就是因為這個 class 還沒變成 Bean，所以 <code>@Value</code> 才會毫無作用</p>
 <p>因此發生這種情況時，只要記得在 class 上面加上一個 <code>@Component</code>，將這個 class 變成是一個 Bean，這樣子就可以確保 <code>@Value</code> 能生效了</p>
 <blockquote>
 <p>補充：<code>@Value</code> 在那些帶有 <code>@Configuration</code> 的 class 中，也是能夠生效的，不過因為在此系列文中不會特別介紹到 <code>@Configuration</code> 的用法，所以大家可以先有個印象就可以了</p>
 </blockquote>
-<h3 id="3-使用-value-的注意事項之三類型需要一致">3. 使用 @Value 的注意事項之三：類型需要一致</h3>
-<p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，Java 中的變數的類型，必須要和 application.properties 中的類型一致才可以</p>
+<h3 id="3-使用-value-的注意事項之三類型需要一致" class="markdown-heading-anchor">
+  3. 使用 @Value 的注意事項之三：類型需要一致
+  <a href="#3-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%89%e9%a1%9e%e5%9e%8b%e9%9c%80%e8%a6%81%e4%b8%80%e8%87%b4">#</a>
+</h3><p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，Java 中的變數的類型，必須要和 application.properties 中的類型一致才可以</p>
 <p>舉例來說，在 application.properties 檔案裡面，我們定義了一組 key 和 value 如下：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">printer.count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
 </span></span></code></pre></div><p>上面這行程式，其實就是在暗示 <code>printer.count</code> 的值為「一個整數」，因此在 Spring Boot 程式中，我們就得將 <code>@Value</code> 加在一個「Int 或是 Long 類型」的變數上，這樣子在賦予值的時候才不會出現問題</p>
@@ -395,8 +415,10 @@
 </span></span></code></pre></div><p>上面這行程式，也是在暗示 <code>my.name</code> 的值為「一個字串」，因此在 Spring Boot 程式中，我們就得將 <code>@Value</code> 加在一個「String 類型」的變數上，這樣子在賦予值的時候，也才不會出現問題</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${my.name}&#34;</span>)<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
-</span></span></span></code></pre></div><h3 id="4-使用-value-的注意事項之四可以設定預設值">4. 使用 @Value 的注意事項之四：可以設定預設值</h3>
-<p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，有可能會發生一種情況，就是「該 key 不存在在 application.properties 檔案裡面」</p>
+</span></span></span></code></pre></div><h3 id="4-使用-value-的注意事項之四可以設定預設值" class="markdown-heading-anchor">
+  4. 使用 @Value 的注意事項之四：可以設定預設值
+  <a href="#4-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e5%9b%9b%e5%8f%af%e4%bb%a5%e8%a8%ad%e5%ae%9a%e9%a0%90%e8%a8%ad%e5%80%bc">#</a>
+</h3><p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，有可能會發生一種情況，就是「該 key 不存在在 application.properties 檔案裡面」</p>
 <p>譬如說我們在 Spring Boot 程式裡面，寫上了下面這一段程式，嘗試去將 application.properties 檔案中的 <code>printer.count</code> 的值，去儲存到 count 變數中</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count}&#34;</span>)<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
@@ -422,8 +444,10 @@
 <blockquote>
 <p>補充：使用 <code>@Value</code> 的預設值寫法，其實是有點雙面刃的做法，因為這樣會讓設定值四散在各處，後續會比較難進行管理，因此建議大家斟酌使用</p>
 </blockquote>
-<h3 id="小結所以value-到底要怎麼用">小結：所以，@Value 到底要怎麼用？</h3>
-<p>所以說到這邊，我們可以來總結一下 <code>@Value</code> 的用法和注意事項</p>
+<h3 id="小結所以value-到底要怎麼用" class="markdown-heading-anchor">
+  小結：所以，@Value 到底要怎麼用？
+  <a href="#%e5%b0%8f%e7%b5%90%e6%89%80%e4%bb%a5value-%e5%88%b0%e5%ba%95%e8%a6%81%e6%80%8e%e9%ba%bc%e7%94%a8">#</a>
+</h3><p>所以說到這邊，我們可以來總結一下 <code>@Value</code> 的用法和注意事項</p>
 <p>想要使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值的話，必須滿足：</p>
 <ol>
 <li>必須使用固定格式 <code>@Value(&quot;${XXXX}&quot;)</code></li>
@@ -432,8 +456,10 @@
 <li>可以視情況添加預設值</li>
 </ol>
 <p>只要注意好這些地方，大家以後就可以透過 <code>@Value</code>，在 Spring Boot 程式中去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值了！</p>
-<h2 id="補充-1spring-boot-設定檔的兩種語法properties-和-yml">補充 1：Spring Boot 設定檔的兩種語法（properties 和 yml）</h2>
-<p>在前面我們有介紹到，Spring Boot 的設定檔所指的，就是「application.properties」這個檔案，而他裡面所放的，就是 Spring Boot 程式的設定值</p>
+<h2 id="補充-1spring-boot-設定檔的兩種語法properties-和-yml" class="markdown-heading-anchor">
+  補充 1：Spring Boot 設定檔的兩種語法（properties 和 yml）
+  <a href="#%e8%a3%9c%e5%85%85-1spring-boot-%e8%a8%ad%e5%ae%9a%e6%aa%94%e7%9a%84%e5%85%a9%e7%a8%ae%e8%aa%9e%e6%b3%95properties-%e5%92%8c-yml">#</a>
+</h2><p>在前面我們有介紹到，Spring Boot 的設定檔所指的，就是「application.properties」這個檔案，而他裡面所放的，就是 Spring Boot 程式的設定值</p>
 <p>不過其實 Spring Boot 設定檔，是可以使用兩種不同的語法來撰寫的，分別是 properties 和 yml</p>
 <ul>
 <li>當 Spring Boot 設定檔 <strong>「命名成 application.properties」</strong>，即是表示他是使用 properties 語法來撰寫，因此格式是 <code>key=value</code></li>
@@ -445,23 +471,31 @@
 <blockquote>
 <p>補充：我自己是比較喜歡使用 application.properties 來設定，yml 語法寫起來感覺很容易出錯😂（一個恍神不小心縮排就毀了），供大家參考</p>
 </blockquote>
-<h2 id="補充-2yml-的語法">補充 2：yml 的語法</h2>
-<p>在前面我們有詳細介紹了 properties 語法的用法，而這裡也可以來補充一些 yml 語法的寫法</p>
-<h3 id="key-value-的寫法">key: value 的寫法</h3>
-<p>在 yml 語法中，是採用 <code>key: value</code> 的方式來撰寫，注意在 value 前面 <strong>「必須」</strong> 加上一個空白鍵來隔開 <code>:</code>，所以寫起來的效果如下：</p>
+<h2 id="補充-2yml-的語法" class="markdown-heading-anchor">
+  補充 2：yml 的語法
+  <a href="#%e8%a3%9c%e5%85%85-2yml-%e7%9a%84%e8%aa%9e%e6%b3%95">#</a>
+</h2><p>在前面我們有詳細介紹了 properties 語法的用法，而這裡也可以來補充一些 yml 語法的寫法</p>
+<h3 id="key-value-的寫法" class="markdown-heading-anchor">
+  key: value 的寫法
+  <a href="#key-value-%e7%9a%84%e5%af%ab%e6%b3%95">#</a>
+</h3><p>在 yml 語法中，是採用 <code>key: value</code> 的方式來撰寫，注意在 value 前面 <strong>「必須」</strong> 加上一個空白鍵來隔開 <code>:</code>，所以寫起來的效果如下：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#000080">count</span>:<span style="color:#bbb"> </span><span style="color:#099">5</span><span style="color:#bbb">
 </span></span></span></code></pre></div><p>上面這一段程式所表示的，就是去宣告一個 key 為 count，並且他的值為 5，而如果想用 properties 語法來表示同樣的效果的話，則會寫成下面這樣子：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
-</span></span></code></pre></div><h3 id="縮排的寫法">縮排的寫法</h3>
-<p>yml 除了使用 <code>key: value</code> 的方式來設定值之外，並且 yml 是使用「縮排」的方式，來表示中文的「的」的概念</p>
+</span></span></code></pre></div><h3 id="縮排的寫法" class="markdown-heading-anchor">
+  縮排的寫法
+  <a href="#%e7%b8%ae%e6%8e%92%e7%9a%84%e5%af%ab%e6%b3%95">#</a>
+</h3><p>yml 除了使用 <code>key: value</code> 的方式來設定值之外，並且 yml 是使用「縮排」的方式，來表示中文的「的」的概念</p>
 <p>像是在 properties 語法中，當我們寫了下面這行程式，其中文意義是表示「我的名字叫做 John」（因為 properties 語法中的 <code>.</code>，就是表示中文的「的」的意思）</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">my.name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">John</span>
 </span></span></code></pre></div><p>而在 yml 中，則會寫成下面這個樣子，透過 <strong>「將 name 這一行往右縮排 2 個空白鍵」</strong>，表示中文的「的」的意思</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#000080">my</span>:<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>John<span style="color:#bbb">
 </span></span></span></code></pre></div><p>所以上面這一段程式讀起來，一樣也是「我的名字是 John」，只是 yml 是透過縮排的方式來表達，而 properties 是使用 <code>.</code> 的方式來表達而已</p>
-<h3 id="小結properties-和-yml-的差別">小結：properties 和 yml 的差別</h3>
-<p>下面總結了 properties 語法和 yml 語法在寫法上的差別，基本上是大同小異，就是「縮排」的這個概念需要轉換一下，其他部分（像是 key 和 value 的寫法），大致上都還是滿相似的</p>
+<h3 id="小結properties-和-yml-的差別" class="markdown-heading-anchor">
+  小結：properties 和 yml 的差別
+  <a href="#%e5%b0%8f%e7%b5%90properties-%e5%92%8c-yml-%e7%9a%84%e5%b7%ae%e5%88%a5">#</a>
+</h3><p>下面總結了 properties 語法和 yml 語法在寫法上的差別，基本上是大同小異，就是「縮排」的這個概念需要轉換一下，其他部分（像是 key 和 value 的寫法），大致上都還是滿相似的</p>
 <p>
 
 <img
@@ -470,8 +504,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="總結">總結</h2>
-<p>這篇文章先介紹了什麼是 Spring Boot 的設定檔，也介紹了 application.properties 檔案的用途，以及 properties 的語法介紹</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章先介紹了什麼是 Spring Boot 的設定檔，也介紹了 application.properties 檔案的用途，以及 properties 的語法介紹</p>
 <p>並且我們也介紹到，要如何使用 <code>@Value</code>，將 Spring Boot 設定檔 (application.properties 檔案) 中的值讀取到 Bean 裡面，也介紹了使用 <code>@Value</code> 的注意事項和預設值的用法</p>
 <p>最後則是補充了 Spring Boot 設定檔的兩種命名方式，也介紹了 yml 的語法，以及 properties 語法和 yml 語法的差別</p>
 <p>所以到這篇文章為止，有關於 Spring IoC 的介紹就告一個段落了，在這個章節中：</p>
@@ -481,8 +517,10 @@
 <li>最後也介紹了要如何透過 <code>@Value</code>，將 Spring Boot 設定檔中的值讀取到 Bean 裡面</li>
 </ul>
 <p>那麼從下一篇文章開始，我們就會來了解 Spring 框架中的另一個也很重要的特性：AOP，那我們就下一篇文章見啦！</p>
-<h2 id="相關連結">相關連結</h2>
-<ul>
+<h2 id="相關連結" class="markdown-heading-anchor">
+  相關連結
+  <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
+</h2><ul>
 <li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
    
    target="_blank" rel="noopener">

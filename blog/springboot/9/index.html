@@ -243,8 +243,10 @@
           <p>哈囉大家好，我是古古</p>
 <p>在前幾篇文章中，我們有介紹了創建 Bean 的方法 <code>@Component</code>、注入 Bean 的方法 <code>@Autowired</code>、以及指定 Bean 名字的方法 <code>@Qualifier</code>，所以到目前為止，我們可以說是對 Bean 已經有了更多的認識，現在的我們已經可以成功的在 Spring Boot 程式中運用 Bean 了！</p>
 <p>那麼這篇文章，我們就會深入介紹一下，要如何在創建一個 Bean 出來之後，去初始化這個 Bean 的值</p>
-<h2 id="什麼是-bean-的初始化">什麼是 Bean 的初始化？</h2>
-<p>所謂的「Bean 的初始化」，指的是**「在 Bean 被創建出來之後，對這個 Bean 去做一些初始值的設定」**，譬如說把變數的值設定成 5，或是進行一些運算之類的，簡單的說就是對這個 Bean 去做初始的出廠設定就對了</p>
+<h2 id="什麼是-bean-的初始化" class="markdown-heading-anchor">
+  什麼是 Bean 的初始化？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-bean-%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96">#</a>
+</h2><p>所謂的「Bean 的初始化」，指的是**「在 Bean 被創建出來之後，對這個 Bean 去做一些初始值的設定」**，譬如說把變數的值設定成 5，或是進行一些運算之類的，簡單的說就是對這個 Bean 去做初始的出廠設定就對了</p>
 <p>舉個例子來說的話，我們可以來試著改寫一下之前所寫的 HpPrinter class，我們在這個 HpPrinter 裡面去加上一個 count 變數，去計算這台印表機還可以印幾次，所以每當我們 call 一次 <code>print()</code> 方法，這個 count 的數量就要減一，實際程式如下：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Component</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">HpPrinter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">implements</span><span style="color:#bbb"> </span>Printer<span style="color:#bbb"> </span>{<span style="color:#bbb">
@@ -269,8 +271,10 @@
   data-zoomable
 /></p>
 <p>如果我們想要讓 Spring Boot 在創建這個 hpPrinter 出來之後，同時也去為這個 count 變數賦予一個初始值，那麼我們就可以使用 <code>@PostConstruct</code> 來幫助我們達成這件事！</p>
-<h2 id="初始化-bean-的方法postconstruct">初始化 Bean 的方法：@PostConstruct</h2>
-<p><code>@PostConstruct</code> 的用途，就是 <strong>「為這個 Bean 去進行初始化」</strong>，因此我們就可以透過 <code>@PostConstruct</code> 的功能，去設定這個 Bean 中的變數的初始值了</p>
+<h2 id="初始化-bean-的方法postconstruct" class="markdown-heading-anchor">
+  初始化 Bean 的方法：@PostConstruct
+  <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96-bean-%e7%9a%84%e6%96%b9%e6%b3%95postconstruct">#</a>
+</h2><p><code>@PostConstruct</code> 的用途，就是 <strong>「為這個 Bean 去進行初始化」</strong>，因此我們就可以透過 <code>@PostConstruct</code> 的功能，去設定這個 Bean 中的變數的初始值了</p>
 <p>還是上面那個 HpPrinter 的例子，如果我們想要把 HpPrinter 裡面的 count 變數的值，去初始化成 5 的話，那麼我們就可以這樣做：</p>
 <p>我們可以在 HpPrinter 這個 class 裡面，去新增一個新的方法，並且在這個方法上面加上 <code>@PostConstruct</code>，這樣就可以在這個 <strong>「有加上 <code>@PostConstruct</code> 的方法中」</strong>，去初始化 Bean 的值了</p>
 <p>
@@ -292,8 +296,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="1-使用-postconstruct-的注意事項之一方法有特定格式">1. 使用 @PostConstruct 的注意事項之一：方法有特定格式</h3>
-<p>在前面有提到，我們是可以在 class 中新增一個方法，然後在該方法上加上 <code>@PostConstruct</code>，這樣就可以在「該方法裡面」，去寫上初始化 Bean 的程式</p>
+<h3 id="1-使用-postconstruct-的注意事項之一方法有特定格式" class="markdown-heading-anchor">
+  1. 使用 @PostConstruct 的注意事項之一：方法有特定格式
+  <a href="#1-%e4%bd%bf%e7%94%a8-postconstruct-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e6%96%b9%e6%b3%95%e6%9c%89%e7%89%b9%e5%ae%9a%e6%a0%bc%e5%bc%8f">#</a>
+</h3><p>在前面有提到，我們是可以在 class 中新增一個方法，然後在該方法上加上 <code>@PostConstruct</code>，這樣就可以在「該方法裡面」，去寫上初始化 Bean 的程式</p>
 <p>不過這個「被加上 <code>@PostConstruct</code> 的方法」，他在宣告上也是有一些格式需要遵守的：</p>
 <ol>
 <li>這個方法必須是 <code>public</code></li>
@@ -304,23 +310,33 @@
 <p>所以綜合以上 4 點的話，基本上這個「初始化 Bean 的方法」，通常就會長得像是下面這個樣子</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">XXX</span>();<span style="color:#bbb">
 </span></span></span></code></pre></div><p>其中 XXX 可以替換成大家喜歡的單字，常見的有 setup、init、initialize 之類的，皆可以拿來使用</p>
-<h3 id="2-使用-postconstruct-的注意事項之二一個-class-建議只有一個方法加上-postconstruct">2. 使用 @PostConstruct 的注意事項之二：一個 class 建議只有一個方法加上 @PostConstruct</h3>
-<p>在使用 <code>@PostConstruct</code> 去初始化 Bean 的時候，<strong>在同一個 class 中，建議一次只讓一個方法加上 <code>@PostConstruct</code></strong>，不要同時在多個方法上，都加上 <code>@PostConstruct</code></p>
+<h3 id="2-使用-postconstruct-的注意事項之二一個-class-建議只有一個方法加上-postconstruct" class="markdown-heading-anchor">
+  2. 使用 @PostConstruct 的注意事項之二：一個 class 建議只有一個方法加上 @PostConstruct
+  <a href="#2-%e4%bd%bf%e7%94%a8-postconstruct-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8c%e4%b8%80%e5%80%8b-class-%e5%bb%ba%e8%ad%b0%e5%8f%aa%e6%9c%89%e4%b8%80%e5%80%8b%e6%96%b9%e6%b3%95%e5%8a%a0%e4%b8%8a-postconstruct">#</a>
+</h3><p>在使用 <code>@PostConstruct</code> 去初始化 Bean 的時候，<strong>在同一個 class 中，建議一次只讓一個方法加上 <code>@PostConstruct</code></strong>，不要同時在多個方法上，都加上 <code>@PostConstruct</code></p>
 <p>如果在同一個 class 中，同時有多個方法上面都加上 <code>@PostConstruct</code>，雖然 Spring Boot 程式仍舊是可以正常運行起來，但是我們無法知道 Spring Boot 會先執行哪一個方法去初始化 Bean，因此可能會造成程式邏輯的錯誤，並且後續也很難統一管理初始化的設定</p>
 <p>因此就建議大家，在同一個 class 內，一次只使用一個 <code>@PostConstruct</code>，統一的去管理初始化的設定，這樣子不管是在維護上還是運作上，都是比較好的做法</p>
-<h2 id="補充-1我們真的需要-postconstruct-嗎">補充 1：我們真的需要 @PostConstruct 嗎？</h2>
-<p>上面的例子因為比較簡單，所以有的人可能會覺得「為什麼不直接在宣告 count 變數的同時，把 count 值也設成 5 就好？感覺用 <code>@PostConstrcut</code> 有點多此一舉？」，不過其實在實務上，<code>@PostConstruct</code> 的用途還是滿多的</p>
+<h2 id="補充-1我們真的需要-postconstruct-嗎" class="markdown-heading-anchor">
+  補充 1：我們真的需要 @PostConstruct 嗎？
+  <a href="#%e8%a3%9c%e5%85%85-1%e6%88%91%e5%80%91%e7%9c%9f%e7%9a%84%e9%9c%80%e8%a6%81-postconstruct-%e5%97%8e">#</a>
+</h2><p>上面的例子因為比較簡單，所以有的人可能會覺得「為什麼不直接在宣告 count 變數的同時，把 count 值也設成 5 就好？感覺用 <code>@PostConstrcut</code> 有點多此一舉？」，不過其實在實務上，<code>@PostConstruct</code> 的用途還是滿多的</p>
 <p>使用 <code>@PostConstruct</code> 來初始化的強項在於 <strong>「<code>@PostConstruct</code> 可以進行複雜的初始化」</strong>，譬如說在 Map 裡生成預先定義好的數據、或是取得其他注入的 Bean 的資訊、或是檢查注入的 Bean 是否為 null 值&hellip;.之類的，這些都是可以在 <code>@PostConstruct</code> 中做到的</p>
 <p>因此在實務上，使用 <code>@PostConstruct</code> 來進行 Bean 的初始化是很常見的作法～</p>
-<h2 id="補充-2初始化-bean-的另一種方法">補充 2：初始化 Bean 的另一種方法</h2>
-<p>除了可以使用這篇文章所介紹的 <code>@PostConstruct</code> 去初始化 Bean 之外，其實也是有另一種方法可以去初始化 Bean 的，那就是「去實作 InitializingBean interface 裡面的 afterPropertiesSet 方法」，用這種寫法的初始化效果，是和使用 <code>@PostConstruct</code> 一模一樣的</p>
+<h2 id="補充-2初始化-bean-的另一種方法" class="markdown-heading-anchor">
+  補充 2：初始化 Bean 的另一種方法
+  <a href="#%e8%a3%9c%e5%85%85-2%e5%88%9d%e5%a7%8b%e5%8c%96-bean-%e7%9a%84%e5%8f%a6%e4%b8%80%e7%a8%ae%e6%96%b9%e6%b3%95">#</a>
+</h2><p>除了可以使用這篇文章所介紹的 <code>@PostConstruct</code> 去初始化 Bean 之外，其實也是有另一種方法可以去初始化 Bean 的，那就是「去實作 InitializingBean interface 裡面的 afterPropertiesSet 方法」，用這種寫法的初始化效果，是和使用 <code>@PostConstruct</code> 一模一樣的</p>
 <p>不過因為「去實作 InitializingBean interface」算是比較舊的寫法，因此在此系列文中就沒有特別介紹到這部分，並且在實務上，也會建議大家盡量使用 <code>@PostConstruct</code> 來進行 Bean 的初始化</p>
-<h2 id="總結">總結</h2>
-<p>這篇文章介紹了要如何使用 <code>@PostConstruct</code>，去對 Spring Boot 創建出來的 Bean 進行初始化，所以大家以後就可以透過 <code>@PostConstruct</code>，將存放在 Spring 容器中的 Bean 的值，進行初始的出廠設定了</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章介紹了要如何使用 <code>@PostConstruct</code>，去對 Spring Boot 創建出來的 Bean 進行初始化，所以大家以後就可以透過 <code>@PostConstruct</code>，將存放在 Spring 容器中的 Bean 的值，進行初始的出廠設定了</p>
 <p>那到這篇文章為止，我們就算是對 Spring IoC 有了比較多的認識，我們已經了解了什麼是 IoC、DI，什麼又是 Spring 容器和 Bean，也知道要怎麼樣在 Spring Boot 中使用 <code>@Component</code>、<code>@Autowired</code>、<code>@Qualifier</code> 以及 <code>@PostConstruct</code> 這些註解，去對 Bean 進行創建、注入、以及初始化</p>
 <p>那麼下一篇文章，我們會延伸出去介紹，要如何透過 <code>@Value </code>這個註解，將 Spring Boot 設定檔中的值給讀取到 Bean 裡面，讓我們所寫的 Java 程式可以去運用 Spring Boot 設定檔中的值，那麼我們就下一篇文章見啦！</p>
-<h2 id="相關連結">相關連結</h2>
-<ul>
+<h2 id="相關連結" class="markdown-heading-anchor">
+  相關連結
+  <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
+</h2><ul>
 <li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
    
    target="_blank" rel="noopener">

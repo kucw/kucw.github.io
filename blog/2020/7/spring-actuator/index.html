@@ -194,8 +194,10 @@
 <p>Spring Boot 版本：3.3.2</p>
 </blockquote>
 <p>Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。</p>
-<h2 id="使用-springboot-actuator">使用 SpringBoot Actuator</h2>
-<p>如果要使用 SpringBoot Actuator 提供的監控功能，需要先加入相關的 maven dependency。</p>
+<h2 id="使用-springboot-actuator" class="markdown-heading-anchor">
+  使用 SpringBoot Actuator
+  <a href="#%e4%bd%bf%e7%94%a8-springboot-actuator">#</a>
+</h2><p>如果要使用 SpringBoot Actuator 提供的監控功能，需要先加入相關的 maven dependency。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#000080">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span style="color:#000080">&lt;/artifactId&gt;</span>
@@ -214,8 +216,10 @@ http://localhost:8080/actuator/health
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="actuator-提供的常見的-api">Actuator 提供的常見的 api</h2>
-<p>除了上述自動開啟的 <code>/actuator/health</code> api 之外，Actuator 其實還提供更多樣化的 api，讓我們可以從不同的角度，去監控 Spring Boot 程式（不過因為安全因素考量，大部分的 api 都需要另外設定才能夠開啟，詳細的設定方式在下方介紹）。</p>
+<h2 id="actuator-提供的常見的-api" class="markdown-heading-anchor">
+  Actuator 提供的常見的 api
+  <a href="#actuator-%e6%8f%90%e4%be%9b%e7%9a%84%e5%b8%b8%e8%a6%8b%e7%9a%84-api">#</a>
+</h2><p>除了上述自動開啟的 <code>/actuator/health</code> api 之外，Actuator 其實還提供更多樣化的 api，讓我們可以從不同的角度，去監控 Spring Boot 程式（不過因為安全因素考量，大部分的 api 都需要另外設定才能夠開啟，詳細的設定方式在下方介紹）。</p>
 <blockquote>
 <p>因為監控 api 眾多，以下僅列出常用的監控 api，所有監控 api 可查閱 <a href="https://docs.spring.io/spring-boot/reference/actuator/endpoints.html"
    
@@ -274,8 +278,10 @@ Spring 官方文件
 </tr>
 </tbody>
 </table>
-<h2 id="開啟受保護的-actuator-監控-api-的方法">開啟受保護的 Actuator 監控 api 的方法</h2>
-<p>因為安全的因素，所以 Actuator 預設只會開啟 <code>/actuator/health</code> 這個監控的 api 讓我們使用，如果要開放其他的 api 的話，需要額外在 application.properties 中進行設定</p>
+<h2 id="開啟受保護的-actuator-監控-api-的方法" class="markdown-heading-anchor">
+  開啟受保護的 Actuator 監控 api 的方法
+  <a href="#%e9%96%8b%e5%95%9f%e5%8f%97%e4%bf%9d%e8%ad%b7%e7%9a%84-actuator-%e7%9b%a3%e6%8e%a7-api-%e7%9a%84%e6%96%b9%e6%b3%95">#</a>
+</h2><p>因為安全的因素，所以 Actuator 預設只會開啟 <code>/actuator/health</code> 這個監控的 api 讓我們使用，如果要開放其他的 api 的話，需要額外在 application.properties 中進行設定</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 可以這樣寫，就會開啟所有的 api（但不包含 shutdown）</span>
 </span></span><span style="display:flex;"><span>management.endpoints.web.exposure.include<span style="color:#000;font-weight:bold">=</span>*
 </span></span><span style="display:flex;"><span>
@@ -294,8 +300,10 @@ Spring 官方文件
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 這樣寫的話，原本內建的 /actuator/xxx 的 url 路徑，就都會變成 /my/xxx</span>
 </span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 這樣做可以防止 Actuator 的監控 api 路徑被其他人猜到</span>
 </span></span><span style="display:flex;"><span>management.endpoints.web.base-path<span style="color:#000;font-weight:bold">=</span>/my
-</span></span></code></pre></div><h2 id="結語">結語</h2>
-<p>本篇文章介紹了 Spring Boot Actuator 的用法，以及列出的常見好用的監控 api 有哪些，提供給大家參考。</p>
+</span></span></code></pre></div><h2 id="結語" class="markdown-heading-anchor">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2><p>本篇文章介紹了 Spring Boot Actuator 的用法，以及列出的常見好用的監控 api 有哪些，提供給大家參考。</p>
 <p>如果你對後端技術有興趣的話，也歡迎訂閱<a href="https://kucw.io/bio"
    
    target="_blank" rel="noopener">

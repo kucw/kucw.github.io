@@ -190,8 +190,10 @@
 
 
         <div class="content mb-4">
-          <h3 id="1-什麼是-debug-模式">1. 什麼是 Debug 模式？</h3>
-<p>還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 <code>System.out.println()</code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 <code>System.out.println()</code>，所以到後來我的 code 就會長的像下圖這樣</p>
+          <h3 id="1-什麼是-debug-模式" class="markdown-heading-anchor">
+  1. 什麼是 Debug 模式？
+  <a href="#1-%e4%bb%80%e9%ba%bc%e6%98%af-debug-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 <code>System.out.println()</code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 <code>System.out.println()</code>，所以到後來我的 code 就會長的像下圖這樣</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>User<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">getMaleUser</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>userList<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>userDao.<span style="color:#008080">getUserList</span>();<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(userList);<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">// print userList，看一下userList裡面的內容長怎樣</span><span style="color:#bbb">
@@ -210,8 +212,10 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
 </span></span></span></code></pre></div><p>可想而知，這樣做的開發效率是非常差的，每多看一個 variable 就要多增加一行 <code>System.out.println()</code>，而且每次改了之後，都要重新運行程式，讓程式再 print 出一次數據，我想想都覺得痛苦，難道 IntelliJ 就沒有一個能夠快速反應出現在這個 variable 的值是什麼的功能嗎？</p>
 <p>事實上，IntelliJ 是有提供的！當我們在運行程式時，改成使用 <strong>Debug 模式</strong> 運行就可以了！</p>
-<h3 id="2-intellij-的-debug-模式">2. IntelliJ 的 Debug 模式</h3>
-<p>使用 IntelliJ 的 Debug 模式來運行程式的好處</p>
+<h3 id="2-intellij-的-debug-模式" class="markdown-heading-anchor">
+  2. IntelliJ 的 Debug 模式
+  <a href="#2-intellij-%e7%9a%84-debug-%e6%a8%a1%e5%bc%8f">#</a>
+</h3><p>使用 IntelliJ 的 Debug 模式來運行程式的好處</p>
 <ul>
 <li>可以一行行的運行 code</li>
 <li>可以馬上知道運行中的 variable 的值，甚至去改變它的值，從此不用再使用<code>System.out.println()</code>去 print variable 了</li>
@@ -232,10 +236,14 @@
 <li>Service 按紐，和 break point 有關係，主要搭配著 3. Debug 按鈕 一起使用</li>
 <li>Variables，可以查看當前 break point 之前的 variable 的值</li>
 </ol>
-<h3 id="3-debug-基本用法">3. Debug 基本用法</h3>
-<p>IntelliJ 的 Debug 模式基本用法主要對應著上述 3 和 4 的兩組按鈕</p>
-<h4 id="debug-按鈕從左到右共-8-個按鈕">Debug 按鈕，從左到右共 8 個按鈕</h4>
-<p>
+<h3 id="3-debug-基本用法" class="markdown-heading-anchor">
+  3. Debug 基本用法
+  <a href="#3-debug-%e5%9f%ba%e6%9c%ac%e7%94%a8%e6%b3%95">#</a>
+</h3><p>IntelliJ 的 Debug 模式基本用法主要對應著上述 3 和 4 的兩組按鈕</p>
+<h4 id="debug-按鈕從左到右共-8-個按鈕" class="markdown-heading-anchor">
+  Debug 按鈕，從左到右共 8 個按鈕
+  <a href="#debug-%e6%8c%89%e9%88%95%e5%be%9e%e5%b7%a6%e5%88%b0%e5%8f%b3%e5%85%b1-8-%e5%80%8b%e6%8c%89%e9%88%95">#</a>
+</h4><p>
 
 <img
   src="/images/blog/idea_debug2.png"
@@ -253,8 +261,10 @@
 <li>Run to Cursor : 運行到目前滑鼠點擊的位置，你可以將滑鼠點擊到你需要查看的那一行，然後使用這個功能，code 就會運行至那一行，而不需要在那一行上打 break point（前提是已經進入了 Debug 模式，就是已經停在某個 break point 上了）</li>
 <li>Evaluate Expression : 計算表達式，後面第五部分詳細說明</li>
 </ol>
-<h4 id="service-按鈕從上到下共-7-個按鈕">Service 按鈕，從上到下共 7 個按鈕</h4>
-<p>
+<h4 id="service-按鈕從上到下共-7-個按鈕" class="markdown-heading-anchor">
+  Service 按鈕，從上到下共 7 個按鈕
+  <a href="#service-%e6%8c%89%e9%88%95%e5%be%9e%e4%b8%8a%e5%88%b0%e4%b8%8b%e5%85%b1-7-%e5%80%8b%e6%8c%89%e9%88%95">#</a>
+</h4><p>
 
 <img
   src="/images/blog/idea_debug3.png"
@@ -271,8 +281,10 @@
 <li>View Breakpoints : 查看所有 break point，後面第七部分詳細說明</li>
 <li>Mute Breakpoints : 將所有 break point 變爲灰色並使它們失效，按 Resume Program 那個鍵（也就是第三個按鍵）可以直接運行完程式（因為所有打的 break point 都被設置為無效了），再次點擊這個 Mute Breakpoints 按鍵可以使所有無效 break point 變爲紅色有效</li>
 </ol>
-<h3 id="4-debug-模式下的-variable-查看">4. Debug 模式下的 variable 查看</h3>
-<p>在 Debug 過程中，跟蹤查看 variable 的值是非常必要的，有幾個方式可以查看當前 variable 的值</p>
+<h3 id="4-debug-模式下的-variable-查看" class="markdown-heading-anchor">
+  4. Debug 模式下的 variable 查看
+  <a href="#4-debug-%e6%a8%a1%e5%bc%8f%e4%b8%8b%e7%9a%84-variable-%e6%9f%a5%e7%9c%8b">#</a>
+</h3><p>在 Debug 過程中，跟蹤查看 variable 的值是非常必要的，有幾個方式可以查看當前 variable 的值</p>
 <p>
 
 <img
@@ -286,8 +298,10 @@
 <li>滑鼠停到參數上，會顯示當前 variable 的資訊，點擊打開可以看到該 variable 的詳情</li>
 <li>在下方的 Variables 窗口查看，這裡會顯示當前方法的所有 variable 的詳情</li>
 </ol>
-<h3 id="5-計算表達式-evaluate-expression">5. 計算表達式 Evaluate Expression</h3>
-<p>在前面第三部分有提到一個計算表達式 Evaluation Expression 按鈕，可以使用這個按鈕在 debug 過程中計算某個表達式的值，或是直接改變某個 variable 的值，而不用再去重新改 code 然後再重啟程式</p>
+<h3 id="5-計算表達式-evaluate-expression" class="markdown-heading-anchor">
+  5. 計算表達式 Evaluate Expression
+  <a href="#5-%e8%a8%88%e7%ae%97%e8%a1%a8%e9%81%94%e5%bc%8f-evaluate-expression">#</a>
+</h3><p>在前面第三部分有提到一個計算表達式 Evaluation Expression 按鈕，可以使用這個按鈕在 debug 過程中計算某個表達式的值，或是直接改變某個 variable 的值，而不用再去重新改 code 然後再重啟程式</p>
 <p>假設在 Debug 模式下，想要快速比較當前 <code>list.get(0).equals(&quot;first&quot;)</code> 的結果，可以不用改 code，直接在計算表達式裡面運算，讓 IntelliJ 快速幫助我們計算出這個函式會回傳的值，非常方便，像是下面的 3. Result 部分，得到的就是使用計算表達式運行 <code>list.get(0).equals(&quot;first&quot;)</code> 的結果</p>
 <p>
 
@@ -323,8 +337,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="6-break-point-條件設置">6. Break point 條件設置</h3>
-<p>有的時候在 for loop 一個集合或是數組的時候，可能只想要看 for loop 裡面的某個 i 值超過多少以上的 variable 情況，這時候就可以透過設置 break point 條件來達成，也就是說，只有在滿足了 break point 的條件時，才會停在該 break point 上，不然就會直接忽略此 break point</p>
+<h3 id="6-break-point-條件設置" class="markdown-heading-anchor">
+  6. Break point 條件設置
+  <a href="#6-break-point-%e6%a2%9d%e4%bb%b6%e8%a8%ad%e7%bd%ae">#</a>
+</h3><p>有的時候在 for loop 一個集合或是數組的時候，可能只想要看 for loop 裡面的某個 i 值超過多少以上的 variable 情況，這時候就可以透過設置 break point 條件來達成，也就是說，只有在滿足了 break point 的條件時，才會停在該 break point 上，不然就會直接忽略此 break point</p>
 <p>對 break point 點擊右鍵可以設置 break point 條件，像是下圖是設置成在 <code>i=3</code> 時才停下（如果沒有設置 break point 條件的話，則每進一次for loop，每個 i 都會停一次 break point）</p>
 <p>
 
@@ -334,8 +350,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="7-查看所有的-break-point">7. 查看所有的 break point</h3>
-<p>在左下方點擊 View Breakpoints 可以查看目前已經設置的所有 break point，有時候自己 break point 打多了很容易忘記打在哪，可以透過這個功能知道自己都在哪些地方打了 break point，取消勾選可以使此 break point 失效</p>
+<h3 id="7-查看所有的-break-point" class="markdown-heading-anchor">
+  7. 查看所有的 break point
+  <a href="#7-%e6%9f%a5%e7%9c%8b%e6%89%80%e6%9c%89%e7%9a%84-break-point">#</a>
+</h3><p>在左下方點擊 View Breakpoints 可以查看目前已經設置的所有 break point，有時候自己 break point 打多了很容易忘記打在哪，可以透過這個功能知道自己都在哪些地方打了 break point，取消勾選可以使此 break point 失效</p>
 <p>
 
 <img
@@ -344,8 +362,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="8-設置異常-break-point">8. 設置異常 break point</h3>
-<p>當設置異常 break point時，在程式中出現需要攔截的異常時，會自動定位到 throw exception 的那行</p>
+<h3 id="8-設置異常-break-point" class="markdown-heading-anchor">
+  8. 設置異常 break point
+  <a href="#8-%e8%a8%ad%e7%bd%ae%e7%95%b0%e5%b8%b8-break-point">#</a>
+</h3><p>當設置異常 break point時，在程式中出現需要攔截的異常時，會自動定位到 throw exception 的那行</p>
 <p>設置方式一樣是先點擊 view breakpoints，之後點擊 + 號添加異常 break point，這邊添加了一個 NullPointerException</p>
 <p>
 
@@ -372,8 +392,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="9-總結">9. 總結</h3>
-<p>本文列出了 IntelliJ 中 Debug 模式的實用用法，讓你在開發路上更順暢</p>
+<h3 id="9-總結" class="markdown-heading-anchor">
+  9. 總結
+  <a href="#9-%e7%b8%bd%e7%b5%90">#</a>
+</h3><p>本文列出了 IntelliJ 中 Debug 模式的實用用法，讓你在開發路上更順暢</p>
 <p>不過要注意一點，因為 Debug 時會讓整個程式停在你打的 break point 上，所以千萬不能夠在 production 下 debug，只能夠在測試環境中進行 debug</p>
 <p>有關 IntelliJ 中如何設置 remote debug，請參考我之前寫的這篇文章：<a href="/blog/2020/1/intellij-remote-debug/"
    

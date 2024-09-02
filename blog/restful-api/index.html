@@ -190,8 +190,10 @@
 
 
         <div class="content mb-4">
-          <h2 id="什麼是-restful-api">什麼是 RESTful API？</h2>
-<p>所謂的 RESTful API，<strong>他是一種設計 API 的風格</strong>，而他的目的，就是為了 <strong>「簡化工程師之間的溝通成本」</strong>。</p>
+          <h2 id="什麼是-restful-api" class="markdown-heading-anchor">
+  什麼是 RESTful API？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-restful-api">#</a>
+</h2><p>所謂的 RESTful API，<strong>他是一種設計 API 的風格</strong>，而他的目的，就是為了 <strong>「簡化工程師之間的溝通成本」</strong>。</p>
 <p>所以 RESTful API，他的目的其實非常單純，就只是為了簡化工程師之間的溝通成本，才提出了一系列的方法，去統一不同工程師所設計出來 API 的風格。</p>
 <p>不過在這邊要先強調一下，RESTful API 他只是一種設計風格而已，並不是強制的規定，所以如果你在設計上，完全不遵守 RESTful API 的建議，也是完全沒問題的！</p>
 <p>只不過因為 RESTful API 的設計風格，他非常的通用，所以有非常多工程師，都很喜歡使用 RESTful API 的設計方式，因此了解 RESTful API 的設計理念，還是會非常吃香的～</p>
@@ -210,11 +212,15 @@
 <p>所以同樣的道理，REST 是名詞，表示「REST 設計風格」，而 RESTful 是形容詞，就是表示「符合 REST 設計風格的」。</p>
 <p>所以當我們在說 RESTful API 的時候，我們實際上所表示的，就是指「你的 API 設計的很符合 REST 的風格」，或是更白話一點，就是表示「欸～你的 API 很 REST 哦😏」，所以這個 RESTful，他本質上是一個形容詞，用途就是用來形容目前這個 API，是不是符合 REST 這個設計風格。</p>
 <p>那所以當大家看到某個 API 很符合 REST 的設計風格時，就可以稱呼這個 API，他是一個 RESTful API，那就表示他是一個「很符合 REST 風格的 API」了！</p>
-<h2 id="如何設計出-restful-api">如何設計出 RESTful API？</h2>
-<p>當大家了解了 RESTful API 的概念之後，接下來我們就可以來探討一下，什麼是「REST 設計風格」，而我們又要如何將我們的 API，去設計成「符合 REST 風格」的 API 了。</p>
+<h2 id="如何設計出-restful-api" class="markdown-heading-anchor">
+  如何設計出 RESTful API？
+  <a href="#%e5%a6%82%e4%bd%95%e8%a8%ad%e8%a8%88%e5%87%ba-restful-api">#</a>
+</h2><p>當大家了解了 RESTful API 的概念之後，接下來我們就可以來探討一下，什麼是「REST 設計風格」，而我們又要如何將我們的 API，去設計成「符合 REST 風格」的 API 了。</p>
 <p>如果我們想要設計出一個「符合 REST 設計風格」的 API，也就是設計出一個 RESTful API 的話，那這個 API，就必須要滿足 3 個條件。</p>
-<h3 id="1-成為-restful-api-的條件一使用-http-method表示要執行的資料庫操作">1. 成為 RESTful API 的條件一：使用 Http method，表示要執行的資料庫操作</h3>
-<p>如果想要設計出 RESTful API 的話，那麼這個 API，他就必須要使用 Http method，去表示這個 API 的行為動作。</p>
+<h3 id="1-成為-restful-api-的條件一使用-http-method表示要執行的資料庫操作" class="markdown-heading-anchor">
+  1. 成為 RESTful API 的條件一：使用 Http method，表示要執行的資料庫操作
+  <a href="#1-%e6%88%90%e7%82%ba-restful-api-%e7%9a%84%e6%a2%9d%e4%bb%b6%e4%b8%80%e4%bd%bf%e7%94%a8-http-method%e8%a1%a8%e7%a4%ba%e8%a6%81%e5%9f%b7%e8%a1%8c%e7%9a%84%e8%b3%87%e6%96%99%e5%ba%ab%e6%93%8d%e4%bd%9c">#</a>
+</h3><p>如果想要設計出 RESTful API 的話，那麼這個 API，他就必須要使用 Http method，去表示這個 API 的行為動作。</p>
 <p>舉例來說的話，目前在 Http 的世界中，就有非常多的 Http method 可以選擇，像是大家如果有安裝 <a href="https://www.postman.com/"
    
    target="_blank" rel="noopener">
@@ -265,8 +271,10 @@ Chrome 的擴充功能 - Talend API Tester
 /></p>
 <p>所以簡單的說的話，如果大家都使用 REST 的風格來設計 API 時，那麼以後當我們看到某個 API 是使用 GET 方法來請求時，那我們就可以快速的知道，這個 API 是要去執行 Read（讀取數據）的操作；而假設這個 API 是使用 POST 方法來請求時，那我們也可以快速的知道，這個 API 是要去執行 Create（新增數據）的操作。</p>
 <p>所以假設我們想要設計出 RESTful API 的話，那麼第一個必要條件，就是 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
-<h3 id="2-成為-restful-api-的條件二使用-url-路徑描述資源之間的階層關係">2. 成為 RESTful API 的條件二：使用 url 路徑，描述資源之間的階層關係</h3>
-<p>而至於成為 RESTful API 的第二個條件，則是 <strong>「使用 url 路徑，描述資源之間的階層關係」</strong>，那這個聽起來可能有點抽象，所以我們就直接透過一個例子，來了解一下這個概念是什麼。</p>
+<h3 id="2-成為-restful-api-的條件二使用-url-路徑描述資源之間的階層關係" class="markdown-heading-anchor">
+  2. 成為 RESTful API 的條件二：使用 url 路徑，描述資源之間的階層關係
+  <a href="#2-%e6%88%90%e7%82%ba-restful-api-%e7%9a%84%e6%a2%9d%e4%bb%b6%e4%ba%8c%e4%bd%bf%e7%94%a8-url-%e8%b7%af%e5%be%91%e6%8f%8f%e8%bf%b0%e8%b3%87%e6%ba%90%e4%b9%8b%e9%96%93%e7%9a%84%e9%9a%8e%e5%b1%a4%e9%97%9c%e4%bf%82">#</a>
+</h3><p>而至於成為 RESTful API 的第二個條件，則是 <strong>「使用 url 路徑，描述資源之間的階層關係」</strong>，那這個聽起來可能有點抽象，所以我們就直接透過一個例子，來了解一下這個概念是什麼。</p>
 <p>假設現在我們有一個使用 GET 方法來請求的 API，即是 <code>GET /users</code>，那麼當我們第一眼看到這個 API 時，因為這個 API 是使用 GET 方法來請求，所以我們可以知道他是要去執行 Read（讀取數據）的操作，所以這個 <code>GET /users</code> 的含義，就是「取得所有 user 的數據」。</p>
 <p>那麼假設現在，我們又有一個使用 GET 方法去請求的 API，即是 <code>GET /users/123</code>，那麼這個 <code>GET /users/123</code> 的含義，就是「取得 user id 為 123 的那個 user 的數據」。</p>
 <p>
@@ -297,8 +305,10 @@ Chrome 的擴充功能 - Talend API Tester
 /></p>
 <p>所以透過上面這些例子，我們就可以得出一個結論，當我們今天看到某個 API 是 <code>GET /users</code> 時，那就可以直接透過 <code>/users</code> 這個 url 路徑，就知道他是要取得所有的 user 數據，而如果我們看到 <code>GET /users/123/videos</code> 這個 API 時，那就可以直接透過 <code>/users/123/videos</code> 這個 url 路徑，去知道他是要取得「user id 為 123，他旗下的所有 videos 的數據」。</p>
 <p>所以透過這個 url 的階層概念，我們就可以直接利用 url 路徑，去表達「資源之間的階層關係」了。</p>
-<h3 id="3-成為-restful-api-的條件三response-body-返回-json-或是-xml-格式">3. 成為 RESTful API 的條件三：Response body 返回 JSON 或是 Xml 格式</h3>
-<p>而至於成為 RESTful API 的最後一個條件，這個就超級簡單了，就只要讓 Response body 所返回的數據，返回成是 JSON 或是 Xml 的格式，這樣子就滿足 RESTful API 的第三個條件了。</p>
+<h3 id="3-成為-restful-api-的條件三response-body-返回-json-或是-xml-格式" class="markdown-heading-anchor">
+  3. 成為 RESTful API 的條件三：Response body 返回 JSON 或是 Xml 格式
+  <a href="#3-%e6%88%90%e7%82%ba-restful-api-%e7%9a%84%e6%a2%9d%e4%bb%b6%e4%b8%89response-body-%e8%bf%94%e5%9b%9e-json-%e6%88%96%e6%98%af-xml-%e6%a0%bc%e5%bc%8f">#</a>
+</h3><p>而至於成為 RESTful API 的最後一個條件，這個就超級簡單了，就只要讓 Response body 所返回的數據，返回成是 JSON 或是 Xml 的格式，這樣子就滿足 RESTful API 的第三個條件了。</p>
 <p>
 
 <img
@@ -307,8 +317,10 @@ Chrome 的擴充功能 - Talend API Tester
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="設計-restful-api-的總結">設計 RESTful API 的總結</h2>
-<p>所以總結上面的三個條件的話，如果想要設計出 RESTful API 的話，那就只要同時滿足以下這三個條件：</p>
+<h2 id="設計-restful-api-的總結" class="markdown-heading-anchor">
+  設計 RESTful API 的總結
+  <a href="#%e8%a8%ad%e8%a8%88-restful-api-%e7%9a%84%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>所以總結上面的三個條件的話，如果想要設計出 RESTful API 的話，那就只要同時滿足以下這三個條件：</p>
 <ol>
 <li>使用 Http method，表示要執行的資料庫操作</li>
 <li>使用 url 路徑，描述資源之間的階層關係</li>
@@ -326,8 +338,10 @@ Chrome 的擴充功能 - Talend API Tester
 <p>也因為 REST 這個設計風格，他很明確的去定義出設計 API 的建議做法，所以就可以讓所有工程師，按照一個共同的默契來設計 API，因此就不會出現那種大家都隨便亂設計 API 的情況出現，進而就可以達到「簡化工程師之間溝通」的效果了！</p>
 <p>譬如說我們在查看別人所寫的 API 時，就可以直接先透過這個 API 的 Http method（ex: GET、POST…等等），就可以先快速的知道這個 API 的行為，是要去讀取資料庫中的數據、還是要去新增一筆數據到資料庫；並且我們也可以直接去查看他的 url 路徑 <code>/users/1/articles</code>，就可以知道當前這個 url 路徑，他的階層的意義是什麼（ex: <code>/users/1/articles</code> 的意思是「user id 為 1 的那個使用者，他所寫的那些文章們」）。</p>
 <p>所以透過 RESTful API，就可以讓彼此不認識的工程師們，快速的透過一些約定成俗的習慣，知道對方設計的 API 想幹嘛，這樣子就可以節省許多閱讀 API 文件的時間了！</p>
-<h2 id="補充我們真的需要-restful-api-嗎">補充：我們真的需要 RESTful API 嗎？</h2>
-<p>不過，這裡還是要特別強調的一點是，RESTful API 只是一種設計風格（或者說一種約定成俗的習慣），不是強制性的規定，所以大家在實作功能時，如果有一些特殊的考量，那也是完全不需要遵守 RESTful API 的建議的。</p>
+<h2 id="補充我們真的需要-restful-api-嗎" class="markdown-heading-anchor">
+  補充：我們真的需要 RESTful API 嗎？
+  <a href="#%e8%a3%9c%e5%85%85%e6%88%91%e5%80%91%e7%9c%9f%e7%9a%84%e9%9c%80%e8%a6%81-restful-api-%e5%97%8e">#</a>
+</h2><p>不過，這裡還是要特別強調的一點是，RESTful API 只是一種設計風格（或者說一種約定成俗的習慣），不是強制性的規定，所以大家在實作功能時，如果有一些特殊的考量，那也是完全不需要遵守 RESTful API 的建議的。</p>
 <p>譬如說今天你開發了一個「查詢使用者數據」的 API，那麼按照 REST 的設計風格，你可能會設計成 <code>GET /users/{userId}</code> 這樣子的 API。但是因為在你的系統中， user id 是使用「身分證字號」來記錄，所以假設這時候，你硬要去套用 REST 的設計風格的話，那就會變成是使用者要把他的身分證字號，去放在 url 路徑中來傳遞，所以就會像是 <code>GET /users/B123456789</code> 這樣。</p>
 <p>不過因為「身分證字號」，他可以說是非常敏感的資訊，因此基於資訊安全的考量，就會不建議將這類的敏感資訊，去放在 url 路徑中傳遞。</p>
 <p>所以在這個情境中，將「查詢使用者數據」的 API，改成是使用 POST 方法來實作，然後把 user id 的值放在 request body 來傳遞，這樣子才是最合理的設計。</p>
@@ -340,8 +354,10 @@ Chrome 的擴充功能 - Talend API Tester
   data-zoomable
 /></p>
 <p>所以即使大部分的 API 在設計上，都會盡量遵守 REST 這個設計風格，但是如果真的有遇到一些特殊的情況，那就直接按照自己的需求來設計就可以了，並不是符合 REST 風格的 API 才是最好的，因此這部分，就要麻煩大家再留意一下～</p>
-<h2 id="結語">結語</h2>
-<p>這篇文章我們有先去介紹了一下 RESTful API 的概念，並且也有介紹到，要如何去設計出符合 REST 風格的 API（就是滿足 3 個必要條件即可），那就希望可以透過這篇文章，讓大家對於 RESTful API 有更多的認識。</p>
+<h2 id="結語" class="markdown-heading-anchor">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2><p>這篇文章我們有先去介紹了一下 RESTful API 的概念，並且也有介紹到，要如何去設計出符合 REST 風格的 API（就是滿足 3 個必要條件即可），那就希望可以透過這篇文章，讓大家對於 RESTful API 有更多的認識。</p>
 <p>如果你對後端技術有興趣的話，也歡迎訂閱<a href="https://kucw.io/bio"
    
    target="_blank" rel="noopener">

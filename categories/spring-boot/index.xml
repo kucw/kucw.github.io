@@ -69,7 +69,7 @@
       <link>https://kucw.io/blog/springboot/4/</link>
       <pubDate>Sat, 04 Nov 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/4/</guid>
-      <description>哈囉大家好，我是古古&#xA;在上兩篇文章中，有先介紹如何在 Mac 和 Windows 中架設開發環境，那麼接著這篇文章，就會使用前面所安裝的工具，建立你的第一個 Spring Boot 程式&#xA;啟用 IntelliJ IDEA Ultimate 在上兩篇文章中，有先帶大家安裝了 IntelliJ IDEA Ultimate (付費版) 的程式，點擊兩下打開 IntelliJ 之後，IntelliJ 會跳出這個視窗，要求大家登入帳號，並且確認該帳號是否已啟用 IntelliJ 的付費版本</description>
+      <description>哈囉大家好，我是古古&#xA;在上兩篇文章中，有先介紹如何在 Mac 和 Windows 中架設開發環境，那麼接著這篇文章，就會使用前面所安裝的工具，建立你的第一個 Spring Boot 程式&#xA;啟用 IntelliJ IDEA Ultimate # 在上兩篇文章中，有先帶大家安裝了 IntelliJ IDEA Ultimate (付費版) 的程式，點擊兩下打開 IntelliJ 之後，IntelliJ 會跳出這個視窗，要求大家登入帳號，並且確認該帳號是否已啟用 IntelliJ 的付費版本</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (3) - 開發環境安裝（Windows 版）</title>
@@ -97,7 +97,7 @@
       <link>https://kucw.io/blog/2021/7/spring-chinese-properties/</link>
       <pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2021/7/spring-chinese-properties/</guid>
-      <description>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 @Value 讀取時會產生中文亂碼&#xA;name=小明 解決辦法： 在 application.</description>
+      <description>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 @Value 讀取時會產生中文亂碼&#xA;name=小明 解決辦法： # 在 application.</description>
     </item>
     <item>
       <title>SpringBoot - RabbitMQ 使用方法</title>
