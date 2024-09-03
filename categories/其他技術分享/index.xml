@@ -10,16 +10,16 @@
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>什麼是 Docker？他和 VM 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/docker_vs_vm/</link>
+      <link>https://kucw.io/blog/docker-vs-vm/</link>
       <pubDate>Tue, 03 Sep 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/docker_vs_vm/</guid>
+      <guid>https://kucw.io/blog/docker-vs-vm/</guid>
       <description>作為軟體工程師，大家可能多多少少聽過什麼是 Docker，但是卻不了解 Docker 實際要解決的問題是什麼、以及他和 VM 之間的區別。&#xA;所以這篇文章就會來介紹一下，到底什麼是 Docker、什麼又是 VM，並且他們兩個之間的差別又是什麼，那我們就開始吧！&#xA;什麼是 VM？ # 在了解 Docker 之前，一定要先了解什麼是 VM 才可以，所以我們先來介紹一下 VM 是什麼。</description>
     </item>
     <item>
       <title>Vertical Scaling 和 Horizontal Scaling 介紹</title>
-      <link>https://kucw.io/blog/vertical_and_horizontal_scaling/</link>
+      <link>https://kucw.io/blog/vertical-and-horizontal-scaling/</link>
       <pubDate>Tue, 27 Aug 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/vertical_and_horizontal_scaling/</guid>
+      <guid>https://kucw.io/blog/vertical-and-horizontal-scaling/</guid>
       <description>什麼是 Vertical Scaling 和 Horizontal Scaling？ # 想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。</description>
     </item>
     <item>

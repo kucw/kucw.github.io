@@ -13,7 +13,7 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/blog/docker_vs_vm/</loc>
+        <loc>https://kucw.io/blog/docker-vs-vm/</loc>
         <lastmod>2024-09-03T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
@@ -28,7 +28,7 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/blog/vertical_and_horizontal_scaling/</loc>
+        <loc>https://kucw.io/blog/vertical-and-horizontal-scaling/</loc>
         <lastmod>2024-08-27T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
