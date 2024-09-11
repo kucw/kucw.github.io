@@ -1,6 +1,7 @@
 # source 來源: https://ichochy.com/posts/blog/20210612.html
 
 name: Algolia Upload Records
+run-name: Algolia Upload Records
 on:
   push:
     branches: [master]  # 推送到 master branch 時執行
