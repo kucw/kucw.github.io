@@ -4,17 +4,27 @@
     
     <url>
         <loc>https://kucw.io/blog/</loc>
-        <lastmod>2024-09-17T00:00:00+08:00</lastmod>
+        <lastmod>2024-09-24T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/</loc>
-        <lastmod>2024-09-17T00:00:00+08:00</lastmod>
+        <lastmod>2024-09-24T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/</loc>
-        <lastmod>2024-09-17T00:00:00+08:00</lastmod>
+        <lastmod>2024-09-24T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
+        <lastmod>2024-09-24T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/as-a-content-creator/2/</loc>
+        <lastmod>2024-09-24T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
@@ -75,11 +85,6 @@
     <url>
         <loc>https://kucw.io/blog/ithome-sharing/</loc>
         <lastmod>2024-08-08T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
-        <lastmod>2024-08-06T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
