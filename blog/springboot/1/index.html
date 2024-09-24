@@ -240,8 +240,8 @@
         <hr class="doc-start-divider">
 
         <div class="content mb-4">
-          <p>哈囉大家好，我是古古</p>
-<p>這次希望可以透過 30 天的鐵人賽文章，讓沒接觸過（甚至沒聽過）Spring Boot 的人，了解 Spring Boot 到底是什麼，以及如何運用 Spring Boot 搭建一個簡易的後端系統</p>
+          <p>哈囉大家好，我是古古。</p>
+<p>這次希望可以透過 30 天的鐵人賽文章，讓沒接觸過（甚至沒聽過）Spring Boot 的人，了解 Spring Boot 到底是什麼，以及如何運用 Spring Boot 搭建一個簡易的後端系統。</p>
 <p>那麼我們就開始吧，Let&rsquo;s go！</p>
 <h2 id="學習目標你可以學到什麼" class="markdown-heading-anchor">
   學習目標（你可以學到什麼？）
@@ -263,136 +263,126 @@
 <h2 id="閱讀前的準備須具備什麼知識" class="markdown-heading-anchor">
   閱讀前的準備（須具備什麼知識？）
   <a href="#%e9%96%b1%e8%ae%80%e5%89%8d%e7%9a%84%e6%ba%96%e5%82%99%e9%a0%88%e5%85%b7%e5%82%99%e4%bb%80%e9%ba%bc%e7%9f%a5%e8%ad%98">#</a>
-</h2><ul>
-<li>必須具備「Java 程式語言」和「MySQL 資料庫設計」的知識
+</h2><p>閱讀此系列文前，必須具備「Java 程式語言」和「MySQL 資料庫設計」的知識：</p>
 <ul>
-<li>Java：了解基本 Java 的語法，並且至少要知道「多型 (polymorphism)」的概念</li>
-<li>MySQL：了解基本的 SQL 語法 (Select、Update、Insert、Delete) 即可</li>
+<li>Java：了解基本 Java 的語法，並且至少要知道 <strong>「多型（polymorphism）」</strong> 的概念</li>
+<li>MySQL：了解基本的 SQL 語法（Select、Update、Insert、Delete）即可</li>
 </ul>
-</li>
-<li>Mac/Windows 皆可閱讀，電腦環境不影響</li>
-</ul>
+<p>另外 Mac / Windows 皆可閱讀，電腦環境不影響。</p>
 <h2 id="正文開始什麼是-spring-boot" class="markdown-heading-anchor">
   正文開始：什麼是 Spring Boot？
   <a href="#%e6%ad%a3%e6%96%87%e9%96%8b%e5%a7%8b%e4%bb%80%e9%ba%bc%e6%98%af-spring-boot">#</a>
-</h2><p><strong>Spring Boot 是目前 Java 後端中最主流的開發框架</strong>，不過在開始介紹什麼是 Spring Boot 之前，我們可以先來了解一下「前端」跟「後端」之間的差別、以及「框架」又是代表什麼意思</p>
+</h2><p><strong>所謂的 Spring Boot，他是目前 Java 後端中最主流的開發框架</strong>，不過在開始介紹什麼是 Spring Boot 之前，我們需要先來了解一下「前端」跟「後端」之間的差別、以及「框架」又是代表什麼意思。</p>
 <h3 id="前端和後端的差別" class="markdown-heading-anchor">
   「前端」和「後端」的差別
   <a href="#%e5%89%8d%e7%ab%af%e5%92%8c%e5%be%8c%e7%ab%af%e7%9a%84%e5%b7%ae%e5%88%a5">#</a>
-</h3><p>在現今的網站架構中，可以分成「前端」和「後端」兩部分</p>
+</h3><p>在現今的網站架構中，可以分成「前端」和「後端」兩部分：</p>
 <ul>
-<li>
-<p>前端：負責網頁的排版設計</p>
-<ul>
-<li>所以像是網頁中要使用什麼顏色的按鈕、按鈕要放在哪裡、標題大小要多大&hellip;等等，這些都是屬於前端的範疇</li>
+<li><strong>前端：</strong> 負責網頁的排版設計。所以像是網頁中要使用什麼顏色的按鈕、按鈕要放在哪裡、標題大小要多大&hellip;等等，這些都是屬於前端的範疇。</li>
+<li><strong>後端：</strong> 負責數據處理。所以像是商品的價格是多少、每一筆評價的留言內容是什麼&hellip;等等，這些有關數據內容的，都是屬於後端的範疇。</li>
 </ul>
-</li>
-<li>
-<p>後端：負責數據處理</p>
-<ul>
-<li>像是商品的價格是多少、每一筆評價的留言內容是什麼&hellip;等等，這些有關數據內容的，都是屬於後端的範疇</li>
-</ul>
-</li>
-</ul>
-<p>所以簡單的說的話，前端工程師就是去負責實作「這個網頁要長什麼樣子」，而後端工程師，則是負責去處理「我要在這個網頁上賣什麼東西」，所以前端工程師處理的是排版設計，而後端工程師處理的則是動態的數據</p>
-<p>
+<p>所以簡單的說的話，前端工程師就是去負責實作「這個網頁要長什麼樣子」，而後端工程師，則是負責去處理「要在這個網頁上賣什麼東西」，所以<strong>前端工程師處理的是排版設計，而後端工程師處理的則是動態的數據。</strong></p>
+
+
+
 
 <img
-  src="/images/blog/springboot/1/front-back1.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>理解了前端和後端的概念之後，接著就可以介紹什麼是「框架」了</p>
+    src="/images/blog/springboot/1/1-1.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 767px; width: 100%"
+/>
+<p>而在理解了前端和後端的概念之後，接著就可以來理解「框架」的概念了。</p>
 <h3 id="框架是什麼意思" class="markdown-heading-anchor">
   「框架」是什麼意思？
   <a href="#%e6%a1%86%e6%9e%b6%e6%98%af%e4%bb%80%e9%ba%bc%e6%84%8f%e6%80%9d">#</a>
-</h3><p>透過剛剛的介紹，現在我們知道，前端是負責網頁的排版設計，後端則是負責數據處理</p>
-<p>在前端的世界中，其實是有非常多種的程式語言 (ex: Vue、React、Html+Css&hellip;)，都可以去實作出網站的排版設計，而同樣的道理，在後端的世界裡面，也是有非常多種的程式語言，都可以去實作出數據處理的功能的</p>
-<p>在後端的世界裡面，比較常被拿來使用的程式語言有 Java、Python、PHP&hellip;等等，所以「Java 後端」，表示的就是使用 Java 來開發的後端程式</p>
-<p>那在最最最最古早的時代，工程師們就是直接拿著 Java 和 Python 這種程式語言，一筆一畫的把整個後端系統給實作出來，所以使用者就可以透過這個後端系統，在某個電商網站裡面去購買商品、或是去查看商品評價&hellip;等等的操作</p>
-<p>但是這些工程師們寫著寫著程式就發現，每次開發一個後端系統，都要重新寫一堆相似度非常高的程式，覺得很心累也很浪費時間，因此就有團隊開始開發出了「框架」（英文名稱為 Framework），試圖提升開發後端系統的效率</p>
-<p>所以到這邊為止，可以簡單的把「框架 (Framework)」想像成是一個好用的工具包，在沒有框架以前，你要花非常多時間和力氣，手動用螺絲起子把後端系統給蓋出來，而有了框架之後，你就像拿到一把強力電鑽一樣，只要輕鬆的按幾下按鈕，就可以快速的把後端系統給架設出來</p>
-<p>所以「加速工程師開發的效率」，就是「框架」被發明出來的目的</p>
+</h3><p>透過剛剛的介紹，現在我們知道，前端是負責網頁的排版設計，後端則是負責數據處理。而在前端的世界中，其實是有非常多種的程式語言，都可以去實作出網站的排版設計，所以同樣的道理，在後端的世界中，也是有非常多種的程式語言，可以去實作出數據處理的功能的。</p>
+<p>在後端的世界裡中，比較常被拿來使用的程式語言有 Java、Python、PHP…等等，所以「Java 後端」所表示的，就是使用 Java 來開發的後端程式。</p>
+<p>而在最古早的時代，工程師們就是直接拿著 Java 和 Python 這種程式語言，一筆一畫的把整個後端系統給實作出來，所以使用者就可以透過這個後端系統，在某個電商網站中執行購買商品、或是去查看商品評價……等等的操作。</p>
+<p>但是這些工程師們當時寫著程式就發現，每次開發一個後端系統，都要重新寫一堆相似度非常高的程式，覺得很心累也很浪費時間，因此就有團隊開始開發出了 <strong>「框架（Framework）」</strong>，試圖提升開發後端系統的效率。</p>
+<p>所以到這邊為止，你可以先簡單的把「框架（Framework）」想像成是一個好用的工具包，在沒有框架以前，你要花非常多時間和力氣，才能夠手動的用螺絲起子，去把整個後端的系統給蓋出來，而在有了框架之後，你就像拿到一把強力電鑽一樣，只要輕鬆的按幾下按鈕，就可以快速的把後端系統給架設出來了。</p>
+<p><strong>所以「加速工程師開發的效率」，就是「框架」被發明出來的目的。</strong></p>
 <h3 id="所以spring-boot-到底是什麼" class="markdown-heading-anchor">
   所以，Spring Boot 到底是什麼？
   <a href="#%e6%89%80%e4%bb%a5spring-boot-%e5%88%b0%e5%ba%95%e6%98%af%e4%bb%80%e9%ba%bc">#</a>
-</h3><p>了解了「Java 後端」和「框架」的意義之後，這時候我們回頭看最一開始說的那句話，就比較可以看的懂了</p>
-<p>我們在最一開始有提到：<strong>「Spring Boot 是目前 Java 後端中最主流的開發框架」</strong>，所以 Spring Boot 的目的，就是「幫助那些使用 Java 程式語言來撰寫後端程式的工程師，快速去架設一個後端系統起來的好用工具」</p>
-<p>也因為 Spring Boot 非常的好用，幾行簡單的設定就可以快速架設出一個後端系統出來，所以 Spring Boot 就成為了目前 Java 業界中最主流的開發框架，甚至已經到了「不會 Spring，不談就業」的程度，由此也可知 Spring Boot 對 Java 業界的影響程度</p>
+</h3><p>了解了「Java 後端」和「框架」的意義之後，這時候我們回頭看最一開始說的那句話，就比較可以看的懂了。</p>
+<p>我們在最一開始有提到：<strong>「Spring Boot 是目前 Java 後端中最主流的開發框架」</strong>，所以 Spring Boot 的目的，就是「提供一個好用的工具，讓 Java 後端工程師可以加快開發的效率」。</p>
+<p>也因為 Spring Boot 非常的好用，幾行簡單的設定就可以快速架設出一個後端系統出來，所以 Spring Boot 就成為了目前 Java 業界中最主流的開發框架，甚至已經到了 <strong>「不會 Spring，不談就業」</strong> 的程度，由此也可知 Spring Boot 對 Java 業界的影響程度。</p>
 <blockquote>
-<p>補充：「框架」這種東西的目的，就是為了提升工程師開發的效率，而不同的程式語言，其實都會有他專屬對應的框架可以使用，譬如說以 Java 為例，他對應的主流框架就是 Spring 框架，而 PHP 的話，對應的主流框架則是 Lavarel 框架，不同程式語言之間的框架是沒辦法混用的</p>
+<p>補充：「框架」的目的，就是為了提升工程師開發的效率，而不同的程式語言，其實都會有他專屬對應的框架可以使用，譬如說以 Java 為例，他對應的主流框架就是 Spring 框架，而 PHP 的話，對應的主流框架則是 Lavarel 框架，不同程式語言之間的框架是沒辦法混用的。</p>
 </blockquote>
 <h2 id="spring-boot-的優勢在哪裡" class="markdown-heading-anchor">
   Spring Boot 的優勢在哪裡？
   <a href="#spring-boot-%e7%9a%84%e5%84%aa%e5%8b%a2%e5%9c%a8%e5%93%aa%e8%a3%a1">#</a>
-</h2><p>到這邊為止，大家已經大概了解 Spring Boot 是幹嘛的了，基本上 Spring Boot 就是 Java 後端中的一個好用的開發框架，只要你是使用 Java 來開發後端程式，那通常就是會使用 Spring Boot 這套框架，來加速你開發後端程式的效率</p>
-<p>但說了這麼多，使用 Spring Boot 的好處在哪裡？他到底為我們提升了哪些開發的效率？以下一一介紹使用 Spring Boot 開發的優勢</p>
+</h2><p>所以到這邊為止，我們已經大概了解了 Spring Boot 的用途了，基本上 Spring Boot 就是 Java 後端中的一個好用的開發框架，只要你是使用 Java 來開發後端程式，通常就是會使用 Spring Boot 這套框架，來加速你開發後端程式的效率。</p>
+<p>但說了這麼多，使用 Spring Boot 的好處在哪裡？他到底為我們提升了哪些開發的效率？所以以下我們就來探討一下，使用S pring Boot 開發的優勢在哪裡。</p>
 <h3 id="優勢一簡化-spring-開發" class="markdown-heading-anchor">
   優勢一：簡化 Spring 開發
   <a href="#%e5%84%aa%e5%8b%a2%e4%b8%80%e7%b0%a1%e5%8c%96-spring-%e9%96%8b%e7%99%bc">#</a>
-</h3><p>使用 Spring Boot 的第一個好處，就是可以「簡化 Spring 的開發」</p>
-<p>又到了講古的環節XD，在很很很久以前傳統的 Spring 框架的開發中，其實是需要進行大量的 xml 配置，才能將 Spring 框架運行起來，而 Spring Boot 的推出，就是希望能夠解決 Spring 框架繁瑣配置的缺點</p>
-<p>舉個例子來說的話，傳統 Spring 框架就是你有一堆車子的零件，但是你要自己手動把他們焊接起來這樣（而且你可能還會焊錯），而 Spring Boot 則是你直接走進去汽車店裡，直接花錢下單把車開走，相較起來當然是 Spring Boot 更簡單好用許多</p>
-<p>大家也可以觀察一下 Spring Boot 這個單字，他其實就是「Spring」和「Boot」的組合字，Spring 所代表的就是 Spring 框架，而 Boot 所代表的，則是開機的意思</p>
-<p>所以結合這兩個單字，「Spring Boot」所代表的意思，就是希望能提供一個按下開機鍵就可以使用的後端程式給你，並且在這個後端程式內部，就都是使用 Spring 框架的零件所組成的</p>
+</h3><p>使用 Spring Boot 的第一個好處，就是可以「簡化 Spring 的開發」。</p>
+<p>在很久很久以前，在當時傳統的 Spring 框架開發中，其實工程師是需要進行大量的 xml 設定，才能將 Spring 框架運行起來，而 Spring Boot 的推出，就是希望能夠解決 Spring 框架設定繁瑣的缺點。</p>
+<p>舉個例子來說的話，在傳統 Spring 框架中，你就是會有一堆車子的零件，但是你必須要自己「手動」把他們焊接起來，並且你可能還會焊錯；而新一代的 Spring Boot，則是你直接走進去汽車店裡，直接花錢下單把車開走，所以兩者相較起來，當然是 Spring Boot 更加簡單好用。</p>
+<p>另外大家也可以觀察一下「Spring Boot」這個單字，他其實就是由「Spring」和「Boot」兩個字所組合起來的，其中「Spring」所代表的就是 Spring 框架，而「Boot」所代表的則是開機的意思，所以組合這兩個單字的話，就可以得到「Spring Boot」。</p>
+<p>所以 Spring Boot 本身的目的，就是希望能提供一個按下開機鍵，就可以直接使用的後端程式給你，並且在這個後端程式的內部，就都是使用 Spring 框架的零件所組成的。</p>
 <h3 id="優勢二快速整合主流框架" class="markdown-heading-anchor">
   優勢二：快速整合主流框架
   <a href="#%e5%84%aa%e5%8b%a2%e4%ba%8c%e5%bf%ab%e9%80%9f%e6%95%b4%e5%90%88%e4%b8%bb%e6%b5%81%e6%a1%86%e6%9e%b6">#</a>
-</h3><p>使用 Spring Boot 開發的第二個優勢，就是可以「快速的整合主流框架」</p>
-<p>因為 Spring Boot 採用了「約定優於配置」的設計方式，因此就可以簡化開發時繁瑣的設定檔，快速的整合其他主流框架，提升工程師開發的效率</p>
-<p>這個「約定優於配置」聽起來是有點抽象，其實換句話說的話，就是 Spring Boot 通通幫你設定好預設值的意思，所以假設你今天加了一個新功能，即使你一行設定都沒有寫，Spring Boot 也會預先套用他寫好的設定檔，快速的整合該框架進來</p>
-<p>這個功能是很大的優點，不過對初學 Spring Boot 的人可能反而是一個小缺點，因為太多東西都被 Spring Boot 預先設定好了，因此初學者可能會完全搞不懂現在是發生了什麼事情，不過只要好好的學習過相關設定之後，這個優點會轉變成非常強大的優勢</p>
+</h3><p>使用 Spring Boot 開發的第二個優勢，就是可以「快速的整合主流框架」。</p>
+<p>因為 Spring Boot 採用了 <strong>「約定優於配置」</strong> 的設計方式，因此就可以簡化開發時繁瑣的設定檔，快速的整合其他主流框架，提升工程師開發的效率。</p>
+<p>這個「約定優於配置」聽起來是有點抽象，其實換句話說的話，就是 Spring Boot 會預先幫你設定好預設值的意思，所以假設你今天加了一個新功能，即使你一行設定都沒有寫，Spring Boot 也會預先套用他寫好的設定檔，快速的整合該框架進來。</p>
+<p>雖然「約定優於配置」是很大的優點，不過對於初學 Spring Boot 的人來說，可能反而會是一個小缺點，因為太多東西都被 Spring Boot 預先設定好了，因此初學者可能會完全搞不懂現在是發生了什麼事情。</p>
+<p>不過只要好好的學習過 Spring Boot 的用法、以及相關的設定之後，這個優點就會轉變成非常強大的優勢！</p>
 <h3 id="其他優勢" class="markdown-heading-anchor">
   其他優勢
   <a href="#%e5%85%b6%e4%bb%96%e5%84%aa%e5%8b%a2">#</a>
-</h3><p>當然 Spring Boot 還有其他很厲害的優勢，不過優勢都是和過往的框架比較出來的，而那些框架目前已經非常少見，因此大家有興趣的話可以再去搜索 Spring Boot 的優點，這邊就不多做贅述</p>
+</h3><p>當然 Spring Boot 還有其他很厲害的優勢，不過優勢都是和過往的框架比較出來的，而那些框架目前已經非常少見，因此大家有興趣的話，可以再去搜索 Spring Boot 和其他框架的對比，這邊就不多做贅述。</p>
 <h2 id="系列文章規劃" class="markdown-heading-anchor">
   系列文章規劃
   <a href="#%e7%b3%bb%e5%88%97%e6%96%87%e7%ab%a0%e8%a6%8f%e5%8a%83">#</a>
-</h2><p>大致了解了前端和後端的概念，以及 Spring Boot 是什麼之後，接下來是介紹這 30 篇的系列文章安排</p>
-<p>此系列文會分成 30 篇文章，透過 5 個章節來介紹 Spring Boot，預計的章節安排如下：</p>
+</h2><p>大致了解了前端和後端的概念，以及 Spring Boot 是什麼之後，接下來是介紹一下此系列文的文章規劃安排。</p>
+<p>此系列文會分成 30 篇文章，透過 5 個部分來介紹 Spring Boot，預計的文章規劃如下：</p>
 <h3 id="1-day-14spring-boot-簡介開發環境安裝" class="markdown-heading-anchor">
   1. Day 1～4：Spring Boot 簡介、開發環境安裝
   <a href="#1-day-14spring-boot-%e7%b0%a1%e4%bb%8b%e9%96%8b%e7%99%bc%e7%92%b0%e5%a2%83%e5%ae%89%e8%a3%9d">#</a>
-</h3><p>在最開始的幾天，我們會先簡單認識 Spring Boot，並且安裝此系列文中會使用到的所有開發工具，為將來的 Spring Boot 之旅架設好開發環境</p>
+</h3><p>在最開始的幾天，我們會先簡單認識 Spring Boot，並且安裝此系列文中會使用到的所有開發工具，為將來的 Spring Boot 之旅架設好開發環境。</p>
 <h3 id="2-day-512spring-框架的特性---ioc-和-aop" class="markdown-heading-anchor">
   2. Day 5～12：Spring 框架的特性 - IoC 和 AOP
   <a href="#2-day-512spring-%e6%a1%86%e6%9e%b6%e7%9a%84%e7%89%b9%e6%80%a7---ioc-%e5%92%8c-aop">#</a>
-</h3><p>架設好環境之後，接著就會進到第二章節，介紹 Spring 框架中兩個非常重要的特性：IoC 和 AOP</p>
-<p>IoC 和 AOP 是 Spring 框架裡的核心技術，幾乎所有 Spring 的功能，都是建立在這兩大特性之上，因此如果能夠掌握好這兩大特性，能夠為將來的 Spring Boot 之旅打下良好的基礎</p>
+</h3><p>架設好環境之後，接著就會進到第二部分，介紹 Spring 框架中兩個非常重要的特性：IoC 和 AOP。</p>
+<p>IoC 和 AOP 是 Spring 框架裡的核心技術，幾乎所有 Spring 的功能，都是建立在這兩大特性之上，因此如果能夠掌握好這兩大特性，能夠為將來的 Spring Boot 之旅打下良好的基礎。</p>
 <h3 id="3-day-1323spring-mvc-介紹" class="markdown-heading-anchor">
   3. Day 13～23：Spring MVC 介紹
   <a href="#3-day-1323spring-mvc-%e4%bb%8b%e7%b4%b9">#</a>
-</h3><p>介紹完基礎之後，接著會進到第三章節，介紹 Spring MVC 的相關知識</p>
-<p>Spring MVC 的用途是和前端溝通，因此在這個章節裡，除了會介紹 Spring MVC 的基本用法之外，同時也會介紹許多通用的網路知識，像是 Http 協議、Json、RESTful&hellip;.等等，讓大家了解前端和後端之間的溝通方式</p>
+</h3><p>介紹完 Spring 框架的核心特性之後，接著就會進到第三部分，介紹 Spring MVC 的相關知識。</p>
+<p>Spring MVC 的用途是和前端溝通，因此在這個章節裡，除了會介紹 Spring MVC 的基本用法之外，同時也會介紹許多通用的網路知識，像是 Http 協議、Json、RESTful.等等，讓大家了解前端和後端之間的溝通方式。</p>
 <h3 id="4-day-2428spring-jdbc-介紹" class="markdown-heading-anchor">
   4. Day 24～28：Spring JDBC 介紹
   <a href="#4-day-2428spring-jdbc-%e4%bb%8b%e7%b4%b9">#</a>
-</h3><p>接著進到第四章節這裡，則是會介紹 Spring JDBC 的相關知識</p>
-<p>不同於前面的 Spring MVC 是和前端溝通，Spring JDBC 的主要功能是和資料庫進行溝通，因此介紹完這部分之後，大家就能夠在 Spring Boot 中去操作資料庫，進而取得到相關的數據</p>
+</h3><p>了解了 Spring MVC 的用法之後，接著會進到第四部分，介紹 Spring JDBC 的相關知識。</p>
+<p>不同於前面的 Spring MVC 是和前端溝通，Spring JDBC 的主要功能是和資料庫進行溝通，因此當介紹完這部分之後，大家就能夠在 Spring Boot 中去操作資料庫，進而取得到相關的數據了。</p>
 <h3 id="5-day-29實戰演練打造簡易的圖書館系統" class="markdown-heading-anchor">
   5. Day 29：實戰演練：打造簡易的圖書館系統
   <a href="#5-day-29%e5%af%a6%e6%88%b0%e6%bc%94%e7%b7%b4%e6%89%93%e9%80%a0%e7%b0%a1%e6%98%93%e7%9a%84%e5%9c%96%e6%9b%b8%e9%a4%a8%e7%b3%bb%e7%b5%b1">#</a>
-</h3><p>前面的四個章節都是偏向功能的介紹，而第五章節則是會安排是一個實戰演練，實際的去整合前面四個章節所學到的知識，嘗試打造出一個簡易的圖書館系統出來</p>
-<p>希望能夠透過實戰的練習，幫助大家更好的了解和吸收 Spring Boot 的知識！</p>
+</h3><p>前面的四個部分都是偏向功能的介紹，而第五部分則是會安排是一個實戰演練，實際的去整合前面四個部分所學到的知識，打造出一個簡易的圖書館系統出來。</p>
+<p>所以透過最後的這個實戰練習，希望能幫助大家更好的了解、活用 Spring Boot 的知識！</p>
 <h3 id="final-day-30spring-boot-零基礎入門總結" class="markdown-heading-anchor">
   Final. Day 30：Spring Boot 零基礎入門總結
   <a href="#final-day-30spring-boot-%e9%9b%b6%e5%9f%ba%e7%a4%8e%e5%85%a5%e9%96%80%e7%b8%bd%e7%b5%90">#</a>
-</h3><p>最後一天會來做個大總結，詳細列出我們在這 30 天內都介紹了哪些部分，並且補充 Spring Boot 的後續學習路徑，供大家參考</p>
+</h3><p>此系列文的最後一天會來做個大總結，詳細列出我們在這 30 天內都介紹了哪些內容，也會補充 Spring Boot 後續的學習路徑，提供給大家參考。</p>
 <h2 id="總結" class="markdown-heading-anchor">
   總結
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
-</h2><p>這篇文章先和大家介紹了什麼是 Spring Boot，也介紹了前端和後端的區別、以及框架的概念，最後也簡單列出了這個系列文的章節安排</p>
-<p>那麼下一篇文章，我們就會先來進行環境設定，為將來的 Spring Boot 之旅架設好開發環境，那我們就下一篇文章見啦！</p>
+</h2><p>這篇文章我們先介紹了什麼是 Spring Boot，也介紹了前端和後端的區別、以及框架的概念，讓大家先對 Spring Boot 有一個簡單的認識。</p>
+<p>那麼下一個文章，我們就會接著來進行環境設定，為將來的 Spring Boot 之旅架設好開發環境，那我們就下一篇文章見啦！</p>
 <h2 id="相關連結" class="markdown-heading-anchor">
   相關連結
   <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
 </h2><ul>
-<li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
+<li>免費訂閱《古古的後端筆記》電子報，每週二學習後端技術：<a href="https://kucw.io/bio/"
    
    target="_blank" rel="noopener">
-古古的後端筆記
+電子報訂閱
 </a></li>
 <li>工商時間：（Spring Boot 相關課程已在 Hahow 平台上架）
 <ul>

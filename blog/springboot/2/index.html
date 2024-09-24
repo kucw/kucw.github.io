@@ -240,159 +240,170 @@
         <hr class="doc-start-divider">
 
         <div class="content mb-4">
-          <p>哈囉大家好，我是古古</p>
-<p>上一篇文章先簡單介紹了什麼是 Spring Boot，也有介紹了前端和後端的區別、以及框架的用途，那麼接著這篇文章，我們就會先來進行環境設定，為之後的 Spring Boot 之旅架設好開發環境</p>
-<p>不過因為 Mac 和 Windows 系統的安裝方式差異比較大，所以這邊會拆成兩篇文章來介紹</p>
-<p>因此 Mac 系統的可以參考這篇文章來架設環境，而 Windows 系統則可以直接看下一篇文章 <a href="/blog/springboot/3/"
+          <p>哈囉大家好，我是古古。</p>
+<p>在學習 Spring Boot 之前，環境的架設也是很重要的，所以這篇文章，我們就先來進行環境設定，為將來的 Spring Boot 之旅架設好開發環境。</p>
+<p>不過因為 Mac 和 Windows 系統的安裝方式差異比較大，所以這邊會拆成兩篇文章來介紹。 如果你的電腦是 Mac 系統，可以直接查看這篇文章，如果你的電腦是 Windows 系統，則可以直接查看下一篇文章 <a href="/blog/springboot/3/"
    
    target="_blank" rel="noopener">
 Day 3 - 開發環境安裝（Windows 版）
-</a>的介紹</p>
-<h2 id="此系列文使用到的開發工具" class="markdown-heading-anchor">
-  此系列文使用到的開發工具
-  <a href="#%e6%ad%a4%e7%b3%bb%e5%88%97%e6%96%87%e4%bd%bf%e7%94%a8%e5%88%b0%e7%9a%84%e9%96%8b%e7%99%bc%e5%b7%a5%e5%85%b7">#</a>
-</h2><p>此系列文會用到的開發工具有：</p>
+</a> 的介紹。</p>
+<h2 id="此系列文中會使用到的開發工具" class="markdown-heading-anchor">
+  此系列文中會使用到的開發工具
+  <a href="#%e6%ad%a4%e7%b3%bb%e5%88%97%e6%96%87%e4%b8%ad%e6%9c%83%e4%bd%bf%e7%94%a8%e5%88%b0%e7%9a%84%e9%96%8b%e7%99%bc%e5%b7%a5%e5%85%b7">#</a>
+</h2><p>此系列文會使用到的開發工具有：</p>
 <ol>
 <li>IntelliJ IDEA Ultimate 付費版（有 30 天試用期）</li>
-<li>Java 17</li>
+<li>Java 21</li>
 <li>MySQL 資料庫</li>
 <li>Chrome 擴充功能 - Talend API Tester</li>
 </ol>
-<p>另外，雖然在此系列文中不會使用到下面這些工具，但是因為這些工具非常的好用，基本上可以說是 Mac 開發者必安裝的工具，因此在這裡也會一併介紹安裝</p>
+<p>另外，雖然此系列文中不會使用到下面這些工具，但是因為這些工具非常的好用，可以說是 Mac 開發者必安裝的工具，因此在這裡也會一併介紹安裝。</p>
 <ol start="5">
 <li>Homebrew + iTerm2 + oh-my-zsh</li>
 <li>Git</li>
 </ol>
-<p>所以接下來就會帶著大家一起把這些開發工具給安裝完畢，那我們就開始吧！</p>
-<h2 id="1-安裝-intellij-idea-ultimate-付費版" class="markdown-heading-anchor">
-  1. 安裝 IntelliJ IDEA Ultimate 付費版
-  <a href="#1-%e5%ae%89%e8%a3%9d-intellij-idea-ultimate-%e4%bb%98%e8%b2%bb%e7%89%88">#</a>
-</h2><p>IntelliJ IDEA 這套軟體是目前開發 Spring Boot 的熱門軟體之一，他有分為 Community (社群版) 以及 Ultimate (付費版)，Community 社群版對 Spring Boot 的支援比較少，許多功能都必須要額外裝插件才能使用</p>
-<p>如果是初學的話，建議可以先使用 Ultimate 付費版的 30 天試用期來學，等到摸的有一點點熟之後，再換回 Community 社群版，才會比較知道需要額外安裝哪些插件</p>
+<p>所以接下來，我們就一起來把這些開發工具給安裝完畢，為將來的 Spring Boot 之旅架設好開發環境吧！</p>
+<h2 id="安裝-intellij-idea-ultimate-付費版" class="markdown-heading-anchor">
+  安裝 IntelliJ IDEA Ultimate 付費版
+  <a href="#%e5%ae%89%e8%a3%9d-intellij-idea-ultimate-%e4%bb%98%e8%b2%bb%e7%89%88">#</a>
+</h2><p>IntelliJ IDEA 這套軟體是目前開發 Spring Boot 的熱門軟體之一，他有分為 Community（社群版）以及 Ultimate（付費版）兩個版本。</p>
+<p>Community（社群版）對 Spring Boot 的支援比較少，許多功能都必須要額外裝插件才能使用，而 Ultimate（付費版）則是對 Spring Boot 的支援比較全面，但是就需要付費使用。</p>
+<p>不過因為 Ultimate（付費版）有 30 天免費試用期，因此如果是初學的話，建議可以先使用 Ultimate（付費版）的試用期來學習 Spring Boot，等到摸的比較熟之後，再換成 Community（社群版），這樣子在學習上，才不會一開始就被環境問題搞得心力交瘁。</p>
 <blockquote>
-<p>補充：如果大家有學生教育信箱，也可以點擊 <a href="https://www.jetbrains.com/shop/eform/students"
+<p>補充：如果大家有學生教育信箱，也可以到 JetBrains 的網站<a href="https://www.jetbrains.com/shop/eform/students"
    
    target="_blank" rel="noopener">
-這個連結
-</a> 向 JetBrains 申請教育帳號，就可以免費使用 Ultimate 付費版一年（具體細節以 JetBrains 官網為準）</p>
+申請教育帳號
+</a>，就能免費使用 Ultimate（付費版）一年（具體細節以 JetBrains 官網為準）。</p>
 </blockquote>
-<h3 id="下載-intellij-idea-ultimate" class="markdown-heading-anchor">
-  下載 IntelliJ IDEA Ultimate
-  <a href="#%e4%b8%8b%e8%bc%89-intellij-idea-ultimate">#</a>
-</h3><p>可以在 Google 上搜尋 IntelliJ，或是點擊 <a href="https://www.jetbrains.com/idea/download/?section=mac"
+<h3 id="下載-intellij-idea-ultimate-付費版" class="markdown-heading-anchor">
+  下載 IntelliJ IDEA Ultimate 付費版
+  <a href="#%e4%b8%8b%e8%bc%89-intellij-idea-ultimate-%e4%bb%98%e8%b2%bb%e7%89%88">#</a>
+</h3><p>想要下載 IntelliJ IDEA Ultimate 的話，可以點擊 <a href="https://www.jetbrains.com/idea/download/"
    
    target="_blank" rel="noopener">
 IntelliJ 官網連結
-</a>，進到 IntelliJ 的下載頁面</p>
-<p>進來之後，IntelliJ 官網會偵測你所使用的 Mac 是 Intel 晶片還是 Apple 的 M1、M2&hellip;等晶片，提供相對應的下載檔給你，因此只需要點擊 Download 按鈕下載即可（或是也可以點擊右邊的 .dmg，展開選擇你想下載哪一種晶片的程式）</p>
+</a>，就會進到 IntelliJ 的下載頁面。</p>
+<p>進到 IntelliJ 的下載頁面之後，IntelliJ 官網會自動偵測你所使用的 Mac 是屬於 Intel 晶片、還是屬於 Apple 的M1、M2&hellip;等等的晶片，並且提供相對應的下載檔給你。</p>
+<p>所以大家只需要點擊 Download 按鈕，就可以下載你的晶片所對應的 IntelliJ 程式了（或是也可以點擊右邊的 .dmg，手動選擇你想下載哪一種晶片的程式）。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/intellij.png"
+  src="/images/blog/springboot/2/2-1.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>下載好之後，開啟 .dmg 檔案，將該 IntelliJ IDEA Ultimate 程式拉到 Application 資料夾裡面，即可安裝完成（有關 IntelliJ 的用法，會在後續的文章中繼續介紹，此篇文章只要先安裝成功就可以了）</p>
-<h2 id="2-安裝-java-17" class="markdown-heading-anchor">
-  2. 安裝 Java 17
-  <a href="#2-%e5%ae%89%e8%a3%9d-java-17">#</a>
-</h2><p>市面上目前有非常多公司都有提供 Java 版本的安裝，大家可以自由選擇自己喜歡的程式，或是也可以點擊 <a href="https://adoptium.net/temurin/releases/"
+<p>下載好之後，開啟 .dmg 檔案，並且將 IntelliJ IDEA Ultimate 的程式拉到「應用程式」的資料夾裡面，就可以完成 IntelliJ 的安裝了。</p>
+<p>有關 IntelliJ 的用法，會在後續的文章中繼續介紹，所以這裡只要先安裝成功就可以了。</p>
+<h2 id="2-安裝-java-21" class="markdown-heading-anchor">
+  2. 安裝 Java 21
+  <a href="#2-%e5%ae%89%e8%a3%9d-java-21">#</a>
+</h2><h3 id="下載-java-21" class="markdown-heading-anchor">
+  下載 Java 21
+  <a href="#%e4%b8%8b%e8%bc%89-java-21">#</a>
+</h3><p>在開發 Spring Boot 程式時，首先我們必須要先安裝對應的 Java 版本，後續才能夠成功的運行起 Spring Boot 程式。目前市面上有非常多公司都有提供 Java 版本的下載，大家可以自由選擇自己喜歡的版本下載。</p>
+<p>在此系列文中，我們會下載由 Eclipse Adoptium 所維護的開源免費 Java 版本（即是 OpenJDK），大家可以點擊 <a href="https://adoptium.net/temurin/releases/"
    
    target="_blank" rel="noopener">
 Adoptium 官網連結
-</a>，下載由 Eclipse Temurin 基金會所維護的開源免費 Java 版本 (OpenJDK)</p>
-<p>點擊上面的連結進到 Adoptium 的官網之後，下方可以選擇你的作業系統以及想要安裝的 Java 版本，只需要在 Operating System 處選擇 macOS，並且在 Version 處選擇 17 - LTS，網站就會列出相關的載點供大家下載</p>
+</a>，就可以進到 Adoptium OpenJDK 的下載頁面。</p>
+<p>進到 Adoptium OpenJDK 的下載頁面之後，下方可以選擇你的作業系統、以及想要安裝的 Java 版本，因為本文是 Mac 系統的安裝教學，所以我們就在 Operating System 中選擇「macOS」，並且在 Version 中選擇「21 – LTS」，這時網站就會列出相關的載點，提供給你下載。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/openjdk1.png"
+  src="/images/blog/springboot/2/2-2.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
 <blockquote>
-<p>補充：Adoptium 提供了非常多種的 Java 版本供大家安裝，如果大家之後有需要安裝其他版本的 Java，也可以到這個網站中下載</p>
+<p>補充：Adoptium OpenJDK 有提供了非常多種 Java 版本給大家下載，如果大家之後有需要安裝其他版本的 Java，也可以到這個網站中下載。</p>
 </blockquote>
-<p>選擇好系統和 Java 版本之後，在下方會有許多個載點，這裡會需要大家根據自己的 Mac 晶片，去選擇對應的載點</p>
-<p>如果你的 Mac 是 Intel 晶片，那就是點擊上方的 x64 的載點，如果你的 Mac 是 Apple 的 M1、M2&hellip;.等晶片，則是點擊下方的 aarch64 載點，這部分因為牽涉到比較底層的硬體環境，因此需要小心選擇</p>
+<p>選擇好系統和 Java 版本之後，這時候在下方會出現多個載點，這裡就需要根據你自己的 Mac 晶片，去選擇對應的載點。</p>
+<p>如果你的 Mac 是 Apple 的 M1、M2&hellip;等晶片，那就是點擊上方的 aarch64 的載點；如果你的 Mac 是 Intel 晶片，則是點擊下方的 x64 的載點，這部分因為牽涉到比較底層的硬體環境，因此需要小心選擇。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/openjdk2.png"
+  src="/images/blog/springboot/2/2-3.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>下載好之後，一樣是雙擊 .dmg 的下載檔，然後一路按下一步就可以完成安裝了</p>
+<p>下載好之後，一樣是雙擊 .dmg 的下載檔，然後一路按「下一步」，就可以完成 Java 的安裝了。</p>
 <h2 id="3-安裝-mysql-資料庫" class="markdown-heading-anchor">
   3. 安裝 MySQL 資料庫
   <a href="#3-%e5%ae%89%e8%a3%9d-mysql-%e8%b3%87%e6%96%99%e5%ba%ab">#</a>
-</h2><p>因為此系列文會使用 MySQL 資料庫來串接 Spring Boot，因此會需要大家也先在自己的電腦上面安裝 MySQL，以利後續的文章使用</p>
+</h2><h3 id="下載-mysql-資料庫" class="markdown-heading-anchor">
+  下載 MySQL 資料庫
+  <a href="#%e4%b8%8b%e8%bc%89-mysql-%e8%b3%87%e6%96%99%e5%ba%ab">#</a>
+</h3><p>因為此系列文會使用 MySQL 資料庫來串接 Spring Boot，因此會需要大家先在自己的電腦上安裝 MySQL，以利後續的文章使用。</p>
 <p>要安裝 MySQL 的話，可以點擊 <a href="https://dev.mysql.com/downloads/mysql/"
    
    target="_blank" rel="noopener">
-MySQL 官網連結
-</a>，進到 MySQL Community Server 的下載頁面</p>
-<p>這裡一樣是需要選擇想安裝的 MySQL 版本以及作業系統，在 Select Version 處選擇 8.0.34，而 Select Operating System 處選擇 macOS，就可以篩選出 Mac 專用的下載載點</p>
+MySQL Community Server 官網連結
+</a>，就可以直接進到 MySQL Community Server 的下載頁面。</p>
+<p>進到 MySQL Community Server 的下載頁面之後，需要選擇我們想安裝的 MySQL 版本、以及安裝的作業系統，因為本文是 Mac 系統的安裝教學，所以我們在 Select Version 中選擇「8.0.39」，而 Select Operating System 中則選擇 「macOS」，就可以篩選出 Mac 專用的下載載點。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/mysql1.png"
+  src="/images/blog/springboot/2/2-4.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>篩選出來之後，在下方的載點中，一樣是需要根據你的 Mac 晶片，選擇對應的下載點</p>
-<p>如果你的 Mac 是 Intel 晶片，那就是點擊下方的 x86 的載點，如果你的 Mac 是 Apple 的 M1、M2&hellip;.等晶片，則是點擊上方的 ARM 載點，這裡大家也是要小心選擇，以免載錯版本</p>
+<p>篩選出 MySQL 的版本之後，接著在下方的載點中，一樣是需要根據你的 Mac 晶片，選擇對應的下載點。</p>
+<p>如果你的 Mac 是 Apple 的 M1、M2&hellip;等晶片，那就是點擊上方的 aarch64 的載點；如果你的 Mac 是 Intel 晶片，則是點擊下方的 x64 的載點，這裡就必須要小心選擇，以免下載到錯誤版本。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/mysql2.png"
+  src="/images/blog/springboot/2/2-5.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>點擊下載按鈕之後，MySQL 會跳出一個頁面詢問你要不要註冊新帳號，可以直接往下拉，點擊下方的「No thanks, just start my download.」，直接繼續下載</p>
+<p>在確定好晶片的版本之後，就可以點擊對應的下載按鈕，進行 MySQL 的下載。</p>
+<p>不過在點擊下載的按鈕之後，此時 MySQL 會跳出一個頁面，詢問你要不要註冊新帳號，這時候可以不用管他，直接往下拉，然後點擊下方的「No thanks, just start my download.」，繼續 MySQL 的下載。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/mysql3.jpg"
+  src="/images/blog/springboot/2/2-6.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>下載好安裝檔之後，一樣是雙擊 .dmg 的下載檔執行安裝，先一路不斷的按繼續和同意（同意啦哪次不同意），安裝到一半時，MySQL 會接著讓我們設定資料庫，注意這裡的設定非常重要，會影響到後續文章的操作</p>
-<h3 id="設定-mysql" class="markdown-heading-anchor">
-  設定 MySQL
-  <a href="#%e8%a8%ad%e5%ae%9a-mysql">#</a>
-</h3><p>首先 MySQL 會先出現這個視窗，詢問我們要使用哪一種密碼加密，這裡就選擇上面的「Use Strong Password Encryption」即可，然後點擊 Next 繼續</p>
+<p>下載好安裝檔之後，一樣是雙擊 .dmg 的下載檔，開始 MySQL 資料庫的安裝。</p>
+<h3 id="安裝-mysql" class="markdown-heading-anchor">
+  安裝 MySQL
+  <a href="#%e5%ae%89%e8%a3%9d-mysql">#</a>
+</h3><p>執行 MySQL 的安裝程式之後，前面先一直點擊「繼續」和「同意」就好。不過安裝到一半時，MySQL 會跳出下面的視窗，要我們設定資料庫，注意這裡的設定非常重要，會影響到後續文章的操作。</p>
+<p>在這個視窗中，MySQL 會詢問我們要使用哪一種密碼加密，這裡就選擇上面的「Use Strong Password Encryption」即可，選好之後接著點擊 Next 繼續。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/mysql4.png"
+  src="/images/blog/springboot/2/2-7.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>接著 MySQL 會要你設定這個資料庫中，權力最大的 root user 的密碼，這裡建議大家就輸入<code>springboot</code> 這個字串當作密碼</p>
+<p>接著 MySQL 會要你設定這個資料庫中，權力最大的 root user 的密碼，這裡建議大家就直接輸入 <code>springboot</code> 這個字串當作密碼。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/2/2-8.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
 <blockquote>
-<p>補充：這個密碼在後續的文章中會再度使用到，並且忘記了會很麻煩，所以就建議大家直接使用 <code>springboot</code>，以防後續忘記了密碼還得重新安裝 MySQL 程式</p>
+<p>補充：因為這個密碼在後續的文章中會再度用到，並且忘記密碼的話，會需要重新安裝整個MySQL程式才可以，就還滿麻煩的。所以就建議大家，可以直接使用跟此系列文一樣的密碼 <code>springboot</code>，就可以避免後續不小心忘記密碼的情形出現了。</p>
 </blockquote>
+<p>設定好之後，就可以按下右下角的 Finish，就可以完成 MySQL 的安裝了。</p>
+<p>而在安裝好 MySQL 之後，如果大家想要查看 MySQL 目前的運作狀況的話，可以打開 Mac 的「系統偏好設定」，這時候在左邊側邊欄的下方，就會出現 MySQL 的標籤，點擊 MySQL 的標籤之後，就可以在這裡查看 MySQL 的運作狀況了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/mysql5.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>設定好之後，就可以按下右下角的 Finish，就可以完成 MySQL 的安裝了！</p>
-<p>安裝好 MySQL 之後，如果想要查看 MySQL 目前的運作狀況，可以打開「系統偏好設定」，MySQL 的標籤就會出現在左邊側邊欄的下方，點擊之後就可以查看 MySQL 的運作狀況了</p>
-<p>
-
-<img
-  src="/images/blog/springboot/2/mysql6.png"
+  src="/images/blog/springboot/2/2-9.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -400,77 +411,82 @@ MySQL 官網連結
 <h2 id="4-安裝-chrome-擴充功能---talend-api-tester" class="markdown-heading-anchor">
   4. 安裝 Chrome 擴充功能 - Talend API Tester
   <a href="#4-%e5%ae%89%e8%a3%9d-chrome-%e6%93%b4%e5%85%85%e5%8a%9f%e8%83%bd---talend-api-tester">#</a>
-</h2><p>接著則是要安裝 Chrome 的擴充功能 - Talend API Tester，在後續的文章中，我們就會使用這個 Talend API Tester，去發起一個 API call</p>
+</h2><h3 id="下載-chrome-擴充功能---talend-api-tester" class="markdown-heading-anchor">
+  下載 Chrome 擴充功能 - Talend API Tester
+  <a href="#%e4%b8%8b%e8%bc%89-chrome-%e6%93%b4%e5%85%85%e5%8a%9f%e8%83%bd---talend-api-tester">#</a>
+</h3><p>由於在後續的文章中，我們會使用到 Talend API Tester 這個擴充功能，去發起一個 API call，進而去call後端程式的API，去進行測試。所以在這裡，也會需要大家先去安裝這個擴充功能。</p>
 <blockquote>
-<p>補充：如果大家有用的順手的 API call 軟體，像是 Postman、Insomnia&hellip;等等，也是可以直接使用該軟體，目的是一樣的</p>
+<p>補充：如果你已經有用的順手的 API call 軟體，像是 Postman、Insomnia&hellip;等等，就不一定要安裝此擴充功能，因為他們的目的都只是發起一個 API call 而已，哪個順手使用哪個就可以了。</p>
 </blockquote>
-<p>如果想要安裝 Talend API Tester 的話，可以點擊 <a href="https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
+<p>如果要安裝 Talend API Tester 的話，可以點擊 <a href="https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
    
    target="_blank" rel="noopener">
-Talend API Tester 擴充功能連結
-</a>，進到 Talend API Tester 的安裝頁面，點擊右側的「加到 Chrome」，就可以安裝這個擴充功能</p>
+Talend API Tester 的安裝連結
+</a>，就可以進到 Talend API Tester 的安裝頁面。</p>
+<p>進到 Talend API Tester 的安裝頁面之後，接著點擊右側的「加到 Chrome」的按鈕，就可以在 Chrome 中安裝這個擴充功能了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/talend1.png"
+  src="/images/blog/springboot/2/2-10.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>安裝完成之後，點擊右上角的圖示，就可以打開 Talend API Tester</p>
+<p>安裝完成之後，點擊右上角的圖示，就可以打開 Talend API Tester。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/talend2.png"
+  src="/images/blog/springboot/2/2-11.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>打開 Talend API Tester 後，大家可以先點擊右下角的箭頭，把下方的視窗給收起來，而後續我們就會透過這個工具，對 Spring Boot 的程式進行測試</p>
+<p>打開 Talend API Tester 後，大家可以先點擊右下角的箭頭，把下方的視窗給收起來，而後續我們就會透過這個工具，對 Spring Boot 的程式進行 API 的測試。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/talend3.png"
+  src="/images/blog/springboot/2/2-12.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="5-安裝-iterm2--oh-my-zsh--homebrew" class="markdown-heading-anchor">
-  5. 安裝 iTerm2 + oh-my-zsh + Homebrew
-  <a href="#5-%e5%ae%89%e8%a3%9d-iterm2--oh-my-zsh--homebrew">#</a>
-</h2><h3 id="安裝-iterm2" class="markdown-heading-anchor">
+<h2 id="5-安裝-iterm2oh-my-zshhomebrew" class="markdown-heading-anchor">
+  5. 安裝 iTerm2、oh-my-zsh、Homebrew
+  <a href="#5-%e5%ae%89%e8%a3%9d-iterm2oh-my-zshhomebrew">#</a>
+</h2><p>雖然在此系列文中不會使用到 iTerm2、oh-my-zsh、Homebrew 這些工具，但是因為這些工具非常的好用，可以說是 Mac 開發者必安裝的工具，因此在這裡也會一併介紹安裝。</p>
+<h3 id="安裝-iterm2" class="markdown-heading-anchor">
   安裝 iTerm2
   <a href="#%e5%ae%89%e8%a3%9d-iterm2">#</a>
-</h3><p>只要是 Mac 的開發者，不管是寫什麼程式語言，都非常推薦安裝 iTerm2 這個軟體，使用 iTerm2 取代 Mac 內建的終端機 (Terminal)</p>
-<p>iTerm2 的優點不外乎就是介面比較好看（比較潮）、然後有很多地方可以做個人化的調整設定，像是主題背景顏色、或是透明度&hellip;等等，可以讓寫程式的心情變得好一點😆</p>
-<p>要安裝 iTerm2 的話，可以點擊 <a href="https://iterm2.com/"
+</h3><p>iTerm2 是一個強大的「終端機（Terminal）」軟體，他的優點是介面比較好看，然後有很多地方可以做個人化的調整設定，像是主題背景顏色、或是透明度&hellip;等等，可以讓寫程式的心情變得好一點。因此只要是 Mac 的開發者，都非常推薦安裝 iTerm2 這個軟體，使用 iTerm2 取代 Mac 內建的終端機。</p>
+<p>而要安裝 iTerm2 的話，可以點擊 <a href="https://iterm2.com/"
    
    target="_blank" rel="noopener">
 iTerm2 官網連結
-</a>，進到 iTerm2 的下載頁面，進來之後拉到最下面有一個 Download 的按鈕，點擊就可以下載安裝了</p>
+</a>，就可以進到 iTerm2 的官方網站。</p>
+<p>進到 iTerm2 的網站之後，直接往下拉到最下面，在最下面有一個 Download 的按鈕，點擊這個按鈕，就可以下載 iTerm2 的安裝程式了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/iterm2.jpg"
+  src="/images/blog/springboot/2/2-13.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>下載好 iTerm2 之後，可以點擊兩下直接打開 iTerm2 程式</p>
-<p>如果想要調整 iTerm2 主題顏色的話，可以到設定中的 Profiles -&gt; Colors 標籤底下調整</p>
+<p>下載好 iTerm2 之後，點擊兩下就可以直接打開 iTerm2 的程式。</p>
+<p>如果想要調整 iTerm2 的主題顏色的話，可以先打開 iTerm2 的設定，然後點擊「Profiles」，接著就可以在「Colors」標籤底下調整主題的顏色。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/iterm2-2.png"
+  src="/images/blog/springboot/2/2-14.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>如果想要調整 iTerm2 的視窗透明度的話，可以到設定中的 Profiles -&gt; Windows 標籤底下調整</p>
+<p>而如果想要調整 iTerm2 的視窗透明度的話，則是可以進到「Profiles」中的「Window」標籤，在這裡面進行調整。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/iterm2-3.png"
+  src="/images/blog/springboot/2/2-15.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -478,17 +494,18 @@ iTerm2 官網連結
 <h3 id="安裝-oh-my-zsh" class="markdown-heading-anchor">
   安裝 oh-my-zsh
   <a href="#%e5%ae%89%e8%a3%9d-oh-my-zsh">#</a>
-</h3><p>不管你是使用 Mac 內建的終端機還是 iTerm2，只要提到下指令，那麼就會想到 oh-my-zsh 這個工具</p>
-<p>oh-my-zsh 也是一個 Mac 工程師推薦安裝的功能，他除了讓我們在下指令變的更方便之外，同時他也可以在終端機上呈現更多的資訊，所以也是非常好用的一個工具</p>
-<p>要安裝 oh-my-zsh 的話，可以點擊 <a href="https://ohmyz.sh/"
+</h3><p>不管你是使用 Mac 內建的終端機、還是使用 iTerm2，只要提到下指令，那麼就會想到 oh-my-zsh 這個工具。</p>
+<p>oh-my-zsh 也是一個 Mac 工程師推薦安裝的功能，他除了可以讓我們在下指令時變的更方便之外，同時他也可以在終端機上呈現更多的資訊，所以也是非常增進開發效率的一個好用工具。</p>
+<p>而要安裝 oh-my-zsh 的話，可以點擊 <a href="https://ohmyz.sh/"
    
    target="_blank" rel="noopener">
 oh-my-zsh 官網連結
-</a>，進到 oh-my-zsh 的下載頁面，進來之後點擊右側的「Install oh-my-zsh」按鈕，然後他會跳轉到下面這行程式</p>
+</a>，就可以進到 oh-my-zsh 的官方網站。</p>
+<p>進到 oh-my-zsh 的網站之後，先點擊右側的「Install oh-my-zsh」的按鈕，此時他就會自動跳轉到下面這行程式上。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/oh-my-zsh1.png"
+  src="/images/blog/springboot/2/2-16.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -496,25 +513,25 @@ oh-my-zsh 官網連結
 <p>
 
 <img
-  src="/images/blog/springboot/2/oh-my-zsh2.png"
+  src="/images/blog/springboot/2/2-17.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>只要複製這一行程式，接著貼到 iTerm2 上，然後按下 Enter 鍵，等他跑完就安裝完成了</p>
+<p>所以只要複製這一行程式，然後貼到 iTerm2 上，接著按下 Enter 鍵，他就會開始進行安裝。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/oh-my-zsh3.png"
+  src="/images/blog/springboot/2/2-18.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>安裝完成之後，這時候 iTerm2 上面會出現一個大大的 oh my zsh，只要看到這個 Logo，就表示 oh-my-zsh 也安裝完成了！</p>
+<p>安裝完成之後，這時候 iTerm2 上面會出現一個大大的「Oh My Zsh」，只要看到這個 Logo，就表示 oh-my-zsh 也安裝完成了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/oh-my-zsh4.png"
+  src="/images/blog/springboot/2/2-19.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -522,47 +539,58 @@ oh-my-zsh 官網連結
 <h3 id="安裝-homebrew" class="markdown-heading-anchor">
   安裝 Homebrew
   <a href="#%e5%ae%89%e8%a3%9d-homebrew">#</a>
-</h3><p>接下來要安裝的是 Homebrew，他也是一個滿好用的工具</p>
-<p>Homebrew 是一個套件管理系統，大家可以把 Homebrew 想像成是一個集中管理處的感覺，不論你今天想安裝的是什麼套件（像是 Git、Python&hellip;等等），都可以來 Homebrew 找找看，有很大的機會是可以找到的</p>
-<p>要安裝 Homebrew 的話，可以點擊 <a href="https://brew.sh/"
+</h3><p>安裝完 iTerm2 和 oh-my-zsh 之後，接下來要安裝的是 Homebrew，他也是 Mac 開發中一個很好用的工具。</p>
+<p>Homebrew 他是一個套件管理系統，大家可以把 Homebrew 想像成是一個集中管理處的感覺，不論你今天想安裝的是什麼套件（ex：Git、Python&hellip;等等），都可以來 Homebrew 找找看，熱門的套件都是可以透過 Homebrew 進行安裝的。</p>
+<p>而要安裝 Homebrew 的話，可以點擊 <a href="https://brew.sh/"
    
    target="_blank" rel="noopener">
 Homebrew 官網連結
-</a>，進來之後往下拉，只要複製 Install Homebrew 下面的這一行程式，然後待會貼到 iTerm2 上面就可以了</p>
+</a>，就可以進到 Homebrew 的官方網站。</p>
+<p>進到 Homebrew 的網站之後，可以稍微往下拉一點，然後複製「Install Homebrew」下面的這一行程式。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/homebrew1.png"
+  src="/images/blog/springboot/2/2-20.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>複製好程式貼到 iTerm2 上之後，這時候按下 Enter 鍵，會發現程式卡住了，停在「Password」這一行，這個是表示要我們輸入密碼的意思，所以大家就可以直接對著鍵盤輸入你的 Mac 密碼</p>
+<p>接著將這行程式貼到 iTerm2 上，然後按下 Enter 鍵，就可以開始安裝 Homebrew 了。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/2/2-21.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>不過這時候，當你按下 Enter 鍵時，你可能會發現「程式怎麼卡住了？」，這時候安裝程式這時候會停在「Password」這一行，表示要我們輸入密碼，才可以繼續往下運行。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/2/2-22.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>所以這時候，大家可以直接對著鍵盤輸入你的 Mac 密碼，輸入完成之後再按下 Enter 鍵，就可以繼續往下運行程式了。</p>
 <blockquote>
-<p>補充：在這裡輸入密碼的過程中，是不會有任何星號出現的，所以大家就直接盲打密碼，然後輸入完成再按下 Enter 鍵就可以了</p>
+<p>補充：在這裡輸入密碼的過程中，是不會有任何星號出現的，所以大家可以直接盲打你的密碼，輸入完成之後，再按下 Enter 鍵就可以了。</p>
 </blockquote>
+<p>輸入完密碼、並且按下 Enter 鍵之後，這時候 iTerm2 會出現「Press RETURN to continue」的訊息，此時就只要再按一下 Enter 鍵，就可以繼續執行安裝程式了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/homebrew2.png"
+  src="/images/blog/springboot/2/2-23.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>按下 Enter 鍵之後，接著在 iTerm2 上會出現「Press RETURN to continue」的訊息，此時就再按一下 Enter 鍵就可以了，按完之後 Homebrew 就會開始進行安裝流程</p>
+<p>最後當大家看到「Installation successful」的訊息出現的時候，就表示 Homebrew 也安裝完成了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/homebrew3.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>最後當大家看到「Installation successful」的訊息出現的時候，就表示 Homebrew 安裝完成了！</p>
-<p>
-
-<img
-  src="/images/blog/springboot/2/homebrew4.png"
+  src="/images/blog/springboot/2/2-24.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -570,15 +598,15 @@ Homebrew 官網連結
 <h2 id="6-安裝-git" class="markdown-heading-anchor">
   6. 安裝 Git
   <a href="#6-%e5%ae%89%e8%a3%9d-git">#</a>
-</h2><p>最後一個要安裝的是 Git，Git 是軟體工程師在開發程式的過程中，幫助我們進行版本管理的工具，對於軟體工程師來說也是一個非常重要的技能</p>
-<p>而繼上面安裝了許多 Mac 工程師好用的工具之後，我們其實是可以直接透過下指令的方式，透過 Homebrew 去安裝 Git 這個工具的</p>
-<p>所以要安裝 Git 的話，只要打開 iTerm2，然後輸入以下的程式，接著按下 Enter 鍵</p>
+</h2><p>安裝完前面所有的工具之後，最後一個我們要安裝的工具是 Git。Git 是在開發程式的過程中，幫助我們進行版本管理的工具，所以 Git 對於軟體工程師而言，也是一個非常重要的技能。</p>
+<p>而在大家完成了上述的安裝之後，我們現在其實可以透過「下指令」的方式，使用 Homebrew 去安裝 Git 這個工具的。</p>
+<p>所以要安裝 Git 的話，就只要打開 iTerm2，然後輸入以下的程式，接著按下 Enter 鍵。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install git
-</span></span></code></pre></div><p>這樣就可以完成 Git 的安裝了，世界和平啦！</p>
+</span></span></code></pre></div><p>這樣子就可以完成 Git 的安裝了，世界和平啦！</p>
 <p>
 
 <img
-  src="/images/blog/springboot/2/git.png"
+  src="/images/blog/springboot/2/2-25.png"
   alt=""
   loading="lazy"
   data-zoomable
@@ -586,23 +614,23 @@ Homebrew 官網連結
 <h2 id="總結" class="markdown-heading-anchor">
   總結
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
-</h2><p>這篇文章先帶了 Mac 的大家安裝好所有的開發工具，所以在後續的文章中，就可以直接透過這些工具來開發 Spring Boot 了，可喜可賀！</p>
-<p>那麼下一篇文章，則是會帶 Windows 系統的大家安裝一樣的開發工具，那我們就下一篇文章見啦！</p>
+</h2><p>這篇文章我們先安裝了 Mac 系統中的所有開發工具，所以在後續的文章中，我們就可以直接透過這些工具來開發 Spring Boot 了，讚！</p>
+<p>那麼下一篇文章，我們則會接著來介紹，要如何在 Windows 系統中也去安裝 Spring Boot 的開發工具，那我們就下一篇文章見啦！</p>
 <blockquote>
 <p>補充：Mac 的使用者可以直接跳到 <a href="/blog/springboot/4/"
    
    target="_blank" rel="noopener">
 Day 4 - 第一個 Spring Boot 程式
-</a> 繼續觀看</p>
+</a> 繼續查看 Spring Boot 的介紹。</p>
 </blockquote>
 <h2 id="相關連結" class="markdown-heading-anchor">
   相關連結
   <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
 </h2><ul>
-<li>歡迎追蹤 FB 粉絲頁：<a href="https://bit.ly/R22neJ"
+<li>免費訂閱《古古的後端筆記》電子報，每週二學習後端技術：<a href="https://kucw.io/bio/"
    
    target="_blank" rel="noopener">
-古古的後端筆記
+電子報訂閱
 </a></li>
 <li>工商時間：（Spring Boot 相關課程已在 Hahow 平台上架）
 <ul>

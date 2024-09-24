@@ -76,21 +76,21 @@
       <link>https://kucw.io/blog/springboot/3/</link>
       <pubDate>Fri, 03 Nov 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/3/</guid>
-      <description>哈囉大家好，我是古古&#xA;上一篇文章有先帶 Mac 的使用者架設好了開發環境，因此接著這篇文章，則是會帶 Windows 系統的大家設定好開發環境，為後續的 Spring Boot 之旅建立好相關設定&#xA;補充：如果是 Mac 的使用者，可以參考上一篇文章 Day 2 - 開發環境安裝（Mac 版） 的介紹</description>
+      <description>哈囉大家好，我是古古。&#xA;在上一篇文章中，我們有先針對 Mac 系統的使用者，介紹要如何在 Mac 系統中安裝此系列文會用到的所有開發工具。&#xA;所以這篇文章，我們就接著來介紹一下，要如何在 Windows 系統中安裝此系列文的開發工具。&#xA;補充：如果你是 Mac 系統的使用者，可以略過這篇文章，直接查看下一篇文章 Day 4 - 第一個 Spring Boot 程式 的介紹。</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (2) - 開發環境安裝（Mac 版）</title>
       <link>https://kucw.io/blog/springboot/2/</link>
       <pubDate>Thu, 02 Nov 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/2/</guid>
-      <description>哈囉大家好，我是古古&#xA;上一篇文章先簡單介紹了什麼是 Spring Boot，也有介紹了前端和後端的區別、以及框架的用途，那麼接著這篇文章，我們就會先來進行環境設定，為之後的 Spring Boot 之旅架設好開發環境&#xA;不過因為 Mac 和 Windows 系統的安裝方式差異比較大，所以這邊會拆成兩篇文章來介紹</description>
+      <description>哈囉大家好，我是古古。&#xA;在學習 Spring Boot 之前，環境的架設也是很重要的，所以這篇文章，我們就先來進行環境設定，為將來的 Spring Boot 之旅架設好開發環境。&#xA;不過因為 Mac 和 Windows 系統的安裝方式差異比較大，所以這邊會拆成兩篇文章來介紹。 如果你的電腦是 Mac 系統，可以直接查看這篇文章，如果你的電腦是 Windows 系統，則可以直接查看下一篇文章 Day 3 - 開發環境安裝（Windows 版） 的介紹。</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (1) - Spring Boot 簡介</title>
       <link>https://kucw.io/blog/springboot/1/</link>
       <pubDate>Wed, 01 Nov 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/1/</guid>
-      <description>哈囉大家好，我是古古&#xA;這次希望可以透過 30 天的鐵人賽文章，讓沒接觸過（甚至沒聽過）Spring Boot 的人，了解 Spring Boot 到底是什麼，以及如何運用 Spring Boot 搭建一個簡易的後端系統</description>
+      <description>哈囉大家好，我是古古。&#xA;這次希望可以透過 30 天的鐵人賽文章，讓沒接觸過（甚至沒聽過）Spring Boot 的人，了解 Spring Boot 到底是什麼，以及如何運用 Spring Boot 搭建一個簡易的後端系統。</description>
     </item>
     <item>
       <title>SpringBoot - 解決 application.properties 中文亂碼</title>
