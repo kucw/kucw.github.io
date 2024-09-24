@@ -240,182 +240,175 @@
         <hr class="doc-start-divider">
 
         <div class="content mb-4">
-          <p>哈囉大家好，我是古古</p>
-<p>在上兩篇文章中，有先介紹如何在 Mac 和 Windows 中架設開發環境，那麼接著這篇文章，就會使用前面所安裝的工具，建立你的第一個 Spring Boot 程式</p>
+          <p>哈囉大家好，我是古古。</p>
+<p>在前兩篇文章中，我們有分別去介紹了一下，要如何在 Mac 和 Windows 中架設 Spring Boot 的開發環境。</p>
+<p>所以這篇文章，我們就可以來使用前面所安裝的工具，建立你的第一個 Spring Boot 程式出來了！</p>
 <h2 id="啟用-intellij-idea-ultimate" class="markdown-heading-anchor">
   啟用 IntelliJ IDEA Ultimate
   <a href="#%e5%95%9f%e7%94%a8-intellij-idea-ultimate">#</a>
-</h2><p>在上兩篇文章中，有先帶大家安裝了 IntelliJ IDEA Ultimate (付費版) 的程式，點擊兩下打開 IntelliJ 之後，IntelliJ 會跳出這個視窗，要求大家登入帳號，並且確認該帳號是否已啟用 IntelliJ 的付費版本</p>
+</h2><p>創建 Spring Boot 程式的第一步，就是要先啟用 IntelliJ IDEA Ultimate 的試用期。所以大家可以先開啟 IntelliJ 的程式，這時候 IntelliJ 就會跳出下面這個視窗，要你去登入帳號，並且確認這個帳號是否已經啟用 IntelliJ 的付費版本。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/activate-intellij1.png"
+  src="/images/blog/springboot/4/4-1.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>如果要使用 30 天的免費試用的話，只需要點擊右上角的「Start trial」，然後點擊下方的「Start Trial」按鈕，就可以取得 30 天的免費試用了</p>
+<p>如果要啟用 30 天的免費試用的話，只需要點擊右上角的「Start trial」，然後點擊下方的「Start Trial」按鈕，這樣子就可以取得 30 天的免費試用期了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/activate-intellij2.png"
+  src="/images/blog/springboot/4/4-2.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
 <blockquote>
-<p>補充：點擊 Start Trial 按鈕之後，瀏覽器會跳出一個 IntelliJ 的頁面，問你要不要訂閱電子報，這部分可訂閱可不訂閱，不過不管有沒有訂閱，只要直接回到 IntelliJ 程式，都是可以正常啟用 30 天試用版成功的</p>
+<p>補充：點擊 Start Trial 的按鈕之後，瀏覽器會跳出一個 IntelliJ 的頁面，詢問你要不要訂閱電子報，這部分可訂閱可不訂閱，不過不管有沒有訂閱，只要直接回到 IntelliJ 程式，都是可以成功啟用 30 天試用期的。</p>
 </blockquote>
 <h2 id="創建第一個-spring-boot-程式" class="markdown-heading-anchor">
   創建第一個 Spring Boot 程式
   <a href="#%e5%89%b5%e5%bb%ba%e7%ac%ac%e4%b8%80%e5%80%8b-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h2><p>啟用 30 天試用版成功之後，就可以開始來創建 Spring Boot 程式了</p>
-<p>點擊 IntelliJ 中間的「New Project」，就可以開始去創建一個新的 Spring Boot 程式</p>
+</h2><h3 id="建立專案project-設定" class="markdown-heading-anchor">
+  建立專案、Project 設定
+  <a href="#%e5%bb%ba%e7%ab%8b%e5%b0%88%e6%a1%88project-%e8%a8%ad%e5%ae%9a">#</a>
+</h3><p>啟用 30 天試用期成功之後，我們就可以開始來創建你的第一個 Spring Boot 程式了！只要點擊 IntelliJ 中間的「New Project」，就可以去創建一個新的 Spring Boot 程式出來。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot1.png"
+  src="/images/blog/springboot/4/4-3.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="設定-spring-boot-程式" class="markdown-heading-anchor">
-  設定 Spring Boot 程式
-  <a href="#%e8%a8%ad%e5%ae%9a-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h3><p>接著 IntelliJ 會跳出這個視窗，要我們進行 Project 設定，大家可以先點擊左側側邊欄的「Spring Initializr」，表示我們要創建的是 Spring Boot 的程式，接著右邊就是跟著下圖一樣，選擇一樣的設定即可</p>
+<p>接著 IntelliJ 就會跳出下面這個視窗，要我們進行 Project 的設定。這裡先點擊左邊側邊欄的「Spring Boot」，表示我們要創建的是 Spring Boot 的程式，接著右邊就是跟著下圖一樣，選擇一樣的設定即可。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot2.png"
+  src="/images/blog/springboot/4/4-4.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>這邊也補充一下，大家在設定上圖中的「3. JDK」時，可能會找不到 temurin-17 在哪裡，這時只要點開 JDK 那個選項，然後在下方會有一個「Detected SDKs」的區塊，這裡就是你電腦上有安裝的 Java 版本，只要選中其中的「temurin-17.jdk」就可以了</p>
-<p>
-
-<img
-  src="/images/blog/springboot/4/springboot3.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>另外我們也可以回頭來看一下這個 Project 設定中，右邊的這些值分別代表什麼意思</p>
+<p>設定好右邊的 Project 設定之後，我們也可以回頭來看一下，右邊這些值分別代表什麼意思：</p>
 <ul>
-<li><strong>Name</strong>：這個 Spring Boot 程式的資料夾名字</li>
-<li><strong>Location</strong>：這個 Spring Boot 程式預計創建出來的位置，預設是放在桌面上</li>
-<li><strong>Language</strong>：使用哪種語言來開發 Spring Boot 程式，預設是 Java</li>
-<li>Type：選擇要使用哪種工具來構建 Spring Boot 程式，這部分比較複雜，因此先照著選 Maven 即可</li>
-<li><strong>Group、Artifact、Package name</strong>：和上面的 Maven 有關，一樣是比較複雜所以可以先跳過不理他</li>
-<li><strong>JDK、Java</strong>：選擇想要使用的 Java 版本</li>
-<li><strong>Packaging</strong>：打包 Spring Boot 的方式，預設是 Jar，這部分一樣是比較複雜（牽涉到 Tomcat），所以也是可以先跳過不理他</li>
+<li><strong>Name：</strong> 這個 Spring Boot 程式的資料夾名字。</li>
+<li><strong>Location：</strong> 這個 Spring Boot 程式預計創建出來的位置，預設是放在桌面上。</li>
+<li><strong>Language：</strong> 使用哪種語言來開發 Spring Boot 程式，預設是 Java。</li>
+<li><strong>Type：</strong> 選擇要使用哪種工具來構建 Spring Boot 程式，這部分比較複雜，因此先照著選 Maven 即可。</li>
+<li><strong>Group、Artifact、Package name：</strong> 這些值和上面的 Maven 有關，一樣是比較複雜所以可以先跳過不理他。</li>
+<li><strong>JDK、Java：</strong> 選擇想要使用的 Java 版本。</li>
+<li><strong>Packaging：</strong> 打包 Spring Boot 的方式，預設是 Jar，這部分一樣是比較複雜（牽涉到 Tomcat），所以也是可以先跳過不理他。</li>
 </ul>
-<p>而當大家都設定好之後，就可以按下 Next 繼續</p>
+<p>而當大家設定好右邊的參數設定之後，就可以按下 Next 繼續。</p>
 <h3 id="選擇要載入的-spring-boot-功能" class="markdown-heading-anchor">
   選擇要載入的 Spring Boot 功能
   <a href="#%e9%81%b8%e6%93%87%e8%a6%81%e8%bc%89%e5%85%a5%e7%9a%84-spring-boot-%e5%8a%9f%e8%83%bd">#</a>
-</h3><p>進到下一個視窗之後，就可以在這裡選擇 Spring Boot 的版本，以及想要載入哪些功能進來</p>
+</h3><p>進到下一個視窗之後，就可以在這裡選擇想要使用的 Spring Boot 的版本、以及想要載入哪些功能進來。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot4.png"
+  src="/images/blog/springboot/4/4-5.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>像是在左上方的紅框處，就可以去選擇 Spring Boot 的版本，大家可以直接使用預設的最新版即可，不用特別去改變</p>
-<p>而在下方的部分，則是可以去選擇要載入哪些功能到這個 Spring Boot 程式裡面，這裡大家先展開 Web，然後勾選裡面的「Spring Web」即可</p>
-<p>完成之後可以點擊右下角的 Create，完成 Spring Boot 程式的創建</p>
+<p>像是在上圖的左上方紅框處，就可以去選擇 Spring Boot 的版本，這裡大家可以直接使用預設的最新版即可，不用特別去做調整。</p>
+<p>而在下方的部分，則是可以去選擇要載入哪些功能到這個 Spring Boot 程式裡面，這裡我們先展開Web，然後勾選裡面的「Spring Web」即可。</p>
+<p>勾選完成之後，就可以點擊右下角的 Create，完成 Spring Boot 程式的創建。</p>
 <h2 id="intellij-的操作介面" class="markdown-heading-anchor">
   IntelliJ 的操作介面
   <a href="#intellij-%e7%9a%84%e6%93%8d%e4%bd%9c%e4%bb%8b%e9%9d%a2">#</a>
-</h2><p>創建好 Spring Boot 程式後，IntelliJ 會開啟一個視窗，根據我們剛剛的設定，去創建這個 Spring Boot 程式出來，這時候右下角的進度條會開始跑，第一次創建會需要比較長的，並且需要確保網路的暢通（會下載許多 Spring Boot 的 library 下來），等到右下角的進度條跑完之後，就創建完成了（約需要 3-5 分鐘左右）</p>
-<p>
-
-<img
-  src="/images/blog/springboot/4/springboot5.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>在 Spring Boot 程式創建的過程中，大家也可以先熟悉一下 IntelliJ 的軟體介面</p>
+</h2><p>創建好 Spring Boot 程式後，IntelliJ 會開啟一個視窗，就會根據我們剛剛的設定，去創建這個 Spring Boot 程式出來。</p>
+<p>這時候右下角的進度條會開始跑，第一次創建會需要比較長的常見，並且需要確保網路的暢通（會下載許多 Spring Boot 的 library 下來），等到右下角的進度條跑完之後，就創建完 Spring Boot 程式了（約需要 3-5 分鐘左右）。</p>
+<p>而在 Spring Boot 程式創建的過程中，大家也可以先熟悉一下 IntelliJ 的軟體介面，像是在 IntelliJ 的介面中：</p>
 <ul>
-<li>左側的部分是側邊欄，呈現了這個 demo 資料夾中的所有程式</li>
-<li>右側則是程式的編輯區，只要在左側側邊欄對著檔案點擊兩下，就可以將程式開啟到右邊的編輯區開始編輯</li>
+<li>左側的部分是側邊欄，呈現了這個 demo 資料夾中的所有程式。</li>
+<li>右側則是程式的編輯區，只要在左側側邊欄對著檔案點擊兩下，就可以將程式開啟到右邊的編輯區，開始編輯這份程式。</li>
 </ul>
+<p>
+
+<img
+  src="/images/blog/springboot/4/4-6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
 <blockquote>
-<p>補充：IntelliJ 的編輯區是會自動存檔的，因此大家不用擔心寫程式寫到一半沒存檔怎麼辦，揪甘心😆</p>
+<p>補充：IntelliJ 的編輯區是會自動存檔的，因此大家不用擔心寫程式寫到一半沒存檔怎麼辦，揪甘心！</p>
 </blockquote>
+<p>另外也補充一下，因為 IntelliJ 預設的字體還滿小的，所以建議大家可以調大程式編輯區的字體，保護眼睛從你我做起。</p>
+<p>只要點擊右上方的齒輪，然後點擊「Settings」，就可以叫出偏好設定，接著在設定裡面，再點擊 Editor 中的 Font，就可以在右側設定編輯區的字型、以及字體大小了！</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot6.png"
+  src="/images/blog/springboot/4/4-7.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>另外也補充一下，因為 IntelliJ 預設的字體還滿小的，所以建議大家可以調大程式編輯區的字體，只要點擊左上方的「Preferences」，就可以叫出偏好設定，接著點擊 Editor 中的 Font，就可以在右側設定編輯區的字型、以及字體大小了！</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot7.png"
+  src="/images/blog/springboot/4/4-8.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<h2 id="第一個-spring-boot-程式" class="markdown-heading-anchor">
-  第一個 Spring Boot 程式
-  <a href="#%e7%ac%ac%e4%b8%80%e5%80%8b-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h2><p>設定好 IntelliJ 的偏好設定、並且確認右下角的進度條跑完之後，就可以開始來寫我們的第一個 Spring Boot 程式了</p>
-<p>首先展開左側的資料夾，可以看到在 src/main/java/com 底下，有一個 DemoApplication.class 的檔案，點擊兩下開啟這個檔案之後，在右側就可以看到他的內容</p>
-<p>而在這個 DemoApplication 的程式裡面，最重要的就是第 6 行的 <code>@SpringBootApplication</code> 的程式</p>
+<h2 id="實作第一個-spring-boot-程式" class="markdown-heading-anchor">
+  實作第一個 Spring Boot 程式
+  <a href="#%e5%af%a6%e4%bd%9c%e7%ac%ac%e4%b8%80%e5%80%8b-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
+</h2><p>設定好 IntelliJ 的字體偏好設定、並且確認右下角的進度條跑完之後，我們終於可以開始來實作我們的第一個 Spring Boot 程式了！</p>
+<p>首先我們先展開左側的資料夾，這時候可以看到，在 src/main/java/com.example.demo 底下，有一個 DemoApplication.class 的檔案，點擊兩下開啟這個檔案之後，在右側就可以看到他的內容。</p>
+<p>而在這個 DemoApplication 的程式裡面，其中最重要的，就是第 6 行的 <code>@SpringBootApplication</code> 程式。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot8.png"
+  src="/images/blog/springboot/4/4-9.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>第一次接觸 Spring 的大家，可能會覺得第 6 行這種前面帶有小老鼠 @ 的程式很奇怪，不過這種前面帶有小老鼠的寫法，在 Java 裡面稱作 annotation，中文是翻譯為「標註」或是「註解」</p>
+<p>第一次接觸 Spring Boot 的大家，可能會覺得第 6 行這種前面帶有小老鼠 <code>@</code> 的程式很奇怪，不過這種前面帶有小老鼠的寫法，在 Java 裡面稱作「annotation」，中文是翻譯為「標註」或是「註解」。</p>
 <blockquote>
-<p>補充：一般口語上會稱呼這種前面帶有小老鼠的程式為 annotation，不過由於版面因素，後續都會使用「註解」來稱呼</p>
+<p>補充：一般在口語上，會稱呼這種前面帶有小老鼠的程式為「annotation」，不過由於版面因素，後續都會使用「註解」來稱呼。</p>
 </blockquote>
-<p>第 6 行程式的這種寫法，在一般的 Java 程式裡面比較少看到，不過在 Spring Boot 裡面卻非常常見，所以在後續的文章中，也會介紹到非常多好用的 annotation (註解) 給大家</p>
-<p>第一次接觸註解的大家，基本上可以把註解想像成是賦予一個新的功能，不同的註解所提供的功能不一樣，並且他們的使用方法也會有點不太一樣</p>
-<p>像是第 6 行這個 <code>@SpringBootApplication</code>，他的用法是要加在 class 上面，而他的用途，則是表示這一個 DemoApplication 的 class，是這個 Spring Boot 程式的啟動入口</p>
-<p>也因為我們有在第 6 行加上 <code>@SpringBootApplication</code>，所以在第 7 行的左邊，才會出現一個播放鍵的符號，讓我們可以直接點擊這個播放鍵，去運行這個 Spring Boot 程式</p>
+<p>第 6 行程式的這種寫法，在一般的 Java 程式中比較少看到，不過在 Spring Boot 裡面卻非常常見，所以在後續的文章中，我們也會介紹在 Spring Boog 中，好用的 annotation（註解）有哪些。</p>
+<p>如果你是第一次接觸「註解」的話，建議可以先把「註解」想像成是賦予一個新的功能，不同的註解所提供的功能不一樣，並且他們的使用方法也會不太一樣。</p>
+<p>所以像是第 6 行這個 <code>@SpringBootApplication</code>，他的用法是要加在 class 上面，而他的用途，則是表示這一個 DemoApplication.class，是這個 Spring Boot 程式的啟動入口。</p>
+<p>也因為我們有在第 6 行加上 <code>@SpringBootApplication</code>，所以在第 7 行的左邊，才會出現一個播放鍵的符號，讓我們可以直接點擊這個播放鍵，去運行這個 Spring Boot 程式。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot9.png"
+  src="/images/blog/springboot/4/4-10.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>所以到這邊為止，我們已經大致了解了 <code>@SpringBootApplication</code> 的用途（就是將該 class 變成 Spring Boot 的啟動入口），以及如何在 IntelliJ 中運行 Spring Boot 程式了，不過在我們真的去運行這個 Spring Boot 程式之前，我們可以先來寫一些 Java 程式在裡面</p>
+<p>所以到這邊為止，我們就大致了解了 <code>@SpringBootApplication</code> 的用途（就是將該 class 變成 Spring Boot 程式的啟動入口），以及如何在 IntelliJ 中運行 Spring Boot 程式了，不過在我們真的去運行這個 Spring Boot 程式之前，我們可以先來添加一些 Java 程式在裡面。</p>
 <h3 id="添加-demo-程式" class="markdown-heading-anchor">
   添加 demo 程式
   <a href="#%e6%b7%bb%e5%8a%a0-demo-%e7%a8%8b%e5%bc%8f">#</a>
-</h3><p>大家可以在 com.example.demo 這個 package 上點擊右鍵，然後選擇 New，接著選擇 Java class，這樣就可以去創建一個 Java class 出來</p>
+</h3><p>首先我們先在 com.example.demo 這個 package 上點擊右鍵，然後選擇 New，接著選擇 Java class，這樣就可以去創建一個 Java class 出來。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot10.png"
+  src="/images/blog/springboot/4/4-11.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>然後我們將這個 class 的名字取名成 MyController</p>
+<p>接著我們將這個 class 的名字，取名成 MyController。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot10.5.png"
+  src="/images/blog/springboot/4/4-12.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>接著在這個 MyController 裡面，添加下列的程式</p>
+<p>接著在這個 MyController 裡面，添加下列的程式（這裡看不懂程式沒關係，先全部照著寫就好）。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@RestController</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MyController</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    
@@ -425,87 +418,91 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;Hello World&#34;</span>;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><blockquote>
-<p>補充：如果複製貼上發現 <code>@RestController</code> 和 <code>@RequestMapping</code> 的 library 沒有自動載入進來的話，建議可以改成是一行一行手動輸入程式</p>
-</blockquote>
+</span></span></span></code></pre></div><p>當大家添加完上面這段程式之後，在 IntelliJ 中的呈現效果，應該要是下面這個樣子才對。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot10.6.png"
+  src="/images/blog/springboot/4/4-13.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>寫完這段程式之後，不了解 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的意思是正常的，這兩個註解的用途，會在後面提到「Spring MVC」章節的時候再做介紹，所以這裡大家就先照著寫就好</p>
+<blockquote>
+<p>補充：如果大家複製貼上這段程式時，發現 <code>@RestController</code> 和 <code>@RequestMapping</code> 沒有自動被 import 進來的話，建議可以改成一行一行手動輸入程式，IntelliJ 就會自動 import 相關的 library 進來了。</p>
+</blockquote>
+<p>大家在寫完這段程式之後，不了解 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的意思是正常的，這兩個註解的用途，會在後面介紹到「Spring MVC」的部分時再做詳細的介紹，所以這裡就先照著寫就好。</p>
 <h3 id="運行-spring-boot-程式" class="markdown-heading-anchor">
   運行 Spring Boot 程式
   <a href="#%e9%81%8b%e8%a1%8c-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h3><p>當寫好上述的 MyController 程式之後，接著就可以回到 DemoApplication 這個 class，點擊第 7 行的播放鍵去運行 Spring Boot 程式了！</p>
-<p>只要使用左鍵點擊第 7 行的播放鍵，然後選擇 Run DemoApplication，就可以去運行這個 Spring Boot 程式</p>
+</h3><p>當寫好上述的 MyController 程式之後，接著就可以回到 DemoApplication 這個 class 上，然後點擊第 7 行的播放鍵，去運行這個 Spring Boot 程式了！</p>
+<p>所以我們只要使用左鍵，去點擊 DemoApplication 中的第 7 行的播放鍵，然後選擇「Run DemoApplication」，就可以去運行這個 Spring Boot 程式了。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot11.png"
+  src="/images/blog/springboot/4/4-14.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>點擊運行之後，這時候下面就會顯示出一個 console 的視窗，在這個 console 的最一開始會出現一個 Spring 的 logo，接著後面就是實時呈現出 Spring Boot 程式的運行結果</p>
-<p>只要大家看到最後有一行「Started DemoApplication in 1.024 seconds」出現的時候，就表示你的 Spring Boot 程式運行成功了！</p>
+<p>點擊運行之後，這時候下面就會顯示出一個 console 的視窗，而在這個 console 視窗的最一開始，就會出現一個 Spring 的 logo，接著後面就是實時呈現出 Spring Boot 程式的運行結果。</p>
+<p>只要看到最後一行「Started DemoApplication in 0.695 seconds」出現的時候，就表示你的 Spring Boot 程式運行成功了！</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot12.png"
+  src="/images/blog/springboot/4/4-15.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>當 Spring Boot 程式運行成功之後，就可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，接著按下 Enter 鍵</p>
-<p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示你的第一個 Spring Boot 程式運作成功了！！讚讚讚！！</p>
+<p>而當 Spring Boot 程式運行成功之後，這時候就可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test，接著按下 Enter 鍵。</p>
+<p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示你的第一個 Spring Boot 程式成功運作起來了！可喜可賀！！！</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot13.png"
+  src="/images/blog/springboot/4/4-16.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="所以剛剛我們都做了什麼" class="markdown-heading-anchor">
-  所以，剛剛我們都做了什麼？
-  <a href="#%e6%89%80%e4%bb%a5%e5%89%9b%e5%89%9b%e6%88%91%e5%80%91%e9%83%bd%e5%81%9a%e4%ba%86%e4%bb%80%e9%ba%bc">#</a>
-</h3><p>那到這邊，我們可以回頭來看一下我們剛剛都做了什麼，我們剛剛有去新增了一個 MyController 的 class，然後在裡面加上一個 <code>test()</code> 方法，並且在裡面去回傳一個 Hello World 的字串，同時也添加了兩個註解 <code>@RestController</code> 和 <code>@RequestMapping</code></p>
+<h3 id="所以我們剛剛都做了什麼" class="markdown-heading-anchor">
+  所以，我們剛剛都做了什麼？
+  <a href="#%e6%89%80%e4%bb%a5%e6%88%91%e5%80%91%e5%89%9b%e5%89%9b%e9%83%bd%e5%81%9a%e4%ba%86%e4%bb%80%e9%ba%bc">#</a>
+</h3><p>那到這邊，我們可以回頭來看一下，我們剛剛都做了什麼，才能夠成功的在瀏覽器中看到「Hello World」的字串。</p>
+<p>首先我們剛剛有去新增了一個 MyController 的 class 出來，然後在裡面加上一個 <code>test()</code> 方法，並且在裡面去回傳一個「Hello World」的字串，同時也添加了兩個註解 <code>@RestController</code> 和 <code>@RequestMapping</code>。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot14.png"
+  src="/images/blog/springboot/4/4-17.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>那這段程式的運作邏輯是這樣子的，當我們在 Google 瀏覽器輸入 http://localhost:8080/test 時，實際上 Spring Boot 程式就會去執行 MyController 裡面的 <code>test()</code> 方法裡面的程式，所以這也是為什麼在 console 上會印出一行「Hi!」，並且這個 <code>test()</code> 方法的返回值「Hello World」字串，就會顯示在 Google 瀏覽器上面</p>
+<p>這段程式的運作邏輯是這樣子的：當我們在 Google 瀏覽器輸入 http://localhost:8080/test 時，實際上 Spring Boot 程式就會去執行 MyController 裡面的 <code>test()</code> 方法中的程式。</p>
+<p>也因為 Spring Boot 會去執行 MyController 裡面的 <code>test()</code> 方法，所以這也是為什麼在 console 上，會印出一行「Hi!」的字串，並且這個 <code>test()</code> 方法的返回值「Hello World」字串，會顯示在 Google 瀏覽器上面。</p>
 <p>
 
 <img
-  src="/images/blog/springboot/4/springboot15.png"
+  src="/images/blog/springboot/4/4-18.png"
   alt=""
   loading="lazy"
   data-zoomable
 /></p>
-<p>而之所以能達到這個效果，就是多虧了 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的幫助</p>
-<p>不過到目前為止，大家還不用先太深入了解這兩個註解的用法，只要先知道「當我們在 Google 中輸入 http://localhost:8080/test 時，Spring Boot 程式就會去執行這個 <code>test()</code> 方法就可以了」</p>
-<p>至於 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的實際用法，會在後續的「Spring MVC」文章中再做介紹</p>
+<p>之所以能達到這個效果，就是多虧了 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的幫助。</p>
+<p>不過到目前為止，大家還不用先太深入了解這兩個註解的用法，現在只要先知道：「當我們在Google中輸入 http://localhost:8080/test 時，Spring Boot 程式就會去執行 MyController 中的 <code>test()</code> 方法」，這樣子就可以了。</p>
+<p>至於 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的實際用法，在後續的「Spring MVC」的部分中就會做詳細的介紹了。</p>
 <blockquote>
-<p>補充：如果想快轉到 Spring MVC 的部分，可以直接跳到 <a href="/blog/springboot/13/"
+<p>補充：如果想快轉到 Spring MVC 的部分，也可以直接跳到 <a href="https://kucw.io/blog/springboot/13/"
    
    target="_blank" rel="noopener">
-Day 13 ～ Day 23
-</a> 的文章介紹</p>
+Day 13～Day 23
+</a> 的介紹。</p>
 </blockquote>
 <h2 id="總結" class="markdown-heading-anchor">
   總結
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
-</h2><p>所以到這邊為止，大家就成功的去創建出第一個 Spring Boot 程式了，恭喜恭喜！！透過這個練習，其實也是讓大家可以去感受一下，用 Spring Boot 寫後端程式是真的很方便，只需要寫不到 10 行的程式，就可以快速運行起一個後端程式了，效率真的是 up up up（自從我用了 Spring Boot，考試都考 💯 分）</p>
-<p>那麼從下一篇文章，我們就會開始來介紹 Spring 框架中的一個非常重要的特性：IoC，那麼我們就下一篇文章見啦！</p>
+</h2><p>所以到這邊為止，大家就成功的去創建出第一個 Spring Boot 程式了，恭喜恭喜！！</p>
+<p>透過這個練習，也是想讓大家先感受一下，使用 Spring Boot 來寫後端程式真的是很方便，我們只需要寫不到 10 行的程式，就可以快速運行起一個後端程式了，所以使用 Spring Boot 開發的效率真的是超級無敵霹靂高！</p>
+<p>那麼下一篇文章，我們就會開始來介紹 Spring 框架中一個非常重要的特性，也就是 IoC，那麼我們就下一篇文章見啦！</p>
 <h2 id="相關連結" class="markdown-heading-anchor">
   相關連結
   <a href="#%e7%9b%b8%e9%97%9c%e9%80%a3%e7%b5%90">#</a>
