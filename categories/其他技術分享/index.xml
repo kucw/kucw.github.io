@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 10 Sep 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TDD 是什麼？認識 Test-Driven Development（測試驅動開發）</title>
+      <link>https://kucw.io/blog/test-driven-development/</link>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/test-driven-development/</guid>
+      <description>對於軟體工程師來說，「撰寫單元測試」已經是一個必須具備的技能，撰寫好的單元測試不僅能夠確保程式運行正確，也能夠降低後期重構、維護的成本，可以說是一舉多得！&#xA;而在單元測試越來越重要的情況下，就誕生了 「TDD（測試驅動開發）」 的開發流程，因此這篇文章我們就來介紹一下，TDD 到底是什麼、以及要如何使用 TDD 來開發程式吧！&#xA;什麼是 TDD（Test-Driven Development）？ # TDD 的全稱是 Test-Driven Development，中文翻譯為「測試驅動開發」，而 TDD 的核心理念，就是 貫徹「先寫測試、再寫開發」的精神。</description>
+    </item>
     <item>
       <title>Nginx 是什麼？認識反向代理、負載平衡</title>
       <link>https://kucw.io/blog/nginx/</link>
