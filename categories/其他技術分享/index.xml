@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 08 Oct 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工程師如何和 PM 共事？PM 親自來解答！</title>
+      <link>https://kucw.io/blog/pm-for-developer/</link>
+      <pubDate>Tue, 15 Oct 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/pm-for-developer/</guid>
+      <description>身為一個工程師，在工作上多多少少都得和 PM 打交道，可能有的人會好奇 PM 的工作內容是什麼、或是不知道怎麼跟 PM 相處比較好。&#xA;所以這篇文章，我們邀請到了 PM 大大來為我們工程師們解惑一下，分享 PM 的工作內容是什麼、以及工程師如何和 PM 共事，所以我們就開始吧！</description>
+    </item>
     <item>
       <title>Git 的好用技巧介紹 - Cherry-Pick 和 git reset HEAD^</title>
       <link>https://kucw.io/blog/git-tip/</link>

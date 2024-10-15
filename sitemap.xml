@@ -4,26 +4,31 @@
     
     <url>
         <loc>https://kucw.io/blog/</loc>
-        <lastmod>2024-10-08T00:00:00+08:00</lastmod>
+        <lastmod>2024-10-15T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/</loc>
-        <lastmod>2024-10-08T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/git-tip/</loc>
-        <lastmod>2024-10-08T00:00:00+08:00</lastmod>
+        <lastmod>2024-10-15T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</loc>
-        <lastmod>2024-10-08T00:00:00+08:00</lastmod>
+        <lastmod>2024-10-15T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/</loc>
+        <lastmod>2024-10-15T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/pm-for-developer/</loc>
+        <lastmod>2024-10-15T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/git-tip/</loc>
         <lastmod>2024-10-08T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
@@ -43,7 +48,7 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/blog/backend-engineer-interview/</loc>
+        <loc>https://kucw.io/blog/backend-developer-interview/</loc>
         <lastmod>2024-09-17T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
