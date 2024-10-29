@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.133.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.136.4 with theme pure" />
 
   <!-- Plugins -->
   
@@ -256,35 +256,35 @@
 </h2><p>所以總結上面的介紹的話，Vertical Scaling 就是「為一個 VM 不斷增強他的添加 cpu、ram，將他變成一台超級電腦，以應付更高的流量」，而 Horizontal Scaling 則是「添加許多小型的 VM，一起聯合起來對付更高的流量」，而他們兩種方式所要解決的問題，就都是為了 <strong>克服更高流量的問題</strong>。</p>
 <p>下表也將上述所提到的用途、以及優缺點統整在一起，提供給大家參考：</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th><strong>Vertical Scaling（垂直擴展）</strong></th>
-<th><strong>Horizontal Scailng（水平擴展）</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>用途</strong></td>
-<td>為單一的 VM 增加 cpu、ram，將他變成一台超級電腦，對付更高的流量</td>
-<td>添加許多台小型 VM，一起聯合起來對付更高的流量</td>
-</tr>
-<tr>
-<td><strong>優點</strong></td>
-<td>容易維護和升級</td>
-<td>擴展無上限</td>
-</tr>
-<tr>
-<td><strong>缺點</strong></td>
-<td>擴展有上限</td>
-<td>需要處理分散式系統（Distributed System）帶來的問題</td>
-</tr>
-<tr>
-<td><strong>適用情境</strong></td>
-<td>創業初期、個人 Side Project</td>
-<td>業務可預期會長期發展時</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th><strong>Vertical Scaling（垂直擴展）</strong></th>
+          <th><strong>Horizontal Scailng（水平擴展）</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>用途</strong></td>
+          <td>為單一的 VM 增加 cpu、ram，將他變成一台超級電腦，對付更高的流量</td>
+          <td>添加許多台小型 VM，一起聯合起來對付更高的流量</td>
+      </tr>
+      <tr>
+          <td><strong>優點</strong></td>
+          <td>容易維護和升級</td>
+          <td>擴展無上限</td>
+      </tr>
+      <tr>
+          <td><strong>缺點</strong></td>
+          <td>擴展有上限</td>
+          <td>需要處理分散式系統（Distributed System）帶來的問題</td>
+      </tr>
+      <tr>
+          <td><strong>適用情境</strong></td>
+          <td>創業初期、個人 Side Project</td>
+          <td>業務可預期會長期發展時</td>
+      </tr>
+  </tbody>
 </table>
 <p>不過有一點也是要再提醒大家，就是 <strong>Scaling 只是一個選擇，重點是你是否能在有限的時間、金錢、以及開發階段中</strong>，為你的團隊選擇當下最好的作法，並且盡量不要留下技術債給後人🥹。</p>
 <h2 id="結語" class="markdown-heading-anchor">

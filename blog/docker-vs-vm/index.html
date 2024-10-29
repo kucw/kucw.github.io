@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.133.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.136.4 with theme pure" />
 
   <!-- Plugins -->
   
@@ -288,35 +288,35 @@
   <a href="#vm-%e5%92%8c-docker-%e7%b8%bd%e7%b5%90">#</a>
 </h2><p>所以總結上面的介紹的話，最後可以歸納出下面這張表格：</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th><strong>VM 虛擬機</strong></th>
-<th><strong>Docker 容器</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>用途</strong></td>
-<td>達到「硬體資源的共享」</td>
-<td>達到「應用程式的隔離」，並且同時達到「作業系統的共享」</td>
-</tr>
-<tr>
-<td><strong>優點</strong></td>
-<td>能夠直接操作底層的作業系統</td>
-<td>執行起來更輕量化</td>
-</tr>
-<tr>
-<td><strong>缺點</strong></td>
-<td>運算資源負擔較大</td>
-<td>需要了解如何撰寫 Docker file、如何管理 Docker 集群</td>
-</tr>
-<tr>
-<td><strong>適用情境</strong></td>
-<td>所有情境皆適用</td>
-<td>所有情境皆適用</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th><strong>VM 虛擬機</strong></th>
+          <th><strong>Docker 容器</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>用途</strong></td>
+          <td>達到「硬體資源的共享」</td>
+          <td>達到「應用程式的隔離」，並且同時達到「作業系統的共享」</td>
+      </tr>
+      <tr>
+          <td><strong>優點</strong></td>
+          <td>能夠直接操作底層的作業系統</td>
+          <td>執行起來更輕量化</td>
+      </tr>
+      <tr>
+          <td><strong>缺點</strong></td>
+          <td>運算資源負擔較大</td>
+          <td>需要了解如何撰寫 Docker file、如何管理 Docker 集群</td>
+      </tr>
+      <tr>
+          <td><strong>適用情境</strong></td>
+          <td>所有情境皆適用</td>
+          <td>所有情境皆適用</td>
+      </tr>
+  </tbody>
 </table>
 <p>所以 VM 和 Docker，他們並沒有誰好誰壞，就單純是根據不同的使用場景，而有不同的選擇而已，只不過如果要使用 Docker 的話，確實會需要具備比較多相關知識。</p>
 <p>不過在實際的工作中，通常是會交由 DevOps 維運工程師，負責管理 Docker 的相關設定，所以我們身為後端工程師，就只要了解 Docker 的概念、以及知道他所解決的問題是什麼就可以了，至於詳細的 Docker 操作，就再請教公司的 DevOps 大大就可以了😆。</p>

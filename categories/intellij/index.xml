@@ -13,28 +13,28 @@
       <link>https://kucw.io/blog/2021/4/intellij-coupon/</link>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2021/4/intellij-coupon/</guid>
-      <description>IntelliJ 為 JetBrains 公司旗下的一個產品，因此若要使用 IntelliJ 的折扣碼，則需要同時也創建一個 JetBrains 帳號&#xA;1. 如何使用折扣碼，取得免費的 IntelliJ 訂閱？ # 點擊 此連結 ，進入到 JetBrains 專屬的折扣碼兌換網頁，並填寫以下資訊</description>
+      <description>&lt;p&gt;IntelliJ 為 JetBrains 公司旗下的一個產品，因此若要使用 IntelliJ 的折扣碼，則需要同時也創建一個 JetBrains 帳號&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-如何使用折扣碼取得免費的-intellij-訂閱&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  1. 如何使用折扣碼，取得免費的 IntelliJ 訂閱？&#xA;  &lt;a href=&#34;#1-%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%e6%8a%98%e6%89%a3%e7%a2%bc%e5%8f%96%e5%be%97%e5%85%8d%e8%b2%bb%e7%9a%84-intellij-%e8%a8%82%e9%96%b1&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;點擊&lt;a href=&#34;https://www.jetbrains.com/store/redeem/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;此連結&#xA;&lt;/a&gt;，進入到 JetBrains 專屬的折扣碼兌換網頁，並填寫以下資訊&lt;/p&gt;</description>
     </item>
     <item>
       <title>IntelliJ - Debug 的使用方法</title>
       <link>https://kucw.io/blog/2020/2/intellij-how-to-debug/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/2/intellij-how-to-debug/</guid>
-      <description>1. 什麼是 Debug 模式？ # 還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 System.</description>
+      <description>&lt;h3 id=&#34;1-什麼是-debug-模式&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  1. 什麼是 Debug 模式？&#xA;  &lt;a href=&#34;#1-%e4%bb%80%e9%ba%bc%e6%98%af-debug-%e6%a8%a1%e5%bc%8f&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 &lt;code&gt;System.out.println()&lt;/code&gt;，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 &lt;code&gt;System.out.println()&lt;/code&gt;，所以到後來我的 code 就會長的像下圖這樣&lt;/p&gt;</description>
     </item>
     <item>
       <title>IntelliJ - Remote Debug</title>
       <link>https://kucw.io/blog/2020/1/intellij-remote-debug/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/1/intellij-remote-debug/</guid>
-      <description>如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug</description>
+      <description>&lt;p&gt;如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug&lt;/p&gt;</description>
     </item>
     <item>
       <title>IntelliJ - 升級遇到的問題 Error: java: invalid flag: -version</title>
       <link>https://kucw.io/blog/2018/7/intellij-update-error/</link>
       <pubDate>Thu, 26 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/intellij-update-error/</guid>
-      <description> 有时候在升级 IntelliJ 時會遇到 Error: java: invalid flag: -version 解決辦法 打開 File -&amp;gt; settings，搜索 Java compiler 此時會發現右下角的每一個 module 裡的 Compilation options 中，都多加了一個 -version 把每個 module 的 -version 都刪除掉，就可以正常運行了 </description>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;有时候在升级 IntelliJ 時會遇到 &lt;code&gt;Error: java: invalid flag: -version&lt;/code&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&#xA;&lt;img&#xA;  src=&#34;https://kucw.io/images/blog/idea_invalidflag1.png&#34;&#xA;  alt=&#34;&#34;&#xA;  loading=&#34;lazy&#34;&#xA;  data-zoomable&#xA;/&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;解決辦法&#xA;&lt;ul&gt;&#xA;&lt;li&gt;打開 &lt;code&gt;File -&amp;gt; settings&lt;/code&gt;，搜索 &lt;code&gt;Java compiler&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;此時會發現右下角的每一個 module 裡的 &lt;code&gt;Compilation options&lt;/code&gt; 中，都多加了一個 &lt;code&gt;-version&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;把每個 module 的 &lt;code&gt;-version&lt;/code&gt; 都刪除掉，就可以正常運行了&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&#xA;&lt;img&#xA;  src=&#34;https://kucw.io/images/blog/idea_invalidflag2.png&#34;&#xA;  alt=&#34;&#34;&#xA;  loading=&#34;lazy&#34;&#xA;  data-zoomable&#xA;/&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>

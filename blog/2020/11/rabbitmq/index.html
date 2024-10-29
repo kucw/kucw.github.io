@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    RabbitMQ 基本介紹、安裝教學
+    RabbitMQ 介紹（二）- RabbitMQ 用法介紹
     
   </title>
 
@@ -11,14 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="介紹 RabbitMQ 的原理和常用的五種模式，以及如何使用 docker 安裝 RabbitMQ">
+  <meta name="description" content="介紹 RabbitMQ 的用法、以及常見的五種模式">
   <meta name="author" content="古古">
 
    <!-- Open Graph data -->
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.133.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.136.4 with theme pure" />
 
   <!-- Plugins -->
   
@@ -165,7 +165,7 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">RabbitMQ 基本介紹、安裝教學</h1>
+        <h1 class="blog-title">RabbitMQ 介紹（二）- RabbitMQ 用法介紹</h1>
 
         <div class="author-details">
           <div>
@@ -173,7 +173,7 @@
           </div>
           <div>
             <p>古古</p>
-            <p>2020/11/18</p>
+            <p>2024/10/22</p>
           </div>
         </div>
 
@@ -190,20 +190,37 @@
 
 
         <div class="content mb-4">
-          <p>RabbitMQ 是在各企業中最為廣泛使用的 message queue，而在 RabbitMQ 的世界裡面有三個角色，分別是 Producer、Queue、Consumer</p>
-<ul>
-<li>Producer : 負責將 message 發送到 Queue 裡</li>
-<li>Queue : 負責暫存 message</li>
-<li>Consumer : 負責去 Queue 中消費 message</li>
-</ul>
-<h3 id="rabbitmq-常見的五種模式" class="markdown-heading-anchor">
-  RabbitMQ 常見的五種模式
-  <a href="#rabbitmq-%e5%b8%b8%e8%a6%8b%e7%9a%84%e4%ba%94%e7%a8%ae%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>在 RabbitMQ 中，常見的五種模式如下，詳情也可參照<a href="https://www.rabbitmq.com/getstarted.html"
+          <blockquote>
+<p>前期提要：如果不了解什麼是 Message Queue，可以先參考 <a href="/blog/rabbitmq1/"
    
    target="_blank" rel="noopener">
-官網
-</a></p>
+RabbitMQ 介紹（一）- 什麼是 Message Queue？
+</a> 的介紹</p>
+</blockquote>
+<p>RabbitMQ 是在各企業中最為廣泛使用的 Message Queue，而在 RabbitMQ 的世界中，有三個重要的角色需要了解，分別是：</p>
+<ul>
+<li><strong>Producer（生產者）：負責發送 message 到 Queue</strong></li>
+<li><strong>Consumer（消費者）：負責從 Queue 中接收 message</strong></li>
+<li><strong>Queue：暫存 message 的地方</strong></li>
+</ul>
+<p>以下圖為例，綠色的「訂單系統」是 Producer，藍色的「數據分析系統」是 Consumer，而橘色的「Message Queue」則是 Queue。</p>
+<p>
+
+<img
+  src="/images/blog/rabbitmq_messagequeue7.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>在 RabbitMQ 的世界，Producer、Consumer、以及 Queue，是最重要的三個名詞，因此先了解這些名詞的意義，可以說是認識 RabbitMQ 的第一步。</p>
+<h2 id="rabbitmq-中常見的-5-種模式" class="markdown-heading-anchor">
+  RabbitMQ 中常見的 5 種模式
+  <a href="#rabbitmq-%e4%b8%ad%e5%b8%b8%e8%a6%8b%e7%9a%84-5-%e7%a8%ae%e6%a8%a1%e5%bc%8f">#</a>
+</h2><p>在 RabbitMQ 中，常見的 5 種模式如下（所有模式可參考 <a href="https://www.rabbitmq.com/tutorials"
+   
+   target="_blank" rel="noopener">
+RabbitMQ 官網
+</a>）：</p>
 <ol>
 <li>Direct 模式</li>
 <li>Worker 模式</li>
@@ -211,17 +228,10 @@
 <li>Routing 模式</li>
 <li>Topics 模式</li>
 </ol>
-<blockquote>
-<p>有關如何在 SpringBoot 中使用 RabbitMQ 的這五種模式，可以參考我的另一篇文章 <a href="https://kucw.github.io/blog/2020/11/spring-rabbitmq"
-   
-   target="_blank" rel="noopener">
-SpringBoot - RabbitMQ 使用方法
-</a></p>
-</blockquote>
 <h3 id="1-direct-模式" class="markdown-heading-anchor">
   1. Direct 模式
   <a href="#1-direct-%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>最簡單的模式，只會有一個 Producer 負責發送 message 到 Queue 裡、而也只有一個 Consumer 去 Queue 裡消費 message</p>
+</h3><p>Direct 是最簡單的模式，也就是只有一個 Producer 負責發送 message 到 Queue 裡，並且也只有一個 Consumer 會從 Queue 中接收 message，接著處理該 message。</p>
 <p>
 
 <img
@@ -230,10 +240,11 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
+<p>像是以上面的「訂單系統」和「數據分析系統」的例子來說，他們其實就是使用最簡單的 Direct 模式，由「訂單系統」這個 Producer 負責發送 message，並且由「數據分析系統」這個 Consumer 接收 message。</p>
 <h3 id="2-worker-模式" class="markdown-heading-anchor">
   2. Worker 模式
   <a href="#2-worker-%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>跟 Direct 模式很像，但是差別是 Worker 模式中會 <strong>同時</strong> 有多個 Consumer 會去消費 Queue 裡的 message，增加 message 消化的速率（一個人做很慢，大家一起做就很快）</p>
+</h3><p>Worker 模式和 Direct 模式很像，<strong>差別只在 Worker 模式「同時有多個 Consumer」一起去接收 Queue 裡面的 message，進而提升 message 消化的速率。</strong></p>
 <p>
 
 <img
@@ -242,12 +253,13 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<p>Worker 模式是滿常用的一種模式，通常是用在大量 asynchronous job 的處理上，可以想像成 n 個 Consumer 就是一堆 Worker or Thread，一起幫忙消化 message</p>
-<p>在現在 microservice 很流行的情形下，如果有大量的 asynchronous job 要執行，通常就不會使用 Java 裡的 ThreadPool，而是會改使用這種 Worker 模式，讓許多台 node 可以一起幫忙做</p>
+<p>Worker 模式是 RabbitMQ 中滿常用的一個模式，假設今天 Queue 突然有很多 message 要處理，就可以多叫幾台 Consumer 來一起消化，因此可以輕易的達成「橫向擴展」，在實作上非常的好用！</p>
 <h3 id="3-publishsubscribe-模式" class="markdown-heading-anchor">
   3. Publish/Subscribe 模式
   <a href="#3-publishsubscribe-%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>從這個模式之後，在 Producer、Queue、Consumer 之間就多了一個叫做 Exchange 的東西出現，所以以後 Producer 不再是直接把 message 丟到 Queue 裡，而是讓 Producer 把 message 丟給 Exchange，再交由 Exchange 去決定要把這個 message 丟給哪個 Queue</p>
+</h3><p>Publish/Subscribe 模式也是 RabbitMQ 中很常用的一種模式。從這個模式之後，在 Producer 和 Queue 之間，就會多出一個叫做 <strong>「Exchange」</strong> 的角色。</p>
+<p>所以在 Publish/Subscribe 模式中，Producer 就不會直接把 message 丟到 Queue 裡面了，Producer 反而是會先把 message 丟給 Exchange，然後再交由 Exchange 去決定要把這個 message 丟到哪個 Queue 裡面。</p>
+<p>所以換句話說的話，就是 Producer 再也不會直接和 Queue 溝通了，而是會藉由一個中間人 Exchange 去處理這樣。</p>
 <p>
 
 <img
@@ -256,21 +268,37 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<p>Exchange 自己就有三種 type，用來表示要用什麼樣的規則把 message 丟到想要丟的 Queue 裡面</p>
-<ul>
-<li>direct</li>
-<li>fanout</li>
-<li>topic</li>
-</ul>
-<p>在 Publish/Subscribe 模式中，使用的是 Exchange 的 fanout type，當 Producer 把 message 丟給 Exchange 時，Exchange 會把這個 message 丟到他綁定的所有 Queue 上</p>
-<p>Publish/Subscribe 模式也是一個滿常用的模式，通常是用在需要訂閱的情況下</p>
-<p>譬如說當訂單服務有了一筆新訂單之後就要去通知簡訊服務、商品服務&hellip;等，那如果是用前面提到的 RabbitMQ 中的 Direct 模式，則在訂單服務裡就要自己指定要把這個 message 丟到哪個 Queue 上，這樣以後如果又有新的服務要來訂閱這個 message 的話，就還得要回去改訂單服務的 code</p>
-<p>但如果是使用這個 Publish/Subscribe 模式的話，訂單服務就可以直接將 message 丟給 Exchange，而我們只要把新的服務專屬的 Queue 和 Exchange 綁定一下，這樣子 Exchange 就可以自動把 message 也丟到新的 Queue 裡了，我們就不需要再去改 code</p>
+<p>而在 Exchange 中，他有 3 種類型（type）可以選（<code>direct</code>、<code>fanout</code>、<code>topic</code>），所以在下面不同的模式中，就會搭配不同的 Exchange 設定來實作。</p>
+<div class="markdown-breakline"></div>
+<p>像是在 Publish/Subscribe 的模式中，Exchange 使用的是 <code>fanout</code> 設定，<strong>也就是當 Producer 把 message 丟給 Exchange 時，Exchange 會把這個 message 丟到「他綁定的所有 Queue」中。</strong></p>
+<p>舉例來說的話，假設今天 Producer 發送了一個 message 給 Exchange，那麼 Exchange 除了會將這個 message 丟到上面那條 Queue 裡面之外，同時 Exchange 也會 <strong>「複製一份 message」</strong>，然後將他丟到下面那條 Queue 裡面。</p>
+<p>
+
+<img
+  src="/images/blog/rabbitmq_subscribe2.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
+<p>所以在上下這兩條 Queue 中，裡面都會各自有一份 message 存在！</p>
+<p>因此即使 Producer 只傳送了一個 message 給 Exchange，Exchange 也會透過「複製」的方式，在每一條 Queue 中都添加同樣的 message，這樣子就可以確保所有的 Consumer 都可以接收到這個 message 了！</p>
+<div class="markdown-breakline"></div>
+<p>也因為 Publish/Subscribe 模式的特性非常好用，<strong>因此通常在實作「訂閱」的情境下，就會採用 Publish/Subscribe 模式來實作。</strong></p>
+<p>像是你在 Facebook 上追蹤了某個粉專，只要該粉專發文，你就會收到貼文通知，這就是一種 Publish/Subscribe 的應用，即是「粉專主（Producer）」發送一個貼文給 Exchange，而「每一位粉絲（Consumer）」都可以收到這個貼文的通知。</p>
+<p>而如果以前面提到的例子來說的話，假設今天除了「數據分析系統」想要取得訂單數據之外，其他的系統如「物流系統」、「倉管系統」也都想要取得訂單數據的話，那麼這時就可以採用 Publish/Subscribe 的方式來實作，這樣子「訂單系統（Producer）」一樣是丟出一份訂單數據給 Exchange，而「每一個想要獲得通知的微服務」就都可以從 Queue 中取得到這筆訂單數據了！</p>
+<p>
+
+<img
+  src="/images/blog/rabbitmq_subscribe3.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
 <h3 id="4-routing-模式" class="markdown-heading-anchor">
   4. Routing 模式
   <a href="#4-routing-%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>Routing 模式也是一個用到了 Exchange 的模式，這個模式使用的是 Exchange 的 direct type</p>
-<p>當 Producer 把 message 丟給 Exchange 時，同時要在這個 message 上面帶上一個 routing key，而 Exchange 就會根據這個 routing key，將 message 丟到指定的 Queue 上</p>
+</h3><p>Routing 模式也是一個用到 Exchange 的模式，他所使用的是 Exchange 的 <code>direct</code> 設定。</p>
+<p>在 Routing 模式中，當 Producer 將 message 丟給 Exchange 時，Producer 同時要在這個 message上面添加一個 routing key，因此 Exchange 就會根據這個 routing key，將 message 丟到指定的 Queue 上（Exchange 和 Queue 之間要用什麼 routing key 綁定，需要先行設置)。</p>
 <p>
 
 <img
@@ -279,15 +307,8 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<p>乍看之下 Routing 模式和 Direct 模式很像，而且甚至會覺得 Routing 模式有點多餘，因為既然是透過 routing key 來決定要將這個 message 丟到哪個 Queue 上，那我就在 code 裡自己寫 <code>if/else</code> 來決定要丟到哪個 Queue 就好了啊，根本不用經過 Exchange，所以就會像下面這樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#bbb"> </span>routingKey<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;...&#34;</span>;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">if</span><span style="color:#bbb"> </span>(routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;orange&#34;</span>))<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>sendMessageToQ1();<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">else</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">if</span><span style="color:#bbb"> </span>(routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;black&#34;</span>)<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">||</span><span style="color:#bbb"> </span>routingKey.<span style="color:#008080">equals</span>(<span style="color:#d14">&#34;green&#34;</span>))<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>sendMessageToQ2();<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><p>但是 Routing 模式之所以有它存在的意義，重點就在於他可以 <strong>多重綁定</strong>，也就是說同一個 routing key 可以綁到 n 個 Queue 上，而不是一對一的綁定</p>
-<p>所以我們就可以用一個 Exchange，將 <code>info</code>, <code>error</code>, <code>warning</code> routing key 綁到一般的 log queue上，然後可以再將 <code>error</code> routing key 綁到另一個 error log queue 上，這樣就可以做出一個帶有全部 log 的 Queue、以及一個只包含 error log 的 Queue</p>
+<p>Routing 模式雖然使用上沒有 Publish/Subscribe 模式來的常用，但是他的重點在於 <strong>「可以多重綁定」</strong>，也就是同一個 routing key 可以綁到多條 Queue 上，因此就可以拿來實作收集 Log 的 Queue。</p>
+<p>像是在下圖中，我們可以將 <code>info</code>、<code>error</code>、<code>warning</code> 這三個 routing key，綁到記錄一般 Log 的 Queue 上，然後再將 <code>error</code> 這個 routing key，再綁定到另一條記錄 Error Log 的 Queue 上，這樣子就可以實作出一份帶有全部 Log 的 Queue、以及一份只有 Error Log 的 Queue 了。</p>
 <p>
 
 <img
@@ -296,11 +317,12 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<p>不過這種模式要慎用，因為他的重要邏輯都在 Exchange 上，所以如果是對 RabbitMQ 不熟的新手，從 code 中會看不出來原來還有這種用法，只會知道 Producer 把 message 丟給 Exchange，但卻不知道為什麼 log Queue 和 error log Queue 中卻都會有 message 出現</p>
+<p>不過，雖然使用 Routing 模式可以很容易的實作出上述的收集 Log 的 Queue，但是因為他的重要邏輯都寫在 Exchange 上，所以如果對 RabbitMQ 或是 Exchange 不太熟練的話，就會不知道要去哪裡改這些設定（Exchange 的設定要進到 RabbitMQ 的系統中改）。</p>
+<p>因此在實作上，建議大家是慎用這個模式，除非團隊中的每個人真的都很熟悉 RabbitMQ，不然的話用這個模式可能會導致後期維護不易。</p>
 <h3 id="5-topics-模式" class="markdown-heading-anchor">
   5. Topics 模式
   <a href="#5-topics-%e6%a8%a1%e5%bc%8f">#</a>
-</h3><p>用到了 Exchange 的 topic type，用法基本上跟 Routing 模式一樣，只是 routing key 進化成可以使用模糊綁定而已</p>
+</h3><p>Topics 模式算是更進階的 Routing 模式，他的 Exchange 使用的是 <code>topic</code> 設定，不過用法基本上和 Routing 模式一樣，只是 routing key 進階成可以使用模糊綁定而已。</p>
 <p>
 
 <img
@@ -309,102 +331,47 @@ SpringBoot - RabbitMQ 使用方法
   loading="lazy"
   data-zoomable
 /></p>
-<h3 id="rabbitmq-安裝教學" class="markdown-heading-anchor">
-  RabbitMQ 安裝教學
-  <a href="#rabbitmq-%e5%ae%89%e8%a3%9d%e6%95%99%e5%ad%b8">#</a>
-</h3><blockquote>
-<p>需要先安裝 docker-desktop，可以到 Docker 官網下載 <a href="https://www.docker.com/products/docker-desktop"
+<p>我自己還沒有在實務上見到過 Topics 模式的用法，所以除非大家有很特殊的需求，才需要考慮使用 Topics 模式，不然一般的情況下，使用前面的模式就可以解決大部分的問題了。</p>
+<h2 id="rabbitmq-總結" class="markdown-heading-anchor">
+  RabbitMQ 總結
+  <a href="#rabbitmq-%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>所以總結上面的介紹的話，在 RabbitMQ 中，最常見的 5 種模式分別是：</p>
+<ol>
+<li>Direct 模式</li>
+<li><strong>Worker 模式（常用）</strong></li>
+<li><strong>Publish/Subscribe 模式（常用）</strong></li>
+<li>Routing 模式</li>
+<li>Topics 模式</li>
+</ol>
+<p>因此大家以後就可以根據自己的需求，決定要使用哪一種模式來實作了！</p>
+<h2 id="結語" class="markdown-heading-anchor">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2><p>這篇文章我們先介紹了 RabbitMQ 中的三個重要角色：Producer、Consumer、Queue，並且也介紹了 RabbitMQ 中常見的五種模式，因此大家就可以根據自己的需求，決定要使用哪種模式來實作了。</p>
+<p>如果你對 RabbitMQ 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章：</p>
+<ul>
+<li><a href="/blog/rabbitmq1/"
    
    target="_blank" rel="noopener">
-https://www.docker.com/products/docker-desktop
-</a></p>
-</blockquote>
-<p>可以使用 docker 在自己的電腦上快速架設起 RabbitMQ 以及 RabbitMQ 專屬的 Web 管理介面</p>
-<p>推薦使用 <code>rabbitmq:management</code> 的 docker image，不僅可以幫我們架設起一個 RabbitMQ，還可以順便為我們架設起一個用來管理該 RabbitMQ 的 web 管理介面，非常方便</p>
-<p>執行以下方法，就可以順利啟動這個 docker image</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
-</span></span><span style="display:flex;"><span>-e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
-</span></span></span><span style="display:flex;"><span><span style="color:#d14"></span>rabbitmq:management
-</span></span></code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234</p>
-<p>啟動好 docker image 之後，RabbitMQ 使用的 port 默認是 5672，而 RabbitMQ 的 Web 管理介面使用的 port 默認是 15672，因此只要訪問 <code>http://localhost:15672</code>，就會出現 RabbitMQ 的 Web 管理介面，此時就可以在輸入剛剛運行 docker image 所設定的帳號密碼登入進去</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management1.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>到這裡 RabbitMQ 就安裝好了，所以就可以使用 SpringBoot 連接上此 RabbitMQ 了</p>
-<h4 id="web-管理介面導覽" class="markdown-heading-anchor">
-  Web 管理介面導覽
-  <a href="#web-%e7%ae%a1%e7%90%86%e4%bb%8b%e9%9d%a2%e5%b0%8e%e8%a6%bd">#</a>
-</h4><p>登入之後就會進到 Overview 頁面，在 Overview 頁面可以查看 Queue 的整體狀況以及 cluster node 的 cpu/memory 使用狀態</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management2.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>點擊上方的 Exchanges tab 可以進到 Exchanges 頁面，可以查看目前已存在的 Exchange，以及新增一個新的 Exchange</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management3.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>點擊其中一個已存在的 Exchange，可以查看該 Exchange 的詳細資訊</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management4.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>點擊上方的 Queue tab 可以進到 Queue 頁面，可以查看目前已存在的 Queue，也可以新增一個新的 Queue</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management5.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>同理，點擊其中一個已存在的 Queue，可以查看該 Queue 的詳細資訊，也可以對該 Queue 進行一系列的操作（跟 Exchange 的操作差不多，這裡就不列了）</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management6.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>點擊上方的 Admin tab 可以進到 Admin 頁面，然後在 Admin 裡點擊右側的 Users tab，可以查看/新增 RabbitMQ 的使用者，也可以查看該使用者允許 access 的 virtual host</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management7.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p>點擊右側的 Virtual Hosts tab，可以查看/新增 RabbitMQ 的 virtual host</p>
-<p>
-
-<img
-  src="/images/blog/rabbitmq_management8.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<p><strong>補充：</strong> 在 RabbitMQ 裡面有一個 virtual host 的概念，可以想像成是分組，也就是一個 virtual host 就是一組</p>
-<p>當 RabbitMQ 運行時，預設會產生一個 virtual host 叫做 <code>/</code>，然後如果不特別調整的話，所有的 Queue 都是創建在這個 <code>/</code> 的 virtual host 裡面，而 user 預設也是被設定成能存取 <code>/</code></p>
-<p>所以如果想要在 RabbitMQ 裡面做分組的權限控管的話，只要多創建幾個 virtual host，user 就可以在不同的 virtual host 下創建 Queue 和 Exchange，不同 virtual host 裡的 Queue 和 Exchange 無法互通，然後也可以去限制說某些 user 只能存取某些 virtual host</p>
+RabbitMQ 介紹（一）- 什麼是 Message Queue？
+</a></li>
+<li>RabbitMQ 介紹（二）- RabbitMQ 用法介紹（本文）</li>
+<li><a href="/blog/rabbitmq3/"
+   
+   target="_blank" rel="noopener">
+RabbitMQ 介紹（三）- RabbitMQ 安裝教學
+</a></li>
+<li><a href="/blog/rabbitmq4/"
+   
+   target="_blank" rel="noopener">
+RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
+</a></li>
+</ul>
+<p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="https://kucw.io/bio"
+   
+   target="_blank" rel="noopener">
+《古古的後端筆記》電子報
+</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
 
         </div>
         <hr class="blog-end-divider">

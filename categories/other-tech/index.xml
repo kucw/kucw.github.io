@@ -13,49 +13,42 @@
       <link>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</link>
       <pubDate>Fri, 27 Oct 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</guid>
-      <description>當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock</description>
+      <description>&lt;p&gt;當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock&lt;/p&gt;</description>
     </item>
     <item>
       <title>工程師如何累積程式實力？</title>
       <link>https://kucw.io/blog/2023/4/rename-iphone-photo-by-date-copy/</link>
       <pubDate>Sun, 02 Apr 2023 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2023/4/rename-iphone-photo-by-date-copy/</guid>
-      <description>你是否曾經覺得，明明已經工作了 2、3 年，但是學的東西感覺都不是特別扎實？好像自己平常都只是東學一點、西學一點，程式出錯了就上網查解法，但出去面試被面試官問到技術問題時，你明明記得你看過的，卻不知道為什麼就是答不上來技術細節&#xA;造就這一切的原因，其實都可以歸類成：你沒有建立過自己的知識體系&#xA;好記性不如爛筆頭 # 俗話說「好記性不如爛筆頭」，這句話充分的強調了記筆記的重要性，更何況我們生活在這個知識爆炸的時代，你就算擁有再好的記憶能力，也沒辦法保證能將每一點的知識點都記得牢固&#xA;而且說實在的，要能夠閉著眼睛默寫一段程式出來真的是滿難的，而且其實沒什麼意義，往後你會接觸到更多程式語言、更多框架，所以基本上是不可能把每一行程式全部背下來的&#xA;因此平常比較用不到的知識點，其實不需要特別去記住，只要記在你的筆記裡就行，一但要用上時，只要去你的筆記中查詢，就可以快速找到你曾經學習過的知識，將它應用到你現在遇到的問題上了&#xA;不過有的人可能會說：那這樣跟上網查解法有什麼不同？這個不同之處還是滿大的</description>
+      <description>&lt;p&gt;你是否曾經覺得，明明已經工作了 2、3 年，但是學的東西感覺都不是特別扎實？好像自己平常都只是東學一點、西學一點，程式出錯了就上網查解法，但出去面試被面試官問到技術問題時，你明明記得你看過的，卻不知道為什麼就是答不上來技術細節&lt;/p&gt;&#xA;&lt;p&gt;造就這一切的原因，其實都可以歸類成：你沒有建立過自己的知識體系&lt;/p&gt;&#xA;&lt;h2 id=&#34;好記性不如爛筆頭&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  好記性不如爛筆頭&#xA;  &lt;a href=&#34;#%e5%a5%bd%e8%a8%98%e6%80%a7%e4%b8%8d%e5%a6%82%e7%88%9b%e7%ad%86%e9%a0%ad&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;俗話說「好記性不如爛筆頭」，這句話充分的強調了&lt;strong&gt;記筆記&lt;/strong&gt;的重要性，更何況我們生活在這個知識爆炸的時代，你就算擁有再好的記憶能力，也沒辦法保證能將每一點的知識點都記得牢固&lt;/p&gt;&#xA;&lt;p&gt;而且說實在的，要能夠閉著眼睛默寫一段程式出來真的是滿難的，而且其實沒什麼意義，往後你會接觸到更多程式語言、更多框架，所以基本上是不可能把每一行程式全部背下來的&lt;/p&gt;&#xA;&lt;p&gt;因此平常比較用不到的知識點，其實不需要特別去記住，只要記在你的筆記裡就行，一但要用上時，只要去你的筆記中查詢，就可以快速找到你曾經學習過的知識，將它應用到你現在遇到的問題上了&lt;/p&gt;&#xA;&lt;p&gt;不過有的人可能會說：那這樣跟上網查解法有什麼不同？這個不同之處還是滿大的&lt;/p&gt;</description>
     </item>
     <item>
       <title>重新命名 iPhone 照片檔名為日期時間（Mac版）</title>
       <link>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</link>
       <pubDate>Fri, 05 Aug 2022 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</guid>
-      <description>iPhone airdrop 到 Macbook 上的照片檔名為 IMG_0862.JPG，不利於照片整理，改命名成右邊這種 IMG_20220726_110204.JPG 格式會好整理很多&#xA;想要大量修改圖片檔案名稱為右邊這種格式，可以透過 ExifTool 工具解決</description>
+      <description>&lt;p&gt;iPhone airdrop 到 Macbook 上的照片檔名為 IMG_0862.JPG，不利於照片整理，改命名成右邊這種 IMG_20220726_110204.JPG 格式會好整理很多&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&#xA;&lt;img&#xA;  src=&#34;https://kucw.io/images/blog/iphone_photo1.png&#34;&#xA;  alt=&#34;&#34;&#xA;  loading=&#34;lazy&#34;&#xA;  data-zoomable&#xA;/&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>自學程式，如何高效率的學習？</title>
       <link>https://kucw.io/blog/2022/4/efficient-learning/</link>
       <pubDate>Sat, 30 Apr 2022 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2022/4/efficient-learning/</guid>
-      <description>想要提升學習效率，不管你是使用什麼工具，只有下面這三點最重要&#xA;系統化的學習 循序漸進 大量練習 系統化的學習，讓你可以在腦中組織這些內容的關係圖，而不是像背單字一樣背一個忘一個&#xA;循序漸進，讓你由淺入深慢慢拓展，沒有人一開始就跳過加減乘除去學微積分的對吧&#xA;大量練習，讓這些知識成為你的肌肉記憶，就像呼吸一樣自然，右手寫左手答&#xA;只要能夠掌握好這三點，不管是學習哪個領域，都可以加速你的學習效率&#xA;什麼樣的學習管道最有效率？ # 要我說，對程式語言這個領域，剛入門的人，我建議是 「直接買付費的線上課程」 來學習</description>
+      <description>&lt;p&gt;想要提升學習效率，不管你是使用什麼工具，只有下面這三點最重要&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;系統化的學習&lt;/li&gt;&#xA;&lt;li&gt;循序漸進&lt;/li&gt;&#xA;&lt;li&gt;大量練習&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;系統化的學習，讓你可以在腦中組織這些內容的關係圖，而不是像背單字一樣背一個忘一個&lt;/p&gt;&#xA;&lt;p&gt;循序漸進，讓你由淺入深慢慢拓展，沒有人一開始就跳過加減乘除去學微積分的對吧&lt;/p&gt;&#xA;&lt;p&gt;大量練習，讓這些知識成為你的肌肉記憶，就像呼吸一樣自然，右手寫左手答&lt;/p&gt;&#xA;&lt;p&gt;只要能夠掌握好這三點，不管是學習哪個領域，都可以加速你的學習效率&lt;/p&gt;&#xA;&lt;h2 id=&#34;什麼樣的學習管道最有效率&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼樣的學習管道最有效率？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%a8%a3%e7%9a%84%e5%ad%b8%e7%bf%92%e7%ae%a1%e9%81%93%e6%9c%80%e6%9c%89%e6%95%88%e7%8e%87&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;要我說，對程式語言這個領域，剛入門的人，我建議是 &lt;strong&gt;「直接買付費的線上課程」&lt;/strong&gt; 來學習&lt;/p&gt;</description>
     </item>
     <item>
       <title>為了 SEO！我離開了 Medium，改在 GitHub 上自架個人網站</title>
       <link>https://kucw.io/blog/2021/1/from-medium-to-github/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2021/1/from-medium-to-github/</guid>
-      <description>因應 Medium 的付費牆、以及 SEO 的政策調整，我發現我在 Medium 上的文章越來越難被搜尋到了&#xA;有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，大家在找資料的時候，一定都是先點前幾個連結嘛</description>
-    </item>
-    <item>
-      <title>RabbitMQ 基本介紹、安裝教學</title>
-      <link>https://kucw.io/blog/2020/11/rabbitmq/</link>
-      <pubDate>Wed, 18 Nov 2020 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/2020/11/rabbitmq/</guid>
-      <description>RabbitMQ 是在各企業中最為廣泛使用的 message queue，而在 RabbitMQ 的世界裡面有三個角色，分別是 Producer、Queue、Consumer&#xA;Producer : 負責將 message 發送到 Queue 裡 Queue : 負責暫存 message Consumer : 負責去 Queue 中消費 message RabbitMQ 常見的五種模式 # 在 RabbitMQ 中，常見的五種模式如下，詳情也可參照 官網 Direct 模式 Worker 模式 Publish/Subscribe 模式 Routing 模式 Topics 模式 有關如何在 SpringBoot 中使用 RabbitMQ 的這五種模式，可以參考我的另一篇文章 SpringBoot - RabbitMQ 使用方法 1.</description>
+      <description>&lt;p&gt;因應 Medium 的付費牆、以及 SEO 的政策調整，我發現我在 Medium 上的文章越來越難被搜尋到了&lt;/p&gt;&#xA;&lt;p&gt;有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，大家在找資料的時候，一定都是先點前幾個連結嘛&lt;/p&gt;</description>
     </item>
     <item>
       <title>Superset 安裝教學</title>
       <link>https://kucw.io/blog/2019/12/superset-install/</link>
       <pubDate>Fri, 20 Dec 2019 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2019/12/superset-install/</guid>
-      <description>安裝環境 : CentOS Linux release 7.7.1908 (Core)&#xA;sudo yum install python36-pip python3-devel gcc-c++ sudo pip3 install apache-superset superset db upgrade flask fab create-admin superset load_examples superset run -p 8088 </description>
+      <description>&lt;p&gt;安裝環境 : CentOS Linux release 7.7.1908 (Core)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install python36-pip python3-devel gcc-c++&#xA;sudo pip3 install apache-superset&#xA;superset db upgrade&#xA;flask fab create-admin&#xA;superset load_examples&#xA;superset run -p 8088&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
   </channel>
 </rss>

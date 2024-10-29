@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.133.1 with theme pure" />
+  <meta name="generator" content="Hugo 0.136.4 with theme pure" />
 
   <!-- Plugins -->
   
@@ -228,55 +228,55 @@ Spring 官方文件
 </a></p>
 </blockquote>
 <table>
-<thead>
-<tr>
-<th><strong>HTTP 方法</strong></th>
-<th><strong>Endpoint</strong></th>
-<th><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td>/actuator</td>
-<td>查看有哪些監控的 api 有開放使用</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/env</td>
-<td>查看此 Spring Boot 程式載入了哪些 application.properties 的值（不過為了保護安全資訊，所以會自動碼掉帶有 key、password、secret 等關鍵字的 properties 的值）</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/flyway</td>
-<td>查看 flyway DB 的 migration 資訊</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/health</td>
-<td>查看當前 Spring Boot 程式的運行健康指標，UP 即為正常運行</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/heapdump</td>
-<td>取得 JVM 當下的 heap dump，會下載一個檔案</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/metrics</td>
-<td>查看有哪些指標的數據可以看（ex: jvm.memory.max、system.cpu.usage），可再使用 <code>/actuator/metrics/{metric.name}</code> 分別查看各個指標的詳細資訊</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>/actuator/scheduledtasks</td>
-<td>查看定時任務的資訊</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>/actuator/shutdown</td>
-<td>唯一一個需要 POST 請求的 api，關閉這個 Spring Boot 程式</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th><strong>HTTP 方法</strong></th>
+          <th><strong>Endpoint</strong></th>
+          <th><strong>描述</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GET</td>
+          <td>/actuator</td>
+          <td>查看有哪些監控的 api 有開放使用</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/env</td>
+          <td>查看此 Spring Boot 程式載入了哪些 application.properties 的值（不過為了保護安全資訊，所以會自動碼掉帶有 key、password、secret 等關鍵字的 properties 的值）</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/flyway</td>
+          <td>查看 flyway DB 的 migration 資訊</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/health</td>
+          <td>查看當前 Spring Boot 程式的運行健康指標，UP 即為正常運行</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/heapdump</td>
+          <td>取得 JVM 當下的 heap dump，會下載一個檔案</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/metrics</td>
+          <td>查看有哪些指標的數據可以看（ex: jvm.memory.max、system.cpu.usage），可再使用 <code>/actuator/metrics/{metric.name}</code> 分別查看各個指標的詳細資訊</td>
+      </tr>
+      <tr>
+          <td>GET</td>
+          <td>/actuator/scheduledtasks</td>
+          <td>查看定時任務的資訊</td>
+      </tr>
+      <tr>
+          <td>POST</td>
+          <td>/actuator/shutdown</td>
+          <td>唯一一個需要 POST 請求的 api，關閉這個 Spring Boot 程式</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="開啟受保護的-actuator-監控-api-的方法" class="markdown-heading-anchor">
   開啟受保護的 Actuator 監控 api 的方法
