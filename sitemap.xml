@@ -4,76 +4,21 @@
     
     <url>
         <loc>https://kucw.io/blog/</loc>
-        <lastmod>2024-10-30T09:00:00+08:00</lastmod>
+        <lastmod>2024-10-29T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/</loc>
-        <lastmod>2024-10-30T09:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/categories/leetcode-%E5%88%B7%E9%A1%8C/</loc>
-        <lastmod>2024-10-30T09:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-49/</loc>
-        <lastmod>2024-10-30T09:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/</loc>
-        <lastmod>2024-10-30T09:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-242/</loc>
-        <lastmod>2024-10-30T08:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-217/</loc>
-        <lastmod>2024-10-30T07:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-1-hashmap/</loc>
-        <lastmod>2024-10-30T06:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-155/</loc>
-        <lastmod>2024-10-30T05:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-20/</loc>
-        <lastmod>2024-10-30T04:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-141/</loc>
-        <lastmod>2024-10-30T03:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-21/</loc>
-        <lastmod>2024-10-30T02:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-206/</loc>
-        <lastmod>2024-10-30T01:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/blog/dsa/leetcode-1/</loc>
-        <lastmod>2024-10-30T00:00:00+08:00</lastmod>
+        <lastmod>2024-10-29T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</loc>
+        <lastmod>2024-10-29T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/</loc>
         <lastmod>2024-10-29T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
