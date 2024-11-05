@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 29 Oct 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>資料庫的 ACID、Transaction（交易）介紹</title>
+      <link>https://kucw.io/blog/db-acid-transatcion/</link>
+      <pubDate>Tue, 05 Nov 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/db-acid-transatcion/</guid>
+      <description>&lt;h2 id=&#34;什麼是資料庫的-acid&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是資料庫的 ACID？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af%e8%b3%87%e6%96%99%e5%ba%ab%e7%9a%84-acid&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在常見的關聯式資料庫中（例如：MySQL、PostgreSQL、MS SQL），都會有 ACID 的特性，而 ACID 即是：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;A&lt;/strong&gt;tomicity（原子性）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;C&lt;/strong&gt;onsistency（一致性）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;I&lt;/strong&gt;solation（隔離性）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;D&lt;/strong&gt;urability（永久性）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;也因為有 ACID 這四個特性，使得 MySQL 這類的資料庫支援 &lt;strong&gt;「Transaction（交易）」&lt;/strong&gt; 的操作，所以接下來我們就直接用一個例子，來了解一下什麼是「Transaction（交易）」，以及了解 ACID 在其中的用途是什麼。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>淺談搶票系統</title>
       <link>https://kucw.io/blog/ticket_system/</link>
