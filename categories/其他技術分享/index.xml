@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/github-actions-intro/</link>
       <pubDate>Tue, 12 Nov 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/github-actions-intro/</guid>
-      <description>&lt;h2 id=&#34;什麼是-github-actions&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 GitHub Actions？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-github-actions&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 GitHub Action，是 GitHub 所提供的一個自動化集成服務，簡單的說的話，就是我們可以自由指定：&lt;strong&gt;「當有 commit 被 push 到 GitHub 中的某個 repository 時，我們要 GitHub 做什麼事」&lt;/strong&gt;。&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;什麼是-github-actions&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 GitHub Actions？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-github-actions&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 GitHub Actions，是 GitHub 所提供的一個自動化集成服務，簡單的說的話，就是我們可以自由指定：&lt;strong&gt;「當有 commit 被 push 到 GitHub 中的某個 repository 時，我們要 GitHub 做什麼事」&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>資料庫的 ACID、Transaction（交易）介紹</title>
