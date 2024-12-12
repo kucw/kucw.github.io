@@ -33,8 +33,23 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
+        <lastmod>2024-12-03T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/as-a-content-creator/monthly-report-202411/</loc>
+        <lastmod>2024-12-03T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://kucw.io/blog/iaas-paas-faas-saas-intro/</loc>
         <lastmod>2024-11-26T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/ithome-write-a-book/</loc>
+        <lastmod>2024-11-19T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
@@ -48,17 +63,12 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
-        <lastmod>2024-11-05T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
         <loc>https://kucw.io/blog/db-acid-transatcion/</loc>
         <lastmod>2024-11-05T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/blog/as-a-content-creator/3/</loc>
+        <loc>https://kucw.io/blog/as-a-content-creator/monthly-report-202410/</loc>
         <lastmod>2024-11-05T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
@@ -103,7 +113,7 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://kucw.io/blog/as-a-content-creator/2/</loc>
+        <loc>https://kucw.io/blog/as-a-content-creator/monthly-report-202408-09/</loc>
         <lastmod>2024-09-24T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>

@@ -30,6 +30,13 @@
       <description>&lt;p&gt;IaaS、PaaS、FaaS、SaaS 這些名詞，是大家一開始在接觸雲端服務時，很容易搞混的名詞，所以這篇文章我們就來介紹一下他們的差別吧！&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-什麼是-iaas&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  1. 什麼是 IaaS？&#xA;  &lt;a href=&#34;#1-%e4%bb%80%e9%ba%bc%e6%98%af-iaas&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;IaaS 是 Infrastructure as a Service 的簡寫&lt;/strong&gt;，中文翻譯為「基礎結構即服務」，&lt;strong&gt;IaaS 是指「你能夠使用這個服務來創建 VM」。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>iThome 鐵人賽 - 出書的幕後花絮</title>
+      <link>https://kucw.io/blog/ithome-write-a-book/</link>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/ithome-write-a-book/</guid>
+      <description>&lt;p&gt;哈囉，我是古古！之前有在 &lt;a href=&#34;https://kucw.io/blog/ithome-sharing/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;iThome 鐵人賽 - 得《優選》獎項的寫作心法&#xA;&lt;/a&gt; 的文章中，和大家分享我得獎的寫作心法，這篇文章則是會分享在 iThome 鐵人賽得獎之後，出書過程中的一些幕後花絮，如果你也對出書感興趣的話，歡迎繼續觀看本文章～&lt;/p&gt;&#xA;&lt;h2 id=&#34;這本書spring-boot-零基礎入門在介紹什麼&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  這本書《Spring Boot 零基礎入門》在介紹什麼？&#xA;  &lt;a href=&#34;#%e9%80%99%e6%9c%ac%e6%9b%b8spring-boot-%e9%9b%b6%e5%9f%ba%e7%a4%8e%e5%85%a5%e9%96%80%e5%9c%a8%e4%bb%8b%e7%b4%b9%e4%bb%80%e9%ba%bc&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先先介紹一下我所出版的書籍，這本書是改編自 iThome 鐵人賽的得獎文章《Spring Boot 零基礎入門》，當初會想用 Spring Boot 零基礎入門這個主題參賽，就是因為自己剛入門 Spring Boot 時，發現單純透過網路上零散的介紹，很難完整了解 Spring Boot 的運作邏輯是什麼（一開始覺得IoC 好難…🥹），一度覺得很挫折。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>給工程師的求職建議（年資 1-3 年）</title>
       <link>https://kucw.io/blog/developer-interview-suggestion/</link>
       <pubDate>Thu, 14 Nov 2024 00:00:00 +0800</pubDate>
