@@ -20,7 +20,7 @@
       <link>https://kucw.io/blog/2020/3/java-lombok/</link>
       <pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/3/java-lombok/</guid>
-      <description>&lt;p&gt;Lombok 是一個 Java library，可以透過簡單的注解省略 Java 的 code，像是 setter、getter、logger&amp;hellip;等，目的在消除冗長的 code 和提高開發效率&lt;/p&gt;</description>
+      <description>&lt;p&gt;Lombok 是一個 Java library，可以透過簡單的寫法自動生成 Java 的 code，像是 setter、getter、logger&amp;hellip;等，目的在消除冗長的 code 和提高開發效率&lt;/p&gt;</description>
     </item>
     <item>
       <title>Java - 測量程式執行時間</title>

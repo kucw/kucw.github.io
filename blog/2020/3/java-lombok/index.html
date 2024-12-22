@@ -190,8 +190,8 @@
 
 
         <div class="content mb-4">
-          <p>Lombok 是一個 Java library，可以透過簡單的注解省略 Java 的 code，像是 setter、getter、logger&hellip;等，目的在消除冗長的 code 和提高開發效率</p>
-<p>假設你在類上加上了一個 <code>@Getter</code> 和 <code>@Setter</code> 注解，那你就不用在寫煩人的 getter 和 setter，lombok 會自動幫你產生出來啦！</p>
+          <p>Lombok 是一個 Java library，可以透過簡單的寫法自動生成 Java 的 code，像是 setter、getter、logger&hellip;等，目的在消除冗長的 code 和提高開發效率</p>
+<p>例如當你在 Class 上加上了一個 <code>@Getter</code> 和 <code>@Setter</code> 之後，Lombok 就會自動幫你產生 getter 和 setter 出來，所以你就不用再自己去寫這些煩人的程式啦！</p>
 <p>
 
 <img
@@ -200,27 +200,27 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>之所以加個 lombok 的 @Getter 注解就可以幫我們自動生成所有變量的 getter，是因為 lombok 參與了 Java 在 compile 階段生成 <code>.class</code> 檔的過程，lombok 會幫我們自動寫一堆 getter，然後塞進 <code>.class</code> 檔，所以真正被編譯出來的 User.class 檔案，是包含完整的 getter 的</p>
-<p>簡單的說，lombok可以算是一種語法糖，只是在幫我們增進開發效率而已，實際上所產生出來的<code>.class</code>檔仍然是完全正常的</p>
-<h3 id="安裝-lombok" class="markdown-heading-anchor">
+<p>之所以加個 <code>@Getter</code> 就可以幫我們自動生成所有變數的 getter，是因為 Lombok 參與了 Java 在 compile 階段生成 <code>.class</code> 檔的過程，Lombok 會幫我們自動寫一堆 getter，然後塞進 <code>.class</code> 檔，所以真正被編譯出來的 User.class 檔案，是包含完整的 getter 的</p>
+<p>所以簡單的說，Lombok 可以算是一種語法糖，只是在幫我們增進開發效率而已，實際上所產生出來的<code>.class</code>檔仍然是完全正常的！</p>
+<h2 id="安裝-lombok" class="markdown-heading-anchor">
   安裝 Lombok
   <a href="#%e5%ae%89%e8%a3%9d-lombok">#</a>
-</h3><p>要在 project 中使用 lombok，除了要在 maven 中加入 lombok dependency，還要安裝 Intellij lombok 插件</p>
-<h4 id="1-加入maven-dependency" class="markdown-heading-anchor">
-  1. 加入maven dependency
-  <a href="#1-%e5%8a%a0%e5%85%a5maven-dependency">#</a>
-</h4><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;dependency&gt;</span>
+</h2><p>要在 project 中使用 Lombok，除了要在 maven 中加入 Lombok dependency，還要安裝 Intellij 的 Lombok 插件</p>
+<h3 id="1-加入-maven-dependency" class="markdown-heading-anchor">
+  1. 加入 maven dependency
+  <a href="#1-%e5%8a%a0%e5%85%a5-maven-dependency">#</a>
+</h3><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;groupId&gt;</span>org.projectlombok<span style="color:#000080">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;artifactId&gt;</span>lombok<span style="color:#000080">&lt;/artifactId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000080">&lt;version&gt;</span>1.18.18<span style="color:#000080">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#000080">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><h4 id="2-在-intellij-中安裝-lombok-插件" class="markdown-heading-anchor">
-  2. 在 Intellij 中安裝 lombok 插件
+</span></span></code></pre></div><h3 id="2-在-intellij-中安裝-lombok-插件" class="markdown-heading-anchor">
+  2. 在 Intellij 中安裝 Lombok 插件
   <a href="#2-%e5%9c%a8-intellij-%e4%b8%ad%e5%ae%89%e8%a3%9d-lombok-%e6%8f%92%e4%bb%b6">#</a>
-</h4><h6 id="我使用的-intellij-版本是-201933可能會因為版本差異導致安裝方式有改變" class="markdown-heading-anchor">
-  我使用的 Intellij 版本是 2019.3.3，可能會因為版本差異導致安裝方式有改變
-  <a href="#%e6%88%91%e4%bd%bf%e7%94%a8%e7%9a%84-intellij-%e7%89%88%e6%9c%ac%e6%98%af-201933%e5%8f%af%e8%83%bd%e6%9c%83%e5%9b%a0%e7%82%ba%e7%89%88%e6%9c%ac%e5%b7%ae%e7%95%b0%e5%b0%8e%e8%87%b4%e5%ae%89%e8%a3%9d%e6%96%b9%e5%bc%8f%e6%9c%89%e6%94%b9%e8%ae%8a">#</a>
-</h6><p>先點選左上角 Intellij IDEA -&gt; Preferences</p>
+</h3><blockquote>
+<p>補充：我使用的 Intellij 版本是 2019.3.3，可能會因為版本差異導致安裝方式有改變</p>
+</blockquote>
+<p>先點選左上角 Intellij IDEA -&gt; Preferences</p>
 <p>
 
 <img
@@ -229,7 +229,7 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>然後點擊左邊的Plugins，再點擊上面的Marketplace tab，然後就可以在搜尋欄中輸入<code>lombok</code>，並且找到lombok插件並安裝它</p>
+<p>然後點擊左邊的 Plugins，再點擊上面的 Marketplace tab，然後就可以在搜尋欄中輸入<code>lombok</code>，並且找到 Lombok 插件並安裝它</p>
 <p>
 
 <img
@@ -238,12 +238,12 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h4 id="為什麼需要特地安裝-intellij-lombok-插件" class="markdown-heading-anchor">
-  為什麼需要特地安裝 Intellij lombok 插件？
-  <a href="#%e7%82%ba%e4%bb%80%e9%ba%bc%e9%9c%80%e8%a6%81%e7%89%b9%e5%9c%b0%e5%ae%89%e8%a3%9d-intellij-lombok-%e6%8f%92%e4%bb%b6">#</a>
-</h4><p>其實在 maven 加入 lombok dependency 之後，使用 <code>mvn clean package</code> 就可以正常 build 過，在 Intellij 中點擊綠色按鈕也可以運行程式</p>
-<p>之所以還要特地安裝 Intellij lombok 插件，是因為如果不安裝 lombok 插件的話，Intellij 就會沒辦法自動提示出 lombok 產生的方法，所以就會發生你的 code 一片紅，但是運行卻可以通過的奇妙現象</p>
-<p>像是下面這段 code 中，因為對 Intellij 來說，code 裡並不存在 setter，所以沒辦法自動提示 <code>setId()</code>、<code>setName()</code> 等方法，但是又因為我們在maven中有加入 lombok dependency，所以點擊第 13 行的綠色箭頭運行程式的話，是可以正常運行成功的</p>
+<h3 id="補充為什麼需要特地安裝-intellij-的-lombok-插件" class="markdown-heading-anchor">
+  補充：為什麼需要特地安裝 Intellij 的 Lombok 插件？
+  <a href="#%e8%a3%9c%e5%85%85%e7%82%ba%e4%bb%80%e9%ba%bc%e9%9c%80%e8%a6%81%e7%89%b9%e5%9c%b0%e5%ae%89%e8%a3%9d-intellij-%e7%9a%84-lombok-%e6%8f%92%e4%bb%b6">#</a>
+</h3><p>其實在 maven 加入 Lombok dependency 之後，使用 <code>mvn clean package</code> 就可以正常 build 過，在 Intellij 中點擊綠色按鈕也可以運行程式</p>
+<p>之所以還要特地安裝 Intellij 的 Lombok 插件，是因為如果不安裝 Lombok 插件的話，Intellij 就會沒辦法自動提示出 Lombok 產生的方法，所以就會發生你的 code 一片紅，但是運行卻可以通過的奇妙現象</p>
+<p>像是下面這段 code 中，因為對 Intellij 來說，code 裡並不存在 setter，所以沒辦法自動提示 <code>setId()</code>、<code>setName()</code> 等方法，但是又因為我們在 maven 中有加入 Lombok dependency，所以點擊第 13 行的綠色箭頭運行程式的話，是可以正常運行成功的</p>
 <p>
 
 <img
@@ -252,11 +252,22 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>所以 lombok 算侵入性很高的一個 library，只要團隊中有一個人用 lombok 開發，那麼所有的人都必須得安裝上 lombok 插件，才不會在 Intellij 中一打開 project 時，整片都是痛苦的紅字</p>
-<h3 id="lombok-用法" class="markdown-heading-anchor">
-  Lombok 用法
-  <a href="#lombok-%e7%94%a8%e6%b3%95">#</a>
-</h3><p>lombok 官網提供了許多注解，但是「勁酒雖好，可不能貪杯」，你用了越多 lombok 的進階用法，會讓整個團隊的學習曲線上升，反而會造成反效果，所以在此處只解釋最最常見、並且我認為最必要的注解使用方式，其他的用法就不介紹了</p>
+<p>所以 Lombok 算是侵入性很高的一個 library，只要團隊中有一個人用 Lombok 開發，那麼所有的人都必須得安裝 Lombok 插件才行，這樣才不會發生在 Intellij 中一打開 project 時，整片都是痛苦的紅字</p>
+<h2 id="lombok-用法介紹" class="markdown-heading-anchor">
+  Lombok 用法介紹
+  <a href="#lombok-%e7%94%a8%e6%b3%95%e4%bb%8b%e7%b4%b9">#</a>
+</h2><p>Lombok 官網提供了許多好用的註解，但是「勁酒雖好，可不能貪杯」，你用了越多 Lombok 的進階用法，會讓整個團隊的學習曲線上升，反而會造成反效果，所以在此處只解釋最常見、並且最重要的註解使用方式，其他較少見的用法就不會涵蓋在此文章中</p>
+<p>此篇文章會介紹的 Lombok 方法為：</p>
+<ol>
+<li>@Getter/@Setter</li>
+<li>@ToString</li>
+<li>@EqualsAndHashCode</li>
+<li>@NoArgsConstructor、@AllArgsConstructor、@RequiredArgsConstructor</li>
+<li><strong>@Data（最常用）</strong></li>
+<li>@Value</li>
+<li><strong>@Builder（常用）</strong></li>
+<li>@Slf4j</li>
+</ol>
 <p>
 
 <img
@@ -265,10 +276,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h4 id="1-gettersetter" class="markdown-heading-anchor">
+<h3 id="1-gettersetter" class="markdown-heading-anchor">
   1. @Getter/@Setter
   <a href="#1-gettersetter">#</a>
-</h4><p>自動產生 getter/setter</p>
+</h3><p>自動產生 getter/setter</p>
 <p>
 
 <img
@@ -277,10 +288,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h4 id="2-tostring" class="markdown-heading-anchor">
+<h3 id="2-tostring" class="markdown-heading-anchor">
   2. @ToString
   <a href="#2-tostring">#</a>
-</h4><p>自動 override <code>toString()</code> 方法，會印出所有變量</p>
+</h3><p>自動 override <code>toString()</code> 方法，會輸出所有變數的值</p>
 <p>
 
 <img
@@ -289,10 +300,10 @@
   loading="lazy"
   data-zoomable
 /></p>
-<h4 id="3-equalsandhashcode" class="markdown-heading-anchor">
+<h3 id="3-equalsandhashcode" class="markdown-heading-anchor">
   3. @EqualsAndHashCode
   <a href="#3-equalsandhashcode">#</a>
-</h4><p>自動生成 <code>equals(Object other)</code> 和 <code>hashcode()</code> 方法，包括所有非靜態變量和非 transient 的變量</p>
+</h3><p>自動生成 <code>equals(Object other)</code> 和 <code>hashcode()</code> 方法，包括所有的「非靜態變數」和「非 transient 變數」</p>
 <p>
 
 <img
@@ -301,7 +312,7 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>如果某些變量不想要加進判斷，可以透過 exclude 排除，也可以使用 of 指定某些字段</p>
+<p>如果某些變數不想要加進判斷，可以透過 exclude 排除（或是也可以反過來，使用 of 指定只要輸出某些字段）</p>
 <p>
 
 <img
@@ -310,13 +321,13 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>Q : 為什麼只有一個整體的 <code>@EqualsAndHashCode</code> 注解，而不是分開的兩個 <code>@Equals</code> 和 <code>@HashCode</code>？</p>
-<p>A : 在 Java 中有規定，當兩個 object equals 時，他們的 hashcode 一定要相同，反之，當 hashcode 相同時，object 不一定 equals。所以 equals 和 hashcode 要一起 implement，免得發生違反 Java 規定的情形發生</p>
-<h4 id="4-noargsconstructor-allargsconstructor-requiredargsconstructor" class="markdown-heading-anchor">
-  4. @NoArgsConstructor, @AllArgsConstructor, @RequiredArgsConstructor
-  <a href="#4-noargsconstructor-allargsconstructor-requiredargsconstructor">#</a>
-</h4><p>這三個很像，都是在自動生成該類的 constructor，差別只在生成的 constructor 的參數不一樣而已</p>
-<p><strong>@NoArgsConstructor</strong> : 生成一個沒有參數的constructor</p>
+<p><strong>補充：</strong> 為什麼只有一個合在一起的註解 <code>@EqualsAndHashCode</code>，而不是兩個分開的註解 <code>@Equals</code> 和 <code>@HashCode</code>？</p>
+<p>因為在 Java 中有規定，當兩個 object equals 時，他們的 hashcode 一定要相同，反之，當 hashcode 相同時，object 不一定 equals。所以 equals 和 hashcode 要一起 implement，免得發生違反 Java 規定的情形發生</p>
+<h3 id="4-noargsconstructorallargsconstructorrequiredargsconstructor" class="markdown-heading-anchor">
+  4. @NoArgsConstructor、@AllArgsConstructor、@RequiredArgsConstructor
+  <a href="#4-noargsconstructorallargsconstructorrequiredargsconstructor">#</a>
+</h3><p>這三個很像，都是在自動生成該 Class 的 constructor，差別只是在「生成的 constructor 的參數不一樣」而已</p>
+<p><strong>@NoArgsConstructor</strong> : 生成一個沒有參數的 constructor</p>
 <p>
 
 <img
@@ -334,15 +345,15 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>這裡注意一個 Java 的小坑，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該類，但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了</p>
-<p>然而很多地方（像是 Spring Data JPA），會需要每個類都一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，拜託，一定要補上 <code>@NoArgsConstrcutor</code>，不然會有各種坑等著你</p>
+<p><strong>補充：</strong> 這裡要注意一個 Java 中的實作重點，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該 Class，<strong>但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了！</strong></p>
+<p>然而很多地方（像是 Spring Data JPA），都會要求每個 Class 一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，一定要記得補上 <code>@NoArgsConstrcutor</code>，不然就會出現各種意外的報錯，一定要記得！！！</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@AllArgsConstructor</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@NoArgsConstructor</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>Integer<span style="color:#bbb"> </span>id;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><p><strong>@RequiredArgsConstructor</strong> : 生成一個包含 &ldquo;特定參數&rdquo; 的 constructor，特定參數指的是那些有加上 final 修飾詞的變量們</p>
+</span></span></span></code></pre></div><p><strong>@RequiredArgsConstructor</strong> : 生成一個包含「特定參數」的 constructor，特定參數指的是「那些有加上 final 修飾詞的變數們」</p>
 <p>
 
 <img
@@ -351,11 +362,11 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>補充一下，如果所有的變量都是正常的，都沒有用 final 修飾的話，那就會生成一個沒有參數的 constructor</p>
-<h4 id="5-data" class="markdown-heading-anchor">
+<p>補充一下，如果所有的變數都是正常的（即是都沒有用 final 修飾的話），那就會生成一個沒有任何參數的 constructor</p>
+<h3 id="5-data" class="markdown-heading-anchor">
   5. @Data
   <a href="#5-data">#</a>
-</h4><p>懶人包，只要加了 @Data 這個注解，等於同時加了以下注解</p>
+</h3><p>懶人包，只要加了 @Data，等於同時加了以下註解：</p>
 <ul>
 <li>@Getter/@Setter</li>
 <li>@ToString</li>
@@ -370,13 +381,13 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>@Data 是使用頻率最高的lombok注解，通常 @Data 會加在一個值可以被更新的 Object 上，像是日常使用的 DTO 們、或是 JPA 裡的 Entity 們，就很適合加上 @Data 注解，也就是 @Data for mutable class</p>
-<h4 id="6-value" class="markdown-heading-anchor">
+<p>@Data 是使用頻率最高的 Lombok 用法，通常 @Data 會加在一個值可以被更新的 Object 上，像是日常使用的 DTO 們、或是 JPA 裡的 Entity 們，就很適合加上 @Data，也就是 <strong>@Data for mutable class（@Data for 可變動的 Class）</strong></p>
+<h3 id="6-value" class="markdown-heading-anchor">
   6. @Value
   <a href="#6-value">#</a>
-</h4><p>也是懶人包，但是他會把所有的變量都設成 final 的，其他的就跟 @Data 一樣，等於同時加了以下注解</p>
+</h3><p>也是懶人包，但是他會把所有的變數都設成 final，其他的就跟 @Data 一樣，等於同時加了以下註解：</p>
 <ul>
-<li>@Getter (注意沒有setter)</li>
+<li>@Getter（注意沒有 @Setter）</li>
 <li>@ToString</li>
 <li>@EqualsAndHashCode</li>
 <li>@RequiredArgsConstructor</li>
@@ -389,12 +400,13 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>上面那個 @Data 適合用在 POJO 或 DTO 上，而這個 @Value 注解，則是適合加在值不希望被改變的類上，像是某個類的值當創建後就不希望被更改，只希望我們讀它而已，就適合加上 @Value 注解，也就是 @Value for immutable class</p>
-<p>另外注意一下，此 lombok 的注解 @Value 和另一個 Spring 的注解 @Value 撞名，在 import 時不要 import 錯了</p>
-<h4 id="7-builder" class="markdown-heading-anchor">
+<p>上面那個 @Data 適合用在 POJO 或 DTO 上，而這個 @Value，則是適合加在「值不希望被改變的 Class 上」</p>
+<p>所以像是某個 Class 的值當創建後就不希望被更改，只希望我們讀它而已，這時候就適合加上 @Value，也就是 <strong>@Value for immutable class（@Value for 不可變動的 Class）</strong></p>
+<p>另外在使用 @Value 時也要留意一下，此 Lombok 註解 @Value 和另一個 Spring 的註解 @Value 撞名，在 import 時要小心不要 import 錯</p>
+<h3 id="7-builder" class="markdown-heading-anchor">
   7. @Builder
   <a href="#7-builder">#</a>
-</h4><p>自動生成流式 set 值寫法，從此之後再也不用寫一堆 setter 了</p>
+</h3><p>自動生成流式 set 值寫法，從此之後再也不用寫一堆 setter 了！</p>
 <p>
 
 <img
@@ -403,18 +415,18 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>注意，雖然只要加上 @Builder 注解，我們就能夠用流式寫法快速設定 Object 的值，但是 setter 還是必須要寫不能省略的，因為 Spring 或是其他框架有很多地方都會用到 Object 的 getter/setter 對他們取值/賦值</p>
-<p>所以通常是 @Data 和 @Builder 會一起用在同個類上，既方便我們流式寫 code，也方便框架做事</p>
+<p>不過要特別注意，雖然只要在 Class 上加上 @Builder，我們就能夠用流式寫法快速設定 Object 的值，但是還是要記得實作 setter 方法，不能省略（因為 Spring 框架中有很多地方都會用到 Object 的 getter/setter，對他們取值/賦值）</p>
+<p>所以在使用上，通常是 @Data 和 @Builder 會一起使用，即是將他們同時加在同個 Class 上，這樣既方便我們流式寫 code，也方便框架做事</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Data</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Builder</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>Integer<span style="color:#bbb"> </span>id;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
-</span></span></span></code></pre></div><h4 id="8-slf4j" class="markdown-heading-anchor">
+</span></span></span></code></pre></div><h3 id="8-slf4j" class="markdown-heading-anchor">
   8. @Slf4j
   <a href="#8-slf4j">#</a>
-</h4><p>自動生成該類的 log 靜態常量，要打日誌就可以直接打，不用再手動 new log 靜態常量了</p>
+</h3><p>自動生成該 Class 的 log 變數，要打日誌就可以直接打，不用再手動 new 一個 log 變數出來了</p>
 <p>
 
 <img
@@ -423,13 +435,22 @@
   loading="lazy"
   data-zoomable
 /></p>
-<p>除了 @Slf4j 之外，lombok 也提供其他日誌框架的變種注解可以用，像是 @Log、@Log4j&hellip;等，他們都是幫我們創建一個靜態常量 log，只是使用的 library 不一樣而已</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//對應的log語句如下</span><span style="color:#bbb">
+<p>除了 @Slf4j 之外，Lombok 也有提供其他日誌框架的註解可以使用，像是 @Log、@Log4j&hellip;等等，他們都是用來創建一個 log 變數，只是底層使用的日誌 library 不一樣而已</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Log</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">// 等同於下方 log 語句</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">final</span><span style="color:#bbb"> </span>java.<span style="color:#008080">util</span>.<span style="color:#008080">logging</span>.<span style="color:#008080">Logger</span><span style="color:#bbb"> </span>log<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>java.<span style="color:#008080">util</span>.<span style="color:#008080">logging</span>.<span style="color:#008080">Logger</span>.<span style="color:#008080">getLogger</span>(LogExample.<span style="color:#008080">class</span>.<span style="color:#008080">getName</span>());<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Log4j</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">//對應的log語句如下</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#3c5d5d;font-weight:bold">@Log4j</span><span style="color:#bbb"> </span><span style="color:#998;font-style:italic">// 等同於下方 log 語句</span><span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">static</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">final</span><span style="color:#bbb"> </span>org.<span style="color:#008080">apache</span>.<span style="color:#008080">log4j</span>.<span style="color:#008080">Logger</span><span style="color:#bbb"> </span>log<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>org.<span style="color:#008080">apache</span>.<span style="color:#008080">log4j</span>.<span style="color:#008080">Logger</span>.<span style="color:#008080">getLogger</span>(LogExample.<span style="color:#008080">class</span>);<span style="color:#bbb">
-</span></span></span></code></pre></div><p>SpringBoot默認支持的就是 slf4j + logback 的日誌框架，所以也不用再多做啥設定，直接就可以用在 SpringBoot project上，log 系列注解最常用的就是 @Slf4j</p>
+</span></span></span></code></pre></div><p>而因為 Spring Boot 預設使用的日誌框架為 slf4j + logback，所以最常用的註解為 @Slf4j，不需要做什麼額外的設定，直接使用就可以了</p>
+<h2 id="結語" class="markdown-heading-anchor">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2><p>這篇文章介紹了 Lombok 中的好用方法，替我們節省了開發 Spring Boot 時所撰寫的冗長的程式</p>
+<p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
+   
+   target="_blank" rel="noopener">
+《古古的後端筆記》電子報
+</a>，每週二為你送上一篇後端技術分享</p>
 
         </div>
 
