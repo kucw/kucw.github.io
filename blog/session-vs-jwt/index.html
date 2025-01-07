@@ -190,7 +190,9 @@
 
 
         <div class="content mb-4">
-          <p>Session 和 JWT 可以說是現今主流的兩種登入認證機制，這篇文章會分別介紹 Session 和 JWT 的運作原理，並且比較他們之間的差別。</p>
+          <p>在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，但是 JWT 到底是什麼？以及他的用途為何？甚至 JWT 和 Session 的差別在哪裡？這些都是在了解 JWT 的過程中，需要具備的知識。</p>
+<p>因此在這個 JWT 系列文中，我會用 4 篇文章介紹 JWT 的前世今生，包含在 JWT 的用途是什麼、他要解決的是什麼問題、以及 JWT 的底層運作邏輯為何。</p>
+<p>所以首先這篇文章，我們就先來介紹 Session 和 JWT 的運作原理為何，以及並且比較他們之間的差別。</p>
 <p>
 
 <img
@@ -199,10 +201,35 @@
   loading="lazy"
   data-zoomable
 /></p>
+<blockquote>
+<p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（不過建議還是按照順序閱讀，才會有最佳的閱讀體驗）：</p>
+<ol>
+<li><a href="/blog/session-vs-jwt/"
+   
+   target="_blank" rel="noopener">
+Session 和 JWT 的差別在哪裡？
+</a>（本文）</li>
+<li><a href="/blog/encode-encrypt-hash-intro/"
+   
+   target="_blank" rel="noopener">
+密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
+</a></li>
+<li><a href="/blog/jwt/"
+   
+   target="_blank" rel="noopener">
+JWT 是什麼？一次搞懂 JWT 的組成和運作原理
+</a></li>
+<li><a href="/blog/jwt-signature/"
+   
+   target="_blank" rel="noopener">
+JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
+</a></li>
+</ol>
+</blockquote>
 <h2 id="什麼是-session-認證" class="markdown-heading-anchor">
   什麼是 Session 認證？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-session-%e8%aa%8d%e8%ad%89">#</a>
-</h2><p>在開始比較 Session 和 JWT 的差別之前，首先我們要先來介紹一下什麼是 Session 身份認證機制。</p>
+</h2><p>Session 和 JWT 可以說是現今主流的兩種登入認證機制，不過在開始比較 Session 和 JWT 的差別之前，首先我們要先來介紹一下什麼是 Session 身份認證機制。</p>
 <p><strong>所謂的 Session 認證，就是「將登入的資訊儲存在後端 Server 上」的一項技術</strong>，所以換句話說的話，就是後端 Server 會儲存這個使用者的登入資訊，並且回傳一個 Session id 給使用者。</p>
 <p>舉例來說，假設我是一個使用者，我的帳號密碼是 Judy / 123，這時候當我在網站上輸入帳號密碼，並且嘗試登入時，首先後端 Server 會先去驗證我的帳號密碼 Judy / 123 是否曾經註冊過（畢竟得先註冊過才能登入），<strong>假設這組帳號密碼存在的話，後端 Server 就會生成一個 Session id（也就是 <code>66EE89C175E</code>），並且將 Session id 存放在資料庫中，然後將 Session id 回傳給前端。</strong></p>
 <p>
@@ -329,7 +356,7 @@
    
    target="_blank" rel="noopener">
 「資安一把罩！Spring Security 零基礎入門」
-</a>的內容，如果大家想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介。</p>
+</a>的內容，如果大家想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202501KU」即可享 85 折優惠）。</strong></p>
 </blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
@@ -340,6 +367,31 @@
    target="_blank" rel="noopener">
 《古古的後端筆記》電子報
 </a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（建議按照順序閱讀，才會有最佳的閱讀體驗）：</p>
+<ol>
+<li><a href="/blog/session-vs-jwt/"
+   
+   target="_blank" rel="noopener">
+Session 和 JWT 的差別在哪裡？
+</a>（本文）</li>
+<li><a href="/blog/encode-encrypt-hash-intro/"
+   
+   target="_blank" rel="noopener">
+密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
+</a></li>
+<li><a href="/blog/jwt/"
+   
+   target="_blank" rel="noopener">
+JWT 是什麼？一次搞懂 JWT 的組成和運作原理
+</a></li>
+<li><a href="/blog/jwt-signature/"
+   
+   target="_blank" rel="noopener">
+JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
+</a></li>
+</ol>
+</blockquote>
 
         </div>
 

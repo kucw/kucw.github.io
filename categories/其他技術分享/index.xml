@@ -6,21 +6,35 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 10 Dec 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Dec 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</title>
+      <link>https://kucw.io/blog/jwt-signature/</link>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/jwt-signature/</guid>
+      <description>&lt;p&gt;在上一篇的 &lt;a href=&#34;https://kucw.io/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&#xA;&lt;/a&gt; 文章中，我們有介紹了 JWT 是由三個部分所組成，分別是：&lt;strong&gt;header、payload 以及 signature&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>JWT 是什麼？一次搞懂 JWT 的組成和運作原理</title>
+      <link>https://kucw.io/blog/jwt/</link>
+      <pubDate>Tue, 17 Dec 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/jwt/</guid>
+      <description>&lt;p&gt;在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，所以這篇文章我們就來介紹一下 JWT 是由哪些部分所組成，以及每個部分所負責的功能為何吧！&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;本文為 JWT 系列文之一，建議在閱讀本文前，要先了解 Session 和 JWT 之間的差別、以及 Encode/Decode 的概念，才會比較好上手。如果你對這些概念還不太熟悉，也可以參考前面的文章介紹（建議按照順序閱讀，才會有最佳的閱讀體驗）：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？</title>
       <link>https://kucw.io/blog/encode-encrypt-hash-intro/</link>
       <pubDate>Tue, 10 Dec 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/encode-encrypt-hash-intro/</guid>
-      <description>&lt;p&gt;在密碼學中，Encode、Encrypt、Hash 可以說是三大基礎概念，並且也是後端工程師必備的密碼學知識，因此這篇文章就會詳細來介紹什麼是 Encode、Encrypt、Hash，以及比較他們之間的區別。&lt;/p&gt;&#xA;&lt;h2 id=&#34;encodeencrypthash-簡介&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  Encode、Encrypt、Hash 簡介&#xA;  &lt;a href=&#34;#encodeencrypthash-%e7%b0%a1%e4%bb%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在密碼學中有三大概念，分別是：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Encode（編碼）&lt;/li&gt;&#xA;&lt;li&gt;Encrypt（加密）&lt;/li&gt;&#xA;&lt;li&gt;Hash（雜湊）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;以下分別介紹如何透過這三種不同的方法，去對數據做不同的處理。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在密碼學中，Encode、Encrypt、Hash 可以說是三大基礎概念，並且也是後端工程師必備的密碼學知識，因此這篇文章就會詳細來介紹什麼是 Encode、Encrypt、Hash，以及比較他們之間的區別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;本文為 JWT 系列文之一，如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（不過建議還是按照順序閱讀，才會有最佳的閱讀體驗）：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/session-vs-jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;Session 和 JWT 的差別在哪裡？&#xA;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/encode-encrypt-hash-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？&#xA;&lt;/a&gt;（本文）&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&#xA;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/jwt-signature/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗&#xA;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;encodeencrypthash-簡介&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  Encode、Encrypt、Hash 簡介&#xA;  &lt;a href=&#34;#encodeencrypthash-%e7%b0%a1%e4%bb%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在密碼學中有三大概念，分別是：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Session 和 JWT 的差別在哪裡？</title>
       <link>https://kucw.io/blog/session-vs-jwt/</link>
       <pubDate>Tue, 03 Dec 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/session-vs-jwt/</guid>
-      <description>&lt;p&gt;Session 和 JWT 可以說是現今主流的兩種登入認證機制，這篇文章會分別介紹 Session 和 JWT 的運作原理，並且比較他們之間的差別。&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&#xA;&lt;img&#xA;  src=&#34;https://kucw.io/images/blog/session_jwt_1.png&#34;&#xA;  alt=&#34;&#34;&#xA;  loading=&#34;lazy&#34;&#xA;  data-zoomable&#xA;/&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，但是 JWT 到底是什麼？以及他的用途為何？甚至 JWT 和 Session 的差別在哪裡？這些都是在了解 JWT 的過程中，需要具備的知識。&lt;/p&gt;</description>
     </item>
     <item>
       <title>雲端服務中的 IaaS、PaaS、FaaS、SaaS 的差別</title>
