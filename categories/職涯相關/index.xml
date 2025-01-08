@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>職涯相關 on 古古的後端筆記</title>
+    <link>https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/</link>
+    <description>Recent content in 職涯相關 on 古古的後端筆記</description>
+    <generator>Hugo</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何成為資深工程師？心態最重要</title>
+      <link>https://kucw.io/blog/how-to-become-senior-developer/</link>
+      <pubDate>Wed, 08 Jan 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/how-to-become-senior-developer/</guid>
+      <description>&lt;p&gt;其實所謂的「資深工程師」，他並不是一個突然從天而降的改變，而是一個緩慢的、融入到你工作中的微小變化。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;可能是你今天多幫同事解決了一個 bug&lt;/li&gt;&#xA;&lt;li&gt;可能是你今天又多學到了一些技術&lt;/li&gt;&#xA;&lt;li&gt;可能是你以前每一個微小的功能所累積下來的穩定表現，讓主管願意相信你，將更重要的任務交給你&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;所以要成為資深工程師，並不是突然神蹟降臨，將你頭上的稱號從「初階工程師」升級成「資深工程師」這樣。&lt;/p&gt;&#xA;&lt;p&gt;而是會融入在每一天的工作生活中，你慢慢的變強，慢慢的累積周遭同事、主管對你的信任，慢慢的成為人們口中的英雄，這時候你突然回首一看，才發現其實自己已經變成資深工程師了。&lt;/p&gt;&#xA;&lt;p&gt;通常到這個時候主管就會約你 1-1，將你的職稱升到資深工程師，確保「你的職稱」和「你所具備的能力」是相符的，這時候就恭喜你～正式成為資深工程師啦🎉🎉&lt;/p&gt;&#xA;&lt;p&gt;所以不用急、不用太焦慮，只要慢慢的累積技術實力，不斷變強，每一次提交 commit 時都當成是出 bug 會嚴重到被電到飛高高的那種，戰戰兢兢的前進，慢慢的就會到達你想要的高度了～祝大家職場順遂！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>給工程師的求職建議（年資 1-3 年）</title>
+      <link>https://kucw.io/blog/developer-interview-suggestion/</link>
+      <pubDate>Thu, 14 Nov 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/developer-interview-suggestion/</guid>
+      <description>&lt;p&gt;在面試找工作時，選擇一家心儀的公司絕對是最重要的事，以下分享 2 點找工作的建議給 1-3 年年資的工程師：&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-找工作時發展性--錢&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  1. 找工作時，發展性 &amp;gt; 錢&#xA;  &lt;a href=&#34;#1-%e6%89%be%e5%b7%a5%e4%bd%9c%e6%99%82%e7%99%bc%e5%b1%95%e6%80%a7--%e9%8c%a2&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;這個階段其實大家都還是新手，成長性仍舊很高，所以在考慮要不要去某間公司時，要思考的是：「3 年後你離開這間公司時，你有哪些武器可以拿來面試下一間公司」。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何準備面試？後端工程師的求職全攻略</title>
+      <link>https://kucw.io/blog/backend-developer-interview/</link>
+      <pubDate>Tue, 17 Sep 2024 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/backend-developer-interview/</guid>
+      <description>&lt;p&gt;在軟體工程師的世界中，大家可能常常聽到「漲薪水就是要靠跳槽」，但是，在跳槽之前，做好面試的準備是非常重要的！所以這篇文章就會來分析一下後端工程師在求職時，有哪些注意事項要準備。&lt;/p&gt;&#xA;&lt;h2 id=&#34;後端工程師的求職全攻略&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  後端工程師的求職全攻略&#xA;  &lt;a href=&#34;#%e5%be%8c%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%b1%82%e8%81%b7%e5%85%a8%e6%94%bb%e7%95%a5&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在求職時，主要會分成兩個流程：&lt;strong&gt;「履歷審查」&lt;strong&gt;和&lt;/strong&gt;「面試」&lt;/strong&gt;，雖然這句話聽起來很像廢話沒😂，但是在求職時，一定要分清楚自己目前是處在哪個階段。&lt;/p&gt;&#xA;&lt;p&gt;如果你是海投了 100 家公司，但是連一封面試邀請信都沒有收到，那你就是「履歷」的部分有問題，需要回頭調整履歷呈現方式；相反的，如果你是滿手面試邀請信，但是沒有一家順利拿到 offer，那就是「面試」的部分有問題。&lt;/p&gt;&#xA;&lt;p&gt;所以大家在求職時，除了要好好準備面試大魔王之外，履歷的準備也是非常重要的！這兩項是相輔相成的，缺一不可！&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章也會分別從「履歷」和「面試」這兩個不同的角度，分別來介紹在這不同的階段該如何進行準備。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

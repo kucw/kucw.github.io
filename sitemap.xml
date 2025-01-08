@@ -4,17 +4,27 @@
     
     <url>
         <loc>https://kucw.io/blog/</loc>
-        <lastmod>2025-01-07T00:00:00+08:00</lastmod>
+        <lastmod>2025-01-08T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/categories/</loc>
-        <lastmod>2025-01-07T00:00:00+08:00</lastmod>
+        <lastmod>2025-01-08T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://kucw.io/</loc>
-        <lastmod>2025-01-07T00:00:00+08:00</lastmod>
+        <lastmod>2025-01-08T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/how-to-become-senior-developer/</loc>
+        <lastmod>2025-01-08T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/</loc>
+        <lastmod>2025-01-08T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
@@ -139,11 +149,6 @@
     </url>
     <url>
         <loc>https://kucw.io/blog/backend-developer-interview/</loc>
-        <lastmod>2024-09-17T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/categories/%E6%B1%82%E8%81%B7%E6%94%BB%E7%95%A5/</loc>
         <lastmod>2024-09-17T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
