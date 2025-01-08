@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/2021/1/from-medium-to-github/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2021/1/from-medium-to-github/</guid>
-      <description>&lt;p&gt;因應 Medium 的付費牆、以及 SEO 的政策調整，我發現我在 Medium 上的文章越來越難被搜尋到了🥹&lt;/p&gt;&#xA;&lt;p&gt;有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，曝光度就越大（因為大家在找資料的時候，一定都是先點前幾個連結嘛）。&lt;/p&gt;</description>
+      <description>&lt;p&gt;因應 Medium 的付費牆、以及 SEO 的政策調整，我發現我在 Medium 上的文章越來越難被搜尋到了🥹。&lt;/p&gt;&#xA;&lt;p&gt;有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，曝光度就越大（因為大家在找資料的時候，一定都是先點前幾個連結嘛）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</title>
