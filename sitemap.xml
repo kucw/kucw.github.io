@@ -28,6 +28,16 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</loc>
+        <lastmod>2025-01-07T01:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/ram/</loc>
+        <lastmod>2025-01-07T01:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
         <lastmod>2025-01-07T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
@@ -35,11 +45,6 @@
     <url>
         <loc>https://kucw.io/blog/as-a-content-creator/monthly-report-202412/</loc>
         <lastmod>2025-01-07T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</loc>
-        <lastmod>2025-01-01T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
