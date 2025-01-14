@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 07 Jan 2025 01:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jan 2025 01:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Event Sourcing 是什麼？他和 CRUD 的差別在哪裡？</title>
+      <link>https://kucw.io/blog/event-sourcing/</link>
+      <pubDate>Tue, 14 Jan 2025 01:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/event-sourcing/</guid>
+      <description>&lt;p&gt;Event Sourcing 的設計理念可以說是和一般常見的 CRUD 完全不同，我一開始聽到的時候也驚嘆「啊？？竟然還能這樣？？」，所以這篇文章我們就來了解一下，到底什麼是 Event Sourcing 吧！&lt;/p&gt;&#xA;&lt;h2 id=&#34;什麼是-event-sourcing&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Event Sourcing？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-event-sourcing&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 Event Sourcing，中文硬翻的話是「事件溯源」，重點在於「事件」這兩個字。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>電腦中的 RAM（記憶體）的用途是什麼？他和硬碟的差別在哪裡？</title>
       <link>https://kucw.io/blog/ram/</link>
