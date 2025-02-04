@@ -6,8 +6,22 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 14 Jan 2025 01:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNS 是什麼？在瀏覽器中輸入 URL 會發生什麼事？</title>
+      <link>https://kucw.io/blog/dns/</link>
+      <pubDate>Tue, 04 Feb 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/dns/</guid>
+      <description>&lt;p&gt;相信大家在準備面試時，常常會遇到一題是「在瀏覽器中輸入 URL 會發生什麼事？」，而這背後其實就和 DNS 息息相關。&lt;/p&gt;&#xA;&lt;p&gt;因此這篇文章我們就來介紹一下，到底在瀏覽器中按下 URL 會發生什麼事，以及其背後的 DNS 原理吧！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GPU 是什麼？為什麼 GPU 對 AI 的發展很重要？</title>
+      <link>https://kucw.io/blog/gpu-ai/</link>
+      <pubDate>Tue, 21 Jan 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/gpu-ai/</guid>
+      <description>&lt;p&gt;在 AI 的浪潮下，GPU 可以說是一間公司的算力的體現，但是 GPU 到底是什麼？為什麼他對 AI 的發展這麼重要呢？所以這篇文章我們就來介紹一下，到底什麼是 GPU 吧！&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Event Sourcing 是什麼？他和 CRUD 的差別在哪裡？</title>
       <link>https://kucw.io/blog/event-sourcing/</link>
