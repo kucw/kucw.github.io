@@ -283,6 +283,14 @@ https://www.google.com/
 <p>而當 DNS 去問第二層的 .com TLD Name Server <code>www.googe.com</code> 的 IP 為何時，第二層的 .com TLD Name Server 就會去解析主域名（也就是 <code>google.com</code>），然後叫 DNS 拿著去找第三層的 google.com Name server。</p>
 <p>而當 DNS 終於抵達第三層的 google.com Name Server 時，DNS 就會一樣會問他 <code>www.google.com</code> 的 IP 為何，這時候第三層的 google.com Name Server 就會找出他的真實 IP 為何（也就是 <code>142.250.196.206</code>），然後將他回傳給 DNS。</p>
 <p>到這裡為止，DNS 內部才是真正的找出 <code>www.google.com</code> 所對應的 IP 地址為 <code>142.250.196.206</code>，因此就可以將這個 IP 地址回傳給瀏覽器，讓瀏覽器去請求這個 IP 地址了！</p>
+<p>
+
+<img
+  src="/images/blog/dns4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+/></p>
 <p>不過即使 DNS 的內部架構變的稍微複雜一點，<strong>但是 DNS 實際上要做的事情仍舊是不變的！也就是「查詢一下 google.com 這個域名的 IP 位置為何」而已</strong>，因此大家如果覺得上面的 DNS 架構有點複雜的話，暫時忘記他其實也是可以的😆，大家只要知道 DNS 的目的是「查詢域名的 IP 位置為何」就好，細節可以等到真的要用到的時候再回來參考即可。</p>
 <h2 id="dns-總結" class="markdown-heading-anchor">
   DNS 總結
