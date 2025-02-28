@@ -194,30 +194,6 @@
   什麼是 Http Status Code（Http 狀態碼）？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-http-status-codehttp-%e7%8b%80%e6%85%8b%e7%a2%bc">#</a>
 </h2><p>所謂的「Http Status Code」，中文是翻譯成「Http 狀態碼」，而他的目的，就是 <strong>「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」</strong>。所以舉例來說的話，大家常見的「200」的回覆，其實就是表示這一次的 API 請求成功了，就只是這麼簡單的用途而已。</p>
-<p>所以像是在下圖中，當我們請求 <code>GET http://localhost:8080/hello</code> 這個 API 時，這個 API 就會回傳 200 的返回結果給我們（綠底處），所以就可以讓我們快速的知道，這一次的請求是成功的這樣。</p>
-<p>
-
-<img
-  src="/images/blog/http_status_code_1.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<blockquote>
-<p>題外話補充一下，滿推薦大家可以下載上面這個 <a href="https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm"
-   
-   target="_blank" rel="noopener">
-Chrome 的擴充功能 - Talend API Tester
-</a> 的，我個人真的是超喜歡這個擴充功能，因為他會用超大的區塊 + 顏色來呈現 Http Status Code，非常的直覺好用！（反觀下圖的 Postman，他的 Http Status Code 就是小小的在右上角，真的很不明顯🥹）</p>
-<p>
-
-<img
-  src="/images/blog/http_status_code_2.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-</blockquote>
 <p>而在 Http Status Code 的世界裡面，除了有「200」這個值可以使用之外，也是有其他的返回值可以使用的，而這些 Http Status Code 的返回值，我們是可以根據他們的 <strong>首位數字</strong>，去分成是五個大類：</p>
 <ul>
 <li><strong>1xx : 資訊</strong></li>
@@ -446,7 +422,7 @@ https://kucw.io
 <p>所以當大家以後看到 4xx 的值時，就可以快速的知道，他們就都是表示「前端請求錯誤」的意思；而看到 5xx 的值時，就也可以知道，這是表示出現了「後端處理有問題」的錯誤。</p>
 <p>因此透過這個 Http Status Code，就可以快速的去知道，這一次 API 的請求結果為何了～</p>
 <div class="markdown-breakline"></div>
-<p>PS: 補充一下，其實 Http Status Code 有一個比較好記（但是也比較兇）的版本，這邊就也寫出來跟大家分享，但就…希望大家還是和平共處🤣，前端後端一家親的對吧！</p>
+<p>PS: 補充一下，其實 Http Status Code 有一個比較好記（但是也比較兇）的版本，這邊就也寫出來跟大家分享，但就&hellip;希望大家還是和平共處🤣，前端後端一家親的對吧！</p>
 <ul>
 <li><strong>1xx : 資訊</strong></li>
 <li><strong>
@@ -483,7 +459,7 @@ https://kucw.io
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 2900 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">
