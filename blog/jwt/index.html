@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -214,8 +214,7 @@ JWT 是什麼？一次搞懂 JWT 的組成和運作原理
    target="_blank" rel="noopener">
 JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
 </a></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <h2 id="回顧session-和-jwt-的差別" class="markdown-heading-anchor">
   回顧：Session 和 JWT 的差別
   <a href="#%e5%9b%9e%e9%a1%a7session-%e5%92%8c-jwt-%e7%9a%84%e5%b7%ae%e5%88%a5">#</a>
@@ -275,10 +274,10 @@ https://jwt.io/
   <a href="#jwt-%e4%b8%ad%e7%9a%84-header-%e9%83%a8%e5%88%86%e5%ad%98%e6%94%be%e9%80%9a%e7%94%a8%e8%b3%87%e8%a8%8a">#</a>
 </h2><p><strong>首先 header 的用途，就是用來存放一些通用的資訊</strong>，譬如說可以用來設定這個 JWT 的簽名算法、以及設定這個 JWT 的 Token 類型。</p>
 <p>舉例來說，像是在下方的 header 例子中，裡面的 <code>alg</code> 就是用來設定這個 JWT 的簽名算法，而 <code>typ</code> 則是表示這個 Token 是 JWT 類型。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;alg&#34;</span>: <span style="color:#d14">&#34;RS256&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;typ&#34;</span>: <span style="color:#d14">&#34;JWT&#34;</span>
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;alg&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;RS256&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;typ&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div><p>所以在 header 中，主要就是用來設定這個 JWT 的通用資訊。</p>
 <p>
 
@@ -311,19 +310,18 @@ https://jwt.io/
    
    target="_blank" rel="noopener">
 密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
-</a> 中的介紹。</p>
-</blockquote>
+</a> 中的介紹。</p></blockquote>
 <h2 id="jwt-中的-payload-部分存放使用者的數據" class="markdown-heading-anchor">
   JWT 中的 payload 部分：存放使用者的數據
   <a href="#jwt-%e4%b8%ad%e7%9a%84-payload-%e9%83%a8%e5%88%86%e5%ad%98%e6%94%be%e4%bd%bf%e7%94%a8%e8%80%85%e7%9a%84%e6%95%b8%e6%93%9a">#</a>
 </h2><p>了解了 header 的用途之後，接著我們可以來看一下 payload 的用途。</p>
 <p><strong>payload 的用途，就是用來存放使用者的數據</strong>，所以在 payload 中，我們就可以根據自己的需求，自由決定我們想要放什麼資訊在裡面。</p>
 <p>所以像是在下面的 payload 例子中，裡面就存放了 <code>&quot;name&quot;: &quot;古古&quot;</code> 的數據，用來表示這個使用者的名字為「古古」，因此我們就可以根據自己的需求，在 payload 中存放客製化的使用者數據了！</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;sub&#34;</span>: <span style="color:#d14">&#34;123&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;古古&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;iat&#34;</span>: <span style="color:#099">1721001600</span>
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;sub&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;123&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;古古&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;iat&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1721001600</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div><p>
 
 <img
@@ -408,8 +406,7 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
    
    target="_blank" rel="noopener">
 「資安一把罩！Spring Security 零基礎入門」
-</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p>
-</blockquote>
+</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p></blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
@@ -442,8 +439,7 @@ JWT 是什麼？一次搞懂 JWT 的組成和運作原理
    target="_blank" rel="noopener">
 JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
 </a></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 
         </div>
 
@@ -452,7 +448,7 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -194,22 +194,22 @@
   1. 什麼是 Debug 模式？
   <a href="#1-%e4%bb%80%e9%ba%bc%e6%98%af-debug-%e6%a8%a1%e5%bc%8f">#</a>
 </h3><p>還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 <code>System.out.println()</code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 <code>System.out.println()</code>，所以到後來我的 code 就會長的像下圖這樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span>User<span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">getMaleUser</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>List<span style="color:#000;font-weight:bold">&lt;</span>User<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#bbb"> </span>userList<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>userDao.<span style="color:#008080">getUserList</span>();<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(userList);<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">// print userList，看一下userList裡面的內容長怎樣</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#998;font-style:italic">// 從userList中取出男生，然後回傳</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>User<span style="color:#bbb"> </span>resultUser;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">for</span><span style="color:#bbb"> </span>(User<span style="color:#bbb"> </span>user<span style="color:#bbb"> </span>:<span style="color:#bbb"> </span>userList)<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000;font-weight:bold">if</span><span style="color:#bbb"> </span>(user.<span style="color:#008080">getGender</span>()<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">==</span><span style="color:#bbb"> </span><span style="color:#d14">&#34;男&#34;</span>)<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span>resultUser<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>user;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>}<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(resultUser);<span style="color:#bbb"> </span><span style="color:#998;font-style:italic">// 再print resultUser，確認一下回傳的user到底是哪一個</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">return</span><span style="color:#bbb"> </span>resultUser;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>User<span style="color:#fff"> </span><span style="color:#6639ba">getMaleUser</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>List<span style="color:#0550ae">&lt;</span>User<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>userList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userDao<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserList</span><span style="color:#1f2328">();</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span>userList<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// print userList，看一下userList裡面的內容長怎樣</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">// 從userList中取出男生，然後回傳</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>User<span style="color:#fff"> </span>resultUser<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">for</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span>User<span style="color:#fff"> </span>user<span style="color:#fff"> </span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>userList<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">if</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">.</span><span style="color:#1f2328">getGender</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#0550ae">==</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;男&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>resultUser<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>user<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span>resultUser<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 再print resultUser，確認一下回傳的user到底是哪一個</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>resultUser<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>可想而知，這樣做的開發效率是非常差的，每多看一個 variable 就要多增加一行 <code>System.out.println()</code>，而且每次改了之後，都要重新運行程式，讓程式再 print 出一次數據，我想想都覺得痛苦，難道 IntelliJ 就沒有一個能夠快速反應出現在這個 variable 的值是什麼的功能嗎？</p>
 <p>事實上，IntelliJ 是有提供的！當我們在運行程式時，改成使用 <strong>Debug 模式</strong> 運行就可以了！</p>
 <h3 id="2-intellij-的-debug-模式" class="markdown-heading-anchor">
@@ -410,7 +410,7 @@ IntelliJ - Remote Debug
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

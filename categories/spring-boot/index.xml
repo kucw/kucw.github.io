@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/7/spring-actuator/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Spring Boot 版本：3.3.2&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Spring Boot 版本：3.3.2&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (11) - Spring AOP 簡介</title>
@@ -97,7 +97,7 @@
       <link>https://kucw.io/blog/2021/7/spring-chinese-properties/</link>
       <pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2021/7/spring-chinese-properties/</guid>
-      <description>&lt;p&gt;如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 &lt;code&gt;@Value&lt;/code&gt; 讀取時會產生中文亂碼&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-properties&#34; data-lang=&#34;properties&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#d14&#34;&gt;小明&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;解決辦法&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  解決辦法：&#xA;  &lt;a href=&#34;#%e8%a7%a3%e6%b1%ba%e8%be%a6%e6%b3%95&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用&lt;a href=&#34;https://www.chineseconverter.com/zh-tw/convert/unicode&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;此網頁&#xA;&lt;/a&gt;進行轉換）&lt;/p&gt;</description>
+      <description>&lt;p&gt;如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 &lt;code&gt;@Value&lt;/code&gt; 讀取時會產生中文亂碼&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-properties&#34; data-lang=&#34;properties&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;小明&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;解決辦法&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  解決辦法：&#xA;  &lt;a href=&#34;#%e8%a7%a3%e6%b1%ba%e8%be%a6%e6%b3%95&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用&lt;a href=&#34;https://www.chineseconverter.com/zh-tw/convert/unicode&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;此網頁&#xA;&lt;/a&gt;進行轉換）&lt;/p&gt;</description>
     </item>
     <item>
       <title>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</title>

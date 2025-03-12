@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -261,8 +261,7 @@
 <p>所以對於轉帳這種「涉及多個資料庫操作」的功能而言，如果我們想要確保轉帳中的所有資料庫操作<strong>要嘛一起成功、要嘛一起失敗</strong>，這時候就可以使用資料庫所支援的 Transaction 用法，使用 Transaction 來保護這整筆轉帳的交易過程了。</p>
 <p>也因為 Transaction 會確保方法中的所有資料庫操作，要嘛全部一起成功、要嘛全部一起失敗，<strong>因此這也稱為是 All or Nothing 原則。</strong></p>
 <blockquote>
-<p>補充：Transaction 只能確保「同一個資料庫」中的交易會一起成功、一起失敗而已，如果涉及到多個資料庫（像是分散式資料庫），那麼使用 Transaction 的情況會變得複雜得多，大家有興趣的話，可以再上網查詢「分散式交易（Distributed Transactions）」的相關資訊。</p>
-</blockquote>
+<p>補充：Transaction 只能確保「同一個資料庫」中的交易會一起成功、一起失敗而已，如果涉及到多個資料庫（像是分散式資料庫），那麼使用 Transaction 的情況會變得複雜得多，大家有興趣的話，可以再上網查詢「分散式交易（Distributed Transactions）」的相關資訊。</p></blockquote>
 <h2 id="transaction-和資料庫-acid-的關聯" class="markdown-heading-anchor">
   Transaction 和資料庫 ACID 的關聯
   <a href="#transaction-%e5%92%8c%e8%b3%87%e6%96%99%e5%ba%ab-acid-%e7%9a%84%e9%97%9c%e8%81%af">#</a>
@@ -278,8 +277,7 @@
 <p>舉例來說，假設你使用的資料庫是 NoSQL（例如 MongoDB、Elastic Search），那麼即使你有在 Spring Boot 程式中添加 <code>@Transactional</code>，指定這段方法要使用 Transaction 來管理，但是因為 NoSQL 他不支援 ACID 啊！所以他就不支援 Transaction 的操作🥹。</p>
 <p>因此不管你在程式中加了多少個 <code>@Transactional</code>，那段程式仍舊是沒有受到 Transaction 的交易保護的，所以就算程式運行中出現錯誤，仍舊是沒辦法 rollback 成原始數據的，這是大家在使用 Transaction 時，一定要注意的細節！</p>
 <blockquote>
-<p>補充：軟體變化瞬息萬變，現在也已經有些 NoSQL 資料庫支援 ACID 的特性、進而支援 Transaction 了，大家在使用之前，建議也可以參考一下你使用的 NoSQL 資料庫介紹。</p>
-</blockquote>
+<p>補充：軟體變化瞬息萬變，現在也已經有些 NoSQL 資料庫支援 ACID 的特性、進而支援 Transaction 了，大家在使用之前，建議也可以參考一下你使用的 NoSQL 資料庫介紹。</p></blockquote>
 <div class="markdown-breakline"></div>
 <p>而如果我們把 ACID 展開來，一一對應到 Transaction 中的概念的話，就可以發現他真的每一條都是為了 Transaction 來設計的：</p>
 <table>
@@ -351,6 +349,20 @@
    target="_blank" rel="noopener">
 《古古的後端筆記》電子報
 </a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：我開設的<a href="https://hahow.in/cr/springboot"
+   
+   target="_blank" rel="noopener">
+Spring Boot 零基礎入門
+</a>、<a href="https://hahow.in/cr/springsecurity"
+   
+   target="_blank" rel="noopener">
+Spring Security 零基礎入門
+</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
+   
+   target="_blank" rel="noopener">
+GitHub 免費架站術
+</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202503KU」即可享 85 折優惠。</strong></p></blockquote>
 
         </div>
 
@@ -359,7 +371,7 @@
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

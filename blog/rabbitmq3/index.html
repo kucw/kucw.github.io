@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -198,14 +198,13 @@
    
    target="_blank" rel="noopener">
 Docker 官網
-</a>下載</p>
-</blockquote>
+</a>下載</p></blockquote>
 <p>可以使用 docker 在自己的電腦上快速架設起 RabbitMQ 以及 RabbitMQ 專屬的 Web 管理介面。</p>
 <p>推薦使用 <code>rabbitmq:management</code> 的 docker image，不僅可以幫我們架設起一個 RabbitMQ，還可以順便為我們架設起一個用來管理該 RabbitMQ 的 web 管理介面，非常方便。</p>
 <p>執行以下方法，就可以順利啟動這個 docker image：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#d14">\ </span>
-</span></span><span style="display:flex;"><span>-e <span style="color:#008080">RABBITMQ_DEFAULT_USER</span><span style="color:#000;font-weight:bold">=</span>root -e <span style="color:#008080">RABBITMQ_DEFAULT_PASS</span><span style="color:#000;font-weight:bold">=</span>admin1234 <span style="color:#d14">\
-</span></span></span><span style="display:flex;"><span><span style="color:#d14"></span>rabbitmq:management
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 <span style="color:#0a3069">\ </span>
+</span></span><span style="display:flex;"><span>-e <span style="color:#953800">RABBITMQ_DEFAULT_USER</span><span style="color:#0550ae">=</span>root -e <span style="color:#953800">RABBITMQ_DEFAULT_PASS</span><span style="color:#0550ae">=</span>admin1234 <span style="color:#0a3069">\
+</span></span></span><span style="display:flex;"><span><span style="color:#0a3069"></span>rabbitmq:management
 </span></span></code></pre></div><p>在上面的方法中，可以自己修改 <code>RABBITMQ_DEFAULT_USER</code> 和 <code>RABBITMQ_DEFAULT_PASS</code> 的參數去自定義帳號密碼，像是此處就是設定帳號為 root、密碼為 admin1234。</p>
 <p>啟動好 docker image 之後，RabbitMQ 使用的 port 預設是 5672，而 RabbitMQ 的 Web 管理介面使用的 port 預設是 15672，因此只要訪問 http://localhost:15672，就會出現 RabbitMQ 的 Web 管理介面，此時就可以在輸入剛剛運行 docker image 所設定的帳號密碼登入進去。</p>
 <p>
@@ -326,6 +325,20 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
    target="_blank" rel="noopener">
 《古古的後端筆記》電子報
 </a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：我開設的<a href="https://hahow.in/cr/springboot"
+   
+   target="_blank" rel="noopener">
+Spring Boot 零基礎入門
+</a>、<a href="https://hahow.in/cr/springsecurity"
+   
+   target="_blank" rel="noopener">
+Spring Security 零基礎入門
+</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
+   
+   target="_blank" rel="noopener">
+GitHub 免費架站術
+</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202503KU」即可享 85 折優惠。</strong></p></blockquote>
 
         </div>
 
@@ -334,7 +347,7 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

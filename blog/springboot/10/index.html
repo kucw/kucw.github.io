@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -544,14 +544,14 @@
   <a href="#1-properties-%e8%aa%9e%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e4%b8%8d%e9%9c%80%e8%a6%81%e5%8a%a0%e4%b8%8a%e7%a9%ba%e7%99%bd%e9%8d%b5%e6%8e%92%e7%89%88">#</a>
 </h3><p>大概了解了 properties 語法的核心概念 <code>key=value</code> 之後，接著我們可以來看一些使用 properties 語法的注意事項</p>
 <p>當我們以前在寫 Java 程式的時候，習慣會在 <code>=</code> 的前後加上一堆空白鍵，去做排版的美化，像是下面這個樣子：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// 美化前</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count<span style="color:#000;font-weight:bold">=</span>5;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic">// 加上空白鍵美化後</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count<span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">=</span><span style="color:#bbb"> </span>5;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#57606a">// 美化前</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#0550ae">=</span>5<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">// 加上空白鍵美化後</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>5<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>不過在 properties 語法裡面，是 <strong>「不需要」</strong> 在 <code>=</code> 的前後，去加上空白鍵去做排版的美化，<strong>只要全部連在一起寫就好</strong>，多加空白鍵反而可能有機會導致程式運行出現問題</p>
 <p>所以在 properties 語法裡面，建議就是使用下面這種寫法，把你的空白鍵拔掉，一路連自連到底就對了</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">count</span><span style="color:#0550ae">=</span><span style="color:#0a3069">5</span>
 </span></span></code></pre></div><h3 id="2-properties-語法的注意事項之二key-中的--表示的的概念" class="markdown-heading-anchor">
   2. properties 語法的注意事項之二：key 中的 <code>.</code> 表示「的」的概念
   <a href="#2-properties-%e8%aa%9e%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8ckey-%e4%b8%ad%e7%9a%84--%e8%a1%a8%e7%a4%ba%e7%9a%84%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
@@ -594,18 +594,18 @@
   <a href="#%e8%ae%80%e5%8f%96-spring-boot-%e8%a8%ad%e5%ae%9a%e6%aa%94applicationproperties%e4%b8%ad%e7%9a%84%e5%80%bcvalue">#</a>
 </h2><p>了解了要如何在 application.properties 檔案中透過 <code>key=value</code> 的寫法，去添加一行行的設定之後，接著我們可以來看一下，要如何透過 <code>@Value</code>，將 application.properties 中的設定值讀取到 Bean 裡面</p>
 <p>還是之前的 HpPrinter 的例子，我們可以稍微改寫一下 HpPrinter 中的程式，讓他變成下面這個樣子</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Component</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">HpPrinter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">implements</span><span style="color:#bbb"> </span>Printer<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#3c5d5d;font-weight:bold">@Override</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">print</span>(String<span style="color:#bbb"> </span>message)<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>count<span style="color:#000;font-weight:bold">--</span>;<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;HP印表機: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>message);<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;剩餘使用次數: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>count);<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Component</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">HpPrinter</span><span style="color:#fff"> </span><span style="color:#cf222e">implements</span><span style="color:#fff"> </span>Printer<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Override</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">print</span><span style="color:#1f2328">(</span>String<span style="color:#fff"> </span>message<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>count<span style="color:#0550ae">--</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;HP印表機: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>message<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;剩餘使用次數: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>count<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>而在這之中，count 變數的值沒有被設定成任何一個數字，因此 count 值就會是預設的 0</p>
 <p>
 
@@ -640,13 +640,13 @@
   <a href="#1-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e9%9c%80%e8%a6%81%e9%81%b5%e5%ae%88%e5%9b%ba%e5%ae%9a%e6%a0%bc%e5%bc%8f%e5%af%ab%e6%b3%95">#</a>
 </h3><p>大概了解了 <code>@Value</code> 的用法之後，我們可以來看一下使用 <code>@Value</code> 的一些注意事項</p>
 <p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值的時候，一定要在 <code>@Value</code> 後面的括號中，寫上如下的格式：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${XXXX}&#34;</span>)<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${XXXX}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>其中 XXXX 可以替換成 application.properties 檔案中的任意一個 key，但是外層的 <code>&quot;${}&quot;</code> 是不能夠省略的，因此在寫法上會稍微複雜一點，建議大家之後可以直接複製貼上這段程式，再去改裡面的 XXX 的值即可</p>
 <p>舉例來說，假設 application.properties 中的 key 為 <code>printer.count</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">printer.count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">100</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">printer.count</span><span style="color:#0550ae">=</span><span style="color:#0a3069">100</span>
 </span></span></code></pre></div><p>那麼在使用 <code>@Value</code> 去注入時，就是把後面的 XXX 替換成 <code>printer.count</code>，所以就會變成是：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count}&#34;</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${printer.count}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>因此就可以透過這樣的寫法，將 application.properties 中的設定值，給注入到 Bean 中的變數了</p>
 <h3 id="2-使用-value-的注意事項之二只有在-bean-和-configuration-中才能生效" class="markdown-heading-anchor">
   2. 使用 @Value 的注意事項之二：只有在 Bean 和 Configuration 中才能生效
@@ -655,29 +655,28 @@
 <p>所以假設大家在使用 <code>@Value</code> 時，明明程式就寫得很對，但是不知道為什麼他不起作用，很大的原因就是因為這個 class 還沒變成 Bean，所以 <code>@Value</code> 才會毫無作用</p>
 <p>因此發生這種情況時，只要記得在 class 上面加上一個 <code>@Component</code>，將這個 class 變成是一個 Bean，這樣子就可以確保 <code>@Value</code> 能生效了</p>
 <blockquote>
-<p>補充：<code>@Value</code> 在那些帶有 <code>@Configuration</code> 的 class 中，也是能夠生效的，不過因為在此系列文中不會特別介紹到 <code>@Configuration</code> 的用法，所以大家可以先有個印象就可以了</p>
-</blockquote>
+<p>補充：<code>@Value</code> 在那些帶有 <code>@Configuration</code> 的 class 中，也是能夠生效的，不過因為在此系列文中不會特別介紹到 <code>@Configuration</code> 的用法，所以大家可以先有個印象就可以了</p></blockquote>
 <h3 id="3-使用-value-的注意事項之三類型需要一致" class="markdown-heading-anchor">
   3. 使用 @Value 的注意事項之三：類型需要一致
   <a href="#3-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%89%e9%a1%9e%e5%9e%8b%e9%9c%80%e8%a6%81%e4%b8%80%e8%87%b4">#</a>
 </h3><p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，Java 中的變數的類型，必須要和 application.properties 中的類型一致才可以</p>
 <p>舉例來說，在 application.properties 檔案裡面，我們定義了一組 key 和 value 如下：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">printer.count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">printer.count</span><span style="color:#0550ae">=</span><span style="color:#0a3069">5</span>
 </span></span></code></pre></div><p>上面這行程式，其實就是在暗示 <code>printer.count</code> 的值為「一個整數」，因此在 Spring Boot 程式中，我們就得將 <code>@Value</code> 加在一個「Int 或是 Long 類型」的變數上，這樣子在賦予值的時候才不會出現問題</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count}&#34;</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${printer.count}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>又或是說，假設我們在 application.properties 檔案裡面，定義了另一組 key 和 value 如下：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">my.name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">John</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">my.name</span><span style="color:#0550ae">=</span><span style="color:#0a3069">John</span>
 </span></span></code></pre></div><p>上面這行程式，也是在暗示 <code>my.name</code> 的值為「一個字串」，因此在 Spring Boot 程式中，我們就得將 <code>@Value</code> 加在一個「String 類型」的變數上，這樣子在賦予值的時候，也才不會出現問題</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${my.name}&#34;</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span>String<span style="color:#bbb"> </span>name;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${my.name}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><h3 id="4-使用-value-的注意事項之四可以設定預設值" class="markdown-heading-anchor">
   4. 使用 @Value 的注意事項之四：可以設定預設值
   <a href="#4-%e4%bd%bf%e7%94%a8-value-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e5%9b%9b%e5%8f%af%e4%bb%a5%e8%a8%ad%e5%ae%9a%e9%a0%90%e8%a8%ad%e5%80%bc">#</a>
 </h3><p>在使用 <code>@Value</code> 去讀取 Spring Boot 設定檔 (application.properties 檔案) 中的值時，有可能會發生一種情況，就是「該 key 不存在在 application.properties 檔案裡面」</p>
 <p>譬如說我們在 Spring Boot 程式裡面，寫上了下面這一段程式，嘗試去將 application.properties 檔案中的 <code>printer.count</code> 的值，去儲存到 count 變數中</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count}&#34;</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${printer.count}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>如果這時候 application.properties 檔案中「沒有」<code>printer.count</code> 這個 key 的話，那麼 Spring Boot 程式就會運作失敗，出現「Could not resolve placeholder &lsquo;printer.count&rsquo; in value &ldquo;${printer.count}&quot;」的錯誤，導致無法成功啟動</p>
 <p>
 
@@ -689,17 +688,16 @@
 /></p>
 <p>如果大家想要避免這個問題的話，<code>@Value</code> 也是有提供另一種輔助方式可以讓我們使用，即是「設定預設值」</p>
 <p>我們可以在 <code>@Value</code> 的 key 的後面，加上一個 <code>:</code>，並且在後面寫上想要的值，譬如說這裡寫上 200</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Value</span>(<span style="color:#d14">&#34;${printer.count:200}&#34;</span>)<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">private</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">int</span><span style="color:#bbb"> </span>count;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Value</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;${printer.count:200}&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>count<span style="color:#1f2328">;</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>上面這一段程式的意思是：「<code>@Value</code> 會先去找尋 application.properties 中有沒有 <code>printer.count</code> 這個 key，有的話，就去讀取那個 key 的值到 count 變數中，如果沒有的話，則將 count 變數的值，設定成預設的 200」</p>
 <p>所以當我們這樣寫之後，如果 application.properties 中「有設定」<code>printer.count</code> 的值（如下方程式所示），那麼 Spring Boot 程式中的 count 變數的值就會是 5</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">printer.count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">printer.count</span><span style="color:#0550ae">=</span><span style="color:#0a3069">5</span>
 </span></span></code></pre></div><p>但是如果 application.properties 中，「沒有設定」<code>printer.count</code> 的值（如下方程式所示），那麼 Spring Boot 程式中的 count 變數的值就會是預設的 200</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># no key-value</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#57606a"># no key-value</span>
 </span></span></code></pre></div><p>所以簡單的說的話，如果想要「避免 application.properties 中找不到該 key，導致 Spring Boot 程式運行失敗」的狀況的話，那麼就可以在 <code>@Value</code> 中使用 <code>:</code>，在後面加上預設值，當找不到 key 時，就可以直接無縫接軌改成使用預設值來運行</p>
 <blockquote>
-<p>補充：使用 <code>@Value</code> 的預設值寫法，其實是有點雙面刃的做法，因為這樣會讓設定值四散在各處，後續會比較難進行管理，因此建議大家斟酌使用</p>
-</blockquote>
+<p>補充：使用 <code>@Value</code> 的預設值寫法，其實是有點雙面刃的做法，因為這樣會讓設定值四散在各處，後續會比較難進行管理，因此建議大家斟酌使用</p></blockquote>
 <h3 id="小結所以value-到底要怎麼用" class="markdown-heading-anchor">
   小結：所以，@Value 到底要怎麼用？
   <a href="#%e5%b0%8f%e7%b5%90%e6%89%80%e4%bb%a5value-%e5%88%b0%e5%ba%95%e8%a6%81%e6%80%8e%e9%ba%bc%e7%94%a8">#</a>
@@ -725,8 +723,7 @@
 <p>不過在這裡要特特特特別注意的一點，就是 <strong>「一份 Spring Boot 程式中只能使用一種語法來撰寫」</strong>，換句話說的話，就是 application.properties 和 application.yml 這兩個檔案，他們「不能同時存在」</p>
 <p>所以一開始在創建 Spring Boot 程式時，要不就是選用 application.properties 寫到底，要不就是使用 appilcation.yml 寫到底，不能夠讓這兩個檔案同時並存，否則會使得 Spring Boot 程式運作失敗，這是大家在使用上要特別注意的地方</p>
 <blockquote>
-<p>補充：我自己是比較喜歡使用 application.properties 來設定，yml 語法寫起來感覺很容易出錯😂（一個恍神不小心縮排就毀了），供大家參考</p>
-</blockquote>
+<p>補充：我自己是比較喜歡使用 application.properties 來設定，yml 語法寫起來感覺很容易出錯😂（一個恍神不小心縮排就毀了），供大家參考</p></blockquote>
 <h2 id="補充-2yml-的語法" class="markdown-heading-anchor">
   補充 2：yml 的語法
   <a href="#%e8%a3%9c%e5%85%85-2yml-%e7%9a%84%e8%aa%9e%e6%b3%95">#</a>
@@ -735,18 +732,18 @@
   key: value 的寫法
   <a href="#key-value-%e7%9a%84%e5%af%ab%e6%b3%95">#</a>
 </h3><p>在 yml 語法中，是採用 <code>key: value</code> 的方式來撰寫，注意在 value 前面 <strong>「必須」</strong> 加上一個空白鍵來隔開 <code>:</code>，所以寫起來的效果如下：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#000080">count</span>:<span style="color:#bbb"> </span><span style="color:#099">5</span><span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#0550ae">count</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#0550ae">5</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>上面這一段程式所表示的，就是去宣告一個 key 為 count，並且他的值為 5，而如果想用 properties 語法來表示同樣的效果的話，則會寫成下面這樣子：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">count</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">5</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">count</span><span style="color:#0550ae">=</span><span style="color:#0a3069">5</span>
 </span></span></code></pre></div><h3 id="縮排的寫法" class="markdown-heading-anchor">
   縮排的寫法
   <a href="#%e7%b8%ae%e6%8e%92%e7%9a%84%e5%af%ab%e6%b3%95">#</a>
 </h3><p>yml 除了使用 <code>key: value</code> 的方式來設定值之外，並且 yml 是使用「縮排」的方式，來表示中文的「的」的概念</p>
 <p>像是在 properties 語法中，當我們寫了下面這行程式，其中文意義是表示「我的名字叫做 John」（因為 properties 語法中的 <code>.</code>，就是表示中文的「的」的意思）</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#008080">my.name</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">John</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#1f2328">my.name</span><span style="color:#0550ae">=</span><span style="color:#0a3069">John</span>
 </span></span></code></pre></div><p>而在 yml 中，則會寫成下面這個樣子，透過 <strong>「將 name 這一行往右縮排 2 個空白鍵」</strong>，表示中文的「的」的意思</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#000080">my</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>John<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#0550ae">my</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>John<span style="color:#fff">
 </span></span></span></code></pre></div><p>所以上面這一段程式讀起來，一樣也是「我的名字是 John」，只是 yml 是透過縮排的方式來表達，而 properties 是使用 <code>.</code> 的方式來表達而已</p>
 <h3 id="小結properties-和-yml-的差別" class="markdown-heading-anchor">
   小結：properties 和 yml 的差別
@@ -778,8 +775,7 @@
    
    target="_blank" rel="noopener">
 「Java 工程師必備！Spring Boot 零基礎入門」
-</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p>
-</blockquote>
+</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
 
@@ -788,7 +784,7 @@
         <div class="doc-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="doc-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

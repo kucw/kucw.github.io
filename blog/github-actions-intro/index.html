@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -239,22 +239,22 @@
   data-zoomable
 /></p>
 <p>此時在 <code>demo-github-action.yml</code> 裡添加下列程式之後：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>GitHub Actions Demo<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">run-name</span>:<span style="color:#bbb"> </span>GitHub Actions Demo<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># 觸發此 action 的時機</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">on</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">push</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000080">branchs</span>:<span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># 只要有任何一個 commit 被 push，就會觸發此 action</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#d14">&#39;*&#39;</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">workflow_dispatch</span>:<span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># 可以手動執行此 action</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># 預先定義此 action 要幹嘛</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">jobs</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">demo</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000080">runs-on</span>:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000080">steps</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">run</span>:<span style="color:#bbb"> </span>echo &#39;執行成功&#39;<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>GitHub Actions Demo<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">run-name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>GitHub Actions Demo<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a"># 觸發此 action 的時機</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">on</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">push</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">branchs</span><span style="color:#1f2328">:</span><span style="color:#fff">  </span><span style="color:#57606a"># 只要有任何一個 commit 被 push，就會觸發此 action</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span><span style="color:#0a3069">&#39;*&#39;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">workflow_dispatch</span><span style="color:#1f2328">:</span><span style="color:#fff">  </span><span style="color:#57606a"># 可以手動執行此 action</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a"># 預先定義此 action 要幹嘛</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">jobs</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">demo</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">runs-on</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>ubuntu-latest<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">steps</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">run</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>echo &#39;執行成功&#39;<span style="color:#fff">
 </span></span></span></code></pre></div><p>只要這樣寫之後，就可以在「任何一個 commit 被 push」以及「手動執行此 action」這兩個時機點，去觸發這一個 GitHub Action。</p>
 <p>因此當有 commit 被 push 上來時，此 action 就會輸出執行成功的結果，如下圖所示：</p>
 <p>
@@ -284,8 +284,7 @@
 <p>所以透過在 <code>.github/workflows</code> 中添加 <code>demo-github-action.yml</code> 的檔案（檔名可以隨意取），我們就可以為這個 GitHub repo 去添加他專屬的 GitHub Actions，因此就可以用 GitHub Actions 不斷的去集成這份程式，實作 CI/CD 的效果了！</p>
 <p>另外大家以後在查看程式時，如果有發現某份程式有 <code>.github/workflows</code>，就表示他有使用 GitHub Actions，所以就不會看不懂這資料夾到底是在幹嘛的了～（在知道有 GitHub Actions 這功能之前，我一直都以為 <code>.github/workflows</code> 只是 GitHub 產生的檔案，沒啥用處，真的是誤會大了🤣）。</p>
 <blockquote>
-<p>補充：因為篇幅有限，所以沒辦法詳細介紹 GitHub Actions 中每一行程式的用途，如果大家有興趣的話，可以再查詢 GitHub Actions 的用法介紹。</p>
-</blockquote>
+<p>補充：因為篇幅有限，所以沒辦法詳細介紹 GitHub Actions 中每一行程式的用途，如果大家有興趣的話，可以再查詢 GitHub Actions 的用法介紹。</p></blockquote>
 <h2 id="github-actions-在網路爬蟲中的用途" class="markdown-heading-anchor">
   GitHub Actions 在網路爬蟲中的用途
   <a href="#github-actions-%e5%9c%a8%e7%b6%b2%e8%b7%af%e7%88%ac%e8%9f%b2%e4%b8%ad%e7%9a%84%e7%94%a8%e9%80%94">#</a>
@@ -296,36 +295,36 @@
   <a href="#%e5%af%a6%e6%88%b0%e4%bd%bf%e7%94%a8-github-actions-%e5%af%a6%e4%bd%9c%e7%b6%b2%e8%b7%af%e7%88%ac%e8%9f%b2">#</a>
 </h3><p>如果要使用 GitHub Actions 實作網路爬蟲的話，首先需要先在 mytest 中新增一份爬蟲程式（此處以 <code>crawler.py</code> 為例）。</p>
 <p>接著在 <code>.github/workflows</code> 中創建一個新的 action 檔案 <code>crawler-demo.yml</code>（檔名可以隨意取），並且在 <code>crawler-demo.yml</code> 中添加下列程式：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Crawler Demo Action<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">run-name</span>:<span style="color:#bbb"> </span>Crawler Demo Action<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># 觸發此 action 的時機</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">on</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">schedule</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>- <span style="color:#000080">cron</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;55 12 * * *&#34;</span><span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># UTC 每天下午 12:55 執行此 action（等同於台灣晚上 8:55 執行）</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">workflow_dispatch</span>:<span style="color:#bbb">  </span><span style="color:#998;font-style:italic"># 可以手動執行此 action</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#998;font-style:italic"># 預先定義此 action 要幹嘛</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000080">jobs</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#000080">crawler-demo</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000080">runs-on</span>:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000080">steps</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Checkout<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">uses</span>:<span style="color:#bbb"> </span>actions/checkout@v3<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Setup Python<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">uses</span>:<span style="color:#bbb"> </span>actions/setup-python@v4.5.0<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">with</span>:<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#000080">python-version</span>:<span style="color:#bbb"> </span><span style="color:#d14">&#34;3.10&#34;</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Install Python Dependency<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">run</span>:<span style="color:#bbb"> </span>pip3 install requests<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Run crawler.py <span style="color:#bbb"> </span><span style="color:#998;font-style:italic"># 前面都是在安裝 Python 環境，這裡才是真的去執行 crawler.py 的程式</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">run</span>:<span style="color:#bbb"> </span>python crawler.py<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#000080">name</span>:<span style="color:#bbb"> </span>Commit Data Back To GitHub Repo <span style="color:#bbb"> </span><span style="color:#998;font-style:italic"># 將爬到的數據 commit 回 GitHub repo</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#000080">run</span>:<span style="color:#bbb"> </span>|<span style="color:#d14">
-</span></span></span><span style="display:flex;"><span><span style="color:#d14">          git config --global user.name &#34;crawler-bot&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#d14">          git config --global user.email &#34;crawler-bot@gmail.com&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#d14">          git add . &amp;&amp; git commit -m &#34;daily crawl&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#d14">          git push origin main</span><span style="color:#bbb">          
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Crawler Demo Action<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">run-name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Crawler Demo Action<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a"># 觸發此 action 的時機</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">on</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">schedule</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>- <span style="color:#0550ae">cron</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;55 12 * * *&#34;</span><span style="color:#fff">  </span><span style="color:#57606a"># UTC 每天下午 12:55 執行此 action（等同於台灣晚上 8:55 執行）</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">workflow_dispatch</span><span style="color:#1f2328">:</span><span style="color:#fff">  </span><span style="color:#57606a"># 可以手動執行此 action</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a"># 預先定義此 action 要幹嘛</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">jobs</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">crawler-demo</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">runs-on</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>ubuntu-latest<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">steps</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Checkout<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">uses</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>actions/checkout@v3<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Setup Python<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">uses</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>actions/setup-python@v4.5.0<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">with</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">          </span><span style="color:#0550ae">python-version</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;3.10&#34;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Install Python Dependency<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">run</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>pip3 install requests<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Run crawler.py <span style="color:#fff"> </span><span style="color:#57606a"># 前面都是在安裝 Python 環境，這裡才是真的去執行 crawler.py 的程式</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">run</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>python crawler.py<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">      </span>- <span style="color:#0550ae">name</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>Commit Data Back To GitHub Repo <span style="color:#fff"> </span><span style="color:#57606a"># 將爬到的數據 commit 回 GitHub repo</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">run</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#1f2328">|</span><span style="color:#0a3069">
+</span></span></span><span style="display:flex;"><span><span style="color:#0a3069">          git config --global user.name &#34;crawler-bot&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#0a3069">          git config --global user.email &#34;crawler-bot@gmail.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#0a3069">          git add . &amp;&amp; git commit -m &#34;daily crawl&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#0a3069">          git push origin main</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>在這一段程式中，首先最上面有一段 <code>cron</code> 的設定，<strong>這一段 <code>cron</code> 的設定就是可以將此 GitHub Actions 設定成「定時觸發此 action」</strong>，因此如果大家想要實作定時的網路爬蟲的話，就可以利用 GitHub Actions 的功能，定時去執行你想要執行的爬蟲程式。</p>
 <p>而至於下面的 <code>jobs:</code> 之後的這一大串程式，就是在安裝 Python 環境、執行爬蟲程式 <code>crawler.py</code>、並且將爬取到的數據 commit 回此 repo（不用額外找地方存爬到的數據，讚！）。</p>
 <div class="markdown-breakline"></div>
@@ -339,8 +338,7 @@
 <p>所以對於只是想要寫一個小爬蟲的情境來說，用這招真的是在維護上最方便的做法👍，而且 GitHub Actions 在 public repo 上完全免費（在 private repo 每個月 2000 分鐘免費，也很夠用了），真的只能說是佛心來著🥹。</p>
 <p>我自己已經用這功能爬了 2 個月多的數據，完全沒出過狀況，很穩定！推薦大家使用～</p>
 <blockquote>
-<p>補充：如果某一次 GitHub Actions 執行失敗，GitHub 也會寄信通知你失敗了，所以只要當我收到失敗信，我再進到 GitHub 上看問題出在哪就好，因此就不用擔心哪天有突發狀況導致數據沒爬到的情況出現，感謝 GitHub！</p>
-</blockquote>
+<p>補充：如果某一次 GitHub Actions 執行失敗，GitHub 也會寄信通知你失敗了，所以只要當我收到失敗信，我再進到 GitHub 上看問題出在哪就好，因此就不用擔心哪天有突發狀況導致數據沒爬到的情況出現，感謝 GitHub！</p></blockquote>
 <h2 id="github-actions-總結" class="markdown-heading-anchor">
   GitHub Actions 總結
   <a href="#github-actions-%e7%b8%bd%e7%b5%90">#</a>
@@ -361,6 +359,20 @@ Billing and Plans 頁面
    target="_blank" rel="noopener">
 《古古的後端筆記》電子報
 </a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：我開設的<a href="https://hahow.in/cr/springboot"
+   
+   target="_blank" rel="noopener">
+Spring Boot 零基礎入門
+</a>、<a href="https://hahow.in/cr/springsecurity"
+   
+   target="_blank" rel="noopener">
+Spring Security 零基礎入門
+</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
+   
+   target="_blank" rel="noopener">
+GitHub 免費架站術
+</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202503KU」即可享 85 折優惠。</strong></p></blockquote>
 
         </div>
 
@@ -369,7 +381,7 @@ Billing and Plans 頁面
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

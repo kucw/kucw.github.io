@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -195,10 +195,10 @@
   首先先運行起來在 server 上的 project
   <a href="#%e9%a6%96%e5%85%88%e5%85%88%e9%81%8b%e8%a1%8c%e8%b5%b7%e4%be%86%e5%9c%a8-server-%e4%b8%8a%e7%9a%84-project">#</a>
 </h3><p>如果是 SpringBoot project，需要在執行 build 出來的 jar 檔時，帶上 jvm 啟動參數</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -agentlib:jdwp<span style="color:#000;font-weight:bold">=</span><span style="color:#008080">transport</span><span style="color:#000;font-weight:bold">=</span>dt_socket,address<span style="color:#000;font-weight:bold">=</span>18090,server<span style="color:#000;font-weight:bold">=</span>y,suspend<span style="color:#000;font-weight:bold">=</span>n -jar myservice-0.0.1-SNAPSHOT.jar
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -agentlib:jdwp<span style="color:#0550ae">=</span><span style="color:#953800">transport</span><span style="color:#0550ae">=</span>dt_socket,address<span style="color:#0550ae">=</span>18090,server<span style="color:#0550ae">=</span>y,suspend<span style="color:#0550ae">=</span>n -jar myservice-0.0.1-SNAPSHOT.jar
 </span></span></code></pre></div><p>如果是傳統的 Spring + tomcat war 檔 project，則是在 <code>tomcat/bin/catalina.sh</code>裡，加入 JAVA_OPTS 設定 jvm 啟動參數</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/sh
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#008080">JAVA_OPTS</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#57606a">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span><span style="color:#953800">JAVA_OPTS</span><span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;-agentlib:jdwp=transport=dt_socket,address=18090,server=y,suspend=n&#34;</span>
 </span></span></code></pre></div><h3 id="接著在自己的電腦上開啟-tunnel" class="markdown-heading-anchor">
   接著在自己的電腦上開啟 tunnel
   <a href="#%e6%8e%a5%e8%91%97%e5%9c%a8%e8%87%aa%e5%b7%b1%e7%9a%84%e9%9b%bb%e8%85%a6%e4%b8%8a%e9%96%8b%e5%95%9f-tunnel">#</a>
@@ -292,7 +292,7 @@ putty
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

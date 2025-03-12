@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -251,52 +251,52 @@
 </ul>
 </li>
 <li>aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: { <span style="color:#a61717;background-color:#e3d2d2">...</span> },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name1&#34;</span>: {  <span style="color:#998;font-style:italic">//aggs後面接著的是一個自定義的name
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        	<span style="color:#000080">&#34;桶&#34;</span>: { <span style="color:#a61717;background-color:#e3d2d2">...</span> }  <span style="color:#998;font-style:italic">//再來才是接桶
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name2&#34;</span>: {  <span style="color:#998;font-style:italic">//一個aggs裡可以有很多聚合
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000080">&#34;桶&#34;</span>: { <span style="color:#a61717;background-color:#e3d2d2">...</span> }
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name3&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;桶&#34;</span>: {
-</span></span><span style="display:flex;"><span>               <span style="color:#a61717;background-color:#e3d2d2">.....</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;aggs&#34;</span>: {  <span style="color:#998;font-style:italic">//aggs可以嵌套在別的aggs裡面
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;in_name&#34;</span>: { <span style="color:#998;font-style:italic">//記得使用aggs需要先自定義一個name
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000080">&#34;桶&#34;</span>: { <span style="color:#a61717;background-color:#e3d2d2">...</span> } <span style="color:#998;font-style:italic">//in_name的桶作用的文檔是custom_name3的桶的結果
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#f6f8fa;background-color:#82071e">...</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name1&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>  <span style="color:#57606a">//aggs後面接著的是一個自定義的name
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>        	<span style="color:#0550ae">&#34;桶&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#f6f8fa;background-color:#82071e">...</span> <span style="color:#1f2328">}</span>  <span style="color:#57606a">//再來才是接桶
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name2&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>  <span style="color:#57606a">//一個aggs裡可以有很多聚合
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#0550ae">&#34;桶&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#f6f8fa;background-color:#82071e">...</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name3&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;桶&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#f6f8fa;background-color:#82071e">.....</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>  <span style="color:#57606a">//aggs可以嵌套在別的aggs裡面
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;in_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//記得使用aggs需要先自定義一個name
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                    <span style="color:#0550ae">&#34;桶&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#f6f8fa;background-color:#82071e">...</span> <span style="color:#1f2328">}</span> <span style="color:#57606a">//in_name的桶作用的文檔是custom_name3的桶的結果
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;hits&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;total&#34;</span>: <span style="color:#099">8</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;max_score&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;hits&#34;</span>: [] <span style="color:#998;font-style:italic">//因為size設為0，所以沒有查詢結果返回
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggregations&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name1&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#a61717;background-color:#e3d2d2">...</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name2&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#a61717;background-color:#e3d2d2">...</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;custom_name3&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#a61717;background-color:#e3d2d2">...</span> <span style="color:#a61717;background-color:#e3d2d2">,</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;in_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>               <span style="color:#a61717;background-color:#e3d2d2">....</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;hits&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;total&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">8</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;max_score&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;hits&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[]</span> <span style="color:#57606a">//因為size設為0，所以沒有查詢結果返回
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggregations&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name1&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f6f8fa;background-color:#82071e">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name2&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f6f8fa;background-color:#82071e">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;custom_name3&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f6f8fa;background-color:#82071e">...</span> <span style="color:#f6f8fa;background-color:#82071e">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;in_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#f6f8fa;background-color:#82071e">....</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -314,85 +314,85 @@
 <li>具體實例
 <ul>
 <li>首先插入幾筆數據，其中 color 是一個 keyword 類型
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span> }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;green&#34;</span> }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>] }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;green&#34;</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">]</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>執行 terms 桶聚合
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>, <span style="color:#998;font-style:italic">//使用color來進行分組
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span><span style="color:#1f2328">,</span> <span style="color:#57606a">//使用color來進行分組
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
 <ul>
 <li>因為 color 總共有 3 種值，red、blue、green，所以 terms 桶為他們產生了 3 個 bucket，並計算了每個 bucket 中符合的文檔有哪些</li>
 <li>bucket 和 bucket 間是獨立的，也就是說一個文檔可以同時符合好幾個 bucket，像是 <code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code> 就同時符合了 red 和 blue bucket
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;buckets&#34;</span>: [  <span style="color:#998;font-style:italic">//terms桶產生的buckets數組，裡面每個json對象都是一個bucket
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;blue&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">//表示color為red的文檔有2個，此例中就是 {&#34;color&#34;: &#34;red&#34;} 和 {&#34;color&#34;: [&#34;red&#34;, &#34;blue&#34;]}這兩個文檔
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;green&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>  <span style="color:#57606a">//terms桶產生的buckets數組，裡面每個json對象都是一個bucket
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#57606a">//表示color為red的文檔有2個，此例中就是 {&#34;color&#34;: &#34;red&#34;} 和 {&#34;color&#34;: [&#34;red&#34;, &#34;blue&#34;]}這兩個文檔
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;green&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
 <li>可以在參數帶上 <code>min_doc_count</code> 限制當 doc 數大於等於 n 筆時才會被搜出來，也可以帶上 <code>size</code> 參數，指名要顯示 bucket 中多少筆數據，默認是 10
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">100</span>, <span style="color:#998;font-style:italic">//可以設置size，指定返回的桶數量，預設是10，如果總共桶數不超過100，那就會全部返回
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;min_doc_count&#34;</span>: <span style="color:#099">2</span> <span style="color:#998;font-style:italic">//bucket中只有當doc_count &gt;= 2的人，才會被搜出來
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span><span style="color:#1f2328">,</span> <span style="color:#57606a">//可以設置size，指定返回的桶數量，預設是10，如果總共桶數不超過100，那就會全部返回
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;min_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span> <span style="color:#57606a">//bucket中只有當doc_count &gt;= 2的人，才會被搜出來
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;buckets&#34;</span>: [ <span style="color:#998;font-style:italic">//因為設置了min_doc_count:2，所有只有red桶被搜出來
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#57606a">//因為設置了min_doc_count:2，所有只有red桶被搜出來
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -404,78 +404,78 @@
 </ul>
 </li>
 <li>首先準備數據，color 一樣為 keyword 類型，而 price 為 integer 類型
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;green&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">500</span> }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>], <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">1000</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;green&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">500</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">],</span> <span style="color:#0550ae">&#34;price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1000</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>將 avg 指標嵌套在 terms 桶裡一起使用
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;aggs&#34;</span>: {  <span style="color:#998;font-style:italic">//嵌套兩個指標avg、min在terms桶中
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;my_avg_price&#34;</span>: { <span style="color:#998;font-style:italic">//my_avg_price計算每個bucket的平均price
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000080">&#34;avg&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;price&#34;</span>
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_min_price&#34;</span>: { <span style="color:#998;font-style:italic">//my_min_price計算每個bucket中的最小price
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                	<span style="color:#000080">&#34;min&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;price&#34;</span>
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>  <span style="color:#57606a">//嵌套兩個指標avg、min在terms桶中
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;my_avg_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//my_avg_price計算每個bucket的平均price
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                    <span style="color:#0550ae">&#34;avg&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;price&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_min_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//my_min_price計算每個bucket中的最小price
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                	<span style="color:#0550ae">&#34;min&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;price&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;buckets&#34;</span>: [ <span style="color:#998;font-style:italic">//terms桶中的每個bucket都會計算avg和min兩個指標
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;blue&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_avg_price&#34;</span>: { <span style="color:#998;font-style:italic">//avg指標
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">1000</span>
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_min_price&#34;</span>: { <span style="color:#998;font-style:italic">//min指標
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">100</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">//avg指標計算的值，因為符合color為red的文檔有兩筆，所以平均price為100+1000/2 = 550
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;my_avg_price&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">550</span>
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_min_price&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">100</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;green&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_avg_price&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">500</span>
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_min_price&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;value&#34;</span>: <span style="color:#099">500</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#57606a">//terms桶中的每個bucket都會計算avg和min兩個指標
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_avg_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//avg指標
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1000</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_min_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//min指標
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#57606a">//avg指標計算的值，因為符合color為red的文檔有兩筆，所以平均price為100+1000/2 = 550
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;my_avg_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">550</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_min_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;green&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_avg_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">500</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_min_price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;value&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">500</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -492,40 +492,40 @@
 </ul>
 </li>
 <li>準備數據
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;green&#34;</span>] }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>] }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;green&#34;</span><span style="color:#1f2328">]</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">]</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>聚合時只聚合我們感興趣的 bucket，也就是 color 為 red 的文檔有多少，其他的 bucket 不聚合
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;include&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>  <span style="color:#998;font-style:italic">//include也支持數組和正則
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;include&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span>  <span style="color:#57606a">//include也支持數組和正則
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#998;font-style:italic">//本來是有三個bucket的，但是因為設置了include，所以只聚合計算了一個bucket red
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#000080">&#34;buckets&#34;</span>: [
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a">//本來是有三個bucket的，但是因為設置了include，所以只聚合計算了一個bucket red
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>        <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -545,91 +545,91 @@
 <li>具體實例
 <ul>
 <li>取得 color 為 red 或是 blue 的文檔
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;filter&#34;</span>: { <span style="color:#998;font-style:italic">//此處是一個filter桶，因為他用法跟一般的過濾filter一樣，所以也能使用bool嵌套
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;must&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;terms&#34;</span>: { <span style="color:#998;font-style:italic">//注意此terms是查找terms，不是terms桶
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                            <span style="color:#000080">&#34;color&#34;</span>: [ <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span> ]
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;filter&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//此處是一個filter桶，因為他用法跟一般的過濾filter一樣，所以也能使用bool嵌套
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;must&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//注意此terms是查找terms，不是terms桶
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                            <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span> <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span> <span style="color:#998;font-style:italic">//filter桶計算出來的文檔數量
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span> <span style="color:#57606a">//filter桶計算出來的文檔數量
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
 <li>具體實例二
 <ul>
 <li>filter 桶和 terms 桶嵌套使用，先過濾出 color 為 red 或 blue 的文檔，再對這些文檔進行 color 分組
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: { <span style="color:#998;font-style:italic">//my_name聚合
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000080">&#34;filter&#34;</span>: { <span style="color:#998;font-style:italic">//filter桶
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;must&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;color&#34;</span>: [ <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span> ]
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;my_name2&#34;</span>: { <span style="color:#998;font-style:italic">//my_name2聚合，嵌套在my_name聚合裡
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                    <span style="color:#000080">&#34;terms&#34;</span>: { <span style="color:#998;font-style:italic">//terms桶
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                        <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//my_name聚合
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#0550ae">&#34;filter&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//filter桶
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;must&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span> <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;my_name2&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//my_name2聚合，嵌套在my_name聚合裡
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                    <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">//terms桶
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                        <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
 <ul>
 <li>因為 terms 桶嵌套在 filter 桶內，所以 query 查詢出來的文檔們會先經過 filter 桶，如果符合 filter 桶，才會進入到 terms 桶內</li>
 <li>此處通過 filter 桶的文檔只有兩筆，分別是 <code>{&quot;color&quot;: &quot;red&quot;}</code>以及<code>{&quot;color&quot;: [&quot;red&quot;, &quot;blue&quot;]}</code>，所以 terms 桶只會對這兩筆文檔做分組</li>
 <li>這也是為什麼 terms 桶裡沒有出現 color 為 green 的分組，因為這個文檔在 filter 桶就被擋下來了
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>, <span style="color:#998;font-style:italic">//filter桶計算的數量，通過此處的文檔只有2筆
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>        <span style="color:#000080">&#34;my_name2&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;buckets&#34;</span>: [
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>  <span style="color:#998;font-style:italic">//terms桶計算的數量
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                },
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;blue&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>  <span style="color:#998;font-style:italic">//terms桶計算的數量
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                }
-</span></span><span style="display:flex;"><span>            ]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">,</span> <span style="color:#57606a">//filter桶計算的數量，通過此處的文檔只有2筆
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>        <span style="color:#0550ae">&#34;my_name2&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span>  <span style="color:#57606a">//terms桶計算的數量
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span>  <span style="color:#57606a">//terms桶計算的數量
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -655,45 +655,45 @@
 <li>具體實例
 <ul>
 <li>準備數據，color 是 keyword 類型
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>, <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">100</span> }
-</span></span><span style="display:flex;"><span>{ <span style="color:#000080">&#34;color&#34;</span>: [<span style="color:#d14">&#34;red&#34;</span>, <span style="color:#d14">&#34;blue&#34;</span>], <span style="color:#000080">&#34;price&#34;</span>: <span style="color:#099">1000</span> }
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;color&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">],</span> <span style="color:#0550ae">&#34;price&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1000</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>使用 terms 桶進行分組，並且規定按照桶的字母順序升序，因此 a 生成桶會排在最前面而 z 生成桶會排在最後面
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;match_all&#34;</span>: {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;size&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;aggs&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;terms&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;field&#34;</span>: <span style="color:#d14">&#34;color&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;order&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;_term&#34;</span>: <span style="color:#d14">&#34;asc&#34;</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;match_all&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;size&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;aggs&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;terms&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;field&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;color&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;order&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;_term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;asc&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>結果
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;aggregations&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;my_name&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;doc_count_error_upper_bound&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;sum_other_doc_count&#34;</span>: <span style="color:#099">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;buckets&#34;</span>: [
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;blue&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">1</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;key&#34;</span>: <span style="color:#d14">&#34;red&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;doc_count&#34;</span>: <span style="color:#099">2</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;aggregations&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;my_name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;doc_count_error_upper_bound&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;sum_other_doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;buckets&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;blue&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;key&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;red&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;doc_count&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -706,7 +706,7 @@
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

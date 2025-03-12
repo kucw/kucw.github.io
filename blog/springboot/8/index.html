@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -561,8 +561,7 @@
    
    target="_blank" rel="noopener">
 Day 7 - Bean 的創建和注入 - @Component、@Autowired
-</a> 的介紹</p>
-</blockquote>
+</a> 的介紹</p></blockquote>
 <h2 id="在-spring-boot-中練習-qualifier-的用法" class="markdown-heading-anchor">
   在 Spring Boot 中練習 @Qualifier 的用法
   <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-qualifier-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
@@ -586,14 +585,14 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   data-zoomable
 /></p>
 <p>要測試 <code>@Qualifier</code> 的用法的話，我們可以嘗試在 com.example.demo 這個 package 裡面，再去新增一個 CanonPrinter 的 class 出來，並且在裡面實作如下的程式：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#3c5d5d;font-weight:bold">@Component</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">CanonPrinter</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">implements</span><span style="color:#bbb"> </span>Printer<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#3c5d5d;font-weight:bold">@Override</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#000;font-weight:bold">public</span><span style="color:#bbb"> </span><span style="color:#458;font-weight:bold">void</span><span style="color:#bbb"> </span><span style="color:#900;font-weight:bold">print</span>(String<span style="color:#bbb"> </span>message)<span style="color:#bbb"> </span>{<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span>System.<span style="color:#008080">out</span>.<span style="color:#008080">println</span>(<span style="color:#d14">&#34;Canon印表機: &#34;</span><span style="color:#bbb"> </span><span style="color:#000;font-weight:bold">+</span><span style="color:#bbb"> </span>message);<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span>}<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Component</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">CanonPrinter</span><span style="color:#fff"> </span><span style="color:#cf222e">implements</span><span style="color:#fff"> </span>Printer<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Override</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">print</span><span style="color:#1f2328">(</span>String<span style="color:#fff"> </span>message<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;Canon印表機: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>message<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>
 
 <img
@@ -672,8 +671,7 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
 <p>所以後續在下方第 17 行去執行 <code>printer.print(&quot;Hello World&quot;)</code> 時，實際上是去執行 canonPrinter 的 print 方法，因此才會在 console 上輸出「Canon印表機: Hello World」</p>
 <p>所以只要看到「Canon印表機: Hello World」這一行的出現，也就表示我們成功的透過 <code>@Qualifier</code>，去指定要注入的 Bean 是哪一個了！</p>
 <blockquote>
-<p>補充：大家也可以嘗試把第 17 行修改一下，像是改成 <code>@Qualifier(&quot;hpPrinter&quot;)</code>，就可以改成是去注入 hpPrinter 那個 Bean 進來，因此在 console 上輸出的，就會改成是「HP印表機: Hello World」</p>
-</blockquote>
+<p>補充：大家也可以嘗試把第 17 行修改一下，像是改成 <code>@Qualifier(&quot;hpPrinter&quot;)</code>，就可以改成是去注入 hpPrinter 那個 Bean 進來，因此在 console 上輸出的，就會改成是「HP印表機: Hello World」</p></blockquote>
 <h2 id="總結" class="markdown-heading-anchor">
   總結
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
@@ -684,8 +682,7 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
    
    target="_blank" rel="noopener">
 「Java 工程師必備！Spring Boot 零基礎入門」
-</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p>
-</blockquote>
+</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202503KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
 
@@ -694,7 +691,7 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
         <div class="doc-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="doc-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">

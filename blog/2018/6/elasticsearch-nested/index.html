@@ -18,7 +18,7 @@
 
 
   <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.139.4 with theme pure" />
+  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
 
   <!-- Plugins -->
   
@@ -205,20 +205,20 @@
 </li>
 <li>
 <p>假設 user 類型是 object，當插入一筆新的數據時，ES 會將他轉換為下面的內部文檔，其中可以看見 alice 和 white 的關聯性丟失了</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">PUT</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/</span><span style="color:#099">1</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user&#34;</span>: [
-</span></span><span style="display:flex;"><span>        { <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;John&#34;</span>, <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Smith&#34;</span> },
-</span></span><span style="display:flex;"><span>        { <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Alice&#34;</span>, <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;White&#34;</span> }
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">轉換後的內部文檔</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.first&#34;</span>: [ <span style="color:#d14">&#34;alice&#34;</span>, <span style="color:#d14">&#34;john&#34;</span> ],
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.last&#34;</span>: [ <span style="color:#d14">&#34;smith&#34;</span>, <span style="color:#d14">&#34;white&#34;</span> ]
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">PUT</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/</span><span style="color:#0550ae">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Smith&#34;</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Alice&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;White&#34;</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">轉換後的內部文檔</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;alice&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;john&#34;</span> <span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;smith&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;white&#34;</span> <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>理論上從插入的數據來看，應該搜索 &ldquo;first 為 Alice 且 last 為 White&rdquo; 時，這個文檔才算符合條件被搜出來，其他的條件都不算符合，但是因為 ES 把 object 類型的對象攤平了，所以實際上如果搜索 &ldquo;first 為 Alice 且 last 為 Smith&rdquo;，這個文檔也會當作符合的文檔被搜出來，但這樣就違反我們的意願了，我們希望內部對象自己的關聯性還是存在的</p>
@@ -236,20 +236,20 @@
 </li>
 <li>
 <p>假設將上面的例子的 user 改為 nested 類型，經過 ES 轉換後的文檔如下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#998;font-style:italic">//嵌套文檔1
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.first&#34;</span>: [ <span style="color:#d14">&#34;alice&#34;</span> ],
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.last&#34;</span>: [ <span style="color:#d14">&#34;white&#34;</span> ]
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//嵌套文檔2
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.first&#34;</span>: [ <span style="color:#d14">&#34;john&#34;</span> ],
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user.last&#34;</span>: [ <span style="color:#d14">&#34;smith&#34;</span> ]
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">//根文檔，或者也可以稱為父文檔
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#57606a">//嵌套文檔1
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;alice&#34;</span> <span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;white&#34;</span> <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a">//嵌套文檔2
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;john&#34;</span> <span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span> <span style="color:#0a3069">&#34;smith&#34;</span> <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a">//根文檔，或者也可以稱為父文檔
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>在獨立索引每一個嵌套對象後，對象中每個字段的相關性得以保留，因此我們查詢時，也僅返回那些真正符合條件的文檔</p>
@@ -270,93 +270,93 @@
 <ul>
 <li>
 <p>定義一個 nested 類型的 mapping，user 是一個內部對象，裡面包含了 first、last 和 age，因為 user 設置了 nested 類型，因此 user 對象會被索引在獨立的嵌套文檔中</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">PUT</span> <span style="color:#a61717;background-color:#e3d2d2">mytest</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;mappings&#34;</span>: {
-</span></span><span style="display:flex;"><span>    	<span style="color:#000080">&#34;doc&#34;</span>: {
-</span></span><span style="display:flex;"><span>        	<span style="color:#000080">&#34;properties&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">//group是正常的keyword字段
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>                <span style="color:#000080">&#34;group&#34;</span>: { <span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;keyword&#34;</span> },
-</span></span><span style="display:flex;"><span>                <span style="color:#998;font-style:italic">//user是一個nested類型，表示他底下還會包含子對象
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            	<span style="color:#000080">&#34;user&#34;</span>: {
-</span></span><span style="display:flex;"><span>                	<span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;nested&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;properties&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    	<span style="color:#000080">&#34;first&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;keyword&#34;</span>
-</span></span><span style="display:flex;"><span>                        },
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;last&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;keyword&#34;</span>
-</span></span><span style="display:flex;"><span>                        },
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;age&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;type&#34;</span>: <span style="color:#d14">&#34;integer&#34;</span>
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">PUT</span> <span style="color:#f6f8fa;background-color:#82071e">mytest</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;mappings&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#0550ae">&#34;doc&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#0550ae">&#34;properties&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#57606a">//group是正常的keyword字段
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>                <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;type&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;keyword&#34;</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#57606a">//user是一個nested類型，表示他底下還會包含子對象
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            	<span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                	<span style="color:#0550ae">&#34;type&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;nested&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;properties&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    	<span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;type&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;keyword&#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;type&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;keyword&#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;type&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;integer&#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>插入兩筆數據</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Taylor&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Swift&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">30</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">POST</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Taylor&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Swift&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">30</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">POST</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;user&#34;</span>: [
-</span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;White&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">18</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;John&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Smith&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">22</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    ]    
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">POST</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;White&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">18</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Smith&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">22</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">]</span>    
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>因此在ES中存在的文檔如下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;_source&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;user&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Taylor&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Swift&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">30</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;_source&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;user&#34;</span>: [
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;White&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">18</span>
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;John&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Smith&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">22</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            ]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;hits&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;_source&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Taylor&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Swift&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">30</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;_source&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;White&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">18</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Smith&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">22</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -377,53 +377,53 @@
 <ul>
 <li>
 <p>也就是說，下面的查詢實際上是查找必須存在一個子對象，然後此對象必須同時滿足 <code>user.first</code> 為 Taylor，且 <code>user.last</code> 為 Swift，所以能夠找到一個存在的文檔</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>        	<span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>                	<span style="color:#000080">&#34;must&#34;</span>: [
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;Taylor&#34;</span> } },
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.last&#34;</span>: <span style="color:#d14">&#34;Swift&#34;</span> } }
-</span></span><span style="display:flex;"><span>                    ]
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;_source&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;user&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Taylor&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Swift&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">30</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                	<span style="color:#0550ae">&#34;must&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Taylor&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Swift&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;hits&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;_source&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Taylor&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Swift&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">30</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
 </span></span></code></pre></div></li>
 <li>
 <p>但將查詢改寫成下面這樣的話，則搜索不到任何結果，因為沒有一個子對象同時滿足 <code>user.first</code> 為 Taylor 且 <code>user.last</code> 為xxx</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>        	<span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>                	<span style="color:#000080">&#34;must&#34;</span>: [
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;Taylor&#34;</span> } },
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.last&#34;</span>: <span style="color:#d14">&#34;xxx&#34;</span> } }
-</span></span><span style="display:flex;"><span>                    ]
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                	<span style="color:#0550ae">&#34;must&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Taylor&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;xxx&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -435,83 +435,83 @@
 </li>
 <li>
 <p>如果這裡將 bool 改寫在 nested 裡面，那就搜不出任何文檔了</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;filter&#34;</span>: [
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;term&#34;</span>: {
-</span></span><span style="display:flex;"><span>                                <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>
-</span></span><span style="display:flex;"><span>                            }
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                            <span style="color:#000080">&#34;term&#34;</span>: {
-</span></span><span style="display:flex;"><span>                                <span style="color:#000080">&#34;user.last&#34;</span>: <span style="color:#d14">&#34;Smith&#34;</span>
-</span></span><span style="display:flex;"><span>                            }
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            ]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;_source&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;user&#34;</span>: [
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;White&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">18</span>
-</span></span><span style="display:flex;"><span>                },
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;John&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Smith&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">22</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            ]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;filter&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Smith&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;hits&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;_source&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;White&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">18</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Smith&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">22</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>和 bool 的其他葉子子句（term、range&hellip;）一起搭配使用的 nested 查詢</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>    	<span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>        	<span style="color:#000080">&#34;filter&#34;</span>: [
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>            		<span style="color:#000080">&#34;term&#34;</span>: {
-</span></span><span style="display:flex;"><span>                		<span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>
-</span></span><span style="display:flex;"><span>               		}
-</span></span><span style="display:flex;"><span>            	},
-</span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    	<span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>                        <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                        	<span style="color:#000080">&#34;term&#34;</span>: {
-</span></span><span style="display:flex;"><span>                                <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>
-</span></span><span style="display:flex;"><span>                            }
-</span></span><span style="display:flex;"><span>                        }
-</span></span><span style="display:flex;"><span>                    }
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>      		]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#0550ae">&#34;filter&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            		<span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                		<span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span>
+</span></span><span style="display:flex;"><span>               		<span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            	<span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    	<span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                        	<span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>      		<span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -526,18 +526,18 @@
 </li>
 <li>
 <p>當查詢 &ldquo;user.first = July 或 user.last = Month&rdquo; 時，第一個嵌套文檔的分數最高，第二個嵌套文檔次之，第三個嵌套文檔的分數最低</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#d14">&#34;hits&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;_source&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;group&#34;</span>: <span style="color:#d14">&#34;fans&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;user&#34;</span>: [
-</span></span><span style="display:flex;"><span>                { <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;July&#34;</span>, <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Month&#34;</span>, <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">18</span> },
-</span></span><span style="display:flex;"><span>                { <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Aug&#34;</span>, <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Month&#34;</span>, <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">22</span> },
-</span></span><span style="display:flex;"><span>                { <span style="color:#000080">&#34;first&#34;</span>: <span style="color:#d14">&#34;Monday&#34;</span>, <span style="color:#000080">&#34;last&#34;</span>: <span style="color:#d14">&#34;Day&#34;</span>, <span style="color:#000080">&#34;age&#34;</span>: <span style="color:#099">25</span> }
-</span></span><span style="display:flex;"><span>            ]
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#0a3069">&#34;hits&#34;</span><span style="color:#f6f8fa;background-color:#82071e">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;_source&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;group&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;fans&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;user&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;July&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Month&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">18</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Aug&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Month&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">22</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Monday&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Day&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">25</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -552,23 +552,23 @@
 </li>
 <li>
 <p>不過要注意，如果 nested 查詢放在一個 filter 子句中，就算定義了 score_mode 也不會生效，因為 filter 不打分，所以 score_mode 就沒有任何意義</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>        	<span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;score_mode&#34;</span>: <span style="color:#d14">&#34;max&#34;</span>, <span style="color:#998;font-style:italic">//返回最佳匹配嵌套文檔的_score給根文檔使用
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>            <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;bool&#34;</span>: {
-</span></span><span style="display:flex;"><span>                	<span style="color:#000080">&#34;should&#34;</span>: [
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;July&#34;</span> } },
-</span></span><span style="display:flex;"><span>                        { <span style="color:#000080">&#34;term&#34;</span>: { <span style="color:#000080">&#34;user.last&#34;</span>: <span style="color:#d14">&#34;Month&#34;</span> } }
-</span></span><span style="display:flex;"><span>                    ]
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        	<span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;score_mode&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;max&#34;</span><span style="color:#1f2328">,</span> <span style="color:#57606a">//返回最佳匹配嵌套文檔的_score給根文檔使用
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a"></span>            <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;bool&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                	<span style="color:#0550ae">&#34;should&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;July&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;user.last&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Month&#34;</span> <span style="color:#1f2328">}</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -579,27 +579,27 @@
 <ul>
 <li>儘管嵌套對象儲存於獨立的隱藏文檔中，但依然有方法按照嵌套字段的值排序</li>
 <li>假設我們想要查出 user.first 為 Amy，且依照 user.age 這個內部對象的字段，由小到大進行排序，查詢語句如下
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a61717;background-color:#e3d2d2">GET</span> <span style="color:#a61717;background-color:#e3d2d2">mytest/doc/_search</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;query&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;term&#34;</span>: {
-</span></span><span style="display:flex;"><span>                    <span style="color:#000080">&#34;user.first&#34;</span>: <span style="color:#d14">&#34;Amy&#34;</span>
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000080">&#34;sort&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#000080">&#34;user.age&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;nested&#34;</span>: {
-</span></span><span style="display:flex;"><span>                <span style="color:#000080">&#34;path&#34;</span>: <span style="color:#d14">&#34;user&#34;</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;order&#34;</span>: <span style="color:#d14">&#34;asc&#34;</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">GET</span> <span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;query&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;term&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#0550ae">&#34;user.first&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Amy&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;sort&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">&#34;user.age&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;nested&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#0550ae">&#34;path&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#0550ae">&#34;order&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;asc&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -612,7 +612,7 @@
         <div class="blog-newsletter">
           <h4>免費訂閱《古古的後端筆記》電子報</h4>
           <div>
-            <p>每週二學習後端技術，和 3000 人一起變強💪</p>
+            <p>每週二學習後端技術，和 3100 人一起變強💪</p>
             <div id="blog-newsletter" class="newsletter">
               <div class="row justify-content-center">
                 <div class="col-md-8">
