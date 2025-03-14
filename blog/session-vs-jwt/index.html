@@ -193,38 +193,25 @@
           <p>在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，但是 JWT 到底是什麼？以及他的用途為何？甚至 JWT 和 Session 的差別在哪裡？這些都是在了解 JWT 的過程中，需要具備的知識。</p>
 <p>因此在這個 JWT 系列文中，我會用 4 篇文章介紹 JWT 的前世今生，包含在 JWT 的用途是什麼、他要解決的是什麼問題、以及 JWT 的底層運作邏輯為何。</p>
 <p>所以首先這篇文章，我們就先來介紹 Session 和 JWT 的運作原理為何，以及並且比較他們之間的差別。</p>
-<p>
-
-<img
-  src="/images/blog/session_jwt_1.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
-<blockquote>
-<p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（不過建議還是按照順序閱讀，才會有最佳的閱讀體驗）：</p>
-<ol>
-<li><a href="/blog/session-vs-jwt/"
-   
-   target="_blank" rel="noopener">
-Session 和 JWT 的差別在哪裡？
-</a>（本文）</li>
-<li><a href="/blog/encode-encrypt-hash-intro/"
-   
-   target="_blank" rel="noopener">
-密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
-</a></li>
-<li><a href="/blog/jwt/"
-   
-   target="_blank" rel="noopener">
-JWT 是什麼？一次搞懂 JWT 的組成和運作原理
-</a></li>
-<li><a href="/blog/jwt-signature/"
-   
-   target="_blank" rel="noopener">
-JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
-</a></li>
-</ol></blockquote>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是-session-認證">什麼是 Session 認證？</a></li>
+    <li><a href="#什麼是-jwt-認證">什麼是 JWT 認證？</a></li>
+    <li><a href="#補充後端為什麼能無條件相信-jwt">補充：後端為什麼能無條件相信 JWT？</a></li>
+    <li><a href="#小結session-和-jwt-的運作邏輯">小結：Session 和 JWT 的運作邏輯</a></li>
+    <li><a href="#session-和-jwt-的優缺點比較">Session 和 JWT 的優缺點比較</a>
+      <ul>
+        <li><a href="#使用-session-的優點和缺點">使用 Session 的優點和缺點</a></li>
+        <li><a href="#使用-jwt-的優點和缺點">使用 JWT 的優點和缺點</a></li>
+        <li><a href="#到底使用-session-好還是使用-jwt-好">到底使用 Session 好，還是使用 JWT 好？</a></li>
+      </ul>
+    </li>
+    <li><a href="#結語">結語</a></li>
+  </ul>
+</nav>
+</div>
 <h2 id="什麼是-session-認證" class="markdown-heading-anchor">
   什麼是 Session 認證？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-session-%e8%aa%8d%e8%ad%89">#</a>

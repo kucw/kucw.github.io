@@ -196,7 +196,29 @@
    target="_blank" rel="noopener">
 RabbitMQ 介紹（一）- 什麼是 Message Queue？
 </a> 的介紹</p></blockquote>
-<p>RabbitMQ 是在各企業中最為廣泛使用的 Message Queue，而在 RabbitMQ 的世界中，有三個重要的角色需要了解，分別是：</p>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是-rabbitmq">什麼是 RabbitMQ？</a></li>
+    <li><a href="#rabbitmq-中常見的-5-種模式">RabbitMQ 中常見的 5 種模式</a>
+      <ul>
+        <li><a href="#1-direct-模式">1. Direct 模式</a></li>
+        <li><a href="#2-worker-模式">2. Worker 模式</a></li>
+        <li><a href="#3-publishsubscribe-模式">3. Publish/Subscribe 模式</a></li>
+        <li><a href="#4-routing-模式">4. Routing 模式</a></li>
+        <li><a href="#5-topics-模式">5. Topics 模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#rabbitmq-總結">RabbitMQ 總結</a></li>
+    <li><a href="#結語">結語</a></li>
+  </ul>
+</nav>
+</div>
+<h2 id="什麼是-rabbitmq" class="markdown-heading-anchor">
+  什麼是 RabbitMQ？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-rabbitmq">#</a>
+</h2><p>RabbitMQ 是在各企業中最為廣泛使用的 Message Queue，而在 RabbitMQ 的世界中，有三個重要的角色需要了解，分別是：</p>
 <ul>
 <li><strong>Producer（生產者）：負責發送 message 到 Queue</strong></li>
 <li><strong>Consumer（消費者）：負責從 Queue 中接收 message</strong></li>

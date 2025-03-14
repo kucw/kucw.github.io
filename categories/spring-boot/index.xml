@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/7/spring-actuator/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Spring Boot 版本：3.3.2&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本文使用的 Spring Boot 版本：3.3.2&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (11) - Spring AOP 簡介</title>

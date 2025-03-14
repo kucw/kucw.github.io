@@ -215,6 +215,29 @@ JWT 是什麼？一次搞懂 JWT 的組成和運作原理
 JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
 </a></li>
 </ol></blockquote>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#回顧session-和-jwt-的差別">回顧：Session 和 JWT 的差別</a></li>
+    <li><a href="#什麼是-jwt">什麼是 JWT？</a></li>
+    <li><a href="#jwt-中的-header-部分存放通用資訊">JWT 中的 header 部分：存放通用資訊</a>
+      <ul>
+        <li><a href="#補充jwt-中的-encode-和-decode">補充：JWT 中的 Encode 和 Decode</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt-中的-payload-部分存放使用者的數據">JWT 中的 payload 部分：存放使用者的數據</a>
+      <ul>
+        <li><a href="#補充-1payload-中的常用變數">補充 1：payload 中的常用變數</a></li>
+        <li><a href="#補充-2不要在-payload-中存放敏感數據">補充 2：不要在 payload 中存放敏感數據</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt-中的-signature-部分實作數位簽名">JWT 中的 signature 部分：實作數位簽名</a></li>
+    <li><a href="#jwt-總結">JWT 總結</a></li>
+    <li><a href="#結語">結語</a></li>
+  </ul>
+</nav>
+</div>
 <h2 id="回顧session-和-jwt-的差別" class="markdown-heading-anchor">
   回顧：Session 和 JWT 的差別
   <a href="#%e5%9b%9e%e9%a1%a7session-%e5%92%8c-jwt-%e7%9a%84%e5%b7%ae%e5%88%a5">#</a>
