@@ -28,6 +28,16 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://kucw.io/blog/http-get-post/</loc>
+        <lastmod>2025-02-25T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/polling-webhook/</loc>
+        <lastmod>2025-02-18T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://kucw.io/blog/dns/</loc>
         <lastmod>2025-02-04T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>

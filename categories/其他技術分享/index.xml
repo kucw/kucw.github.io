@@ -16,6 +16,20 @@
       <description>&lt;p&gt;只要是後端開發，多多少少都會有一些撰寫定時任務的需求，像是每天晚上 10 點固定處理報表、或是每 30 分鐘處理一批次的任務&amp;hellip;等等，因此這篇文章我們就來介紹一下，這個「定時任務」的語法到底要怎麼寫吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-cron&#34;&gt;什麼是 Cron？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cron-表達式的寫法5-個-&#34;&gt;Cron 表達式的寫法（5 個 &lt;code&gt;*&lt;/code&gt;）&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充cron-表達式的進階用法&#34;&gt;補充：Cron 表達式的進階用法&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cron-總結&#34;&gt;Cron 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充spring-boot-的-cron-表達式寫法6-個-&#34;&gt;補充：Spring Boot 的 Cron 表達式寫法（6 個 &lt;code&gt;*&lt;/code&gt;）&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-cron&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Cron？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-cron&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 Cron，其實是 Linux 系統下的一個定時任務管理服務，但是因為 Cron 的表達式實在是太萬用了，所以目前也很廣泛用在 GitHub Actions、Spring Boot 的 &lt;code&gt;@Scheduled&lt;/code&gt;&amp;hellip;等框架上。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Http 中的 GET 和 POST 的差別在哪裡？</title>
+      <link>https://kucw.io/blog/http-get-post/</link>
+      <pubDate>Tue, 25 Feb 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/http-get-post/</guid>
+      <description>&lt;p&gt;在軟體開發中，Http 可以說是大家最常打交道的一個協議了，因此這篇文章就會來介紹一下 Http 中的 GET 和 POST 的差別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果大家對於 Http 的其他文章感興趣，也可以參考下列文章的介紹：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Polling 和 Webhook 是什麼？如何更有效的串接第三方系統？</title>
+      <link>https://kucw.io/blog/polling-webhook/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/polling-webhook/</guid>
+      <description>&lt;p&gt;一般在實作後端系統時，如果想要去串接外部的第三方系統，這時候就會有兩種串接方式：Polling 和 Webhook，所以這篇文章我們就來了解一下 Polling 和 Webhook 之間的差別吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-polling什麼是-webhook&#34;&gt;什麼是 Polling？什麼是 Webhook？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#串接股票中心的故事&#34;&gt;串接股票中心的故事&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-polling-來串接&#34;&gt;使用 Polling 來串接&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-webhook-來串接&#34;&gt;使用 Webhook 來串接&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#polling-和-webhook-總結&#34;&gt;Polling 和 Webhook 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充在-webhook-的實作中股票中心是如何通知我們的後端程式&#34;&gt;補充：在 Webhook 的實作中，股票中心是如何通知我們的後端程式？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-polling什麼是-webhook&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Polling？什麼是 Webhook？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-polling%e4%bb%80%e9%ba%bc%e6%98%af-webhook&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在串接第三方的系統時，我們可以使用兩種方式來串接，分別是 Polling 和 Webhook，而他們兩個在實作上其實是完全相反的兩種方式：&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>DNS 是什麼？在瀏覽器中輸入 URL 會發生什麼事？</title>
       <link>https://kucw.io/blog/dns/</link>
       <pubDate>Tue, 04 Feb 2025 00:00:00 +0800</pubDate>
