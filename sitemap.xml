@@ -28,6 +28,16 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
+        <lastmod>2025-03-04T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://kucw.io/blog/as-a-content-creator/monthly-report-202502/</loc>
+        <lastmod>2025-03-04T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://kucw.io/blog/http-get-post/</loc>
         <lastmod>2025-02-25T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
@@ -39,11 +49,6 @@
     </url>
     <url>
         <loc>https://kucw.io/blog/dns/</loc>
-        <lastmod>2025-02-04T00:00:00+08:00</lastmod>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://kucw.io/categories/%E8%87%AA%E5%AA%92%E9%AB%94%E7%B6%93%E7%87%9F/</loc>
         <lastmod>2025-02-04T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
     </url>
