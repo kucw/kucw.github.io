@@ -1355,7 +1355,7 @@
 <h2 id="什麼是-ioc" class="markdown-heading-anchor">
   什麼是 IoC？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-ioc">#</a>
-</h2><p>IoC 的全名是 Inversion of Control，中文翻譯成「控制反轉」，不過這個控制是控制什麼、反轉又是反轉什麼，我們可以直接透過一個印表機的例子來了解一下。</p>
+</h2><p>IoC 的全稱是 Inversion of Control，中文翻譯成「控制反轉」，不過這個控制是控制什麼、反轉又是反轉什麼，我們可以直接透過一個印表機的例子來了解一下。</p>
 <h3 id="例子印表機的故事" class="markdown-heading-anchor">
   例子：印表機的故事
   <a href="#%e4%be%8b%e5%ad%90%e5%8d%b0%e8%a1%a8%e6%a9%9f%e7%9a%84%e6%95%85%e4%ba%8b">#</a>
@@ -1471,7 +1471,7 @@
   Spring IoC 的定義
   <a href="#spring-ioc-%e7%9a%84%e5%ae%9a%e7%be%a9">#</a>
 </h2><p>所以透過上面的印表機例子，大概了解了 Spring IoC 的概念之後，我們也可以回頭來看一下 IoC 的定義。</p>
-<p>IoC 的全名是 Inversion of Control，中文翻譯成「控制反轉」，<strong>而 IoC 的概念，就是「將 object（物件）的控制權，交給了外部的 Spring 容器來管理」</strong>，所謂的 Control（控制），就是對於 object 的控制權。</p>
+<p>IoC 的全稱 是 Inversion of Control，中文翻譯成「控制反轉」，<strong>而 IoC 的概念，就是「將 object（物件）的控制權，交給了外部的 Spring 容器來管理」</strong>，所謂的 Control（控制），就是對於 object 的控制權。</p>
 <p>所以像是我們以前在寫 Java 程式時，我們就會在 Teacher class 中去 new 一個 HpPrinter 出來，因此這個 HpPrinter 的控制權，就是在自己（Teacher class）的手上（如下圖左）。</p>
 <p>而當我們用了 Spring 框架之後，則是會由 Spring 容器統一去 new 一個 HpPrinter 出來，再去提供給大家使用，因此 HpPrinter 的控制權，就是在外部容器（Spring 容器）的手上（如下圖右）。</p>
 <p>

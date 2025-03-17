@@ -181,14 +181,14 @@
       <link>https://kucw.io/blog/springboot/7/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/7/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;上一篇文章有和大家介紹了 IoC、DI、Bean 這些 Spring IoC 中的重要名詞，那麼這篇文章，我們就實際的到 IntelliJ 中，來練習要如何在 Spring Boot 程式中去創建 Bean、以及要如何將 Bean 去注入到別的 class 中&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有介紹了 IoC、DI、和 Bean 的概念，先帶大家了解 Spring IoC 中的重要名詞的含義。&lt;/p&gt;&#xA;&lt;p&gt;那麼這篇文章，我們就會實際到 IntelliJ 中，練習要如何在 Spring Boot 程式中創建 Bean，以及要如何將 Bean 去注入到別的 class 中。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (6) - IoC、DI、Bean 的介紹</title>
       <link>https://kucw.io/blog/springboot/6/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/6/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們先介紹了 Spring IoC 的原理，以及使用 Spring IoC 的優點，讓大家對 Spring IoC 有一個初步的認識&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們先介紹了 Spring IoC 的原理，以及使用 Spring IoC 的優點，讓大家先對 Spring IoC 有一個初步的認識。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (5) - Spring IoC 簡介</title>

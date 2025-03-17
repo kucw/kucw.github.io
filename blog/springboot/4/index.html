@@ -1468,14 +1468,17 @@
 </h2><p>設定好 IntelliJ 的字體偏好設定、並且確認右下角的進度條跑完之後，我們終於可以開始來實作我們的第一個 Spring Boot 程式了！</p>
 <p>首先我們先展開左側的資料夾，這時候可以看到，在 src/main/java/com.example.demo 底下，有一個 DemoApplication.class 的檔案，點擊兩下開啟這個檔案之後，在右側就可以看到他的內容。</p>
 <p>而在這個 DemoApplication 的程式裡面，其中最重要的，就是第 6 行的 <code>@SpringBootApplication</code> 程式。</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-9.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-9.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 720px; width: 100%"
+/>
 <p>第一次接觸 Spring Boot 的大家，可能會覺得第 6 行這種前面帶有小老鼠 <code>@</code> 的程式很奇怪，不過這種前面帶有小老鼠的寫法，在 Java 裡面稱作「annotation」，中文是翻譯為「標註」或是「註解」。</p>
 <blockquote>
 <p>補充：一般在口語上，會稱呼這種前面帶有小老鼠的程式為「annotation」，不過由於版面因素，後續都會使用「註解」來稱呼。</p></blockquote>
@@ -1483,14 +1486,17 @@
 <p>如果你是第一次接觸「註解」的話，建議可以先把「註解」想像成是賦予一個新的功能，不同的註解所提供的功能不一樣，並且他們的使用方法也會不太一樣。</p>
 <p>所以像是第 6 行這個 <code>@SpringBootApplication</code>，他的用法是要加在 class 上面，而他的用途，則是表示這一個 DemoApplication.class，是這個 Spring Boot 程式的啟動入口。</p>
 <p>也因為我們有在第 6 行加上 <code>@SpringBootApplication</code>，所以在第 7 行的左邊，才會出現一個播放鍵的符號，讓我們可以直接點擊這個播放鍵，去運行這個 Spring Boot 程式。</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-10.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-10.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 720px; width: 100%"
+/>
 <p>所以到這邊為止，我們就大致了解了 <code>@SpringBootApplication</code> 的用途（就是將該 class 變成 Spring Boot 程式的啟動入口），以及如何在 IntelliJ 中運行 Spring Boot 程式了，不過在我們真的去運行這個 Spring Boot 程式之前，我們可以先來添加一些 Java 程式在裡面。</p>
 <h3 id="添加-demo-程式" class="markdown-heading-anchor">
   添加 demo 程式
@@ -1505,14 +1511,17 @@
   data-zoomable
 /></p>
 <p>接著我們將這個 class 的名字，取名成 MyController。</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-12.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-12.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 550px; width: 100%"
+/>
 <p>接著在這個 MyController 裡面，添加下列的程式（這裡看不懂程式沒關係，先全部照著寫就好）。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RestController</span><span style="color:#fff">
 </span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyController</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
@@ -1524,21 +1533,24 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
 </span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
 </span></span></span></code></pre></div><p>當大家添加完上面這段程式之後，在 IntelliJ 中的呈現效果，應該要是下面這個樣子才對。</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-13.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-13.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 767px; width: 100%"
+/>
 <blockquote>
 <p>補充：如果大家複製貼上這段程式時，發現 <code>@RestController</code> 和 <code>@RequestMapping</code> 沒有自動被 import 進來的話，建議可以改成一行一行手動輸入程式，IntelliJ 就會自動 import 相關的 library 進來了。</p></blockquote>
 <p>大家在寫完這段程式之後，不了解 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的意思是正常的，這兩個註解的用途，會在後面介紹到「Spring MVC」的部分時再做詳細的介紹，所以這裡就先照著寫就好。</p>
 <h3 id="運行-spring-boot-程式" class="markdown-heading-anchor">
   運行 Spring Boot 程式
   <a href="#%e9%81%8b%e8%a1%8c-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h3><p>當寫好上述的 MyController 程式之後，接著就可以回到 DemoApplication.class 上，然後點擊第 7 行的播放鍵，去運行這個 Spring Boot 程式了！</p>
+</h3><p>當寫好上述的 MyController 程式之後，接著就可以回到 DemoApplication class 上，然後點擊第 7 行的播放鍵，去運行這個 Spring Boot 程式了！</p>
 <p>所以我們只要使用左鍵，去點擊 DemoApplication 中的第 7 行的播放鍵，然後選擇「Run DemoApplication」，就可以去運行這個 Spring Boot 程式了。</p>
 <p>
 
@@ -1564,27 +1576,33 @@
 http://localhost:8080/test
 </a> ，接著按下 Enter 鍵。</p>
 <p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示你的第一個 Spring Boot 程式成功運作起來了！可喜可賀！！！</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-16.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-16.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 500px; width: 100%"
+/>
 <h3 id="所以我們剛剛都做了什麼" class="markdown-heading-anchor">
   所以，我們剛剛都做了什麼？
   <a href="#%e6%89%80%e4%bb%a5%e6%88%91%e5%80%91%e5%89%9b%e5%89%9b%e9%83%bd%e5%81%9a%e4%ba%86%e4%bb%80%e9%ba%bc">#</a>
 </h3><p>那到這邊，我們可以回頭來看一下，我們剛剛都做了什麼，才能夠成功的在瀏覽器中看到「Hello World」的字串。</p>
 <p>首先我們剛剛有去新增了一個 MyController 的 class 出來，然後在裡面加上一個 <code>test()</code> 方法，並且在裡面去回傳一個「Hello World」的字串，同時也添加了兩個註解 <code>@RestController</code> 和 <code>@RequestMapping</code>。</p>
-<p>
+
+
+
 
 <img
-  src="/images/blog/springboot/4/4-17.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-/></p>
+    src="/images/blog/springboot/4/4-17.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 767px; width: 100%"
+/>
 <p>這段程式的運作邏輯是這樣子的：當我們在 Google 瀏覽器輸入 <a href="http://localhost:8080/test"
    
    target="_blank" rel="noopener">
