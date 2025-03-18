@@ -1328,6 +1328,36 @@
           <p>哈囉大家好，我是古古。</p>
 <p>在上一篇文章中，我們有介紹了 IoC、DI、和 Bean 的概念，先帶大家了解 Spring IoC 中的重要名詞的含義。</p>
 <p>那麼這篇文章，我們就會實際到 IntelliJ 中，練習要如何在 Spring Boot 程式中創建 Bean，以及要如何將 Bean 去注入到別的 class 中。</p>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#創建-bean-的方法component">創建 Bean 的方法：@Component</a>
+      <ul>
+        <li><a href="#component-介紹">@Component 介紹</a></li>
+        <li><a href="#創建-bean-的注意事項">創建 Bean 的注意事項</a></li>
+      </ul>
+    </li>
+    <li><a href="#注入-bean-的方法autowired">注入 Bean 的方法：@Autowired</a>
+      <ul>
+        <li><a href="#autowired-用法介紹">@Autowired 用法介紹</a></li>
+        <li><a href="#1-使用-autowired-的注意事項之一該-class-也必須也是-bean">1. 使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean</a></li>
+        <li><a href="#2-使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean">2. 使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean</a></li>
+        <li><a href="#小結所以autowired-到底要怎麼用">小結：所以，@Autowired 到底要怎麼用？</a></li>
+      </ul>
+    </li>
+    <li><a href="#在-spring-boot-中練習-component-和-autowired-的用法">在 Spring Boot 中練習 @Component 和 @Autowired 的用法</a>
+      <ul>
+        <li><a href="#練習創建-bean-的方法component">練習創建 Bean 的方法：@Component</a></li>
+        <li><a href="#練習注入-bean-的方法autowired">練習注入 Bean 的方法：@Autowired</a></li>
+        <li><a href="#補充為什麼-mycontroller-能使用-autowired">補充：為什麼 MyController 能使用 @Autowired？</a></li>
+      </ul>
+    </li>
+    <li><a href="#運行-spring-boot-程式">運行 Spring Boot 程式</a></li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
 <h2 id="創建-bean-的方法component" class="markdown-heading-anchor">
   創建 Bean 的方法：@Component
   <a href="#%e5%89%b5%e5%bb%ba-bean-%e7%9a%84%e6%96%b9%e6%b3%95component">#</a>
