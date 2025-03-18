@@ -6,8 +6,15 @@
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 11 Mar 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CDN 是什麼？一次搞懂 CDN 的用途和三大好處</title>
+      <link>https://kucw.io/blog/cdn/</link>
+      <pubDate>Tue, 18 Mar 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/cdn/</guid>
+      <description>&lt;p&gt;在網路全球化的趨勢下，CDN 現今已經是一個很重要的技術了，但是 CDN 的用途到底是什麼？以及使用 CDN 的好處有哪些？這篇文章我們就來詳細了解一下吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-cdn內容傳遞網路&#34;&gt;什麼是 CDN（內容傳遞網路）？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#海底電纜的故事&#34;&gt;海底電纜的故事&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#海底電纜的限制&#34;&gt;海底電纜的限制&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cdn-如何解決網路傳輸的限制&#34;&gt;CDN 如何解決網路傳輸的限制？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充使用-cdn-的注意事項&#34;&gt;補充：使用 CDN 的注意事項&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#使用-cdn-的三大好處&#34;&gt;使用 CDN 的三大好處&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#1-降低網路延遲降低頻寬成本&#34;&gt;1. 降低網路延遲、降低頻寬成本&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#2-提升網站可靠性平衡流量&#34;&gt;2. 提升網站可靠性、平衡流量&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#3-防禦資安-ddos-攻擊&#34;&gt;3. 防禦資安 DDoS 攻擊&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cdn-總結&#34;&gt;CDN 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-cdn內容傳遞網路&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 CDN（內容傳遞網路）？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-cdn%e5%85%a7%e5%ae%b9%e5%82%b3%e9%81%9e%e7%b6%b2%e8%b7%af&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 CDN，他的全稱是 Content Delivery Network，中文翻譯為「內容傳遞網路」，而 CDN 的用途，就是 &lt;strong&gt;「將靜態資源（ex: 圖片、影片、JavaScript 套件）部署到全球化的節點上，讓當地的居民可以更快速的取得到這些內容」。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cron 是什麼？定時任務的語法怎麼寫？</title>
       <link>https://kucw.io/blog/cron/</link>
