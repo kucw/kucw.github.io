@@ -174,7 +174,7 @@
       <link>https://kucw.io/blog/springboot/8/</link>
       <pubDate>Mon, 08 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/8/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有介紹了如何使用 &lt;code&gt;@Component&lt;/code&gt; 來創建 Bean，也有介紹要如何使用 &lt;code&gt;@Autowired&lt;/code&gt; 來注入 Bean&lt;/p&gt;&#xA;&lt;p&gt;那麼接著這篇文章，我們就會來介紹，當 Spring 容器中有 2 個以上同樣類型的 Bean 存在時，該怎麼去選擇要注入的 Bean&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們介紹了如何使用 &lt;code&gt;@Component&lt;/code&gt; 來創建 Bean，也有介紹要如何使用 &lt;code&gt;@Autowired&lt;/code&gt; 來注入 Bean。&lt;/p&gt;&#xA;&lt;p&gt;那麼接著這篇文章，我們就會來介紹，當 Spring 容器中有 2 個以上同樣類型的 Bean 存在時，該怎麼去選擇要注入的 Bean。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (7) - Bean 的創建和注入 - @Component、@Autowired</title>

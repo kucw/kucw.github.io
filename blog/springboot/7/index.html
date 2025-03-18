@@ -1339,8 +1339,8 @@
     </li>
     <li><a href="#注入-bean-的方法autowired">注入 Bean 的方法：@Autowired</a>
       <ul>
-        <li><a href="#1-使用-autowired-的注意事項之一該-class-也必須也是-bean">1. 使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean</a></li>
-        <li><a href="#2-使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean">2. 使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean</a></li>
+        <li><a href="#使用-autowired-的注意事項之一該-class-也必須也是-bean">使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean</a></li>
+        <li><a href="#使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean">使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean</a></li>
         <li><a href="#小結所以autowired-到底要怎麼用">小結：所以，@Autowired 到底要怎麼用？</a></li>
       </ul>
     </li>
@@ -1430,9 +1430,9 @@
     height="931"
 />
 <p>不過，在使用 <code>@Autowired</code> 去注入 Bean 進來時，有兩個很重要的限制一定得遵守！如果不遵守的話，是沒辦法正常去注入 Bean 進來的。</p>
-<h3 id="1-使用-autowired-的注意事項之一該-class-也必須也是-bean" class="markdown-heading-anchor">
-  1. 使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean
-  <a href="#1-%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e8%a9%b2-class-%e4%b9%9f%e5%bf%85%e9%a0%88%e4%b9%9f%e6%98%af-bean">#</a>
+<h3 id="使用-autowired-的注意事項之一該-class-也必須也是-bean" class="markdown-heading-anchor">
+  使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean
+  <a href="#%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e8%a9%b2-class-%e4%b9%9f%e5%bf%85%e9%a0%88%e4%b9%9f%e6%98%af-bean">#</a>
 </h3><p><strong>當某個 class 想要使用 <code>@Autowired</code> 去注入一個 Bean 進來時，這個 class 自己本身也得變成是由 Spring 容器所管理的 Bean 才可以</strong>，因為這樣子 Spring 容器才有辦法透過 DI（依賴注入），將我們想要的 Bean 給注入進來。</p>
 <p>所以假設我們是一個 Teacher，然後我們想要使用 <code>@Autowired</code>，把 HpPrinter 這個 Bean 給注入進來的話，那麼 Teacher 本身也必須成為一個 Bean 才可以。</p>
 <p>因此這時候，我們就必須先在 Teacher class 上面，先去加上一行 <code>@Component</code>，將 Teacher 先變成是一個 Bean，這樣後續才可以將透過 <code>@Autowired</code>，將 HpPrinter 這個 Bean 給注入到 Teacher 裡面。</p>
@@ -1451,9 +1451,9 @@
 />
 <blockquote>
 <p>補充：因此基本上當我們使用了 Spring Boot 這套框架之後，我們就會盡量把所有的 class 都變成 Bean，因為這樣才能夠去注入來注入去的，所以在 Spring Boot 程式裡面看到一堆 <code>@Component</code> 和 <code>@Autowired</code> 是很正常的！</p></blockquote>
-<h3 id="2-使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean" class="markdown-heading-anchor">
-  2. 使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean
-  <a href="#2-%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8cautowired-%e6%98%af%e6%a0%b9%e6%93%9a%e8%ae%8a%e6%95%b8%e9%a1%9e%e5%9e%8b%e5%b0%8b%e6%89%be-bean">#</a>
+<h3 id="使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean" class="markdown-heading-anchor">
+  使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean
+  <a href="#%e4%bd%bf%e7%94%a8-autowired-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8cautowired-%e6%98%af%e6%a0%b9%e6%93%9a%e8%ae%8a%e6%95%b8%e9%a1%9e%e5%9e%8b%e5%b0%8b%e6%89%be-bean">#</a>
 </h3><p>使用 <code>@Autowired</code> 的第二個注意事項，<strong>即是 <code>@Autowired</code> 是根據 「變數的類型」來尋找 Bean。</strong></p>
 <p>當我們在 Teacher class 中的 printer 變數上面，加上了一行 <code>@Autowired</code> 的程式之後，其實就表示「我們想要注入一個 Printer 類型的 Bean」，因此 Spring 容器就會查看他裡面有沒有 Printer 類型的 Bean，如果有的話，Spring 容器就會把這個 Bean 注入給 Teacher，如果沒有的話，就會出現錯誤並且停止程式。</p>
 
@@ -1638,7 +1638,11 @@ Day 4 - 第一個 Spring Boot 程式
   width="3027"
   height="879"
 /></p>
-<p>接著我們可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，然後按下 Enter 鍵。</p>
+<p>接著我們可以打開 Google 瀏覽器，然後在裡面輸入 <a href="http://localhost:8080/test"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/test
+</a> ，然後按下 Enter 鍵。</p>
 <p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示請求成功了，所以我們就可以回到 IntelliJ 上來看一下結果。</p>
 
 
@@ -1664,7 +1668,11 @@ Day 4 - 第一個 Spring Boot 程式
   width="3025"
   height="878"
 /></p>
-<p>之所以會出現這一行「HP印表機: Hello World」的輸出，是因為當我們在瀏覽器輸入 http://localhost:8080/test 時，Spring Boot 就會去執行 MyController 裡面的 <code>test()</code> 方法，因此就會執行到下圖中第 15 行的 <code>printer.print(&quot;Hello World&quot;)</code> 程式，所以最終才會在 console 上印出「HP印表機: Hello World」的字串。</p>
+<p>之所以會出現這一行「HP印表機: Hello World」的輸出，是因為當我們在瀏覽器輸入 <a href="http://localhost:8080/test"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/test
+</a> 時，Spring Boot 就會去執行 MyController 裡面的 <code>test()</code> 方法，因此就會執行到下圖中第 15 行的 <code>printer.print(&quot;Hello World&quot;)</code> 程式，所以最終才會在 console 上印出「HP印表機: Hello World」的字串。</p>
 <p>
 
 <img
