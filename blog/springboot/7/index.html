@@ -1334,13 +1334,11 @@
   <ul>
     <li><a href="#創建-bean-的方法component">創建 Bean 的方法：@Component</a>
       <ul>
-        <li><a href="#component-介紹">@Component 介紹</a></li>
         <li><a href="#創建-bean-的注意事項">創建 Bean 的注意事項</a></li>
       </ul>
     </li>
     <li><a href="#注入-bean-的方法autowired">注入 Bean 的方法：@Autowired</a>
       <ul>
-        <li><a href="#autowired-用法介紹">@Autowired 用法介紹</a></li>
         <li><a href="#1-使用-autowired-的注意事項之一該-class-也必須也是-bean">1. 使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean</a></li>
         <li><a href="#2-使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean">2. 使用 @Autowired 的注意事項之二：@Autowired 是根據「變數類型」尋找 Bean</a></li>
         <li><a href="#小結所以autowired-到底要怎麼用">小結：所以，@Autowired 到底要怎麼用？</a></li>
@@ -1361,10 +1359,7 @@
 <h2 id="創建-bean-的方法component" class="markdown-heading-anchor">
   創建 Bean 的方法：@Component
   <a href="#%e5%89%b5%e5%bb%ba-bean-%e7%9a%84%e6%96%b9%e6%b3%95component">#</a>
-</h2><h3 id="component-介紹" class="markdown-heading-anchor">
-  @Component 介紹
-  <a href="#component-%e4%bb%8b%e7%b4%b9">#</a>
-</h3><p>在 Spring Boot 中，最常見的創建 Bean 的方法，就是在 class 上面加上一行 <code>@Component</code> 的程式。只要在 class 上面加上一行 <code>@Component</code> 之後，就可以將這樣 class 變成一個 Bean 了，Magic！</p>
+</h2><p>在 Spring Boot 中，最常見的創建 Bean 的方法，就是在 class 上面加上一行 <code>@Component</code> 的程式。只要在 class 上面加上一行 <code>@Component</code> 之後，就可以將這樣 class 變成一個 Bean 了，Magic！</p>
 <p>所以只要我們將 HpPrinter 改寫成是下面這個樣子（注意在最上面加了一行 <code>@Componenet</code>），就可以將 HpPrinter 變成一個由 Spring 容器所管理的 Bean 了。</p>
 
 
@@ -1419,10 +1414,7 @@
 <h2 id="注入-bean-的方法autowired" class="markdown-heading-anchor">
   注入 Bean 的方法：@Autowired
   <a href="#%e6%b3%a8%e5%85%a5-bean-%e7%9a%84%e6%96%b9%e6%b3%95autowired">#</a>
-</h2><h3 id="autowired-用法介紹" class="markdown-heading-anchor">
-  @Autowired 用法介紹
-  <a href="#autowired-%e7%94%a8%e6%b3%95%e4%bb%8b%e7%b4%b9">#</a>
-</h3><p>了解了創建 Bean 的方法之後，接著我們可以來看一下如何去「注入 Bean」。</p>
+</h2><p>了解了創建 Bean 的方法之後，接著我們可以來看一下如何去「注入 Bean」。</p>
 <p>要注入 Bean 也很簡單，只需要在變數上面加上 <code>@Autowired</code> 這行程式，就可以將 Spring 容器中的 Bean 給注入進來了，Magic again！！</p>
 
 
