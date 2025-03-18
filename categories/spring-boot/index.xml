@@ -167,7 +167,7 @@
       <link>https://kucw.io/blog/springboot/9/</link>
       <pubDate>Tue, 09 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/9/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;在前幾篇文章中，我們有介紹了創建 Bean 的方法 &lt;code&gt;@Component&lt;/code&gt;、注入 Bean 的方法 &lt;code&gt;@Autowired&lt;/code&gt;、以及指定 Bean 名字的方法 &lt;code&gt;@Qualifier&lt;/code&gt;，所以到目前為止，我們可以說是對 Bean 已經有了更多的認識，現在的我們已經可以成功的在 Spring Boot 程式中運用 Bean 了！&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前幾篇文章中，我們分別介紹了 Bean 的相關特性，像是：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;創建 Bean 的方法：&lt;code&gt;@Component&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;注入 Bean 的方法：&lt;code&gt;@Autowired&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;以及指定 Bean 名字的方法：&lt;code&gt;@Qualifier&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;所以到目前為止，我們可以說是對 Bean 有了更多的認識，並且已經可以成功的在 Spring Boot 程式中運用 Bean 了！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (8) - 指定注入的 Bean - @Qualifier</title>

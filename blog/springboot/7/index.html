@@ -1349,9 +1349,9 @@
         <li><a href="#練習創建-bean-的方法component">練習創建 Bean 的方法：@Component</a></li>
         <li><a href="#練習注入-bean-的方法autowired">練習注入 Bean 的方法：@Autowired</a></li>
         <li><a href="#補充為什麼-mycontroller-能使用-autowired">補充：為什麼 MyController 能使用 @Autowired？</a></li>
+        <li><a href="#運行-spring-boot-程式">運行 Spring Boot 程式</a></li>
       </ul>
     </li>
-    <li><a href="#運行-spring-boot-程式">運行 Spring Boot 程式</a></li>
     <li><a href="#總結">總結</a></li>
   </ul>
 </nav>
@@ -1613,10 +1613,10 @@ Day 4 - 第一個 Spring Boot 程式
 /></p>
 <p>大家可以先把 <code>@RestController</code> 當成是一個厲害版的 <code>@Component</code>，他不僅可以將 class 變成 Bean，還有更多的功能在裡面。因此如果回到最一開始的問題「為什麼 MyController 可以使用 <code>@Autowired</code>？」，<strong>原因就是因為 MyController 其實本身也是一個 Bean！</strong> 因此他才有能力去使用 <code>@Autowired</code>，將想要的 Bean 給注入進來。</p>
 <p>所以大家在使用 <code>@Autowired</code> 時，就一定要記得，<strong>只有當 class 本身是一個 Bean 時，才可以使用 <code>@Autowired</code> 去注入一個 Bean 進來</strong>，這點非常重要！！</p>
-<h2 id="運行-spring-boot-程式" class="markdown-heading-anchor">
+<h3 id="運行-spring-boot-程式" class="markdown-heading-anchor">
   運行 Spring Boot 程式
   <a href="#%e9%81%8b%e8%a1%8c-spring-boot-%e7%a8%8b%e5%bc%8f">#</a>
-</h2><p>當上述的程式都寫好之後，我們就可以回到 DemoApplication，然後點擊左側的播放鍵，去運行這個 Spring Boot 程式。</p>
+</h3><p>當上述的程式都寫好之後，我們就可以回到 DemoApplication，然後點擊左側的播放鍵，去運行這個 Spring Boot 程式。</p>
 <p>
 
 <img
