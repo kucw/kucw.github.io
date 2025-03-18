@@ -252,6 +252,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
     loading="lazy"
     data-zoomable
     style="max-width: 550px; width: 100%"
+    width="1388"
+    height="506"
 />
 <p>但是，如果我們使用了「信箱」的話，狀況就不一樣了！</p>
 <p>如果你家有安裝信箱的話，那麼郵差想要送信給你時，就只要直接把信投遞到你家的信箱裡面，然後郵差就可以繼續去處理其他事情了，完全不用等你下樓來開門！而你也可以等到之後有空時，再自己下來收這封信。</p>
@@ -263,6 +265,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2388"
+  height="588"
 /></p>
 <p>因此「信箱」的概念，就是 Message Queue 的用途，也就是能夠 <strong>「暫存消息的傳遞」</strong>，進而達到兩個服務之間的非同步處理！</p>
 <h3 id="message-queue-的具體應用場景" class="markdown-heading-anchor">
@@ -278,6 +282,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2678"
+  height="726"
 /></p>
 <p>這個架構也沒有說不好，但是想像一下，假設今天數據分析系統出現問題，導致 call api 請求超時、或是直接出現 500 錯誤，那這樣子就會導致使用者沒辦法成功下訂單：</p>
 <p>
@@ -287,6 +293,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2627"
+  height="748"
 /></p>
 <p>但是對於使用者而言，他根本不想要使用數據分析系統！他只是想要下訂單而已，但是卻會因為數據分析系統出現問題，導致使用者被連累著也出現問題。</p>
 <p>所以這個時候，就可以透過引入「Message Queue」這項技術，來解決這個問題！</p>
@@ -306,6 +314,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2927"
+  height="1457"
 /></p>
 <p>而數據分析系統也可以在自己有空時，主動到 Message Queue 中查看是否有尚未處理的訂單數據，如果有的話，就抓取這一筆訂單數據來處理。並且他也可以慢慢的去分析這筆訂單數據，不用為了要搶快、要盡快回覆使用者，而逼迫自己要分析的非常迅速。</p>
 <p>
@@ -315,6 +325,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2926"
+  height="1403"
 /></p>
 <p>所以透過 Message Queue 的設計，我們就可以將「訂單系統」和「數據分析系統」的功能給拆分開來，讓他們不需要同一時間處理完所有步驟，而是可以分批步驟慢慢執行，<strong>進而達到「非同步處理」以及「功能解耦」的效果了！</strong></p>
 <p>所以最終的架構圖就會如下圖所示：</p>
@@ -325,6 +337,8 @@ RabbitMQ 介紹（四）- 在 Spring Boot 中實作 RabbitMQ
   alt=""
   loading="lazy"
   data-zoomable
+  width="2927"
+  height="1457"
 /></p>
 <h2 id="message-queue-的優缺點" class="markdown-heading-anchor">
   Message Queue 的優缺點

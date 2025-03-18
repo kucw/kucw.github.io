@@ -1345,6 +1345,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1133"
+  height="385"
 /></p>
 <p>像是上面的例子中，因為 Spring 容器中只有 hpPrinter 這個 Bean，且 hpPrinter 又是可以向上轉型成 Printer 類型，所以 Spring Boot 就會判定他們類型符合，因此就能夠注入成功</p>
 <p>但是，假設在 Spring 容器中，同時有兩個一樣類型的 Bean 存在，譬如說像是下面這張圖，在 Spring 容器中同時有 hpPrinter 和 canonPrinter 這兩個 Bean 存在，那麼在這個情況下，Spring Boot 會如何運作呢？</p>
@@ -1355,6 +1357,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2431"
+  height="1329"
 /></p>
 <p>答案是：Spring Boot 會出現錯誤並且運行失敗，因為 hpPrinter 和 canonPrinter 同時都可以向上轉型成 Printer 類型，所以 Spring Boot 不知道該注入哪一個 Bean，因此錯誤原因就會是「同時有多個同樣類型的 Bean 存在，因此無法選擇要注入哪一個」</p>
 <p>而為了解決這個問題，就是 <code>@Qualifier</code> 這個註解登場的時候了！</p>
@@ -1372,6 +1376,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2417"
+  height="1308"
 /></p>
 <h3 id="1-使用-qualifer-的注意事項之一必須搭配-autowired-一起使用" class="markdown-heading-anchor">
   1. 使用 @Qualifer 的注意事項之一：必須搭配 @Autowired 一起使用
@@ -1403,6 +1409,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>由於目前在這個 Spring Boot 程式裡面，只有一個 hpPrinter Bean 有辦法向上轉型成 Printer 類型，因此在 MyController 這裡所注入的，就會是 hpPrinter 這個 Bean</p>
 <p>
@@ -1412,6 +1420,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>要測試 <code>@Qualifier</code> 的用法的話，我們可以嘗試在 com.example.demo 這個 package 裡面，再去新增一個 CanonPrinter 的 class 出來，並且在裡面實作如下的程式：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Component</span><span style="color:#fff">
@@ -1429,6 +1439,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>當我們這樣寫之後，等於是 HpPrinter 和 CanonPrinter 這兩個 class，到時候都會被 Spring Boot 所管理，所以 Spring Boot 到時候就會各 new 出一份 bean，並且存放在 Spring 容器中</p>
 <p>
@@ -1438,6 +1450,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="1473"
+  height="704"
 /></p>
 <p>這時候我們回到 MyController 上面看一下的話，就會發現在第 11 行的 printer 變數下面，出現了一個紅色的波浪線</p>
 <p>這是因為 IntelliJ 能透過我們所寫的程式，預判到這裡會出現注入的問題（Spring 容器同時存在多個同類型的 Bean），因此提前出現了紅色的波浪線，提示我們此處有錯誤</p>
@@ -1448,6 +1462,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>如果我們不管這個紅色波浪線，執意要運行 Spring Boot 程式的話，在啟動 Spring Boot 的過程中，console 就會噴出下列的錯誤訊息，提示我們啟動 Spring Boot 失敗</p>
 <p>在 console 的錯誤訊息中，有出現一段「MyController required a single bean, but 2 were found」，這一行的訊息就是表示「MyController 想要注入一個 Bean，但是發現 Spring 容器中存在 2 個同樣類型的 Bean，因此注入失敗」</p>
@@ -1459,6 +1475,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>因此我們可以回到 MyController 上，然後在 printer 變數上面，去加上一行 <code>@Qualifier( &quot;canonPrinter&quot;)</code> 的程式，指定要去注入「Bean 的名字為 canonPrinter」的那個 Bean</p>
 <p>
@@ -1468,6 +1486,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <p>寫好之後可以重新運行一下 Spring Boot，當看到 console 下方出現「Started DemoApplication in 1.135 seconds」，就表示 Spring Boot 程式運行成功了</p>
 <p>
@@ -1477,6 +1497,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="3360"
+  height="1880"
 /></p>
 <p>接著我們一樣是可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，然後按下 Enter 鍵，這時候頁面中有呈現「Hello World」的字樣的話，就表示請求成功了，我們可以接著回到 IntelliJ 軟體上來看一下結果</p>
 <p>
@@ -1486,6 +1508,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="928"
+  height="391"
 /></p>
 <p>這時回到 IntelliJ 上，就可以在 console 的下方看到一行「Canon印表機: Hello World」</p>
 <p>
@@ -1495,6 +1519,8 @@ Day 7 - Bean 的創建和注入 - @Component、@Autowired
   alt=""
   loading="lazy"
   data-zoomable
+  width="3360"
+  height="1880"
 /></p>
 <p>而會出現這一行「Canon印表機: Hello World」的原因是因為，我們在 MyController 中加上了第 12 行的 <code>@Qualifier(&quot;canonPrinter&quot;)</code>，去指定了「要注入的 Bean 為 canonPrinter 這個 Bean」，因此到時候 Spring Boot 就會將 canonPrinter 給注入到這個 printer 變數裡面</p>
 <p>所以後續在下方第 17 行去執行 <code>printer.print(&quot;Hello World&quot;)</code> 時，實際上是去執行 canonPrinter 的 print 方法，因此才會在 console 上輸出「Canon印表機: Hello World」</p>

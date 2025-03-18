@@ -199,6 +199,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1444"
+  height="1188"
 /></p>
 <p>之所以加個 <code>@Getter</code> 就可以幫我們自動生成所有變數的 getter，是因為 Lombok 參與了 Java 在 compile 階段生成 <code>.class</code> 檔的過程，Lombok 會幫我們自動寫一堆 getter，然後塞進 <code>.class</code> 檔，所以真正被編譯出來的 User.class 檔案，是包含完整的 getter 的</p>
 <p>所以簡單的說，Lombok 可以算是一種語法糖，只是在幫我們增進開發效率而已，實際上所產生出來的<code>.class</code>檔仍然是完全正常的！</p>
@@ -227,6 +229,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1730"
+  height="872"
 /></p>
 <p>然後點擊左邊的 Plugins，再點擊上面的 Marketplace tab，然後就可以在搜尋欄中輸入<code>lombok</code>，並且找到 Lombok 插件並安裝它</p>
 <p>
@@ -236,6 +240,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1996"
+  height="1440"
 /></p>
 <h3 id="補充為什麼需要特地安裝-intellij-的-lombok-插件" class="markdown-heading-anchor">
   補充：為什麼需要特地安裝 Intellij 的 Lombok 插件？
@@ -250,6 +256,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="936"
+  height="542"
 /></p>
 <p>所以 Lombok 算是侵入性很高的一個 library，只要團隊中有一個人用 Lombok 開發，那麼所有的人都必須得安裝 Lombok 插件才行，這樣才不會發生在 Intellij 中一打開 project 時，整片都是痛苦的紅字</p>
 <h2 id="lombok-用法介紹" class="markdown-heading-anchor">
@@ -274,6 +282,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1908"
+  height="732"
 /></p>
 <h3 id="1-gettersetter" class="markdown-heading-anchor">
   1. @Getter/@Setter
@@ -286,6 +296,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1246"
+  height="836"
 /></p>
 <h3 id="2-tostring" class="markdown-heading-anchor">
   2. @ToString
@@ -298,6 +310,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1678"
+  height="375"
 /></p>
 <h3 id="3-equalsandhashcode" class="markdown-heading-anchor">
   3. @EqualsAndHashCode
@@ -310,6 +324,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1671"
+  height="675"
 /></p>
 <p>如果某些變數不想要加進判斷，可以透過 exclude 排除（或是也可以反過來，使用 of 指定只要輸出某些字段）</p>
 <p>
@@ -319,6 +335,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1863"
+  height="673"
 /></p>
 <p><strong>補充：</strong> 為什麼只有一個合在一起的註解 <code>@EqualsAndHashCode</code>，而不是兩個分開的註解 <code>@Equals</code> 和 <code>@HashCode</code>？</p>
 <p>因為在 Java 中有規定，當兩個 object equals 時，他們的 hashcode 一定要相同，反之，當 hashcode 相同時，object 不一定 equals。所以 equals 和 hashcode 要一起 implement，免得發生違反 Java 規定的情形發生</p>
@@ -334,6 +352,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="992"
+  height="320"
 /></p>
 <p><strong>@AllArgsConstructor</strong> : 生成一個包含所有參數的 constructor</p>
 <p>
@@ -343,6 +363,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1273"
+  height="397"
 /></p>
 <p><strong>補充：</strong> 這裡要注意一個 Java 中的實作重點，當我們沒有指定 constructor 時，Java compiler 會幫我們自動生成一個沒有任何參數的 constructor 給該 Class，<strong>但是如果我們自己寫了 constructor 之後，Java 就不會自動幫我們補上那個無參數的 constructor 了！</strong></p>
 <p>然而很多地方（像是 Spring Data JPA），都會要求每個 Class 一定要有一個無參數的 constructor，所以你在加上 <code>@AllArgsConstructor</code> 時，一定要記得補上 <code>@NoArgsConstrcutor</code>，不然就會出現各種意外的報錯，一定要記得！！！</p>
@@ -360,6 +382,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1140"
+  height="364"
 /></p>
 <p>補充一下，如果所有的變數都是正常的（即是都沒有用 final 修飾的話），那就會生成一個沒有任何參數的 constructor</p>
 <h3 id="5-data" class="markdown-heading-anchor">
@@ -379,6 +403,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1878"
+  height="1724"
 /></p>
 <p>@Data 是使用頻率最高的 Lombok 用法，通常 @Data 會加在一個值可以被更新的 Object 上，像是日常使用的 DTO 們、或是 JPA 裡的 Entity 們，就很適合加上 @Data，也就是 <strong>@Data for mutable class（@Data for 可變動的 Class）</strong></p>
 <h3 id="6-value" class="markdown-heading-anchor">
@@ -398,6 +424,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1844"
+  height="1477"
 /></p>
 <p>上面那個 @Data 適合用在 POJO 或 DTO 上，而這個 @Value，則是適合加在「值不希望被改變的 Class 上」</p>
 <p>所以像是某個 Class 的值當創建後就不希望被更改，只希望我們讀它而已，這時候就適合加上 @Value，也就是 <strong>@Value for immutable class（@Value for 不可變動的 Class）</strong></p>
@@ -413,6 +441,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1814"
+  height="752"
 /></p>
 <p>不過要特別注意，雖然只要在 Class 上加上 @Builder，我們就能夠用流式寫法快速設定 Object 的值，但是還是要記得實作 setter 方法，不能省略（因為 Spring 框架中有很多地方都會用到 Object 的 getter/setter，對他們取值/賦值）</p>
 <p>所以在使用上，通常是 @Data 和 @Builder 會一起使用，即是將他們同時加在同個 Class 上，這樣既方便我們流式寫 code，也方便框架做事</p>
@@ -433,6 +463,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2105"
+  height="364"
 /></p>
 <p>除了 @Slf4j 之外，Lombok 也有提供其他日誌框架的註解可以使用，像是 @Log、@Log4j&hellip;等等，他們都是用來創建一個 log 變數，只是底層使用的日誌 library 不一樣而已</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Log</span><span style="color:#fff"> </span><span style="color:#57606a">// 等同於下方 log 語句</span><span style="color:#fff">

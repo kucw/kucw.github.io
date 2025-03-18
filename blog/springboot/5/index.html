@@ -1387,6 +1387,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2949"
+  height="990"
 /></p>
 <h3 id="新增一個-teacher-class" class="markdown-heading-anchor">
   新增一個 Teacher class
@@ -1410,6 +1412,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2937"
+  height="1629"
 /></p>
 <h3 id="但是如果-hpprinter-印表機壞掉了怎麼辦" class="markdown-heading-anchor">
   但是&hellip;如果 HpPrinter 印表機壞掉了怎麼辦？
@@ -1423,6 +1427,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2969"
+  height="1666"
 /></p>
 <p>所以到這邊，我們可能就會產生了一個新的想法：就是身為一個 Teacher，我們其實只是想要一台印表機去印東西而已，不論這個印表機是 HP 還是 Canon 品牌，只要他可以印東西出來就好，我們根本不在意我們所使用的是哪個牌子的印表機。</p>
 <p>但是因為我們在 Teacher 的程式裡面，「具體的去指定了」要使用的是哪一牌的印表機，所以每當我們換一次牌子，我們就必須要把所有使用到印表機的程式，全部都修改一遍，因此就會變得非常麻煩（現在只有 Teacher 這個 class 需要修改，所以大家可能覺得還好，大不了就動手改一下，但是當 Project 越寫越大之後，要這樣一個一個修改是非常困難的）。</p>
@@ -1443,6 +1449,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 500px; width: 100%"
+    width="1425"
+    height="761"
 />
 <p>可以看到在 Teacher class 中，我們只定義了一個 Printer 的變數，<strong>並且我們沒有為這個 <code>printer</code> 變數，去 new 一個 HpPrinter 或是 CanonPrinter 出來</strong>，因此這個 <code>printer</code> 變數的值，預設就會是 null。</p>
 <p>但是，當 Spring Boot 程式運作起來之後，Spring 就會去啟動一個 <strong>「Spring 容器（Spring Contianer）」</strong>，然後 Spring 會預先去 new 一台印表機出來（此處以 HpPrinter 當作例子），並且存放在 Spring 容器裡面保存。</p>
@@ -1456,6 +1464,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 450px; width: 100%"
+    width="1014"
+    height="812"
 />
 <p>因此後續當 Teacher 想要使用印表機時，Spring 就會把這個預先 new 好、並且存放在 Spring 容器中的 HpPrinter，把他交給 Teacher，因此 Teacher 就可以正常的使用這個 HP 印表機，去印他想印的東西了。</p>
 <p>
@@ -1465,6 +1475,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2817"
+  height="968"
 /></p>
 <p>所以大家也可以簡單的想像成是：Spring 他會預先去買一台印表機，然後儲存在「Spring 容器」裡面，而誰想要印東西，他就去跟 Spring 借，<strong>所以印東西的人就再也不用自己去準備一台印表機，只要一直去跟 Spring 借就好了，這個就是「Spring IoC」的概念了！</strong></p>
 <h2 id="spring-ioc-的定義" class="markdown-heading-anchor">
@@ -1481,6 +1493,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3646"
+  height="1870"
 /></p>
 <p>也因為我們 <strong>將 HpPrinter 的「控制權」，從自己手上「轉移到」外部的 Spring 容器</strong>，由外部的 Spring 容器統一去做管理，所以就稱為是 Inversion of Control，簡稱為 IoC。</p>
 <h2 id="spring-ioc-的優點" class="markdown-heading-anchor">

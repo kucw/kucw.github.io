@@ -1338,6 +1338,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <h2 id="spring-boot-設定檔applicationproperties的寫法" class="markdown-heading-anchor">
   Spring Boot 設定檔（application.properties）的寫法
@@ -1352,6 +1354,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2880"
+  height="1580"
 /></p>
 <h3 id="properties-的語法格式" class="markdown-heading-anchor">
   properties 的語法格式
@@ -1365,6 +1369,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1649"
+  height="1021"
 /></p>
 <p>大家可以把這個 <code>key=value</code> 的寫法，想像成是 <code>變數=值</code> 的概念，所以前面的 key 其實就等同於是 Java 中的變數，而後面的 value，就是這個變數的值，就是這麼的簡單暴力！</p>
 <p>因此當我們在 application.properties 檔案中，去寫上了一行 <code>count=5</code> 的程式，就表示我們定義了一個變數 <code>count</code>，然後他的值是 <code>5</code> 這樣，僅此而已</p>
@@ -1395,6 +1401,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1678"
+  height="1013"
 /></p>
 <p>或是我們也可以在下面，再新增一行 <code>my.age=20</code> 的程式，而這一行程式所代表的，就是「我的年齡是 20 歲」的意思</p>
 <p>
@@ -1404,6 +1412,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1678"
+  height="1013"
 /></p>
 <p>所以大家以後就可以將 key 中的 <code>.</code>，去翻譯成是中文的「的」的意思，這樣就可以透過這種格式，去傳遞更豐富的意義出來</p>
 <h3 id="3-properties-語法的注意事項之三使用--來表示-comment" class="markdown-heading-anchor">
@@ -1417,6 +1427,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1701"
+  height="672"
 /></p>
 <h2 id="讀取-spring-boot-設定檔applicationproperties中的值value" class="markdown-heading-anchor">
   讀取 Spring Boot 設定檔（application.properties）中的值：@Value
@@ -1443,6 +1455,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1666"
+  height="1035"
 /></p>
 <p>但是如果我們在這個 count 的變數上面，去添加一個 <code>@Value(&quot;${count}&quot;)</code> 的話，這樣子就可以從 Spring Boot 設定檔 (application.properties 檔案) 中，去讀取其中的 <code>count</code> 這個 key 的值，並且將這個值給賦予到 HpPrinter 中的 count 變數裡面</p>
 <p>
@@ -1452,6 +1466,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1683"
+  height="1095"
 /></p>
 <p>而因為目前在 application.properties 檔案中，我們是在第 1 行，去寫上了 <code>count=5</code> 的設定</p>
 <p>
@@ -1461,6 +1477,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="1805"
+  height="1064"
 /></p>
 <p>因此到時候 HpPrinter 中的 count 變數的值，就會變成是 application.properties 檔案中所定義的「5」</p>
 <p>所以這也就表示，我們就成功的透過 <code>@Value</code> 的用法，將 Spring Boot 設定檔 (application.properties 檔案) 中的值，給成功的讀取到 Bean 裡面的變數中了！</p>
@@ -1514,6 +1532,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3256"
+  height="727"
 /></p>
 <p>如果大家想要避免這個問題的話，<code>@Value</code> 也是有提供另一種輔助方式可以讓我們使用，即是「設定預設值」</p>
 <p>我們可以在 <code>@Value</code> 的 key 的後面，加上一個 <code>:</code>，並且在後面寫上想要的值，譬如說這裡寫上 200</p>
@@ -1585,6 +1605,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2030"
+  height="758"
 /></p>
 <h2 id="總結" class="markdown-heading-anchor">
   總結

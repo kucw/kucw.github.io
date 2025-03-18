@@ -261,6 +261,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
     loading="lazy"
     data-zoomable
     style="max-width: 600px; width: 100%"
+    width="1512"
+    height="512"
 />
 <p>而一般在實務上，最常見的 Encode 演算法為「Base64」，像是在這個 <a href="https://emn178.github.io/online-tools/base64_encode.html"
    
@@ -274,6 +276,8 @@ Base64 Encode
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1938"
 /></p>
 <p>而這時如果大家複製一下下方的結果 <code>dGVzdDEyMw==</code>，然後點擊左邊的 <a href="https://emn178.github.io/online-tools/base64_decode.html"
    
@@ -287,6 +291,8 @@ Decode 連結
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1938"
 /></p>
 <p><strong>所以對於 Encode 和 Decode 來說，他們完全不需要密鑰的參與，也可以對數據進行「編碼和解碼」</strong>，因此所有人都可以針對某一筆數據進行 Encode 和 Decode。</p>
 <p>也因為如此，<strong>大家在使用 Base64 去 Encode 數據時，一定要注意這個數據是沒有被加密過的</strong>，所以所有人都有能力將他 Decode 回原始的字串！！一定要小心！！！</p>
@@ -320,6 +326,8 @@ Decode 連結
     loading="lazy"
     data-zoomable
     style="max-width: 750px; width: 100%"
+    width="1910"
+    height="616"
 />
 <p>也因為在對稱加密中只有一把密鑰存在，所以這把密鑰必須要好好的保護，絕對不可以洩漏，一但密鑰洩漏，駭客就可以透過這把密鑰解密出原始的字串，因此在對稱加密中，保護密鑰是非常重要的任務！</p>
 <h2 id="什麼是非對稱加密" class="markdown-heading-anchor">
@@ -345,6 +353,8 @@ Decode 連結
   alt=""
   loading="lazy"
   data-zoomable
+  width="2702"
+  height="1178"
 /></p>
 <p>也由於非對稱加密的神奇特性（其中一把加密的數據，只能用另一把解密），所以在 JWT 中的「數位簽名」，實際上就是用非對稱加密所實作的。甚至不止 JWT，像是區塊鏈中的數位簽名，他背後也是用非對稱加密實作的（不如說只要是扯到「數位簽名」或是「數位簽章」這個概念，底層都是同一套，都是用非對稱加密實作）。</p>
 <p>所以在了解 JWT 的「數位簽名」是如何實作的之前，建議大家一定要先了解「非對稱加密」的運作邏輯（也就是其中一把加密的數據，只能用另一把解密），這樣子後續在了解 JWT 的相關知識時，才能夠知道他底層的運作邏輯為何。</p>
@@ -364,6 +374,8 @@ Decode 連結
     loading="lazy"
     data-zoomable
     style="max-width: 800px; width: 100%"
+    width="2092"
+    height="712"
 />
 <p>所以在 Hash 的世界中，<strong>所有的數據只要被 Hash 過，就再也沒辦法轉換回原始的數據</strong>，就算老天來也沒用，世界上沒有人（包含駭客和你自己）有能力將 Hash Value 轉換回原始的數據。</p>
 <h3 id="補充hash-真的沒辦法被破解嗎" class="markdown-heading-anchor">
@@ -406,6 +418,8 @@ Decode 連結
     loading="lazy"
     data-zoomable
     style="max-width: 850px; width: 100%"
+    width="2500"
+    height="607"
 />
 <p>而這種加鹽的做法之所以可以反制駭客，有兩個原因：</p>
 <ol>
@@ -431,6 +445,8 @@ Decode 連結
   alt=""
   loading="lazy"
   data-zoomable
+  width="2901"
+  height="1467"
 /></p>
 <p>所以透過這張表格，希望能夠讓大家更了解 Encode、Encrypt 和 Hash 他們之間的差別在哪裡，因此大家後續在使用上，就可以根據自己的需求，決定哪一種方式是最適合你的實作方法了。</p>
 <blockquote>

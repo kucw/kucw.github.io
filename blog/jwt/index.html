@@ -258,6 +258,8 @@ Session 和 JWT 的差別在哪裡？
   alt=""
   loading="lazy"
   data-zoomable
+  width="2277"
+  height="990"
 /></p>
 <p>不過在當時的那篇文章中，我們先跳過了「為什麼後端可以無條件相信 JWT 中的內容？」的相關細節，因此這篇文章就會回過頭來介紹這部分，了解 JWT 中的組成有哪些，以及 JWT 的運作原理是什麼，使得後端可以無條件相信 JWT 中所記錄的資訊。</p>
 <h2 id="什麼是-jwt" class="markdown-heading-anchor">
@@ -273,6 +275,8 @@ Session 和 JWT 的差別在哪裡？
   alt=""
   loading="lazy"
   data-zoomable
+  width="2930"
+  height="1681"
 /></p>
 <p>所以其實 JWT 格式，他就只是一段亂碼，只是我們可以使用 <code>.</code>，把內部的資訊區隔成三個部分而已。</p>
 <p>而如果我們把下面這段 JWT 的亂碼，貼到 JWT 的官方網站 <a href="https://jwt.io/"
@@ -289,6 +293,8 @@ https://jwt.io/
   alt=""
   loading="lazy"
   data-zoomable
+  width="2009"
+  height="1726"
 /></p>
 <p>所以在了解 JWT 的運作原理之前，一定要先知道 <strong>「JWT 是由 header、payload 和 signature 這三個部分所組成」</strong>，每一個部分所負責的功能都不一樣，所以先了解 JWT 的結構是非常重要的！</p>
 <p>而在 JWT 中，每一個部分所負責的功能都不一樣，以下分別介紹他們各自所負責的功能：</p>
@@ -309,6 +315,8 @@ https://jwt.io/
   alt=""
   loading="lazy"
   data-zoomable
+  width="2713"
+  height="1343"
 /></p>
 <h3 id="補充jwt-中的-encode-和-decode" class="markdown-heading-anchor">
   補充：JWT 中的 Encode 和 Decode
@@ -326,6 +334,8 @@ https://jwt.io/
   alt=""
   loading="lazy"
   data-zoomable
+  width="2009"
+  height="1738"
 /></p>
 <p><strong>所以在 JWT 中，header 的亂碼看似好像有加密，但他實際上是完全沒有加密的！！！JWT 只是使用 Base64 將 JSON 字串給編碼一下而已，完全沒有加密的成分在裡面</strong>，因此所有人都有能力 Decode 這段亂碼，取得原始的 JSON 字串。</p>
 <blockquote>
@@ -352,6 +362,8 @@ https://jwt.io/
   alt=""
   loading="lazy"
   data-zoomable
+  width="2713"
+  height="1444"
 /></p>
 <h3 id="補充-1payload-中的常用變數" class="markdown-heading-anchor">
   補充 1：payload 中的常用變數
@@ -382,6 +394,8 @@ https://jwt.io/
   alt=""
   loading="lazy"
   data-zoomable
+  width="2009"
+  height="1738"
 /></p>
 <p>也因為 payload 中的數據僅是使用 Base64 進行編碼而已，所以完全沒有安全性可言！！<strong>因此千萬不要將使用者的敏感數據（ex: 身分證字號）放在 JWT 中傳遞，因為 JWT 的 payload 是所有人都可以輕易解碼的。</strong></p>
 <p>所以通常在 payload 中，只會存放使用者的必要的資訊（ex: id 的值），後端到時再去根據這個 id 的值，去資料庫中查詢使用者的敏感數據。</p>
@@ -403,6 +417,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="2713"
+  height="1444"
 /></p>
 <h2 id="jwt-總結" class="markdown-heading-anchor">
   JWT 總結
@@ -423,6 +439,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="2713"
+  height="1444"
 /></p>
 <blockquote>
 <p>補充：本文是擷取自我開設的線上課程<a href="https://hahow.in/cr/springsecurity"

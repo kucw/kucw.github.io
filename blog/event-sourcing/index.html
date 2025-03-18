@@ -222,6 +222,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 400px; width: 100%"
+    width="996"
+    height="948"
 />
 <p>也因為在 Event Sourcing 中，我們所儲存的是「每一個 Event 的記錄」，而不是儲存「最終的餘額結果」，所以假設使用者想要知道他現在到底有多少存款的話，那我們就只能手動的一筆一筆 event 加總，也就是「把事件全部重頭執行一遍」，最終就可以得到他的最終餘額。</p>
 <p>所以像是在上面的例子中，我們就需要加總這 3 筆 event，也就是「存款 500」、「存款 1000」、「提款 200」，因此使用者最終的餘額就是 <code>500 + 1000 - 200 = 1300</code>。</p>
@@ -235,6 +237,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 767px; width: 100%"
+    width="1935"
+    height="984"
 />
 <p>因此 Event Sourcing 說穿了，就只是將 <strong>「每一筆發生的 Event 忠實的記錄下來」</strong> 的架構模式而已！</p>
 <h2 id="event-sourcing-和傳統-crud-的差別在哪裡" class="markdown-heading-anchor">
@@ -250,6 +254,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2452"
+  height="1008"
 /></p>
 <p>也由於 Event Sourcing 和 CRUD 在本質上的不同，因此一般來說，通常是「對每一個 Event 都要詳細記錄的情境」才需要使用 Event Sourcing 來設計，像是金融業銀行、股票買賣、Audit Log&hellip;等等，這種要細到每筆帳都要清算的情況，就很適合用 Event Sourcing 來實作。</p>
 <p>而如果沒有這種需求的話，其實用 CRUD 就真的很夠用了，因為一般來說大家在意的不是那個過程，而是最終的結果，所以這也是為什麼 CRUD 目前還是後端設計主流，就是因為 CRUD 可以應付大部分的真實場景。</p>

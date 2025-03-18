@@ -232,6 +232,8 @@ RabbitMQ 介紹（一）- 什麼是 Message Queue？
   alt=""
   loading="lazy"
   data-zoomable
+  width="2927"
+  height="1457"
 /></p>
 <p>在 RabbitMQ 的世界，Producer、Consumer、以及 Queue，是最重要的三個名詞，因此先了解這些名詞的意義，可以說是認識 RabbitMQ 的第一步。</p>
 <h2 id="rabbitmq-中常見的-5-種模式" class="markdown-heading-anchor">
@@ -260,6 +262,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="392"
+  height="59"
 /></p>
 <p>像是以上面的「訂單系統」和「數據分析系統」的例子來說，他們其實就是使用最簡單的 Direct 模式，由「訂單系統」這個 Producer 負責發送 message，並且由「數據分析系統」這個 Consumer 接收 message。</p>
 <h3 id="2-worker-模式" class="markdown-heading-anchor">
@@ -273,6 +277,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="332"
+  height="111"
 /></p>
 <p>Worker 模式是 RabbitMQ 中滿常用的一個模式，假設今天 Queue 突然有很多 message 要處理，就可以多叫幾台 Consumer 來一起消化，因此可以輕易的達成「橫向擴展」，在實作上非常的好用！</p>
 <h3 id="3-publishsubscribe-模式" class="markdown-heading-anchor">
@@ -288,6 +294,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="434"
+  height="111"
 /></p>
 <p>而在 Exchange 中，他有 3 種類型（type）可以選（<code>direct</code>、<code>fanout</code>、<code>topic</code>），所以在下面不同的模式中，就會搭配不同的 Exchange 設定來實作。</p>
 <div class="markdown-breakline"></div>
@@ -300,6 +308,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="434"
+  height="111"
 /></p>
 <p>所以在上下這兩條 Queue 中，裡面都會各自有一份 message 存在！</p>
 <p>因此即使 Producer 只傳送了一個 message 給 Exchange，Exchange 也會透過「複製」的方式，在每一條 Queue 中都添加同樣的 message，這樣子就可以確保所有的 Consumer 都可以接收到這個 message 了！</p>
@@ -314,6 +324,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="3224"
+  height="1850"
 /></p>
 <h3 id="4-routing-模式" class="markdown-heading-anchor">
   4. Routing 模式
@@ -327,6 +339,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="408"
+  height="171"
 /></p>
 <p>Routing 模式雖然使用上沒有 Publish/Subscribe 模式來的常用，但是他的重點在於 <strong>「可以多重綁定」</strong>，也就是同一個 routing key 可以綁到多條 Queue 上，因此就可以拿來實作收集 Log 的 Queue。</p>
 <p>像是在下圖中，我們可以將 <code>info</code>、<code>error</code>、<code>warning</code> 這三個 routing key，綁到記錄一般 Log 的 Queue 上，然後再將 <code>error</code> 這個 routing key，再綁定到另一條記錄 Error Log 的 Queue 上，這樣子就可以實作出一份帶有全部 Log 的 Queue、以及一份只有 Error Log 的 Queue 了。</p>
@@ -337,6 +351,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="423"
+  height="171"
 /></p>
 <p>不過，雖然使用 Routing 模式可以很容易的實作出上述的收集 Log 的 Queue，但是因為他的重要邏輯都寫在 Exchange 上，所以如果對 RabbitMQ 或是 Exchange 不太熟練的話，就會不知道要去哪裡改這些設定（Exchange 的設定要進到 RabbitMQ 的系統中改）。</p>
 <p>因此在實作上，建議大家是慎用這個模式，除非團隊中的每個人真的都很熟悉 RabbitMQ，不然的話用這個模式可能會導致後期維護不易。</p>
@@ -351,6 +367,8 @@ RabbitMQ 官網
   alt=""
   loading="lazy"
   data-zoomable
+  width="424"
+  height="171"
 /></p>
 <p>我自己還沒有在實務上見到過 Topics 模式的用法，所以除非大家有很特殊的需求，才需要考慮使用 Topics 模式，不然一般的情況下，使用前面的模式就可以解決大部分的問題了。</p>
 <h2 id="rabbitmq-總結" class="markdown-heading-anchor">

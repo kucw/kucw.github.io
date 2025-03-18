@@ -209,6 +209,8 @@ JWT 是什麼？一次搞懂 JWT 的組成和運作原理
   alt=""
   loading="lazy"
   data-zoomable
+  width="2713"
+  height="1444"
 /></p>
 <blockquote>
 <p>本文為 JWT 系列文的最終章，會使用到前面所提到的所有概念（包括 JWT 的組成、非對稱加密、Hash），因此如果你對這些概念還不太熟悉，建議可以先回頭參考前面文章的介紹（建議按照順序閱讀，才會有最佳的閱讀體驗）：</p>
@@ -273,6 +275,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3261"
+  height="1879"
 /></p>
 <p>而當寫好 header 和 payload 中的值之後，此時後端需要對 header + payload 的值 Hash 一下（此處使用的是 SHA-256 Hash 演算法），所以此時就會計算出 header + payload 被 Hash 過後的結果，即是 <code>srtp3k</code>。</p>
 <p>
@@ -282,6 +286,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3261"
+  height="1879"
 /></p>
 <p>接著後端要使用「私鑰」，將這個 hash value <code>srtp3k</code> 加密，因此就會得到一個加密過後的結果 <code>ap9fPl...</code>。</p>
 <p>
@@ -291,6 +297,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3261"
+  height="1879"
 /></p>
 <p>而當後端產生出 <code>ap9fPl...</code> 這個加密過後的結果之後，<strong>後端必須將這個值放在 JWT 中的 signature 的欄位中</strong>，因此最後後端傳送出去的 JWT 結果，就會在 signature 的部分填上 <code>ap9fPl...</code> 的加密過後的值。</p>
 <p>
@@ -300,6 +308,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3263"
+  height="1877"
 /></p>
 <p>所以到這裡，就完成了第一階段的「JWT 的生成」了，因此此時後端就可以將這個 JWT Token 傳送給前端，交由前端保存這個 JWT Token。</p>
 <h3 id="jwt-的驗證" class="markdown-heading-anchor">
@@ -314,6 +324,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3263"
+  height="1876"
 /></p>
 <p>這時候 JWT 中最精華的地方來了！！！當後端計算出 header + payload 的 Hash value 之後，<strong>後端只要使用「公鑰」將 signature 解密，然後比較一下「當初所計算出來 Hash 的值」和「現在所計算出來的 Hash 值」是否一樣</strong>，就可以知道此 JWT Token 是否有被竄改過了！</p>
 <p>
@@ -323,6 +335,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3260"
+  height="1878"
 /></p>
 <p>像是假設駭客偷偷修改 <code>name</code> 的值，將他從 <code>古古</code> 改為 <code>我是駭客</code> 的話，那麼當後端在收到這個 JWT 時，當下所計算出的 header + payload 的值就會是 <code>Fy93HE</code>，<strong>而這個值就會和「使用公鑰解密 signature 所得到的原始 Hash 值 <code>srty3k</code>」不一樣</strong>，因此 JWT 就會驗證失敗，所以後端就會認為這個 JWT 中的內容有被偷偷修改過，因此就不相信裡面的數據。</p>
 <p>
@@ -332,6 +346,8 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   alt=""
   loading="lazy"
   data-zoomable
+  width="3263"
+  height="1877"
 /></p>
 <p>所以總結來說的話，當後端收到 JWT 時，後端只要驗證一下 <strong>「當下 header + payload 所計算出來的 Hash 值」</strong> 和 <strong>「使用公鑰解密 signature 所得到的值」</strong> 是否一樣，就可以知道這個 JWT 有沒有被偷偷修改了，這就是「數位簽名」的核心運行邏輯啦！！</p>
 <p>所以大家以後就可以透過 JWT 的數位簽名的特性，將 JWT 直接儲存在前端中，後端就只要在收到 JWT 時驗證一下簽名就好，因此就不需要再儲存大量的數據在後端裡面了！讚！！</p>

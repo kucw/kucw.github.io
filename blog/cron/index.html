@@ -231,6 +231,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 670px; width: 100%"
+    width="1895"
+    height="1555"
 />
 <p>所以舉例來說，假設 Cron 表達式為 <code>0 16 * * *</code>，那就是表示「我們指定在每天的 16:00」要執行一次這個任務（因為我們設定了第一個 <code>*</code> 為 0，第二個 <code>*</code> 為 16，所以就是表示我們指定要在分鐘數為 0、並且小時數為 16 的時候執行任務，因此 <code>0 16 * * *</code> 的結果才會是在每天的 16:00 執行任務）。</p>
 <p>再舉一個例子，假設 Cron 的表達式為 <code>23 1 * * *</code>，就是表示我們指定在「每天的凌晨 1 點 23 分」要執行這個任務。</p>
@@ -340,6 +342,8 @@ Crontab.guru
     loading="lazy"
     data-zoomable
     style="max-width: 670px; width: 100%"
+    width="1895"
+    height="1555"
 />
 <h2 id="補充spring-boot-的-cron-表達式寫法6-個-" class="markdown-heading-anchor">
   補充：Spring Boot 的 Cron 表達式寫法（6 個 <code>*</code>）
@@ -356,6 +360,8 @@ Crontab.guru
     loading="lazy"
     data-zoomable
     style="max-width: 800px; width: 100%"
+    width="2216"
+    height="1574"
 />
 <p>因此在 Spring Boot 中，要實作 <code>@Scheduled</code> 時，就要先寫出 6 個 <code>*</code>，然後才是根據不同的位置，去指定不同的時間點，而這部分其實就跟上面的 Cron 表達式一模一樣，所以只要 5 個 <code>*</code> 的版本有學好，6 個 <code>*</code> 版本就只是往左多擴充一個「秒數」部分而已！</p>
 <p>所以像是我們可以寫 <code>@Scheduled(cron = &quot;11 59 23 * * *&quot;)</code>，就是表示要在「每天的 23 點 59 分 11 秒（23:59:11）」執行任務，而當我們寫 <code>@Scheduled(cron = &quot;* 0 10 * * *&quot;)</code> 時，則是要在「每天的 10:00:00、10:00:01、10:00:02&hellip;（不斷加一秒鐘）&hellip;、10:00:58、10:00:59」執行任務。</p>

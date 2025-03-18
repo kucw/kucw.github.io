@@ -245,6 +245,8 @@ RESTful API 設計指南，3 個必備條件缺一不可！
     loading="lazy"
     data-zoomable
     style="max-width: 780px; width: 100%"
+    width="2020"
+    height="462"
 />
 <p><strong>所以在使用 GET 方法來請求時，所有的請求參數都是「公開的」，因此任何人都能查看參數的值</strong>，所以 GET 就像是「明信片」一樣，信中的內容可以被所有人查看。</p>
 <p>也因為使用 GET 來請求的所有參數都會被看見，因此如果你的請求參數是比較敏感的資訊（ex: 身分證字號、手機號碼），那就不建議使用 GET 方式來請求，因為這些數據會暴露在 url 中給其他人看到，可能就會導致數據的洩漏。</p>
@@ -265,6 +267,8 @@ RESTful API 設計指南，3 個必備條件缺一不可！
     loading="lazy"
     data-zoomable
     style="max-width: 600px; width: 100%"
+    width="1616"
+    height="706"
 />
 <p><strong>所以在使用 POST 方法來請求時，所有的請求參數都是「隱私的」，只有收件者（後端）都能查看，其他人是完全看不到的</strong>，因此就像是「信封」一樣，信中的內容會對其他人隱藏，只有收件者後端可以查看。</p>
 <p>也因為使用 POST 來請求時，所有的參數都會被隱藏起來，不被其他人所看見，因此像是比較敏感的資訊（ex: 身分證字號、手機號碼），就很適合使用 POST 來請求，確保敏感數據不會洩漏。</p>
@@ -285,6 +289,8 @@ RESTful API 設計指南，3 個必備條件缺一不可！
   alt=""
   loading="lazy"
   data-zoomable
+  width="2924"
+  height="1360"
 /></p>
 <p>所以大家以後就可以根據自己目前的 API 的需求，選擇最適合的請求方式了！</p>
 <h2 id="補充get-和-post-的更多細節比較" class="markdown-heading-anchor">

@@ -1346,6 +1346,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 600px; width: 100%"
+    width="1470"
+    height="672"
 />
 <p>因此當 Spring Boot 程式運行起來之後，Spring Boot 就會去查看有哪些 class 上面加上了 <code>@Component</code>，然後 Spring Boot 就會提前去 new 一個 object 出來，並且存放在 Spring 容器裡面，等著其他人後續來跟他借。</p>
 <p>所以以 HpPrinter 這個例子來說，當 Spring Boot 看到 HpPrinter 上面有加上 <code>@Component</code> 之後，Spring Boot 就會去執行下面這行程式，提前去 new 出一個 HpPrinter 的 object 出來。</p>
@@ -1361,6 +1363,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 650px; width: 100%"
+    width="1895"
+    height="811"
 />
 <p>也因為使用 <code>@Component</code> 來創建 Bean 可以說是非常的神速，只需要在 class 上面加上一行程式就可以完成，因此 <code>@Component</code> 也可以說是在 Spring Boot 中使用頻率最高的註解之一。</p>
 <h3 id="創建-bean-的注意事項" class="markdown-heading-anchor">
@@ -1375,6 +1379,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3077"
+  height="1196"
 /></p>
 <p>所以同樣的道理，假設我們今天改成是將 <code>@Component</code> 加在 CanonPrinter class 上，那 Spring 所生成出來的 Bean，名字就會是 canonPrinter。</p>
 <p>因此大家之後在創建 Bean 時，就要記得 <strong>「Spring 所生成出來的 Bean 的名字，會是 class 名稱的第一個字母轉成小寫」</strong>，這個特性在下一篇文章中馬上就會用到，所以也是一個很重要的特性！</p>
@@ -1398,6 +1404,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 480px; width: 100%"
+    width="1441"
+    height="931"
 />
 <p>不過，在使用 <code>@Autowired</code> 去注入 Bean 進來時，有兩個很重要的限制一定得遵守！如果不遵守的話，是沒辦法正常去注入 Bean 進來的。</p>
 <h3 id="1-使用-autowired-的注意事項之一該-class-也必須也是-bean" class="markdown-heading-anchor">
@@ -1416,6 +1424,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 480px; width: 100%"
+    width="1451"
+    height="948"
 />
 <blockquote>
 <p>補充：因此基本上當我們使用了 Spring Boot 這套框架之後，我們就會盡量把所有的 class 都變成 Bean，因為這樣才能夠去注入來注入去的，所以在 Spring Boot 程式裡面看到一堆 <code>@Component</code> 和 <code>@Autowired</code> 是很正常的！</p></blockquote>
@@ -1434,6 +1444,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 800px; width: 100%"
+    width="2796"
+    height="1048"
 />
 <p>而 HpPrinter class 之所以能夠成功的被注入到 Printer 類型的變數裡面，<strong>原因就在於 Java 的多型（polymorphism）特性，使得 HpPrinter class 可以「向上轉型」成 Printer interface</strong>，因此透過 Java 的多型，Spring Boot 就能夠成功的將 hpPrinter Bean，注入到 Teacher class 中的 printer 變數了！</p>
 <blockquote>
@@ -1463,6 +1475,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="2798"
+  height="1584"
 /></p>
 <p>接著我們在 <code>com.example.demo</code> 這個 package 底下，再去創建一個 Printer interface 出來。所以我們可以在 <code>com.example.demo</code> 這個 package 上點擊右鍵，然後選擇 New，接著選擇 Java class。</p>
 <p>
@@ -1472,6 +1486,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="2655"
+  height="1439"
 /></p>
 <p>然後我們將這個 interface 的名字，取名成 Printer，並且在下面選擇 interface，這樣子就可以去創建一個 Printer interface 出來。</p>
 
@@ -1484,6 +1500,8 @@ Day 4 - 第一個 Spring Boot 程式
     loading="lazy"
     data-zoomable
     style="max-width: 500px; width: 100%"
+    width="944"
+    height="626"
 />
 <p>接著在這個 Printer 的 interface 裡面，新增一個 <code>print()</code> 方法的宣告。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">interface</span> <span style="color:#1f2328">Printer</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
@@ -1497,6 +1515,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1676"
 /></p>
 <h3 id="練習創建-bean-的方法component" class="markdown-heading-anchor">
   練習創建 Bean 的方法：@Component
@@ -1519,6 +1539,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1744"
 /></p>
 <p>在這個 HpPrinter 的實作中，我們在第 5 行有添加了 <code>@Component</code> 的程式，又因為 <code>@Component</code> 的用途是「將 class 變成由 Spring 所管理的 Bean」，因此這段程式的意思就是<strong>將 HpPrinter 變成是一個 「由 Spring 容器所管理的 Bean」。</strong></p>
 <p>所以到時候當 Spring Boot 程式運行起來時，Spring 就會預先去創建 hpPrinter 這個 Bean 出來，並且存放在 Spring 容器裡面了。</p>
@@ -1534,6 +1556,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1744"
 /></p>
 <p>所以在 MyController 中，我們就新增了一個 Printer 類型的變數 printer，並且在這個 printer 變數上面，也加上了一行 <code>@Autowired</code> 的程式，因此到時候，<strong>Spring Boot 就會將「Spring 容器中類型為 Printer 的 Bean，注入到這個 printer 變數中」了！</strong></p>
 <p>所以換句話說的話，到時候 Spring Boot 就會把存放在 Spring 容器中的 hpPrinter Bean，去注入到 MyController 的 printer 變數中，因此到時候這個 printer 變數所存放的，就會是一個 HpPrinter 的 object。</p>
@@ -1545,6 +1569,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1744"
 /></p>
 <p>所以當我們寫到這裡之後，就能夠成功的使用 <code>@Autowired</code>，去注入一個 Bean 進來了！</p>
 <h3 id="補充為什麼-mycontroller-能使用-autowired" class="markdown-heading-anchor">
@@ -1560,6 +1586,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1744"
 /></p>
 <p>大家可以先把 <code>@RestController</code> 當成是一個厲害版的 <code>@Component</code>，他不僅可以將 class 變成 Bean，還有更多的功能在裡面。因此如果回到最一開始的問題「為什麼 MyController 可以使用 <code>@Autowired</code>？」，<strong>原因就是因為 MyController 其實本身也是一個 Bean！</strong> 因此他才有能力去使用 <code>@Autowired</code>，將想要的 Bean 給注入進來。</p>
 <p>所以大家在使用 <code>@Autowired</code> 時，就一定要記得，<strong>只有當 class 本身是一個 Bean 時，才可以使用 <code>@Autowired</code> 去注入一個 Bean 進來</strong>，這點非常重要！！</p>
@@ -1574,6 +1602,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3222"
+  height="1740"
 /></p>
 <p>運行起來之後，當看到下方的 console 出現「Started DemoApplication in 0.658 seconds」時，就表示 Spring Boot 程式運行成功了。</p>
 <p>
@@ -1583,6 +1613,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3027"
+  height="879"
 /></p>
 <p>接著我們可以打開 Google 瀏覽器，然後在裡面輸入 http://localhost:8080/test ，然後按下 Enter 鍵。</p>
 <p>這時候如果頁面中有呈現「Hello World」的字樣的話，就表示請求成功了，所以我們就可以回到 IntelliJ 上來看一下結果。</p>
@@ -1596,6 +1628,8 @@ Day 4 - 第一個 Spring Boot 程式
     loading="lazy"
     data-zoomable
     style="max-width: 500px; width: 100%"
+    width="1073"
+    height="499"
 />
 <p>這時回到 IntelliJ 上，就可以在 console 下方看到一行「HP印表機: Hello World」的輸出。</p>
 <p>
@@ -1605,6 +1639,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3025"
+  height="878"
 /></p>
 <p>之所以會出現這一行「HP印表機: Hello World」的輸出，是因為當我們在瀏覽器輸入 http://localhost:8080/test 時，Spring Boot 就會去執行 MyController 裡面的 <code>test()</code> 方法，因此就會執行到下圖中第 15 行的 <code>printer.print(&quot;Hello World&quot;)</code> 程式，所以最終才會在 console 上印出「HP印表機: Hello World」的字串。</p>
 <p>
@@ -1614,6 +1650,8 @@ Day 4 - 第一個 Spring Boot 程式
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1744"
 /></p>
 <p>因此只要看到「HP印表機: Hello World」這一行出現，就表示我們成功的透過 <code>@Component</code> 和 <code>@Autowired</code>，在 Spring Boot 中創建一個 HpPrinter Bean 出來，並且將他注入到 MyController 裡面啦！讚！</p>
 <p>所以大家以後就可以透過這個用法，去使用 <code>@Component</code> 和 <code>@Autowired</code> 了！</p>

@@ -235,6 +235,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 620px; width: 100%"
+    width="1625"
+    height="1689"
 />
 <p>上面這種「不斷的去詢問股票中心 Server 當前的股價為何」的行為，就稱為是 Polling（輪詢）。</p>
 <p>但是上面這個做法有一個缺點，就是你 <strong>「每一秒」</strong> 都得要 call 一次股票中心的 API，才能知道當下的台積電股價，又因為一天有 86400 秒，所以你的後端程式一天就得要 call 股票中心的 API 86400 次，就會造成很大量的 API call，加重股票中心 server 的負擔。</p>
@@ -246,6 +248,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2436"
+  height="1608"
 /></p>
 <p>所以為了解決 Polling 的問題，Webhook 就出現了！</p>
 <h3 id="使用-webhook-來串接" class="markdown-heading-anchor">
@@ -263,6 +267,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 620px; width: 100%"
+    width="1696"
+    height="1701"
 />
 <p>所以在 Webhook 的設計中，主動方會變成是「股票中心」，<strong>只有當股票中心發現台積電跌破我們預期的值時，才發送通知給我們</strong>，在其他時間時，股票中心則是會什麼事都不做，完全不會 call 我們的 API，大大的減少了 API call 的次數。</p>
 <p>因此透過 Webhook 的設計，就可以將 API call 的次數降到最低，只有在台積電的股價跌破 1000 元時才會 call 一次我們的 API，比起前面的 Polling 的設計要 call 86400 次少多了！！<strong>因此在一般在實作上，通常會建議採用 Webhook 的設計</strong>，這樣子可以讓兩邊的 Server 負擔都不會那麼大，減少浪費的 API call 次數。</p>
@@ -282,6 +288,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3169"
+  height="1828"
 /></p>
 <h2 id="補充在-webhook-的實作中股票中心是如何通知我們的後端程式" class="markdown-heading-anchor">
   補充：在 Webhook 的實作中，股票中心是如何通知我們的後端程式？
@@ -312,6 +320,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 450px; width: 100%"
+    width="999"
+    height="891"
 />
 <p>只要完成了上述的步驟之後，未來當你預期的事件發生時（ex: 台積電跌破 1000 元），這時候第三方系統就會 call 你所填上的 API（也就是 <code>https://example.com/myapi</code>）。</p>
 <p>所以換句話說的話，當你的 <code>/myapi</code> 被 call 時，就表示台積電跌破 1000 元了，因此你就可以在這個 <code>/myapi</code> 的程式中，去實作你想要實作的功能（如記錄當前的股價和時間…等等），這樣子就可以和第三方系統成功使用 Webhook 串接在一起了！</p>

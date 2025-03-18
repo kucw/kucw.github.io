@@ -242,6 +242,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 420px; width: 100%"
+    width="1131"
+    height="538"
 />
 <p>不過當有越來越多使用者，慕名前來使用我們的後端服務時，這時候就會導致流量上升，使得一台 Server 沒辦法支撐住這麼高的流量。</p>
 <p>所以這時候，為了確保 Server 能負擔這麼高的流量，我們就有兩個選擇：</p>
@@ -256,6 +258,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3011"
+  height="1537"
 /></p>
 <p>如果這時我們選擇 Vertical Scaling（垂直擴展）的話，就只是從一台普通的 Server，進化成一台超級電腦而已。這個選擇對整體的架構沒有影響，仍舊是只有一個後端程式在運行，所以此時依舊是單體式的架構，因此不需要 Nginx 上場。</p>
 <p>但如果我們選擇的是 Horitontal Sclaing（水平擴展）的話，那麼我們在同一時間，就會有非常多台的 Server 聚集在一起，準備聯合起所有 Server 的力量，一起對付高流量。<strong>所以這時候，整個後端的架構，就會從「單體式架構（Monolithic）」變成「微服務架構（Microservices）」，也就是同時間有多個後端程式在運作。</strong></p>
@@ -281,6 +285,8 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     loading="lazy"
     data-zoomable
     style="max-width: 680px; width: 100%"
+    width="1741"
+    height="1333"
 />
 <p>所以為了解決這個問題，Nginx 就被發明出來了！</p>
 <h3 id="nginx-的反向代理" class="markdown-heading-anchor">
@@ -298,6 +304,8 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     loading="lazy"
     data-zoomable
     style="max-width: 767px; width: 100%"
+    width="2119"
+    height="1316"
 />
 <p>所以有了 Nginx 之後，Nginx 就可以作為所有後端 Server 的守門人，因此今天當前端來請求後端的 API 時，前端就必須改成去 call Nginx，由 Nginx 將這個請求「轉發」給任一台後端 Server（轉發規則由 Nginx 說了算），達到反向代理的效果。</p>
 <p>所以透過 Nginx 的反向代理，我們就可以統一的處理所有前端傳遞過來的請求了！</p>
@@ -326,6 +334,8 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     loading="lazy"
     data-zoomable
     style="max-width: 767px; width: 100%"
+    width="2119"
+    height="1316"
 />
 <p>而使用反向代理的好處非常多，因為在反向代理中，是由 Nginx 一個人扛住所有對外的連接，所以我們只需要在 Nginx 中設定好 Https 的憑證即可，因此內部的後端 Server 就不需要處理網路相關的憑證問題。</p>
 <p>又像是防火牆的問題，我們只要統一的在 Nginx 處理好 DDoS 之類的駭客攻擊就好，就不需要每一個後端 Server 都去處理，也大大的節省了資訊安全的維護成本。</p>
@@ -342,6 +352,8 @@ API Gateway
   alt=""
   loading="lazy"
   data-zoomable
+  width="1770"
+  height="780"
 /></p>
 
 <p class="markdown-image-caption">
@@ -370,6 +382,8 @@ API Gateway
   alt=""
   loading="lazy"
   data-zoomable
+  width="3735"
+  height="3573"
 /></p>
 
 <p class="markdown-image-caption">
@@ -413,6 +427,8 @@ AWS 的《What is Load Balancing?》介紹
   alt=""
   loading="lazy"
   data-zoomable
+  width="3200"
+  height="1934"
 /></p>
 <p>所以這也是為什麼大家在工作時，常常會遇到某些網站被公司 IT 給擋住，這就是因為所有的網路請求，實際上都會經過 IT 的路由器，最終才會傳到外部的公開網路上，因此 IT 就可以在路由器那裡設定一些規則，將某些網站給封住，進而讓你在上班時沒辦法瀏覽某些網站了。</p>
 <p>所以比較一下正向代理和反向代理的話：</p>

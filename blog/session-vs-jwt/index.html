@@ -225,6 +225,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2526"
+  height="1002"
 /></p>
 <p>所以當前端（此處以瀏覽器為例）收到 Session id 的值時，前端就可以將這個 Session id 的值存放在 Cookie 中，等待後續使用。因此到這裡就完成了登入的操作，所以使用者理論上就會被跳轉回首頁，並且已經是成功登入的狀態。</p>
 <p>而當使用者成功登入之後，假設使用者後續想要去 call 其他受保護的 api（ex：查看個人設定），這時候<strong>前端就可以在 call api 時，同時也帶上當初後端 Server 發放的 Session id</strong>，這樣後端在收到這一次的請求時，就可以去資料庫查詢一下這個 Session id 的值是否存在，如果存在的話，就表示這個使用者已經有成功登入過了，所以就可以允許這一次的 api 通過，進而返回實際的結果給前端。</p>
@@ -235,6 +237,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2526"
+  height="1002"
 /></p>
 <p><strong>所以對於 Session 這種登入機制而言，所有的登入記錄都是儲存在「後端 Server」上</strong>，前端所拿到的 Session id 的值，其實就只是一組沒有意義的亂碼，只有後端 Server 才知道這組 Session id 實際上對應到的是哪個使用者的登入資訊。</p>
 <p><strong>因此 Session 這種登入機制，他就是「將登入的資訊儲存在後端 Server 上」的一項技術。</strong></p>
@@ -245,6 +249,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2277"
+  height="990"
 /></p>
 <h2 id="什麼是-jwt-認證" class="markdown-heading-anchor">
   什麼是 JWT 認證？
@@ -261,6 +267,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2441"
+  height="1112"
 /></p>
 <p>所以在 JWT 認證的世界中，後端 Server 是不需要儲存任何一筆 JWT 的數據的！！！後端 Server 要做的事情，就是生成 JWT Token，然後直接回傳就好，就是這麼簡單暴力！！！</p>
 <p>這時候你可能會想：這樣到時候要怎麼驗證這個 JWT Token 是有效的？這時候就是展現 JWT 的神奇地方之處了！！</p>
@@ -272,6 +280,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2441"
+  height="1112"
 /></p>
 <p>所以在 JWT 認證的世界中，後端就是這麼的天真可愛，只要 JWT 說什麼，後端就無條件相信他，完全不需要質疑 JWT 的安全性，<strong>因此在 JWT 的認證機制中，所有的登入記錄都是儲存在「前端 Client」上</strong>，前端所拿到的 JWT Token，就是一個包含所有使用者資訊的 Token，因此只要能夠正確解讀這個 JWT Token，就可以拿到使用者的所有資訊。</p>
 <p><strong>所以 JWT 這種登入機制，他就是「將登入的資訊儲存在前端 Client 上」的一項技術。</strong></p>
@@ -282,6 +292,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2277"
+  height="990"
 /></p>
 <h2 id="補充後端為什麼能無條件相信-jwt" class="markdown-heading-anchor">
   補充：後端為什麼能無條件相信 JWT？
@@ -316,6 +328,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2277"
+  height="990"
 /></p>
 <h2 id="session-和-jwt-的優缺點比較" class="markdown-heading-anchor">
   Session 和 JWT 的優缺點比較

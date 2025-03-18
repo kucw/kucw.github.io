@@ -1362,6 +1362,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2786"
+  height="1951"
 /></p>
 <p>如果要啟用 30 天的免費試用的話，只需要點擊右上角的「Start trial」，然後點擊下方的「Start Trial」按鈕，這樣子就可以取得 30 天的免費試用期了。</p>
 <p>
@@ -1371,6 +1373,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2778"
+  height="1950"
 /></p>
 <blockquote>
 <p>補充：點擊 Start Trial 的按鈕之後，瀏覽器會跳出一個 IntelliJ 的頁面，詢問你要不要訂閱電子報，這部分可訂閱可不訂閱，不過不管有沒有訂閱，只要直接回到 IntelliJ 程式，都是可以成功啟用 30 天試用期的。</p></blockquote>
@@ -1388,6 +1392,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2538"
+  height="1954"
 /></p>
 <p>接著 IntelliJ 就會跳出下面這個視窗，要我們進行 Project 的設定。這裡先點擊左邊側邊欄的「Spring Boot」，表示我們要創建的是 Spring Boot 的程式，接著右邊就是跟著下圖一樣，選擇一樣的設定即可。</p>
 <p>
@@ -1397,6 +1403,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2890"
+  height="1938"
 /></p>
 <p>設定好右邊的 Project 設定之後，我們也可以回頭來看一下，右邊這些值分別代表什麼意思：</p>
 <ul>
@@ -1420,6 +1428,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2890"
+  height="1938"
 /></p>
 <p>像是在上圖的左上方紅框處，就可以去選擇 Spring Boot 的版本，這裡大家可以直接使用預設的最新版即可，不用特別去做調整。</p>
 <p>而在下方的部分，則是可以去選擇要載入哪些功能到這個 Spring Boot 程式裡面，這裡我們先展開Web，然後勾選裡面的「Spring Web」即可。</p>
@@ -1441,6 +1451,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1936"
 /></p>
 <blockquote>
 <p>補充：IntelliJ 的編輯區是會自動存檔的，因此大家不用擔心寫程式寫到一半沒存檔怎麼辦，揪甘心！</p></blockquote>
@@ -1453,6 +1465,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1740"
 /></p>
 <p>
 
@@ -1461,6 +1475,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2908"
+  height="1938"
 /></p>
 <h2 id="實作第一個-spring-boot-程式" class="markdown-heading-anchor">
   實作第一個 Spring Boot 程式
@@ -1478,6 +1494,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 720px; width: 100%"
+    width="1861"
+    height="878"
 />
 <p>第一次接觸 Spring Boot 的大家，可能會覺得第 6 行這種前面帶有小老鼠 <code>@</code> 的程式很奇怪，不過這種前面帶有小老鼠的寫法，在 Java 裡面稱作「annotation」，中文是翻譯為「標註」或是「註解」。</p>
 <blockquote>
@@ -1496,6 +1514,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 720px; width: 100%"
+    width="1724"
+    height="895"
 />
 <p>所以到這邊為止，我們就大致了解了 <code>@SpringBootApplication</code> 的用途（就是將該 class 變成 Spring Boot 程式的啟動入口），以及如何在 IntelliJ 中運行 Spring Boot 程式了，不過在我們真的去運行這個 Spring Boot 程式之前，我們可以先來添加一些 Java 程式在裡面。</p>
 <h3 id="添加-demo-程式" class="markdown-heading-anchor">
@@ -1509,6 +1529,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2657"
+  height="1373"
 /></p>
 <p>接著我們將這個 class 的名字，取名成 MyController。</p>
 
@@ -1521,6 +1543,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 500px; width: 100%"
+    width="944"
+    height="626"
 />
 <p>接著在這個 MyController 裡面，添加下列的程式（這裡看不懂程式沒關係，先全部照著寫就好）。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RestController</span><span style="color:#fff">
@@ -1543,6 +1567,8 @@
     loading="lazy"
     data-zoomable
     style="max-width: 767px; width: 100%"
+    width="1752"
+    height="999"
 />
 <blockquote>
 <p>補充：如果大家複製貼上這段程式時，發現 <code>@RestController</code> 和 <code>@RequestMapping</code> 沒有自動被 import 進來的話，建議可以改成一行一行手動輸入程式，IntelliJ 就會自動 import 相關的 library 進來了。</p></blockquote>
@@ -1559,6 +1585,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3230"
+  height="1696"
 /></p>
 <p>點擊運行之後，這時候下面就會顯示出一個 console 的視窗，而在這個 console 視窗的最一開始，就會出現一個 Spring 的 logo，接著後面就是實時呈現出 Spring Boot 程式的運行結果。</p>
 <p>只要看到最後一行「Started DemoApplication in 0.695 seconds」出現的時候，就表示你的 Spring Boot 程式運行成功了！</p>
@@ -1569,6 +1597,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3844"
+  height="1938"
 /></p>
 <p>而當 Spring Boot 程式運行成功之後，這時候就可以打開 Google 瀏覽器，然後在裡面輸入 <a href="http://localhost:8080/test"
    
@@ -1586,6 +1616,8 @@ http://localhost:8080/test
     loading="lazy"
     data-zoomable
     style="max-width: 500px; width: 100%"
+    width="1073"
+    height="499"
 />
 <h3 id="所以我們剛剛都做了什麼" class="markdown-heading-anchor">
   所以，我們剛剛都做了什麼？
@@ -1602,6 +1634,8 @@ http://localhost:8080/test
     loading="lazy"
     data-zoomable
     style="max-width: 767px; width: 100%"
+    width="1752"
+    height="999"
 />
 <p>這段程式的運作邏輯是這樣子的：當我們在 Google 瀏覽器輸入 <a href="http://localhost:8080/test"
    
@@ -1616,6 +1650,8 @@ http://localhost:8080/test
   alt=""
   loading="lazy"
   data-zoomable
+  width="3026"
+  height="819"
 /></p>
 <p>之所以能達到這個效果，就是多虧了 <code>@RestController</code> 和 <code>@RequestMapping</code> 這兩個註解的幫助。</p>
 <p>不過到目前為止，大家還不用先太深入了解這兩個註解的用法，現在只要先知道：「當我們在 Google 中輸入 <a href="http://localhost:8080/test"

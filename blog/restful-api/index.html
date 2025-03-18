@@ -256,6 +256,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="3840"
+  height="1940"
 /></p>
 <p>
 
@@ -264,6 +266,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="3842"
+  height="1942"
 /></p>
 <p>而要怎麼樣在設計 API 的時候，去選擇合適的 Http method，這個就非常的重要了！</p>
 <p>如果我們想要去設計出 RESTful API（也就是設計出符合 REST 風格的 API）的話，那麼這個 API，他就必須要 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
@@ -287,6 +291,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="2392"
+  height="1012"
 /></p>
 <p>所以簡單的說的話，如果大家都使用 REST 的風格來設計 API 時，那麼以後當我們看到某個 API 是使用 GET 方法來請求時，那我們就可以快速的知道，這個 API 是要去執行 Read（讀取數據）的操作；而假設這個 API 是使用 POST 方法來請求時，那我們也可以快速的知道，這個 API 是要去執行 Create（新增數據）的操作。</p>
 <p>所以假設我們想要設計出 RESTful API 的話，那麼第一個必要條件，就是 <strong>「使用 Http method，去對應到資料庫的 CRUD 操作」</strong>。</p>
@@ -303,6 +309,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="2829"
+  height="477"
 /></p>
 <p>那到這邊，REST 風格的階層概念就出現了！</p>
 <div class="markdown-breakline"></div>
@@ -321,6 +329,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="2829"
+  height="970"
 /></p>
 <p>所以透過上面這些例子，我們就可以得出一個結論，當我們今天看到某個 API 是 <code>GET /users</code> 時，那就可以直接透過 <code>/users</code> 這個 url 路徑，就知道他是要取得所有的 user 數據，而如果我們看到 <code>GET /users/123/videos</code> 這個 API 時，那就可以直接透過 <code>/users/123/videos</code> 這個 url 路徑，去知道他是要取得「user id 為 123，他旗下的所有 videos 的數據」。</p>
 <p>所以透過這個 url 的階層概念，我們就可以直接利用 url 路徑，去表達「資源之間的階層關係」了。</p>
@@ -335,6 +345,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="3840"
+  height="1940"
 /></p>
 <h2 id="設計-restful-api-的總結" class="markdown-heading-anchor">
   設計 RESTful API 的總結
@@ -353,6 +365,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="3689"
+  height="1127"
 /></p>
 <p>也因為 REST 這個設計風格，他很明確的去定義出設計 API 的建議做法，所以就可以讓所有工程師，按照一個共同的默契來設計 API，因此就不會出現那種大家都隨便亂設計 API 的情況出現，進而就可以達到「簡化工程師之間溝通」的效果了！</p>
 <p>譬如說我們在查看別人所寫的 API 時，就可以直接先透過這個 API 的 Http method（ex: GET、POST…等等），就可以先快速的知道這個 API 的行為，是要去讀取資料庫中的數據、還是要去新增一筆數據到資料庫；並且我們也可以直接去查看他的 url 路徑 <code>/users/1/articles</code>，就可以知道當前這個 url 路徑，他的階層的意義是什麼（ex: <code>/users/1/articles</code> 的意思是「user id 為 1 的那個使用者，他所寫的那些文章們」）。</p>
@@ -371,6 +385,8 @@ Chrome 的擴充功能 - Talend API Tester
   alt=""
   loading="lazy"
   data-zoomable
+  width="3840"
+  height="1940"
 /></p>
 <p>所以即使大部分的 API 在設計上，都會盡量遵守 REST 這個設計風格，但是如果真的有遇到一些特殊的情況，那就直接按照自己的需求來設計就可以了，並不是符合 REST 風格的 API 才是最好的，因此這部分，就要麻煩大家再留意一下～</p>
 <h2 id="結語" class="markdown-heading-anchor">

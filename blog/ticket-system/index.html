@@ -218,6 +218,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2010"
+  height="919"
 /></p>
 <p>所以到這裡，我們就完成最基本的下訂單的雛形了。不過這個實作其實是有問題的，在一次只有一個人來下訂單時，這段程式可以正常運作，但是只要「多人同時一起來下訂單」，這段程式就會出現「商品超賣」的情形。</p>
 <h2 id="解決商品超賣的問題" class="markdown-heading-anchor">
@@ -232,6 +234,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2010"
+  height="919"
 /></p>
 <p>但是這樣子的行為，就會導致資料庫中的商品庫存被減了 3 次（也就是被賣了 3 次），但是我們實際上只剩下 1 個商品庫存啊！！所以這時候就會導致商品超賣的問題出現，也就是我們賣超過自己擁有的庫存，導致有些消費者付了錢、但是拿不到真正的商品。</p>
 <p>要知道，商品超賣這件事在公關危機上算是非常嚴重的事件，所以為了避免這個問題，我們就必須修改這段程式，也就是 <strong>「為他加上一個同步鎖，確保一次只會有一個人執行這段程式」</strong>，因此我們就可以將這段程式改寫成下面這樣：</p>
@@ -243,6 +247,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2116"
+  height="1142"
 /></p>
 <p>也因為我們改寫了上面這段程式，在第 11 行的地方加上了一個 <code>synchronized</code> 的同步鎖，因此這個同步鎖一次只會放一個人進去執行第 14～19 行的程式，就可以避免商品超賣的問題了！</p>
 <p>所以到這裡，我們才真的算是完成了「下訂單」的基本功能實作，也就是先確保我們的程式運行是正確的，至少不會產生商品超賣的問題。</p>
@@ -270,6 +276,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="2116"
+  height="1142"
 /></p>
 <p>現在在這個架構中，因為我們是使用 <code>synchronized</code> 這個同步鎖，強制讓同時湧進來的許多人被擋在 <code>synchronized</code> 上，一次只允許一個人執行第 14 ～ 19 行的程式，因此雖然可以確保商品不會超賣，但是卻讓使用者會被同步鎖卡太久，導致使用者體驗不好。</p>
 <p>一個較常見的解法，<strong>就是改用 Redis 來取代同步鎖</strong>，即是將商品庫存的數據改成暫存到 Redis 中，然後 Redis 中可以使用 lua 腳本確保原子性（參考 <a href="https://www.bilibili.com/video/BV1KS4y147Yc"
@@ -288,6 +296,8 @@ Bilibili 影片介紹
   alt=""
   loading="lazy"
   data-zoomable
+  width="973"
+  height="788"
 /></p>
 
 <p class="markdown-image-caption">
@@ -314,6 +324,8 @@ tixCraft 案例研究
   alt=""
   loading="lazy"
   data-zoomable
+  width="1477"
+  height="1080"
 /></p>
 
 <p class="markdown-image-caption">

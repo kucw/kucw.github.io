@@ -219,6 +219,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>如果這時候，我們切到 test 這個 branch 上，然後在 resources 底下新增一個 123.txt 的檔案，並且成功 commit 的話，結果就會像下圖一樣，在「步驟 3」的地方新增了一個 123 的 commit 出來。</p>
 <p>
@@ -228,6 +230,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>這時如果再接著新增一個 456.txt 的檔案，並且也成功 commit 的話，結果就會和下圖一樣，在「步驟 2」的地方新增了一個 456 的 commit 出來。</p>
 <p>
@@ -237,6 +241,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>所以到目前為止，在 test branch 就新增了兩個 commit：</p>
 <ul>
@@ -251,6 +257,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <div class="markdown-breakline"></div>
 <p>這時候，神奇的需求來了！！如果現在有人要你切回到 master branch，並且要求你將 test branch 中的 123.txt 的檔案移植到 master branch 的話，你該怎麼辦？</p>
@@ -266,6 +274,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3062"
+  height="1845"
 /></p>
 <p>點擊之後，就可以看到在 master branch 的 resources 資料夾中，就多出了一個 123.txt 的檔案！並且在 master branch 中，也多出了一個新的 commit 123，所以這也就表示，我們就成功的將 test branch 中的 commit，偷到 master branch 中了！</p>
 <p>
@@ -275,6 +285,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>因此大家以後如果有「擷取別的 branch 中的某個 commit」的需求時，就可以使用 Cherry-Pick 幫助我們非常方便的做到！</p>
 <blockquote>
@@ -299,6 +311,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>如果這時候我發現「啊！我少添加了一個 789.txt 的檔案」，那麼我就可以先執行 <code>git reset HEAD^</code> 的指令，先將 commit 456 給撤銷（注意此時 456.txt 的檔案仍舊存在，只是變回尚未 commit 的狀態）：</p>
 <p>
@@ -308,6 +322,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>此時我就可以自由添加想要的程式（ex: 789.txt），然後後續就可以將 456.txt 和 789.txt 一起加到 commit 裡，將他們存放在同一個 commit 中。</p>
 <p>
@@ -317,6 +333,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <div class="markdown-breakline"></div>
 <p>之所以會特別介紹 <code>git reset HEAD^</code>，是因為我在工作上還滿常用這個指令的。根據以往的經驗，我發現將多個相關的檔案儲存在同一個 commit 裡面，這樣後續如果要排查程式的話，放在同一個 commit 中的檔案會比較好查。</p>
@@ -328,6 +346,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3066"
+  height="1846"
 /></p>
 <p>所以在實作上，我個人會偏好盡量把相關的程式 commit 在一起，也算是幫助自己後續排查問題時比較好查詢這樣。</p>
 <p>不過老實說 commit 的頻率和檔案數，這個真的就很看大家自己的喜好，所以大家就自由參考，或是說如果有什麼更好的做法，也歡迎在下方留言！</p>
@@ -340,6 +360,8 @@
   alt=""
   loading="lazy"
   data-zoomable
+  width="3064"
+  height="1847"
 /></p></blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
