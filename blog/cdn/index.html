@@ -327,6 +327,17 @@
 CDN SSL/TLS | CDN security
 </a>）。</p>
 <p>其實資安的部分算是使用 CDN 的附加好處啦，因為這跟 CDN 最一開始要解決的問題不太一樣，算是大家先因為「降低網路延遲」的原因用了 CDN 之後，才發現 CDN 在資安的表現上也很讚這樣，因此目前也常常會透過 CDN，來避免相關的資安攻擊。</p>
+<blockquote>
+<p><em><strong>更新：以下是來自 Kuma 大大使用 CDN 防禦 DDoS 的實務經驗分享！大家有興趣也可以追蹤他的 YouTube 頻道：<a href="https://www.youtube.com/channel/UCR8o_Dmwv1Zevk7lFe-HqHQ"
+   
+   target="_blank" rel="noopener">
+Kuma 老師的軟體工程教室
+</a>。</strong></em></p>
+<p>DDoS 我可以粗淺的補充一下，以前我前公司被打爆勒索過。</p>
+<p>如果你把 domain name 直接指到你的伺服器，當網路上的惡意人士要攻擊你的服務，只要一直大量發垃圾請求過來，你的機器與網路忙著處理這些垃圾請求就飽了，自然服務就斷了。</p>
+<p>CDN 提供的防禦原理說到底就是頻寬夠寬，我們讓整套機器躲到 CDN 後面去，外界只能透過 CDN 存取我們提供的資料，沒有人知道我們機房實際位址在哪。這時惡意人士要來 DDoS ，他首先要面對 CDN 自帶的超大量頻寬。</p>
+<p>要知道要發攻擊別人的封包也是要錢的。像 Cloudflare 這種大公司的防禦頻寬，一般人的財力根本打不下來。既然花了錢又打不下來，那本益比一算，我當然就選擇打別人去了。</p>
+<p>說到底就是口袋深不深跟拳頭粗不粗的問題。</p></blockquote>
 <h2 id="cdn-總結" class="markdown-heading-anchor">
   CDN 總結
   <a href="#cdn-%e7%b8%bd%e7%b5%90">#</a>
