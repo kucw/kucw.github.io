@@ -190,7 +190,7 @@
 
 
         <div class="content mb-4">
-          <p>大家在 call API 時，是否曾經好奇過他所返回的 200、401、403、500&hellip;等數字是代表什麼意思嗎？其實這些 3 位數的數字，就是 Http Status Code（又稱 Http 狀態碼）。</p>
+          <p>大家在 call API 時，是否曾經好奇過他所返回的 200、401、403、500&hellip;等數字是代表什麼意思？其實這些 3 位數的數字，就是 Http Status Code（又稱 Http 狀態碼）。</p>
 <p>因此這篇文章我們就來詳細介紹一下，Http Status Code 的用途到底是什麼，以及常見的 Http Status Code 有哪些吧！</p>
 <div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
@@ -428,8 +428,8 @@ https://kucw.io
   Http Status Code 總結
   <a href="#http-status-code-%e7%b8%bd%e7%b5%90">#</a>
 </h2><p>所以總結來說的話，透過上面的介紹，我們就是針對了常見的 Http Status Code，去解析每一個 Http Status Code 的意義分別是什麼。</p>
-<p>那如果我們回頭來看一下 Http Status Code 的定義的話，所謂的「Http Status Code」，就是 <strong>「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」</strong>。</p>
-<p>而這些 Http Status Code 的返回值，我們就是可以根據他們的 <strong>首位數字</strong>，去分成是五個大類：</p>
+<p>而如果我們回頭來看一下 Http Status Code 的定義的話，所謂的「Http Status Code」，就是 <strong>「用一個簡短的值，快速的表示當前 API 的請求結果是什麼」。</strong></p>
+<p>並且這些 Http Status Code 的返回值，我們就是可以根據他們的 <strong>首位數字</strong>，去分成是五個大類：</p>
 <ul>
 <li><strong>1xx : 資訊</strong></li>
 <li><strong>
@@ -449,29 +449,18 @@ https://kucw.io
     5xx：後端處理有問題
 </span></strong></li>
 </ul>
-<p>所以當大家以後看到 4xx 的值時，就可以快速的知道，他們就都是表示「前端請求錯誤」的意思；而看到 5xx 的值時，就也可以知道，這是表示出現了「後端處理有問題」的錯誤。</p>
-<p>因此透過這個 Http Status Code，就可以快速的去知道，這一次 API 的請求結果為何了～</p>
-<div class="markdown-breakline"></div>
-<p>PS: 補充一下，其實 Http Status Code 有一個比較好記（但是也比較兇）的版本，這邊就也寫出來跟大家分享，但就&hellip;希望大家還是和平共處🤣，前端後端一家親的對吧！</p>
-<ul>
-<li><strong>1xx : 資訊</strong></li>
-<li><strong>
-<span style="color: #179279">
-    2xx：成功
-</span></strong></li>
-<li><strong>
-<span style="color: #D59514">
-    3xx：搬家了啦
-</span></strong></li>
-<li><strong>
-<span style="color: #B93729">
-    4xx：前端又在雷
-</span></strong></li>
-<li><strong>
-<span style="color: #B93729">
-    5xx：後端又在雷
-</span></strong></li>
-</ul>
+<p>所以當大家以後看到 4xx 的值時，就可以快速的知道，他們就都是表示「前端請求錯誤」的意思；而看到 5xx 的值時，就也可以知道，這是表示出現了「後端處理有問題」的錯誤。因此透過 Http Status Code，我們就可以快速的知道這一次 API 的請求結果為何了！</p>
+<p>下圖也統整這篇文章中所提到的 Http Status Code 給大家參考：</p>
+<p>
+
+<img
+  src="/images/blog/http_status_code_8.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2634"
+  height="1987"
+/></p>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
