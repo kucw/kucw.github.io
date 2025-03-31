@@ -236,6 +236,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/nginx_intro1.png"
     alt=""
@@ -245,6 +246,7 @@
     width="1131"
     height="538"
 />
+</p>
 <p>不過當有越來越多使用者，慕名前來使用我們的後端服務時，這時候就會導致流量上升，使得一台 Server 沒辦法支撐住這麼高的流量。</p>
 <p>所以這時候，為了確保 Server 能負擔這麼高的流量，我們就有兩個選擇：</p>
 <ol>
@@ -279,6 +281,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
 
 
 
+<p>
 <img
     src="/images/blog/nginx_intro3.png"
     alt=""
@@ -288,6 +291,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     width="1741"
     height="1333"
 />
+</p>
 <p>所以為了解決這個問題，Nginx 就被發明出來了！</p>
 <h3 id="nginx-的反向代理" class="markdown-heading-anchor">
   Nginx 的反向代理
@@ -298,6 +302,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
 
 
 
+<p>
 <img
     src="/images/blog/nginx_intro4.png"
     alt=""
@@ -307,6 +312,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     width="2119"
     height="1316"
 />
+</p>
 <p>所以有了 Nginx 之後，Nginx 就可以作為所有後端 Server 的守門人，因此今天當前端來請求後端的 API 時，前端就必須改成去 call Nginx，由 Nginx 將這個請求「轉發」給任一台後端 Server（轉發規則由 Nginx 說了算），達到反向代理的效果。</p>
 <p>所以透過 Nginx 的反向代理，我們就可以統一的處理所有前端傳遞過來的請求了！</p>
 <h2 id="nginx-介紹" class="markdown-heading-anchor">
@@ -328,6 +334,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
 
 
 
+<p>
 <img
     src="/images/blog/nginx_intro4.png"
     alt=""
@@ -337,6 +344,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
     width="2119"
     height="1316"
 />
+</p>
 <p>而使用反向代理的好處非常多，因為在反向代理中，是由 Nginx 一個人扛住所有對外的連接，所以我們只需要在 Nginx 中設定好 Https 的憑證即可，因此內部的後端 Server 就不需要處理網路相關的憑證問題。</p>
 <p>又像是防火牆的問題，我們只要統一的在 Nginx 處理好 DDoS 之類的駭客攻擊就好，就不需要每一個後端 Server 都去處理，也大大的節省了資訊安全的維護成本。</p>
 <div class="markdown-breakline"></div>

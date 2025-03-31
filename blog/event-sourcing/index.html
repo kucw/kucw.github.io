@@ -216,6 +216,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/event_sourcing_intro1.png"
     alt=""
@@ -225,12 +226,14 @@
     width="996"
     height="948"
 />
+</p>
 <p>也因為在 Event Sourcing 中，我們所儲存的是「每一個 Event 的記錄」，而不是儲存「最終的餘額結果」，所以假設使用者想要知道他現在到底有多少存款的話，那我們就只能手動的一筆一筆 event 加總，也就是「把事件全部重頭執行一遍」，最終就可以得到他的最終餘額。</p>
 <p>所以像是在上面的例子中，我們就需要加總這 3 筆 event，也就是「存款 500」、「存款 1000」、「提款 200」，因此使用者最終的餘額就是 <code>500 + 1000 - 200 = 1300</code>。</p>
 
 
 
 
+<p>
 <img
     src="/images/blog/event_sourcing_intro2.png"
     alt=""
@@ -240,6 +243,7 @@
     width="1935"
     height="984"
 />
+</p>
 <p>因此 Event Sourcing 說穿了，就只是將 <strong>「每一筆發生的 Event 忠實的記錄下來」</strong> 的架構模式而已！</p>
 <h2 id="event-sourcing-和傳統-crud-的差別在哪裡" class="markdown-heading-anchor">
   Event Sourcing 和傳統 CRUD 的差別在哪裡？

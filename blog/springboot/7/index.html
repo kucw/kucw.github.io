@@ -1365,6 +1365,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-1.png"
     alt=""
@@ -1374,6 +1375,7 @@
     width="1470"
     height="672"
 />
+</p>
 <p>因此當 Spring Boot 程式運行起來之後，Spring Boot 就會去查看有哪些 class 上面加上了 <code>@Component</code>，然後 Spring Boot 就會提前去 new 一個 object 出來，並且存放在 Spring 容器裡面，等著其他人後續來跟他借。</p>
 <p>所以以 HpPrinter 這個例子來說，當 Spring Boot 看到 HpPrinter 上面有加上 <code>@Component</code> 之後，Spring Boot 就會去執行下面這行程式，提前去 new 出一個 HpPrinter 的 object 出來。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Printer<span style="color:#fff"> </span>hpPrinter<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>HpPrinter<span style="color:#1f2328">();</span><span style="color:#fff">
@@ -1382,6 +1384,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-2.png"
     alt=""
@@ -1391,6 +1394,7 @@
     width="1895"
     height="811"
 />
+</p>
 <p>也因為使用 <code>@Component</code> 來創建 Bean 可以說是非常的神速，只需要在 class 上面加上一行程式就可以完成，因此 <code>@Component</code> 也可以說是在 Spring Boot 中使用頻率最高的註解之一。</p>
 <h3 id="創建-bean-的注意事項" class="markdown-heading-anchor">
   創建 Bean 的注意事項
@@ -1420,6 +1424,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-4.png"
     alt=""
@@ -1429,6 +1434,7 @@
     width="1441"
     height="931"
 />
+</p>
 <p>不過，在使用 <code>@Autowired</code> 去注入 Bean 進來時，有兩個很重要的限制一定得遵守！如果不遵守的話，是沒辦法正常去注入 Bean 進來的。</p>
 <h3 id="使用-autowired-的注意事項之一該-class-也必須也是-bean" class="markdown-heading-anchor">
   使用 @Autowired 的注意事項之一：該 Class 也必須也是 Bean
@@ -1440,6 +1446,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-5.png"
     alt=""
@@ -1449,6 +1456,7 @@
     width="1451"
     height="948"
 />
+</p>
 <blockquote>
 <p>補充：因此基本上當我們使用了 Spring Boot 這套框架之後，我們就會盡量把所有的 class 都變成 Bean，因為這樣才能夠去注入來注入去的，所以在 Spring Boot 程式裡面看到一堆 <code>@Component</code> 和 <code>@Autowired</code> 是很正常的！</p></blockquote>
 <h3 id="使用-autowired-的注意事項之二autowired-是根據變數類型尋找-bean" class="markdown-heading-anchor">
@@ -1460,6 +1468,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-6.png"
     alt=""
@@ -1469,6 +1478,7 @@
     width="2796"
     height="1048"
 />
+</p>
 <p>而 HpPrinter class 之所以能夠成功的被注入到 Printer 類型的變數裡面，<strong>原因就在於 Java 的多型（polymorphism）特性，使得 HpPrinter class 可以「向上轉型」成 Printer interface</strong>，因此透過 Java 的多型，Spring Boot 就能夠成功的將 hpPrinter Bean，注入到 Teacher class 中的 printer 變數了！</p>
 <blockquote>
 <p>補充：因為這裡牽涉到 Java 的多型特性，因此不熟悉這部分的話，建議要先回頭了解一下 Java 的多型特性會比較好，多型的概念會貫穿整個 Spring Boot 開發，因此這部分建議大家要了解一下會比較好。</p></blockquote>
@@ -1516,6 +1526,7 @@ Day 4 - 第一個 Spring Boot 程式
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-9.png"
     alt=""
@@ -1525,6 +1536,7 @@ Day 4 - 第一個 Spring Boot 程式
     width="944"
     height="626"
 />
+</p>
 <p>接著在這個 Printer 的 interface 裡面，新增一個 <code>print()</code> 方法的宣告。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">interface</span> <span style="color:#1f2328">Printer</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
 </span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">print</span><span style="color:#1f2328">(</span>String<span style="color:#fff"> </span>message<span style="color:#1f2328">);</span><span style="color:#fff">
@@ -1648,6 +1660,7 @@ http://localhost:8080/test
 
 
 
+<p>
 <img
     src="/images/blog/springboot/7/7-17.png"
     alt=""
@@ -1657,6 +1670,7 @@ http://localhost:8080/test
     width="1073"
     height="499"
 />
+</p>
 <p>這時回到 IntelliJ 上，就可以在 console 下方看到一行「HP印表機: Hello World」的輸出。</p>
 <p>
 

@@ -231,6 +231,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/acid_transaction1.png"
     alt=""
@@ -240,6 +241,7 @@
     width="796"
     height="500"
 />
+</p>
 <p>所以像是在上面的 <code>transfer()</code> 方法中，就是會先去對 A 的帳戶減去 1000 元（A 的存款從 3000 變成 2000），再為 B 的帳戶增加 1000 元（B 的存款從 500 變成 1500），進而完成轉帳的操作。</p>
 <div class="markdown-breakline"></div>
 <p>不過，在這段 <code>transfer()</code> 的程式中，其實是有一個潛在的問題的。</p>
@@ -249,6 +251,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/acid_transaction2.png"
     alt=""
@@ -258,6 +261,7 @@
     width="1183"
     height="674"
 />
+</p>
 <p>所以為了解決這個問題，Transaction 就被發明出來了！</p>
 <h3 id="使用-transaction-解決轉帳的問題" class="markdown-heading-anchor">
   使用 Transaction 解決轉帳的問題
@@ -268,6 +272,7 @@
 
 
 
+<p>
 <img
     src="/images/blog/acid_transaction3.png"
     alt=""
@@ -277,6 +282,7 @@
     width="1405"
     height="739"
 />
+</p>
 <p>而當某個方法被 Transaction 來管理時，那麼 <strong>「在那個方法中的所有資料庫操作，要嘛全部一起成功、要嘛全部一起失敗，也就是 All or Nothing 原則」。</strong></p>
 <p>因此在這個例子中，首先 A 一樣是會先被減去 1000 元沒錯（所以 A 的存款從 3000 變成 2000），然後這時候一樣，程式遇到了錯誤，因此程式就只能夠被迫中斷，沒辦法繼續往下執行，為 B 的帳戶增加 1000 元。</p>
 <p>但是這個時候，因為我們有在 <code>transfer()</code> 方法上面加上 <code>@Transactional</code>，用一個 Transaction 來管理此方法，因此<strong>此時 Transaction 就會復原（也稱為 rollback）前面做過的所有資料庫操作</strong>，也就是會將 1000 元還給 A，所以 A 的存款又從 2000 元變回 3000 元，就像是剛剛那個扣除的 SQL 語法從來沒有執行過一樣，A 和 B 的存款都回到最初的樣子，這就是 Transaction 的厲害之處！！</p>
