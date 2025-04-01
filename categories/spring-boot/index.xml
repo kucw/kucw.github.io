@@ -160,7 +160,7 @@
       <link>https://kucw.io/blog/springboot/10/</link>
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/10/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，那麼接著這篇文章，我們會延伸出去，介紹一下要如何透過 &lt;code&gt;@Value&lt;/code&gt;，將 Spring Boot 設定檔中的值給讀取到 Bean 裡面&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，並且也能夠在 Spring Boot 中應用 Spring IoC 的核心用法了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (9) - Bean 的初始化 - @PostConstruct</title>
