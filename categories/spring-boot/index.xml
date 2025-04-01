@@ -153,7 +153,7 @@
       <link>https://kucw.io/blog/springboot/11/</link>
       <pubDate>Thu, 11 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/11/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;iThome 鐵人賽&#xA;&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們有介紹了 Spring IoC 的特性，先讓大家了解要如何在 Spring Boot 中創建、注入、以及初始化 Bean，為後續的部分打穩基礎。&lt;/p&gt;&#xA;&lt;p&gt;那麼從這篇文章開始，我們就會接著來介紹 Spring 框架中的另一個也很重要的特性，也就是 AOP，所以我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (10) - 讀取 Spring Boot 設定檔 - @Value、application.properties</title>

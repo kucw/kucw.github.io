@@ -1325,11 +1325,147 @@
         <hr class="doc-start-divider">
 
         <div class="content mb-4">
-          <p>文章陸續更新中&hellip;可先前往 <a href="https://ithelp.ithome.com.tw/articles/10327252"
+          <p>哈囉大家好，我是古古。</p>
+<p>在前面的文章中，我們有介紹了 Spring IoC 的特性，先讓大家了解要如何在 Spring Boot 中創建、注入、以及初始化 Bean，為後續的部分打穩基礎。</p>
+<p>那麼從這篇文章開始，我們就會接著來介紹 Spring 框架中的另一個也很重要的特性，也就是 AOP，所以我們就開始吧！</p>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什麼是-spring-aop">什麼是 Spring AOP？</a>
+      <ul>
+        <li><a href="#例子測量時間的故事">例子：測量時間的故事</a></li>
+        <li><a href="#透過-aop切面來輔助">透過 AOP（切面）來輔助</a></li>
+      </ul>
+    </li>
+    <li><a href="#spring-aop-的定義">Spring AOP 的定義</a></li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
+<h2 id="什麼是-spring-aop" class="markdown-heading-anchor">
+  什麼是 Spring AOP？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-spring-aop">#</a>
+</h2><p>AOP 的全稱是 Aspect-Oriented Programming，中文翻譯成「切面導向程式設計」或是「剖面導向程式設計」，<strong>而 AOP 的概念，就是「透過切面，統一的去處理方法之間的共同邏輯」。</strong></p>
+<p>這個「切面」聽起來可能有點抽象，所以我們就先透過一個例子，來了解一下 AOP（切面導向程式設計）到底是什麼。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/11/11-1.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 660px; width: 100%"
+    width="2687"
+    height="723"
+/>
+</p>
+<h3 id="例子測量時間的故事" class="markdown-heading-anchor">
+  例子：測量時間的故事
+  <a href="#%e4%be%8b%e5%ad%90%e6%b8%ac%e9%87%8f%e6%99%82%e9%96%93%e7%9a%84%e6%95%85%e4%ba%8b">#</a>
+</h3><p>假設我們有一個 HpPrinter，並且在這個 HpPrinter 裡面只有一個 <code>print()</code> 方法，在 console 上印出傳進來的參數：</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/11/11-2.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 700px; width: 100%"
+    width="2166"
+    height="1359"
+/>
+</p>
+<p>如果我們想要測量一下「執行 <code>print()</code> 方法需要花費多久的時間」的話，那麼最簡單的做法，就是直接在這個方法的最前面和最後面，分別去記錄開始時間和結束時間，最後再將這兩個時間相減，就可以計算出 <code>print()</code> 方法總共執行多久了。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/11/11-3.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2852"
+  height="1400"
+/></p>
+<p>不過，雖然透過上面的寫法，是可以測量出 <code>print()</code> 方法的運作時間沒錯，但是大家如果觀察一下這段程式的話，就可以發現在這個 <code>print()</code> 方法裡面，充斥了許多跟「印東西」這個功能無關的程式。</p>
+<p>像是原本這個 <code>print()</code> 方法，他本來要做的事情，就只是在 console 上面輸出「HP 印表機: ..….」這一行資訊而已，但是因為我們想要測量 <code>print()</code> 方法的執行時間，所以加了許多不相關的程式進去，進而讓這個方法變得很複雜，不利於後續的程式維護。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/11/11-4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3378"
+  height="1408"
+/></p>
+<p>而且上面這樣子的寫法，也有可能會產生「過多程式重複」的問題。</p>
+<p>譬如說我們在 HpPrinter 裡面多新增了一個方法 <code>printColor()</code>，然後我們也想要去測量這個 <code>printColor()</code> 方法的時間的話，那我們就得從 <code>print()</code> 方法中複製所有測量時間的程式，然後貼到 <code>printColor()</code> 方法裡面。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/11/11-5.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3736"
+  height="1030"
+/></p>
+<p>現在只有這兩個方法要測量時間，所以這樣的複製貼上大家可能覺得還好，但是如果有很多方法都需要測量執行時間時，這樣子的複製貼上就不會是一個好選項。</p>
+<p>所以為了解決這個問題，Spring AOP 就登場了！</p>
+<h3 id="透過-aop切面來輔助" class="markdown-heading-anchor">
+  透過 AOP（切面）來輔助
+  <a href="#%e9%80%8f%e9%81%8e-aop%e5%88%87%e9%9d%a2%e4%be%86%e8%bc%94%e5%8a%a9">#</a>
+</h3><p>我們可以透過下面這張圖來看一下，Spring AOP 是如何解決上面那個複製貼上的問題的。</p>
+<p>如果我們把剛剛的 HpPrinter 畫成圖的話，就可以畫成是下面這個樣子：</p>
+<p>
+
+<img
+  src="/images/blog/springboot/11/11-6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3122"
+  height="1424"
+/></p>
+<p>上圖中呈現了 HpPrinter 中的兩個方法：<code>print()</code> 和 <code>printColor()</code>，每一個箭頭代表的是一個方法，而箭頭右邊的程式，就是這個方法裡面所寫的程式。</p>
+<p>在這張圖中可以看到，在這兩個方法裡面，一開始都會去記錄方法的開始時間，接著去執行「印東西」的程式，最後再是去記錄方法的結束時間，並且將結束時間和開始時間相減，計算總共執行多久。</p>
+<p>所以這時候，Spring AOP 就提出一個想法了，既然這些測量時間的程式是每個方法都要使用的共同邏輯，<strong>那我們就把這些共同邏輯的程式，去獨立出來成一個「切面」，由這個切面去橫貫所有的方法，替他們做測量時間的部分。</strong></p>
+<p>
+
+<img
+  src="/images/blog/springboot/11/11-7.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3071"
+  height="1527"
+/></p>
+<p>所以當我們使用了 Spring AOP 之後，我們就不用在方法裡面再去寫上任何測量時間的程式了！<strong>我們只要將測量時間的共同邏輯，統一的交給切面去做處理</strong>，這個切面會去橫貫所有的的方法，分別去測量每一個方法的執行時間，所以每個方法就只要專注在各自要做的事情就好了，讚！！</p>
+<p>而這種使用「切面」的寫法，就會稱為 AOP，也就是 Aspect-Oriented Programming（切面導向程式設計）了！</p>
+<h2 id="spring-aop-的定義" class="markdown-heading-anchor">
+  Spring AOP 的定義
+  <a href="#spring-aop-%e7%9a%84%e5%ae%9a%e7%be%a9">#</a>
+</h2><p>大概了解了 Spring AOP 的概念之後，我們也可以回頭來看一下 AOP 的定義。</p>
+<p>AOP 的全稱是 Aspect-Oriented Programming，中文翻譯成「切面導向程式設計」或是「剖面導向程式設計」，<strong>而 AOP 的概念，就是「透過切面，統一的去處理方法之間的共同邏輯」。</strong></p>
+<p>因此當我們使用了 AOP 之後，就再也不用去複製貼上程式了，我們只需要在切面中寫好測量時間的程式，之後就可以在任何地方去使用這個切面，讓這個切面替我們完成測量時間的功能了，讚啦！</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章我們先透過測量時間的例子，介紹了 Spring AOP 的原理，讓大家更好去理解 Spring AOP 的核心概念是什麼（切面真是一個神奇的東西）。</p>
+<p>那麼下一篇文章，我們就會實際到 IntelliJ 中，練習要如何在 Spring Boot 程式中實作 Spring AOP，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
    target="_blank" rel="noopener">
-iThome 鐵人賽
-</a> 閱讀後續的文章</p>
+「Java 工程師必備！Spring Boot 零基礎入門」
+</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
 
