@@ -146,7 +146,7 @@
       <link>https://kucw.io/blog/springboot/12/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/12/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;iThome 鐵人賽&#xA;&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有去介紹了 Spring AOP 的概念和原理，讓大家先對 Spring AOP 有一個初步的認識。&lt;/p&gt;&#xA;&lt;p&gt;那麼這篇文章，我們就會接著來介紹，要如何在 Spring Boot 中使用 Spring AOP 的功能。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (11) - Spring AOP 簡介</title>
