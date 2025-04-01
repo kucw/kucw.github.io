@@ -139,7 +139,7 @@
       <link>https://kucw.io/blog/springboot/13/</link>
       <pubDate>Sat, 13 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/13/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;iThome 鐵人賽&#xA;&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們介紹了 Spring 框架中最重要的兩個特性：IoC 和 AOP，所以到目前為止，大家對於 Spring Boot 的基本用法，就不會那麼陌生了。&lt;/p&gt;&#xA;&lt;p&gt;那麼從這篇文章開始，就會進入到下一個部分，也就是 Spring MVC 的介紹，Spring MVC 可以說是在 Spring Boot 中使用最頻繁的功能之一，所以我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (12) - Spring AOP 的用法 - @Aspect</title>
