@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="介紹 Http 協議">
+  <meta name="description" content="介紹 Http 協議的用途，以及介紹 Http request 和 Http response 的格式規範">
   <meta name="author" content="古古">
 
    <!-- Open Graph data -->
@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.25c28e4e29f168694bf10b362a3774bb4568af48ad2792c0ba9479e613303b32.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.76074b6d2afb30dc38db99ad2cbca68f4a05226c962546686391419d0eeb25e7.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -1589,7 +1589,11 @@ Day 3 - 開發環境安裝（Windows 版）
   width="3224"
   height="1936"
 /></p>
-<p>而此處大家可以先在 Http method 的部分選擇 GET，然後在 url 的部分填上下列的值 http://localhost:8080/test ，這樣子就完成一個最簡單的 Http request 了！</p>
+<p>而此處大家可以先在 Http method 的部分選擇 GET，然後在 url 的部分填上下列的值 <a href="http://localhost:8080/test"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/test
+</a>，這樣子就完成一個最簡單的 Http request 了！</p>
 <p>填寫好請求參數之後，接著我們可以回到 Spring Boot 程式中，並且將 MyController 中的程式改寫成下面這樣：</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RestController</span><span style="color:#fff">
 </span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyController</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">

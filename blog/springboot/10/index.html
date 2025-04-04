@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.25c28e4e29f168694bf10b362a3774bb4568af48ad2792c0ba9479e613303b32.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.76074b6d2afb30dc38db99ad2cbca68f4a05226c962546686391419d0eeb25e7.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -1574,7 +1574,11 @@
   @Value 的運行結果
   <a href="#value-%e7%9a%84%e9%81%8b%e8%a1%8c%e7%b5%90%e6%9e%9c">#</a>
 </h3><p>當大家改寫好上述的程式之後，我們也可以試著來運行一下 Spring Boot 程式，來實際感受一下 <code>@Value</code> 的效果。</p>
-<p>以目前的程式來說（記得將 MyController 的 <code>@Qualifier</code> 的值改回成 hpPrinter），只要大家運行起 Spring Boot 程式，並且請求 http://localhost:8080/test 之後，IntelliJ 就會在 console 下方呈現下列的資訊。</p>
+<p>以目前的程式來說（記得將 MyController 的 <code>@Qualifier</code> 的值改回成 hpPrinter），只要大家運行起 Spring Boot 程式，並且請求 <a href="http://localhost:8080/test"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/test
+</a> 之後，IntelliJ 就會在 console 下方呈現下列的資訊。</p>
 <p>
 
 <img
@@ -1586,7 +1590,11 @@
   height="872"
 /></p>
 <p>其中之所以會輸出「剩餘使用次數: 4」，就是因為我們有在 HpPrinter 中添加一行 <code>@Value(&quot;${count}&quot;)</code> 的程式，因此 HpPrinter 中的 count 的值就會被設定成 5，才導致這裡會輸出「剩餘使用次數為 4 次」的資訊。</p>
-<p>大家如果想玩玩看的話，也可以試著把 application.properties 中的 count 的值改成別的數字，譬如說改成 <code>count=10</code> 之類的。修改完之後，只要重新運行 Spring Boot 程式，並且重新請求 http://localhost:8080/test，這樣子在 console 中所輸出的剩餘使用次數，就會變成是 99 了。</p>
+<p>大家如果想玩玩看的話，也可以試著把 application.properties 中的 count 的值改成別的數字，譬如說改成 <code>count=10</code> 之類的。修改完之後，只要重新運行 Spring Boot 程式，並且重新請求 <a href="http://localhost:8080/test"
+   
+   target="_blank" rel="noopener">
+http://localhost:8080/test
+</a>，這樣子在 console 中所輸出的剩餘使用次數，就會變成是 99 了。</p>
 <p>總而言之，透過上述的運行結果，就代表我們能夠成功的透過 <code>@Value</code> 的用法，將 application.properties 中的設定值讀取到 Bean 裡面了！</p>
 <h3 id="使用-value-的注意事項之一需要遵守固定格式寫法" class="markdown-heading-anchor">
   使用 @Value 的注意事項之一：需要遵守固定格式寫法
