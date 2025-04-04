@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.76074b6d2afb30dc38db99ad2cbca68f4a05226c962546686391419d0eeb25e7.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.8ec07f40f738a46c329515a39aafa70e52092a875aac026de670b10aec8c17f7.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -66,9 +66,9 @@
       
       <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
         <a class="navbar-brand desktop-view" href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-sm rounded-circle mx-1"
-               src="https://kucw.io/images/logo.png" alt="">
-          <span class="nav-brand-text">古古的後端筆記</span>
+          <img class="img-fluid logo-with-text-size mx-1"
+               src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
+
         </a>
         <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
           <img class="img-fluid logo-thumb-sm rounded-circle"
@@ -80,7 +80,8 @@
         </button>
 
         <div class="collapse navbar-collapse text-center" id="navigation">
-          <ul class="navbar-nav ml-auto">
+          
+          <ul class="navbar-nav mr-auto ml-2">
             
             
             <li class="nav-item dropdown">
@@ -90,7 +91,33 @@
               </a>
               <div class="dropdown-menu">
                 
+                
                 <a class="dropdown-item" href="https://kucw.io/blog/springboot/1">Spring Boot 零基礎入門</a>
+                
+                
+              </div>
+            </li>
+            
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                線上課程
+              </a>
+              <div class="dropdown-menu">
+                
+                
+                <a class="dropdown-item" href="https://hahow.in/cr/kucw-github-hugo" target="_blank" rel="noopener">GitHub 免費架站術！輕鬆打造個人品牌</a>
+                
+                
+                
+                <a class="dropdown-item" href="https://hahow.in/cr/springboot" target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a>
+                
+                
+                
+                <a class="dropdown-item" href="https://hahow.in/cr/springsecurity" target="_blank" rel="noopener">資安一把罩！Spring Security 零基礎入門</a>
+                
                 
               </div>
             </li>
@@ -104,7 +131,9 @@
               </a>
               <div class="dropdown-menu">
                 
+                
                 <a class="dropdown-item" href="https://kucw.io/blog/as-a-content-creator/1">軟體工程師的自媒體之路</a>
+                
                 
               </div>
             </li>
@@ -131,8 +160,12 @@
           </ul>
 
           
+          <ul class="navbar-nav">
+            <a class="nav-newsletter-link" href="/bio" target="_blank">電子報訂閱</a>
 
-          
+            
+
+          </ul>
         </div>
       </nav>
     </div>
@@ -398,6 +431,8 @@
 <script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
 
 <script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
+
+<script src="https://kucw.io/plugins/google-oauth-login/google-oauth-login.js"></script>
 
 
 <!-- Main Script -->
