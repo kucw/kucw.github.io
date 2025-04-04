@@ -132,7 +132,7 @@
       <link>https://kucw.io/blog/springboot/14/</link>
       <pubDate>Sun, 14 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/14/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&#xA;iThome 鐵人賽&#xA;&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前一篇文章中，我們先介紹了 Spring MVC 的用途是什麼，先讓大家對 Spring MVC 有一個簡單的認識。&lt;/p&gt;&#xA;&lt;p&gt;不過在我們開始介紹 Spring MVC 之前，會需要大家先對前後端溝通的協議有一些基本的認識，因此這篇文章，我們就會先來介紹前後端溝通最基礎的部分，也就是「Http 協議」。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (13) - Spring MVC 簡介</title>
