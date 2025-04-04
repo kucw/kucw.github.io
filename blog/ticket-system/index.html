@@ -282,13 +282,9 @@
 <p>現在在這個架構中，因為我們是使用 <code>synchronized</code> 這個同步鎖，強制讓同時湧進來的許多人被擋在 <code>synchronized</code> 上，一次只允許一個人執行第 14 ～ 19 行的程式，因此雖然可以確保商品不會超賣，但是卻讓使用者會被同步鎖卡太久，導致使用者體驗不好。</p>
 <p>一個較常見的解法，<strong>就是改用 Redis 來取代同步鎖</strong>，即是將商品庫存的數據改成暫存到 Redis 中，然後 Redis 中可以使用 lua 腳本確保原子性（參考 <a href="https://www.bilibili.com/video/BV1KS4y147Yc"
    
-   target="_blank" rel="noopener">
-Bilibili 影片介紹
-</a>、<a href="https://help.aliyun.com/zh/redis/use-cases/use-apsaradb-for-redis-to-build-a-business-system-that-can-handle-flash-sales"
+   target="_blank" rel="noopener">Bilibili 影片介紹</a>、<a href="https://help.aliyun.com/zh/redis/use-cases/use-apsaradb-for-redis-to-build-a-business-system-that-can-handle-flash-sales"
    
-   target="_blank" rel="noopener">
-阿里雲介紹
-</a>）。</p>
+   target="_blank" rel="noopener">阿里雲介紹</a>）。</p>
 <p>
 
 <img
@@ -314,9 +310,7 @@ Bilibili 影片介紹
   <a href="#%e8%a3%9c%e5%85%85%e6%8b%93%e5%85%83%e7%9a%84%e6%90%b6%e7%a5%a8%e7%b3%bb%e7%b5%b1%e6%9e%b6%e6%a7%8b">#</a>
 </h2><p>以台灣來說，比較知名的搶票系統為「拓元售票」，如果大家對拓元售票的系統架構感興趣的話，也可以參考 AWS 於 2020 年提供的公開資料（<a href="https://aws.amazon.com/tw/solutions/case-studies/tixcraft/"
    
-   target="_blank" rel="noopener">
-tixCraft 案例研究
-</a>），拓元就用到了大量的 AWS 功能，來處理高流量的搶票問題。</p>
+   target="_blank" rel="noopener">tixCraft 案例研究</a>），拓元就用到了大量的 AWS 功能，來處理高流量的搶票問題。</p>
 <p>
 
 <img
@@ -341,23 +335,15 @@ tixCraft 案例研究
 </h2><p>這篇文章我們有淺淺的談了一下搶票系統，不得不說這部分我真的還有很多地方可以學習和加強，目前只是先把我所知道的部分、以及網路上的公開資料，一起整理到這篇文章裡面，希望將來的某一天我可以重新回頭來寫這篇文章，把搶票系統給吃得透透的！！</p>
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
-   target="_blank" rel="noopener">
-《古古的後端筆記》電子報
-</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+   target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
 <blockquote>
-<p>補充：我開設的<a href="https://hahow.in/cr/springboot"
+<p>補充：我開設的 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">
-Spring Boot 零基礎入門
-</a>、<a href="https://hahow.in/cr/springsecurity"
+   target="_blank" rel="noopener">Spring Boot 零基礎入門</a>、<a href="https://hahow.in/cr/springsecurity"
    
-   target="_blank" rel="noopener">
-Spring Security 零基礎入門
-</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
+   target="_blank" rel="noopener">Spring Security 零基礎入門</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
    
-   target="_blank" rel="noopener">
-GitHub 免費架站術
-</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202504KU」即可享 85 折優惠。</strong></p></blockquote>
+   target="_blank" rel="noopener">GitHub 免費架站術</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202504KU」即可享 85 折優惠。</strong></p></blockquote>
 
         </div>
 

@@ -269,9 +269,7 @@
 <blockquote>
 <p>補充：如果想更了解 Vertical Scaling（垂直擴展）和 Horizontal Scaling（水平擴展）的介紹，可以參考 <a href="/blog/vertical-and-horizontal-scaling/"
    
-   target="_blank" rel="noopener">
-Vertical Scaling 和 Horizontal Scaling 介紹
-</a> 文章的介紹。不過這邊只要先知道 Horizontal Scaling 的概念是新增許多台 Server 出來，就可以繼續閱讀本文對 Nginx 的介紹了。</p></blockquote>
+   target="_blank" rel="noopener">Vertical Scaling 和 Horizontal Scaling 介紹</a> 文章的介紹。不過這邊只要先知道 Horizontal Scaling 的概念是新增許多台 Server 出來，就可以繼續閱讀本文對 Nginx 的介紹了。</p></blockquote>
 <h3 id="微服務架構所碰到的問題" class="markdown-heading-anchor">
   微服務架構所碰到的問題
   <a href="#%e5%be%ae%e6%9c%8d%e5%8b%99%e6%9e%b6%e6%a7%8b%e6%89%80%e7%a2%b0%e5%88%b0%e7%9a%84%e5%95%8f%e9%a1%8c">#</a>
@@ -350,9 +348,7 @@ Vertical Scaling 和 Horizontal Scaling 介紹
 <div class="markdown-breakline"></div>
 <p>如果大家有用過 AWS、GCP…這類雲端服務的話，其實 AWS 中的 <a href="https://aws.amazon.com/tw/api-gateway/"
    
-   target="_blank" rel="noopener">
-API Gateway
-</a>，就會擋在 Amazon EC2 前面（EC2 就是 AWS 中提供 VM 的服務），由 API Gateway 統一處理所有對外的溝通。所以如果你的 Server 是部署在 AWS 上的話，那麼可以直接選擇 AWS 的 API Gateway 來負責反向代理的部分，因此就不用自己架一台 Nginx 來維護了。</p>
+   target="_blank" rel="noopener">API Gateway</a>，就會擋在 Amazon EC2 前面（EC2 就是 AWS 中提供 VM 的服務），由 API Gateway 統一處理所有對外的溝通。所以如果你的 Server 是部署在 AWS 上的話，那麼可以直接選擇 AWS 的 API Gateway 來負責反向代理的部分，因此就不用自己架一台 Nginx 來維護了。</p>
 <p>
 
 <img
@@ -402,9 +398,7 @@ API Gateway
 </p>
 <p>當然上面提到的這 3 種負載平衡的演算法，僅是 Nginx 所提供的演算法而已，如果大家使用的是 AWS 的 API Gateway 的話，有提供更多種的負載平衡演算法讓大家選擇，詳情可以參考 <a href="https://aws.amazon.com/what-is/load-balancing/?nc1=h_ls"
    
-   target="_blank" rel="noopener">
-AWS 的《What is Load Balancing?》介紹
-</a>。</p>
+   target="_blank" rel="noopener">AWS 的《What is Load Balancing?》介紹</a>。</p>
 <h3 id="http-cache" class="markdown-heading-anchor">
   Http Cache
   <a href="#http-cache">#</a>
@@ -451,42 +445,28 @@ AWS 的《What is Load Balancing?》介紹
 </h2><p>這篇文章我們有詳細的去介紹了一下 Nginx 的用途，以及反向代理、負載平衡的概念是什麼，這些概念非常的重要，希望可以透過這篇文章，讓大家更了解 Nginx 這個工具實際要解決的問題是什麼。</p>
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
-   target="_blank" rel="noopener">
-《古古的後端筆記》電子報
-</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+   target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
 <blockquote>
-<p>補充：我開設的<a href="https://hahow.in/cr/springboot"
+<p>補充：我開設的 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">
-Spring Boot 零基礎入門
-</a>、<a href="https://hahow.in/cr/springsecurity"
+   target="_blank" rel="noopener">Spring Boot 零基礎入門</a>、<a href="https://hahow.in/cr/springsecurity"
    
-   target="_blank" rel="noopener">
-Spring Security 零基礎入門
-</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
+   target="_blank" rel="noopener">Spring Security 零基礎入門</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
    
-   target="_blank" rel="noopener">
-GitHub 免費架站術
-</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202504KU」即可享 85 折優惠。</strong></p></blockquote>
+   target="_blank" rel="noopener">GitHub 免費架站術</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202504KU」即可享 85 折優惠。</strong></p></blockquote>
 <h2 id="參考資料" class="markdown-heading-anchor">
   參考資料
   <a href="#%e5%8f%83%e8%80%83%e8%b3%87%e6%96%99">#</a>
 </h2><ul>
 <li><a href="https://blog.bytebytego.com/p/ep25-proxy-vs-reverse-proxy"
    
-   target="_blank" rel="noopener">
-https://blog.bytebytego.com/p/ep25-proxy-vs-reverse-proxy
-</a></li>
+   target="_blank" rel="noopener">https://blog.bytebytego.com/p/ep25-proxy-vs-reverse-proxy</a></li>
 <li><a href="https://www.nginx.org.cn/article/detail/545"
    
-   target="_blank" rel="noopener">
-https://www.nginx.org.cn/article/detail/545
-</a></li>
+   target="_blank" rel="noopener">https://www.nginx.org.cn/article/detail/545</a></li>
 <li><a href="https://www.explainthis.io/zh-hant/swe/why-nginx"
    
-   target="_blank" rel="noopener">
-https://www.explainthis.io/zh-hant/swe/why-nginx
-</a></li>
+   target="_blank" rel="noopener">https://www.explainthis.io/zh-hant/swe/why-nginx</a></li>
 </ul>
 
         </div>

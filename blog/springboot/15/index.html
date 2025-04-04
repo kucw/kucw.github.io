@@ -1382,9 +1382,7 @@
   <a href="#url-%e7%9a%84%e6%a0%bc%e5%bc%8f%e8%a6%8f%e7%af%84">#</a>
 </h2><p>Url 本身其實是可以拆解成許多部分，譬如說以我們在前面的文章中常常輸入的網址 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a> 為例，這個 url 其實是由以下幾個部分所組成：</p>
+   target="_blank" rel="noopener">http://localhost:8080/test</a> 為例，這個 url 其實是由以下幾個部分所組成：</p>
 
 
 
@@ -1435,9 +1433,7 @@ http://localhost:8080/test
 </h3><p>舉例來說，如果有一個 YouTube 的 url 如下：</p>
 <p><a href="https://www.youtube.com/channel/UC3yK8-EsoU7vZNiLnuep1tQ/videos"
    
-   target="_blank" rel="noopener">
-https://www.youtube.com/channel/UC3yK8-EsoU7vZNiLnuep1tQ/videos
-</a></p>
+   target="_blank" rel="noopener">https://www.youtube.com/channel/UC3yK8-EsoU7vZNiLnuep1tQ/videos</a></p>
 <p>那麼這一條 url，就可以拆分成下圖所示，所以 url 路徑的值就會是 <code>/channel/UC3yK8-EsoU7vZNiLnuep1tQ/videos</code>。</p>
 <p>
 
@@ -1455,9 +1451,7 @@ https://www.youtube.com/channel/UC3yK8-EsoU7vZNiLnuep1tQ/videos
 </h3><p>再舉一個例子，假設有另一個 Instagram 的 url 如下：</p>
 <p><a href="https://www.instagram.com/p/CHNDtIVl_BS"
    
-   target="_blank" rel="noopener">
-https://www.instagram.com/p/CHNDtIVl_BS
-</a></p>
+   target="_blank" rel="noopener">https://www.instagram.com/p/CHNDtIVl_BS</a></p>
 <p>那麼這一條 url 就可以拆分成如下圖所示，所以 url 路徑的值就會是 <code>/p/CHNDtIVl_BS</code>。</p>
 
 
@@ -1480,9 +1474,7 @@ https://www.instagram.com/p/CHNDtIVl_BS
 </h2><p>在了解了 url 的格式規範、以及了解如何「計算 url 的路徑」之後，那麼我們就可以進到這篇文章的重頭戲，也就是來介紹要如何使用 <code>@RequestMapping</code>，將 url 路徑對應到 Spring Boot 程式的方法上了。</p>
 <p>所以回到我們最一開始的例子（也就是 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a>），對於這個 url 來說，他的 url 路徑就是最後面的 <code>/test</code>。</p>
+   target="_blank" rel="noopener">http://localhost:8080/test</a>），對於這個 url 來說，他的 url 路徑就是最後面的 <code>/test</code>。</p>
 <p>如果我們想要將這個 <code>/test</code> 的 url 路徑，去對應到 Spring Boot 的方法上的話，那我們就只要使用 <code>@RequestMapping</code> 這個註解就可以達成了！</p>
 <p>舉例來說，當我們在 MyController 中的 <code>test()</code> 方法上：</p>
 <ul>
@@ -1540,13 +1532,9 @@ http://localhost:8080/test
 <p>確認好上述的程式之後，接著我們也可以運行一下這個 Spring Boot 程式，來看一下效果。</p>
 <p>當成功運行 Spring Boot 程式之後，接著我們回到 API Tester 中，並且在 url 的地方，輸入 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a>，表示我們要去請求 <a href="http://localhost:8080/test"
+   target="_blank" rel="noopener">http://localhost:8080/test</a>，表示我們要去請求 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a> 這個 url。</p>
+   target="_blank" rel="noopener">http://localhost:8080/test</a> 這個 url。</p>
 <p>
 
 <img
@@ -1597,9 +1585,7 @@ http://localhost:8080/test
 <p>實作完上述的程式之後，我們也可以重新運行一下 Spring Boot，來看一下效果（記得要重新運行一下 Spring Boot 程式，上述的改動才會成功的被運行起來）。</p>
 <p>重新運行起 Spring Boot 程式之後，這時候我們可以回到 API Tester，並且將 url 改成 <a href="http://localhost:8080/product"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/product
-</a>，表示我們要去請求 <code>/product</code> 這個 url 路徑。</p>
+   target="_blank" rel="noopener">http://localhost:8080/product</a>，表示我們要去請求 <code>/product</code> 這個 url 路徑。</p>
 <p>因此當我們按下 Send 鍵之後，Spring Boot 程式就會命中 MyController 中的 <code>@RequestMapping(&quot;/product&quot;)</code> 註解，並且去執行他下面的 <code>product()</code> 方法，因此最後就會在 Response body 中，呈現 <code>product()</code> 方法的返回值「第一個是蘋果、第二個是橘子」的資訊了！</p>
 <p>
 
@@ -1624,9 +1610,7 @@ http://localhost:8080/product
 <blockquote>
 <p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">
-「Java 工程師必備！Spring Boot 零基礎入門」
-</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">「Java 工程師必備！Spring Boot 零基礎入門」</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
 

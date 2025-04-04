@@ -1576,9 +1576,7 @@
 </h3><p>當大家改寫好上述的程式之後，我們也可以試著來運行一下 Spring Boot 程式，來實際感受一下 <code>@Value</code> 的效果。</p>
 <p>以目前的程式來說（記得將 MyController 的 <code>@Qualifier</code> 的值改回成 hpPrinter），只要大家運行起 Spring Boot 程式，並且請求 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a> 之後，IntelliJ 就會在 console 下方呈現下列的資訊。</p>
+   target="_blank" rel="noopener">http://localhost:8080/test</a> 之後，IntelliJ 就會在 console 下方呈現下列的資訊。</p>
 <p>
 
 <img
@@ -1592,9 +1590,7 @@ http://localhost:8080/test
 <p>其中之所以會輸出「剩餘使用次數: 4」，就是因為我們有在 HpPrinter 中添加一行 <code>@Value(&quot;${count}&quot;)</code> 的程式，因此 HpPrinter 中的 count 的值就會被設定成 5，才導致這裡會輸出「剩餘使用次數為 4 次」的資訊。</p>
 <p>大家如果想玩玩看的話，也可以試著把 application.properties 中的 count 的值改成別的數字，譬如說改成 <code>count=10</code> 之類的。修改完之後，只要重新運行 Spring Boot 程式，並且重新請求 <a href="http://localhost:8080/test"
    
-   target="_blank" rel="noopener">
-http://localhost:8080/test
-</a>，這樣子在 console 中所輸出的剩餘使用次數，就會變成是 99 了。</p>
+   target="_blank" rel="noopener">http://localhost:8080/test</a>，這樣子在 console 中所輸出的剩餘使用次數，就會變成是 99 了。</p>
 <p>總而言之，透過上述的運行結果，就代表我們能夠成功的透過 <code>@Value</code> 的用法，將 application.properties 中的設定值讀取到 Bean 裡面了！</p>
 <h3 id="使用-value-的注意事項之一需要遵守固定格式寫法" class="markdown-heading-anchor">
   使用 @Value 的注意事項之一：需要遵守固定格式寫法
@@ -1746,9 +1742,7 @@ http://localhost:8080/test
 <blockquote>
 <p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">
-「Java 工程師必備！Spring Boot 零基礎入門」
-</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">「Java 工程師必備！Spring Boot 零基礎入門」</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
 

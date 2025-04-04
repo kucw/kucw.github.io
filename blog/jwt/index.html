@@ -196,24 +196,16 @@
 <ol>
 <li><a href="/blog/session-vs-jwt/"
    
-   target="_blank" rel="noopener">
-Session 和 JWT 的差別在哪裡？
-</a></li>
+   target="_blank" rel="noopener">Session 和 JWT 的差別在哪裡？</a></li>
 <li><a href="/blog/encode-encrypt-hash-intro/"
    
-   target="_blank" rel="noopener">
-密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
-</a></li>
+   target="_blank" rel="noopener">密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？</a></li>
 <li><a href="/blog/jwt/"
    
-   target="_blank" rel="noopener">
-JWT 是什麼？一次搞懂 JWT 的組成和運作原理
-</a>（本文）</li>
+   target="_blank" rel="noopener">JWT 是什麼？一次搞懂 JWT 的組成和運作原理</a>（本文）</li>
 <li><a href="/blog/jwt-signature/"
    
-   target="_blank" rel="noopener">
-JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
-</a></li>
+   target="_blank" rel="noopener">JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</a></li>
 </ol></blockquote>
 <div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
@@ -243,9 +235,7 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
   <a href="#%e5%9b%9e%e9%a1%a7session-%e5%92%8c-jwt-%e7%9a%84%e5%b7%ae%e5%88%a5">#</a>
 </h2><p>在 <a href="/blog/session-vs-jwt/"
    
-   target="_blank" rel="noopener">
-Session 和 JWT 的差別在哪裡？
-</a> 的文章中，我們有介紹到 Session 和 JWT 的差別分別是：</p>
+   target="_blank" rel="noopener">Session 和 JWT 的差別在哪裡？</a> 的文章中，我們有介紹到 Session 和 JWT 的差別分別是：</p>
 <ul>
 <li><strong>Session 認證：</strong> 將登入的資訊儲存在「後端 Server」上</li>
 <li><strong>JWT 認證：</strong> 將登入的資訊儲存在「前端 Client」中</li>
@@ -281,9 +271,7 @@ Session 和 JWT 的差別在哪裡？
 <p>所以其實 JWT 格式，他就只是一段亂碼，只是我們可以使用 <code>.</code>，把內部的資訊區隔成三個部分而已。</p>
 <p>而如果我們把下面這段 JWT 的亂碼，貼到 JWT 的官方網站 <a href="https://jwt.io/"
    
-   target="_blank" rel="noopener">
-https://jwt.io/
-</a> 中的話：</p>
+   target="_blank" rel="noopener">https://jwt.io/</a> 中的話：</p>
 <pre tabindex="0"><code>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoi5Y-k5Y-kIiwiaWF0IjoxNzIxMDAxNjAwfQ.G41XQGNNJ5Tp88U48aXh4n0XtGkpPkQ3xK6j43_61gE309hzyTVyciG5v05aVIvvY9NrApYiQdvwlMMrjRPFVV8xunghtKKFMj3kPx93Ll8Pf6n-tDiL_NZYqcusrgwtb-EDza80hMG5PTu75ogTIfRKr4jC0_FZzLaMix07LaZReoUSionTWTxJlm8qJc0BAFXgsaGNs9oVhCXOg_jJmOfFZBP0tD3q4xaKp9MTtLRTtslAhoAjPczdnPqaWGcaS8OY11RUTvvxijA7W-mPRlmqt0Hd_XForETUFZRdCKsPQIiGjkavycPtdiViVihQKstHlT4afEzYvzWSeK1cnw
 </code></pre><p>就可以看到這個網站就會將此 JWT 分成三個部分，也就是剛剛提到的 header、payload、signature。</p>
 <p>
@@ -323,9 +311,7 @@ https://jwt.io/
   <a href="#%e8%a3%9c%e5%85%85jwt-%e4%b8%ad%e7%9a%84-encode-%e5%92%8c-decode">#</a>
 </h3><p>而大家如果觀察一下的話也可以發現，在 JWT 的官網中（<a href="https://jwt.io/"
    
-   target="_blank" rel="noopener">
-https://jwt.io/
-</a>），當我們在左側貼上 JWT 的亂碼之後，在右邊所呈現的會是 Decode（解碼）過後的結果。</p>
+   target="_blank" rel="noopener">https://jwt.io/</a>），當我們在左側貼上 JWT 的亂碼之後，在右邊所呈現的會是 Decode（解碼）過後的結果。</p>
 <p>像是以 header 的亂碼 <code>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9</code> 為例，將他 Decode 之後，就可以得到原始的 JSON 字串 <code>{&quot;alg&quot;:&quot;RS256&quot;,&quot;typ&quot;:&quot;JWT&quot;}</code>。</p>
 <p>
 
@@ -341,9 +327,7 @@ https://jwt.io/
 <blockquote>
 <p>補充：不熟悉 Encode 和 Decode 的概念的話，可以回頭參考 <a href="/blog/encode-encrypt-hash-intro/"
    
-   target="_blank" rel="noopener">
-密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
-</a> 中的介紹。</p></blockquote>
+   target="_blank" rel="noopener">密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？</a> 中的介紹。</p></blockquote>
 <h2 id="jwt-中的-payload-部分存放使用者的數據" class="markdown-heading-anchor">
   JWT 中的 payload 部分：存放使用者的數據
   <a href="#jwt-%e4%b8%ad%e7%9a%84-payload-%e9%83%a8%e5%88%86%e5%ad%98%e6%94%be%e4%bd%bf%e7%94%a8%e8%80%85%e7%9a%84%e6%95%b8%e6%93%9a">#</a>
@@ -406,9 +390,7 @@ https://jwt.io/
 <p><strong>signature 的用途，就是用來儲存「簽名」的計算結果</strong>，所以後端之所以可以無條件相信 JWT 中的 payload 數據，就是透過 signature 來達成的！</p>
 <p>不過因為 signature 的實作機制比較複雜，因此在下一篇文章 <a href="/blog/jwt-signature/"
    
-   target="_blank" rel="noopener">
-JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
-</a>中，才有辦法完整介紹 signature 的精髓。</p>
+   target="_blank" rel="noopener">JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</a>中，才有辦法完整介紹 signature 的精髓。</p>
 <p>因此這裡大家只要先知道：後端之所以可以無條件相信 JWT 中的數據，全部都是 signature 的功勞就可以了！</p>
 <p>
 
@@ -445,41 +427,29 @@ JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
 <blockquote>
 <p>補充：本文是擷取自我開設的線上課程<a href="https://hahow.in/cr/springsecurity"
    
-   target="_blank" rel="noopener">
-「資安一把罩！Spring Security 零基礎入門」
-</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">「資安一把罩！Spring Security 零基礎入門」</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
 </h2><p>這篇文章我們介紹了 JWT 是由哪些部分所組成，以及每個部分所負責的功能為何，JWT 可以說是目前最流行的認證機制，所以搞懂 JWT 可以說是對工作上非常有幫助的！</p>
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
-   target="_blank" rel="noopener">
-《古古的後端筆記》電子報
-</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+   target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
 <blockquote>
 <p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（建議按照順序閱讀，才會有最佳的閱讀體驗）：</p>
 <ol>
 <li><a href="/blog/session-vs-jwt/"
    
-   target="_blank" rel="noopener">
-Session 和 JWT 的差別在哪裡？
-</a></li>
+   target="_blank" rel="noopener">Session 和 JWT 的差別在哪裡？</a></li>
 <li><a href="/blog/encode-encrypt-hash-intro/"
    
-   target="_blank" rel="noopener">
-密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？
-</a></li>
+   target="_blank" rel="noopener">密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？</a></li>
 <li><a href="/blog/jwt/"
    
-   target="_blank" rel="noopener">
-JWT 是什麼？一次搞懂 JWT 的組成和運作原理
-</a>（本文）</li>
+   target="_blank" rel="noopener">JWT 是什麼？一次搞懂 JWT 的組成和運作原理</a>（本文）</li>
 <li><a href="/blog/jwt-signature/"
    
-   target="_blank" rel="noopener">
-JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗
-</a></li>
+   target="_blank" rel="noopener">JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</a></li>
 </ol></blockquote>
 
         </div>
