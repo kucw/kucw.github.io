@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.7c7329b9e52e69af666ee2a3e82389e3ea73dd5d535dadb8ac42f3f53ae3ec10.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.15bb852400ce66895ce206f6e7f864a4c7e0de80d4525f871fa3b96a7d748f82.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -44,14 +44,18 @@
 
   <!-- Google Analytics -->
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-NKQ46H0SJW');
-</script>
+    gtag('config', 'G-NKQ46H0SJW');
+  </script>
+
+  <!-- Google Firebase Login -->
+  
+  <script src="https://kucw.io/js/google-firebase-login.min.20f6676f165abfab9f3d09fcfdba0aa9c5224c67cb061c26325380014923f63d.js" type="module"></script>
 </head>
 <body>
 <!-- preloader start -->
@@ -188,6 +192,23 @@
       <div id="algolia-hits" class="algolia-hits"></div>
       <div id="algolia-pagination" class="algolia-pagination"></div>
     </div>
+  </div>
+</div>
+
+
+<div id="login-pop-overlay" class="login-pop-overlay">
+  <div class="popup login-popup">
+    
+    <div id="login-popup-btn-close" class="login-popup-btn-close"><i class="ti-close"></i></div>
+    <button class="google-login-btn" id="google-login-btn">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7 0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4Z" fill="#4285F4"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7 0 5-.9 6.6-2.4L13.4 15a6 6 0 0 1-9-3.2H1.1v2.6A10 10 0 0 0 10 20Z" fill="#34A853"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 0 1 0-3.8V5.5H1.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 1 5.5l3.3 2.6A6 6 0 0 1 10 4Z" fill="#EA4335"></path>
+      </svg>
+      <div class="google-login-btn-text">使用 Google 登入</div>
+    </button>
   </div>
 </div>
 
@@ -816,12 +837,12 @@
 
 <script src="https://kucw.io/plugins/clipboard/code-clipboard.js"></script>
 
-<script src="https://kucw.io/plugins/google-oauth-login/google-oauth-login.js"></script>
+<script src="https://kucw.io/plugins/login/login.js"></script>
 
 
 <!-- Main Script -->
 
-<script src="https://kucw.io/js/script.min.53c8713458aff6d3e1fa3b0b7ae056bcee7af9d8356397911ca85d1211092396.js"></script>
+<script src="https://kucw.io/js/script.min.ae94cc84ef3f3135bed684371cbe058f28a09840ba5ed8d928e64b6a5a2add73.js"></script>
 
 
 </body>
