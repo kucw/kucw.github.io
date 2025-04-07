@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on 古古的後端筆記</title>
-    <link>http://localhost:1313/categories/linux/</link>
+    <link>https://kucw.io/categories/linux/</link>
     <description>Recent content in Linux on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Wed, 25 Jul 2018 00:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kucw.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux - 查看 Log 的指令 tail、multitail、less</title>
-      <link>http://localhost:1313/blog/2018/7/linux-log-command/</link>
+      <link>https://kucw.io/blog/2018/7/linux-log-command/</link>
       <pubDate>Wed, 25 Jul 2018 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/blog/2018/7/linux-log-command/</guid>
+      <guid>https://kucw.io/blog/2018/7/linux-log-command/</guid>
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;tail -f catalina.log&lt;/code&gt; : 實時看log，會自動把新增的log直接顯示出來&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;在實時日誌上打印顏色，給每個狀態給上不同的顏色，INFO 綠色、WARN 黃色、ERROR 紅色&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tail -f catalina.out &lt;span style=&#34;color:#1f2328&#34;&gt;|&lt;/span&gt; perl -pe &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;s/(INFO)/\e[0;32m$1\e[0m/g,s/(WARN)/\e[0;33m$1\e[0m/g,s/(ERROR)/\e[1;31m$1\e[0m/g&amp;#39;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;只看 ERROR&lt;/p&gt;</description>
     </item>
   </channel>
