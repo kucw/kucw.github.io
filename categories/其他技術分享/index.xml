@@ -2,234 +2,234 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>其他技術分享 on 古古的後端筆記</title>
-    <link>https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</link>
+    <link>http://localhost:1313/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/</link>
     <description>Recent content in 其他技術分享 on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://kucw.io/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CDN 是什麼？一次搞懂 CDN 的用途和三大好處</title>
-      <link>https://kucw.io/blog/cdn/</link>
+      <link>http://localhost:1313/blog/cdn/</link>
       <pubDate>Tue, 18 Mar 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/cdn/</guid>
+      <guid>http://localhost:1313/blog/cdn/</guid>
       <description>&lt;p&gt;在網路全球化的趨勢下，CDN 現今已經是一個很重要的技術了，但是 CDN 的用途到底是什麼？以及使用 CDN 的好處有哪些？這篇文章我們就來詳細了解一下吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-cdn內容傳遞網路&#34;&gt;什麼是 CDN（內容傳遞網路）？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#海底電纜的故事&#34;&gt;海底電纜的故事&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#海底電纜的限制&#34;&gt;海底電纜的限制&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cdn-如何解決網路傳輸的限制&#34;&gt;CDN 如何解決網路傳輸的限制？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充使用-cdn-的注意事項&#34;&gt;補充：使用 CDN 的注意事項&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#使用-cdn-的三大好處&#34;&gt;使用 CDN 的三大好處&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#1-降低網路延遲降低頻寬成本&#34;&gt;1. 降低網路延遲、降低頻寬成本&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#2-提升網站可靠性平衡流量&#34;&gt;2. 提升網站可靠性、平衡流量&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#3-防禦資安-ddos-攻擊&#34;&gt;3. 防禦資安 DDoS 攻擊&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cdn-總結&#34;&gt;CDN 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-cdn內容傳遞網路&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 CDN（內容傳遞網路）？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-cdn%e5%85%a7%e5%ae%b9%e5%82%b3%e9%81%9e%e7%b6%b2%e8%b7%af&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 CDN，他的全稱是 Content Delivery Network，中文翻譯為「內容傳遞網路」，而 CDN 的用途，就是 &lt;strong&gt;「將靜態資源（ex: 圖片、影片、JavaScript 套件）部署到全球化的節點上，讓當地的居民可以更快速的取得到這些內容」。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cron 是什麼？定時任務的語法怎麼寫？</title>
-      <link>https://kucw.io/blog/cron/</link>
+      <link>http://localhost:1313/blog/cron/</link>
       <pubDate>Tue, 11 Mar 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/cron/</guid>
+      <guid>http://localhost:1313/blog/cron/</guid>
       <description>&lt;p&gt;只要是後端開發，多多少少都會有一些撰寫定時任務的需求，像是每天晚上 10 點固定處理報表、或是每 30 分鐘處理一批次的任務&amp;hellip;等等，因此這篇文章我們就來介紹一下，這個「定時任務」的語法到底要怎麼寫吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-cron&#34;&gt;什麼是 Cron？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cron-表達式的寫法5-個-&#34;&gt;Cron 表達式的寫法（5 個 &lt;code&gt;*&lt;/code&gt;）&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充cron-表達式的進階用法&#34;&gt;補充：Cron 表達式的進階用法&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cron-總結&#34;&gt;Cron 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充spring-boot-的-cron-表達式寫法6-個-&#34;&gt;補充：Spring Boot 的 Cron 表達式寫法（6 個 &lt;code&gt;*&lt;/code&gt;）&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-cron&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Cron？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-cron&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 Cron，其實是 Linux 系統下的一個定時任務管理服務，但是因為 Cron 的表達式實在是太萬用了，所以目前也很廣泛用在 GitHub Actions、Spring Boot 的 &lt;code&gt;@Scheduled&lt;/code&gt;&amp;hellip;等框架上。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Http 中的 GET 和 POST 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/http-get-post/</link>
+      <link>http://localhost:1313/blog/http-get-post/</link>
       <pubDate>Tue, 25 Feb 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/http-get-post/</guid>
+      <guid>http://localhost:1313/blog/http-get-post/</guid>
       <description>&lt;p&gt;在軟體開發中，Http 可以說是大家最常打交道的一個協議了，因此這篇文章就會來介紹一下 Http 中的 GET 和 POST 的差別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果大家對於 Http 的其他文章感興趣，也可以參考下列文章的介紹：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Polling 和 Webhook 是什麼？如何更有效的串接第三方系統？</title>
-      <link>https://kucw.io/blog/polling-webhook/</link>
+      <link>http://localhost:1313/blog/polling-webhook/</link>
       <pubDate>Tue, 18 Feb 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/polling-webhook/</guid>
+      <guid>http://localhost:1313/blog/polling-webhook/</guid>
       <description>&lt;p&gt;一般在實作後端系統時，如果想要去串接外部的第三方系統，這時候就會有兩種串接方式：Polling 和 Webhook，所以這篇文章我們就來了解一下 Polling 和 Webhook 之間的差別吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-polling什麼是-webhook&#34;&gt;什麼是 Polling？什麼是 Webhook？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#串接股票中心的故事&#34;&gt;串接股票中心的故事&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-polling-來串接&#34;&gt;使用 Polling 來串接&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-webhook-來串接&#34;&gt;使用 Webhook 來串接&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#polling-和-webhook-總結&#34;&gt;Polling 和 Webhook 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充在-webhook-的實作中股票中心是如何通知我們的後端程式&#34;&gt;補充：在 Webhook 的實作中，股票中心是如何通知我們的後端程式？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-polling什麼是-webhook&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Polling？什麼是 Webhook？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-polling%e4%bb%80%e9%ba%bc%e6%98%af-webhook&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在串接第三方的系統時，我們可以使用兩種方式來串接，分別是 Polling 和 Webhook，而他們兩個在實作上其實是完全相反的兩種方式：&lt;/p&gt;</description>
     </item>
     <item>
       <title>DNS 是什麼？在瀏覽器中輸入 URL 會發生什麼事？</title>
-      <link>https://kucw.io/blog/dns/</link>
+      <link>http://localhost:1313/blog/dns/</link>
       <pubDate>Tue, 04 Feb 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/dns/</guid>
+      <guid>http://localhost:1313/blog/dns/</guid>
       <description>&lt;p&gt;相信大家在準備面試時，常常會遇到一題是「在瀏覽器中輸入 URL 會發生什麼事？」，而這背後其實就和 DNS 息息相關。&lt;/p&gt;&#xA;&lt;p&gt;因此這篇文章我們就來介紹一下，到底在瀏覽器中按下 URL 會發生什麼事，以及其背後的 DNS 原理吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>GPU 是什麼？為什麼 GPU 對 AI 的發展很重要？</title>
-      <link>https://kucw.io/blog/gpu-ai/</link>
+      <link>http://localhost:1313/blog/gpu-ai/</link>
       <pubDate>Tue, 21 Jan 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/gpu-ai/</guid>
+      <guid>http://localhost:1313/blog/gpu-ai/</guid>
       <description>&lt;p&gt;在 AI 的浪潮下，GPU 可以說是一間公司的算力的體現，但是 GPU 到底是什麼？為什麼他對 AI 的發展這麼重要呢？所以這篇文章我們就來介紹一下，到底什麼是 GPU 吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Event Sourcing 是什麼？他和 CRUD 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/event-sourcing/</link>
+      <link>http://localhost:1313/blog/event-sourcing/</link>
       <pubDate>Tue, 14 Jan 2025 01:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/event-sourcing/</guid>
+      <guid>http://localhost:1313/blog/event-sourcing/</guid>
       <description>&lt;p&gt;Event Sourcing 的設計理念可以說是和一般常見的 CRUD 完全不同，我一開始聽到的時候也驚嘆「啊？？竟然還能這樣？？」，所以這篇文章我們就來了解一下，到底什麼是 Event Sourcing 吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-event-sourcing&#34;&gt;什麼是 Event Sourcing？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#event-sourcing-和傳統-crud-的差別在哪裡&#34;&gt;Event Sourcing 和傳統 CRUD 的差別在哪裡？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#event-sourcing-的優化&#34;&gt;Event Sourcing 的優化&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#event-sourcing-的優勢&#34;&gt;Event Sourcing 的優勢&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#event-sourcing-總結&#34;&gt;Event Sourcing 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充event-sourcing-和-ddd&#34;&gt;補充：Event Sourcing 和 DDD&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充-2event-driven-design-是什麼&#34;&gt;補充 2：Event-Driven Design 是什麼？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-event-sourcing&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Event Sourcing？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-event-sourcing&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 Event Sourcing，中文硬翻的話是「事件溯源」，重點在於「事件」這兩個字。&lt;/p&gt;</description>
     </item>
     <item>
       <title>電腦中的 RAM（記憶體）的用途是什麼？他和硬碟的差別在哪裡？</title>
-      <link>https://kucw.io/blog/ram/</link>
+      <link>http://localhost:1313/blog/ram/</link>
       <pubDate>Tue, 07 Jan 2025 01:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/ram/</guid>
+      <guid>http://localhost:1313/blog/ram/</guid>
       <description>&lt;p&gt;RAM 可以說是組裝電腦的必備元件，也是電腦運行程式的基礎，所以這篇文章我們就來介紹一下，電腦中的 RAM 到底是什麼吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#ram記憶體簡介&#34;&gt;RAM（記憶體）簡介&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#ram-的用途&#34;&gt;RAM 的用途&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#ram-和硬碟的差別&#34;&gt;RAM 和硬碟的差別&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#ram-總結&#34;&gt;RAM 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充重開機治百病是什麼原理&#34;&gt;補充：「重開機治百病」是什麼原理？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;ram記憶體簡介&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  RAM（記憶體）簡介&#xA;  &lt;a href=&#34;#ram%e8%a8%98%e6%86%b6%e9%ab%94%e7%b0%a1%e4%bb%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 RAM，他的全稱是「Random Access Memory」，台灣通常翻譯為「記憶體」、大陸則是翻譯為「內存」，不過不管是記憶體還是內存，他們指的都是電腦中的 RAM。&lt;/p&gt;</description>
     </item>
     <item>
       <title>為了 SEO！我離開了 Medium，改在 GitHub 上自架個人網站</title>
-      <link>https://kucw.io/blog/2021/1/from-medium-to-github/</link>
+      <link>http://localhost:1313/blog/2021/1/from-medium-to-github/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/2021/1/from-medium-to-github/</guid>
+      <guid>http://localhost:1313/blog/2021/1/from-medium-to-github/</guid>
       <description>&lt;p&gt;因應 Medium 的付費牆、以及 SEO 的政策調整，我發現我在 Medium 上的文章越來越難被搜尋到了🥹。&lt;/p&gt;&#xA;&lt;p&gt;有的人可能不知道什麼是 SEO（Search Engine Optimization，搜尋引擎最佳化），簡單的說，你 SEO 做得越好，這篇文章就可以在 Google 搜尋中排名越前面，而在 Google 搜尋中排名越前面，自然點閱率就越高，曝光度就越大（因為大家在找資料的時候，一定都是先點前幾個連結嘛）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</title>
-      <link>https://kucw.io/blog/jwt-signature/</link>
+      <link>http://localhost:1313/blog/jwt-signature/</link>
       <pubDate>Tue, 24 Dec 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/jwt-signature/</guid>
-      <description>&lt;p&gt;在上一篇的 &lt;a href=&#34;https://kucw.io/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&lt;/a&gt; 文章中，我們有介紹了 JWT 是由三個部分所組成，分別是：&lt;strong&gt;header、payload 以及 signature&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;而在 header、payload、signature 這三個部分中，他們各自負責的功能如下：&lt;/p&gt;</description>
+      <guid>http://localhost:1313/blog/jwt-signature/</guid>
+      <description>&lt;p&gt;在上一篇的 &lt;a href=&#34;http://localhost:1313/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&lt;/a&gt; 文章中，我們有介紹了 JWT 是由三個部分所組成，分別是：&lt;strong&gt;header、payload 以及 signature&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;而在 header、payload、signature 這三個部分中，他們各自負責的功能如下：&lt;/p&gt;</description>
     </item>
     <item>
       <title>JWT 是什麼？一次搞懂 JWT 的組成和運作原理</title>
-      <link>https://kucw.io/blog/jwt/</link>
+      <link>http://localhost:1313/blog/jwt/</link>
       <pubDate>Tue, 17 Dec 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/jwt/</guid>
+      <guid>http://localhost:1313/blog/jwt/</guid>
       <description>&lt;p&gt;在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，所以這篇文章我們就來介紹一下 JWT 是由哪些部分所組成，以及每個部分所負責的功能為何吧！&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;本文為 JWT 系列文之一，建議在閱讀本文前，要先了解 Session 和 JWT 之間的差別、以及 Encode/Decode 的概念，才會比較好上手。如果你對這些概念還不太熟悉，也可以參考前面的文章介紹（建議按照順序閱讀，才會有最佳的閱讀體驗）：&lt;/p&gt;</description>
     </item>
     <item>
       <title>密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/encode-encrypt-hash-intro/</link>
+      <link>http://localhost:1313/blog/encode-encrypt-hash-intro/</link>
       <pubDate>Tue, 10 Dec 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/encode-encrypt-hash-intro/</guid>
-      <description>&lt;p&gt;在密碼學中，Encode、Encrypt、Hash 可以說是三大基礎概念，並且也是後端工程師必備的密碼學知識，因此這篇文章就會詳細來介紹什麼是 Encode、Encrypt、Hash，以及比較他們之間的區別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;本文為 JWT 系列文之一，如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（不過建議還是按照順序閱讀，才會有最佳的閱讀體驗）：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/session-vs-jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Session 和 JWT 的差別在哪裡？&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/encode-encrypt-hash-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？&lt;/a&gt;（本文）&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://kucw.io/blog/jwt-signature/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#encodeencrypthash-簡介&#34;&gt;Encode、Encrypt、Hash 簡介&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-encode編碼&#34;&gt;什麼是 Encode（編碼）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-encrypt加密&#34;&gt;什麼是 Encrypt（加密）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是對稱加密&#34;&gt;什麼是對稱加密？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是非對稱加密&#34;&gt;什麼是非對稱加密？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-hash雜湊&#34;&gt;什麼是 Hash（雜湊）？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充hash-真的沒辦法被破解嗎&#34;&gt;補充：Hash 真的沒辦法被破解嗎？&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充-2我還是很想用-md5真的沒辦法了嗎&#34;&gt;補充 2：我還是很想用 MD5，真的沒辦法了嗎？&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#encodeencrypthash-總結&#34;&gt;Encode、Encrypt、Hash 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;encodeencrypthash-簡介&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  Encode、Encrypt、Hash 簡介&#xA;  &lt;a href=&#34;#encodeencrypthash-%e7%b0%a1%e4%bb%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在密碼學中有三大概念，分別是：&lt;/p&gt;</description>
+      <guid>http://localhost:1313/blog/encode-encrypt-hash-intro/</guid>
+      <description>&lt;p&gt;在密碼學中，Encode、Encrypt、Hash 可以說是三大基礎概念，並且也是後端工程師必備的密碼學知識，因此這篇文章就會詳細來介紹什麼是 Encode、Encrypt、Hash，以及比較他們之間的區別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;本文為 JWT 系列文之一，如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（不過建議還是按照順序閱讀，才會有最佳的閱讀體驗）：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/blog/session-vs-jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Session 和 JWT 的差別在哪裡？&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/blog/encode-encrypt-hash-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;密碼學中的 Encode、Encrypt、Hash 的差別在哪裡？&lt;/a&gt;（本文）&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/blog/jwt/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是什麼？一次搞懂 JWT 的組成和運作原理&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/blog/jwt-signature/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#encodeencrypthash-簡介&#34;&gt;Encode、Encrypt、Hash 簡介&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-encode編碼&#34;&gt;什麼是 Encode（編碼）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-encrypt加密&#34;&gt;什麼是 Encrypt（加密）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是對稱加密&#34;&gt;什麼是對稱加密？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是非對稱加密&#34;&gt;什麼是非對稱加密？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-hash雜湊&#34;&gt;什麼是 Hash（雜湊）？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充hash-真的沒辦法被破解嗎&#34;&gt;補充：Hash 真的沒辦法被破解嗎？&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充-2我還是很想用-md5真的沒辦法了嗎&#34;&gt;補充 2：我還是很想用 MD5，真的沒辦法了嗎？&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#encodeencrypthash-總結&#34;&gt;Encode、Encrypt、Hash 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;encodeencrypthash-簡介&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  Encode、Encrypt、Hash 簡介&#xA;  &lt;a href=&#34;#encodeencrypthash-%e7%b0%a1%e4%bb%8b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在密碼學中有三大概念，分別是：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Session 和 JWT 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/session-vs-jwt/</link>
+      <link>http://localhost:1313/blog/session-vs-jwt/</link>
       <pubDate>Tue, 03 Dec 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/session-vs-jwt/</guid>
+      <guid>http://localhost:1313/blog/session-vs-jwt/</guid>
       <description>&lt;p&gt;在現今的架構中，JWT 可以說是使用非常廣泛的一項技術，但是 JWT 到底是什麼？以及他的用途為何？甚至 JWT 和 Session 的差別在哪裡？這些都是在了解 JWT 的過程中，需要具備的知識。&lt;/p&gt;</description>
     </item>
     <item>
       <title>雲端服務中的 IaaS、PaaS、FaaS、SaaS 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/iaas-paas-faas-saas-intro/</link>
+      <link>http://localhost:1313/blog/iaas-paas-faas-saas-intro/</link>
       <pubDate>Tue, 26 Nov 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/iaas-paas-faas-saas-intro/</guid>
+      <guid>http://localhost:1313/blog/iaas-paas-faas-saas-intro/</guid>
       <description>&lt;p&gt;IaaS、PaaS、FaaS、SaaS 這些名詞，是大家一開始在接觸雲端服務時，很容易搞混的名詞，所以這篇文章我們就來介紹一下他們的差別吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#1-什麼是-iaas&#34;&gt;1. 什麼是 IaaS？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#iaas-的優點&#34;&gt;IaaS 的優點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#iaas-的缺點&#34;&gt;IaaS 的缺點&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#2-什麼是-paas&#34;&gt;2. 什麼是 PaaS？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#paas-的優點&#34;&gt;PaaS 的優點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#paas-的缺點&#34;&gt;PaaS 的缺點&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#小結iaas-和-paas-的區別&#34;&gt;小結：IaaS 和 PaaS 的區別&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#3-什麼是-faas&#34;&gt;3. 什麼是 FaaS？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#faas-的優點&#34;&gt;FaaS 的優點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#faas-的缺點&#34;&gt;FaaS 的缺點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充faas-也稱為-serverless無伺服器運算&#34;&gt;補充：FaaS 也稱為 Serverless（無伺服器運算）&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#4-什麼是-saas&#34;&gt;4. 什麼是 SaaS？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#iaaspaasfaassaas-總結&#34;&gt;IaaS、PaaS、FaaS、SaaS 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;1-什麼是-iaas&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  1. 什麼是 IaaS？&#xA;  &lt;a href=&#34;#1-%e4%bb%80%e9%ba%bc%e6%98%af-iaas&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;IaaS 是 Infrastructure as a Service 的簡寫&lt;/strong&gt;，中文翻譯為「基礎結構即服務」，&lt;strong&gt;IaaS 是指「你能夠使用這個服務來創建 VM」。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>iThome 鐵人賽 - 出書的幕後花絮</title>
-      <link>https://kucw.io/blog/ithome-write-a-book/</link>
+      <link>http://localhost:1313/blog/ithome-write-a-book/</link>
       <pubDate>Tue, 19 Nov 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/ithome-write-a-book/</guid>
-      <description>&lt;p&gt;哈囉，我是古古！之前有在 &lt;a href=&#34;https://kucw.io/blog/ithome-sharing/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽 - 得《優選》獎項的寫作心法&lt;/a&gt; 的文章中，和大家分享我得獎的寫作心法，這篇文章則是會分享在 iThome 鐵人賽得獎之後，出書過程中的一些幕後花絮，如果你也對出書感興趣的話，歡迎繼續觀看本文章～&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#這本書spring-boot-零基礎入門在介紹什麼&#34;&gt;這本書《Spring Boot 零基礎入門》在介紹什麼？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#出書的幕後花絮&#34;&gt;出書的幕後花絮&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#書稿要用-word-檔繳交&#34;&gt;書稿要用 Word 檔繳交&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#書稿的中英之間不能有空白鍵&#34;&gt;書稿的中英之間不能有空白鍵&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#封面文案封底文案設計&#34;&gt;封面文案、封底文案設計&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;這本書spring-boot-零基礎入門在介紹什麼&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  這本書《Spring Boot 零基礎入門》在介紹什麼？&#xA;  &lt;a href=&#34;#%e9%80%99%e6%9c%ac%e6%9b%b8spring-boot-%e9%9b%b6%e5%9f%ba%e7%a4%8e%e5%85%a5%e9%96%80%e5%9c%a8%e4%bb%8b%e7%b4%b9%e4%bb%80%e9%ba%bc&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先先介紹一下我所出版的書籍，這本書是改編自 iThome 鐵人賽的得獎文章《Spring Boot 零基礎入門》，當初會想用 Spring Boot 零基礎入門這個主題參賽，就是因為自己剛入門 Spring Boot 時，發現單純透過網路上零散的介紹，很難完整了解 Spring Boot 的運作邏輯是什麼（一開始覺得IoC 好難…🥹），一度覺得很挫折。&lt;/p&gt;</description>
+      <guid>http://localhost:1313/blog/ithome-write-a-book/</guid>
+      <description>&lt;p&gt;哈囉，我是古古！之前有在 &lt;a href=&#34;http://localhost:1313/blog/ithome-sharing/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽 - 得《優選》獎項的寫作心法&lt;/a&gt; 的文章中，和大家分享我得獎的寫作心法，這篇文章則是會分享在 iThome 鐵人賽得獎之後，出書過程中的一些幕後花絮，如果你也對出書感興趣的話，歡迎繼續觀看本文章～&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#這本書spring-boot-零基礎入門在介紹什麼&#34;&gt;這本書《Spring Boot 零基礎入門》在介紹什麼？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#出書的幕後花絮&#34;&gt;出書的幕後花絮&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#書稿要用-word-檔繳交&#34;&gt;書稿要用 Word 檔繳交&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#書稿的中英之間不能有空白鍵&#34;&gt;書稿的中英之間不能有空白鍵&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#封面文案封底文案設計&#34;&gt;封面文案、封底文案設計&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;這本書spring-boot-零基礎入門在介紹什麼&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  這本書《Spring Boot 零基礎入門》在介紹什麼？&#xA;  &lt;a href=&#34;#%e9%80%99%e6%9c%ac%e6%9b%b8spring-boot-%e9%9b%b6%e5%9f%ba%e7%a4%8e%e5%85%a5%e9%96%80%e5%9c%a8%e4%bb%8b%e7%b4%b9%e4%bb%80%e9%ba%bc&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先先介紹一下我所出版的書籍，這本書是改編自 iThome 鐵人賽的得獎文章《Spring Boot 零基礎入門》，當初會想用 Spring Boot 零基礎入門這個主題參賽，就是因為自己剛入門 Spring Boot 時，發現單純透過網路上零散的介紹，很難完整了解 Spring Boot 的運作邏輯是什麼（一開始覺得IoC 好難…🥹），一度覺得很挫折。&lt;/p&gt;</description>
     </item>
     <item>
       <title>免費仔萬歲！使用 GitHub Actions 實作 CI/CD、網路爬蟲</title>
-      <link>https://kucw.io/blog/github-actions-intro/</link>
+      <link>http://localhost:1313/blog/github-actions-intro/</link>
       <pubDate>Tue, 12 Nov 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/github-actions-intro/</guid>
+      <guid>http://localhost:1313/blog/github-actions-intro/</guid>
       <description>&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-github-actions&#34;&gt;什麼是 GitHub Actions？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#github-actions-在-cicd-中的用途&#34;&gt;GitHub Actions 在 CI/CD 中的用途&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#實戰使用-github-actions-架設第一個-cicd&#34;&gt;實戰：使用 GitHub Actions 架設第一個 CI/CD&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#github-actions-在網路爬蟲中的用途&#34;&gt;GitHub Actions 在網路爬蟲中的用途&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#實戰使用-github-actions-實作網路爬蟲&#34;&gt;實戰：使用 GitHub Actions 實作網路爬蟲&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#github-actions-總結&#34;&gt;GitHub Actions 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-github-actions&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 GitHub Actions？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-github-actions&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 GitHub Actions，是 GitHub 所提供的一個自動化集成服務，簡單的說的話，就是我們可以自由指定：&lt;strong&gt;「當有 commit 被 push 到 GitHub 中的某個 repository 時，我們要 GitHub 做什麼事」&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>資料庫的 ACID、Transaction（交易）介紹</title>
-      <link>https://kucw.io/blog/db-acid-transatcion/</link>
+      <link>http://localhost:1313/blog/db-acid-transatcion/</link>
       <pubDate>Tue, 05 Nov 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/db-acid-transatcion/</guid>
+      <guid>http://localhost:1313/blog/db-acid-transatcion/</guid>
       <description>&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是資料庫的-acid&#34;&gt;什麼是資料庫的 ACID？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#transaction交易是什麼&#34;&gt;Transaction（交易）是什麼？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#例子銀行轉帳&#34;&gt;例子：銀行轉帳&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-transaction-解決轉帳的問題&#34;&gt;使用 Transaction 解決轉帳的問題&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#transaction-和資料庫-acid-的關聯&#34;&gt;Transaction 和資料庫 ACID 的關聯&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#資料庫的-acid-總結&#34;&gt;資料庫的 ACID 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是資料庫的-acid&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是資料庫的 ACID？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af%e8%b3%87%e6%96%99%e5%ba%ab%e7%9a%84-acid&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在常見的關聯式資料庫中（例如：MySQL、PostgreSQL、MS SQL），都會有 ACID 的特性，而 ACID 即是：&lt;/p&gt;</description>
     </item>
     <item>
       <title>淺談搶票系統</title>
-      <link>https://kucw.io/blog/ticket-system/</link>
+      <link>http://localhost:1313/blog/ticket-system/</link>
       <pubDate>Tue, 29 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/ticket-system/</guid>
+      <guid>http://localhost:1313/blog/ticket-system/</guid>
       <description>&lt;p&gt;搶票系統，一直是後端工程師在面試時的一大難題，而搶票系統又與我們的生活息息相關（例如：周杰倫演唱會搶票、雙 11 搶購），因此這篇文章就會淺談一下搶票系統的設計和遇到的挑戰，帶大家簡易入門搶票系統的實作。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：搶票系統真的是一個很難的題目，我其實也不到真的很懂，所以這篇文章真的只是淺淺談一下，和大家分享目前我所學習過的內容，大家如果有什麼想法也歡迎留言，一起學習成長💪&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#創建一筆訂單的實作&#34;&gt;創建一筆訂單的實作&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#解決商品超賣的問題&#34;&gt;解決商品超賣的問題&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充系統設計的-functional-requirement-和-non-functional-requirement&#34;&gt;補充：系統設計的 Functional Requirement 和 Non-functional Requirement&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#如何應對高流量&#34;&gt;如何應對高流量？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充拓元的搶票系統架構&#34;&gt;補充：拓元的搶票系統架構&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;創建一筆訂單的實作&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  創建一筆訂單的實作&#xA;  &lt;a href=&#34;#%e5%89%b5%e5%bb%ba%e4%b8%80%e7%ad%86%e8%a8%82%e5%96%ae%e7%9a%84%e5%af%a6%e4%bd%9c&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在我們實作高流量的搶票系統之前，萬事都得從平地開始做起，所以我們就先從最基本的功能開始設計，並且也在設計的過程中，討論搶票系統可能會出現的潛在問題。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RabbitMQ 介紹（四）- 在 Spring Boot 中串接 RabbitMQ</title>
-      <link>https://kucw.io/blog/rabbitmq4/</link>
+      <link>http://localhost:1313/blog/rabbitmq4/</link>
       <pubDate>Wed, 23 Oct 2024 09:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/rabbitmq4/</guid>
+      <guid>http://localhost:1313/blog/rabbitmq4/</guid>
       <description>&lt;p&gt;寫稿中….✍️&lt;/p&gt;&#xA;&lt;p&gt;有需要的人可以先參考這個 Github repo 中的 code，感謝！&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-rabbitmq&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/kucw/spring-boot-demo/tree/master/spring-boot-demo-rabbitmq&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>RabbitMQ 介紹（三）- RabbitMQ 安裝教學 &#43; Web 管理介面導覽</title>
-      <link>https://kucw.io/blog/rabbitmq3/</link>
+      <link>http://localhost:1313/blog/rabbitmq3/</link>
       <pubDate>Wed, 23 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/rabbitmq3/</guid>
+      <guid>http://localhost:1313/blog/rabbitmq3/</guid>
       <description>&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#rabbitmq-安裝教學&#34;&gt;RabbitMQ 安裝教學&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#web-管理介面導覽&#34;&gt;Web 管理介面導覽&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#查看-queue-的整體運行情況&#34;&gt;查看 Queue 的整體運行情況&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#查看新增-exchange&#34;&gt;查看/新增 Exchange&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#查看新增-queue&#34;&gt;查看/新增 Queue&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#admin-管理&#34;&gt;Admin 管理&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;rabbitmq-安裝教學&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  RabbitMQ 安裝教學&#xA;  &lt;a href=&#34;#rabbitmq-%e5%ae%89%e8%a3%9d%e6%95%99%e5%ad%b8&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;blockquote&gt;&#xA;&lt;p&gt;需要先安裝 docker-desktop，可以到 &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker 官網&lt;/a&gt;下載&lt;/p&gt;</description>
     </item>
     <item>
       <title>RabbitMQ 介紹（二）- RabbitMQ 用法介紹</title>
-      <link>https://kucw.io/blog/2020/11/rabbitmq/</link>
+      <link>http://localhost:1313/blog/2020/11/rabbitmq/</link>
       <pubDate>Tue, 22 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/2020/11/rabbitmq/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;前期提要：如果不了解什麼是 Message Queue，可以先參考 &lt;a href=&#34;https://kucw.io/blog/rabbitmq1/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RabbitMQ 介紹（一）- 什麼是 Message Queue？&lt;/a&gt; 的介紹&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-rabbitmq&#34;&gt;什麼是 RabbitMQ？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#rabbitmq-中常見的-5-種模式&#34;&gt;RabbitMQ 中常見的 5 種模式&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#1-direct-模式&#34;&gt;1. Direct 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#2-worker-模式&#34;&gt;2. Worker 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#3-publishsubscribe-模式&#34;&gt;3. Publish/Subscribe 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#4-routing-模式&#34;&gt;4. Routing 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#5-topics-模式&#34;&gt;5. Topics 模式&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#rabbitmq-總結&#34;&gt;RabbitMQ 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-rabbitmq&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 RabbitMQ？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-rabbitmq&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;RabbitMQ 是在各企業中最為廣泛使用的 Message Queue，而在 RabbitMQ 的世界中，有三個重要的角色需要了解，分別是：&lt;/p&gt;</description>
+      <guid>http://localhost:1313/blog/2020/11/rabbitmq/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;前期提要：如果不了解什麼是 Message Queue，可以先參考 &lt;a href=&#34;http://localhost:1313/blog/rabbitmq1/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RabbitMQ 介紹（一）- 什麼是 Message Queue？&lt;/a&gt; 的介紹&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-rabbitmq&#34;&gt;什麼是 RabbitMQ？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#rabbitmq-中常見的-5-種模式&#34;&gt;RabbitMQ 中常見的 5 種模式&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#1-direct-模式&#34;&gt;1. Direct 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#2-worker-模式&#34;&gt;2. Worker 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#3-publishsubscribe-模式&#34;&gt;3. Publish/Subscribe 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#4-routing-模式&#34;&gt;4. Routing 模式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#5-topics-模式&#34;&gt;5. Topics 模式&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#rabbitmq-總結&#34;&gt;RabbitMQ 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-rabbitmq&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 RabbitMQ？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-rabbitmq&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;RabbitMQ 是在各企業中最為廣泛使用的 Message Queue，而在 RabbitMQ 的世界中，有三個重要的角色需要了解，分別是：&lt;/p&gt;</description>
     </item>
     <item>
       <title>RabbitMQ 介紹（一）- 什麼是 Message Queue？</title>
-      <link>https://kucw.io/blog/rabbitmq1/</link>
+      <link>http://localhost:1313/blog/rabbitmq1/</link>
       <pubDate>Mon, 21 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/rabbitmq1/</guid>
+      <guid>http://localhost:1313/blog/rabbitmq1/</guid>
       <description>&lt;p&gt;RabbitMQ 是目前使用上最廣泛的 Message Queue，但是在了解 RabbitMQ 之前，必須先了解 Message Queue 的概念和特性，才會比較好上手。&lt;/p&gt;&#xA;&lt;p&gt;因此此系列文會先從 Message Queue 開始介紹，接著介紹 RabbitMQ 的用法、如何在電腦上安裝 RabbitMQ、以及如何在 Spring Boot 中實作 RabbitMQ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>工程師如何和 PM 共事？PM 親自來解答！</title>
-      <link>https://kucw.io/blog/pm-for-developer/</link>
+      <link>http://localhost:1313/blog/pm-for-developer/</link>
       <pubDate>Tue, 15 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/pm-for-developer/</guid>
+      <guid>http://localhost:1313/blog/pm-for-developer/</guid>
       <description>&lt;p&gt;哈囉大家好，我是古古。身為一個工程師，在工作上多多少少都得和 PM 打交道，可能有的人會好奇 PM 的工作內容是什麼、或是不知道怎麼跟 PM 相處比較好。&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章，我們邀請到了 PM 大大來為我們工程師們解惑一下，分享 PM 的工作內容是什麼、以及工程師如何和 PM 共事，所以我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Git 的好用技巧介紹 - Cherry-Pick 和 git reset HEAD^</title>
-      <link>https://kucw.io/blog/git-tip/</link>
+      <link>http://localhost:1313/blog/git-tip/</link>
       <pubDate>Tue, 08 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/git-tip/</guid>
+      <guid>http://localhost:1313/blog/git-tip/</guid>
       <description>&lt;p&gt;Git 可以說是工程師使用上最頻繁的技術，這篇文章會分享兩個我覺得 Git 的好用技巧給大家，分別是：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Cherry-Pick：&lt;/strong&gt; 擷取某個 branch 中的某個 commit&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;git reset HEAD^&lt;/code&gt;：&lt;/strong&gt; 撤銷最新的 commit&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;所以我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>TDD 是什麼？認識 Test-Driven Development（測試驅動開發）</title>
-      <link>https://kucw.io/blog/test-driven-development/</link>
+      <link>http://localhost:1313/blog/test-driven-development/</link>
       <pubDate>Tue, 01 Oct 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/test-driven-development/</guid>
+      <guid>http://localhost:1313/blog/test-driven-development/</guid>
       <description>&lt;p&gt;對於軟體工程師來說，「撰寫單元測試」已經是一個必須具備的技能，撰寫好的單元測試不僅能夠確保程式運行正確，也能夠降低後期重構、維護的成本，可以說是一舉多得！&lt;/p&gt;&#xA;&lt;p&gt;而在單元測試越來越重要的情況下，就誕生了 &lt;strong&gt;「TDD（測試驅動開發）」&lt;/strong&gt; 的開發流程，因此這篇文章我們就來介紹一下，TDD 到底是什麼、以及要如何使用 TDD 來開發程式吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-tddtest-driven-development&#34;&gt;什麼是 TDD（Test-Driven Development）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#傳統的開發流程&#34;&gt;傳統的開發流程&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#tdd-的開發流程&#34;&gt;TDD 的開發流程&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#步驟-1只宣告功能的方法名稱不實作內部程式&#34;&gt;步驟 1：只宣告功能的方法名稱，不實作內部程式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#步驟-2撰寫單元測試並且單元測試運行失敗紅燈&#34;&gt;步驟 2：撰寫單元測試，並且單元測試運行失敗（紅燈）&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#步驟-3實作主功能程式&#34;&gt;步驟 3：實作主功能程式&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#步驟-4單元測試運行成功綠燈&#34;&gt;步驟 4：單元測試運行成功（綠燈）&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#小結tdd-開發流程-vs-傳統開發流程&#34;&gt;小結：TDD 開發流程 vs 傳統開發流程&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#tddtest-driven-development總結&#34;&gt;TDD（Test-Driven Development）總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-tddtest-driven-development&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 TDD（Test-Driven Development）？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-tddtest-driven-development&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;TDD 的全稱是 Test-Driven Development，中文翻譯為「測試驅動開發」，而 TDD 的核心理念，就是 &lt;strong&gt;貫徹「先寫測試、再寫開發」的精神。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nginx 是什麼？認識反向代理、負載平衡</title>
-      <link>https://kucw.io/blog/nginx/</link>
+      <link>http://localhost:1313/blog/nginx/</link>
       <pubDate>Tue, 10 Sep 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/nginx/</guid>
+      <guid>http://localhost:1313/blog/nginx/</guid>
       <description>&lt;p&gt;Nginx 可以說是在大型的微服務架構中，必備的核心功能之一，所以這篇文章我們就來介紹一下 Nginx 到底是什麼，以及介紹一下反向代理、負載平衡的概念吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-nginx&#34;&gt;什麼是 Nginx？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#在-nginx-被發明出來之前單體式架構&#34;&gt;在 Nginx 被發明出來之前：單體式架構&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#微服務架構所碰到的問題&#34;&gt;微服務架構所碰到的問題&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#nginx-的反向代理&#34;&gt;Nginx 的反向代理&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#nginx-介紹&#34;&gt;Nginx 介紹&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#反向代理reverse-proxy&#34;&gt;反向代理（Reverse Proxy）&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#負載平衡load-balancing&#34;&gt;負載平衡（Load Balancing）&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#http-cache&#34;&gt;Http Cache&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#nginx-總結&#34;&gt;Nginx 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充什麼是正向代理forward-proxy&#34;&gt;補充：什麼是正向代理（Forward Proxy）？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#參考資料&#34;&gt;參考資料&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-nginx&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Nginx？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-nginx&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Nginx 是一個輕量級的 Web 伺服器，通常用在以下三種情境：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker 是什麼？他和 VM 的差別在哪裡？</title>
-      <link>https://kucw.io/blog/docker-vs-vm/</link>
+      <link>http://localhost:1313/blog/docker-vs-vm/</link>
       <pubDate>Tue, 03 Sep 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/docker-vs-vm/</guid>
+      <guid>http://localhost:1313/blog/docker-vs-vm/</guid>
       <description>&lt;p&gt;作為軟體工程師，大家可能多多少少聽過什麼是 Docker，但是卻不了解 Docker 實際要解決的問題是什麼、以及他和 VM 之間的區別。&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章就會來介紹一下，到底什麼是 Docker、什麼又是 VM，並且他們兩個之間的差別又是什麼，那我們就開始吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-vm&#34;&gt;什麼是 VM？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-vm-的注意事項&#34;&gt;使用 VM 的注意事項&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充常見的-vm-例子&#34;&gt;補充：常見的 VM 例子&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-docker&#34;&gt;什麼是 Docker？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#有了-vm-之後我們還需要-docker-嗎&#34;&gt;有了 VM 之後，我們還需要 Docker 嗎？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#vm-和-docker-總結&#34;&gt;VM 和 Docker 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-vm&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 VM？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-vm&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;在了解 Docker 之前，一定要先了解什麼是 VM 才可以，所以我們先來介紹一下 VM 是什麼。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vertical Scaling 和 Horizontal Scaling 介紹</title>
-      <link>https://kucw.io/blog/vertical-and-horizontal-scaling/</link>
+      <link>http://localhost:1313/blog/vertical-and-horizontal-scaling/</link>
       <pubDate>Tue, 27 Aug 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/vertical-and-horizontal-scaling/</guid>
+      <guid>http://localhost:1313/blog/vertical-and-horizontal-scaling/</guid>
       <description>&lt;p&gt;你有沒有曾經好奇過，在雲端的世界裡 Server 是如何進行擴展的呢？&lt;/p&gt;&#xA;&lt;p&gt;這篇文章我們就來介紹一下雲端服務中兩種常見的擴展方式：Vertical Scaling 和 Horizontal Scaling 吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-vertical-scaling-和-horizontal-scaling&#34;&gt;什麼是 Vertical Scaling 和 Horizontal Scaling？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#什麼是-vertical-scaling垂直擴展&#34;&gt;什麼是 Vertical Scaling（垂直擴展）？&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#什麼是-horizontal-scaling水平擴展&#34;&gt;什麼是 Horizontal Scaling（水平擴展）？&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#小結&#34;&gt;小結&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#vertical-scaling垂直擴展的優缺點以及適用的情境&#34;&gt;Vertical Scaling（垂直擴展）的優缺點、以及適用的情境&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#vertical-scaling-的優缺點&#34;&gt;Vertical Scaling 的優缺點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#vertical-scaling-的適用情境&#34;&gt;Vertical Scaling 的適用情境&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#horizontal-scaling水平擴展的優缺點以及適用的情境&#34;&gt;Horizontal Scaling（水平擴展）的優缺點、以及適用的情境&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#horizontal-scaling-的優缺點&#34;&gt;Horizontal Scaling 的優缺點&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#horizontal-scaling-的適用情境&#34;&gt;Horizontal Scaling 的適用情境&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#vertical-scaling-和-horizontal-scaling-總結&#34;&gt;Vertical Scaling 和 Horizontal Scaling 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-vertical-scaling-和-horizontal-scaling&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Vertical Scaling 和 Horizontal Scaling？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-vertical-scaling-%e5%92%8c-horizontal-scaling&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;想像一下，假設現在你正在經營一間新創公司，一開始的流量很小，所以就只要到 AWS 或是 GCP 上面，隨便租用一台 VM（虛擬機）當作你的 Server，就可以直接應付這些使用者的流量了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>AI 名詞和概念介紹 - NLP、LLM、RAG</title>
-      <link>https://kucw.io/blog/ai-intro/</link>
+      <link>http://localhost:1313/blog/ai-intro/</link>
       <pubDate>Sat, 24 Aug 2024 03:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/ai-intro/</guid>
+      <guid>http://localhost:1313/blog/ai-intro/</guid>
       <description>&lt;p&gt;最近實在是看到太多 AI 的專有名詞了（ex: NLP、LLM、RAG），雖然我不搞 AI，但是稍微理解一下這些名詞在幹嘛還是有必要的，不然搞得好像全世界都在追一場很好看的劇，但是自己卻完全跟不上🥹。&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章就會從頭來介紹一下 AI 的概念和邏輯（不需要任何程式背景也能看得懂），以及介紹常見的 AI 名詞，那麼我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>一文搞懂 Http Status Code，詳細解析 200、301、401、403、500、503</title>
-      <link>https://kucw.io/blog/http-status-code/</link>
+      <link>http://localhost:1313/blog/http-status-code/</link>
       <pubDate>Tue, 20 Aug 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/http-status-code/</guid>
+      <guid>http://localhost:1313/blog/http-status-code/</guid>
       <description>&lt;p&gt;大家在 call API 時，是否曾經好奇過他所返回的 200、401、403、500&amp;hellip;等數字是代表什麼意思？其實這些 3 位數的數字，就是 Http Status Code（又稱 Http 狀態碼）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RESTful API 設計指南，3 個必備條件缺一不可！</title>
-      <link>https://kucw.io/blog/restful-api/</link>
+      <link>http://localhost:1313/blog/restful-api/</link>
       <pubDate>Tue, 13 Aug 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/restful-api/</guid>
+      <guid>http://localhost:1313/blog/restful-api/</guid>
       <description>&lt;p&gt;RESTful API 可以說是在後端日常的開發中，很常見的一種設計 API 的方式，因此這篇文章我們就來介紹一下，到底要如何才能設計出一個正確的 RESTful API 吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-restful-api&#34;&gt;什麼是 RESTful API？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#如何設計出-restful-api&#34;&gt;如何設計出 RESTful API？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#1-成為-restful-api-的條件一使用-http-method表示要執行的資料庫操作&#34;&gt;1. 成為 RESTful API 的條件一：使用 Http method，表示要執行的資料庫操作&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#2-成為-restful-api-的條件二使用-url-路徑描述資源之間的階層關係&#34;&gt;2. 成為 RESTful API 的條件二：使用 url 路徑，描述資源之間的階層關係&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#3-成為-restful-api-的條件三response-body-返回-json-或是-xml-格式&#34;&gt;3. 成為 RESTful API 的條件三：Response body 返回 JSON 或是 Xml 格式&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#設計-restful-api-的總結&#34;&gt;設計 RESTful API 的總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充我們真的需要-restful-api-嗎&#34;&gt;補充：我們真的需要 RESTful API 嗎？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-restful-api&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 RESTful API？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-restful-api&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 RESTful API，&lt;strong&gt;他是一種設計 API 的風格&lt;/strong&gt;，而他的目的，就是為了 &lt;strong&gt;「簡化工程師之間的溝通成本」&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>iThome 鐵人賽 - 得《優選》獎項的寫作心法</title>
-      <link>https://kucw.io/blog/ithome-sharing/</link>
+      <link>http://localhost:1313/blog/ithome-sharing/</link>
       <pubDate>Thu, 08 Aug 2024 00:00:00 +0800</pubDate>
-      <guid>https://kucw.io/blog/ithome-sharing/</guid>
+      <guid>http://localhost:1313/blog/ithome-sharing/</guid>
       <description>&lt;p&gt;哈囉，我是古古！最近又到了 iThome 鐵人賽的開賽期（每年 9 月附近），在 2023 年時我也有報名參加過 iThome 鐵人賽，題目是&lt;a href=&#34;https://ithelp.ithome.com.tw/users/20151036/ironman/6130&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;《Spring Boot 零基礎入門》&lt;/a&gt;，當時有幸得到了《優選》的獎項（&lt;a href=&#34;https://ithelp.ithome.com.tw/2023ironman/reward&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;得獎名單&lt;/a&gt;），因此希望可以透過這篇文章，分享一些寫作心法給大家。&lt;/p&gt;</description>
     </item>
   </channel>
