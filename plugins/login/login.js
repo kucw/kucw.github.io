@@ -10,15 +10,15 @@ function initLoginBtn() {
     };
 
     // Handle and trigger popup window
-    document.querySelector('#login-btn').addEventListener('click', onPopupOpen);
+    document.querySelector('#login-btn')?.addEventListener('click', onPopupOpen);
 
     // Handle and trigger popup close
-    document.querySelector('#login-pop-overlay').addEventListener('click', event => {
+    document.querySelector('#login-pop-overlay')?.addEventListener('click', event => {
         if (event.target === document.querySelector('#login-pop-overlay')) {
             onPopupClose();
         }
     });
-    document.querySelector('#login-popup-btn-close').addEventListener('click', onPopupClose);
+    document.querySelector('#login-popup-btn-close')?.addEventListener('click', onPopupClose);
 
     window.addEventListener('pjax:success', onPopupClose);
     window.addEventListener('keyup', event => {

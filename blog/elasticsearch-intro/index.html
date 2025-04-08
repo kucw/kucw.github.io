@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    iThome 鐵人賽 - 出書的幕後花絮
+    Elastic Search 是什麼？認識地表最強的全文搜尋工具！
     
   </title>
 
@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="分享在 iThome 鐵人賽中得到《優選》之後，出書的幕後花絮">
+  <meta name="description" content="介紹 Elastic Search 是如何透過反向索引（Inverted Index），來達到高效率的全文搜尋功能">
   <meta name="author" content="古古">
 
    <!-- Open Graph data -->
@@ -225,7 +225,7 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">iThome 鐵人賽 - 出書的幕後花絮</h1>
+        <h1 class="blog-title">Elastic Search 是什麼？認識地表最強的全文搜尋工具！</h1>
 
         <div class="author-details">
           <div>
@@ -233,7 +233,7 @@
           </div>
           <div>
             <p>古古</p>
-            <p>2024/11/19</p>
+            <p>2025/04/08</p>
           </div>
         </div>
 
@@ -245,100 +245,146 @@
         
         
         <div class="content mb-4">
-          <p>哈囉，我是古古！之前有在 <a href="/blog/ithome-sharing/"
-   
-   target="_blank" rel="noopener">iThome 鐵人賽 - 得《優選》獎項的寫作心法</a> 的文章中，和大家分享我得獎的寫作心法，這篇文章則是會分享在 iThome 鐵人賽得獎之後，出書過程中的一些幕後花絮，如果你也對出書感興趣的話，歡迎繼續觀看本文章～</p>
+          <p>Elastic Search 可以說是長年霸佔「全文搜尋」排行榜的第一名，不管是在使用者的產品開發上、還是在內部的 log 系統中，也都常常能看見 Elastic Search 的身影，因此這篇文章我們就來介紹一下，Elastic Search 到底是什麼吧！</p>
 <div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#這本書spring-boot-零基礎入門在介紹什麼">這本書《Spring Boot 零基礎入門》在介紹什麼？</a></li>
-    <li><a href="#出書的幕後花絮">出書的幕後花絮</a>
+    <li><a href="#什麼是-elastic-search">什麼是 Elastic Search？</a>
       <ul>
-        <li><a href="#書稿要用-word-檔繳交">書稿要用 Word 檔繳交</a></li>
-        <li><a href="#書稿的中英之間不能有空白鍵">書稿的中英之間不能有空白鍵</a></li>
-        <li><a href="#封面文案封底文案設計">封面文案、封底文案設計</a></li>
+        <li><a href="#在以前的-sql-資料庫時代">在以前的 SQL 資料庫時代</a></li>
+        <li><a href="#使用-elastic-search-之後">使用 Elastic Search 之後</a></li>
+        <li><a href="#什麼是反向索引inverted-index">什麼是反向索引（Inverted Index）？</a></li>
       </ul>
     </li>
+    <li><a href="#elastic-search-介紹">Elastic Search 介紹</a></li>
+    <li><a href="#elastic-search-總結">Elastic Search 總結</a></li>
+    <li><a href="#補充反向索引的實戰經驗分享">補充：反向索引的實戰經驗分享</a></li>
     <li><a href="#結語">結語</a></li>
   </ul>
 </nav>
 </div>
-<h2 id="這本書spring-boot-零基礎入門在介紹什麼" class="markdown-heading-anchor">
-  這本書《Spring Boot 零基礎入門》在介紹什麼？
-  <a href="#%e9%80%99%e6%9c%ac%e6%9b%b8spring-boot-%e9%9b%b6%e5%9f%ba%e7%a4%8e%e5%85%a5%e9%96%80%e5%9c%a8%e4%bb%8b%e7%b4%b9%e4%bb%80%e9%ba%bc">#</a>
-</h2><p>首先先介紹一下我所出版的書籍，這本書是改編自 iThome 鐵人賽的得獎文章《Spring Boot 零基礎入門》，當初會想用 Spring Boot 零基礎入門這個主題參賽，就是因為自己剛入門 Spring Boot 時，發現單純透過網路上零散的介紹，很難完整了解 Spring Boot 的運作邏輯是什麼（一開始覺得IoC 好難…🥹），一度覺得很挫折。</p>
-<p>所以希望可以透過這本書，系統性的去整理 Spring Boot 的知識，讓想要入門 Spring Boot 的人有個方向，至少在看完這本書之後，能夠學到：</p>
-<ul>
-<li>Spring IoC、Spring AOP 的概念和用法</li>
-<li>Spring MVC 的用法</li>
-<li>Spring JDBC 的用法</li>
-<li>能夠使用 Spring Boot，開發出一個簡易的後端系統（書中使用圖書館管理系統作為範例）</li>
-</ul>
-<p>如果你也對 Spring Boot 有興趣、或是打從心底想要從頭開始學習 Spring Boot，那麼這本書真心推薦給你！</p>
-<h2 id="出書的幕後花絮" class="markdown-heading-anchor">
-  出書的幕後花絮
-  <a href="#%e5%87%ba%e6%9b%b8%e7%9a%84%e5%b9%95%e5%be%8c%e8%8a%b1%e7%b5%ae">#</a>
-</h2><p>以下僅列出我在寫書中覺得很意外 or 很新鮮的事，記錄的不是很完全，大家就看個開心就好～</p>
-<h3 id="書稿要用-word-檔繳交" class="markdown-heading-anchor">
-  書稿要用 Word 檔繳交
-  <a href="#%e6%9b%b8%e7%a8%bf%e8%a6%81%e7%94%a8-word-%e6%aa%94%e7%b9%b3%e4%ba%a4">#</a>
-</h3><p>這個應該是在寫書時痛苦指數最高的事情🥹，在出版社真的拿著書稿內容去排版之前，會需要作者先用 Word 檔把全部的內容整理起來（包含各章標題、圖號、程式碼樣式），先給編輯看過一遍之後，編輯才會把 Word 檔交給美編，交由美編後續去排版。</p>
-<p>但是在習慣使用 Markdown、Notion 這類的筆記軟體之後，突然要回頭使用 Word 檔.…真的是只有想哭可言🥲（我從學校畢業之後就沒打開過了）。</p>
-<p>首先 Word 的排版就真的很難搞，再來就是 Mac 上的 Word app 常常會閃退（我不知道是我電腦有問題還是 Word 有問題），反正就是要花很多時間和 Word 戰鬥.…如果大家將來也想要出書的話，建議先跟你家 Word 打好關係，因為你真的會很依賴他🥹。</p>
-<p>給大家看看我的 Word 檔，以及給美編排版過的成果：</p>
+<h2 id="什麼是-elastic-search" class="markdown-heading-anchor">
+  什麼是 Elastic Search？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-elastic-search">#</a>
+</h2><p><strong>Elastic Search 是一個強大的「全文搜尋」（Full-Text Search）工具</strong>，也就是一個「能夠讓你自己架設搜尋引擎」的工具。所以簡單的說，<strong>Elastic Search 的目標就是「讓使用者能夠快速的從一堆文件中，找到他想要的資料在哪裡」</strong>，也就是搜尋引擎最重要的作用了。</p>
+<p>不過在我們開始介紹 Elastic Search 到底是強在哪裡之前，我們可以先回頭來看一下，在 Elastic Search 還沒有誕生之前，我們是如何使用 SQL 資料庫來實作「查詢」的功能的。</p>
+<h3 id="在以前的-sql-資料庫時代" class="markdown-heading-anchor">
+  在以前的 SQL 資料庫時代
+  <a href="#%e5%9c%a8%e4%bb%a5%e5%89%8d%e7%9a%84-sql-%e8%b3%87%e6%96%99%e5%ba%ab%e6%99%82%e4%bb%a3">#</a>
+</h3><p>想像一下，假設現在你要開發一個「評論」的網站，因此在你的資料庫中，就會有一張 <code>review</code> 的 table，裡面記錄了每一筆評論的詳細內容：</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>review_id</strong></th>
+          <th><strong>review_text（評論內容）</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>I jumped out the brown fox</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>hello how are you</td>
+      </tr>
+  </tbody>
+</table>
+<p>那麼問題來了，假設現在使用者輸入了 <code>brown</code>，要你查詢出帶有 <code>brown</code> 的評論，這時候你要怎麼實作？</p>
+<p>最直覺的做法（幾乎也是 SQL 資料庫的唯一做法），就是「使用 SQL 的模糊搜尋 <code>LIKE %</code>」，從這些評論中找出到底哪些評論中包含 <code>brown</code> 這個單字，因此通常就會寫出類似於下方的 SQL 語法，去資料庫中查詢所有評論。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#cf222e">SELECT</span><span style="color:#fff"> </span><span style="color:#cf222e">FROM</span><span style="color:#fff"> </span>review<span style="color:#fff"> </span><span style="color:#cf222e">WHERE</span><span style="color:#fff"> </span>review_text<span style="color:#fff"> </span><span style="color:#cf222e">LIKE</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;%brown%&#34;</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>雖然上述的作法能夠查詢出帶有 <code>brown</code> 單字的評論，但是這個查詢的效率實在是太差了！因為模糊搜尋沒辦法使用 index 來加速查詢效率，只能呆呆的一筆一筆數據去比對，因此縱使這個方法勉勉強強能夠解決查詢的問題，但是卻解的不夠漂亮。</p>
+<p>所以為了更好的解決這個問題，Elastic Search 就被發明出來了！</p>
+<h3 id="使用-elastic-search-之後" class="markdown-heading-anchor">
+  使用 Elastic Search 之後
+  <a href="#%e4%bd%bf%e7%94%a8-elastic-search-%e4%b9%8b%e5%be%8c">#</a>
+</h3><p>在 Elastic Search 中，一樣是會先對每一筆 review 評論建立一筆數據（在 Elastic Search 中稱為「文檔」），並且因為 Elastic Search 是屬於 NoSQL 資料庫，所以會使用 JSON 格式來儲存該文檔。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;review_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;review_text&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;I jumped out the brown fox&#34;</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;review_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;review_text&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;hello how are you&#34;</span> <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
+</span></span></code></pre></div><p>其實到這邊其實都跟上面的 SQL 資料庫一模一樣，只是 Elastic Search 換個方式用 JSON 儲存而已，到目前為止沒有任何的差別。</p>
+<p>不過！！重點來了！！Elastic Search 之所以能夠快速的查詢出「帶有 <code>brown</code>」的評論，<strong>就是因為 Elastic Search 在插入一筆文檔時，會預先對該文檔建立「反向索引」（Inverted Index）</strong>，因此之後就可以借助「反向索引」的力量，快速的找出相關評論。</p>
+<h3 id="什麼是反向索引inverted-index" class="markdown-heading-anchor">
+  什麼是反向索引（Inverted Index）？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af%e5%8f%8d%e5%90%91%e7%b4%a2%e5%bc%95inverted-index">#</a>
+</h3><p>舉例來說，當 Elastic Search 插入一筆數據 <code>hello how are you</code> 時，他除了正常的插入一筆文檔之外，他同時也會將 <code>hello how are you</code> 拆分成許多不同的小單字，譬如說會拆分成 <code>hello</code>、<code>how</code>、<code>are</code>、<code>you</code> 這四個字，並且 Elastic Search 會將這些單字「對應」到該筆評論數據上。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/elasticsearch_inverted_index.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 767px; width: 100%"
+    width="2425"
+    height="1190"
+/>
+</p>
+<p>因此後續當使用者查詢 <code>hello</code> 或是查詢 <code>are</code> 時，Elastic Search 就可以去檢查反向索引，如果有任何一個命中的話（譬如說命中 <code>hello</code> 這個反向索引），那麼就可以根據反向索引，去找出該索引指向的真實的數據（也就是 <code>hello how are you</code> 這個評論），這樣子就可以快速的在大量的文件中，去找到我們想要的數據了！</p>
+<p>也因為在整個 Elastic Search 的世界中，他不僅要儲存每一筆真實的評論數據之外，Elastic Search 同時也需要為每一筆評論數據生成對應的反向索引，因此佔用的數據空間會比一般的 SQL 資料庫還要多，<strong>不過這其實也是演算法中典型的「用空間換取時間」的概念</strong>，即是先對數據進行預處理，將數據處理成好查詢的方式，等到未來需要時就可以馬上查詢，就可以達到「降低查詢時間」的終極目標了！</p>
+<h2 id="elastic-search-介紹" class="markdown-heading-anchor">
+  Elastic Search 介紹
+  <a href="#elastic-search-%e4%bb%8b%e7%b4%b9">#</a>
+</h2><p>了解了 Elastic Search 中最最最核心的「反向索引」的概念之後，我們再回頭來看 Elastic Search 的介紹時，就可以比較看得懂了。</p>
+<p><strong>所謂的 Elastic Search，他是一個強大的「全文搜尋」（Full-Text Search）工具</strong>，目標是讓我們可以從大量的數據中，快速找到想要的資料在哪裡。而 Elastic Search 之所以可以做到這件事，<strong>就是因為他使用了「反向索引」（Inverted Index）的設計</strong>，先對數據進行預處理，因此才能夠在查詢時達到比傳統 SQL 資料庫更高的效率。</p>
+<p>也因為 Elastic Search 的專長是「全文搜尋」，所以一般通常會將他用來「架設搜尋引擎」，因此像是旅遊攻略、評論、社群貼文、電商產品….等等諸如此類的查詢，背後都很適合使用 Elastic Search 來實作！</p>
 <p>
 
 <img
-  src="/images/blog/book3.png"
+  src="/images/blog/elasticsearch_usage.png"
   alt=""
   loading="lazy"
   data-zoomable
-  width="3628"
-  height="2141"
+  width="1920"
+  height="1080"
 /></p>
-<p>這樣看下來，美編是不是真的很神！！！只要給她醜醜的 Word 檔，她就可以幫你排出好看的排版，出這本書真的不能沒有美編XDD，感謝美編！！！</p>
-<h3 id="書稿的中英之間不能有空白鍵" class="markdown-heading-anchor">
-  書稿的中英之間不能有空白鍵
-  <a href="#%e6%9b%b8%e7%a8%bf%e7%9a%84%e4%b8%ad%e8%8b%b1%e4%b9%8b%e9%96%93%e4%b8%8d%e8%83%bd%e6%9c%89%e7%a9%ba%e7%99%bd%e9%8d%b5">#</a>
-</h3><p>又是一個撰寫書稿的痛苦（出書大概有 80% 的痛苦都是在寫書稿，其他部分相較還好），一般我在寫文章的時候，中英文之間會有空白鍵，但是出版社要我們繳交的書稿，<strong>竟然要把中英文間的空白鍵刪掉！！！</strong>（好像是因為排版軟體的設定，所以必須要刪掉空白鍵，這樣子弄出來的書稿才會正常）</p>
-<p>反正這部分也是折磨我很久…就算用「取代」功能一鍵把所有空白鍵刪掉，也需要整份稿子重新檢查有沒有缺漏的部分。最可怕的是在改稿的時候，手會不小心習慣在中英之間按下空白鍵，然後事後發現之後又要整個回頭重改🥹，我只能….哭惹😭。</p>
-<p>反正中英不能有空白鍵這件事真的是造成我心理陰影，甚至還想跟編輯說我之後不想再寫書了XDD，但老實說現在回頭看起來也是一次特別的經驗就是了，畢竟是第一次出書，再怎麼樣都是一次新鮮的體驗！</p>
-<h3 id="封面文案封底文案設計" class="markdown-heading-anchor">
-  封面文案、封底文案設計
-  <a href="#%e5%b0%81%e9%9d%a2%e6%96%87%e6%a1%88%e5%b0%81%e5%ba%95%e6%96%87%e6%a1%88%e8%a8%ad%e8%a8%88">#</a>
-</h3><p>這部分算是我很意外的部分！我沒想到出版社可以讓我們自己想封面和封底設計，其實對於作者來說彈性還滿大的，先給大家看看我的封面和封底設計（沒錯編輯竟然是給我一張這樣的展開圖，我第一次收到有嚇到XDD）：</p>
-<p>
 
-<img
-  src="/images/blog/book4.jpg"
-  alt=""
-  loading="lazy"
-  data-zoomable
-  width="2880"
-  height="1316"
-/></p>
-<p>其中有關書名、封面的大圖、封面文案、封底文案、作者簡介，這些都是可以讓作者設計的，所以作者可以根據你自己的書，填上你想放的宣傳語。</p>
-<p>舉例來說，下面這些都是我提供給編輯的文案：</p>
-<p>
-
-<img
-  src="/images/blog/book5.jpg"
-  alt=""
-  loading="lazy"
-  data-zoomable
-  width="2880"
-  height="1316"
-/></p>
-<p>不得不說，真的是當了作者之後，才發現原來一本書的封面、封底設計，都是有意義的！！所以大家下次再走進書店買書時，建議可以仔細研究一下封面上的各種小字，每一行小字其實都是作者精心放上去的內容，絕對沒有那種來湊數的文字存在！</p>
-<p>然後在設計封面和封底文案時，中間也有發生一件很好笑的事，因為我實在是不知道怎麼寫文案比較好，我就跑去附近的諾貝爾書局，然後一本一本翻以前鐵人賽的書是怎麼寫的，邊翻邊拍照，我大概拍了 20 幾本有（還好店員沒有覺得我很奇怪🤣），在書局待了一整個下午就只為了參考其他書是怎麼寫的，現在回想起來，真的是很特別的一次經驗XD。</p>
+<p class="markdown-image-caption">
+    圖片來源：
+    <a href="https://www.elastic.co/enterprise-search" target="_blank" rel="noopener">
+        Elastic Search 官網
+    </a>
+</p>
+<p>而除了一般的功能開發之外，Elastic Search 也很常拿來用在內部系統中，最常見的就是用來「收集所有系統的 log」，這樣子 DevOps 或是後端工程師就可以搭配 Kibana、Grafana 之類的 UI 介面，從 Elastic Search 中直接查詢 log 的資料，就不用再登入每一台 server 中去找 log 了！</p>
+<h2 id="elastic-search-總結" class="markdown-heading-anchor">
+  Elastic Search 總結
+  <a href="#elastic-search-%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>所以總結來說，只要牽扯到「全文搜尋」，基本上就是 Elastic Search 的天下（當然 FAANG 大廠自行研發的搜尋引擎除外，他們的數據量真的太大，應該不是用 ES），並且內部的 log 系統通常也都是用 ELK 三兄弟來建置，所以了解一下 Elastic Search 的用法絕對是很吃香的！</p>
+<p>大家如果對 Elastic Search 有興趣的話，後續也可以參考 Elastic 官網的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html"
+   
+   target="_blank" rel="noopener">文件教學</a>，或是我很久很久以前也有寫過一些 <a href="/categories/elastic-search/"
+   
+   target="_blank" rel="noopener">Elastic Search 的文章</a>，大家有興趣的話也可以參考看看～（不過這些文章年代有點久遠，可能很多東西已經不適用了，後續有時間我再來把這部分重寫一下）。</p>
+<h2 id="補充反向索引的實戰經驗分享" class="markdown-heading-anchor">
+  補充：反向索引的實戰經驗分享
+  <a href="#%e8%a3%9c%e5%85%85%e5%8f%8d%e5%90%91%e7%b4%a2%e5%bc%95%e7%9a%84%e5%af%a6%e6%88%b0%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab">#</a>
+</h2><p>最後再跟大家補充一個我經歷過的 Elastic Search 反向索引的真實故事…</p>
+<p>前面有提到，「反向索引」就是會預先把真實的數據 <code>hello how are you</code> 拆分成一個一個的小單字 <code>hello</code>、<code>how</code>、<code>are</code>、<code>you</code>，並且 Elastic Search 會將這些單字「對應」到該筆數據上，而這個「拆分單字」的過程，稱為「分詞」（或是「斷詞」），而就是這個「分詞」，搞的我非常痛苦啊🥹…</p>
+<p>首先 Elastic Search 中的分詞預設都是以英文為主，所以 <code>hello how are you</code> 就可以根據空白鍵很簡單的進行拆分，但是如果你的 input 是中文的話，那就是災難的開始惹！！！</p>
+<p>舉例來說，假設你的 input 是 <code>我想吃小籠包</code>，那麼 Elastic Search 預設會拆分成 <code>我</code>、<code>想</code>、<code>吃</code>、<code>小</code>、<code>籠</code>、<code>包</code> 這 6 個字，這就會造成一個現象，就是當使用者查詢「LV 包包」時，因為 <code>包</code> 命中了…所以可能就會出現 <code>我想吃小籠包</code> 的神奇回覆….🥹（使用者會覺得合理嗎？好問題）。</p>
+<p>即使使用 Elastic Search 內建的 CJK（中日韓）分詞器，最終產生的效果也不太好：</p>
+<pre tabindex="0"><code>POST _analyze
+{
+    &#34;analyzer&#34;: &#34;cjk&#34;,
+    &#34;text&#34;: &#34;我想吃小籠包&#34;
+}
+</code></pre><pre tabindex="0"><code>拆分成 [我想, 想吃, 吃小, 小籠, 籠包]
+</code></pre><p>也因為 Elastic Search 對中文的支援真的太慘烈了，所以 GitHub 上甚至有一個 16.9k star 的專案 <a href="https://github.com/infinilabs/analysis-ik"
+   
+   target="_blank" rel="noopener">analysis-ik</a>，專門就是在做中文分詞，用了這個之後才分得比較合理（拍謝我有點搞不懂 Elastic Search 現在怎麼裝 plugin，沒辦法實際測試，但應該就是會分詞出 <code>小籠包</code> 這個單字）。</p>
+<p>所以大家如果後續想要拿 Elastic Search 來實作中文的全文搜尋的話，建議一定要安裝這個 analysis-ik 的 plugin，對中文的分詞才會有比較明顯的改善（在此也感謝開源社區的大大們的貢獻🙏）。</p>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
-</h2><p>呼～大概是這樣吧！雖然上面吐嘈了一些寫書稿的痛苦，但是老實說看到自己寫的書上架還是滿有成就感，如果你也對出書有興趣的話，非常推薦參加一年一度的 iThome 鐵人賽，希望大家都可以成功出版你人生的第一本書👍。</p>
+</h2><p>這篇文章我們先介紹了什麼是全文搜尋（Full-Text Search），並且也透過 SQL 資料庫所面臨的困境，介紹 Elastic Search 實際要解決的問題是什麼，希望可以幫助大家了解 Elastic Search 的運作邏輯，搞懂反向索引（Inverted Index）的核心概念是什麼。</p>
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
-   target="_blank" rel="noopener">《古古的後端筆記》電子報</a> ，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+   target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
 <blockquote>
 <p>補充：我開設的 <a href="https://hahow.in/cr/springboot"
    

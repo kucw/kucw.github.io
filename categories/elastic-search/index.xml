@@ -6,8 +6,15 @@
     <description>Recent content in Elastic Search on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 07 Dec 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elastic Search 是什麼？認識地表最強的全文搜尋工具！</title>
+      <link>https://kucw.io/blog/elasticsearch-intro/</link>
+      <pubDate>Tue, 08 Apr 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/elasticsearch-intro/</guid>
+      <description>&lt;p&gt;Elastic Search 可以說是長年霸佔「全文搜尋」排行榜的第一名，不管是在使用者的產品開發上、還是在內部的 log 系統中，也都常常能看見 Elastic Search 的身影，因此這篇文章我們就來介紹一下，Elastic Search 到底是什麼吧！&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ElasticSearch - 地理座標點 geo_point</title>
       <link>https://kucw.io/blog/2019/12/elasticsearch-geo-point/</link>
