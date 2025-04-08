@@ -267,7 +267,7 @@
 <h2 id="什麼是-elastic-search" class="markdown-heading-anchor">
   什麼是 Elastic Search？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-elastic-search">#</a>
-</h2><p><strong>Elastic Search 是一個強大的「全文搜尋」（Full-Text Search）工具</strong>，也就是一個「能夠讓你自己架設搜尋引擎」的工具。所以簡單的說，<strong>Elastic Search 的目標就是「讓使用者能夠快速的從一堆文件中，找到他想要的資料在哪裡」</strong>，也就是搜尋引擎最重要的作用了。</p>
+</h2><p><strong>Elastic Search 是一個強大的「全文搜尋」（Full-Text Search）工具</strong>，也就是一個「能夠讓你自己架設搜尋引擎」的工具。所以簡單的說，<strong>Elastic Search 的目標就是「讓使用者能夠快速的從一堆數據中，找到他想要的資料在哪裡」</strong>，也就是搜尋引擎最重要的作用了。</p>
 <p>不過在我們開始介紹 Elastic Search 到底是強在哪裡之前，我們可以先回頭來看一下，在 Elastic Search 還沒有誕生之前，我們是如何使用 SQL 資料庫來實作「查詢」的功能的。</p>
 <h3 id="在以前的-sql-資料庫時代" class="markdown-heading-anchor">
   在以前的 SQL 資料庫時代
@@ -299,7 +299,7 @@
 <h3 id="使用-elastic-search-之後" class="markdown-heading-anchor">
   使用 Elastic Search 之後
   <a href="#%e4%bd%bf%e7%94%a8-elastic-search-%e4%b9%8b%e5%be%8c">#</a>
-</h3><p>在 Elastic Search 中，一樣是會先對每一筆 review 評論建立一筆數據（在 Elastic Search 中稱為「文檔」），並且因為 Elastic Search 是屬於 NoSQL 資料庫，所以會使用 JSON 格式來儲存該文檔。</p>
+</h3><p>在 Elastic Search 中，一樣是會先對每一筆 review 評論建立一筆數據（在 Elastic Search 中稱為「文件」），並且因為 Elastic Search 是屬於 NoSQL 資料庫，所以會使用 JSON 格式來儲存該文件。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;review_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;review_text&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;I jumped out the brown fox&#34;</span> <span style="color:#1f2328">},</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;review_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;review_text&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;hello how are you&#34;</span> <span style="color:#1f2328">}</span>
@@ -325,7 +325,7 @@
     height="1190"
 />
 </p>
-<p>因此後續當使用者查詢 <code>hello</code> 或是查詢 <code>are</code> 時，Elastic Search 就可以去檢查反向索引，如果有任何一個命中的話（譬如說命中 <code>hello</code> 這個反向索引），那麼就可以根據反向索引，去找出該索引指向的真實的數據（也就是 <code>hello how are you</code> 這個評論），這樣子就可以快速的在大量的文件中，去找到我們想要的數據了！</p>
+<p>因此後續當使用者查詢 <code>hello</code> 或是查詢 <code>are</code> 時，Elastic Search 就可以去檢查反向索引，如果有任何一個命中的話（譬如說命中 <code>hello</code> 這個反向索引），那麼就可以根據反向索引，去找出該索引指向的真實的數據（也就是 <code>hello how are you</code> 這個評論），這樣子就可以快速的在大量的資料中，去找到我們想要的數據了！</p>
 <p>也因為在整個 Elastic Search 的世界中，他不僅要儲存每一筆真實的評論數據之外，Elastic Search 同時也需要為每一筆評論數據生成對應的反向索引，因此佔用的數據空間會比一般的 SQL 資料庫還要多，<strong>不過這其實也是演算法中典型的「用空間換取時間」的概念</strong>，即是先對數據進行預處理，將數據處理成好查詢的方式，等到未來需要時就可以馬上查詢，就可以達到「降低查詢時間」的終極目標了！</p>
 <h2 id="elastic-search-介紹" class="markdown-heading-anchor">
   Elastic Search 介紹
