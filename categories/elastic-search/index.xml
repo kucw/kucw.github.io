@@ -9,11 +9,11 @@
     <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Elastic Search 是什麼？認識地表最強的全文搜尋工具！</title>
+      <title>Elasticsearch 是什麼？認識地表最強的全文搜尋工具！</title>
       <link>https://kucw.io/blog/elasticsearch-intro/</link>
       <pubDate>Tue, 08 Apr 2025 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/elasticsearch-intro/</guid>
-      <description>&lt;p&gt;Elastic Search 可以說是長年霸佔「全文搜尋」排行榜的第一名，不管是在使用者的產品開發上、還是在內部的 log 系統中，也都常常能看見 Elastic Search 的身影，因此這篇文章我們就來介紹一下，Elastic Search 到底是什麼吧！&lt;/p&gt;</description>
+      <description>&lt;p&gt;Elasticsearch 可以說是長年霸佔「全文搜尋」排行榜的第一名，不管是在使用者的產品開發上、還是在內部的 log 系統中，也都常常能看見 Elasticsearch 的身影，因此這篇文章我們就來介紹一下，Elasticsearch 到底是什麼吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-elasticsearch&#34;&gt;什麼是 Elasticsearch？&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#在以前的-sql-資料庫時代&#34;&gt;在以前的 SQL 資料庫時代&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#使用-elasticsearch-之後&#34;&gt;使用 Elasticsearch 之後&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#什麼是反向索引inverted-index&#34;&gt;什麼是反向索引（Inverted Index）？&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#elasticsearch-介紹&#34;&gt;Elasticsearch 介紹&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#elasticsearch-總結&#34;&gt;Elasticsearch 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充反向索引的實戰經驗分享&#34;&gt;補充：反向索引的實戰經驗分享&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-elasticsearch&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Elasticsearch？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-elasticsearch&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先 Elasticsearch 其實是由兩個單字 Elastic 和 Search 所組成，因此念法上就會唸成 Elastic Search，只不過官方的產品名稱是全部縮寫在一起而已。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - 地理座標點 geo_point</title>
