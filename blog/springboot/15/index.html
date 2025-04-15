@@ -954,7 +954,7 @@
         
         
         <li><a href="https://kucw.io/blog/springboot/16/">
-          Day 16 - 結構化的呈現數據 - JSON
+          Day 16 - 結構化的呈現數據 - JSON 格式介紹
         </a></li>
         
         
@@ -1390,6 +1390,41 @@
           <p>哈囉大家好，我是古古。</p>
 <p>在上一篇文章中，我們先介紹了 Http 協議的用途，也介紹了 Http request 和 Http response 的格式規範，並且也有實際到 API Tester 中，練習去發起一個 Http request、以及查看 Http response 的返回值。</p>
 <p>那麼這篇文章，我們就會回到 Spring MVC 中，來介紹要如何使用 <code>@RequestMapping</code>，將 url 路徑對應到 Spring Boot 程式的方法上。</p>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#回顧什麼是-http-協議">回顧：什麼是 Http 協議？</a></li>
+    <li><a href="#什麼是-url">什麼是 Url？</a></li>
+    <li><a href="#url-的格式規範">Url 的格式規範</a>
+      <ul>
+        <li><a href="#1-使用的協議">1. 使用的協議</a></li>
+        <li><a href="#2-域名">2. 域名</a></li>
+        <li><a href="#3-port端口">3. Port（端口）</a></li>
+        <li><a href="#4-url-路徑">4. url 路徑</a></li>
+      </ul>
+    </li>
+    <li><a href="#url-的例子分析">Url 的例子分析</a>
+      <ul>
+        <li><a href="#例子一youtube-的-url-分析">例子一：YouTube 的 url 分析</a></li>
+        <li><a href="#例子二instagram-的-url-分析">例子二：Instagram 的 url 分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#url-路徑對應requestmapping">Url 路徑對應：@RequestMapping</a>
+      <ul>
+        <li><a href="#使用-requestmapping-的注意事項一定要在-class-上加上-controller-或是-restcontroller">使用 @RequestMapping 的注意事項：一定要在 class 上加上 @Controller 或是 @RestController</a></li>
+      </ul>
+    </li>
+    <li><a href="#在-spring-boot-中練習-requestmapping-的用法">在 Spring Boot 中練習 @RequestMapping 的用法</a>
+      <ul>
+        <li><a href="#練習-requestmapping-的用法">練習 @RequestMapping 的用法</a></li>
+        <li><a href="#新增一個-url-路徑對應">新增一個 url 路徑對應</a></li>
+      </ul>
+    </li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
 <h2 id="回顧什麼是-http-協議" class="markdown-heading-anchor">
   回顧：什麼是 Http 協議？
   <a href="#%e5%9b%9e%e9%a1%a7%e4%bb%80%e9%ba%bc%e6%98%af-http-%e5%8d%94%e8%ad%b0">#</a>
@@ -1725,7 +1760,7 @@
   <div class="col-sm-6 p-2"><a href="/blog/springboot/16/">
       <div class="doc-next-page">
         <div class="doc-next-pager-indicator">下一頁<i class="ti-arrow-right"></i></div>
-        <div class="doc-pager-title">Day 16 - 結構化的呈現數據 - JSON</div>
+        <div class="doc-pager-title">Day 16 - 結構化的呈現數據 - JSON 格式介紹</div>
       </div>
     </a></div>
 </div>

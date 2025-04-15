@@ -114,11 +114,11 @@
       <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Spring Boot 零基礎入門 (16) - 結構化的呈現數據 - JSON</title>
+      <title>Spring Boot 零基礎入門 (16) - 結構化的呈現數據 - JSON 格式介紹</title>
       <link>https://kucw.io/blog/springboot/16/</link>
       <pubDate>Tue, 16 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/16/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有去要如何使用 &lt;code&gt;@RequestMapping&lt;/code&gt;，將 url 路徑對應到 Spring Boot 程式的方法上。&lt;/p&gt;&#xA;&lt;p&gt;那麼這篇文章，我們就接著來介紹，要如何透過 JSON 格式，結構化的去呈現返回給前端的數據。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (15) - Url 路徑對應 - @RequestMapping</title>
