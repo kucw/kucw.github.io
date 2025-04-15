@@ -104,7 +104,7 @@
       <link>https://kucw.io/blog/springboot/18/</link>
       <pubDate>Thu, 18 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/18/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們有介紹了 Spring MVC 的 &lt;code&gt;@RequestMapping&lt;/code&gt; 和 &lt;code&gt;@RestController&lt;/code&gt; 的用法，所以我們現在已經可以接住前端傳過來的請求，並且也能夠回傳 JSON 格式的數據給前端了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (17) - 返回值改成 JSON 格式 - @RestController</title>

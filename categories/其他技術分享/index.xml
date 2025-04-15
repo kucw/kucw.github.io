@@ -27,7 +27,7 @@
       <link>https://kucw.io/blog/http-get-post/</link>
       <pubDate>Tue, 25 Feb 2025 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/http-get-post/</guid>
-      <description>&lt;p&gt;在軟體開發中，Http 可以說是大家最常打交道的一個協議了，因此這篇文章就會來介紹一下 Http 中的 GET 和 POST 的差別。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果大家對於 Http 的其他文章感興趣，也可以參考下列文章的介紹：&lt;/p&gt;</description>
+      <description>&lt;p&gt;在軟體開發中，Http 可以說是大家最常打交道的一個協議了，因此這篇文章就會來介紹一下 Http 中的 GET 和 POST 的差別。&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-http-method&#34;&gt;什麼是 Http Method？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#get-介紹&#34;&gt;GET 介紹&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#post-介紹&#34;&gt;POST 介紹&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#get-和-post-總結&#34;&gt;GET 和 POST 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充get-和-post-的更多細節比較&#34;&gt;補充：GET 和 POST 的更多細節比較&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-http-method&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 Http Method？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-http-method&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 Http Method，就是在發送一個 API 時，所使用的請求方式。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Polling 和 Webhook 是什麼？如何更有效的串接第三方系統？</title>
