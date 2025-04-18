@@ -1387,9 +1387,367 @@
         
         
         <div class="content mb-4">
-          <p>文章陸續更新中&hellip;可先前往 <a href="https://ithelp.ithome.com.tw/articles/10327252"
+          <p>哈囉大家好，我是古古。</p>
+<p>在上一篇文章中，我們先介紹了 Http method 的概念，並且也介紹了兩個常見的 Http method：GET 和 POST，分別了解他們是如何傳遞參數給後端的。</p>
+<p>那麼接著這篇文章，我們就會回到 Spring Boot 上，來介紹一下要如何在 Spring Boot 中，去接住前端所傳過來的這些參數的值。</p>
+<blockquote>
+<p>補充：不過也因為在 Spring Boot 有許多種方式可以接住前端所傳遞過來的參數，因此這裡會分成上、下兩篇文章來介紹，因此這篇文章我們就會先介紹 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法。</p></blockquote>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#在-spring-boot-中接住參數的四個註解">在 Spring Boot 中接住參數的四個註解</a></li>
+    <li><a href="#1-requestparam接住添加在-url-後面的參數">1. @RequestParam：接住添加在 url 後面的參數</a>
+      <ul>
+        <li><a href="#在-spring-boot-中練習-requestparam-的用法">在 Spring Boot 中練習 @RequestParam 的用法</a></li>
+        <li><a href="#使用-requestparam-的注意事項之一參數名字須一致">使用 @RequestParam 的注意事項之一：參數名字須一致</a></li>
+        <li><a href="#使用-requestparam-的注意事項之二參數類型需一致">使用 @RequestParam 的注意事項之二：參數類型需一致</a></li>
+        <li><a href="#小結requestparam-用法總結">小結：@RequestParam 用法總結</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-requestbody接住放在-request-body-中的參數">2. @RequestBody：接住放在 request body 中的參數</a>
+      <ul>
+        <li><a href="#在-spring-boot-中練習-requestbody-的用法">在 Spring Boot 中練習 @RequestBody 的用法</a></li>
+        <li><a href="#小結requestbody-用法總結">小結：@RequestBody 用法總結</a></li>
+      </ul>
+    </li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
+<h2 id="在-spring-boot-中接住參數的四個註解" class="markdown-heading-anchor">
+  在 Spring Boot 中接住參數的四個註解
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e6%8e%a5%e4%bd%8f%e5%8f%83%e6%95%b8%e7%9a%84%e5%9b%9b%e5%80%8b%e8%a8%bb%e8%a7%a3">#</a>
+</h2><p>在 Spring Boot 中，有四個註解可以去接住前端傳遞過來的參數，分別是：</p>
+<ol>
+<li><code>@RequestParam</code></li>
+<li><code>@RequestBody</code></li>
+<li><code>@RequestHeader</code></li>
+<li><code>@PathVariable</code></li>
+</ol>
+<p>這四個註解雖然長得有點像（都是以 <code>@Request</code> 開頭），但是他們功能是完全不同的！所以接下來這兩篇文章，我們就會分別來介紹這四個註解要如何使用。</p>
+<p>而在這篇文章中，我們就會先來介紹前兩個註解，也就是 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法。</p>
+<h2 id="1-requestparam接住添加在-url-後面的參數" class="markdown-heading-anchor">
+  1. @RequestParam：接住添加在 url 後面的參數
+  <a href="#1-requestparam%e6%8e%a5%e4%bd%8f%e6%b7%bb%e5%8a%a0%e5%9c%a8-url-%e5%be%8c%e9%9d%a2%e7%9a%84%e5%8f%83%e6%95%b8">#</a>
+</h2><p>首先我們先來看第一個註解，也就是 <code>@ReqeustParam</code>。</p>
+<p><strong><code>@ReqeustParam</code> 的用途，就是「接住那些放在 url 後面的參數」</strong>，所以像是我們在上一個章節中所介紹到的 GET 請求，就是會把請求參數放在 url 的最後面來傳遞：</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/19/19-1.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 700px; width: 100%"
+    width="2020"
+    height="462"
+/>
+</p>
+<p>因此當前端使用 GET 來請求時，我們就可以在 Spring Boot 中寫上 <code>@ReqeustParam</code>，去接住前端所傳遞過來的參數（query parameter）。</p>
+<h3 id="在-spring-boot-中練習-requestparam-的用法" class="markdown-heading-anchor">
+  在 Spring Boot 中練習 @RequestParam 的用法
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-requestparam-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
+</h3><p>大概了解了 <code>@ReqeustParam</code> 的概念之後，我們也可以實際到 Spring Boot 上來練習一下 <code>@ReqeustParam</code> 的用法。</p>
+<p>舉例來說，當前端使用 GET 來請求、並且在 url 的最後面加上了一個 <code>id=123</code> 的參數時，那麼前端的實際請求就會如下圖所示：</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-2.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2331"
+  height="653"
+/></p>
+<p>而這個時候，如果我們想要在 Spring Boot 中去接住 <code>id=123</code> 的參數的話，那我們就可以像下圖一下，<strong>先在 <code>test1()</code> 方法中新增一個 Integer 類型的參數 id，並且在 id 的前面加上一個 <code>@RequestParam</code></strong>，這樣子就可以成功的取得到前端傳遞過來的 <code>id=123</code> 的值了！</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/19/19-3.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 660px; width: 100%"
+    width="1819"
+    height="1329"
+/>
+</p>
+<p>所以如果我們實際到 Spring Boot 上練習的話，就只要改寫一下 MyController，將他改成下面的程式：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RestController</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyController</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@RequestMapping</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;/test1&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">test1</span><span style="color:#1f2328">(</span><span style="color:#0550ae">@RequestParam</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;id 的值為: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>id<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;請求成功&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/19/19-4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1680"
+/></p>
+<p>寫上上述的程式之後，就可以運行一下 Spring Boot 程式。運行成功之後回到 API Tester 上，接著在 Http method 中選擇 GET 請求、url 填上 http://localhost:8080/test1?id=123，這樣子就可以模擬前端的請求。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-5.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>因此當我們按下 Send 鍵之後，在右下角的 response body 中，就會出現 Spring Boot 所回傳的「請求成功」的訊息。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>此時當我們回到 IntelliJ 上查看的話，在下方的 console 中，就會出現「id 的值為: 123」的字串。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-7.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3026"
+  height="766"
+/></p>
+<p>所以這就表示，我們就成功的透過 <code>@RequestParam</code>，接住前端放在 url 中所傳遞的參數了！</p>
+<h3 id="使用-requestparam-的注意事項之一參數名字須一致" class="markdown-heading-anchor">
+  使用 @RequestParam 的注意事項之一：參數名字須一致
+  <a href="#%e4%bd%bf%e7%94%a8-requestparam-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80%e5%8f%83%e6%95%b8%e5%90%8d%e5%ad%97%e9%a0%88%e4%b8%80%e8%87%b4">#</a>
+</h3><p>在使用 <code>@RequestParam</code> 去接住 url 後面的參數時，首先有一個重點需要注意，就是<strong>在 Spring Boot 中的「變數的名字」，必須要和「url 中的參數的名字」一樣才可以。</strong></p>
+<p>舉例來說，假設 url 中所添加的參數是 <code>id=123</code>，那麼在 Spring Boot 所使用的參數名字，就必須也是 <code>id</code>；又或是說假設 url 中添加的是 <code>name=Judy</code>，那麼在 Spring Boot 中所使用的參數名字，就必須是 <code>name</code>。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/19/19-8.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 720px; width: 100%"
+    width="2011"
+    height="1342"
+/>
+</p>
+<p>假設參數名字不一致的話，<code>@RequestParam</code> 是沒有辦法成功取得到 url 中的參數的，因此大家在使用上，就要特別注意這兩個地方的名字一定要一致才可以！</p>
+<blockquote>
+<p>補充：如果真的發生參數名字不一樣的情況出現，那麼透過一些額外的設定，其實也是可以讓 <code>@RequestParam</code> 生效的。</p>
+<p>舉例來說，假設前端傳遞的參數為 <code>myId=123</code>，但是如果想要在 Spring Boot 上使用 <code>id</code> 來接住這個 <code>myId</code> 的參數的話，那麼就要改寫成 <code>@RequestParam(name = &quot;myId&quot;) Integer id)</code> 的寫法（也就是在 <code>@RequestParam</code> 後面多加上了 <code>(name = &quot;myId&quot;)</code> 的額外設定），這樣子才能夠將前端的 <code>myId</code> 對應到 Spring Boot 中的 <code>id</code> 參數。</p>
+<p>不過雖然 <code>@RequestParam</code> 有支援這種特殊的設定，但一般在實作上，還是會建議大家盡量讓「前端傳遞的參數」和「Spring Boot 中使用的參數名稱」一致，這樣子就不用多寫額外的程式來轉換，實作上也比較直覺方便，比較不會出問題。</p></blockquote>
+<h3 id="使用-requestparam-的注意事項之二參數類型需一致" class="markdown-heading-anchor">
+  使用 @RequestParam 的注意事項之二：參數類型需一致
+  <a href="#%e4%bd%bf%e7%94%a8-requestparam-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8c%e5%8f%83%e6%95%b8%e9%a1%9e%e5%9e%8b%e9%9c%80%e4%b8%80%e8%87%b4">#</a>
+</h3><p><strong>使用 <code>@RequestParam</code> 去接住 url 參數的第二個重點，就是「參數的類型需要一致」。</strong></p>
+<p>舉例來說，假設前端在 url 中所添加的參數是 <code>id=123</code>，那麼就是在暗示這個 id 的值是一個整數，因此我們在 Spring Boot 中，就需要將該參數宣告為 Integer 類型或是 int 類型，這樣才能成功接住前端所傳過來的參數。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/19/19-9.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 720px; width: 100%"
+    width="2016"
+    height="1329"
+/>
+</p>
+<p>又或是前端在 url 中所添加的參數是 <code>name=Judy</code>，那麼就是在暗示這個 name 參數的值是一個字串，因此我們在 Spring Boot 中，就需要將該參數宣告為 String 類型，這樣也才能成功接住前端所傳過來的參數。</p>
+<p>因此只有當類型一致時，Spring Boot 才有辦法成功的接住該參數，將該參數的值給轉換過來，否則的話 Spring Boot 可是會出錯的！會回傳一個請求失敗的資訊給前端。</p>
+<h3 id="小結requestparam-用法總結" class="markdown-heading-anchor">
+  小結：@RequestParam 用法總結
+  <a href="#%e5%b0%8f%e7%b5%90requestparam-%e7%94%a8%e6%b3%95%e7%b8%bd%e7%b5%90">#</a>
+</h3><p>綜合以上的介紹，我們可以先做個 <code>@RequestParam</code> 的用法總結。</p>
+<p><strong><code>@RequestParam</code> 的用途，就是「接住那些放在 url 後面的參數」</strong>，所以當前端將參數添加在 url 的後面來傳遞時，就是 <code>@RequestParam</code> 出馬的時候了！</p>
+<p>而在使用 <code>@RequestParam</code> 時，要注意以下的事項：</p>
+<ul>
+<li>參數的名字要一致（無額外的設定下）</li>
+<li>參數的類型要一致</li>
+</ul>
+<p>只要掌握好上面兩個注意事項，就可以成功的運用 <code>@RequestParam</code>，去接住前端放在 url 後面的那些參數了！</p>
+<h2 id="2-requestbody接住放在-request-body-中的參數" class="markdown-heading-anchor">
+  2. @RequestBody：接住放在 request body 中的參數
+  <a href="#2-requestbody%e6%8e%a5%e4%bd%8f%e6%94%be%e5%9c%a8-request-body-%e4%b8%ad%e7%9a%84%e5%8f%83%e6%95%b8">#</a>
+</h2><p>了解了 <code>@RequestParam</code> 的用法之後，接著我們可以來看第二個註解 <code>@RequestBody</code> 的用法。</p>
+<p><strong><code>@RequestBody</code> 的用途，就是「接住放在 request body 中的參數」</strong>，所以像是我們在上一篇文章中所介紹到的 POST 請求，他就是會把參數放在 request body 中來傳遞：</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/19/19-10.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 570px; width: 100%"
+    width="1616"
+    height="706"
+/>
+</p>
+<p>因此當前端使用 POST 來請求時，我們就可以在 Spring Boot 中寫上 <code>@ReqeustBody</code>，去接住前端放在 request body 中所傳遞的參數。</p>
+<h3 id="在-spring-boot-中練習-requestbody-的用法" class="markdown-heading-anchor">
+  在 Spring Boot 中練習 @RequestBody 的用法
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-requestbody-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
+</h3><p>大概了解了 <code>@ReqeustBody</code> 的概念之後，我們一樣也是可以實際到 Spring Boot 中，來練習一下 <code>@ReqeustBody</code> 的用法。</p>
+<p>舉例來說，當前端使用 POST 來請求、並且在 request body 中添加了下列的 JSON 格式的參數的話，那麼前端的實際請求就會如下圖所示：</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-11.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2301"
+  height="1293"
+/></p>
+<p>而這個時候，如果我們想要在 Spring Boot 中去接住這個 JSON 格式的參數的話，那我們首先要做的，<strong>就是先去創建一個 Java class 出來，並且這個 Java class 中的變數，會和 JSON 格式的數據「一一對應」。</strong></p>
+<p>像是我們可以先去 new 一個 Student class 出來，並且在 Student 中添加下列的程式：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Student</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span><span style="color:#6639ba">getId</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">setId</span><span style="color:#1f2328">(</span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">this</span><span style="color:#1f2328">.</span><span style="color:#1f2328">id</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">getName</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">setName</span><span style="color:#1f2328">(</span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">this</span><span style="color:#1f2328">.</span><span style="color:#1f2328">name</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/19/19-12.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1680"
+/></p>
+<p>當我們這樣寫時，就是去創建了一個「和 JSON 數據一一對應的 Student class」出來。</p>
+<p>之所以說這個 Student class 和 JSON 數據一一對應，是因為在上述的 JSON 數據中，他裡面有兩個 key 存在，分別是 id（整數）和 name（字串），而在 Student class 中也有兩個變數存在，變數名稱也是 id 和 name，並且 id 也為整數類型、name 也為字串類型。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-13.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3399"
+  height="1661"
+/></p>
+<p>而當我們創建出「和 JSON 數據一一對應的 Student class」之後，Spring Boot 到時候就會自動將 request body 中的 JSON 參數，一口氣轉換成 Student class 了！magic！！</p>
+<p>寫好 Student class 之後，接著我們可以回到 MyController，並且在裡面新增另一個方法 <code>test2()</code>，接著我們在 <code>test2()</code> 中先新增一個 Student 類型的參數 student，並且在這個 name 的前面，加上一個 <code>@RequestBody</code>，如下方程式所示：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RequestMapping</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;/test2&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">test2</span><span style="color:#1f2328">(</span><span style="color:#0550ae">@RequestBody</span><span style="color:#fff"> </span>Student<span style="color:#fff"> </span>student<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;student 中的 id 值為: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>student<span style="color:#1f2328">.</span><span style="color:#1f2328">getId</span><span style="color:#1f2328">());</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;student 中的 name 值為: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>student<span style="color:#1f2328">.</span><span style="color:#1f2328">getName</span><span style="color:#1f2328">());</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;請求成功&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/19/19-14.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1680"
+/></p>
+<p>當我們這樣寫之後，Spring Boot 到時候就會將 request body 中的 JSON 參數，自動轉換成我們自定義的 STudent class 了，因此我們後續就可以直接從 <code>test2()</code> 中的 student 參數，直接取得到前端所傳遞過來的 JSON 數據了！</p>
+<p>寫上上述的程式之後，可以重新運行一下 Spring Boot 程式，讓這段程式生效。</p>
+<p>運行成功之後回到 API Tester 上，接著在 Http method 中選擇 POST 請求，url 填上 http://localhost:8080/test2，並且在 request body 中填上下列的 JSON 參數，這樣就可以模擬前端的請求。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">123</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Judy&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/19/19-15.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>而當我們按下 Send 鍵之後，在右下角的 response body 中，就會出現 Spring Boot 所回傳的「請求成功」的訊息。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-16.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>此時當我們回到 IntelliJ 上查看的話，在下方的 console 中，就會出現「student 中的 id 值為: 123」、「student 中的 name 值為: Judy」的字串。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/19/19-17.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3024"
+  height="765"
+/></p>
+<p>所以這就表示，我們就成功的透過 <code>@RequestBody</code>，去接住前端放在 request body 中所傳遞的 JSON 參數了！所以大家以後就可以透過 <code>@RequestBody</code>，在 Spring Boot 中取得前端所傳遞的 JSON 參數了。</p>
+<h3 id="小結requestbody-用法總結" class="markdown-heading-anchor">
+  小結：@RequestBody 用法總結
+  <a href="#%e5%b0%8f%e7%b5%90requestbody-%e7%94%a8%e6%b3%95%e7%b8%bd%e7%b5%90">#</a>
+</h3><p>綜合以上的介紹，我們也可以來對 @RequestBody 做個小總結。</p>
+<p><strong><code>@RequestBody</code> 的用途，就是「接住放在 request body 中的參數」</strong>，所以當前端將 JSON 參數透過 request body 來傳遞時，就可以使用 <code>@RequestBody</code> 來處理。</p>
+<p>而在使用 <code>@RequestBody</code> 時，重點是要自己創建「和 JSON 參數一一對應的 Java class」出來，只要創建好這個 Java class，後續 Spring Boot 就會自動將 JSON 參數轉換成該 Java 物件了，非常方便！</p>
+<blockquote>
+<p>補充：不過在創建和 JSON 參數一一對應的 Java class 時，就是考驗大家對於 JSON 格式的熟悉程度了，如果對 JSON 不太熟悉的話，也可以回頭參考 
+<a href="https://kucw.io/blog/springboot/16/" rel="noopener">Day 16 - 結構化的呈現數據 - JSON 格式介紹</a> 的介紹。</p></blockquote>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章我們先列出了 Spring Boot 中提供的四種取得前端參數的註解，並且詳細的介紹了前兩個註解 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法，介紹要如何透過 <code>@ReqestParam</code> 取得 url 後面的參數，以及要如何透過 <code>@RequestBody</code> 取得 request body 中的 JSON 數據，這兩個都是實務上非常常用的作法，建議大家一定要熟練掌握才行！</p>
+<p>那麼下一篇文章，我們就會接著來介紹另外兩個取得前端參數的註解：<code>@RequestHeader</code> 以及 <code>@PathVariable</code>，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">iThome 鐵人賽</a> 閱讀後續的文章</p>
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
         
