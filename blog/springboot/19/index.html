@@ -1463,7 +1463,7 @@
   width="2331"
   height="653"
 /></p>
-<p>而這個時候，如果我們想要在 Spring Boot 中去接住 <code>id=123</code> 的參數的話，那我們就可以像下圖一下，<strong>先在 <code>test1()</code> 方法中新增一個 Integer 類型的參數 id，並且在 id 的前面加上一個 <code>@RequestParam</code></strong>，這樣子就可以成功的取得到前端傳遞過來的 <code>id=123</code> 的值了！</p>
+<p>而這個時候，如果我們想要在 Spring Boot 中去接住 <code>id=123</code> 的參數的話，那我們就可以像下圖一下，<strong>先在 <code>test1()</code> 方法中，新增一個 Integer 類型的參數 id，並且在 id 的前面加上一個 <code>@RequestParam</code></strong>，這樣子就可以成功的取得到前端傳遞過來的 <code>id=123</code> 的值了！</p>
 
 
 
@@ -1499,7 +1499,9 @@
   width="3230"
   height="1680"
 /></p>
-<p>寫上上述的程式之後，就可以運行一下 Spring Boot 程式。運行成功之後回到 API Tester 上，接著在 Http method 中選擇 GET 請求、url 填上 http://localhost:8080/test1?id=123，這樣子就可以模擬前端的請求。</p>
+<p>寫上上述的程式之後，就可以運行一下 Spring Boot 程式。運行成功之後回到 API Tester 上，接著在 Http method 中選擇 GET 請求、url 填上 <a href="http://localhost:8080/test1?id=123"
+   
+   target="_blank" rel="noopener">http://localhost:8080/test1?id=123</a>，這樣子就可以模擬前端的請求。</p>
 <p>
 
 <img
@@ -1692,7 +1694,9 @@
 /></p>
 <p>當我們這樣寫之後，Spring Boot 到時候就會將 request body 中的 JSON 參數，自動轉換成我們自定義的 STudent class 了，因此我們後續就可以直接從 <code>test2()</code> 中的 student 參數，直接取得到前端所傳遞過來的 JSON 數據了！</p>
 <p>寫上上述的程式之後，可以重新運行一下 Spring Boot 程式，讓這段程式生效。</p>
-<p>運行成功之後回到 API Tester 上，接著在 Http method 中選擇 POST 請求，url 填上 http://localhost:8080/test2，並且在 request body 中填上下列的 JSON 參數，這樣就可以模擬前端的請求。</p>
+<p>運行成功之後回到 API Tester 上，接著在 Http method 中選擇 POST 請求，url 填上 <a href="http://localhost:8080/test2"
+   
+   target="_blank" rel="noopener">http://localhost:8080/test2</a>，並且在 request body 中填上下列的 JSON 參數，這樣就可以模擬前端的請求。</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">123</span><span style="color:#1f2328">,</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&#34;name&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Judy&#34;</span>
