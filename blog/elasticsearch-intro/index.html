@@ -306,11 +306,11 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#1f2328">{</span> <span style="color:#0550ae">&#34;review_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;review_text&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;hello how are you&#34;</span> <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#1f2328">]</span>
 </span></span></code></pre></div><p>其實到這邊其實都跟上面的 SQL 資料庫一模一樣，只是 Elasticsearch 換個方式用 JSON 儲存而已，到目前為止沒有任何的差別。</p>
-<p>不過！！重點來了！！Elasticsearch 之所以能夠快速的查詢出「帶有 <code>brown</code>」的評論，<strong>就是因為 Elasticsearch 在插入一筆文檔時，會預先對該文檔建立「反向索引」（Inverted Index）</strong>，因此之後就可以借助「反向索引」的力量，快速的找出相關評論。</p>
+<p>不過！！重點來了！！Elasticsearch 之所以能夠快速的查詢出「帶有 <code>brown</code>」的評論，<strong>就是因為 Elasticsearch 在插入一筆文件時，會預先對該文件建立「反向索引」（Inverted Index）</strong>，因此之後就可以借助「反向索引」的力量，快速的找出相關評論。</p>
 <h3 id="什麼是反向索引inverted-index" class="markdown-heading-anchor">
   什麼是反向索引（Inverted Index）？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af%e5%8f%8d%e5%90%91%e7%b4%a2%e5%bc%95inverted-index">#</a>
-</h3><p>舉例來說，當 Elasticsearch 插入一筆數據 <code>hello how are you</code> 時，他除了正常的插入一筆文檔之外，他同時也會將 <code>hello how are you</code> 拆分成許多不同的小單字，譬如說會拆分成 <code>hello</code>、<code>how</code>、<code>are</code>、<code>you</code> 這四個字，並且 Elasticsearch 會將這些單字「對應」到該筆評論數據上。</p>
+</h3><p>舉例來說，當 Elasticsearch 插入一筆數據 <code>hello how are you</code> 時，他除了正常的插入一筆文件之外，他同時也會將 <code>hello how are you</code> 拆分成許多不同的小單字，譬如說會拆分成 <code>hello</code>、<code>how</code>、<code>are</code>、<code>you</code> 這四個字，並且 Elasticsearch 會將這些單字「對應」到該筆評論數據上。</p>
 
 
 
