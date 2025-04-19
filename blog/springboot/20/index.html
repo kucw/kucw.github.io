@@ -1387,9 +1387,337 @@
         
         
         <div class="content mb-4">
-          <p>文章陸續更新中&hellip;可先前往 <a href="https://ithelp.ithome.com.tw/articles/10327252"
+          <p>哈囉大家好，我是古古。</p>
+<p>在上一篇文章中，我們有分別介紹 <code>@ReqestParam</code> 和 <code>@RequestBody</code> 的用法，了解要如何透過 <code>@ReqestParam</code> 取得 url 後面的參數，以及如何透過 <code>@RequestBody</code> 取得 request body 中的 JSON 數據。</p>
+<p>那麼這篇文章，我們就會接著來介紹另外兩個取得請求參數的註解，也就是 <code>@RequestHeader</code> 和 <code>@PathVariable</code>，那我們就開始吧！</p>
+<blockquote>
+<p>補充：想了解 <code>@ReqestParam</code> 和 <code>@RequestBody</code> 的用法的話，可以參考上一篇文章 
+<a href="https://kucw.io/blog/springboot/19/" rel="noopener">Day 19 - 取得請求參數（上）- @RequestParam、@RequestBody</a> 的介紹。</p></blockquote>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#3-requestheader接住放在-request-header-中的參數">3. @RequestHeader：接住放在 request header 中的參數</a>
+      <ul>
+        <li><a href="#在-spring-boot-中練習-requestheader-的用法">在 Spring Boot 中練習 @RequestHeader 的用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-pathvariable接住放在-url-路徑中的值">4. @PathVariable：接住放在 url 路徑中的值</a>
+      <ul>
+        <li><a href="#在-spring-boot-中練習-pathvariable-的用法">在 Spring Boot 中練習 @PathVariable 的用法</a></li>
+        <li><a href="#使用-pathvariable-的注意事項之一url-路徑和參數的名字要一致">使用 @PathVariable 的注意事項之一：「url 路徑」和「參數的名字」要一致</a></li>
+        <li><a href="#使用-pathvariable-的注意事項之二參數類型需一致">使用 @PathVariable 的注意事項之二：參數類型需一致</a></li>
+        <li><a href="#小結pathvariable-用法總結">小結：@PathVariable 用法總結</a></li>
+      </ul>
+    </li>
+    <li><a href="#補充為什麼我們需要-pathvariable">補充：為什麼我們需要 @PathVariable？</a></li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
+<h2 id="3-requestheader接住放在-request-header-中的參數" class="markdown-heading-anchor">
+  3. @RequestHeader：接住放在 request header 中的參數
+  <a href="#3-requestheader%e6%8e%a5%e4%bd%8f%e6%94%be%e5%9c%a8-request-header-%e4%b8%ad%e7%9a%84%e5%8f%83%e6%95%b8">#</a>
+</h2><p><strong><code>@ReqeustHeader</code> 的用途，就是「接住放在 request header 中的參數」。</strong></p>
+<p>雖然一般在開發上，不太會使用到 request header 來傳遞一般的參數（通常只有「權限驗證」或是「通用資訊」，才會使用 request header 來傳遞），不過我們仍舊可以來看一下 <code>@RequestHeader</code> 的用途為何，先對這個註解有個印象。</p>
+<h3 id="在-spring-boot-中練習-requestheader-的用法" class="markdown-heading-anchor">
+  在 Spring Boot 中練習 @RequestHeader 的用法
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-requestheader-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
+</h3><p>首先因為 request header 是不論使用哪一種 Http 請求都可以添加的參數，所以換句話說畫的，即是 GET、POST、PUT、DELETE…等請求，都可以添加 request header 的通用參數。</p>
+<p>舉例來說，如果前端在請求時，想要在 request header 中添加參數的話，那麼就可以在 API Tester 中，先去點擊 Add header 的按鈕，這樣子就可以去添加一個新的 request header 出來。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-1.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2330"
+  height="653"
+/></p>
+<p>在點擊 Add header 按鈕之後，就會出現一對 key-value 的格子讓我們填寫（沒錯 request header 也是使用 key 和 value 的方式來存放的），因此左邊就是這個 request header 的名字（也就是 key），而右邊就是這個 header 的值（也就是 value）。</p>
+<p>所以像是在下圖中，<code>info</code> 就是這個 request header 的 key、而 <code>hello</code> 就是他的 value 值。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-2.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2332"
+  height="762"
+/></p>
+<p>當我們這樣填寫之後，前端到時候在請求時，就會將 <code>info: hello</code> 這個 request header 的 <code>key: value</code> 的資訊，去傳遞給後端了。</p>
+<p>而當前端傳遞了 request header 的資訊過來之後，如果我們想要在 Spring Boot 中去接住這個 <code>info: hello</code> 的 request header 的值的話，那麼我們就可以像下圖一樣，<strong>在 <code>test3()</code> 方法的實作中，先新增一個 String 類型的參數 info，並且在 info 前面加上一個 <code>@RequestHeader</code></strong>，這樣子就可以成功的取得到前端傳遞過來的 header 的值了！</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/20/20-3.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 700px; width: 100%"
+    width="2010"
+    height="1586"
+/>
+</p>
+<p>所以如果我們實際到 Spring Boot 上練習的話，就只要在 MyController 中，新增一個新的 <code>test3()</code> 方法，並且在裡面寫上下列的程式，這樣就可以取得前端所傳遞過來的 header 的值。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RequestMapping</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;/test3&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">test3</span><span style="color:#1f2328">(</span><span style="color:#0550ae">@RequestHeader</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span>info<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;info 的值為: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>info<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;請求成功&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/20/20-4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1854"
+/></p>
+<p>實作完 MyController 之後，接著就運行一下 Spring Boot 程式。</p>
+<p>運行成功之後，就回到 API Tester 中，並且在 Http method 中選擇 GET 請求（其實選擇哪一種請求方法都可以，此處以 GET 為例），url 的地方填上 <a href="http://localhost:8080/test3"
    
-   target="_blank" rel="noopener">iThome 鐵人賽</a> 閱讀後續的文章</p>
+   target="_blank" rel="noopener">http://localhost:8080/test3</a>，然後 request header 的地方新增 <code>info: hello</code> 這組數據，這樣就可以模擬前端的請求。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-5.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>這時當我們按下 Send 鍵之後，在右下角的 response body 中，就會出現 Spring Boot 所回傳的「請求成功」的訊息。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>而當我們回到 IntelliJ 上查看的話，在下方的 console 中，就會出現「info 的值為: hello」的字串。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-7.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3022"
+  height="845"
+/></p>
+<p>所以這就表示，我們就成功的透過 <code>@RequestHeader</code>，接住前端放在 request header 中所傳遞的參數了！因此大家以後就可以透過這個寫法，去取得 request header 中的參數的值了。</p>
+<h2 id="4-pathvariable接住放在-url-路徑中的值" class="markdown-heading-anchor">
+  4. @PathVariable：接住放在 url 路徑中的值
+  <a href="#4-pathvariable%e6%8e%a5%e4%bd%8f%e6%94%be%e5%9c%a8-url-%e8%b7%af%e5%be%91%e4%b8%ad%e7%9a%84%e5%80%bc">#</a>
+</h2><p>在介紹完前面三個註解 <code>@RequestParam</code>、<code>@RequestBody</code>、<code>@RequestHeader</code> 之後，最後我們要來介紹第四個註解，也是跟其他人長得最不一樣的註解，即是 <code>@PathVariable</code>（前面的註解都是以 <code>@Request...</code> 開頭，只有他是以 <code>@Path...</code> 開頭）。</p>
+<p><strong><code>@PathVariable</code> 的用途，就是「接住放在 url 路徑中的值」</strong>，這句話的重點在於**「url 路徑」**，這也是 <code>@PathVariable</code> 和其他三個註解最不一樣的地方。</p>
+<p>舉例來說，假設我們今天有一個 url 如下：</p>
+<pre tabindex="0"><code>http://localhost:8080/test4/123
+</code></pre><p>在這段 url 網址中，他的 url 路徑的值為 <code>/test4/123</code>，<strong>而如果我們想要取得到 url 路徑 <code>/test4/123</code> 中的 <code>123</code> 的值的話，那麼就要透過 <code>@PathVariable</code> 來取得。</strong></p>
+<blockquote>
+<p>補充：此處大家先不用思考「為什麼我們需要讀取 url 路徑中的值？」，只要先學習 <code>@PathVariable</code> 的使用方法就好，後續會再回頭來解釋「為什麼我們需要 <code>@PathVariable</code>？」以及「<code>@PathVariable</code> 的應用場景為何」。</p></blockquote>
+<h3 id="在-spring-boot-中練習-pathvariable-的用法" class="markdown-heading-anchor">
+  在 Spring Boot 中練習 @PathVariable 的用法
+  <a href="#%e5%9c%a8-spring-boot-%e4%b8%ad%e7%b7%b4%e7%bf%92-pathvariable-%e7%9a%84%e7%94%a8%e6%b3%95">#</a>
+</h3><p>大概了解了 <code>@PathVariable</code> 的概念之後，我們也可以實際到 Spring Boot 中，來練習一下 <code>@PathVariable</code> 的用法。</p>
+<p>舉例來說，假設前端今天請求了 <a href="http://localhost:8080/test4/123"
+   
+   target="_blank" rel="noopener">http://localhost:8080/test4/123</a> 這個 url，那麼在這個 url 裡面，他的 url 路徑即是 <code>/test4/123</code>。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-8.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2329"
+  height="650"
+/></p>
+<p>而如果我們想要在 Spring Boot 中，去接住 url 路徑 <code>/test4/123</code> 中的 <code>123</code> 的值的話，就必須要做兩件事：</p>
+<p>首先我們要先修改一下 <code>@RequestMapping</code> 的寫法，即是將 <code>@RequestMapping</code> 所對應的 url 路徑，改寫成 <code>@RequestMapping(&quot;/test4/{id}&quot;)</code>，這樣子 Spring Boot 才能夠將 <code>/test4/123</code> 的 url 路徑，去對應到 <code>test4()</code> 方法上。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/20/20-9.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 700px; width: 100%"
+    width="2027"
+    height="1496"
+/>
+</p>
+<p>接著我們就可以在 <code>test4()</code> 的方法中，去添加一個 Integer 類型的參數 id，<strong>並且在 id 前面加上一個 <code>@PathVariable</code></strong>，這樣子到時候，這個 id 的值就會是 url 路徑中的 <code>123</code>，因此就可以成功的取得到 url 路徑（<code>/test4/123</code>）中的 <code>123</code> 的值了！</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/20/20-10.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 730px; width: 100%"
+    width="2221"
+    height="1514"
+/>
+</p>
+<p>所以如果我們將這段 <code>test4()</code> 的方法實作到 MyController 中的話，就可以寫成下面這個樣子：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RequestMapping</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;/test4&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">test4</span><span style="color:#1f2328">(</span><span style="color:#0550ae">@PathVariable</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;id 的值為: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>id<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;請求成功&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/20/20-11.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1728"
+/></p>
+<p>修改好 MyController 之後，接著重新運行一下 Spring Boot 程式。</p>
+<p>運行成功之後，就可以回到 API Tester，然後在 Http method 中選擇 GET 請求，url 填上 <a href="http://localhost:8080/test4/123"
+   
+   target="_blank" rel="noopener">http://localhost:8080/test4/123</a>，就可以模擬前端的請求。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-12.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>這時當我們按下 Send 鍵之後，在右下角的 response body 中，就會出現 Spring Boot 所回傳的「請求成功」的訊息。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-13.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3224"
+  height="1936"
+/></p>
+<p>而當我們回到 IntelliJ 上查看的話，在下方的 console 中，就會出現「id 的值為: 123」的字串。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-14.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3029"
+  height="789"
+/></p>
+<p>所以這就表示，我們就成功的透過 <code>@PathVariable</code>，去接住前端放在 url 路徑中的值了！</p>
+<h3 id="使用-pathvariable-的注意事項之一url-路徑和參數的名字要一致" class="markdown-heading-anchor">
+  使用 @PathVariable 的注意事項之一：「url 路徑」和「參數的名字」要一致
+  <a href="#%e4%bd%bf%e7%94%a8-pathvariable-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%b8%80url-%e8%b7%af%e5%be%91%e5%92%8c%e5%8f%83%e6%95%b8%e7%9a%84%e5%90%8d%e5%ad%97%e8%a6%81%e4%b8%80%e8%87%b4">#</a>
+</h3><p>在使用 <code>@PathVariable</code> 去取得 url 路徑中的值的時候，有一點一定要特別注意，<strong>就是「url 路徑」和「參數的名字」必須要一致才可以。</strong></p>
+<p>舉例來說，如果我們在 <code>@RequestMapping</code> 中設定的 url 路徑為 <code>/test4/{id}</code>，那麼在方法中所定義的參數名字，就也必須要定義成 <code>id</code> 才可以</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/20/20-15.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 600px; width: 100%"
+    width="1590"
+    height="726"
+/>
+</p>
+<p>所以假設當我們在 <code>@RequestMapping</code> 中設定的 url 路徑為 <code>/test4/{age}</code> 時，那麼參數的名字，也必須一起改成 <code>age</code> 才可以。</p>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/20/20-16.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 610px; width: 100%"
+    width="1613"
+    height="710"
+/>
+</p>
+<p><strong>所以簡單來說，就是「url 路徑」和「參數的名字」一定要一致就對了！</strong></p>
+<h3 id="使用-pathvariable-的注意事項之二參數類型需一致" class="markdown-heading-anchor">
+  使用 @PathVariable 的注意事項之二：參數類型需一致
+  <a href="#%e4%bd%bf%e7%94%a8-pathvariable-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8c%e5%8f%83%e6%95%b8%e9%a1%9e%e5%9e%8b%e9%9c%80%e4%b8%80%e8%87%b4">#</a>
+</h3><p>使用 <code>@PathVariable</code> 的第二個注意事項，就是「參數的類型需要一致」。</p>
+<p>這部分其實就跟之前的 <code>@RequestParam</code> 很類似，譬如說 url 路徑中的值是 <code>/test4/123</code>，那就是暗示 <code>/test4/{id}</code> 中的 <code>id</code> 的值是 123，所以我們就要將 <code>id</code> 參數宣告為 Integer 或是 int 類型，這樣子才能夠成功的取得到 url 路徑中的值。</p>
+<h3 id="小結pathvariable-用法總結" class="markdown-heading-anchor">
+  小結：@PathVariable 用法總結
+  <a href="#%e5%b0%8f%e7%b5%90pathvariable-%e7%94%a8%e6%b3%95%e7%b8%bd%e7%b5%90">#</a>
+</h3><p>綜合以上的介紹，我們也可以來總結一下 <code>@PathVariable</code> 的用法。</p>
+<p><strong><code>@PathVariable</code> 的用途，就是「接住放在 url 路徑中的值」</strong>，這句話的重點在於**「url 路徑」**，這也是 <code>@PathVariable</code> 和其他三個註解最不一樣的地方。</p>
+<p>而在使用 <code>@PathVariable</code> 時，要注意以下的事項：</p>
+<ul>
+<li>「url 路徑」和「參數的名字」要一致</li>
+<li>參數的類型要一致</li>
+</ul>
+<p>只要注意好上面兩個注意事項，就可以成功的運用 <code>@PathVariable</code>，去取得 url 路徑中的值了！</p>
+<h2 id="補充為什麼我們需要-pathvariable" class="markdown-heading-anchor">
+  補充：為什麼我們需要 @PathVariable？
+  <a href="#%e8%a3%9c%e5%85%85%e7%82%ba%e4%bb%80%e9%ba%bc%e6%88%91%e5%80%91%e9%9c%80%e8%a6%81-pathvariable">#</a>
+</h2><p>了解了 <code>@PathVariable</code> 的用法之後，我們也可以回頭來解釋一下，為什麼我們需要實作「從 url 路徑中取得值」這種行為。</p>
+<p>假設前端想要傳遞「id 為 123」的資訊給 Spring Boot 的話，那麼前端完全可以使用上一篇文章所介紹的 <code>@RequestParam</code> 來傳遞，直接把 <code>id=123</code> 的資訊加在 url 最後面來傳遞就好了（如下圖左），為什麼要大費周章把 123 的值放到 url 路徑裡面，然後再透過 <code>@PathVariable</code> 來取得呢（如下圖右）？</p>
+<p>
+
+<img
+  src="/images/blog/springboot/20/20-17.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3374"
+  height="1272"
+/></p>
+<p>之所以會使用 <code>@PathVariable</code> 來傳遞參數的根本原因，<strong>就是「為了支援 RESTful API 的設計風格」！</strong></p>
+<p>所謂的 RESTful API，他是在現今前後端開發中，非常流行的一種設計風格，而為了讓 Spring Boot 也能夠開發出符合 RESTful API 的設計風格，因此 Spring Boot 就設計出了 <code>@PathVariable</code> 這個註解，讓我們有能力去取得 url 路徑中的值。</p>
+<p>有關 RESTful API 的設計風格，在下一篇文章就會跟大家詳細的介紹了，所以大家只要先知道 <code>@PathVariable</code> 是真的在實務上很常使用的註解即可，在下一篇文章就會詳細介紹 RESTful API 的使用方法，以及如何將 <code>@PathVariable</code> 套用在 RESTful API 的設計風格上！</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>這篇文章我們先延續上一篇文章，詳細的介紹了後兩個註解 <code>@RequestHeader</code> 和 <code>@PathVariable</code> 的用法，了解要如何透過 <code>@RequestHeader</code> 取得 request header 中的參數，以及要如何透過 <code>@PathVariable</code> 取得 url 路徑中的值。</p>
+<p>所以到這邊為止，我們就詳細介紹完 Spring Boot 中的四種取得參數的註解了，分別是：</p>
+<ol>
+<li><code>@RequestParam</code>：接住放在 Url 後面的參數</li>
+<li><code>@RequestBody</code>：接住放在 request body 中的參數</li>
+<li><code>@RequestHeader</code>：接住放在 request header 中的參數</li>
+<li><code>@PathVariable</code>：取得放在 url 路徑中的值</li>
+</ol>
+<p>因此大家之後就可以根據不同的情境，去選擇不同的註解，進而去取得到前端傳遞給我們的參數了！</p>
+<p>而在我們更了解 Spring MVC 的用法之後，接著下一篇文章，我們就會來介紹現今前後端開發非常流行的一種設計風格，也就是 RESTful API，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
+   
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
         

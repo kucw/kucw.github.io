@@ -90,7 +90,7 @@
       <link>https://kucw.io/blog/springboot/20/</link>
       <pubDate>Sat, 20 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/20/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有分別介紹 &lt;code&gt;@ReqestParam&lt;/code&gt; 和 &lt;code&gt;@RequestBody&lt;/code&gt; 的用法，了解要如何透過 &lt;code&gt;@ReqestParam&lt;/code&gt; 取得 url 後面的參數，以及如何透過 &lt;code&gt;@RequestBody&lt;/code&gt; 取得 request body 中的 JSON 數據。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (19) - 取得請求參數（上）- @RequestParam、@RequestBody</title>
