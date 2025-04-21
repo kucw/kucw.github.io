@@ -72,11 +72,11 @@
       <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Spring Boot 零基礎入門 (22) - 實作 RESTful API</title>
+      <title>Spring Boot 零基礎入門 (22) - RESTful API 實作 - @GetMapping、@PostMapping...</title>
       <link>https://kucw.io/blog/springboot/22/</link>
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/22/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有介紹了什麼是 RESTful API，以及在設計 RESTful API 時，需要滿足哪三個設計條件，先讓大家對 RESTful API 有基本的認識。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (21) - RESTful API 介紹</title>
