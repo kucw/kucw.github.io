@@ -6,8 +6,15 @@
     <description>Recent content in Elastic Search on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch 進階用法，如何透過 function_score 自定義排序結果？</title>
+      <link>https://kucw.io/blog/elasticsearch-function-score-intro/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/elasticsearch-function-score-intro/</guid>
+      <description>&lt;p&gt;Elasticsearch 除了可以用來實作一般的全文搜尋之外，如果想要實作「推薦排序」，針對多個維度綜合比較，Elasticsearch 也是支援這類的用法的！&lt;/p&gt;&#xA;&lt;p&gt;因此這篇文章我們就來介紹一下，要如何透過 Elasticsearch 中的 &lt;code&gt;function_score&lt;/code&gt;，來實作自定義排序的結果吧！&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果對 Elasticsearch 不太熟悉，也可以先回頭參考 Elasticsearch 的基本介紹 &lt;a href=&#34;https://kucw.io/blog/elasticsearch-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Elasticsearch 是什麼？認識地表最強的全文搜尋工具！&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Elasticsearch 是什麼？認識地表最強的全文搜尋工具！</title>
       <link>https://kucw.io/blog/elasticsearch-intro/</link>
