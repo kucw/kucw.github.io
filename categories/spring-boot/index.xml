@@ -62,7 +62,7 @@
       <link>https://kucw.io/blog/springboot/24/</link>
       <pubDate>Wed, 24 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/24/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們介紹了 Spring MVC 中的許多特性，因此大家現在就可以在 Spring Boot 中，透過 Spring MVC 和前端進行溝通了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (23) - Http Status Code（Http 狀態碼）介紹</title>
