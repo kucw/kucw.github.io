@@ -55,7 +55,7 @@
       <link>https://kucw.io/blog/springboot/25/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/25/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們先介紹了 Spring JDBC 的用途是什麼，先讓大家對 Spring JDBC 有一個簡單的認識。&lt;/p&gt;&#xA;&lt;p&gt;那麼接著這篇文章，我們就會實際的去創建一個資料庫，並且將 Spring Boot 程式連線到此資料庫上，同時也會補充要如何運用 IntelliJ 中的好用工具，去管理資料庫中的數據（僅限 IntelliJ 付費版才有此功能），所以我們就開始吧！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (24) - Spring JDBC 簡介</title>
