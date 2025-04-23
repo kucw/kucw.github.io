@@ -48,7 +48,7 @@
       <link>https://kucw.io/blog/springboot/26/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/26/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有在 Spring Boot 中載入了 Spring JDBC 的功能，並且也有設定好了 MySQL 資料庫的連線資訊。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (25) - 資料庫連線設定、IntelliJ 資料庫管理工具介紹</title>

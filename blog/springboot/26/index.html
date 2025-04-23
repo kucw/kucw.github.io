@@ -1387,9 +1387,382 @@
         
         
         <div class="content mb-4">
-          <p>文章陸續更新中&hellip;可先前往 <a href="https://ithelp.ithome.com.tw/articles/10327252"
+          <p>哈囉大家好，我是古古。</p>
+<p>在上一篇文章中，我們有在 Spring Boot 中載入了 Spring JDBC 的功能，並且也有設定好了 MySQL 資料庫的連線資訊。</p>
+<p>那麼接著這篇文章，我們就會正式來介紹，要如何使用 Spring JDBC 的功能，在 Spring Boot 程式中執行 SQL 語法，進而去操作資料庫內部的數據。</p>
+<div class="markdown-toc">
+    <div class="markdown-toc-title">目錄</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-jdbc-用法介紹">Spring JDBC 用法介紹</a>
+      <ul>
+        <li><a href="#補充怎麼背哪種-sql-語法用哪個方法來執行">補充：怎麼背哪種 SQL 語法用哪個方法來執行？</a></li>
+      </ul>
+    </li>
+    <li><a href="#update-的基本用法">update() 的基本用法</a>
+      <ul>
+        <li><a href="#步驟一注入-namedparameterjdbctemplate-bean">步驟一：注入 NamedParameterJdbcTemplate Bean</a></li>
+        <li><a href="#步驟二撰寫-sql-語法">步驟二：撰寫 SQL 語法</a></li>
+        <li><a href="#步驟三新增一個-mapstring-object-的-map-變數">步驟三：新增一個 Map&lt;String, object&gt; 的 map 變數</a></li>
+        <li><a href="#步驟四使用-update-方法">步驟四：使用 update() 方法</a></li>
+        <li><a href="#實際測試">實際測試</a></li>
+      </ul>
+    </li>
+    <li><a href="#update-中的-map-參數用法">update() 中的 map 參數用法</a>
+      <ul>
+        <li><a href="#例子根據前端的參數動態的決定-sql-中的值">例子：根據前端的參數，動態的決定 SQL 中的值</a></li>
+        <li><a href="#前置準備">前置準備</a></li>
+        <li><a href="#修改-sql-語法添加-map-變數中的值">修改 SQL 語法、添加 map 變數中的值</a></li>
+        <li><a href="#實際測試-1">實際測試</a></li>
+      </ul>
+    </li>
+    <li><a href="#update-方法的用法總結">update() 方法的用法總結</a></li>
+    <li><a href="#總結">總結</a></li>
+  </ul>
+</nav>
+</div>
+<h2 id="spring-jdbc-用法介紹" class="markdown-heading-anchor">
+  Spring JDBC 用法介紹
+  <a href="#spring-jdbc-%e7%94%a8%e6%b3%95%e4%bb%8b%e7%b4%b9">#</a>
+</h2><p><strong>在 Spring JDBC 中，會根據 SQL 語法區分成兩大類，分別是「update 系列」和「query 系列」。</strong></p>
+<ul>
+<li>在 update 系列的方法中，可以執行 INSERT、UPDATE、DELETE 這三種 SQL 語法</li>
+<li>而在 query 系列的方法中，只能執行 SELECT 這一種 SQL 語法</li>
+</ul>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/26/26-1.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 750px; width: 100%"
+    width="2762"
+    height="1165"
+/>
+</p>
+<p>因此大家如果想要執行的是 INSERT SQL，那就是得使用 <code>update()</code> 方法來執行，而如果想執行的是 SELECT SQL 的話，則是得改用 <code>query()</code> 方法來執行。</p>
+<p>也因為 <code>update()</code> 和 <code>query()</code> 這兩個方法在用法上會有點差別，因此接下來我們就會分成上、下兩篇文章，分別來介紹這兩種方法的用法。</p>
+<p>因此在這篇文章中，我們就會先來介紹 <code>update()</code> 的用法。</p>
+<h3 id="補充怎麼背哪種-sql-語法用哪個方法來執行" class="markdown-heading-anchor">
+  補充：怎麼背哪種 SQL 語法用哪個方法來執行？
+  <a href="#%e8%a3%9c%e5%85%85%e6%80%8e%e9%ba%bc%e8%83%8c%e5%93%aa%e7%a8%ae-sql-%e8%aa%9e%e6%b3%95%e7%94%a8%e5%93%aa%e5%80%8b%e6%96%b9%e6%b3%95%e4%be%86%e5%9f%b7%e8%a1%8c">#</a>
+</h3><p>因為在 Spring JDBC 中，INSERT、UPDATE、DELETE 這三種 SQL 語法，必須要用 <code>update()</code> 方法來執行，而 SELECT 這一種 SQL 語法，則是得改用 <code>query()</code> 方法來執行，所以大家一開始接觸的時候，可能會怕自己忘記哪種 SQL 語法要用哪個方法來執行。</p>
+<p>不過這個對應關係其實是不用特別背的！因為我們可以透過「方法的名稱」，去推敲出當下這個 SQL 語法要用哪種方法來執行。</p>
+<p>舉例來說，<strong>像是 <code>update()</code> 方法代表的是「更新資料庫中的數據」的意思</strong>，所以在 INSERT、UPDATE、DELETE 這三種情境中，都是廣義的表達「改變資料庫中儲存的數據」的含義。</p>
+<ul>
+<li>INSERT：在資料庫中「新增」一筆數據</li>
+<li>UPDATE：在資料庫中「修改」一筆已存在的數據</li>
+<li>DELETE：在資料庫中「刪除」一筆數據</li>
+</ul>
+<p>因此對於 INSERT、UPDATE、DELETE 這三種 SQL 語法，就都可以使用 <code>update()</code> 方法來執行。</p>
+<p>而同樣的道理，<strong>因為另一個 <code>query()</code> 方法代表的是「查詢資料庫中的數據」的意思</strong>，所以他就會去對應到 SELECT 這一種 SQL 語法，專門去查詢資料庫中的數據。因此針對 SELECT SQL，就是只能使用 <code>query()</code> 方法來執行。</p>
+<p>所以大家以後在使用 Spring JDBC 時，就不用特別背誦哪種 SQL 要用哪一個方法來執行，只要直接從方法名稱上去推敲就可以了！</p>
+<h2 id="update-的基本用法" class="markdown-heading-anchor">
+  update() 的基本用法
+  <a href="#update-%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%94%a8%e6%b3%95">#</a>
+</h2><p>大概了解了 <code>update()</code> 和 <code>query()</code> 方法之間的差別之後，接著我們就可以來詳細介紹一下，要如何使用 <code>update()</code> 方法去執行 INSERT、UPDATE、DELETE 這三種 SQL 語法。</p>
+<p>要使用 <code>update()</code> 方法去執行 INSERT、UPDATE、DELETE 這三種 SQL 語法的話，可以分成四個步驟來實作：</p>
+<h3 id="步驟一注入-namedparameterjdbctemplate-bean" class="markdown-heading-anchor">
+  步驟一：注入 NamedParameterJdbcTemplate Bean
+  <a href="#%e6%ad%a5%e9%a9%9f%e4%b8%80%e6%b3%a8%e5%85%a5-namedparameterjdbctemplate-bean">#</a>
+</h3><p>使用 <code>update()</code> 的第一步，就是要先在你的 Bean 裡面，去注入 NamedParameterJdbcTemplate 進來。</p>
+<p>因此我們就可以在 StudentController 中，先使用 <code>@Autowired</code>，去注入 NamedParameterJdbcTemplate 這個 Bean 進來（如下圖中的第 14～15 行所示）。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Autowired</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>NamedParameterJdbcTemplate<span style="color:#fff"> </span>namedParameterJdbcTemplate<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/26/26-2.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<p>而我們之所以可以直接在 StudentController 中去注入 NamedParameterJdbcTemplate 這個 Bean，就是因為這個 Bean 是由 Spring JDBC 自動幫我們生成的 Bean，他會負責去處理和資料庫溝通的所有事項，因此後續我們就可以透過 NamedParameterJdbcTemplate，去執行想要執行的 SQL 語法了。</p>
+<p>所以簡單來說，當我們在使用 Spring JDBC 的功能時，其實很大部分的時間都是在和 NamedParameterJdbcTemplate 打交道，即是學習要如何使用 NamedParameterJdbcTemplate 中所提供的 <code>update()</code> 和 <code>query()</code> 方法，去執行我們想執行的 SQL 語法。</p>
+<h3 id="步驟二撰寫-sql-語法" class="markdown-heading-anchor">
+  步驟二：撰寫 SQL 語法
+  <a href="#%e6%ad%a5%e9%a9%9f%e4%ba%8c%e6%92%b0%e5%af%ab-sql-%e8%aa%9e%e6%b3%95">#</a>
+</h3><p>在 StudentController 中注入好 NamedParameterJdbcTemplate 進來之後，<strong>接著第二步，就是去寫出我們想要執行的 SQL 語法。</strong></p>
+<p>所以我們可以先在 StudentController 中創建一個 String 類型的變數 <code>sql</code>，並且在裡面寫上我們想要執行的 SQL 語法（如下圖中的第 20 行所示）。</p>
+<p>舉例來說，下方就是將一條 INSERT SQL 的語句，儲存在 <code>sql</code> 的變數裡面，而這條 INSERT SQL 的用途，就是「在 student table 中插入一筆 id 為 3、並且 name 為 John」的數據。因此到時候當 Spring JDBC 去執行這條 SQL 時，就會在 student table 中插入 John 這筆新數據。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#fff"> </span>sql<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;INSERT INTO student(id, name) VALUES (3, &#39;John&#39;)&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/26/26-3.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<h3 id="步驟三新增一個-mapstring-object-的-map-變數" class="markdown-heading-anchor">
+  步驟三：新增一個 Map&lt;String, object&gt; 的 map 變數
+  <a href="#%e6%ad%a5%e9%a9%9f%e4%b8%89%e6%96%b0%e5%a2%9e%e4%b8%80%e5%80%8b-mapstring-object-%e7%9a%84-map-%e8%ae%8a%e6%95%b8">#</a>
+</h3><p>撰寫完想要執行的 SQL 語句之後，<strong>接著第三步，就是去新增一個類型為 <code>Map&lt;String, object&gt;</code> 的 map 變數出來。</strong></p>
+<p>因此就可以在 StudentController 中添加下方的程式（如下圖中的第 22 行所示）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#0550ae">&lt;</span>String<span style="color:#1f2328">,</span><span style="color:#fff"> </span>Object<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>map<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>HashMap<span style="color:#0550ae">&lt;&gt;</span><span style="color:#1f2328">();</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/26/26-4.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<blockquote>
+<p>補充：我們後續就會介紹這個 map 變數的用途了，因此目前就先照抄即可。</p></blockquote>
+<h3 id="步驟四使用-update-方法" class="markdown-heading-anchor">
+  步驟四：使用 update() 方法
+  <a href="#%e6%ad%a5%e9%a9%9f%e5%9b%9b%e4%bd%bf%e7%94%a8-update-%e6%96%b9%e6%b3%95">#</a>
+</h3><p>當前面的步驟都完成之後，最後要做的第四部，就是去使用 namedParameterJdbcTemplate 中的 <code>update()</code> 方法，並且把上面所宣告的 sql 和 map 這兩個變數，依照順序傳進去 <code>update()</code> 方法裡面（如下圖中的第 24 行所示）。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>namedParameterJdbcTemplate<span style="color:#1f2328">.</span><span style="color:#1f2328">update</span><span style="color:#1f2328">(</span>sql<span style="color:#1f2328">,</span><span style="color:#fff"> </span>map<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/26/26-5.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<p>只要完成了這四個步驟，我們就完成了 Spring JDBC 的實作了！</p>
+<p>因此到時候當 Spring Boot 執行到第 24 行的 <code>update()</code> 方法時，就會去執行我們所指定的 SQL 語法（即是執行 sql 變數中所儲存的 SQL 語法，<code>INSERT INTO student(id, name) VALUES (3, 'John')</code>），所以最終 Spring Boot 就可以成功的在 student table 中，插入這筆 John 的新數據了！</p>
+<h3 id="實際測試" class="markdown-heading-anchor">
+  實際測試
+  <a href="#%e5%af%a6%e9%9a%9b%e6%b8%ac%e8%a9%a6">#</a>
+</h3><p>完成上述的程式之後，我們可以來運行這個 Spring Boot 程式，測試一下他的效果。</p>
+<p>成功運行 Spring Boot 程式之後，接著就回到 API Tester 中，並且填入以下的請求參數：</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-6.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2378"
+  height="1066"
+/></p>
+<p>填寫完畢之後，接著按下右側的 Send 鍵，就可以去發起一個 Http 請求。</p>
+<p>而在請求成功之後，就可以回到 IntelliJ 上，然後點開右側的資料庫圖示，並且開啟 student table。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-7.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<p>這時在 student table 中，就可以看到多出了一筆「id 為 3、並且 name 為 John」的數據。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-8.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<p>所以這就表示，我們就成功的透過了 Spring JDBC 的 <code>update()</code> 方法，在 Spring Boot 中執行 INSERT SQL 的語法，進而新增一筆數據到資料庫中了！</p>
+<p>而在我們練習完 <code>update()</code> 方法的基本用法之後，接下來我們也可以來介紹一下，前面我們所創建的 <code>Map&lt;String, object&gt;</code> map 變數，他的用途為何。</p>
+<h2 id="update-中的-map-參數用法" class="markdown-heading-anchor">
+  update() 中的 map 參數用法
+  <a href="#update-%e4%b8%ad%e7%9a%84-map-%e5%8f%83%e6%95%b8%e7%94%a8%e6%b3%95">#</a>
+</h2><p>在上面的「步驟三：新增一個 <code>Map&lt;String, object&gt;</code> 的 map 變數」小節裡，我們當時有先創建了一個 map 變數（下圖中的第 22 行），並且當時告訴大家先照抄就好，不過現在我們就可以回頭來介紹這個 map 變數的用法了。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-9.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<p><strong>這個 map 變數的用途，是用來「放置 SQL 語法中的變數的值」</strong>，這句話聽起來可能有點抽象，所以我們可以直接透過一個例子，來了解一下 map 變數的用法為何。</p>
+<h3 id="例子根據前端的參數動態的決定-sql-中的值" class="markdown-heading-anchor">
+  例子：根據前端的參數，動態的決定 SQL 中的值
+  <a href="#%e4%be%8b%e5%ad%90%e6%a0%b9%e6%93%9a%e5%89%8d%e7%ab%af%e7%9a%84%e5%8f%83%e6%95%b8%e5%8b%95%e6%85%8b%e7%9a%84%e6%b1%ba%e5%ae%9a-sql-%e4%b8%ad%e7%9a%84%e5%80%bc">#</a>
+</h3><p>在上面那段程式中，我們是直接寫死一條 SQL 語法 <code>INSERT INTO student (id, name) VALUES (3, 'John')</code> 在程式裡面，因此不管前端傳了什麼參數過來，我們始終都只能夠在資料庫中，去新增一筆「id 為 3、並且 name 為 John」的數據。</p>
+<p>不過這樣子的寫法非常的不彈性，如果我們想要改成是去新增一筆「id 為 4、name 為 Bob」的數據的話，那麼就得先停止 Spring Boot 程式，修改這一行 SQL 語法，然後再重新運行 Spring Boot 程式，在實作上就會變得非常麻煩。</p>
+<p><strong>因此，假設我們想要「動態的決定」當前 SQL 語法中的值的話，那就需要依靠 map 這個變數來幫忙了!</strong></p>
+<h3 id="前置準備" class="markdown-heading-anchor">
+  前置準備
+  <a href="#%e5%89%8d%e7%bd%ae%e6%ba%96%e5%82%99">#</a>
+</h3><p>為了練習 map 變數的用途，首先我們得先做一些前置準備，去接住前端傳過來的參數。</p>
+<p>因此大家可以先創建一個 Student class，並且在裡面創建兩個變數 id 和 name，程式如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Student</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span><span style="color:#6639ba">getId</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">setId</span><span style="color:#1f2328">(</span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">this</span><span style="color:#1f2328">.</span><span style="color:#1f2328">id</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">getName</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">setName</span><span style="color:#1f2328">(</span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">this</span><span style="color:#1f2328">.</span><span style="color:#1f2328">name</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>接著在 StudentController 裡，在第 19 行的 <code>insert()</code> 方法的實作中，添加 <code>@RequestBody</code> 註解，後續就可以使用 <code>@RequestBody</code> 去接住前端傳過來的參數。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-10.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1818"
+/></p>
+<blockquote>
+<p>補充：不熟悉 @RequsetBody 的用法的話，可以回頭參考 <a href="/blog/springboot/19/"
    
-   target="_blank" rel="noopener">iThome 鐵人賽</a> 閱讀後續的文章</p>
+   target="_blank" rel="noopener">Day 19 - 取得請求參數（上）- @RequestParam、@RequestBody</a> 的介紹。</p></blockquote>
+<h3 id="修改-sql-語法添加-map-變數中的值" class="markdown-heading-anchor">
+  修改 SQL 語法、添加 map 變數中的值
+  <a href="#%e4%bf%ae%e6%94%b9-sql-%e8%aa%9e%e6%b3%95%e6%b7%bb%e5%8a%a0-map-%e8%ae%8a%e6%95%b8%e4%b8%ad%e7%9a%84%e5%80%bc">#</a>
+</h3><p>使用了 <code>@RequestBody</code> 接住前端傳來的變數之後，接著我們就可以將前端傳過來的 id 和 name 的值，去放到 map 變數裡面，這樣後續就可以插入這筆新的數據到資料庫中了。</p>
+<p>因此此處有兩個地方需要修改：</p>
+<p>首先是第 19 行的 SQL 語法，要將 <code>(3, John)</code> 的程式，改寫成 <code>(:studentId, :studentName)</code>。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#fff"> </span>sql<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;INSERT INTO student(id, name) VALUES (:studentId, :studentName)&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>接著需要在 map 變數下方，添加第 24、25 行的程式，也就是在 map 變數中新增兩組 key-value 的值。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#1f2328">.</span><span style="color:#1f2328">put</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;studentId&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>student<span style="color:#1f2328">.</span><span style="color:#1f2328">getId</span><span style="color:#1f2328">());</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>map<span style="color:#1f2328">.</span><span style="color:#1f2328">put</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;studentName&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>student<span style="color:#1f2328">.</span><span style="color:#1f2328">getName</span><span style="color:#1f2328">());</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>
+
+<img
+  src="/images/blog/springboot/26/26-11.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1834"
+/></p>
+<p>在這些改動中，首先我們先將 SQL 語法從 <code>(3, John)</code> 改寫成是 <code>(:studentId, :studentName)</code>，<strong>而只要在 SQL 語法中加上了「<code>:</code>」，就表示這是一個「SQL 中的變數」。</strong></p>
+<p>舉例來說，像是 <code>:studentId</code>，就表示我們指定這是一個 SQL 中的變數，名字叫做 studentId。</p>
+<p>至於後面的 <code>:studentName</code>，就是表示我們指定另一個 SQL 中的變數，名字叫做 studentName。</p>
+<p>因此我們就可以透過這個邏輯，在同一句 SQL 語法裡面，添加無數個 SQL 中的變數了。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-12.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1834"
+/></p>
+<p>而在 SQL 語法中的 <code>:studentId</code>、<code>:studentName</code> 這些變數，我們後續就可以使用第 23 行的 map，來指定這些變數的值為多少。<strong>因此在使用 map 變數時，前面要放的是「SQL 變數的名字」，後面放的則是「這個 SQL 變數的值是多少」。</strong></p>
+<p>舉例來說，假設我們想要指定 <code>:studentId</code> 的值為 5 的話，那麼就可以寫成：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#1f2328">.</span><span style="color:#1f2328">put</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;studentId&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>5<span style="color:#1f2328">);</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>如果我們想要指定 <code>:studentId</code> 的值為「前端傳過來的 id 的值」的話，那麼就可以寫成是：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#1f2328">.</span><span style="color:#1f2328">put</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;studentId&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>student<span style="color:#1f2328">.</span><span style="color:#1f2328">getId</span><span style="color:#1f2328">());</span><span style="color:#fff">
+</span></span></span></code></pre></div><p>因此透過 map 變數，我們就可以動態的去決定 SQL 中的變數的值，進而實作出「動態的決定要插入的數據為何」的效果了！</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-13.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1834"
+/></p>
+<blockquote>
+<p>補充：如果看到這裡仍舊覺得思緒有點亂、不太了解 map 的具體用法的話，建議可以先直接往下看後面的「實際測試」的部分，實際的用 API Tester 和 Spring Boot 程式來搭配練習，慢慢的就能夠掌握 map 的用法了。</p></blockquote>
+<h3 id="實際測試-1" class="markdown-heading-anchor">
+  實際測試
+  <a href="#%e5%af%a6%e9%9a%9b%e6%b8%ac%e8%a9%a6-1">#</a>
+</h3><p>完成上述的程式之後，需要先重新運行一下 Spring Boot 程式，等到重新運行成功之後，再回到 API Tester 中進行後面的測試。</p>
+<p>在 API Tester 中，我們要修改 request body 的部分，改成填入以下的參數，表示要插入一筆「id 為 4、 name 為 Bob」的數據到資料庫。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-14.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="2374"
+  height="1064"
+/></p>
+<p>修改好之後，就按下右邊的 Send 鍵，去發出一個 Http 請求。在請求成功之後，就可以回到 IntelliJ 上，然後開啟右邊側邊欄中的 student table 查看一下數據。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-15.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1834"
+/></p>
+<p>這時候在 student table 中，就可以看到多出了一筆「id 為 4、並且 name 為 Bob」的數據。</p>
+<p>
+
+<img
+  src="/images/blog/springboot/26/26-16.png"
+  alt=""
+  loading="lazy"
+  data-zoomable
+  width="3230"
+  height="1678"
+/></p>
+<p>因此這就表示，我們就成功的透過了 <code>update()</code> 方法的 map 參數，動態的去決定 SQL 語法中的變數了！所以後續我們就可以根據前端所傳遞過來的參數，動態的在資料庫中插入不同的數據了，這也是實務上非常常見的作法，建議大家也可以多練習幾次，加深這邊的實作印象。</p>
+<h2 id="update-方法的用法總結" class="markdown-heading-anchor">
+  update() 方法的用法總結
+  <a href="#update-%e6%96%b9%e6%b3%95%e7%9a%84%e7%94%a8%e6%b3%95%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>所以總結上述的介紹，如果想要使用 <code>update()</code> 方法，在 Spring Boot 中執行 INSERT、UPDATE、
+DELETE 這三種 SQL 語法的話，那麼就只要在 <code>update()</code> 方法中，按照順序填入以下兩個參數：</p>
+<ul>
+<li><strong>sql 參數：</strong> 放想要執行的 SQL 語法。</li>
+<li><strong>map 參數：</strong> 動態的決定 SQL 變數中的值。</li>
+</ul>
+
+
+
+
+<p>
+<img
+    src="/images/blog/springboot/26/26-17.png"
+    alt=""
+    loading="lazy"
+    data-zoomable
+    style="max-width: 800px; width: 100%"
+    width="3615"
+    height="1060"
+/>
+</p>
+<p>這樣子就可以在 Spring Boot 中，去執行你想要執行的 INSERT、UPDATE、DELETE 的 SQL 語法了!</p>
+<h2 id="總結" class="markdown-heading-anchor">
+  總結
+  <a href="#%e7%b8%bd%e7%b5%90">#</a>
+</h2><p>在這篇文章中，我們先去介紹了 Spring JDBC 中的 <code>update()</code> 的基本用法，並且也有深入介紹 <code>update()</code> 中的 map 參數用法，因此大家以後就可以透過這個寫法，在 Spring Boot 程式中去執行 INSERT、UPDATE、DELETE 這三種 SQL 語法了。</p>
+<p>那麼下一篇文章，我們就會接著來介紹 Spring JDBC 中的另一個核心方法，也就是 <code>query()</code> 方法，那我們就下一篇文章見啦！</p>
+<blockquote>
+<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
+   
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202504KU」即可享 85 折優惠）。</strong></p></blockquote>
 
         </div>
         
