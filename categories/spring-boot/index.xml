@@ -27,7 +27,7 @@
       <link>https://kucw.io/blog/springboot/29/</link>
       <pubDate>Mon, 29 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/29/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在前面的文章中，我們有介紹了 Spring Boot 中的許多用法，包含 Spring IoC、Spring AOP、Spring MVC（和前端溝通）、以及 Spring JDBC（和資料庫溝通），並且我們也介紹了 MVC 架構模式的概念，以及 Controller-Service-Dao 三層式架構的實作。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (28) - MVC 架構模式 - Controller-Service-Dao 三層式架構</title>
