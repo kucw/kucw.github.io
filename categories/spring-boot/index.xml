@@ -34,7 +34,7 @@
       <link>https://kucw.io/blog/springboot/28/</link>
       <pubDate>Sun, 28 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/28/</guid>
-      <description>&lt;p&gt;文章陸續更新中&amp;hellip;可先前往 &lt;a href=&#34;https://ithelp.ithome.com.tw/articles/10327252&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;iThome 鐵人賽&lt;/a&gt; 閱讀後續的文章&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上兩篇文章中，我們有介紹了 Spring JDBC 中的兩個核心用法 &lt;code&gt;update()&lt;/code&gt; 和 &lt;code&gt;query()&lt;/code&gt;，因此大家就可以透過這兩個方法，在 Spring Boot 中執行想要執行的 SQL 語法了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (27) - Spring JDBC 的用法（下）- 執行 SELECT SQL</title>
