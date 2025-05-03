@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -1390,8 +1390,10 @@
           <p>哈囉大家好，我是古古。</p>
 <p>在上一篇文章中，我們先介紹了 Http method 的概念，並且也介紹了兩個常見的 Http method：GET 和 POST，分別了解他們是如何傳遞參數給後端的。</p>
 <p>那麼接著這篇文章，我們就會回到 Spring Boot 上，來介紹一下要如何在 Spring Boot 中，去接住前端所傳過來的這些參數的值。</p>
+
 <blockquote>
-<p>補充：不過也因為在 Spring Boot 有許多種方式可以接住前端所傳遞過來的參數，因此這裡會分成上、下兩篇文章來介紹，因此這篇文章我們就會先介紹 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法。</p></blockquote>
+  <p>補充：不過也因為在 Spring Boot 有許多種方式可以接住前端所傳遞過來的參數，因此這裡會分成上、下兩篇文章來介紹，因此這篇文章我們就會先介紹 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法。</p>
+</blockquote>
 <div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
     <nav id="TableOfContents">
@@ -1557,10 +1559,12 @@
 />
 </p>
 <p>假設參數名字不一致的話，<code>@RequestParam</code> 是沒有辦法成功取得到 url 中的參數的，因此大家在使用上，就要特別注意這兩個地方的名字一定要一致才可以！</p>
+
 <blockquote>
-<p>補充：如果真的發生參數名字不一樣的情況出現，那麼透過一些額外的設定，其實也是可以讓 <code>@RequestParam</code> 生效的。</p>
+  <p>補充：如果真的發生參數名字不一樣的情況出現，那麼透過一些額外的設定，其實也是可以讓 <code>@RequestParam</code> 生效的。</p>
 <p>舉例來說，假設前端傳遞的參數為 <code>myId=123</code>，但是如果想要在 Spring Boot 上使用 <code>id</code> 來接住這個 <code>myId</code> 的參數的話，那麼就要改寫成 <code>@RequestParam(name = &quot;myId&quot;) Integer id)</code> 的寫法（也就是在 <code>@RequestParam</code> 後面多加上了 <code>(name = &quot;myId&quot;)</code> 的額外設定），這樣子才能夠將前端的 <code>myId</code> 對應到 Spring Boot 中的 <code>id</code> 參數。</p>
-<p>不過雖然 <code>@RequestParam</code> 有支援這種特殊的設定，但一般在實作上，還是會建議大家盡量讓「前端傳遞的參數」和「Spring Boot 中使用的參數名稱」一致，這樣子就不用多寫額外的程式來轉換，實作上也比較直覺方便，比較不會出問題。</p></blockquote>
+<p>不過雖然 <code>@RequestParam</code> 有支援這種特殊的設定，但一般在實作上，還是會建議大家盡量讓「前端傳遞的參數」和「Spring Boot 中使用的參數名稱」一致，這樣子就不用多寫額外的程式來轉換，實作上也比較直覺方便，比較不會出問題。</p>
+</blockquote>
 <h3 id="使用-requestparam-的注意事項之二參數類型需一致" class="markdown-heading-anchor">
   使用 @RequestParam 的注意事項之二：參數類型需一致
   <a href="#%e4%bd%bf%e7%94%a8-requestparam-%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85%e4%b9%8b%e4%ba%8c%e5%8f%83%e6%95%b8%e9%a1%9e%e5%9e%8b%e9%9c%80%e4%b8%80%e8%87%b4">#</a>
@@ -1741,18 +1745,22 @@
 </h3><p>綜合以上的介紹，我們也可以來對 @RequestBody 做個小總結。</p>
 <p><strong><code>@RequestBody</code> 的用途，就是「接住放在 request body 中的參數」</strong>，所以當前端將 JSON 參數透過 request body 來傳遞時，就可以使用 <code>@RequestBody</code> 來處理。</p>
 <p>而在使用 <code>@RequestBody</code> 時，重點是要自己創建「和 JSON 參數一一對應的 Java class」出來，只要創建好這個 Java class，後續 Spring Boot 就會自動將 JSON 參數轉換成該 Java 物件了，非常方便！</p>
+
 <blockquote>
-<p>補充：不過在創建和 JSON 參數一一對應的 Java class 時，就是考驗大家對於 JSON 格式的熟悉程度了，如果對 JSON 不太熟悉的話，也可以回頭參考 
-<a href="https://kucw.io/blog/springboot/16/" rel="noopener">Day 16 - 結構化的呈現數據 - JSON 格式介紹</a> 的介紹。</p></blockquote>
+  <p>補充：不過在創建和 JSON 參數一一對應的 Java class 時，就是考驗大家對於 JSON 格式的熟悉程度了，如果對 JSON 不太熟悉的話，也可以回頭參考 
+<a href="https://kucw.io/blog/springboot/16/" rel="noopener">Day 16 - 結構化的呈現數據 - JSON 格式介紹</a> 的介紹。</p>
+</blockquote>
 <h2 id="總結" class="markdown-heading-anchor">
   總結
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
 </h2><p>這篇文章我們先列出了 Spring Boot 中提供的四種取得前端參數的註解，並且詳細的介紹了前兩個註解 <code>@RequestParam</code> 和 <code>@RequestBody</code> 的用法，介紹要如何透過 <code>@ReqestParam</code> 取得 url 後面的參數，以及要如何透過 <code>@RequestBody</code> 取得 request body 中的 JSON 數據，這兩個都是實務上非常常用的作法，建議大家一定要熟練掌握才行！</p>
 <p>那麼下一篇文章，我們就會接著來介紹另外兩個取得前端參數的註解：<code>@RequestHeader</code> 以及 <code>@PathVariable</code>，那我們就下一篇文章見啦！</p>
+
 <blockquote>
-<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
+  <p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p>
+</blockquote>
 
         </div>
         

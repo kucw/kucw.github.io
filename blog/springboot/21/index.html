@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -1429,26 +1429,30 @@
 /></p>
 <p>所以當前端拿到這份 API 文件時，前端就能夠照著上面的定義，去使用 GET 請求 <code>/getProducts</code> 這個 url 路徑，並且在請求時，帶上 <code>size=5</code> 這個請求參數（表示要取得 5 筆數據），這樣子就可以成功的去使用「取得商品列表」的功能，進而去取得 5 筆商品數據出來了！</p>
 <p>因此透過這份 API 文件，大家就可以更清楚的知道某個功能的使用方式，進而提升前後端溝通的效率！</p>
+
 <blockquote>
-<p>補充：一般在口語上，大家可能會聽到有人說「這支 API 要怎麼 call？」或是「你可以去 call 商品功能的 API」這種說法，其中的「call API」，其實就是指「對該 API 發起 Http 請求」的意思。</p>
+  <p>補充：一般在口語上，大家可能會聽到有人說「這支 API 要怎麼 call？」或是「你可以去 call 商品功能的 API」這種說法，其中的「call API」，其實就是指「對該 API 發起 Http 請求」的意思。</p>
 <p>所以假設我們在 Spring Boot 中實作了一個 API，他的 url 路徑是 <code>/test</code>，那麼當前端去請求 <a href="http://localhost:8080/test"
    
    target="_blank" rel="noopener">http://localhost:8080/test</a> 時，就可以說「前端去 call 了 <code>/test</code> 這一支 API」。</p>
-<p>因此「call API」這個說法，在實務上是非常常見的講法，所以建議大家也要熟悉一下這個講法會比較好！</p></blockquote>
+<p>因此「call API」這個說法，在實務上是非常常見的講法，所以建議大家也要熟悉一下這個講法會比較好！</p>
+</blockquote>
 <h2 id="什麼是-restful-api" class="markdown-heading-anchor">
   什麼是 RESTful API？
   <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-restful-api">#</a>
 </h2><p>了解了 API 的概念之後，接著就可以來介紹什麼是「RESTful API」了！</p>
 <p><strong>所謂的「RESTful API」，就是表示去設計出一套「符合 REST 風格的 API」出來</strong>，所以換句話說的話，只要我們在設計 API 時，有去套用 REST 風格，那就可以稱呼我們所設計出來的這組 API，是 RESTful API 了！</p>
+
 <blockquote>
-<p>補充：大家看到這邊，可能會疑惑「REST 風格」和「RESTful」之間到底是什麼關係，其實這裡只是用到英文的文法特性而已。</p>
+  <p>補充：大家看到這邊，可能會疑惑「REST 風格」和「RESTful」之間到底是什麼關係，其實這裡只是用到英文的文法特性而已。</p>
 <p>在英文的文法裡面，有一種用法，<strong>就是在字尾加個 <code>ful</code>，就可以把名詞轉成形容詞。</strong></p>
 <p>舉例來說：</p>
 <ul>
 <li>Beauty 是名詞（意思是美麗），而 Beautiful 則是形容詞（美麗的）</li>
 <li>Peace 是名詞（意思是和平），而 Peaceful 則是形容詞（和平的）</li>
 </ul>
-<p>因此同樣的邏輯，REST 是一個名詞，表示「REST 風格」，而 RESTful 就是形容詞，表示「符合 REST 風格的」，所以 RESTful API 的意思，就是表示「這個 API 是很符合 REST 風格的」！</p></blockquote>
+<p>因此同樣的邏輯，REST 是一個名詞，表示「REST 風格」，而 RESTful 就是形容詞，表示「符合 REST 風格的」，所以 RESTful API 的意思，就是表示「這個 API 是很符合 REST 風格的」！</p>
+</blockquote>
 <p>大概了解 REST 和 RESTful 的差別之後，所以現在我們知道，所謂的「RESTful API」，就是設計出一個「符合 REST 風格的 API」，而如果我們想要設計出一個「符合 REST 風格的 API」，那麼這個 API 就必須要滿足三個條件：</p>
 <h3 id="1-成為-restful-api-的條件之一使用-http-method表示要執行的資料庫操作" class="markdown-heading-anchor">
   1. 成為 RESTful API 的條件之一：使用 Http method，表示要執行的資料庫操作
@@ -1533,8 +1537,10 @@
   3. 成為 RESTful API 的條件之三：Response body 返回 JSON 或是 XML 格式
   <a href="#3-%e6%88%90%e7%82%ba-restful-api-%e7%9a%84%e6%a2%9d%e4%bb%b6%e4%b9%8b%e4%b8%89response-body-%e8%bf%94%e5%9b%9e-json-%e6%88%96%e6%98%af-xml-%e6%a0%bc%e5%bc%8f">#</a>
 </h3><p>而至於成為 RESTful API 的最後一個條件，這個就比較簡單了，只要確保「Response body 所返回的數據，是使用 JSON 或是 XML 格式來返回」，這樣子就滿足 RESTful API 的第三個條件了！</p>
+
 <blockquote>
-<p>補充：雖然一般在實作上，比較常使用 JSON 格式來返回數據，但是其實使用 XML 格式來回傳數據，也是符合 REST 風格的！</p></blockquote>
+  <p>補充：雖然一般在實作上，比較常使用 JSON 格式來返回數據，但是其實使用 XML 格式來回傳數據，也是符合 REST 風格的！</p>
+</blockquote>
 <p>而在 Spring Boot 中，如果要返回 JSON 格式的數據的話，就只要在 class 上面加上 <code>@RestController</code>，並且將返回的類型改成「Java 物件」，這樣子就可以回傳 JSON 格式的數據給前端了。</p>
 
 
@@ -1588,10 +1594,12 @@
   <a href="#%e7%b8%bd%e7%b5%90">#</a>
 </h2><p>這篇文章我們先介紹了 API 和 RESTful API 的概念，也介紹了在設計 RESTful API 時要滿足的三個條件，並且最後也補充了使用 RESTful API 注意事項，因此大家就可以根據自己的需求，去決定是否要採用 REST 風格來設計你的 API 了！</p>
 <p>那麼在了解了 RESTful API 的概念之後，下一篇文章我們就會回到 Spring Boot 上，來練習要如何在 Spring Boot 中實作出 RESTful API 的程式，那我們就下一篇文章見啦！</p>
+
 <blockquote>
-<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
+  <p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p>
+</blockquote>
 
         </div>
         

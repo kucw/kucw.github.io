@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -330,10 +330,12 @@
   height="1540"
 /></p>
 <p>所以在其實在這整個前後端的溝通中，<strong>DNS 所負責的任務就只是「查詢一下 google.com 這個域名的 IP 位置為何」而已</strong>，就這樣！！比想像中單純對吧🤣。DNS 至始至終都只是在記錄「域名和 IP 之間的對應關係」而已，只要掌握好這個核心邏輯就可以了！！</p>
+
 <blockquote>
-<p>補充：實際上 <code>142.250.196.206</code> 其實就是 Google 在台灣的一組 IP 地址，如果在瀏覽器中輸入 <code>142.250.196.206</code> 的話，就會跳轉到 <a href="https://www.google.com/"
+  <p>補充：實際上 <code>142.250.196.206</code> 其實就是 Google 在台灣的一組 IP 地址，如果在瀏覽器中輸入 <code>142.250.196.206</code> 的話，就會跳轉到 <a href="https://www.google.com/"
    
-   target="_blank" rel="noopener">https://www.google.com/</a> 上，大家有興趣也可以玩一下😆。</p></blockquote>
+   target="_blank" rel="noopener">https://www.google.com/</a> 上，大家有興趣也可以玩一下😆。</p>
+</blockquote>
 <h3 id="現今-dns-的全貌" class="markdown-heading-anchor">
   現今 DNS 的全貌
   <a href="#%e7%8f%be%e4%bb%8a-dns-%e7%9a%84%e5%85%a8%e8%b2%8c">#</a>
@@ -376,8 +378,10 @@
 </h2><p>所以總結一下上面的介紹的話，所謂的 DNS，全稱是 Domain Name System，<strong>並且 DNS 的用途在於「查詢某個域名的 IP 位置為何」</strong>。</p>
 <p>而在 DNS 的內部架構中，為了提升查詢的效率以及提高能同時乘載的查詢量，所以 DNS 內部會分成三層（Root、TLD、Authoritative），根據域名的結尾不同，去分配到不同的 DNS Server 上，盡可能的分散每一台 DNS Server 所需要負責的查詢數量，讓這些 DNS Server 能夠承載目前世界上所有人的 IP 查詢。</p>
 <p>也因為 DNS 的用途在於「查詢某個域名的 IP 位置為何」，因此當使用者在瀏覽器中輸入某個 URL 時，實際上瀏覽器在背後就會偷偷先去詢問 DNS：「這個域名的 IP 為何？」，等到問到 IP 位置之後，瀏覽器才會實際去 call 該 IP 上所運行的後端服務，因此下次再有人問你「在瀏覽器中輸入 URL 會發生什麼事」時，你就可以大膽的回覆他「DNS 會先去….」的答案了😆。</p>
+
 <blockquote>
-<p>補充：其實在瀏覽器拿到 Server 的 IP 位置之後，還會需要和 Server 建立 TCP/IP 的連線，等到建立完連線之後才能真正的 call API 取得數據，不過老實說 TCP/IP 的協議又更底層了，感覺只有網路通訊相關的工程師才需要了解這部分，如果大家有興趣的話可以再自行上網查詢相關介紹～。</p></blockquote>
+  <p>補充：其實在瀏覽器拿到 Server 的 IP 位置之後，還會需要和 Server 建立 TCP/IP 的連線，等到建立完連線之後才能真正的 call API 取得數據，不過老實說 TCP/IP 的協議又更底層了，感覺只有網路通訊相關的工程師才需要了解這部分，如果大家有興趣的話可以再自行上網查詢相關介紹～。</p>
+</blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
@@ -385,14 +389,16 @@
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
    target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+
 <blockquote>
-<p>補充：我開設的 <a href="https://hahow.in/cr/springboot"
+  <p>補充：我開設的 <a href="https://hahow.in/cr/springboot"
    
    target="_blank" rel="noopener">Spring Boot 零基礎入門</a>、<a href="https://hahow.in/cr/springsecurity"
    
    target="_blank" rel="noopener">Spring Security 零基礎入門</a>、<a href="https://hahow.in/cr/kucw-github-hugo"
    
-   target="_blank" rel="noopener">GitHub 免費架站術</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202505KU」即可享 85 折優惠。</strong></p></blockquote>
+   target="_blank" rel="noopener">GitHub 免費架站術</a> 已在 Hahow 平台上架啦！<strong>輸入折扣碼「HH202505KU」即可享 85 折優惠。</strong></p>
+</blockquote>
 
         </div>
         

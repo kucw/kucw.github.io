@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
       <pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2020/7/spring-actuator/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本文使用的 Spring Boot 版本：3.3.2&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;本文使用的 Spring Boot 版本：3.3.2&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (30) - Spring Boot 零基礎入門總結</title>
@@ -209,7 +209,7 @@
       <link>https://kucw.io/blog/springboot/3/</link>
       <pubDate>Wed, 03 Jul 2024 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/springboot/3/</guid>
-      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有先針對 Mac 系統的使用者，介紹要如何在 Mac 系統中安裝此系列文會用到的所有開發工具。&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章，我們就接著來介紹一下，要如何在 Windows 系統中安裝此系列文的開發工具。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果你是 Mac 系統的使用者，可以略過這篇文章，直接查看下一篇文章 &#xA;&lt;a href=&#34;https://kucw.io/blog/springboot/4/&#34; rel=&#34;noopener&#34;&gt;Day 4 - 第一個 Spring Boot 程式&lt;/a&gt; 的介紹。&lt;/p&gt;</description>
+      <description>&lt;p&gt;哈囉大家好，我是古古。&lt;/p&gt;&#xA;&lt;p&gt;在上一篇文章中，我們有先針對 Mac 系統的使用者，介紹要如何在 Mac 系統中安裝此系列文會用到的所有開發工具。&lt;/p&gt;&#xA;&lt;p&gt;所以這篇文章，我們就接著來介紹一下，要如何在 Windows 系統中安裝此系列文的開發工具。&lt;/p&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;補充：如果你是 Mac 系統的使用者，可以略過這篇文章，直接查看下一篇文章 &#xA;&lt;a href=&#34;https://kucw.io/blog/springboot/4/&#34; rel=&#34;noopener&#34;&gt;Day 4 - 第一個 Spring Boot 程式&lt;/a&gt; 的介紹。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot 零基礎入門 (2) - 開發環境安裝（Mac 版）</title>
@@ -251,14 +251,14 @@
       <link>https://kucw.io/blog/2019/12/spring-oauth2-bind-github/</link>
       <pubDate>Tue, 31 Dec 2019 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2019/12/spring-oauth2-bind-github/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 &lt;a href=&#34;https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 &lt;a href=&#34;https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter</title>
       <link>https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter/</link>
       <pubDate>Mon, 30 Dec 2019 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本文只講解 OAuth 1.0a 的實作，有關 OAuth 2.0 實作，可參考我的另一篇文章 &lt;a href=&#34;https://kucw.io/blog/2019/12/spring-oauth2-bind-github/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;使用 SpringBoot 實作 OAuth 2.0 綁定 Github&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;本文只講解 OAuth 1.0a 的實作，有關 OAuth 2.0 實作，可參考我的另一篇文章 &lt;a href=&#34;https://kucw.io/blog/2019/12/spring-oauth2-bind-github/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;使用 SpringBoot 實作 OAuth 2.0 綁定 Github&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spring Boot - 注解 vs XML 哪個好？</title>

@@ -13,7 +13,7 @@
       <link>https://kucw.io/blog/elasticsearch-function-score-intro/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/elasticsearch-function-score-intro/</guid>
-      <description>&lt;p&gt;Elasticsearch 除了可以用來實作一般的全文搜尋之外，如果想要實作「推薦排序」，針對多個維度綜合比較，Elasticsearch 也是支援這類的用法的！&lt;/p&gt;&#xA;&lt;p&gt;因此這篇文章我們就來介紹一下，要如何透過 Elasticsearch 中的 &lt;code&gt;function_score&lt;/code&gt;，來實作自定義排序的結果吧！&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;補充：如果對 Elasticsearch 不太熟悉，也可以先回頭參考 Elasticsearch 的基本介紹 &lt;a href=&#34;https://kucw.io/blog/elasticsearch-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Elasticsearch 是什麼？認識地表最強的全文搜尋工具！&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Elasticsearch 除了可以用來實作一般的全文搜尋之外，如果想要實作「推薦排序」，針對多個維度綜合比較，Elasticsearch 也是支援這類的用法的！&lt;/p&gt;&#xA;&lt;p&gt;因此這篇文章我們就來介紹一下，要如何透過 Elasticsearch 中的 &lt;code&gt;function_score&lt;/code&gt;，來實作自定義排序的結果吧！&lt;/p&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;補充：如果對 Elasticsearch 不太熟悉，也可以先回頭參考 Elasticsearch 的基本介紹 &lt;a href=&#34;https://kucw.io/blog/elasticsearch-intro/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Elasticsearch 是什麼？認識地表最強的全文搜尋工具！&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Elasticsearch 是什麼？認識地表最強的全文搜尋工具！</title>
@@ -34,7 +34,7 @@
       <link>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</link>
       <pubDate>Sun, 19 Aug 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;閱讀本文需要先了解 Elastic Search 的 index 和 analyzer 的相關知識&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/6/elasticsearch-index-mapping/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - index mapping（5.x以上）&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;閱讀本文需要先了解 Elastic Search 的 index 和 analyzer 的相關知識&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/6/elasticsearch-index-mapping/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - index mapping（5.x以上）&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - 批量操作 bulk</title>
@@ -55,35 +55,35 @@
       <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</link>
       <pubDate>Sun, 08 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;很多變量都可以影響用戶對於酒店的選擇，像是用戶可能希望酒店離市中心近一點，但是如果價格足夠便宜，也願意為了省錢，妥協選擇一個更遠的住處&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如果我們只是使用一個 filter 排除所有市中心方圓 100 米以外的酒店，再用一個 filter 排除每晚價格超過 100 元的酒店，這種作法太過強硬，可能有一間房在 500 米，但是超級便宜一晚只要 10 元，用戶可能會因此願意妥協住這間房&lt;/li&gt;&#xA;&lt;li&gt;為了解決這個問題，因此 function_score 查詢提供了一組 衰減函數（decay functions）， 讓我們有能力在兩個滑動標準（如地點和價格）之間權衡&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;function_score 支持的衰減函數有三種，分別是 linear、exp 和 gauss&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;很多變量都可以影響用戶對於酒店的選擇，像是用戶可能希望酒店離市中心近一點，但是如果價格足夠便宜，也願意為了省錢，妥協選擇一個更遠的住處&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如果我們只是使用一個 filter 排除所有市中心方圓 100 米以外的酒店，再用一個 filter 排除每晚價格超過 100 元的酒店，這種作法太過強硬，可能有一間房在 500 米，但是超級便宜一晚只要 10 元，用戶可能會因此願意妥協住這間房&lt;/li&gt;&#xA;&lt;li&gt;為了解決這個問題，因此 function_score 查詢提供了一組 衰減函數（decay functions）， 讓我們有能力在兩個滑動標準（如地點和價格）之間權衡&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;function_score 支持的衰減函數有三種，分別是 linear、exp 和 gauss&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（random_score 具體實例）</title>
       <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;但是，在隨機的同時，除了想讓不同的用戶看到不同的隨機次序之外，但也希望如果是同一用戶翻頁瀏覽時，結果的相對次序能始終保持一致，這種行爲被稱爲 一致隨機（consistently random）&lt;/li&gt;&#xA;&lt;li&gt;因此 random_score 加強函數除了能隨機得到一個 0 ~ 1 的分數，也會使用一個 seed 值，來保障生成隨機的順序，當 seed 值相同時，生成的隨機結果是一致的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（weight 具體實例）</title>
       <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - function_score（field_value_factor 具體實例）</title>
       <link>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</link>
       <pubDate>Thu, 05 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score 簡介&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - function_score 簡介</title>
       <link>https://kucw.io/blog/2018/7/elasticsearch-function_score/</link>
       <pubDate>Wed, 04 Jul 2018 00:00:00 +0800</pubDate>
       <guid>https://kucw.io/blog/2018/7/elasticsearch-function_score/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;function_score 內容較多，此篇主要是介紹 function_score 的基本概念&lt;/p&gt;&#xA;&lt;p&gt;具體實例請參考以下連接&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score（field_value_factor 具體實例）&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score（weight 具體實例）&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;  &lt;p&gt;function_score 內容較多，此篇主要是介紹 function_score 的基本概念&lt;/p&gt;&#xA;&lt;p&gt;具體實例請參考以下連接&lt;/p&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score（field_value_factor 具體實例）&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/&#34;&#xA;   &#xA;   target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ElasticSearch - function_score（weight 具體實例）&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>ElasticSearch - 解決 ES 的深分頁問題（游標 scroll）</title>

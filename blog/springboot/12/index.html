@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -1390,8 +1390,10 @@
           <p>哈囉大家好，我是古古。</p>
 <p>在上一篇文章中，我們有去介紹了 Spring AOP 的概念和原理，讓大家先對 Spring AOP 有一個初步的認識。</p>
 <p>那麼這篇文章，我們就會接著來介紹，要如何在 Spring Boot 中使用 Spring AOP 的功能。</p>
+
 <blockquote>
-<p>補充：目前在實務上，其實已經不太會直接實作 Spring AOP 的程式了，所以本章節的內容大家就有個印象就好，等到將來真的有需要實作 Spring AOP 時，再回來查看本章節的 <code>@Aspect</code> 用法即可。</p></blockquote>
+  <p>補充：目前在實務上，其實已經不太會直接實作 Spring AOP 的程式了，所以本章節的內容大家就有個印象就好，等到將來真的有需要實作 Spring AOP 時，再回來查看本章節的 <code>@Aspect</code> 用法即可。</p>
+</blockquote>
 <div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
     <nav id="TableOfContents">
@@ -1560,8 +1562,10 @@
 /></p>
 <p>所以簡單來說，前面的這個 <code>@Before</code> 註解，他指定的就是 <strong>「時機點」</strong>，而 <code>@Before</code> 所對應的時機點，就是在切入點的方法「執行前」執行。</p>
 <p>因此在步驟二這裡，就是去確認「切面方法執行的時機點」。</p>
+
 <blockquote>
-<p>補充：除了 <code>@Before</code> 之外，AOP 也有提供其他不同時機點的註解（像是 <code>@After</code> 和 <code>@Around</code>）給我們使用 ，本篇文章後面也會介紹這兩個註解給大家。</p></blockquote>
+  <p>補充：除了 <code>@Before</code> 之外，AOP 也有提供其他不同時機點的註解（像是 <code>@After</code> 和 <code>@Around</code>）給我們使用 ，本篇文章後面也會介紹這兩個註解給大家。</p>
+</blockquote>
 <h3 id="步驟三要執行的切面方法" class="markdown-heading-anchor">
   步驟三：要執行的切面方法
   <a href="#%e6%ad%a5%e9%a9%9f%e4%b8%89%e8%a6%81%e5%9f%b7%e8%a1%8c%e7%9a%84%e5%88%87%e9%9d%a2%e6%96%b9%e6%b3%95">#</a>
@@ -1771,10 +1775,12 @@
 </h2><p>這篇文章我們先介紹了要如何透過 <code>@Aspect</code> 和 <code>@Before</code>，在指定的時機點去執行切面方法，並且也簡單介紹了另外兩個時機點 <code>@After</code> 和 <code>@Around</code> 的用法，最後我們也補充了切入點的撰寫方式，以及 Spring AOP 的相關發展。</p>
 <p>那麼有關 Spring AOP 的介紹就到這邊結束了，Spring AOP 作為 Spring 框架中的重要特性之一，即使我們在日常的開發中，已經很少直接使用到 AOP 的功能，但是 AOP 的切面的概念，仍舊在許多功能中被廣泛應用，因此了解一下切面的概念還是很不錯的！</p>
 <p>那麼從下一篇文章開始，我們就會進入到下一個部分：Spring MVC，介紹要如何在 Spring Boot 中和「前端」進行溝通，那我們就下一篇文章見啦！</p>
+
 <blockquote>
-<p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
+  <p>補充：本文是擷取自我開設的線上課程 <a href="https://hahow.in/cr/springboot"
    
-   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> 的內容，如果你想了解更多的 Spring Boot 的用法，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p>
+</blockquote>
 
         </div>
         

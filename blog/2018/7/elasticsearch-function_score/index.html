@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -245,11 +245,13 @@
         
         
         <div class="content mb-4">
-          <blockquote>
-<p>function_score 內容較多，此篇主要是介紹 function_score 的基本概念</p>
-<p>具體實例請參考以下連接</p>
+          
 <blockquote>
-<p><a href="/blog/2018/7/elasticsearch-function_score-field_value_factor/"
+  <p>function_score 內容較多，此篇主要是介紹 function_score 的基本概念</p>
+<p>具體實例請參考以下連接</p>
+
+<blockquote>
+  <p><a href="/blog/2018/7/elasticsearch-function_score-field_value_factor/"
    
    target="_blank" rel="noopener">ElasticSearch - function_score（field_value_factor 具體實例）</a></p>
 <p><a href="/blog/2018/7/elasticsearch-function_score-weight/"
@@ -260,7 +262,9 @@
    target="_blank" rel="noopener">ElasticSearch - function_score（random_score 具體實例）</a></p>
 <p><a href="/blog/2018/7/elasticsearch-function_score-gauss/"
    
-   target="_blank" rel="noopener">ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</a></p></blockquote></blockquote>
+   target="_blank" rel="noopener">ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</a></p>
+</blockquote>
+</blockquote>
 <ul>
 <li>
 <p>在使用 ES 進行全文搜索時，搜索結果默認會以文檔的相關度進行排序，而這個 &ldquo;文檔的相關度&rdquo;，是可以透過 function_score 自己定義的，也就是說我們可以透過使用 function_score，來控制 &ldquo;怎麼樣的文檔相關度更高&rdquo; 這件事</p>

@@ -33,7 +33,7 @@
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.e759c9c88751f124dd49f063b9da8bbb34ed6bb477dce0169d0876911d49a57d.css" media="screen">
+  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
@@ -366,8 +366,10 @@
 <div class="highlight code-wrap"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>G41XQGNNJ5Tp88U48aXh4n0XtGkpPkQ3xK6j43_61gE309hzyTVyciG5v05aVIvvY9NrApYiQdvwlMMrjRPFVV8xunghtKKFMj3kPx93Ll8Pf6n-tDiL_NZYqcusrgwtb-EDza80hMG5PTu75ogTIfRKr4jC0_FZzLaMix07LaZReoUSionTWTxJlm8qJc0BAFXgsaGNs9oVhCXOg_jJmOfFZBP0tD3q4xaKp9MTtLRTtslAhoAjPczdnPqaWGcaS8OY11RUTvvxijA7W-mPRlmqt0Hd_XForETUFZRdCKsPQIiGjkavycPtdiViVihQKstHlT4afEzYvzWSeK1cnw
 </span></span></code></pre></div><p>而當後端在生成一個 JWT 的 Token 時，後端會先將 <code>header</code> 和 <code>payload</code> 的值組合起來，然後用 <strong>「hash + 非對稱加密」</strong> 的方式，生成一個 <code>signature</code>（簽名）的值出來。</p>
 <p>所以假設駭客偷偷修改了 <code>payload</code> 中的數據，這樣子最終解析出來的 signature 的簽名，就會和原始的簽名值不一樣，因此就可以透過這種 <strong>「數位簽名」</strong> 的方式，避免被駭客偷偷修改 <code>payload</code> 中的數據了。</p>
+
 <blockquote>
-<p>補充：如果覺得上面這段太難的話，建議也可以先跳過 JWT 的詳細內容，只要先知道 JWT 是真的很強，後端可以直接無條件相信他就對了👍。</p></blockquote>
+  <p>補充：如果覺得上面這段太難的話，建議也可以先跳過 JWT 的詳細內容，只要先知道 JWT 是真的很強，後端可以直接無條件相信他就對了👍。</p>
+</blockquote>
 <h2 id="小結session-和-jwt-的運作邏輯" class="markdown-heading-anchor">
   小結：Session 和 JWT 的運作邏輯
   <a href="#%e5%b0%8f%e7%b5%90session-%e5%92%8c-jwt-%e7%9a%84%e9%81%8b%e4%bd%9c%e9%82%8f%e8%bc%af">#</a>
@@ -405,10 +407,12 @@
   <a href="#%e5%88%b0%e5%ba%95%e4%bd%bf%e7%94%a8-session-%e5%a5%bd%e9%82%84%e6%98%af%e4%bd%bf%e7%94%a8-jwt-%e5%a5%bd">#</a>
 </h3><p>綜觀以上的優缺點比較，其實 Session 和 JWT 真的沒有誰比較好、誰比較壞，他們兩個就像是站在對立面的選擇一樣，Session 的優點就是 JWT 的缺點、Session 的缺點就是 JWT 的優點，一切都要因實際的需求，選擇當下最適合的做法。</p>
 <p>簡單一句話總結的話，就是 Session 和 JWT 的戰爭還未停止😂，甚至有時候也會看到混用他們的情況出現，因此建議大家兩種用法都要會，這樣在面對變動的需求時，才能選擇最適合的方式來解決問題！</p>
+
 <blockquote>
-<p>補充：本文是擷取自我開設的線上課程<a href="https://hahow.in/cr/springsecurity"
+  <p>補充：本文是擷取自我開設的線上課程<a href="https://hahow.in/cr/springsecurity"
    
-   target="_blank" rel="noopener">「資安一把罩！Spring Security 零基礎入門」</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p></blockquote>
+   target="_blank" rel="noopener">「資安一把罩！Spring Security 零基礎入門」</a>的內容，如果你想了解更多的資安內容、以及如何應用 Spring Security，歡迎參考課程簡介 <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）。</strong></p>
+</blockquote>
 <h2 id="結語" class="markdown-heading-anchor">
   結語
   <a href="#%e7%b5%90%e8%aa%9e">#</a>
@@ -416,8 +420,9 @@
 <p>如果你對後端技術有興趣的話，也歡迎免費訂閱<a href="/bio"
    
    target="_blank" rel="noopener">《古古的後端筆記》電子報</a>，每週二為你送上一篇後端技術分享，那我們就下一篇文章見啦！</p>
+
 <blockquote>
-<p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（建議按照順序閱讀，才會有最佳的閱讀體驗）：</p>
+  <p>如果你對 JWT 的其他文章有興趣，也可以直接點擊下列連結跳轉到該文章（建議按照順序閱讀，才會有最佳的閱讀體驗）：</p>
 <ol>
 <li><a href="/blog/session-vs-jwt/"
    
@@ -431,7 +436,8 @@
 <li><a href="/blog/jwt-signature/"
    
    target="_blank" rel="noopener">JWT 是如何實作「數位簽名」的？揭秘 signature 的面紗</a></li>
-</ol></blockquote>
+</ol>
+</blockquote>
 
         </div>
         
