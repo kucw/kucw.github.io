@@ -16,6 +16,13 @@
       <description>&lt;p&gt;初入門 Docker 時，可能會對 Docker 中有哪些指令感到眼花撩亂，這篇文章會介紹如何運行你的第一個 Docker 程式，並且介紹 Docker 的常用指令有哪些。&lt;/p&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;如果只想查看 Docker 常用指令的介紹，可以直接點擊 &#xA;&lt;a href=&#34;http://localhost:1313/blog/docker-command/#docker-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%B4%B9&#34; rel=&#34;noopener&#34;&gt;Docker 常用指令&lt;/a&gt; 跳轉到下方。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>CI/CD 是什麼？他們之間的差別在哪裡？</title>
+      <link>https://kucw.io/blog/cicd-intro/</link>
+      <pubDate>Mon, 05 May 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/cicd-intro/</guid>
+      <description>&lt;p&gt;大家在工作上可能常常會聽到 CI/CD、持續集成、持續部署&amp;hellip;等等的名詞，但是卻不清楚這些名詞背後所代表的意義是什麼，因此這篇文章我們就來介紹一下，到底什麼是 CI/CD，以及他們之間的區別吧！&lt;/p&gt;&#xA;&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#什麼是-cicd&#34;&gt;什麼是 CI/CD？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#ci持續集成&#34;&gt;CI（持續集成）&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cd持續交付&#34;&gt;CD（持續交付）&lt;/a&gt;&#xA;      &lt;ul&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#補充continuous-delivery-和-continuous--deployment-的差別&#34;&gt;補充：Continuous Delivery 和 Continuous  Deployment 的差別&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ul&gt;&#xA;    &lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#cicd-總結&#34;&gt;CI/CD 總結&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#補充什麼是-devops&#34;&gt;補充：什麼是 DevOps？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;什麼是-cicd&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  什麼是 CI/CD？&#xA;  &lt;a href=&#34;#%e4%bb%80%e9%ba%bc%e6%98%af-cicd&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;所謂的 CI/CD，他其實要拆分成兩個名詞來看，分別是 CI 和 CD：&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>CDN 是什麼？一次搞懂 CDN 的用途和三大好處</title>
       <link>https://kucw.io/blog/cdn/</link>
       <pubDate>Tue, 18 Mar 2025 00:00:00 +0800</pubDate>

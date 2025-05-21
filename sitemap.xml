@@ -38,6 +38,11 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
+        <loc>https://kucw.io/blog/cicd-intro/</loc>
+        <lastmod>2025-05-05T00:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
         <loc>https://kucw.io/categories/elastic-search/</loc>
         <lastmod>2025-04-22T00:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
