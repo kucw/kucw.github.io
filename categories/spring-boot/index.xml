@@ -6,8 +6,15 @@
     <description>Recent content in Spring Boot on 古古的後端筆記</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 21 Aug 2024 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 22 May 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://kucw.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用 Dockerfile 生成 Spring Boot 的 image</title>
+      <link>https://kucw.io/blog/springboot-docker-image/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0800</pubDate>
+      <guid>https://kucw.io/blog/springboot-docker-image/</guid>
+      <description>&lt;div class=&#34;markdown-toc&#34;&gt;&#xA;    &lt;div class=&#34;markdown-toc-title&#34;&gt;目錄&lt;/div&gt;&#xA;    &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ul&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#使用-dockerfile-生成-spring-boot-image&#34;&gt;使用 Dockerfile 生成 Spring Boot image&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#在-spring-boot-中使用-multi-stage-build-來生成-image&#34;&gt;在 Spring Boot 中使用 Multi-stage build 來生成 image&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#如何知道要把-src-複製到-rootsrc-底下&#34;&gt;如何知道要把 src 複製到 /root/src 底下？&lt;/a&gt;&lt;/li&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#結語&#34;&gt;結語&lt;/a&gt;&lt;/li&gt;&#xA;  &lt;/ul&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;使用-dockerfile-生成-spring-boot-image&#34; class=&#34;markdown-heading-anchor&#34;&gt;&#xA;  使用 Dockerfile 生成 Spring Boot image&#xA;  &lt;a href=&#34;#%e4%bd%bf%e7%94%a8-dockerfile-%e7%94%9f%e6%88%90-spring-boot-image&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;如果要用 Dockerfile 生成 Spring Boot image 的話，有兩種寫法可以用，一種就是用基本的 Dockerfile 寫法，另一種是更高級的 Dockerfile Multi-stage build 寫法。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Spring Boot - 監控工具 Actuator</title>
       <link>https://kucw.io/blog/2020/7/spring-actuator/</link>
