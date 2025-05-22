@@ -1,337 +1,63 @@
-<!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>
-    
-    Java - Pass by value or Pass by reference？
-    
-  </title>
-
-  <!-- Mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- SEO -->
-  <meta name="description" content="介紹 Java 的參數傳遞到底是 pass by value 還是 pass by reference">
-  <meta name="author" content="古古">
-
-   <!-- Open Graph data -->
-  <meta property="og:image" content="https://kucw.io/images/logo.png"/>
-
-  <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
-
-  <!-- Plugins -->
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
-  
-
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-
-  <!-- Facebook share link image -->
-  
-
-  <!-- Google Analytics -->
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-NKQ46H0SJW');
-  </script>
-
-  <!-- Google Firebase Login -->
-  
-  <script src="https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js" type="module"></script>
-</head>
-<body>
-<!-- preloader start -->
-<div class="preloader">
-  
-</div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container-fluid border-bottom fixed-top nav-background-color">
-    <div class="nav-container">
-      
-      <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
-        <a class="navbar-brand desktop-view" href="https://kucw.io/">
-          <img class="img-fluid logo-with-text-size mx-1"
-               src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-
-        </a>
-        <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-sm rounded-circle"
-            src="https://kucw.io/images/logo.png" alt="">
-        </a>
-
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-          <i class="ti-menu h3"></i>
-        </button>
-
-        <div class="collapse navbar-collapse text-center" id="navigation">
-          
-          <ul class="navbar-nav mr-auto ml-2">
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                後端技術專欄
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/springboot/1">Spring Boot 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                線上課程
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/kucw-github-hugo" target="_blank" rel="noopener">GitHub 免費架站術！輕鬆打造個人品牌</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springboot" target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springsecurity" target="_blank" rel="noopener">資安一把罩！Spring Security 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                自媒體 &amp; 敗家專區
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/as-a-content-creator/1">軟體工程師的自媒體之路</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/">所有文章</a>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/about">關於我</a>
-            </li>
-            
-            
-
-            
-            <li class="nav-item">
-              <button id="algolia-search-btn" class="algolia-search-btn"><i class="ti-search"></i></button>
-            </li>
-            
-          </ul>
-
-
-          
-          <ul class="navbar-nav">
-            
-            <a class="nav-newsletter-link" href="/bio" target="_blank">電子報訂閱</a>
-
-            
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
-
-
-<div id="algolia-search-pop-overlay" class="algolia-search-pop-overlay">
-  <div class="popup algolia-search-popup">
-    <div class="algolia-search-header">
-      <span class="algolia-search-icon">
-        <i class="ti-search"></i>
-      </span>
-      <div id="algolia-search-input-container" class="algolia-search-input-container"></div>
-      <span id="algolia-popup-btn-close" class="algolia-popup-btn-close">
-        <i class="ti-close"></i>
-      </span>
-    </div>
-    <div id="algolia-results" class="algolia-results">
-      <div id="algolia-hits" class="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-  </div>
-</div>
-
-
-<div id="login-pop-overlay" class="login-pop-overlay">
-  <div class="popup login-popup">
-    <div class="login-popup-header">
-      <img class="img-fluid logo-with-text-size mx-1" src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-      <div id="login-popup-btn-close" class="login-popup-btn-close"><i class="ti-close"></i></div>
-    </div>
-    <div class="login-popup-body">
-      <button class="google-login-btn" id="google-login-btn">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7 0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4Z" fill="#4285F4"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7 0 5-.9 6.6-2.4L13.4 15a6 6 0 0 1-9-3.2H1.1v2.6A10 10 0 0 0 10 20Z" fill="#34A853"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 0 1 0-3.8V5.5H1.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 1 5.5l3.3 2.6A6 6 0 0 1 10 4Z" fill="#EA4335"></path>
-        </svg>
-        <span class="google-login-btn-text">使用 Google 登入</span>
-      </button>
-      <p class="login-terms">By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p>
-    </div>
-  </div>
-</div>
-
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container pl-4 pr-4">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">Java - Pass by value or Pass by reference？</h1>
-
-        <div class="author-details">
-          <div>
-            <img src="https://kucw.io/images/author-sm.png" alt="" class="author-thumb-blog rounded-circle">
-          </div>
-          <div>
-            <p>古古</p>
-            <p>2018/09/10</p>
-          </div>
-        </div>
-
-        <hr class="blog-start-divider">
-
-        
-        
-
-        
-        
-        <div class="content mb-4">
-          <ul>
-<li>
-<p>在探討 Java 傳遞參數是 pass by value 還是 pass by reference 之前，需要先了解 Java 中 <code>=</code> 的具體細節</p>
-</li>
-<li>
-<p>賦值 <code>=</code> 的用法</p>
-<ul>
-<li>
-<p><code>=</code> 的意義是賦值，但是這個賦值用在 基本類型 和 對象類型 上會有非常大的差別</p>
-<ul>
-<li>如果 <code>=</code> 用在基本類型上，因為基本類型儲存了實際的數值，所以在為其賦值時，是直接將值複製一份新的過去
-<ul>
-<li>因此假設 a、b 都是基本類型，如果執行了 <code>a=b</code>，那麼就是將 b 的內容直接複製一份新的給 a，之後如果改變了 a 的值，也不會影響到 b</li>
-<li>此處的基本類型，泛指 int、long、boolean&hellip;.和其包裝型態 Integer、Long、Boolean&hellip;.，只要是這些類型的變量，都適用基本類型的 <code>=</code> 規則</li>
-</ul>
-</li>
-<li>但如果 <code>=</code> 用在對象類型上，因為在使用對象操作時，實際儲存的其實是對象的引用，所以在為其賦值時，實際上只是把 &ldquo;引用&rdquo; 從一個地方複製到另一個地方
-<ul>
-<li>因此假設 c、d 都是對象類型，如果執行了 <code>c=d</code>，那麼 c 和 d 都會指向原本只有 d 指向的那個對象，而原本 c 的那個對象因為沒人引用了，所以會被垃圾回收清理掉</li>
-</ul>
-</li>
-<li>另外，只要是數組，不管你是基本類型 <code>int[]</code> 還是對象類型 <code>Tank[]</code>，一律存的都是引用，所以只要賦值了，也會互相影響</li>
-</ul>
-</li>
-<li>
-<p>具體實例</p>
-<ul>
-<li>
-<p>t1、t2是基本類型的 <code>=</code> 效果（不會互相影響）</p>
-</li>
-<li>
-<p>t3、t4是對象類型的 <code>=</code> 效果（因為存的是引用，所以會互相影響）</p>
-</li>
-<li>
-<p>i5、i6是基本類型的數組的 <code>=</code> 效果（因為存的也是引用，所以也會互相影響）</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Tank</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>level<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Main</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t1<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>1<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>2<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t1: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t2: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//此處只是基本類型的賦值，所以t1、t2仍舊指到兩個不同對象</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t1: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t2: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>100<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t1: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t2: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;----&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t3<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t4<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t3<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>3<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t4<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>4<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t3: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t3<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t4: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t4<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//此處是對象類型的賦值，所以是t3和t4都指到了同一個對象上</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//而原本t3那個對象因為沒人引用了，所以會被垃圾回收清理掉</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t3<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>t4<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t3: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t3<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t4: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t4<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t3<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>100<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t3: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t3<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, t4: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t4<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;----&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">int</span><span style="color:#0550ae">[]</span><span style="color:#fff"> </span>i5<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span>5<span style="color:#1f2328">};</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">int</span><span style="color:#0550ae">[]</span><span style="color:#fff"> </span>i6<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span>6<span style="color:#1f2328">};</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;i5[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i5<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, i6[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i6<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//因為數组存的是引用，所以i5和i6會指到同一個地方上</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>i5<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>i6<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;i5[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i5<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, i6[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i6<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>i5<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>200<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;i5[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i5<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, i6[0]: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>i6<span style="color:#0550ae">[</span>0<span style="color:#0550ae">]</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><pre tabindex="0"><code>t1: 1, t2: 2
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><title>Java - Pass by value or Pass by reference？
+</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=description content="介紹 Java 的參數傳遞到底是 pass by value 還是 pass by reference"><meta name=author content="古古"><meta property="og:image" content="https://kucw.io/images/logo.png"><meta name=generator content="Hugo 0.145.0 with theme pure"><link rel=stylesheet href=https://kucw.io/plugins/bootstrap/bootstrap.min.css><link rel=stylesheet href=https://kucw.io/plugins/themify-icons/themify-icons.css><link rel=stylesheet href=https://kucw.io/plugins/venobox/venobox.css><link rel=stylesheet href=https://kucw.io/plugins/medium-zoom/medium-zoom.css><link rel=stylesheet href=https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css media=screen><link rel="shortcut icon" href=https://kucw.io/images/favicon.png type=image/x-icon><link rel=icon href=https://kucw.io/images/favicon.png type=image/x-icon><script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NKQ46H0SJW")</script><script src=https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js type=module></script></head><body><div class=preloader></div><header class=navigation><div class="container-fluid border-bottom fixed-top nav-background-color"><div class=nav-container><nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0"><a class="navbar-brand desktop-view" href=https://kucw.io/><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt>
+</a><a class="navbar-brand navbar-brand-mobile mobile-view" href=https://kucw.io/><img class="img-fluid logo-thumb-sm rounded-circle" src=https://kucw.io/images/logo.png alt>
+</a><button class="navbar-toggler border-0" type=button data-toggle=collapse data-target=#navigation>
+<i class="ti-menu h3"></i></button><div class="collapse navbar-collapse text-center" id=navigation><ul class="navbar-nav mr-auto ml-2"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>後端技術專欄</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/springboot/1>Spring Boot 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>線上課程</a><div class=dropdown-menu><a class=dropdown-item href=https://hahow.in/cr/kucw-github-hugo target=_blank rel=noopener>GitHub 免費架站術！輕鬆打造個人品牌</a>
+<a class=dropdown-item href=https://hahow.in/cr/springboot target=_blank rel=noopener>Java 工程師必備！Spring Boot 零基礎入門</a>
+<a class=dropdown-item href=https://hahow.in/cr/springsecurity target=_blank rel=noopener>資安一把罩！Spring Security 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>自媒體 & 敗家專區</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/as-a-content-creator/1>軟體工程師的自媒體之路</a></div></li><li class=nav-item><a class=nav-link href=https://kucw.io/>所有文章</a></li><li class=nav-item><a class=nav-link href=https://kucw.io/about>關於我</a></li><li class=nav-item><button id=algolia-search-btn class=algolia-search-btn><i class=ti-search></i></button></li></ul><ul class=navbar-nav><a class=nav-newsletter-link href=/bio target=_blank>電子報訂閱</a></ul></div></nav></div></div></header><div id=algolia-search-pop-overlay class=algolia-search-pop-overlay><div class="popup algolia-search-popup"><div class=algolia-search-header><span class=algolia-search-icon><i class=ti-search></i></span><div id=algolia-search-input-container class=algolia-search-input-container></div><span id=algolia-popup-btn-close class=algolia-popup-btn-close><i class=ti-close></i></span></div><div id=algolia-results class=algolia-results><div id=algolia-hits class=algolia-hits></div><div id=algolia-pagination class=algolia-pagination></div></div></div></div><div id=login-pop-overlay class=login-pop-overlay><div class="popup login-popup"><div class=login-popup-header><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt><div id=login-popup-btn-close class=login-popup-btn-close><i class=ti-close></i></div></div><div class=login-popup-body><button class=google-login-btn id=google-login-btn>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7.0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4z" fill="#4285f4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7.0 5-.9 6.6-2.4L13.4 15a6 6 0 01-9-3.2H1.1v2.6A10 10 0 0010 20z" fill="#34a853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 010-3.8V5.5H1.1a10 10 0 000 9l3.3-2.6z" fill="#fbbc05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5.0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 001 5.5l3.3 2.6A6 6 0 0110 4z" fill="#ea4335"/></svg>
+<span class=google-login-btn-text>使用 Google 登入</span></button><p class=login-terms>By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p></div></div></div><section class=section-sm><div class="container pl-4 pr-4"><div class=row><div class="col-lg-10 mx-auto"><h1 class=blog-title>Java - Pass by value or Pass by reference？</h1><div class=author-details><div><img src=https://kucw.io/images/author-sm.png alt class="author-thumb-blog rounded-circle"></div><div><p>古古</p><p>2018/09/10</p></div></div><hr class=blog-start-divider><div class="content mb-4"><ul><li><p>在探討 Java 傳遞參數是 pass by value 還是 pass by reference 之前，需要先了解 Java 中 <code>=</code> 的具體細節</p></li><li><p>賦值 <code>=</code> 的用法</p><ul><li><p><code>=</code> 的意義是賦值，但是這個賦值用在 基本類型 和 對象類型 上會有非常大的差別</p><ul><li>如果 <code>=</code> 用在基本類型上，因為基本類型儲存了實際的數值，所以在為其賦值時，是直接將值複製一份新的過去<ul><li>因此假設 a、b 都是基本類型，如果執行了 <code>a=b</code>，那麼就是將 b 的內容直接複製一份新的給 a，之後如果改變了 a 的值，也不會影響到 b</li><li>此處的基本類型，泛指 int、long、boolean&mldr;.和其包裝型態 Integer、Long、Boolean&mldr;.，只要是這些類型的變量，都適用基本類型的 <code>=</code> 規則</li></ul></li><li>但如果 <code>=</code> 用在對象類型上，因為在使用對象操作時，實際儲存的其實是對象的引用，所以在為其賦值時，實際上只是把 &ldquo;引用&rdquo; 從一個地方複製到另一個地方<ul><li>因此假設 c、d 都是對象類型，如果執行了 <code>c=d</code>，那麼 c 和 d 都會指向原本只有 d 指向的那個對象，而原本 c 的那個對象因為沒人引用了，所以會被垃圾回收清理掉</li></ul></li><li>另外，只要是數組，不管你是基本類型 <code>int[]</code> 還是對象類型 <code>Tank[]</code>，一律存的都是引用，所以只要賦值了，也會互相影響</li></ul></li><li><p>具體實例</p><ul><li><p>t1、t2是基本類型的 <code>=</code> 效果（不會互相影響）</p></li><li><p>t3、t4是對象類型的 <code>=</code> 效果（因為存的是引用，所以會互相影響）</p></li><li><p>i5、i6是基本類型的數組的 <code>=</code> 效果（因為存的也是引用，所以也會互相影響）</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Tank</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>int</span><span style=color:#fff> </span>level<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Main</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t1<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>1<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>2<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t1: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t2: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//此處只是基本類型的賦值，所以t1、t2仍舊指到兩個不同對象</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t1: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t2: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>100<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t1: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t2: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;----&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t3<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t4<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t3<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>3<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t4<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>4<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t3: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t3<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t4: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t4<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//此處是對象類型的賦值，所以是t3和t4都指到了同一個對象上</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//而原本t3那個對象因為沒人引用了，所以會被垃圾回收清理掉</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t3<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>t4<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t3: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t3<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t4: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t4<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t3<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>100<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t3: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t3<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, t4: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t4<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;----&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>int</span><span style=color:#0550ae>[]</span><span style=color:#fff> </span>i5<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#1f2328>{</span>5<span style=color:#1f2328>};</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>int</span><span style=color:#0550ae>[]</span><span style=color:#fff> </span>i6<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#1f2328>{</span>6<span style=color:#1f2328>};</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;i5[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i5<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, i6[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i6<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//因為數组存的是引用，所以i5和i6會指到同一個地方上</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>i5<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>i6<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;i5[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i5<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, i6[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i6<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>i5<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>200<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;i5[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i5<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, i6[0]: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>i6<span style=color:#0550ae>[</span>0<span style=color:#0550ae>]</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><pre tabindex=0><code>t1: 1, t2: 2
 t1: 2, t2: 2
 t1: 100, t2: 2
 ----
@@ -342,245 +68,68 @@ t3: 100, t4: 100
 i5[0]: 5, i6[0]: 6
 i5[0]: 6, i6[0]: 6
 i5[0]: 200, i6[0]: 200
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Pass by value or Pass by reference</p>
-<ul>
-<li>
-<p>和 <code>=</code> 一樣，只要掌握好基本類型實際儲存的是 &ldquo;值&rdquo;、對象類型儲存的是 &ldquo;引用&rdquo;、數組不論什類型存的都是 &ldquo;引用&rdquo;，就能了解 Java 到底什麼時候是 pass by value，什麼時候是 pass by reference</p>
-</li>
-<li>
-<p>基本類型 pass by value，對象類型 pass by reference，而數組因為存的都是引用，所以也是 pass by reference</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Tank</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>level<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Main</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t1<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Tank<span style="color:#fff"> </span>t2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>1<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t1.level: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>fooInt<span style="color:#1f2328">(</span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">//基本類型pass by value</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t1.level: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t1<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>2<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t2.level: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>fooTank<span style="color:#1f2328">(</span>t2<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">//對象類型pass by reference</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;t2.level: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>t2<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">fooTank</span><span style="color:#1f2328">(</span>Tank<span style="color:#fff"> </span>tank<span style="color:#1f2328">){</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>tank<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>1000<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">fooInt</span><span style="color:#1f2328">(</span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>level<span style="color:#1f2328">){</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>level<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>5<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><pre tabindex="0"><code>t1.level: 1
+</code></pre></li></ul></li></ul></li><li><p>Pass by value or Pass by reference</p><ul><li><p>和 <code>=</code> 一樣，只要掌握好基本類型實際儲存的是 &ldquo;值&rdquo;、對象類型儲存的是 &ldquo;引用&rdquo;、數組不論什類型存的都是 &ldquo;引用&rdquo;，就能了解 Java 到底什麼時候是 pass by value，什麼時候是 pass by reference</p></li><li><p>基本類型 pass by value，對象類型 pass by reference，而數組因為存的都是引用，所以也是 pass by reference</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Tank</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>int</span><span style=color:#fff> </span>level<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Main</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t1<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Tank<span style=color:#fff> </span>t2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>1<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t1.level: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>fooInt<span style=color:#1f2328>(</span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>//基本類型pass by value</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t1.level: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t1<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>2<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t2.level: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>fooTank<span style=color:#1f2328>(</span>t2<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>//對象類型pass by reference</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;t2.level: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>t2<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>fooTank</span><span style=color:#1f2328>(</span>Tank<span style=color:#fff> </span>tank<span style=color:#1f2328>){</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>tank<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>1000<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>fooInt</span><span style=color:#1f2328>(</span><span style=color:#cf222e>int</span><span style=color:#fff> </span>level<span style=color:#1f2328>){</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>level<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>5<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><pre tabindex=0><code>t1.level: 1
 t1.level: 1
 t2.level: 2
 t2.level: 1000
-</code></pre></li>
-<li>
-<p>基本類型的List、Set、Map 也是 pass by value，對象類型的 List、Set、Map 是 pass by reference</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Tank</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>level<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Main</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>List<span style="color:#0550ae">&lt;</span>Tank<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>tankList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>ArrayList<span style="color:#0550ae">&lt;&gt;</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>List<span style="color:#0550ae">&lt;</span>Integer<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>intList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>ArrayList<span style="color:#0550ae">&lt;&gt;</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">for</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>i<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>1<span style="color:#1f2328">;</span><span style="color:#fff"> </span>i<span style="color:#fff"> </span><span style="color:#0550ae">&lt;=</span><span style="color:#fff"> </span>2<span style="color:#1f2328">;</span><span style="color:#fff"> </span>i<span style="color:#0550ae">++</span><span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>Tank<span style="color:#fff"> </span>tank<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Tank<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>tank<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>i<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>tankList<span style="color:#1f2328">.</span><span style="color:#1f2328">add</span><span style="color:#1f2328">(</span>tank<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>intList<span style="color:#1f2328">.</span><span style="color:#1f2328">add</span><span style="color:#1f2328">(</span>i<span style="color:#fff"> </span><span style="color:#0550ae">*</span><span style="color:#fff"> </span>100<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;intList: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>0<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>fooIntList<span style="color:#1f2328">(</span>intList<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;intList: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>0<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;tankList: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>0<span style="color:#1f2328">).</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">).</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>fooTankList<span style="color:#1f2328">(</span>tankList<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;tankList: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>0<span style="color:#1f2328">).</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">.</span><span style="color:#1f2328">get</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">).</span><span style="color:#1f2328">level</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">fooTankList</span><span style="color:#1f2328">(</span>List<span style="color:#0550ae">&lt;</span>Tank<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">for</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span>Tank<span style="color:#fff"> </span>tank<span style="color:#fff"> </span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>tankList<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>tank<span style="color:#1f2328">.</span><span style="color:#1f2328">level</span><span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>500<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">fooIntList</span><span style="color:#1f2328">(</span>List<span style="color:#0550ae">&lt;</span>Integer<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">for</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span>Integer<span style="color:#fff"> </span>i<span style="color:#fff"> </span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>intList<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>i<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>2000<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><pre tabindex="0"><code>intList: 100, 200
+</code></pre></li><li><p>基本類型的List、Set、Map 也是 pass by value，對象類型的 List、Set、Map 是 pass by reference</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Tank</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>int</span><span style=color:#fff> </span>level<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Main</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>List<span style=color:#0550ae>&lt;</span>Tank<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>tankList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>ArrayList<span style=color:#0550ae>&lt;&gt;</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>List<span style=color:#0550ae>&lt;</span>Integer<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>intList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>ArrayList<span style=color:#0550ae>&lt;&gt;</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>for</span><span style=color:#fff> </span><span style=color:#1f2328>(</span><span style=color:#cf222e>int</span><span style=color:#fff> </span>i<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>1<span style=color:#1f2328>;</span><span style=color:#fff> </span>i<span style=color:#fff> </span><span style=color:#0550ae>&lt;=</span><span style=color:#fff> </span>2<span style=color:#1f2328>;</span><span style=color:#fff> </span>i<span style=color:#0550ae>++</span><span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>Tank<span style=color:#fff> </span>tank<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Tank<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>tank<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>i<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>tankList<span style=color:#1f2328>.</span><span style=color:#1f2328>add</span><span style=color:#1f2328>(</span>tank<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>intList<span style=color:#1f2328>.</span><span style=color:#1f2328>add</span><span style=color:#1f2328>(</span>i<span style=color:#fff> </span><span style=color:#0550ae>*</span><span style=color:#fff> </span>100<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;intList: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>intList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>0<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>intList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>fooIntList<span style=color:#1f2328>(</span>intList<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;intList: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>intList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>0<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>intList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;tankList: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>0<span style=color:#1f2328>).</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>).</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>fooTankList<span style=color:#1f2328>(</span>tankList<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;tankList: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>0<span style=color:#1f2328>).</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>.</span><span style=color:#1f2328>get</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>).</span><span style=color:#1f2328>level</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>fooTankList</span><span style=color:#1f2328>(</span>List<span style=color:#0550ae>&lt;</span>Tank<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>for</span><span style=color:#fff> </span><span style=color:#1f2328>(</span>Tank<span style=color:#fff> </span>tank<span style=color:#fff> </span><span style=color:#1f2328>:</span><span style=color:#fff> </span>tankList<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>tank<span style=color:#1f2328>.</span><span style=color:#1f2328>level</span><span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>500<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>fooIntList</span><span style=color:#1f2328>(</span>List<span style=color:#0550ae>&lt;</span>Integer<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>intList<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>for</span><span style=color:#fff> </span><span style=color:#1f2328>(</span>Integer<span style=color:#fff> </span>i<span style=color:#fff> </span><span style=color:#1f2328>:</span><span style=color:#fff> </span>intList<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>i<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>2000<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><pre tabindex=0><code>intList: 100, 200
 intList: 100, 200
 tankList: 1, 2
 tankList: 500, 500
-</code></pre></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-<div class="blog-newsletter">
-  <h4>免費訂閱《古古的後端筆記》電子報</h4>
-  <div>
-    <p>每週二學習後端技術，和 3400 人一起變強💪</p>
-    <div id="blog-newsletter" class="newsletter">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-          <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-          <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-        </div>
-      </div>
-      <form action="#" method="POST" class="row justify-content-center">
-        <div class="input-group col-md-8">
-          <input type="email" required="" name="email"
-                 class="form-control"
-                 placeholder="輸入你的 Email">
-          <div class="input-group-append">
-            <button type="submit"
-                    class="input-group-text btn btn-primary">
-              免費訂閱
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-        
-
-        <hr class="blog-end-divider">
-
-        
-        <script src="https://utteranc.es/client.js"
-                label="comment"
-                repo="kucw/kucw.github.io"
-                issue-term="title"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<footer>
-  <div class="container">
-    
-    <div class="row justify-content-center pb-4">
-      <div class="col-12 text-center mb-5">
-        <a href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
-               src="https://kucw.io/images/logo.png" alt="古古的後端筆記">
-        </a>
-      </div>
-    </div>
-
-    
-    <div class="row pb-1">
-      
-      <div class="col-lg-8 text-center pb-5">
-        <h4>免費訂閱電子報，每週二學習後端技術🚀</h4>
-        <div id="footer-newsletter" class="newsletter">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-              <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-              <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-            </div>
-          </div>
-          <form action="#" method="POST" class="row justify-content-center">
-            <div class="input-group col-md-8">
-              <input type="email" required="" name="email"
-                     class="form-control"
-                     placeholder="輸入你的 Email">
-              <div class="input-group-append">
-                <button type="submit"
-                        class="input-group-text btn btn-primary">
-                  免費訂閱
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      
-      <div class="col-lg-4 pb-3 footer-contact-me">
-        <h5 class="mb-4">追蹤古古</h5>
-        <ul class="list-inline footer-social-links">
-          
-          <li class="list-inline-item"><a href="https://github.com/kucw" target="_blank" rel="noopener"><i class="ti-github"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.facebook.com/kucw.io" target="_blank" rel="noopener"><i class="ti-facebook"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" target="_blank" rel="noopener"><i class="ti-instagram"></i></a></li>
-          
-        </ul>
-        <p>聯絡信箱: service@kucw.io</p>
-      </div>
-    </div>
-    
-
-    
-    <div class="border-top py-4 text-center">
-      © 2020-2025 古古的後端筆記 | All Rights Reserved.
-    </div>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-  var indexURL = "https://kucw.io/index.json"
-</script>
-
-<!-- JS Plugins -->
-
-<script src="https://kucw.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/welcomeConfetti.js"></script>
-
-<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/clipboard.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/code-clipboard.js"></script>
-
-<script src="https://kucw.io/plugins/login/login.js"></script>
-
-
-<!-- Main Script -->
-
-<script src="https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js"></script>
-
-
-</body>
-</html>
+</code></pre></li></ul></li></ul></div><div class=blog-newsletter><h4>免費訂閱《古古的後端筆記》電子報</h4><div><p>每週二學習後端技術，和 3400 人一起變強💪</p><div id=blog-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div></div><hr class=blog-end-divider><script src=https://utteranc.es/client.js label=comment repo=kucw/kucw.github.io issue-term=title theme=github-light crossorigin=anonymous async></script></div></div></div></section><footer><div class=container><div class="row justify-content-center pb-4"><div class="col-12 text-center mb-5"><a href=https://kucw.io/><img class="img-fluid logo-thumb-md rounded-circle mx-1" src=https://kucw.io/images/logo.png alt=古古的後端筆記></a></div></div><div class="row pb-1"><div class="col-lg-8 text-center pb-5"><h4>免費訂閱電子報，每週二學習後端技術🚀</h4><div id=footer-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div><div class="col-lg-4 pb-3 footer-contact-me"><h5 class=mb-4>追蹤古古</h5><ul class="list-inline footer-social-links"><li class=list-inline-item><a href=https://github.com/kucw target=_blank rel=noopener><i class=ti-github></i></a></li><li class=list-inline-item><a href=https://www.facebook.com/kucw.io target=_blank rel=noopener><i class=ti-facebook></i></a></li><li class=list-inline-item><a href=https://www.instagram.com/kucw.io/ target=_blank rel=noopener><i class=ti-instagram></i></a></li></ul><p>聯絡信箱: service@kucw.io</p></div></div><div class="border-top py-4 text-center">© 2020-2025 古古的後端筆記 | All Rights Reserved.</div></div></div></footer><script>var indexURL="https://kucw.io/index.json"</script><script src=https://kucw.io/plugins/jQuery/jquery.min.js></script><script src=https://kucw.io/plugins/bootstrap/bootstrap.min.js></script><script src=https://kucw.io/plugins/mailbluster/mailbluster.js></script><script src=https://kucw.io/plugins/confetti/confetti.browser.min.js></script><script src=https://kucw.io/plugins/confetti/welcomeConfetti.js></script><script src=https://kucw.io/plugins/medium-zoom/medium-zoom.min.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js></script><script src=https://kucw.io/plugins/algolia-search/instantsearch.production.min.js></script><script src=https://kucw.io/plugins/clipboard/clipboard.min.js></script><script src=https://kucw.io/plugins/clipboard/code-clipboard.js></script><script src=https://kucw.io/plugins/login/login.js></script><script src=https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js></script></body></html>

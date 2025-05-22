@@ -1,696 +1,133 @@
-<!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>
-    
-    Java - annotation 的使用
-    
-  </title>
-
-  <!-- Mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- SEO -->
-  <meta name="description" content="介紹 Java 中常見的 annotation 的用法，以及如何自定義自己的 annotation">
-  <meta name="author" content="古古">
-
-   <!-- Open Graph data -->
-  <meta property="og:image" content="https://kucw.io/images/logo.png"/>
-
-  <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
-
-  <!-- Plugins -->
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
-  
-
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-
-  <!-- Facebook share link image -->
-  
-
-  <!-- Google Analytics -->
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-NKQ46H0SJW');
-  </script>
-
-  <!-- Google Firebase Login -->
-  
-  <script src="https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js" type="module"></script>
-</head>
-<body>
-<!-- preloader start -->
-<div class="preloader">
-  
-</div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container-fluid border-bottom fixed-top nav-background-color">
-    <div class="nav-container">
-      
-      <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
-        <a class="navbar-brand desktop-view" href="https://kucw.io/">
-          <img class="img-fluid logo-with-text-size mx-1"
-               src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-
-        </a>
-        <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-sm rounded-circle"
-            src="https://kucw.io/images/logo.png" alt="">
-        </a>
-
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-          <i class="ti-menu h3"></i>
-        </button>
-
-        <div class="collapse navbar-collapse text-center" id="navigation">
-          
-          <ul class="navbar-nav mr-auto ml-2">
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                後端技術專欄
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/springboot/1">Spring Boot 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                線上課程
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/kucw-github-hugo" target="_blank" rel="noopener">GitHub 免費架站術！輕鬆打造個人品牌</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springboot" target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springsecurity" target="_blank" rel="noopener">資安一把罩！Spring Security 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                自媒體 &amp; 敗家專區
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/as-a-content-creator/1">軟體工程師的自媒體之路</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/">所有文章</a>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/about">關於我</a>
-            </li>
-            
-            
-
-            
-            <li class="nav-item">
-              <button id="algolia-search-btn" class="algolia-search-btn"><i class="ti-search"></i></button>
-            </li>
-            
-          </ul>
-
-
-          
-          <ul class="navbar-nav">
-            
-            <a class="nav-newsletter-link" href="/bio" target="_blank">電子報訂閱</a>
-
-            
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
-
-
-<div id="algolia-search-pop-overlay" class="algolia-search-pop-overlay">
-  <div class="popup algolia-search-popup">
-    <div class="algolia-search-header">
-      <span class="algolia-search-icon">
-        <i class="ti-search"></i>
-      </span>
-      <div id="algolia-search-input-container" class="algolia-search-input-container"></div>
-      <span id="algolia-popup-btn-close" class="algolia-popup-btn-close">
-        <i class="ti-close"></i>
-      </span>
-    </div>
-    <div id="algolia-results" class="algolia-results">
-      <div id="algolia-hits" class="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-  </div>
-</div>
-
-
-<div id="login-pop-overlay" class="login-pop-overlay">
-  <div class="popup login-popup">
-    <div class="login-popup-header">
-      <img class="img-fluid logo-with-text-size mx-1" src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-      <div id="login-popup-btn-close" class="login-popup-btn-close"><i class="ti-close"></i></div>
-    </div>
-    <div class="login-popup-body">
-      <button class="google-login-btn" id="google-login-btn">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7 0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4Z" fill="#4285F4"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7 0 5-.9 6.6-2.4L13.4 15a6 6 0 0 1-9-3.2H1.1v2.6A10 10 0 0 0 10 20Z" fill="#34A853"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 0 1 0-3.8V5.5H1.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 1 5.5l3.3 2.6A6 6 0 0 1 10 4Z" fill="#EA4335"></path>
-        </svg>
-        <span class="google-login-btn-text">使用 Google 登入</span>
-      </button>
-      <p class="login-terms">By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p>
-    </div>
-  </div>
-</div>
-
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container pl-4 pr-4">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">Java - annotation 的使用</h1>
-
-        <div class="author-details">
-          <div>
-            <img src="https://kucw.io/images/author-sm.png" alt="" class="author-thumb-blog rounded-circle">
-          </div>
-          <div>
-            <p>古古</p>
-            <p>2018/06/11</p>
-          </div>
-        </div>
-
-        <hr class="blog-start-divider">
-
-        
-        
-
-        
-        
-        <div class="content mb-4">
-          <ul>
-<li>
-<p>Java 基本內置 annotation</p>
-<ul>
-<li>
-<p>@Override</p>
-<ul>
-<li>@Override用在方法上，表示這個方法重寫了父方法，如toString()</li>
-<li>如果父方法沒有這個方法，那麼就無法編譯過</li>
-<li>如果實現接口，需要在每個實現方法都加上@Override，說明這是要實現那個接口的方法，而不是自己新創的方法</li>
-</ul>
-</li>
-<li>
-<p>@Deprecated</p>
-<ul>
-<li>@Deprecated 表示這個方法已經過期，不建議開發者使用</li>
-<li>暗示在將來某個不確定的版本，就有可能會被取消掉</li>
-</ul>
-</li>
-<li>
-<p>@SuppressWarnings</p>
-<ul>
-<li>
-<p>@SuppressWarnings是抑制警告的意思，這個注解主要的用處就是忽略警告信息</p>
-</li>
-<li>
-<p>常見的警告值</p>
-<ul>
-<li>deprecation : 使用了不贊成使用的類或方法時的警告</li>
-<li>unused : 某個變量被定義，但是沒有被使用</li>
-<li>path : 在類路徑、源文件路徑等中有不存在的路徑時的警告</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>具體實例</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Test</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//定義了一個不建議使用了方法</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Deprecated</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">sayHello</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;Hello&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//聲明以下的方法，自動忽略deprecation和unused的警告，不要在console上報出warn</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//以下的方法使用了被Deprecated的方法sayHello</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//也沒有使用到一個被定義的變量 i</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//但是因為設置了警告忽略所以不會有warning</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@SuppressWarnings</span><span style="color:#1f2328">({</span><span style="color:#0a3069">&#34;deprecation&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;unused&#34;</span><span style="color:#1f2328">})</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">int</span><span style="color:#fff"> </span>i<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Test<span style="color:#fff"> </span>test<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Test<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>test<span style="color:#1f2328">.</span><span style="color:#1f2328">sayHello</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div></li>
-<li>
-<p>@FunctionallInterface</p>
-<ul>
-<li>
-<p>Java 1.8新增的注解，用於約定函數式接口</p>
-</li>
-<li>
-<p>函數式接口存在的意義，主要是配合Lambda表達式來使用</p>
-<ul>
-<li>如果接口中只允許有一個public的抽象方法，該接口就稱為函數式接口 (不過此接口可以包含多個default方法或是多個static方法)</li>
-<li>能夠包含多個default和static方法的原因是因為在使用函數式編程時，為了能夠使用lambda表達式，所以每個接口的實現類只允許實現一個方法</li>
-<li>而default方法和static方法不允許實現類實現，所以就不會影響lambda表達式，因此就可以存在在函數式接口裡</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//匿名實現類 new Function&lt;Integer, String&gt; 實現了Function接口</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>List<span style="color:#0550ae">&lt;</span>Integer<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>intList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Lists<span style="color:#1f2328">.</span><span style="color:#1f2328">newArrayList</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">,</span><span style="color:#fff"> </span>2<span style="color:#1f2328">,</span><span style="color:#fff"> </span>3<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>List<span style="color:#0550ae">&lt;</span>String<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>stringList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Lists<span style="color:#1f2328">.</span><span style="color:#1f2328">transform</span><span style="color:#1f2328">(</span>intList<span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>com<span style="color:#1f2328">.</span><span style="color:#1f2328">google</span><span style="color:#1f2328">.</span><span style="color:#1f2328">common</span><span style="color:#1f2328">.</span><span style="color:#1f2328">base</span><span style="color:#1f2328">.</span><span style="color:#1f2328">Function</span><span style="color:#0550ae">&lt;</span>Integer<span style="color:#1f2328">,</span><span style="color:#fff"> </span>String<span style="color:#0550ae">&gt;</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#0550ae">@Override</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">apply</span><span style="color:#1f2328">(</span>Integer<span style="color:#fff"> </span>input<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>input<span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;aa&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">});</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">//可以轉換成下面的lambda表達式</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>List<span style="color:#0550ae">&lt;</span>Integer<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>intList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Lists<span style="color:#1f2328">.</span><span style="color:#1f2328">newArrayList</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">,</span><span style="color:#fff"> </span>2<span style="color:#1f2328">,</span><span style="color:#fff"> </span>3<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>List<span style="color:#0550ae">&lt;</span>String<span style="color:#0550ae">&gt;</span><span style="color:#fff"> </span>stringList<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Lists<span style="color:#1f2328">.</span><span style="color:#1f2328">transform</span><span style="color:#1f2328">(</span>intList<span style="color:#1f2328">,</span><span style="color:#fff"> </span>input<span style="color:#fff"> </span><span style="color:#0550ae">-&gt;</span><span style="color:#fff"> </span>input<span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;aa&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span></code></pre></div></li>
-<li>
-<p>使用 @FunctionallInterface 自定義函數式接口</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#57606a">//自定義一個函數式接口，並且只有一個public的抽象方法</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@FunctionalInterface</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">interface</span> <span style="color:#1f2328">MyFunction</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">myApply</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">//定義一個類，讓這個類去使用 MyFunction</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Hello</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">say</span><span style="color:#1f2328">(</span>MyFunction<span style="color:#fff"> </span>myFunction<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span>myFunction<span style="color:#1f2328">.</span><span style="color:#1f2328">myApply</span><span style="color:#1f2328">());</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MainTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Hello<span style="color:#fff"> </span>hello<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Hello<span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//輸出 Hello World</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>hello<span style="color:#1f2328">.</span><span style="color:#1f2328">say</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>MyFunction<span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span><span style="color:#0550ae">@Override</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span><span style="color:#6639ba">myApply</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">                </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;Hello World&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">});</span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//可以轉換為以下的lambda表達式，同樣輸出 Hello World</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>hello<span style="color:#1f2328">.</span><span style="color:#1f2328">say</span><span style="color:#1f2328">(()</span><span style="color:#fff"> </span><span style="color:#0550ae">-&gt;</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;Hello World&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>自定義新的 annotation</p>
-<ul>
-<li>
-<p>使用元注解(meta annotation)來設定一個注解的作用，可以說他是 &ldquo;自定義注解&rdquo; 的注解</p>
-</li>
-<li>
-<p>元注解的種類</p>
-<ul>
-<li>@Target : 表示這個注解可以放在什麼位置上，也就是可以修飾
-<ul>
-<li>ElementType.TYPE : 能修飾類、接口、枚舉、注解</li>
-<li>ElementType.FIELD : 能修飾字段、枚舉的常量</li>
-<li>ElementType.METHOD : 能修飾方法</li>
-<li>ElementType.PARAMETER : 能修飾方法參數</li>
-<li>ElementType.CONSTRUCTOR : 能修飾構造函數</li>
-<li>ElementType.LOCAL_VARIABLE : 能修飾局部變量</li>
-<li>ElementType.ANNOTATION_TYPE : 能修飾注解 (元注解就是此種)</li>
-<li>ElementType.PACKAGE : 能修飾包</li>
-</ul>
-</li>
-<li>@Retention : 表示這個注解的生命週期
-<ul>
-<li>可選的值有三種
-<ul>
-<li>RetentionPolicy.SOURCE
-<ul>
-<li>表示此注解只在源代碼中有效果，不會編譯進class文件</li>
-<li>@Override就是這種注解</li>
-</ul>
-</li>
-<li>RetentionPolicy.CLASS
-<ul>
-<li>表示此注解除了在源代碼有效果，也會編譯進class文件，但是在運行期是無效果的</li>
-<li>@Retention的默認值，即是當沒有指定@Retention的時候，就會是這種類型</li>
-</ul>
-</li>
-<li>RetentionPolicy.RUNTIME
-<ul>
-<li>表示此注解從源代碼到運行期一直存在</li>
-<li>程序可以透過反射獲取這個注解的信息</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>@Inherited : 表示該注解有繼承性，即是子類可以拿到繼承父類上的注解信息</li>
-<li>@Documetned : 在用javadoc命令生成API文檔後，文檔裡會出現該注解說明</li>
-<li>@Repeatable (java1.8新增)
-<ul>
-<li>當沒有使用@Repeatable修飾的時候，注解在同一個位置只能出現一次，如果寫重複的兩次就會報錯</li>
-<li>但是使用@Repeatable之後，就能夠在同一個地方使用多次</li>
-<li>使用@Repeatable的時機通常在想要取得一組資訊時
-<ul>
-<li>像是一個User裡面可能有id、name屬性，我們想要以User為單位來取</li>
-<li>但是因為注解裡面無法使用自定義對象</li>
-<li>所以只能透過@Repeatable這種方法來達成目標</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>注解參數的數據類型</p>
-<ul>
-<li>支持的類型
-<ul>
-<li>所有基本數據類型 (int, float, boolean, byte, double, char, long, short)</li>
-<li>String類型
-<ul>
-<li>Class類型</li>
-<li>enum類型</li>
-<li>Annotation類型</li>
-<li>以上所有類型的數組</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>不支持的類型
-<ul>
-<li>自定義對象</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>注解參數</p>
-<ul>
-<li>可以使用<code>default</code>來自定義某個參數的默認值</li>
-<li>如果注解裡面只有一個參數value(名字很重要，只能用這個名字)，或是其他參數值都有<code>default</code>設定，這時使用此注解時可以不用打參數值，例如 @GetMapping(&quot;/&quot;)</li>
-</ul>
-</li>
-<li>
-<p>具體實例</p>
-<ul>
-<li>
-<p>如何使用一個自定義的注解</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#57606a">//自定義注解 MyAnnotaion，使用 @interface 定義他是一個注解</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@Target</span><span style="color:#1f2328">({</span>ElementType<span style="color:#1f2328">.</span><span style="color:#1f2328">METHOD</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>ElementType<span style="color:#1f2328">.</span><span style="color:#1f2328">TYPE</span><span style="color:#1f2328">})</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@Retention</span><span style="color:#1f2328">(</span>RetentionPolicy<span style="color:#1f2328">.</span><span style="color:#1f2328">RUNTIME</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@Documented</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@interface</span><span style="color:#fff"> </span>MyAnnotation<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span><span style="color:#6639ba">value</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span>String<span style="color:#fff"> </span><span style="color:#6639ba">comment</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#cf222e">default</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;hello&#34;</span><span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">//使用自定義的注解 MyAnnotation，並給value值&#34;John&#34;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@MyAnnotation</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">test</span><span style="color:#1f2328">(){</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//透過反射取得某個類上的某個注解</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>MyAnnotation<span style="color:#fff"> </span>config<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>MyTest<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">.</span><span style="color:#1f2328">getAnnotation</span><span style="color:#1f2328">(</span>MyAnnotation<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;value: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>config<span style="color:#1f2328">.</span><span style="color:#1f2328">value</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, comment: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>config<span style="color:#1f2328">.</span><span style="color:#1f2328">comment</span><span style="color:#1f2328">());</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Main</span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>MyTest<span style="color:#1f2328">.</span><span style="color:#1f2328">test</span><span style="color:#1f2328">();</span><span style="color:#fff">  </span><span style="color:#57606a">//輸出 value: John, comment: hello </span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p>使用 @Repeatable 元注解</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">FindFiles</span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//此注解接住 FileType 注解，並把它存起來</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Target</span><span style="color:#1f2328">(</span>ElementType<span style="color:#1f2328">.</span><span style="color:#1f2328">METHOD</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Retention</span><span style="color:#1f2328">(</span>RetentionPolicy<span style="color:#1f2328">.</span><span style="color:#1f2328">RUNTIME</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#0550ae">@interface</span><span style="color:#fff"> </span>FileTypes<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>FileType<span style="color:#0550ae">[]</span><span style="color:#fff"> </span><span style="color:#6639ba">value</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//自定義的注解，可以想像成是一個自定義的對象，裡面有很多成員變量</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//使用 @Repeatable 讓這個注解可以被重複使用</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//並且 @Repeatable 還指定這個 FileType 注解要放到 FileTypes 注解裡</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Target</span><span style="color:#1f2328">(</span>ElementType<span style="color:#1f2328">.</span><span style="color:#1f2328">METHOD</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Retention</span><span style="color:#1f2328">(</span>RetentionPolicy<span style="color:#1f2328">.</span><span style="color:#1f2328">RUNTIME</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Repeatable</span><span style="color:#1f2328">(</span>FileTypes<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#0550ae">@interface</span><span style="color:#fff"> </span>FileType<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>String<span style="color:#fff"> </span><span style="color:#6639ba">value</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>String<span style="color:#fff"> </span><span style="color:#6639ba">comment</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@FileType</span><span style="color:#1f2328">(</span>value<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;.java&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>comment<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;java&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@FileType</span><span style="color:#1f2328">(</span>value<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;.html&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>comment<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;html&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@FileType</span><span style="color:#1f2328">(</span>value<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;.css&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>comment<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;css&#34;</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">work</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#cf222e">throws</span><span style="color:#fff"> </span>Exception<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//透過反射取得類，並取得work方法，然後再work方法上的FileType注解們</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>FileType<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>fileTypes<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">this</span><span style="color:#1f2328">.</span><span style="color:#1f2328">getClass</span><span style="color:#1f2328">().</span><span style="color:#1f2328">getMethod</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;work&#34;</span><span style="color:#1f2328">).</span><span style="color:#1f2328">getAnnotationsByType</span><span style="color:#1f2328">(</span>FileType<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">for</span><span style="color:#fff"> </span><span style="color:#1f2328">(</span>FileType<span style="color:#fff"> </span>fileType<span style="color:#fff"> </span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>fileTypes<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">            </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;value: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>fileType<span style="color:#1f2328">.</span><span style="color:#1f2328">value</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;, comment: &#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>fileType<span style="color:#1f2328">.</span><span style="color:#1f2328">comment</span><span style="color:#1f2328">());</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#cf222e">throws</span><span style="color:#fff"> </span>Exception<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>FindFiles<span style="color:#1f2328">().</span><span style="color:#1f2328">work</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><pre tabindex="0"><code>//輸出
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><title>Java - annotation 的使用
+</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=description content="介紹 Java 中常見的 annotation 的用法，以及如何自定義自己的 annotation"><meta name=author content="古古"><meta property="og:image" content="https://kucw.io/images/logo.png"><meta name=generator content="Hugo 0.145.0 with theme pure"><link rel=stylesheet href=https://kucw.io/plugins/bootstrap/bootstrap.min.css><link rel=stylesheet href=https://kucw.io/plugins/themify-icons/themify-icons.css><link rel=stylesheet href=https://kucw.io/plugins/venobox/venobox.css><link rel=stylesheet href=https://kucw.io/plugins/medium-zoom/medium-zoom.css><link rel=stylesheet href=https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css media=screen><link rel="shortcut icon" href=https://kucw.io/images/favicon.png type=image/x-icon><link rel=icon href=https://kucw.io/images/favicon.png type=image/x-icon><script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NKQ46H0SJW")</script><script src=https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js type=module></script></head><body><div class=preloader></div><header class=navigation><div class="container-fluid border-bottom fixed-top nav-background-color"><div class=nav-container><nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0"><a class="navbar-brand desktop-view" href=https://kucw.io/><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt>
+</a><a class="navbar-brand navbar-brand-mobile mobile-view" href=https://kucw.io/><img class="img-fluid logo-thumb-sm rounded-circle" src=https://kucw.io/images/logo.png alt>
+</a><button class="navbar-toggler border-0" type=button data-toggle=collapse data-target=#navigation>
+<i class="ti-menu h3"></i></button><div class="collapse navbar-collapse text-center" id=navigation><ul class="navbar-nav mr-auto ml-2"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>後端技術專欄</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/springboot/1>Spring Boot 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>線上課程</a><div class=dropdown-menu><a class=dropdown-item href=https://hahow.in/cr/kucw-github-hugo target=_blank rel=noopener>GitHub 免費架站術！輕鬆打造個人品牌</a>
+<a class=dropdown-item href=https://hahow.in/cr/springboot target=_blank rel=noopener>Java 工程師必備！Spring Boot 零基礎入門</a>
+<a class=dropdown-item href=https://hahow.in/cr/springsecurity target=_blank rel=noopener>資安一把罩！Spring Security 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>自媒體 & 敗家專區</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/as-a-content-creator/1>軟體工程師的自媒體之路</a></div></li><li class=nav-item><a class=nav-link href=https://kucw.io/>所有文章</a></li><li class=nav-item><a class=nav-link href=https://kucw.io/about>關於我</a></li><li class=nav-item><button id=algolia-search-btn class=algolia-search-btn><i class=ti-search></i></button></li></ul><ul class=navbar-nav><a class=nav-newsletter-link href=/bio target=_blank>電子報訂閱</a></ul></div></nav></div></div></header><div id=algolia-search-pop-overlay class=algolia-search-pop-overlay><div class="popup algolia-search-popup"><div class=algolia-search-header><span class=algolia-search-icon><i class=ti-search></i></span><div id=algolia-search-input-container class=algolia-search-input-container></div><span id=algolia-popup-btn-close class=algolia-popup-btn-close><i class=ti-close></i></span></div><div id=algolia-results class=algolia-results><div id=algolia-hits class=algolia-hits></div><div id=algolia-pagination class=algolia-pagination></div></div></div></div><div id=login-pop-overlay class=login-pop-overlay><div class="popup login-popup"><div class=login-popup-header><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt><div id=login-popup-btn-close class=login-popup-btn-close><i class=ti-close></i></div></div><div class=login-popup-body><button class=google-login-btn id=google-login-btn>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7.0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4z" fill="#4285f4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7.0 5-.9 6.6-2.4L13.4 15a6 6 0 01-9-3.2H1.1v2.6A10 10 0 0010 20z" fill="#34a853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 010-3.8V5.5H1.1a10 10 0 000 9l3.3-2.6z" fill="#fbbc05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5.0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 001 5.5l3.3 2.6A6 6 0 0110 4z" fill="#ea4335"/></svg>
+<span class=google-login-btn-text>使用 Google 登入</span></button><p class=login-terms>By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p></div></div></div><section class=section-sm><div class="container pl-4 pr-4"><div class=row><div class="col-lg-10 mx-auto"><h1 class=blog-title>Java - annotation 的使用</h1><div class=author-details><div><img src=https://kucw.io/images/author-sm.png alt class="author-thumb-blog rounded-circle"></div><div><p>古古</p><p>2018/06/11</p></div></div><hr class=blog-start-divider><div class="content mb-4"><ul><li><p>Java 基本內置 annotation</p><ul><li><p>@Override</p><ul><li>@Override用在方法上，表示這個方法重寫了父方法，如toString()</li><li>如果父方法沒有這個方法，那麼就無法編譯過</li><li>如果實現接口，需要在每個實現方法都加上@Override，說明這是要實現那個接口的方法，而不是自己新創的方法</li></ul></li><li><p>@Deprecated</p><ul><li>@Deprecated 表示這個方法已經過期，不建議開發者使用</li><li>暗示在將來某個不確定的版本，就有可能會被取消掉</li></ul></li><li><p>@SuppressWarnings</p><ul><li><p>@SuppressWarnings是抑制警告的意思，這個注解主要的用處就是忽略警告信息</p></li><li><p>常見的警告值</p><ul><li>deprecation : 使用了不贊成使用的類或方法時的警告</li><li>unused : 某個變量被定義，但是沒有被使用</li><li>path : 在類路徑、源文件路徑等中有不存在的路徑時的警告</li></ul></li></ul></li><li><p>具體實例</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Test</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//定義了一個不建議使用了方法</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Deprecated</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>sayHello</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;Hello&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//聲明以下的方法，自動忽略deprecation和unused的警告，不要在console上報出warn</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//以下的方法使用了被Deprecated的方法sayHello</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//也沒有使用到一個被定義的變量 i</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//但是因為設置了警告忽略所以不會有warning</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@SuppressWarnings</span><span style=color:#1f2328>({</span><span style=color:#0a3069>&#34;deprecation&#34;</span><span style=color:#1f2328>,</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;unused&#34;</span><span style=color:#1f2328>})</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>int</span><span style=color:#fff> </span>i<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Test<span style=color:#fff> </span>test<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Test<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>test<span style=color:#1f2328>.</span><span style=color:#1f2328>sayHello</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div></li><li><p>@FunctionallInterface</p><ul><li><p>Java 1.8新增的注解，用於約定函數式接口</p></li><li><p>函數式接口存在的意義，主要是配合Lambda表達式來使用</p><ul><li>如果接口中只允許有一個public的抽象方法，該接口就稱為函數式接口 (不過此接口可以包含多個default方法或是多個static方法)</li><li>能夠包含多個default和static方法的原因是因為在使用函數式編程時，為了能夠使用lambda表達式，所以每個接口的實現類只允許實現一個方法</li><li>而default方法和static方法不允許實現類實現，所以就不會影響lambda表達式，因此就可以存在在函數式接口裡</li></ul><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//匿名實現類 new Function&lt;Integer, String&gt; 實現了Function接口</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span>List<span style=color:#0550ae>&lt;</span>Integer<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>intList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Lists<span style=color:#1f2328>.</span><span style=color:#1f2328>newArrayList</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>,</span><span style=color:#fff> </span>2<span style=color:#1f2328>,</span><span style=color:#fff> </span>3<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span>List<span style=color:#0550ae>&lt;</span>String<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>stringList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Lists<span style=color:#1f2328>.</span><span style=color:#1f2328>transform</span><span style=color:#1f2328>(</span>intList<span style=color:#1f2328>,</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>com<span style=color:#1f2328>.</span><span style=color:#1f2328>google</span><span style=color:#1f2328>.</span><span style=color:#1f2328>common</span><span style=color:#1f2328>.</span><span style=color:#1f2328>base</span><span style=color:#1f2328>.</span><span style=color:#1f2328>Function</span><span style=color:#0550ae>&lt;</span>Integer<span style=color:#1f2328>,</span><span style=color:#fff> </span>String<span style=color:#0550ae>&gt;</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#0550ae>@Override</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>public</span><span style=color:#fff> </span>String<span style=color:#fff> </span><span style=color:#6639ba>apply</span><span style=color:#1f2328>(</span>Integer<span style=color:#fff> </span>input<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span><span style=color:#cf222e>return</span><span style=color:#fff> </span>input<span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;aa&#34;</span><span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>});</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#57606a>//可以轉換成下面的lambda表達式</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>List<span style=color:#0550ae>&lt;</span>Integer<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>intList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Lists<span style=color:#1f2328>.</span><span style=color:#1f2328>newArrayList</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>,</span><span style=color:#fff> </span>2<span style=color:#1f2328>,</span><span style=color:#fff> </span>3<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>List<span style=color:#0550ae>&lt;</span>String<span style=color:#0550ae>&gt;</span><span style=color:#fff> </span>stringList<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Lists<span style=color:#1f2328>.</span><span style=color:#1f2328>transform</span><span style=color:#1f2328>(</span>intList<span style=color:#1f2328>,</span><span style=color:#fff> </span>input<span style=color:#fff> </span><span style=color:#0550ae>-&gt;</span><span style=color:#fff> </span>input<span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;aa&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span></code></pre></div></li><li><p>使用 @FunctionallInterface 自定義函數式接口</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#57606a>//自定義一個函數式接口，並且只有一個public的抽象方法</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@FunctionalInterface</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>interface</span> <span style=color:#1f2328>MyFunction</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span>String<span style=color:#fff> </span><span style=color:#6639ba>myApply</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#57606a>//定義一個類，讓這個類去使用 MyFunction</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Hello</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>say</span><span style=color:#1f2328>(</span>MyFunction<span style=color:#fff> </span>myFunction<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span>myFunction<span style=color:#1f2328>.</span><span style=color:#1f2328>myApply</span><span style=color:#1f2328>());</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MainTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Hello<span style=color:#fff> </span>hello<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Hello<span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//輸出 Hello World</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>hello<span style=color:#1f2328>.</span><span style=color:#1f2328>say</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>MyFunction<span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span><span style=color:#0550ae>@Override</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span><span style=color:#cf222e>public</span><span style=color:#fff> </span>String<span style=color:#fff> </span><span style=color:#6639ba>myApply</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>                </span><span style=color:#cf222e>return</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;Hello World&#34;</span><span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>});</span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//可以轉換為以下的lambda表達式，同樣輸出 Hello World</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>hello<span style=color:#1f2328>.</span><span style=color:#1f2328>say</span><span style=color:#1f2328>(()</span><span style=color:#fff> </span><span style=color:#0550ae>-&gt;</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;Hello World&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div></li></ul></li></ul></li><li><p>自定義新的 annotation</p><ul><li><p>使用元注解(meta annotation)來設定一個注解的作用，可以說他是 &ldquo;自定義注解&rdquo; 的注解</p></li><li><p>元注解的種類</p><ul><li>@Target : 表示這個注解可以放在什麼位置上，也就是可以修飾<ul><li>ElementType.TYPE : 能修飾類、接口、枚舉、注解</li><li>ElementType.FIELD : 能修飾字段、枚舉的常量</li><li>ElementType.METHOD : 能修飾方法</li><li>ElementType.PARAMETER : 能修飾方法參數</li><li>ElementType.CONSTRUCTOR : 能修飾構造函數</li><li>ElementType.LOCAL_VARIABLE : 能修飾局部變量</li><li>ElementType.ANNOTATION_TYPE : 能修飾注解 (元注解就是此種)</li><li>ElementType.PACKAGE : 能修飾包</li></ul></li><li>@Retention : 表示這個注解的生命週期<ul><li>可選的值有三種<ul><li>RetentionPolicy.SOURCE<ul><li>表示此注解只在源代碼中有效果，不會編譯進class文件</li><li>@Override就是這種注解</li></ul></li><li>RetentionPolicy.CLASS<ul><li>表示此注解除了在源代碼有效果，也會編譯進class文件，但是在運行期是無效果的</li><li>@Retention的默認值，即是當沒有指定@Retention的時候，就會是這種類型</li></ul></li><li>RetentionPolicy.RUNTIME<ul><li>表示此注解從源代碼到運行期一直存在</li><li>程序可以透過反射獲取這個注解的信息</li></ul></li></ul></li></ul></li><li>@Inherited : 表示該注解有繼承性，即是子類可以拿到繼承父類上的注解信息</li><li>@Documetned : 在用javadoc命令生成API文檔後，文檔裡會出現該注解說明</li><li>@Repeatable (java1.8新增)<ul><li>當沒有使用@Repeatable修飾的時候，注解在同一個位置只能出現一次，如果寫重複的兩次就會報錯</li><li>但是使用@Repeatable之後，就能夠在同一個地方使用多次</li><li>使用@Repeatable的時機通常在想要取得一組資訊時<ul><li>像是一個User裡面可能有id、name屬性，我們想要以User為單位來取</li><li>但是因為注解裡面無法使用自定義對象</li><li>所以只能透過@Repeatable這種方法來達成目標</li></ul></li></ul></li></ul></li><li><p>注解參數的數據類型</p><ul><li>支持的類型<ul><li>所有基本數據類型 (int, float, boolean, byte, double, char, long, short)</li><li>String類型<ul><li>Class類型</li><li>enum類型</li><li>Annotation類型</li><li>以上所有類型的數組</li></ul></li></ul></li><li>不支持的類型<ul><li>自定義對象</li></ul></li></ul></li><li><p>注解參數</p><ul><li>可以使用<code>default</code>來自定義某個參數的默認值</li><li>如果注解裡面只有一個參數value(名字很重要，只能用這個名字)，或是其他參數值都有<code>default</code>設定，這時使用此注解時可以不用打參數值，例如 @GetMapping("/")</li></ul></li><li><p>具體實例</p><ul><li><p>如何使用一個自定義的注解</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#57606a>//自定義注解 MyAnnotaion，使用 @interface 定義他是一個注解</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@Target</span><span style=color:#1f2328>({</span>ElementType<span style=color:#1f2328>.</span><span style=color:#1f2328>METHOD</span><span style=color:#1f2328>,</span><span style=color:#fff> </span>ElementType<span style=color:#1f2328>.</span><span style=color:#1f2328>TYPE</span><span style=color:#1f2328>})</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@Retention</span><span style=color:#1f2328>(</span>RetentionPolicy<span style=color:#1f2328>.</span><span style=color:#1f2328>RUNTIME</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@Documented</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@interface</span><span style=color:#fff> </span>MyAnnotation<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span><span style=color:#6639ba>value</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span>String<span style=color:#fff> </span><span style=color:#6639ba>comment</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#cf222e>default</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;hello&#34;</span><span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#57606a>//使用自定義的注解 MyAnnotation，並給value值&#34;John&#34;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@MyAnnotation</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;John&#34;</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MyTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>test</span><span style=color:#1f2328>(){</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//透過反射取得某個類上的某個注解</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>MyAnnotation<span style=color:#fff> </span>config<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>MyTest<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>.</span><span style=color:#1f2328>getAnnotation</span><span style=color:#1f2328>(</span>MyAnnotation<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;value: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>config<span style=color:#1f2328>.</span><span style=color:#1f2328>value</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, comment: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>config<span style=color:#1f2328>.</span><span style=color:#1f2328>comment</span><span style=color:#1f2328>());</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Main</span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>MyTest<span style=color:#1f2328>.</span><span style=color:#1f2328>test</span><span style=color:#1f2328>();</span><span style=color:#fff>  </span><span style=color:#57606a>//輸出 value: John, comment: hello </span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div></li></ul></li><li><p>使用 @Repeatable 元注解</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>FindFiles</span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//此注解接住 FileType 注解，並把它存起來</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Target</span><span style=color:#1f2328>(</span>ElementType<span style=color:#1f2328>.</span><span style=color:#1f2328>METHOD</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Retention</span><span style=color:#1f2328>(</span>RetentionPolicy<span style=color:#1f2328>.</span><span style=color:#1f2328>RUNTIME</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#0550ae>@interface</span><span style=color:#fff> </span>FileTypes<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>FileType<span style=color:#0550ae>[]</span><span style=color:#fff> </span><span style=color:#6639ba>value</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//自定義的注解，可以想像成是一個自定義的對象，裡面有很多成員變量</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//使用 @Repeatable 讓這個注解可以被重複使用</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//並且 @Repeatable 還指定這個 FileType 注解要放到 FileTypes 注解裡</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Target</span><span style=color:#1f2328>(</span>ElementType<span style=color:#1f2328>.</span><span style=color:#1f2328>METHOD</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Retention</span><span style=color:#1f2328>(</span>RetentionPolicy<span style=color:#1f2328>.</span><span style=color:#1f2328>RUNTIME</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Repeatable</span><span style=color:#1f2328>(</span>FileTypes<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#0550ae>@interface</span><span style=color:#fff> </span>FileType<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>String<span style=color:#fff> </span><span style=color:#6639ba>value</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>String<span style=color:#fff> </span><span style=color:#6639ba>comment</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@FileType</span><span style=color:#1f2328>(</span>value<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;.java&#34;</span><span style=color:#1f2328>,</span><span style=color:#fff> </span>comment<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;java&#34;</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@FileType</span><span style=color:#1f2328>(</span>value<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;.html&#34;</span><span style=color:#1f2328>,</span><span style=color:#fff> </span>comment<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;html&#34;</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@FileType</span><span style=color:#1f2328>(</span>value<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;.css&#34;</span><span style=color:#1f2328>,</span><span style=color:#fff> </span>comment<span style=color:#0550ae>=</span><span style=color:#0a3069>&#34;css&#34;</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>work</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#cf222e>throws</span><span style=color:#fff> </span>Exception<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//透過反射取得類，並取得work方法，然後再work方法上的FileType注解們</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>FileType<span style=color:#0550ae>[]</span><span style=color:#fff> </span>fileTypes<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>this</span><span style=color:#1f2328>.</span><span style=color:#1f2328>getClass</span><span style=color:#1f2328>().</span><span style=color:#1f2328>getMethod</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;work&#34;</span><span style=color:#1f2328>).</span><span style=color:#1f2328>getAnnotationsByType</span><span style=color:#1f2328>(</span>FileType<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>for</span><span style=color:#fff> </span><span style=color:#1f2328>(</span>FileType<span style=color:#fff> </span>fileType<span style=color:#fff> </span><span style=color:#1f2328>:</span><span style=color:#fff> </span>fileTypes<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>            </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;value: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>fileType<span style=color:#1f2328>.</span><span style=color:#1f2328>value</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;, comment: &#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>fileType<span style=color:#1f2328>.</span><span style=color:#1f2328>comment</span><span style=color:#1f2328>());</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#cf222e>throws</span><span style=color:#fff> </span>Exception<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>FindFiles<span style=color:#1f2328>().</span><span style=color:#1f2328>work</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><pre tabindex=0><code>//輸出
 value: .java, comment: java
 value: .html, comment: html
 value: .css, comment: css
-</code></pre></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-<div class="blog-newsletter">
-  <h4>免費訂閱《古古的後端筆記》電子報</h4>
-  <div>
-    <p>每週二學習後端技術，和 3400 人一起變強💪</p>
-    <div id="blog-newsletter" class="newsletter">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-          <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-          <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-        </div>
-      </div>
-      <form action="#" method="POST" class="row justify-content-center">
-        <div class="input-group col-md-8">
-          <input type="email" required="" name="email"
-                 class="form-control"
-                 placeholder="輸入你的 Email">
-          <div class="input-group-append">
-            <button type="submit"
-                    class="input-group-text btn btn-primary">
-              免費訂閱
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-        
-
-        <hr class="blog-end-divider">
-
-        
-        <script src="https://utteranc.es/client.js"
-                label="comment"
-                repo="kucw/kucw.github.io"
-                issue-term="title"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<footer>
-  <div class="container">
-    
-    <div class="row justify-content-center pb-4">
-      <div class="col-12 text-center mb-5">
-        <a href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
-               src="https://kucw.io/images/logo.png" alt="古古的後端筆記">
-        </a>
-      </div>
-    </div>
-
-    
-    <div class="row pb-1">
-      
-      <div class="col-lg-8 text-center pb-5">
-        <h4>免費訂閱電子報，每週二學習後端技術🚀</h4>
-        <div id="footer-newsletter" class="newsletter">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-              <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-              <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-            </div>
-          </div>
-          <form action="#" method="POST" class="row justify-content-center">
-            <div class="input-group col-md-8">
-              <input type="email" required="" name="email"
-                     class="form-control"
-                     placeholder="輸入你的 Email">
-              <div class="input-group-append">
-                <button type="submit"
-                        class="input-group-text btn btn-primary">
-                  免費訂閱
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      
-      <div class="col-lg-4 pb-3 footer-contact-me">
-        <h5 class="mb-4">追蹤古古</h5>
-        <ul class="list-inline footer-social-links">
-          
-          <li class="list-inline-item"><a href="https://github.com/kucw" target="_blank" rel="noopener"><i class="ti-github"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.facebook.com/kucw.io" target="_blank" rel="noopener"><i class="ti-facebook"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" target="_blank" rel="noopener"><i class="ti-instagram"></i></a></li>
-          
-        </ul>
-        <p>聯絡信箱: service@kucw.io</p>
-      </div>
-    </div>
-    
-
-    
-    <div class="border-top py-4 text-center">
-      © 2020-2025 古古的後端筆記 | All Rights Reserved.
-    </div>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-  var indexURL = "https://kucw.io/index.json"
-</script>
-
-<!-- JS Plugins -->
-
-<script src="https://kucw.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/welcomeConfetti.js"></script>
-
-<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/clipboard.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/code-clipboard.js"></script>
-
-<script src="https://kucw.io/plugins/login/login.js"></script>
-
-
-<!-- Main Script -->
-
-<script src="https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js"></script>
-
-
-</body>
-</html>
+</code></pre></li></ul></li></ul></div><div class=blog-newsletter><h4>免費訂閱《古古的後端筆記》電子報</h4><div><p>每週二學習後端技術，和 3400 人一起變強💪</p><div id=blog-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div></div><hr class=blog-end-divider><script src=https://utteranc.es/client.js label=comment repo=kucw/kucw.github.io issue-term=title theme=github-light crossorigin=anonymous async></script></div></div></div></section><footer><div class=container><div class="row justify-content-center pb-4"><div class="col-12 text-center mb-5"><a href=https://kucw.io/><img class="img-fluid logo-thumb-md rounded-circle mx-1" src=https://kucw.io/images/logo.png alt=古古的後端筆記></a></div></div><div class="row pb-1"><div class="col-lg-8 text-center pb-5"><h4>免費訂閱電子報，每週二學習後端技術🚀</h4><div id=footer-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div><div class="col-lg-4 pb-3 footer-contact-me"><h5 class=mb-4>追蹤古古</h5><ul class="list-inline footer-social-links"><li class=list-inline-item><a href=https://github.com/kucw target=_blank rel=noopener><i class=ti-github></i></a></li><li class=list-inline-item><a href=https://www.facebook.com/kucw.io target=_blank rel=noopener><i class=ti-facebook></i></a></li><li class=list-inline-item><a href=https://www.instagram.com/kucw.io/ target=_blank rel=noopener><i class=ti-instagram></i></a></li></ul><p>聯絡信箱: service@kucw.io</p></div></div><div class="border-top py-4 text-center">© 2020-2025 古古的後端筆記 | All Rights Reserved.</div></div></div></footer><script>var indexURL="https://kucw.io/index.json"</script><script src=https://kucw.io/plugins/jQuery/jquery.min.js></script><script src=https://kucw.io/plugins/bootstrap/bootstrap.min.js></script><script src=https://kucw.io/plugins/mailbluster/mailbluster.js></script><script src=https://kucw.io/plugins/confetti/confetti.browser.min.js></script><script src=https://kucw.io/plugins/confetti/welcomeConfetti.js></script><script src=https://kucw.io/plugins/medium-zoom/medium-zoom.min.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js></script><script src=https://kucw.io/plugins/algolia-search/instantsearch.production.min.js></script><script src=https://kucw.io/plugins/clipboard/clipboard.min.js></script><script src=https://kucw.io/plugins/clipboard/code-clipboard.js></script><script src=https://kucw.io/plugins/login/login.js></script><script src=https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js></script></body></html>

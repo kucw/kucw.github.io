@@ -1,547 +1,101 @@
-<!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>
-    
-    Java - Java 8 新增的時間系列用法
-    
-  </title>
-
-  <!-- Mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- SEO -->
-  <meta name="description" content="介紹如何使用 Java 8 的時間系列類 Instant、LocalDate、LocalTime、LocalDateTime、ZonedDateTime">
-  <meta name="author" content="古古">
-
-   <!-- Open Graph data -->
-  <meta property="og:image" content="https://kucw.io/images/logo.png"/>
-
-  <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
-
-  <!-- Plugins -->
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
-  
-
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-
-  <!-- Facebook share link image -->
-  
-
-  <!-- Google Analytics -->
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-NKQ46H0SJW');
-  </script>
-
-  <!-- Google Firebase Login -->
-  
-  <script src="https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js" type="module"></script>
-</head>
-<body>
-<!-- preloader start -->
-<div class="preloader">
-  
-</div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container-fluid border-bottom fixed-top nav-background-color">
-    <div class="nav-container">
-      
-      <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
-        <a class="navbar-brand desktop-view" href="https://kucw.io/">
-          <img class="img-fluid logo-with-text-size mx-1"
-               src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-
-        </a>
-        <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-sm rounded-circle"
-            src="https://kucw.io/images/logo.png" alt="">
-        </a>
-
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-          <i class="ti-menu h3"></i>
-        </button>
-
-        <div class="collapse navbar-collapse text-center" id="navigation">
-          
-          <ul class="navbar-nav mr-auto ml-2">
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                後端技術專欄
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/springboot/1">Spring Boot 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                線上課程
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/kucw-github-hugo" target="_blank" rel="noopener">GitHub 免費架站術！輕鬆打造個人品牌</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springboot" target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springsecurity" target="_blank" rel="noopener">資安一把罩！Spring Security 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                自媒體 &amp; 敗家專區
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/as-a-content-creator/1">軟體工程師的自媒體之路</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/">所有文章</a>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/about">關於我</a>
-            </li>
-            
-            
-
-            
-            <li class="nav-item">
-              <button id="algolia-search-btn" class="algolia-search-btn"><i class="ti-search"></i></button>
-            </li>
-            
-          </ul>
-
-
-          
-          <ul class="navbar-nav">
-            
-            <a class="nav-newsletter-link" href="/bio" target="_blank">電子報訂閱</a>
-
-            
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
-
-
-<div id="algolia-search-pop-overlay" class="algolia-search-pop-overlay">
-  <div class="popup algolia-search-popup">
-    <div class="algolia-search-header">
-      <span class="algolia-search-icon">
-        <i class="ti-search"></i>
-      </span>
-      <div id="algolia-search-input-container" class="algolia-search-input-container"></div>
-      <span id="algolia-popup-btn-close" class="algolia-popup-btn-close">
-        <i class="ti-close"></i>
-      </span>
-    </div>
-    <div id="algolia-results" class="algolia-results">
-      <div id="algolia-hits" class="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-  </div>
-</div>
-
-
-<div id="login-pop-overlay" class="login-pop-overlay">
-  <div class="popup login-popup">
-    <div class="login-popup-header">
-      <img class="img-fluid logo-with-text-size mx-1" src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-      <div id="login-popup-btn-close" class="login-popup-btn-close"><i class="ti-close"></i></div>
-    </div>
-    <div class="login-popup-body">
-      <button class="google-login-btn" id="google-login-btn">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7 0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4Z" fill="#4285F4"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7 0 5-.9 6.6-2.4L13.4 15a6 6 0 0 1-9-3.2H1.1v2.6A10 10 0 0 0 10 20Z" fill="#34A853"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 0 1 0-3.8V5.5H1.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 1 5.5l3.3 2.6A6 6 0 0 1 10 4Z" fill="#EA4335"></path>
-        </svg>
-        <span class="google-login-btn-text">使用 Google 登入</span>
-      </button>
-      <p class="login-terms">By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p>
-    </div>
-  </div>
-</div>
-
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container pl-4 pr-4">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">Java - Java 8 新增的時間系列用法</h1>
-
-        <div class="author-details">
-          <div>
-            <img src="https://kucw.io/images/author-sm.png" alt="" class="author-thumb-blog rounded-circle">
-          </div>
-          <div>
-            <p>古古</p>
-            <p>2020/06/30</p>
-          </div>
-        </div>
-
-        <hr class="blog-start-divider">
-
-        
-        
-
-        
-        
-        <div class="content mb-4">
-          <p>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識</p>
-<h4 id="1-首先是要有時區的概念" class="markdown-heading-anchor">
-  1. 首先是要有時區的概念
-  <a href="#1-%e9%a6%96%e5%85%88%e6%98%af%e8%a6%81%e6%9c%89%e6%99%82%e5%8d%80%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
-</h4><p>在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</p>
-<h4 id="2-要有-timestamp-時間戳的概念" class="markdown-heading-anchor">
-  2. 要有 Timestamp 時間戳的概念
-  <a href="#2-%e8%a6%81%e6%9c%89-timestamp-%e6%99%82%e9%96%93%e6%88%b3%e7%9a%84%e6%a6%82%e5%bf%b5">#</a>
-</h4><p>在電腦的世界裡，有一個東西叫做 Timestamp（時間戳），這個 Timestamp 是一個整數，代表著從 UTC 1970 年 1 月 1 日 0 時 0 分 0 秒 起至現在的總秒數，UTC 代表的是英國格林威治時間，也就是 GMT+0（可以簡單的認為 UTC = GMT+0）</p>
-<p>所以說假設現在你人在英國格林威治，然後你現在看手錶上的時間是 2020/06/29 14:00:00，則這個當下的 Timestamp的值就為 1593439200（代表從 1970/1/1 00:00:00 到現在經過了 1593439200 秒），然後假設同一個瞬間你的朋友在台灣，因為台灣的時區為 GMT+8，所以你朋友在台灣看手錶的時間會是 2020/06/29 22:00:00，但是你朋友當下的 Timestamp 也會是 1593439200</p>
-<p>也就是說，雖然你和你朋友手錶上呈現的時間不一樣，但是你們兩個的 Timestamp 會是一模一樣的，因為 Timestamp 是唯一表示著 UTC 1970/1/1 00:00:00 起至現在的總秒數</p>
-<p>而在Java中，可以使用 <code>System.currentTimeMillis()</code>，取得當前的 Timestamp</p>
-<h3 id="為什麼-java-中舊版的-date-不好-" class="markdown-heading-anchor">
-  為什麼 Java 中舊版的 Date 不好 ?
-  <a href="#%e7%82%ba%e4%bb%80%e9%ba%bc-java-%e4%b8%ad%e8%88%8a%e7%89%88%e7%9a%84-date-%e4%b8%8d%e5%a5%bd-">#</a>
-</h3><p>因為 Date 硬是把 <strong>時區</strong> 和 <strong>Timestamp</strong> 這兩個概念混合在一起了，這就是為什麼 Date 不好的關係</p>
-<p>通常我們 <code>new</code> 一個 Date object時，都是使用 <code>Date date = new Date()</code>，而這個 Constructor 其實是會去取得當前的 Timestamp，然後把 Timestamp 存放在 Date 內部的 <code>fastTime</code> 變量裡，所以 Date 內部存放的，實際上是 Timestamp 的值</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">Date</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span><span style="color:#cf222e">transient</span><span style="color:#fff"> </span><span style="color:#cf222e">long</span><span style="color:#fff"> </span>fastTime<span style="color:#1f2328">;</span><span style="color:#fff"> </span><span style="color:#57606a">//存放timestamp的值</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#6639ba">Date</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">this</span><span style="color:#1f2328">(</span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">currentTimeMillis</span><span style="color:#1f2328">());</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#6639ba">Date</span><span style="color:#1f2328">(</span><span style="color:#cf222e">long</span><span style="color:#fff"> </span>date<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>fastTime<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>date<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>雖然 Date 內部只存放了 Timestamp 的值，但是 Date 卻在 <code>toString()</code> 時，會去取得當前程式運行的時區，然後再把 Timestamp 換算成當地時區的時間印出來</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// Date 內部明明是只存放 Timestamp 的值 1593439200，也就是 UTC 2020/06/29 14:00:00</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// (因為 Date 的構造方法要輸入 ms 毫秒，所以要把 Timestamp 乘以 1000)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Date<span style="color:#fff"> </span>date<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Date<span style="color:#1f2328">(</span>1593439200L<span style="color:#fff"> </span><span style="color:#0550ae">*</span><span style="color:#fff"> </span>1000<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"> 
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 但是卻會在 toString() 方法裡面再去取得當前程式運行的時區(我的時區是GMT+8)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 然後把 Timestamp 的值轉換成該時區的時間</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 所以這裡會輸出 Mon Jun 29 22:00:00 CST 2020</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span>date<span style="color:#1f2328">);</span><span style="color:#fff"> 
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>所以 Java 為了改善 Date 混合 <strong>時區</strong> 和 <strong>Timestamp</strong> 的問題，在 Java 8 時提出了新的時間系列類，將 Timestamp 和時間分成兩組</p>
-<ul>
-<li>Timestamp組 : Instant</li>
-<li>時間組 : LocalDate、LocalTime、LocalDateTime、ZonedDateTime</li>
-</ul>
-<h3 id="instant-用法" class="markdown-heading-anchor">
-  Instant 用法
-  <a href="#instant-%e7%94%a8%e6%b3%95">#</a>
-</h3><p>在 Java 8 新增的這一堆時間系列裡面，每個類都有工廠方法可以使用，可以直接用這些工廠方法來產生出一個新的 object</p>
-<p>所以我們就可以直接使用 <code>Instant.of()</code> 去創建一個 instant object</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">   </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 用當下的 Timestamp 來創建in1</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Instant<span style="color:#fff"> </span>in1<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Instant<span style="color:#1f2328">.</span><span style="color:#1f2328">now</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 自定義 Timestamp</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Instant<span style="color:#fff"> </span>in2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Instant<span style="color:#1f2328">.</span><span style="color:#1f2328">ofEpochSecond</span><span style="color:#1f2328">(</span>1593439200L<span style="color:#1f2328">);</span><span style="color:#fff"> 
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><h3 id="localdatelocaltimelocaldatetime-用法" class="markdown-heading-anchor">
-  LocalDate、LocalTime、LocalDateTime 用法
-  <a href="#localdatelocaltimelocaldatetime-%e7%94%a8%e6%b3%95">#</a>
-</h3><ol>
-<li>
-<p>LocalDate : 只存日期 (2020/06/29)</p>
-<ul>
-<li>和Date不同，LocalDate內部用了三個Integer變量 year、month、day，分別存放日期的值，徹底將時間和Timestamp的概念區分開來</li>
-</ul>
-</li>
-<li>
-<p>LocalTime : 只存時間 (14:00:00)</p>
-<ul>
-<li>也是用了三個Integer變量 hour、minutes、second來分別存放時間的值</li>
-</ul>
-</li>
-<li>
-<p>LocalDateTime : 存了日期和時間 (2020/06/29 14:00:00)</p>
-<ul>
-<li>LocalDateTime內部其實用一個LocalDate變量存放日期，用另一個LocalTime變量存放時間，reuse的極致！</li>
-</ul>
-</li>
-</ol>
-<p>Local 這一系列的時間類型，都不帶有時區的資訊，所以說當你<code>new</code>一個LocalDateTime出來之後，不管你是在台灣運行程式還是在英國運行程式，輸出的值都一樣</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// LocalDate</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDate<span style="color:#fff"> </span>date<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDate<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>2020<span style="color:#1f2328">,</span><span style="color:#fff"> </span>6<span style="color:#1f2328">,</span><span style="color:#fff"> </span>29<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 創建一個 2020/06/29的LocalDate</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDate<span style="color:#fff"> </span>date2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDate<span style="color:#1f2328">.</span><span style="color:#1f2328">parse</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;2020-06-29&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// parse 字串成 LocalDate</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// LocalTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalTime<span style="color:#fff"> </span>time<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalTime<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>14<span style="color:#1f2328">,</span><span style="color:#fff"> </span>0<span style="color:#1f2328">,</span><span style="color:#fff"> </span>0<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 創建一個 14:00:00 的 LocalTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalTime<span style="color:#fff"> </span>time2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalTime<span style="color:#1f2328">.</span><span style="color:#1f2328">parse</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;14:00:00&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// parse 字串成 LocalTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// LocalDateTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 創建一個 2020/06/29 14:00:00 的 LocalDateTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDateTime<span style="color:#fff"> </span>dateTime<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDateTime<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>2020<span style="color:#1f2328">,</span><span style="color:#fff"> </span>6<span style="color:#1f2328">,</span><span style="color:#fff"> </span>29<span style="color:#1f2328">,</span><span style="color:#fff"> </span>14<span style="color:#1f2328">,</span><span style="color:#fff"> </span>0<span style="color:#1f2328">,</span><span style="color:#fff"> </span>0<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 或是也可以用 LocalDate 和 LocalTime 組合創建</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDateTime<span style="color:#fff"> </span>dateTime2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDateTime<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>date<span style="color:#1f2328">,</span><span style="color:#fff"> </span>time<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// Local 系列可以和同樣也是 Java8 新增的 DateTimeFormatter 一起使用，讓時間 input/output 的更格式化</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// Java8 新增的 DateTimeFormatter 和 joda-time 中的 DateTimeFormatter 名字一樣，不要 import 錯了</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>DateTimeFormatter<span style="color:#fff"> </span>DTF<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>DateTimeFormatter<span style="color:#1f2328">.</span><span style="color:#1f2328">ofPattern</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 用DTF的格式來parse字串成LocalDateTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDateTime<span style="color:#fff"> </span>dateTime3<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDateTime<span style="color:#1f2328">.</span><span style="color:#1f2328">parse</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;2020-06-29 14:00:00&#34;</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span>DTF<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 將dateTime2用DTF的形式輸出</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>String<span style="color:#fff"> </span>format<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>DTF<span style="color:#1f2328">.</span><span style="color:#1f2328">format</span><span style="color:#1f2328">(</span>dateTime2<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><h3 id="zoneddatetime-用法" class="markdown-heading-anchor">
-  ZonedDateTime 用法
-  <a href="#zoneddatetime-%e7%94%a8%e6%b3%95">#</a>
-</h3><p>ZonedDateTime 是 LocalDateTime 的進化版，增加了時區的概念，會自動幫我們計算時區之間的時差</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">MyTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">static</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">main</span><span style="color:#1f2328">(</span>String<span style="color:#0550ae">[]</span><span style="color:#fff"> </span>args<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>DateTimeFormatter<span style="color:#fff"> </span>DTF<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>DateTimeFormatter<span style="color:#1f2328">.</span><span style="color:#1f2328">ofPattern</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;yyyy-MM-dd  HH:mm:ss&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>LocalDateTime<span style="color:#fff"> </span>leaving<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>LocalDateTime<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>2020<span style="color:#1f2328">,</span><span style="color:#fff"> </span>6<span style="color:#1f2328">,</span><span style="color:#fff"> </span>29<span style="color:#1f2328">,</span><span style="color:#fff"> </span>19<span style="color:#1f2328">,</span><span style="color:#fff"> </span>30<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 將原本的 LocalDateTime 轉成 ZonedDateTime</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 因為加上了時區的概念，所以現在就變成了 上海 的 2020/06/29 19:30:00</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>ZoneId<span style="color:#fff"> </span>leavingZone<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>ZoneId<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;Asia/Shanghai&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>ZonedDateTime<span style="color:#fff"> </span>departure<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>ZonedDateTime<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span>leaving<span style="color:#1f2328">,</span><span style="color:#fff"> </span>leavingZone<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;離開上海的時間：&#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>departure<span style="color:#1f2328">.</span><span style="color:#1f2328">format</span><span style="color:#1f2328">(</span>DTF<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 把時區轉成 東京 時區，並且加上飛機的飛行時間 30 分鐘</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>ZoneId<span style="color:#fff"> </span>arrivingZone<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>ZoneId<span style="color:#1f2328">.</span><span style="color:#1f2328">of</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;Asia/Tokyo&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>ZonedDateTime<span style="color:#fff"> </span>arrival<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>departure<span style="color:#1f2328">.</span><span style="color:#1f2328">withZoneSameInstant</span><span style="color:#1f2328">(</span>arrivingZone<span style="color:#1f2328">).</span><span style="color:#1f2328">plusMinutes</span><span style="color:#1f2328">(</span>30<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">  
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>System<span style="color:#1f2328">.</span><span style="color:#1f2328">out</span><span style="color:#1f2328">.</span><span style="color:#1f2328">println</span><span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;抵達東京的時間：&#34;</span><span style="color:#fff"> </span><span style="color:#0550ae">+</span><span style="color:#fff"> </span>arrival<span style="color:#1f2328">.</span><span style="color:#1f2328">format</span><span style="color:#1f2328">(</span>DTF<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>離開上海的時間<span style="color:#fff"> </span>2020<span style="color:#0550ae">-</span>06<span style="color:#0550ae">-</span>29<span style="color:#fff"> </span>19<span style="color:#1f2328">:</span>30<span style="color:#1f2328">:</span>00<span style="color:#fff"> </span><span style="color:#57606a">// 上海 的當地時間</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>抵達東京的時間<span style="color:#fff"> </span>2020<span style="color:#0550ae">-</span>06<span style="color:#0550ae">-</span>29<span style="color:#fff"> </span>21<span style="color:#1f2328">:</span>00<span style="color:#1f2328">:</span>00<span style="color:#fff"> </span><span style="color:#57606a">// 東京 的當地時間</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">// 縱使飛機只飛 30 分鐘，但是因為上海和東京的時區不同(東京快一小時)，所以抵達東京的時間實際上會變成一個半小時後</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#57606a">// 而這中間的時差計算，就是ZonedDateTime幫我們做的</span><span style="color:#fff">
-</span></span></span></code></pre></div>
-        </div>
-        
-        
-<div class="blog-newsletter">
-  <h4>免費訂閱《古古的後端筆記》電子報</h4>
-  <div>
-    <p>每週二學習後端技術，和 3400 人一起變強💪</p>
-    <div id="blog-newsletter" class="newsletter">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-          <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-          <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-        </div>
-      </div>
-      <form action="#" method="POST" class="row justify-content-center">
-        <div class="input-group col-md-8">
-          <input type="email" required="" name="email"
-                 class="form-control"
-                 placeholder="輸入你的 Email">
-          <div class="input-group-append">
-            <button type="submit"
-                    class="input-group-text btn btn-primary">
-              免費訂閱
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-        
-
-        <hr class="blog-end-divider">
-
-        
-        <script src="https://utteranc.es/client.js"
-                label="comment"
-                repo="kucw/kucw.github.io"
-                issue-term="title"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<footer>
-  <div class="container">
-    
-    <div class="row justify-content-center pb-4">
-      <div class="col-12 text-center mb-5">
-        <a href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
-               src="https://kucw.io/images/logo.png" alt="古古的後端筆記">
-        </a>
-      </div>
-    </div>
-
-    
-    <div class="row pb-1">
-      
-      <div class="col-lg-8 text-center pb-5">
-        <h4>免費訂閱電子報，每週二學習後端技術🚀</h4>
-        <div id="footer-newsletter" class="newsletter">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-              <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-              <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-            </div>
-          </div>
-          <form action="#" method="POST" class="row justify-content-center">
-            <div class="input-group col-md-8">
-              <input type="email" required="" name="email"
-                     class="form-control"
-                     placeholder="輸入你的 Email">
-              <div class="input-group-append">
-                <button type="submit"
-                        class="input-group-text btn btn-primary">
-                  免費訂閱
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      
-      <div class="col-lg-4 pb-3 footer-contact-me">
-        <h5 class="mb-4">追蹤古古</h5>
-        <ul class="list-inline footer-social-links">
-          
-          <li class="list-inline-item"><a href="https://github.com/kucw" target="_blank" rel="noopener"><i class="ti-github"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.facebook.com/kucw.io" target="_blank" rel="noopener"><i class="ti-facebook"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" target="_blank" rel="noopener"><i class="ti-instagram"></i></a></li>
-          
-        </ul>
-        <p>聯絡信箱: service@kucw.io</p>
-      </div>
-    </div>
-    
-
-    
-    <div class="border-top py-4 text-center">
-      © 2020-2025 古古的後端筆記 | All Rights Reserved.
-    </div>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-  var indexURL = "https://kucw.io/index.json"
-</script>
-
-<!-- JS Plugins -->
-
-<script src="https://kucw.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/welcomeConfetti.js"></script>
-
-<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/clipboard.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/code-clipboard.js"></script>
-
-<script src="https://kucw.io/plugins/login/login.js"></script>
-
-
-<!-- Main Script -->
-
-<script src="https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js"></script>
-
-
-</body>
-</html>
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><title>Java - Java 8 新增的時間系列用法
+</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=description content="介紹如何使用 Java 8 的時間系列類 Instant、LocalDate、LocalTime、LocalDateTime、ZonedDateTime"><meta name=author content="古古"><meta property="og:image" content="https://kucw.io/images/logo.png"><meta name=generator content="Hugo 0.145.0 with theme pure"><link rel=stylesheet href=https://kucw.io/plugins/bootstrap/bootstrap.min.css><link rel=stylesheet href=https://kucw.io/plugins/themify-icons/themify-icons.css><link rel=stylesheet href=https://kucw.io/plugins/venobox/venobox.css><link rel=stylesheet href=https://kucw.io/plugins/medium-zoom/medium-zoom.css><link rel=stylesheet href=https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css media=screen><link rel="shortcut icon" href=https://kucw.io/images/favicon.png type=image/x-icon><link rel=icon href=https://kucw.io/images/favicon.png type=image/x-icon><script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NKQ46H0SJW")</script><script src=https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js type=module></script></head><body><div class=preloader></div><header class=navigation><div class="container-fluid border-bottom fixed-top nav-background-color"><div class=nav-container><nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0"><a class="navbar-brand desktop-view" href=https://kucw.io/><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt>
+</a><a class="navbar-brand navbar-brand-mobile mobile-view" href=https://kucw.io/><img class="img-fluid logo-thumb-sm rounded-circle" src=https://kucw.io/images/logo.png alt>
+</a><button class="navbar-toggler border-0" type=button data-toggle=collapse data-target=#navigation>
+<i class="ti-menu h3"></i></button><div class="collapse navbar-collapse text-center" id=navigation><ul class="navbar-nav mr-auto ml-2"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>後端技術專欄</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/springboot/1>Spring Boot 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>線上課程</a><div class=dropdown-menu><a class=dropdown-item href=https://hahow.in/cr/kucw-github-hugo target=_blank rel=noopener>GitHub 免費架站術！輕鬆打造個人品牌</a>
+<a class=dropdown-item href=https://hahow.in/cr/springboot target=_blank rel=noopener>Java 工程師必備！Spring Boot 零基礎入門</a>
+<a class=dropdown-item href=https://hahow.in/cr/springsecurity target=_blank rel=noopener>資安一把罩！Spring Security 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>自媒體 & 敗家專區</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/as-a-content-creator/1>軟體工程師的自媒體之路</a></div></li><li class=nav-item><a class=nav-link href=https://kucw.io/>所有文章</a></li><li class=nav-item><a class=nav-link href=https://kucw.io/about>關於我</a></li><li class=nav-item><button id=algolia-search-btn class=algolia-search-btn><i class=ti-search></i></button></li></ul><ul class=navbar-nav><a class=nav-newsletter-link href=/bio target=_blank>電子報訂閱</a></ul></div></nav></div></div></header><div id=algolia-search-pop-overlay class=algolia-search-pop-overlay><div class="popup algolia-search-popup"><div class=algolia-search-header><span class=algolia-search-icon><i class=ti-search></i></span><div id=algolia-search-input-container class=algolia-search-input-container></div><span id=algolia-popup-btn-close class=algolia-popup-btn-close><i class=ti-close></i></span></div><div id=algolia-results class=algolia-results><div id=algolia-hits class=algolia-hits></div><div id=algolia-pagination class=algolia-pagination></div></div></div></div><div id=login-pop-overlay class=login-pop-overlay><div class="popup login-popup"><div class=login-popup-header><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt><div id=login-popup-btn-close class=login-popup-btn-close><i class=ti-close></i></div></div><div class=login-popup-body><button class=google-login-btn id=google-login-btn>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7.0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4z" fill="#4285f4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7.0 5-.9 6.6-2.4L13.4 15a6 6 0 01-9-3.2H1.1v2.6A10 10 0 0010 20z" fill="#34a853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 010-3.8V5.5H1.1a10 10 0 000 9l3.3-2.6z" fill="#fbbc05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5.0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 001 5.5l3.3 2.6A6 6 0 0110 4z" fill="#ea4335"/></svg>
+<span class=google-login-btn-text>使用 Google 登入</span></button><p class=login-terms>By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p></div></div></div><section class=section-sm><div class="container pl-4 pr-4"><div class=row><div class="col-lg-10 mx-auto"><h1 class=blog-title>Java - Java 8 新增的時間系列用法</h1><div class=author-details><div><img src=https://kucw.io/images/author-sm.png alt class="author-thumb-blog rounded-circle"></div><div><p>古古</p><p>2020/06/30</p></div></div><hr class=blog-start-divider><div class="content mb-4"><p>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識</p><h4 id=1-首先是要有時區的概念 class=markdown-heading-anchor>1. 首先是要有時區的概念
+<a href=#1-%e9%a6%96%e5%85%88%e6%98%af%e8%a6%81%e6%9c%89%e6%99%82%e5%8d%80%e7%9a%84%e6%a6%82%e5%bf%b5>#</a></h4><p>在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00</p><h4 id=2-要有-timestamp-時間戳的概念 class=markdown-heading-anchor>2. 要有 Timestamp 時間戳的概念
+<a href=#2-%e8%a6%81%e6%9c%89-timestamp-%e6%99%82%e9%96%93%e6%88%b3%e7%9a%84%e6%a6%82%e5%bf%b5>#</a></h4><p>在電腦的世界裡，有一個東西叫做 Timestamp（時間戳），這個 Timestamp 是一個整數，代表著從 UTC 1970 年 1 月 1 日 0 時 0 分 0 秒 起至現在的總秒數，UTC 代表的是英國格林威治時間，也就是 GMT+0（可以簡單的認為 UTC = GMT+0）</p><p>所以說假設現在你人在英國格林威治，然後你現在看手錶上的時間是 2020/06/29 14:00:00，則這個當下的 Timestamp的值就為 1593439200（代表從 1970/1/1 00:00:00 到現在經過了 1593439200 秒），然後假設同一個瞬間你的朋友在台灣，因為台灣的時區為 GMT+8，所以你朋友在台灣看手錶的時間會是 2020/06/29 22:00:00，但是你朋友當下的 Timestamp 也會是 1593439200</p><p>也就是說，雖然你和你朋友手錶上呈現的時間不一樣，但是你們兩個的 Timestamp 會是一模一樣的，因為 Timestamp 是唯一表示著 UTC 1970/1/1 00:00:00 起至現在的總秒數</p><p>而在Java中，可以使用 <code>System.currentTimeMillis()</code>，取得當前的 Timestamp</p><h3 id=為什麼-java-中舊版的-date-不好- class=markdown-heading-anchor>為什麼 Java 中舊版的 Date 不好 ?
+<a href=#%e7%82%ba%e4%bb%80%e9%ba%bc-java-%e4%b8%ad%e8%88%8a%e7%89%88%e7%9a%84-date-%e4%b8%8d%e5%a5%bd->#</a></h3><p>因為 Date 硬是把 <strong>時區</strong> 和 <strong>Timestamp</strong> 這兩個概念混合在一起了，這就是為什麼 Date 不好的關係</p><p>通常我們 <code>new</code> 一個 Date object時，都是使用 <code>Date date = new Date()</code>，而這個 Constructor 其實是會去取得當前的 Timestamp，然後把 Timestamp 存放在 Date 內部的 <code>fastTime</code> 變量裡，所以 Date 內部存放的，實際上是 Timestamp 的值</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>Date</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span><span style=color:#cf222e>transient</span><span style=color:#fff> </span><span style=color:#cf222e>long</span><span style=color:#fff> </span>fastTime<span style=color:#1f2328>;</span><span style=color:#fff> </span><span style=color:#57606a>//存放timestamp的值</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#6639ba>Date</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>this</span><span style=color:#1f2328>(</span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>currentTimeMillis</span><span style=color:#1f2328>());</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#6639ba>Date</span><span style=color:#1f2328>(</span><span style=color:#cf222e>long</span><span style=color:#fff> </span>date<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>fastTime<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>date<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>雖然 Date 內部只存放了 Timestamp 的值，但是 Date 卻在 <code>toString()</code> 時，會去取得當前程式運行的時區，然後再把 Timestamp 換算成當地時區的時間印出來</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MyTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// Date 內部明明是只存放 Timestamp 的值 1593439200，也就是 UTC 2020/06/29 14:00:00</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// (因為 Date 的構造方法要輸入 ms 毫秒，所以要把 Timestamp 乘以 1000)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Date<span style=color:#fff> </span>date<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Date<span style=color:#1f2328>(</span>1593439200L<span style=color:#fff> </span><span style=color:#0550ae>*</span><span style=color:#fff> </span>1000<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff> 
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 但是卻會在 toString() 方法裡面再去取得當前程式運行的時區(我的時區是GMT+8)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 然後把 Timestamp 的值轉換成該時區的時間</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 所以這裡會輸出 Mon Jun 29 22:00:00 CST 2020</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span>date<span style=color:#1f2328>);</span><span style=color:#fff> 
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>所以 Java 為了改善 Date 混合 <strong>時區</strong> 和 <strong>Timestamp</strong> 的問題，在 Java 8 時提出了新的時間系列類，將 Timestamp 和時間分成兩組</p><ul><li>Timestamp組 : Instant</li><li>時間組 : LocalDate、LocalTime、LocalDateTime、ZonedDateTime</li></ul><h3 id=instant-用法 class=markdown-heading-anchor>Instant 用法
+<a href=#instant-%e7%94%a8%e6%b3%95>#</a></h3><p>在 Java 8 新增的這一堆時間系列裡面，每個類都有工廠方法可以使用，可以直接用這些工廠方法來產生出一個新的 object</p><p>所以我們就可以直接使用 <code>Instant.of()</code> 去創建一個 instant object</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MyTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>   </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 用當下的 Timestamp 來創建in1</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Instant<span style=color:#fff> </span>in1<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Instant<span style=color:#1f2328>.</span><span style=color:#1f2328>now</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 自定義 Timestamp</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Instant<span style=color:#fff> </span>in2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Instant<span style=color:#1f2328>.</span><span style=color:#1f2328>ofEpochSecond</span><span style=color:#1f2328>(</span>1593439200L<span style=color:#1f2328>);</span><span style=color:#fff> 
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><h3 id=localdatelocaltimelocaldatetime-用法 class=markdown-heading-anchor>LocalDate、LocalTime、LocalDateTime 用法
+<a href=#localdatelocaltimelocaldatetime-%e7%94%a8%e6%b3%95>#</a></h3><ol><li><p>LocalDate : 只存日期 (2020/06/29)</p><ul><li>和Date不同，LocalDate內部用了三個Integer變量 year、month、day，分別存放日期的值，徹底將時間和Timestamp的概念區分開來</li></ul></li><li><p>LocalTime : 只存時間 (14:00:00)</p><ul><li>也是用了三個Integer變量 hour、minutes、second來分別存放時間的值</li></ul></li><li><p>LocalDateTime : 存了日期和時間 (2020/06/29 14:00:00)</p><ul><li>LocalDateTime內部其實用一個LocalDate變量存放日期，用另一個LocalTime變量存放時間，reuse的極致！</li></ul></li></ol><p>Local 這一系列的時間類型，都不帶有時區的資訊，所以說當你<code>new</code>一個LocalDateTime出來之後，不管你是在台灣運行程式還是在英國運行程式，輸出的值都一樣</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MyTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// LocalDate</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDate<span style=color:#fff> </span>date<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDate<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>2020<span style=color:#1f2328>,</span><span style=color:#fff> </span>6<span style=color:#1f2328>,</span><span style=color:#fff> </span>29<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 創建一個 2020/06/29的LocalDate</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDate<span style=color:#fff> </span>date2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDate<span style=color:#1f2328>.</span><span style=color:#1f2328>parse</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;2020-06-29&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// parse 字串成 LocalDate</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// LocalTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalTime<span style=color:#fff> </span>time<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalTime<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>14<span style=color:#1f2328>,</span><span style=color:#fff> </span>0<span style=color:#1f2328>,</span><span style=color:#fff> </span>0<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 創建一個 14:00:00 的 LocalTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalTime<span style=color:#fff> </span>time2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalTime<span style=color:#1f2328>.</span><span style=color:#1f2328>parse</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;14:00:00&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// parse 字串成 LocalTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// LocalDateTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 創建一個 2020/06/29 14:00:00 的 LocalDateTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDateTime<span style=color:#fff> </span>dateTime<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDateTime<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>2020<span style=color:#1f2328>,</span><span style=color:#fff> </span>6<span style=color:#1f2328>,</span><span style=color:#fff> </span>29<span style=color:#1f2328>,</span><span style=color:#fff> </span>14<span style=color:#1f2328>,</span><span style=color:#fff> </span>0<span style=color:#1f2328>,</span><span style=color:#fff> </span>0<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 或是也可以用 LocalDate 和 LocalTime 組合創建</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDateTime<span style=color:#fff> </span>dateTime2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDateTime<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>date<span style=color:#1f2328>,</span><span style=color:#fff> </span>time<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// Local 系列可以和同樣也是 Java8 新增的 DateTimeFormatter 一起使用，讓時間 input/output 的更格式化</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// Java8 新增的 DateTimeFormatter 和 joda-time 中的 DateTimeFormatter 名字一樣，不要 import 錯了</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>DateTimeFormatter<span style=color:#fff> </span>DTF<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>DateTimeFormatter<span style=color:#1f2328>.</span><span style=color:#1f2328>ofPattern</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 用DTF的格式來parse字串成LocalDateTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDateTime<span style=color:#fff> </span>dateTime3<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDateTime<span style=color:#1f2328>.</span><span style=color:#1f2328>parse</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;2020-06-29 14:00:00&#34;</span><span style=color:#1f2328>,</span><span style=color:#fff> </span>DTF<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 將dateTime2用DTF的形式輸出</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>String<span style=color:#fff> </span>format<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>DTF<span style=color:#1f2328>.</span><span style=color:#1f2328>format</span><span style=color:#1f2328>(</span>dateTime2<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><h3 id=zoneddatetime-用法 class=markdown-heading-anchor>ZonedDateTime 用法
+<a href=#zoneddatetime-%e7%94%a8%e6%b3%95>#</a></h3><p>ZonedDateTime 是 LocalDateTime 的進化版，增加了時區的概念，會自動幫我們計算時區之間的時差</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>MyTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>static</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>main</span><span style=color:#1f2328>(</span>String<span style=color:#0550ae>[]</span><span style=color:#fff> </span>args<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>DateTimeFormatter<span style=color:#fff> </span>DTF<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>DateTimeFormatter<span style=color:#1f2328>.</span><span style=color:#1f2328>ofPattern</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;yyyy-MM-dd  HH:mm:ss&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>LocalDateTime<span style=color:#fff> </span>leaving<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>LocalDateTime<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>2020<span style=color:#1f2328>,</span><span style=color:#fff> </span>6<span style=color:#1f2328>,</span><span style=color:#fff> </span>29<span style=color:#1f2328>,</span><span style=color:#fff> </span>19<span style=color:#1f2328>,</span><span style=color:#fff> </span>30<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 將原本的 LocalDateTime 轉成 ZonedDateTime</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 因為加上了時區的概念，所以現在就變成了 上海 的 2020/06/29 19:30:00</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>ZoneId<span style=color:#fff> </span>leavingZone<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>ZoneId<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;Asia/Shanghai&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>ZonedDateTime<span style=color:#fff> </span>departure<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>ZonedDateTime<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span>leaving<span style=color:#1f2328>,</span><span style=color:#fff> </span>leavingZone<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;離開上海的時間：&#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>departure<span style=color:#1f2328>.</span><span style=color:#1f2328>format</span><span style=color:#1f2328>(</span>DTF<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 把時區轉成 東京 時區，並且加上飛機的飛行時間 30 分鐘</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>ZoneId<span style=color:#fff> </span>arrivingZone<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>ZoneId<span style=color:#1f2328>.</span><span style=color:#1f2328>of</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;Asia/Tokyo&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>ZonedDateTime<span style=color:#fff> </span>arrival<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>departure<span style=color:#1f2328>.</span><span style=color:#1f2328>withZoneSameInstant</span><span style=color:#1f2328>(</span>arrivingZone<span style=color:#1f2328>).</span><span style=color:#1f2328>plusMinutes</span><span style=color:#1f2328>(</span>30<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>  
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>System<span style=color:#1f2328>.</span><span style=color:#1f2328>out</span><span style=color:#1f2328>.</span><span style=color:#1f2328>println</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;抵達東京的時間：&#34;</span><span style=color:#fff> </span><span style=color:#0550ae>+</span><span style=color:#fff> </span>arrival<span style=color:#1f2328>.</span><span style=color:#1f2328>format</span><span style=color:#1f2328>(</span>DTF<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>離開上海的時間<span style=color:#fff> </span>2020<span style=color:#0550ae>-</span>06<span style=color:#0550ae>-</span>29<span style=color:#fff> </span>19<span style=color:#1f2328>:</span>30<span style=color:#1f2328>:</span>00<span style=color:#fff> </span><span style=color:#57606a>// 上海 的當地時間</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>抵達東京的時間<span style=color:#fff> </span>2020<span style=color:#0550ae>-</span>06<span style=color:#0550ae>-</span>29<span style=color:#fff> </span>21<span style=color:#1f2328>:</span>00<span style=color:#1f2328>:</span>00<span style=color:#fff> </span><span style=color:#57606a>// 東京 的當地時間</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#57606a>// 縱使飛機只飛 30 分鐘，但是因為上海和東京的時區不同(東京快一小時)，所以抵達東京的時間實際上會變成一個半小時後</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#57606a>// 而這中間的時差計算，就是ZonedDateTime幫我們做的</span><span style=color:#fff>
+</span></span></span></code></pre></div></div><div class=blog-newsletter><h4>免費訂閱《古古的後端筆記》電子報</h4><div><p>每週二學習後端技術，和 3400 人一起變強💪</p><div id=blog-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div></div><hr class=blog-end-divider><script src=https://utteranc.es/client.js label=comment repo=kucw/kucw.github.io issue-term=title theme=github-light crossorigin=anonymous async></script></div></div></div></section><footer><div class=container><div class="row justify-content-center pb-4"><div class="col-12 text-center mb-5"><a href=https://kucw.io/><img class="img-fluid logo-thumb-md rounded-circle mx-1" src=https://kucw.io/images/logo.png alt=古古的後端筆記></a></div></div><div class="row pb-1"><div class="col-lg-8 text-center pb-5"><h4>免費訂閱電子報，每週二學習後端技術🚀</h4><div id=footer-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div><div class="col-lg-4 pb-3 footer-contact-me"><h5 class=mb-4>追蹤古古</h5><ul class="list-inline footer-social-links"><li class=list-inline-item><a href=https://github.com/kucw target=_blank rel=noopener><i class=ti-github></i></a></li><li class=list-inline-item><a href=https://www.facebook.com/kucw.io target=_blank rel=noopener><i class=ti-facebook></i></a></li><li class=list-inline-item><a href=https://www.instagram.com/kucw.io/ target=_blank rel=noopener><i class=ti-instagram></i></a></li></ul><p>聯絡信箱: service@kucw.io</p></div></div><div class="border-top py-4 text-center">© 2020-2025 古古的後端筆記 | All Rights Reserved.</div></div></div></footer><script>var indexURL="https://kucw.io/index.json"</script><script src=https://kucw.io/plugins/jQuery/jquery.min.js></script><script src=https://kucw.io/plugins/bootstrap/bootstrap.min.js></script><script src=https://kucw.io/plugins/mailbluster/mailbluster.js></script><script src=https://kucw.io/plugins/confetti/confetti.browser.min.js></script><script src=https://kucw.io/plugins/confetti/welcomeConfetti.js></script><script src=https://kucw.io/plugins/medium-zoom/medium-zoom.min.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js></script><script src=https://kucw.io/plugins/algolia-search/instantsearch.production.min.js></script><script src=https://kucw.io/plugins/clipboard/clipboard.min.js></script><script src=https://kucw.io/plugins/clipboard/code-clipboard.js></script><script src=https://kucw.io/plugins/login/login.js></script><script src=https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js></script></body></html>

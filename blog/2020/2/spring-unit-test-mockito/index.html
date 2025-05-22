@@ -1,575 +1,103 @@
-<!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>
-    
-    SpringBoot - 單元測試工具 Mockito
-    
-  </title>
-
-  <!-- Mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- SEO -->
-  <meta name="description" content="介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試">
-  <meta name="author" content="古古">
-
-   <!-- Open Graph data -->
-  <meta property="og:image" content="https://kucw.io/images/logo.png"/>
-
-  <!-- Hugo version-->
-  <meta name="generator" content="Hugo 0.145.0 with theme pure" />
-
-  <!-- Plugins -->
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/venobox/venobox.css ">
-  
-  <link rel="stylesheet" href="https://kucw.io/plugins/medium-zoom/medium-zoom.css ">
-  
-
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css" media="screen">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://kucw.io/images/favicon.png " type="image/x-icon">
-
-  <!-- Facebook share link image -->
-  
-
-  <!-- Google Analytics -->
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-NKQ46H0SJW');
-  </script>
-
-  <!-- Google Firebase Login -->
-  
-  <script src="https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js" type="module"></script>
-</head>
-<body>
-<!-- preloader start -->
-<div class="preloader">
-  
-</div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container-fluid border-bottom fixed-top nav-background-color">
-    <div class="nav-container">
-      
-      <nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0">
-        <a class="navbar-brand desktop-view" href="https://kucw.io/">
-          <img class="img-fluid logo-with-text-size mx-1"
-               src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-
-        </a>
-        <a class="navbar-brand navbar-brand-mobile mobile-view" href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-sm rounded-circle"
-            src="https://kucw.io/images/logo.png" alt="">
-        </a>
-
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-          <i class="ti-menu h3"></i>
-        </button>
-
-        <div class="collapse navbar-collapse text-center" id="navigation">
-          
-          <ul class="navbar-nav mr-auto ml-2">
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                後端技術專欄
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/springboot/1">Spring Boot 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                線上課程
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/kucw-github-hugo" target="_blank" rel="noopener">GitHub 免費架站術！輕鬆打造個人品牌</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springboot" target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a>
-                
-                
-                
-                <a class="dropdown-item" href="https://hahow.in/cr/springsecurity" target="_blank" rel="noopener">資安一把罩！Spring Security 零基礎入門</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                自媒體 &amp; 敗家專區
-              </a>
-              <div class="dropdown-menu">
-                
-                
-                <a class="dropdown-item" href="https://kucw.io/blog/as-a-content-creator/1">軟體工程師的自媒體之路</a>
-                
-                
-              </div>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/">所有文章</a>
-            </li>
-            
-            
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://kucw.io/about">關於我</a>
-            </li>
-            
-            
-
-            
-            <li class="nav-item">
-              <button id="algolia-search-btn" class="algolia-search-btn"><i class="ti-search"></i></button>
-            </li>
-            
-          </ul>
-
-
-          
-          <ul class="navbar-nav">
-            
-            <a class="nav-newsletter-link" href="/bio" target="_blank">電子報訂閱</a>
-
-            
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
-
-
-<div id="algolia-search-pop-overlay" class="algolia-search-pop-overlay">
-  <div class="popup algolia-search-popup">
-    <div class="algolia-search-header">
-      <span class="algolia-search-icon">
-        <i class="ti-search"></i>
-      </span>
-      <div id="algolia-search-input-container" class="algolia-search-input-container"></div>
-      <span id="algolia-popup-btn-close" class="algolia-popup-btn-close">
-        <i class="ti-close"></i>
-      </span>
-    </div>
-    <div id="algolia-results" class="algolia-results">
-      <div id="algolia-hits" class="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-  </div>
-</div>
-
-
-<div id="login-pop-overlay" class="login-pop-overlay">
-  <div class="popup login-popup">
-    <div class="login-popup-header">
-      <img class="img-fluid logo-with-text-size mx-1" src="https://kucw.io/images/logo-with-text-transparent.png" alt="">
-      <div id="login-popup-btn-close" class="login-popup-btn-close"><i class="ti-close"></i></div>
-    </div>
-    <div class="login-popup-body">
-      <button class="google-login-btn" id="google-login-btn">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7 0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4Z" fill="#4285F4"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7 0 5-.9 6.6-2.4L13.4 15a6 6 0 0 1-9-3.2H1.1v2.6A10 10 0 0 0 10 20Z" fill="#34A853"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 0 1 0-3.8V5.5H1.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 1 5.5l3.3 2.6A6 6 0 0 1 10 4Z" fill="#EA4335"></path>
-        </svg>
-        <span class="google-login-btn-text">使用 Google 登入</span>
-      </button>
-      <p class="login-terms">By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p>
-    </div>
-  </div>
-</div>
-
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container pl-4 pr-4">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">SpringBoot - 單元測試工具 Mockito</h1>
-
-        <div class="author-details">
-          <div>
-            <img src="https://kucw.io/images/author-sm.png" alt="" class="author-thumb-blog rounded-circle">
-          </div>
-          <div>
-            <p>古古</p>
-            <p>2020/02/20</p>
-          </div>
-        </div>
-
-        <hr class="blog-start-divider">
-
-        
-        
-
-        
-        
-        <div class="content mb-4">
-          <p>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試</p>
-<h3 id="1-什麼是-mock-測試" class="markdown-heading-anchor">
-  1. 什麼是 mock 測試？
-  <a href="#1-%e4%bb%80%e9%ba%bc%e6%98%af-mock-%e6%b8%ac%e8%a9%a6">#</a>
-</h3><p>mock 測試就是在測試過程中，創建一個假的對象，避免你為了測試一個方法，卻要自行構建整個 bean 的 dependency chain</p>
-<p>像是以下這張圖，類 A 需要調用類 B 和類 C，而類 B 和類 C 又需要調用其他類如 D、E、F 等，假設類 D 是一個外部服務，那就會很難測，因為你的返回結果會直接的受外部服務影響，導致你的單元測試可能今天會過、但明天就過不了了</p>
-<p>
-
-<img
-  src="/images/blog/unittest_mock1.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-  width="528"
-  height="405"
-/></p>
-<p>而當我們引入 mock 測試時，就可以創建一個假的對象，替換掉真實的 bean B 和 C，這樣在調用B、C的方法時，實際上就會去調用這個假的 mock 對象的方法，而我們就可以自己設定這個 mock 對象的參數和期望結果，讓我們可以專注在測試當前的類 A，而不會受到其他的外部服務影響，這樣測試效率就能提高很多</p>
-<p>
-
-<img
-  src="/images/blog/unittest_mock2.png"
-  alt=""
-  loading="lazy"
-  data-zoomable
-  width="340"
-  height="247"
-/></p>
-<h3 id="2-mockito-簡介" class="markdown-heading-anchor">
-  2. Mockito 簡介
-  <a href="#2-mockito-%e7%b0%a1%e4%bb%8b">#</a>
-</h3><p>說完了 mock 測試的概念，接下來我們進入到今天的主題，Mockito</p>
-<p>Mockito 是一種 Java mock 框架，他主要就是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&hellip;等，他同時也會記錄調用這些模擬方法的參數、調用順序，從而可以校驗出這個 mock 對象是否有被正確的順序調用，以及按照期望的參數被調用</p>
-<p>像是 Mockito 可以在單元測試中模擬一個 service 返回的數據，而不會真正去調用該 service，這就是上面提到的 mock 測試精神，也就是通過模擬一個假的 service 對象，來快速的測試當前我想要測試的類</p>
-<p>目前在 Java 中主流的 mock 測試工具有 Mockito、JMock、EasyMock..等，而 SpringBoot 目前內建的是 Mockito 框架</p>
-<p>題外話說一下，Mockito 是命名自一種調酒莫吉托（Mojito），外國人也愛玩諧音梗。。。</p>
-<h3 id="3-在-springboot-單元測試中使用-mockito" class="markdown-heading-anchor">
-  3. 在 SpringBoot 單元測試中使用 Mockito
-  <a href="#3-%e5%9c%a8-springboot-%e5%96%ae%e5%85%83%e6%b8%ac%e8%a9%a6%e4%b8%ad%e4%bd%bf%e7%94%a8-mockito">#</a>
-</h3><p>首先在 pom.xml 下新增 spring-boot-starter-test 依賴，該依賴內就有包含了 JUnit、Mockito</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#0550ae">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#0550ae">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#0550ae">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#0550ae">&lt;scope&gt;</span>test<span style="color:#0550ae">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#0550ae">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><p>先寫好一個 UserService，他裡面有兩個方法 <code>getUserById()</code> 和 <code>insertUser()</code>，而他們會分別去再去調用 UserDao 這個 bean的 <code>getUserById()</code> 和 <code>insertUser()</code> 方法</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@Component</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">UserService</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Autowired</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>UserDao<span style="color:#fff"> </span>userDao<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>User<span style="color:#fff"> </span><span style="color:#6639ba">getUserById</span><span style="color:#1f2328">(</span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>userDao<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>id<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span><span style="color:#6639ba">insertUser</span><span style="color:#1f2328">(</span>User<span style="color:#fff"> </span>user<span style="color:#1f2328">)</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#cf222e">return</span><span style="color:#fff"> </span>userDao<span style="color:#1f2328">.</span><span style="color:#1f2328">insertUser</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>User model 的定義如下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">User</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>Integer<span style="color:#fff"> </span>id<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>String<span style="color:#fff"> </span>name<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//省略 getter/setter</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>如果這時候我們先不使用 Mockito 模擬一個假的 userDao bean，而是真的去 call 一個正常的 Spring bean 的 userDao 的話，測試類寫法如下。其實就是很普通的注入 userService bean，然後去調用他的方法，而他會再去 call userDao 取得 DB 的 data，然後我們再對返回結果做 assert 檢查</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RunWith</span><span style="color:#1f2328">(</span>SpringRunner<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@SpringBootTest</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">UserServiceTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#57606a">//先普通的注入一個userService bean</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Autowired</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>UserService<span style="color:#fff"> </span>userService<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Test</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">getUserById</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#cf222e">throws</span><span style="color:#fff"> </span>Exception<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//普通的使用userService，他裡面會再去call userDao取得DB的data</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>User<span style="color:#fff"> </span>user<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">//檢查結果</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertNotNull</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertEquals</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">.</span><span style="color:#1f2328">getId</span><span style="color:#1f2328">(),</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Integer<span style="color:#1f2328">(</span>1<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertEquals</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">.</span><span style="color:#1f2328">getName</span><span style="color:#1f2328">(),</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;John&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>但是如果 userDao 還沒寫好，又想先測 userService 的話，就需要使用 Mockito 去模擬一個假的 userDao 出來</p>
-<p>使用方法是在 userDao 上加上一個 <code>@MockBean</code> 注解，當 userDao 被加上這個注解之後，表示 Mockito 會幫我們創建一個假的 mock 對象，替換掉 Spring 中已存在的那個真實的 userDao bean，也就是說，注入進 userService 的 userDao bean，已經被我們替換成假的 mock 對象了，所以當我們再次調用 userService 的方法時，會去調用的實際上是 mock userDao bean 的方法，而不是真實的 userDao bean</p>
-<p>當我們創建了一個假的 userDao 後，我們需要為這個 mock userDao 自定義方法的返回值，這裡有一個公式用法，下面這段 code 的意思為，當調用了某個 mock 對象的方法時，就回傳我們想要的自定義結果</p>
-<pre tabindex="0"><code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )
-</code></pre><p>使用 Mockito 模擬 bean 的單元測試具體實例如下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#0550ae">@RunWith</span><span style="color:#1f2328">(</span>SpringRunner<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#0550ae">@SpringBootTest</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">class</span> <span style="color:#1f2328">UserServiceTest</span><span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Autowired</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>UserService<span style="color:#fff"> </span>userService<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@MockBean</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">private</span><span style="color:#fff"> </span>UserDao<span style="color:#fff"> </span>userDao<span style="color:#1f2328">;</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#0550ae">@Test</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#cf222e">public</span><span style="color:#fff"> </span><span style="color:#cf222e">void</span><span style="color:#fff"> </span><span style="color:#6639ba">getUserById</span><span style="color:#1f2328">()</span><span style="color:#fff"> </span><span style="color:#cf222e">throws</span><span style="color:#fff"> </span>Exception<span style="color:#fff"> </span><span style="color:#1f2328">{</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 定義當調用mock userDao的getUserById()方法，並且參數為3時，就返回id為200、name為I&#39;m mock3的user對象</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userDao<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">)).</span><span style="color:#1f2328">thenReturn</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>User<span style="color:#1f2328">(</span>200<span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;I&#39;m mock 3&#34;</span><span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span><span style="color:#57606a">// 返回的會是名字為I&#39;m mock 3的user對象</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>User<span style="color:#fff"> </span>user<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertNotNull</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertEquals</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">.</span><span style="color:#1f2328">getId</span><span style="color:#1f2328">(),</span><span style="color:#fff"> </span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>Integer<span style="color:#1f2328">(</span>200<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">        </span>Assert<span style="color:#1f2328">.</span><span style="color:#1f2328">assertEquals</span><span style="color:#1f2328">(</span>user<span style="color:#1f2328">.</span><span style="color:#1f2328">getName</span><span style="color:#1f2328">(),</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;I&#39;m mock 3&#34;</span><span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff">    </span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span><span style="color:#1f2328">}</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>Mockito 除了最基本的 <code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )</code>，還提供了其他用法讓我們使用</p>
-<h4 id="thenreturn-系列方法" class="markdown-heading-anchor">
-  thenReturn 系列方法
-  <a href="#thenreturn-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95">#</a>
-</h4><p>當使用任何整數值調用 userService 的 getUserById() 方法時，就回傳一個名字為 I&rsquo;m mock3 的 user 對象</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">anyInt</span><span style="color:#1f2328">())).</span><span style="color:#1f2328">thenReturn</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>User<span style="color:#1f2328">(</span>3<span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;I&#39;m mock&#34;</span><span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>User<span style="color:#fff"> </span>user1<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 回傳的user的名字為I&#39;m mock</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>User<span style="color:#fff"> </span>user2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>200<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 回傳的user的名字也為I&#39;m mock</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>限制只有當參數的數字是 3 時，才會回傳名字為 I&rsquo;m mock 3 的 user 對象</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">)).</span><span style="color:#1f2328">thenReturn</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>User<span style="color:#1f2328">(</span>3<span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;I&#39;m mock&#34;</span><span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>User<span style="color:#fff"> </span>user1<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 回傳的user的名字為I&#39;m mock</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>User<span style="color:#fff"> </span>user2<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>200<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">// 回傳的user為null</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>當調用 userService 的 insertUser() 方法時，不管傳進來的 user 是什麼，都回傳 100</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">insertUser</span><span style="color:#1f2328">(</span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">any</span><span style="color:#1f2328">(</span>User<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">))).</span><span style="color:#1f2328">thenReturn</span><span style="color:#1f2328">(</span>100<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>Integer<span style="color:#fff"> </span>i<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">insertUser</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>User<span style="color:#1f2328">());</span><span style="color:#fff"> </span><span style="color:#57606a">//會返回100</span><span style="color:#fff">
-</span></span></span></code></pre></div><h4 id="thenthrow-系列方法" class="markdown-heading-anchor">
-  thenThrow 系列方法
-  <a href="#thenthrow-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95">#</a>
-</h4><p>當調用 userService 的 getUserById() 時的參數是 9 時，拋出一個 RuntimeException</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>9<span style="color:#1f2328">)).</span><span style="color:#1f2328">thenThrow</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>RuntimeException<span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;mock throw exception&#34;</span><span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>User<span style="color:#fff"> </span>user<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>9<span style="color:#1f2328">);</span><span style="color:#fff"> </span><span style="color:#57606a">//會拋出一個RuntimeException</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>如果方法沒有返回值的話（即是方法定義為<code>public void myMethod() {...}</code>），要改用 doThrow() 拋出 Exception</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">doThrow</span><span style="color:#1f2328">(</span><span style="color:#cf222e">new</span><span style="color:#fff"> </span>RuntimeException<span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;mock throw exception&#34;</span><span style="color:#1f2328">)).</span><span style="color:#1f2328">when</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">).</span><span style="color:#1f2328">print</span><span style="color:#1f2328">();</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>userService<span style="color:#1f2328">.</span><span style="color:#1f2328">print</span><span style="color:#1f2328">();</span><span style="color:#fff"> </span><span style="color:#57606a">//會拋出一個RuntimeException</span><span style="color:#fff">
-</span></span></span></code></pre></div><h4 id="verify-系列方法" class="markdown-heading-anchor">
-  verify 系列方法
-  <a href="#verify-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95">#</a>
-</h4><p>檢查調用 userService 的 getUserById()、且參數為3的次數是否為1次</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">verify</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">,</span><span style="color:#fff"> </span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">times</span><span style="color:#1f2328">(</span>1<span style="color:#1f2328">)).</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">eq</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>驗證調用順序，驗證 userService 是否先調用 getUserById() 兩次，並且第一次的參數是 3、第二次的參數是 5，然後才調用insertUser() 方法</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>InOrder<span style="color:#fff"> </span>inOrder<span style="color:#fff"> </span><span style="color:#0550ae">=</span><span style="color:#fff"> </span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">inOrder</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>inOrder<span style="color:#1f2328">.</span><span style="color:#1f2328">verify</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">).</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>3<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>inOrder<span style="color:#1f2328">.</span><span style="color:#1f2328">verify</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">).</span><span style="color:#1f2328">getUserById</span><span style="color:#1f2328">(</span>5<span style="color:#1f2328">);</span><span style="color:#fff">
-</span></span></span><span style="display:flex;"><span><span style="color:#fff"></span>inOrder<span style="color:#1f2328">.</span><span style="color:#1f2328">verify</span><span style="color:#1f2328">(</span>userService<span style="color:#1f2328">).</span><span style="color:#1f2328">insertUser</span><span style="color:#1f2328">(</span>Mockito<span style="color:#1f2328">.</span><span style="color:#1f2328">any</span><span style="color:#1f2328">(</span>User<span style="color:#1f2328">.</span><span style="color:#1f2328">class</span><span style="color:#1f2328">));</span><span style="color:#fff">
-</span></span></span></code></pre></div><h3 id="4-mockito-的限制" class="markdown-heading-anchor">
-  4. Mockito 的限制
-  <a href="#4-mockito-%e7%9a%84%e9%99%90%e5%88%b6">#</a>
-</h3><p>上述就是 Mockito 的 mock 對象使用方法，不過當使用 Mockito 在 mock 對象時，有一些限制需要遵守</p>
-<ul>
-<li>不能 mock 靜態方法</li>
-<li>不能 mock private 方法</li>
-<li>不能 mock final class</li>
-</ul>
-<p>因此在寫 code 時，需要做良好的功能拆分，才能夠使用 Mockito 的 mock 技術，幫助我們降低測試時 bean 的 dependency</p>
-<h3 id="5-總結" class="markdown-heading-anchor">
-  5. 總結
-  <a href="#5-%e7%b8%bd%e7%b5%90">#</a>
-</h3><p>Mockito 是一個非常強大的框架，可以在執行單元測試時幫助我們模擬一個 bean，提高單元測試的穩定性，並且大家可以嘗試在寫 code 時，從 mock 測試的角度來寫，更能夠寫出功能切分良好的 code modules</p>
-<p>像是如果有把專門和外部 service 溝通的 code 抽出來成一個 bean，在進行單元測試時，只要透過 Mockito 更換掉那個 bean 就行了</p>
-
-<blockquote>
-  <p>如果想了解更多 Spring Boot 的用法，也歡迎參考我開設的線上課程 <a href="https://hahow.in/cr/springboot"
-   
-   target="_blank" rel="noopener">Java 工程師必備！Spring Boot 零基礎入門</a> <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）</strong>。</p>
-</blockquote>
-
-        </div>
-        
-        
-<div class="blog-newsletter">
-  <h4>免費訂閱《古古的後端筆記》電子報</h4>
-  <div>
-    <p>每週二學習後端技術，和 3400 人一起變強💪</p>
-    <div id="blog-newsletter" class="newsletter">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-          <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-          <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-        </div>
-      </div>
-      <form action="#" method="POST" class="row justify-content-center">
-        <div class="input-group col-md-8">
-          <input type="email" required="" name="email"
-                 class="form-control"
-                 placeholder="輸入你的 Email">
-          <div class="input-group-append">
-            <button type="submit"
-                    class="input-group-text btn btn-primary">
-              免費訂閱
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-        
-
-        <hr class="blog-end-divider">
-
-        
-        <script src="https://utteranc.es/client.js"
-                label="comment"
-                repo="kucw/kucw.github.io"
-                issue-term="title"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<footer>
-  <div class="container">
-    
-    <div class="row justify-content-center pb-4">
-      <div class="col-12 text-center mb-5">
-        <a href="https://kucw.io/">
-          <img class="img-fluid logo-thumb-md rounded-circle mx-1"
-               src="https://kucw.io/images/logo.png" alt="古古的後端筆記">
-        </a>
-      </div>
-    </div>
-
-    
-    <div class="row pb-1">
-      
-      <div class="col-lg-8 text-center pb-5">
-        <h4>免費訂閱電子報，每週二學習後端技術🚀</h4>
-        <div id="footer-newsletter" class="newsletter">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="success">已發送 Email 驗證信！請前往信箱驗證你的訂閱</div>
-              <div class="error">訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div>
-              <div class="maintenance">電子報伺服器正在維護中，請稍後再試</div>
-            </div>
-          </div>
-          <form action="#" method="POST" class="row justify-content-center">
-            <div class="input-group col-md-8">
-              <input type="email" required="" name="email"
-                     class="form-control"
-                     placeholder="輸入你的 Email">
-              <div class="input-group-append">
-                <button type="submit"
-                        class="input-group-text btn btn-primary">
-                  免費訂閱
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      
-      <div class="col-lg-4 pb-3 footer-contact-me">
-        <h5 class="mb-4">追蹤古古</h5>
-        <ul class="list-inline footer-social-links">
-          
-          <li class="list-inline-item"><a href="https://github.com/kucw" target="_blank" rel="noopener"><i class="ti-github"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.facebook.com/kucw.io" target="_blank" rel="noopener"><i class="ti-facebook"></i></a></li>
-          
-          <li class="list-inline-item"><a href="https://www.instagram.com/kucw.io/" target="_blank" rel="noopener"><i class="ti-instagram"></i></a></li>
-          
-        </ul>
-        <p>聯絡信箱: service@kucw.io</p>
-      </div>
-    </div>
-    
-
-    
-    <div class="border-top py-4 text-center">
-      © 2020-2025 古古的後端筆記 | All Rights Reserved.
-    </div>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-  var indexURL = "https://kucw.io/index.json"
-</script>
-
-<!-- JS Plugins -->
-
-<script src="https://kucw.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://kucw.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://kucw.io/plugins/mailbluster/mailbluster.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/confetti.browser.min.js"></script>
-
-<script src="https://kucw.io/plugins/confetti/welcomeConfetti.js"></script>
-
-<script src="https://kucw.io/plugins/medium-zoom/medium-zoom.min.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js"></script>
-
-<script src="https://kucw.io/plugins/algolia-search/instantsearch.production.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/clipboard.min.js"></script>
-
-<script src="https://kucw.io/plugins/clipboard/code-clipboard.js"></script>
-
-<script src="https://kucw.io/plugins/login/login.js"></script>
-
-
-<!-- Main Script -->
-
-<script src="https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js"></script>
-
-
-</body>
-</html>
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><title>SpringBoot - 單元測試工具 Mockito
+</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=description content="介紹如何使用 Mockito 框架幫助我們更方便的進行 SpringBoot 單元測試"><meta name=author content="古古"><meta property="og:image" content="https://kucw.io/images/logo.png"><meta name=generator content="Hugo 0.145.0 with theme pure"><link rel=stylesheet href=https://kucw.io/plugins/bootstrap/bootstrap.min.css><link rel=stylesheet href=https://kucw.io/plugins/themify-icons/themify-icons.css><link rel=stylesheet href=https://kucw.io/plugins/venobox/venobox.css><link rel=stylesheet href=https://kucw.io/plugins/medium-zoom/medium-zoom.css><link rel=stylesheet href=https://kucw.io/scss/style.min.d0dbde05028230889123aec57bd4277b184ffb8ec8b13e1dae16f3946be51984.css media=screen><link rel="shortcut icon" href=https://kucw.io/images/favicon.png type=image/x-icon><link rel=icon href=https://kucw.io/images/favicon.png type=image/x-icon><script async src="https://www.googletagmanager.com/gtag/js?id=G-FDFT2W6V4S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NKQ46H0SJW")</script><script src=https://kucw.io/js/google-firebase-login.min.69fad9ce5fc6ddb2a672d6f8497b357c0eb6b5ff30ceea1601cdd8f2b936213b.js type=module></script></head><body><div class=preloader></div><header class=navigation><div class="container-fluid border-bottom fixed-top nav-background-color"><div class=nav-container><nav class="navbar navbar-expand-lg navbar-white bg-transparent px-0"><a class="navbar-brand desktop-view" href=https://kucw.io/><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt>
+</a><a class="navbar-brand navbar-brand-mobile mobile-view" href=https://kucw.io/><img class="img-fluid logo-thumb-sm rounded-circle" src=https://kucw.io/images/logo.png alt>
+</a><button class="navbar-toggler border-0" type=button data-toggle=collapse data-target=#navigation>
+<i class="ti-menu h3"></i></button><div class="collapse navbar-collapse text-center" id=navigation><ul class="navbar-nav mr-auto ml-2"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>後端技術專欄</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/springboot/1>Spring Boot 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>線上課程</a><div class=dropdown-menu><a class=dropdown-item href=https://hahow.in/cr/kucw-github-hugo target=_blank rel=noopener>GitHub 免費架站術！輕鬆打造個人品牌</a>
+<a class=dropdown-item href=https://hahow.in/cr/springboot target=_blank rel=noopener>Java 工程師必備！Spring Boot 零基礎入門</a>
+<a class=dropdown-item href=https://hahow.in/cr/springsecurity target=_blank rel=noopener>資安一把罩！Spring Security 零基礎入門</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>自媒體 & 敗家專區</a><div class=dropdown-menu><a class=dropdown-item href=https://kucw.io/blog/as-a-content-creator/1>軟體工程師的自媒體之路</a></div></li><li class=nav-item><a class=nav-link href=https://kucw.io/>所有文章</a></li><li class=nav-item><a class=nav-link href=https://kucw.io/about>關於我</a></li><li class=nav-item><button id=algolia-search-btn class=algolia-search-btn><i class=ti-search></i></button></li></ul><ul class=navbar-nav><a class=nav-newsletter-link href=/bio target=_blank>電子報訂閱</a></ul></div></nav></div></div></header><div id=algolia-search-pop-overlay class=algolia-search-pop-overlay><div class="popup algolia-search-popup"><div class=algolia-search-header><span class=algolia-search-icon><i class=ti-search></i></span><div id=algolia-search-input-container class=algolia-search-input-container></div><span id=algolia-popup-btn-close class=algolia-popup-btn-close><i class=ti-close></i></span></div><div id=algolia-results class=algolia-results><div id=algolia-hits class=algolia-hits></div><div id=algolia-pagination class=algolia-pagination></div></div></div></div><div id=login-pop-overlay class=login-pop-overlay><div class="popup login-popup"><div class=login-popup-header><img class="img-fluid logo-with-text-size mx-1" src=https://kucw.io/images/logo-with-text-transparent.png alt><div id=login-popup-btn-close class=login-popup-btn-close><i class=ti-close></i></div></div><div class=login-popup-body><button class=google-login-btn id=google-login-btn>
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 10.2c0-.7.0-1.4-.2-2H10V12h5.4c-.3 1.3-1 2.4-2 3v2.6h3.2c2-1.8 3-4.3 3-7.4z" fill="#4285f4"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 20c2.7.0 5-.9 6.6-2.4L13.4 15a6 6 0 01-9-3.2H1.1v2.6A10 10 0 0010 20z" fill="#34a853"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.4 11.9a6 6 0 010-3.8V5.5H1.1a10 10 0 000 9l3.3-2.6z" fill="#fbbc05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10 4c1.5.0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 001 5.5l3.3 2.6A6 6 0 0110 4z" fill="#ea4335"/></svg>
+<span class=google-login-btn-text>使用 Google 登入</span></button><p class=login-terms>By signing in, you agree to 古古的後端筆記's terms of service and privacy policy.</p></div></div></div><section class=section-sm><div class="container pl-4 pr-4"><div class=row><div class="col-lg-10 mx-auto"><h1 class=blog-title>SpringBoot - 單元測試工具 Mockito</h1><div class=author-details><div><img src=https://kucw.io/images/author-sm.png alt class="author-thumb-blog rounded-circle"></div><div><p>古古</p><p>2020/02/20</p></div></div><hr class=blog-start-divider><div class="content mb-4"><p>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&mldr;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試</p><h3 id=1-什麼是-mock-測試 class=markdown-heading-anchor>1. 什麼是 mock 測試？
+<a href=#1-%e4%bb%80%e9%ba%bc%e6%98%af-mock-%e6%b8%ac%e8%a9%a6>#</a></h3><p>mock 測試就是在測試過程中，創建一個假的對象，避免你為了測試一個方法，卻要自行構建整個 bean 的 dependency chain</p><p>像是以下這張圖，類 A 需要調用類 B 和類 C，而類 B 和類 C 又需要調用其他類如 D、E、F 等，假設類 D 是一個外部服務，那就會很難測，因為你的返回結果會直接的受外部服務影響，導致你的單元測試可能今天會過、但明天就過不了了</p><p><img src=/images/blog/unittest_mock1.png alt loading=lazy data-zoomable width=528 height=405></p><p>而當我們引入 mock 測試時，就可以創建一個假的對象，替換掉真實的 bean B 和 C，這樣在調用B、C的方法時，實際上就會去調用這個假的 mock 對象的方法，而我們就可以自己設定這個 mock 對象的參數和期望結果，讓我們可以專注在測試當前的類 A，而不會受到其他的外部服務影響，這樣測試效率就能提高很多</p><p><img src=/images/blog/unittest_mock2.png alt loading=lazy data-zoomable width=340 height=247></p><h3 id=2-mockito-簡介 class=markdown-heading-anchor>2. Mockito 簡介
+<a href=#2-mockito-%e7%b0%a1%e4%bb%8b>#</a></h3><p>說完了 mock 測試的概念，接下來我們進入到今天的主題，Mockito</p><p>Mockito 是一種 Java mock 框架，他主要就是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&mldr;等，他同時也會記錄調用這些模擬方法的參數、調用順序，從而可以校驗出這個 mock 對象是否有被正確的順序調用，以及按照期望的參數被調用</p><p>像是 Mockito 可以在單元測試中模擬一個 service 返回的數據，而不會真正去調用該 service，這就是上面提到的 mock 測試精神，也就是通過模擬一個假的 service 對象，來快速的測試當前我想要測試的類</p><p>目前在 Java 中主流的 mock 測試工具有 Mockito、JMock、EasyMock..等，而 SpringBoot 目前內建的是 Mockito 框架</p><p>題外話說一下，Mockito 是命名自一種調酒莫吉托（Mojito），外國人也愛玩諧音梗。。。</p><h3 id=3-在-springboot-單元測試中使用-mockito class=markdown-heading-anchor>3. 在 SpringBoot 單元測試中使用 Mockito
+<a href=#3-%e5%9c%a8-springboot-%e5%96%ae%e5%85%83%e6%b8%ac%e8%a9%a6%e4%b8%ad%e4%bd%bf%e7%94%a8-mockito>#</a></h3><p>首先在 pom.xml 下新增 spring-boot-starter-test 依賴，該依賴內就有包含了 JUnit、Mockito</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#0550ae>&lt;dependency&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#0550ae>&lt;groupId&gt;</span>org.springframework.boot<span style=color:#0550ae>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#0550ae>&lt;artifactId&gt;</span>spring-boot-starter-test<span style=color:#0550ae>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#0550ae>&lt;scope&gt;</span>test<span style=color:#0550ae>&lt;/scope&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#0550ae>&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>先寫好一個 UserService，他裡面有兩個方法 <code>getUserById()</code> 和 <code>insertUser()</code>，而他們會分別去再去調用 UserDao 這個 bean的 <code>getUserById()</code> 和 <code>insertUser()</code> 方法</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#0550ae>@Component</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>UserService</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Autowired</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>UserDao<span style=color:#fff> </span>userDao<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span>User<span style=color:#fff> </span><span style=color:#6639ba>getUserById</span><span style=color:#1f2328>(</span>Integer<span style=color:#fff> </span>id<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>return</span><span style=color:#fff> </span>userDao<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>id<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span>Integer<span style=color:#fff> </span><span style=color:#6639ba>insertUser</span><span style=color:#1f2328>(</span>User<span style=color:#fff> </span>user<span style=color:#1f2328>)</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#cf222e>return</span><span style=color:#fff> </span>userDao<span style=color:#1f2328>.</span><span style=color:#1f2328>insertUser</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>User model 的定義如下</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>User</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>Integer<span style=color:#fff> </span>id<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>String<span style=color:#fff> </span>name<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//省略 getter/setter</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>如果這時候我們先不使用 Mockito 模擬一個假的 userDao bean，而是真的去 call 一個正常的 Spring bean 的 userDao 的話，測試類寫法如下。其實就是很普通的注入 userService bean，然後去調用他的方法，而他會再去 call userDao 取得 DB 的 data，然後我們再對返回結果做 assert 檢查</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#0550ae>@RunWith</span><span style=color:#1f2328>(</span>SpringRunner<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@SpringBootTest</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>UserServiceTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#57606a>//先普通的注入一個userService bean</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Autowired</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>UserService<span style=color:#fff> </span>userService<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Test</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>getUserById</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#cf222e>throws</span><span style=color:#fff> </span>Exception<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//普通的使用userService，他裡面會再去call userDao取得DB的data</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>User<span style=color:#fff> </span>user<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>//檢查結果</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertNotNull</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertEquals</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>.</span><span style=color:#1f2328>getId</span><span style=color:#1f2328>(),</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Integer<span style=color:#1f2328>(</span>1<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertEquals</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>.</span><span style=color:#1f2328>getName</span><span style=color:#1f2328>(),</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;John&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>但是如果 userDao 還沒寫好，又想先測 userService 的話，就需要使用 Mockito 去模擬一個假的 userDao 出來</p><p>使用方法是在 userDao 上加上一個 <code>@MockBean</code> 注解，當 userDao 被加上這個注解之後，表示 Mockito 會幫我們創建一個假的 mock 對象，替換掉 Spring 中已存在的那個真實的 userDao bean，也就是說，注入進 userService 的 userDao bean，已經被我們替換成假的 mock 對象了，所以當我們再次調用 userService 的方法時，會去調用的實際上是 mock userDao bean 的方法，而不是真實的 userDao bean</p><p>當我們創建了一個假的 userDao 後，我們需要為這個 mock userDao 自定義方法的返回值，這裡有一個公式用法，下面這段 code 的意思為，當調用了某個 mock 對象的方法時，就回傳我們想要的自定義結果</p><pre tabindex=0><code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )
+</code></pre><p>使用 Mockito 模擬 bean 的單元測試具體實例如下</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#0550ae>@RunWith</span><span style=color:#1f2328>(</span>SpringRunner<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>)</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#0550ae>@SpringBootTest</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>class</span> <span style=color:#1f2328>UserServiceTest</span><span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Autowired</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>UserService<span style=color:#fff> </span>userService<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@MockBean</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>private</span><span style=color:#fff> </span>UserDao<span style=color:#fff> </span>userDao<span style=color:#1f2328>;</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#0550ae>@Test</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#cf222e>public</span><span style=color:#fff> </span><span style=color:#cf222e>void</span><span style=color:#fff> </span><span style=color:#6639ba>getUserById</span><span style=color:#1f2328>()</span><span style=color:#fff> </span><span style=color:#cf222e>throws</span><span style=color:#fff> </span>Exception<span style=color:#fff> </span><span style=color:#1f2328>{</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 定義當調用mock userDao的getUserById()方法，並且參數為3時，就返回id為200、name為I&#39;m mock3的user對象</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userDao<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>)).</span><span style=color:#1f2328>thenReturn</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>User<span style=color:#1f2328>(</span>200<span style=color:#1f2328>,</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;I&#39;m mock 3&#34;</span><span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span><span style=color:#57606a>// 返回的會是名字為I&#39;m mock 3的user對象</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>User<span style=color:#fff> </span>user<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertNotNull</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertEquals</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>.</span><span style=color:#1f2328>getId</span><span style=color:#1f2328>(),</span><span style=color:#fff> </span><span style=color:#cf222e>new</span><span style=color:#fff> </span>Integer<span style=color:#1f2328>(</span>200<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>        </span>Assert<span style=color:#1f2328>.</span><span style=color:#1f2328>assertEquals</span><span style=color:#1f2328>(</span>user<span style=color:#1f2328>.</span><span style=color:#1f2328>getName</span><span style=color:#1f2328>(),</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;I&#39;m mock 3&#34;</span><span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff>    </span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span><span style=color:#1f2328>}</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>Mockito 除了最基本的 <code>Mockito.when( 對象.方法名() ).thenReturn( 自定義結果 )</code>，還提供了其他用法讓我們使用</p><h4 id=thenreturn-系列方法 class=markdown-heading-anchor>thenReturn 系列方法
+<a href=#thenreturn-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95>#</a></h4><p>當使用任何整數值調用 userService 的 getUserById() 方法時，就回傳一個名字為 I&rsquo;m mock3 的 user 對象</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>anyInt</span><span style=color:#1f2328>())).</span><span style=color:#1f2328>thenReturn</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>User<span style=color:#1f2328>(</span>3<span style=color:#1f2328>,</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;I&#39;m mock&#34;</span><span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>User<span style=color:#fff> </span>user1<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 回傳的user的名字為I&#39;m mock</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>User<span style=color:#fff> </span>user2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>200<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 回傳的user的名字也為I&#39;m mock</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>限制只有當參數的數字是 3 時，才會回傳名字為 I&rsquo;m mock 3 的 user 對象</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>)).</span><span style=color:#1f2328>thenReturn</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>User<span style=color:#1f2328>(</span>3<span style=color:#1f2328>,</span><span style=color:#fff> </span><span style=color:#0a3069>&#34;I&#39;m mock&#34;</span><span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>User<span style=color:#fff> </span>user1<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 回傳的user的名字為I&#39;m mock</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>User<span style=color:#fff> </span>user2<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>200<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>// 回傳的user為null</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>當調用 userService 的 insertUser() 方法時，不管傳進來的 user 是什麼，都回傳 100</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>insertUser</span><span style=color:#1f2328>(</span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>any</span><span style=color:#1f2328>(</span>User<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>))).</span><span style=color:#1f2328>thenReturn</span><span style=color:#1f2328>(</span>100<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>Integer<span style=color:#fff> </span>i<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>insertUser</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>User<span style=color:#1f2328>());</span><span style=color:#fff> </span><span style=color:#57606a>//會返回100</span><span style=color:#fff>
+</span></span></span></code></pre></div><h4 id=thenthrow-系列方法 class=markdown-heading-anchor>thenThrow 系列方法
+<a href=#thenthrow-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95>#</a></h4><p>當調用 userService 的 getUserById() 時的參數是 9 時，拋出一個 RuntimeException</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>9<span style=color:#1f2328>)).</span><span style=color:#1f2328>thenThrow</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>RuntimeException<span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;mock throw exception&#34;</span><span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>User<span style=color:#fff> </span>user<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>9<span style=color:#1f2328>);</span><span style=color:#fff> </span><span style=color:#57606a>//會拋出一個RuntimeException</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>如果方法沒有返回值的話（即是方法定義為<code>public void myMethod() {...}</code>），要改用 doThrow() 拋出 Exception</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>doThrow</span><span style=color:#1f2328>(</span><span style=color:#cf222e>new</span><span style=color:#fff> </span>RuntimeException<span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;mock throw exception&#34;</span><span style=color:#1f2328>)).</span><span style=color:#1f2328>when</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>).</span><span style=color:#1f2328>print</span><span style=color:#1f2328>();</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>userService<span style=color:#1f2328>.</span><span style=color:#1f2328>print</span><span style=color:#1f2328>();</span><span style=color:#fff> </span><span style=color:#57606a>//會拋出一個RuntimeException</span><span style=color:#fff>
+</span></span></span></code></pre></div><h4 id=verify-系列方法 class=markdown-heading-anchor>verify 系列方法
+<a href=#verify-%e7%b3%bb%e5%88%97%e6%96%b9%e6%b3%95>#</a></h4><p>檢查調用 userService 的 getUserById()、且參數為3的次數是否為1次</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>verify</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>,</span><span style=color:#fff> </span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>times</span><span style=color:#1f2328>(</span>1<span style=color:#1f2328>)).</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>eq</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span></code></pre></div><p>驗證調用順序，驗證 userService 是否先調用 getUserById() 兩次，並且第一次的參數是 3、第二次的參數是 5，然後才調用insertUser() 方法</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>InOrder<span style=color:#fff> </span>inOrder<span style=color:#fff> </span><span style=color:#0550ae>=</span><span style=color:#fff> </span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>inOrder</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>inOrder<span style=color:#1f2328>.</span><span style=color:#1f2328>verify</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>).</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>3<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>inOrder<span style=color:#1f2328>.</span><span style=color:#1f2328>verify</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>).</span><span style=color:#1f2328>getUserById</span><span style=color:#1f2328>(</span>5<span style=color:#1f2328>);</span><span style=color:#fff>
+</span></span></span><span style=display:flex><span><span style=color:#fff></span>inOrder<span style=color:#1f2328>.</span><span style=color:#1f2328>verify</span><span style=color:#1f2328>(</span>userService<span style=color:#1f2328>).</span><span style=color:#1f2328>insertUser</span><span style=color:#1f2328>(</span>Mockito<span style=color:#1f2328>.</span><span style=color:#1f2328>any</span><span style=color:#1f2328>(</span>User<span style=color:#1f2328>.</span><span style=color:#1f2328>class</span><span style=color:#1f2328>));</span><span style=color:#fff>
+</span></span></span></code></pre></div><h3 id=4-mockito-的限制 class=markdown-heading-anchor>4. Mockito 的限制
+<a href=#4-mockito-%e7%9a%84%e9%99%90%e5%88%b6>#</a></h3><p>上述就是 Mockito 的 mock 對象使用方法，不過當使用 Mockito 在 mock 對象時，有一些限制需要遵守</p><ul><li>不能 mock 靜態方法</li><li>不能 mock private 方法</li><li>不能 mock final class</li></ul><p>因此在寫 code 時，需要做良好的功能拆分，才能夠使用 Mockito 的 mock 技術，幫助我們降低測試時 bean 的 dependency</p><h3 id=5-總結 class=markdown-heading-anchor>5. 總結
+<a href=#5-%e7%b8%bd%e7%b5%90>#</a></h3><p>Mockito 是一個非常強大的框架，可以在執行單元測試時幫助我們模擬一個 bean，提高單元測試的穩定性，並且大家可以嘗試在寫 code 時，從 mock 測試的角度來寫，更能夠寫出功能切分良好的 code modules</p><p>像是如果有把專門和外部 service 溝通的 code 抽出來成一個 bean，在進行單元測試時，只要透過 Mockito 更換掉那個 bean 就行了</p><blockquote><p>如果想了解更多 Spring Boot 的用法，也歡迎參考我開設的線上課程 <a href=https://hahow.in/cr/springboot target=_blank rel=noopener>Java 工程師必備！Spring Boot 零基礎入門</a> <strong>（輸入折扣碼「HH202505KU」即可享 85 折優惠）</strong>。</p></blockquote></div><div class=blog-newsletter><h4>免費訂閱《古古的後端筆記》電子報</h4><div><p>每週二學習後端技術，和 3400 人一起變強💪</p><div id=blog-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div></div><hr class=blog-end-divider><script src=https://utteranc.es/client.js label=comment repo=kucw/kucw.github.io issue-term=title theme=github-light crossorigin=anonymous async></script></div></div></div></section><footer><div class=container><div class="row justify-content-center pb-4"><div class="col-12 text-center mb-5"><a href=https://kucw.io/><img class="img-fluid logo-thumb-md rounded-circle mx-1" src=https://kucw.io/images/logo.png alt=古古的後端筆記></a></div></div><div class="row pb-1"><div class="col-lg-8 text-center pb-5"><h4>免費訂閱電子報，每週二學習後端技術🚀</h4><div id=footer-newsletter class=newsletter><div class="row justify-content-center"><div class=col-md-8><div class=success>已發送 Email 驗證信！請前往信箱驗證你的訂閱</div><div class=error>訂閱失敗，請檢查 Email 是否輸入錯誤，或是聯繫 service@kucw.io 取得協助</div><div class=maintenance>電子報伺服器正在維護中，請稍後再試</div></div></div><form action=# method=POST class="row justify-content-center"><div class="input-group col-md-8"><input type=email required name=email class=form-control placeholder="輸入你的 Email"><div class=input-group-append><button type=submit class="input-group-text btn btn-primary">
+免費訂閱</button></div></div></form></div></div><div class="col-lg-4 pb-3 footer-contact-me"><h5 class=mb-4>追蹤古古</h5><ul class="list-inline footer-social-links"><li class=list-inline-item><a href=https://github.com/kucw target=_blank rel=noopener><i class=ti-github></i></a></li><li class=list-inline-item><a href=https://www.facebook.com/kucw.io target=_blank rel=noopener><i class=ti-facebook></i></a></li><li class=list-inline-item><a href=https://www.instagram.com/kucw.io/ target=_blank rel=noopener><i class=ti-instagram></i></a></li></ul><p>聯絡信箱: service@kucw.io</p></div></div><div class="border-top py-4 text-center">© 2020-2025 古古的後端筆記 | All Rights Reserved.</div></div></div></footer><script>var indexURL="https://kucw.io/index.json"</script><script src=https://kucw.io/plugins/jQuery/jquery.min.js></script><script src=https://kucw.io/plugins/bootstrap/bootstrap.min.js></script><script src=https://kucw.io/plugins/mailbluster/mailbluster.js></script><script src=https://kucw.io/plugins/confetti/confetti.browser.min.js></script><script src=https://kucw.io/plugins/confetti/welcomeConfetti.js></script><script src=https://kucw.io/plugins/medium-zoom/medium-zoom.min.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch.js></script><script src=https://kucw.io/plugins/algolia-search/algoliasearch-lite.umd.js></script><script src=https://kucw.io/plugins/algolia-search/instantsearch.production.min.js></script><script src=https://kucw.io/plugins/clipboard/clipboard.min.js></script><script src=https://kucw.io/plugins/clipboard/code-clipboard.js></script><script src=https://kucw.io/plugins/login/login.js></script><script src=https://kucw.io/js/script.min.aa7e377695025ea8426da51bc7ddbc5d24fa31916deb7d8d442296c493598de4.js></script></body></html>
