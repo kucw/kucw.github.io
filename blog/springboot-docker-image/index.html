@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>
     
-    用 Dockerfile 生成 Spring Boot 的 image
+    為 Spring Boot 生成 Docker image
     
   </title>
 
@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- SEO -->
-  <meta name="description" content="介紹如何使用 Dockerfile 的 Multi-image build 功能，去生成一個 Spring Boot 的 image">
+  <meta name="description" content="介紹如何使用 Dockerfile 的 Multi-image build 功能，為 Spring Boot 生成 Docker image">
   <meta name="author" content="古古">
 
    <!-- Open Graph data -->
@@ -225,7 +225,7 @@
   <div class="container pl-4 pr-4">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <h1 class="blog-title">用 Dockerfile 生成 Spring Boot 的 image</h1>
+        <h1 class="blog-title">為 Spring Boot 生成 Docker image</h1>
 
         <div class="author-details">
           <div>
@@ -245,21 +245,22 @@
         
         
         <div class="content mb-4">
-          <div class="markdown-toc">
+          <p>本文介紹要如何使用 Dockerfile 的 Multi-stage build 寫法，為 Spring Boot 生成更精簡的 Docker image。</p>
+<div class="markdown-toc">
     <div class="markdown-toc-title">目錄</div>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#使用-dockerfile-生成-spring-boot-image">使用 Dockerfile 生成 Spring Boot image</a></li>
+    <li><a href="#什麼是-multi-stage-build">什麼是 Multi-stage build？</a></li>
     <li><a href="#在-spring-boot-中使用-multi-stage-build-來生成-image">在 Spring Boot 中使用 Multi-stage build 來生成 image</a></li>
     <li><a href="#如何知道要把-src-複製到-rootsrc-底下">如何知道要把 src 複製到 /root/src 底下？</a></li>
     <li><a href="#結語">結語</a></li>
   </ul>
 </nav>
 </div>
-<h2 id="使用-dockerfile-生成-spring-boot-image" class="markdown-heading-anchor">
-  使用 Dockerfile 生成 Spring Boot image
-  <a href="#%e4%bd%bf%e7%94%a8-dockerfile-%e7%94%9f%e6%88%90-spring-boot-image">#</a>
-</h2><p>如果要用 Dockerfile 生成 Spring Boot image 的話，有兩種寫法可以用，一種就是用基本的 Dockerfile 寫法，另一種是更高級的 Dockerfile Multi-stage build 寫法。</p>
+<h2 id="什麼是-multi-stage-build" class="markdown-heading-anchor">
+  什麼是 Multi-stage build？
+  <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-multi-stage-build">#</a>
+</h2><p>在生成 docker image 時，通常會透過撰寫 Dockerfile 來生成，而 Dockerfile 有兩種寫法可以用，一種就是用基本的 Dockerfile 寫法，另一種則是更進階的 Multi-stage build 寫法。</p>
 <p>針對這種需要編譯的程式語言（ex: Java、C++），用 Multi-stage build 會更好，因為 <strong>Multi-stage build 的概念是「依序 build 多個 image，但是只取最終的 image 來生成」</strong>。</p>
 <p>所以就可以先在前面的 Build stage 中先編譯 Spring Boot 檔案，此時在這個 image 裡面會有許多跟「執行」無關的檔案，像是 src、pom.xml、target 資料夾中的一堆編譯檔&hellip;等等，這些檔案其實跟執行無關，跟執行真正有關的就只有 .jar 檔而已。</p>
 <p>而在 Build stage 執行完之後，就可以馬上把這個 .jar 檔拉到 Package stage 裡面，並且最終只生成 Package stage 的 image 出來，這樣子中間那些編譯檔就不用也被包進 image 裡面，徒增 image 大小了，讚！！</p>
