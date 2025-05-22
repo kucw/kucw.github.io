@@ -316,7 +316,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">
 </span></span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e"></span><span style="color:#57606a"># 指定運行此 package image 的指令</span><span style="color:#f6f8fa;background-color:#82071e">
 </span></span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e"></span><span style="color:#cf222e">CMD</span> <span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;java&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;-jar&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;app.jar&#34;</span><span style="color:#1f2328">]</span><span style="color:#f6f8fa;background-color:#82071e">
-</span></span></span></code></pre></div><p>寫好之後就可以在 Spring Boot 中開啟 terminal，然後執行 <code>docker build -t my/springboot:1.0.0 .</code>，表示要運行當前的 Dockerfile，生成此 Spring Boot 程式的 image 出來（只會生成最終的 package image 出來，前面的 build image 就會被丟掉了）。</p>
+</span></span></span></code></pre></div><p>寫好之後就可以在 Spring Boot 中開啟 terminal，然後執行 <code>docker build -t my/springboot:1.0.0 .</code>，表示要運行當前的 Dockerfile，生成此 Spring Boot 程式的 image 出來（注意此處只會生成最終的 package image 出來，前面的 build image 就會被丟掉了）。</p>
 <p>
 
 <img
@@ -327,7 +327,7 @@
   width="2800"
   height="1854"
 /></p>
-<p>此時就會在本機中生成一個 <code>my/springboot:1.0.0</code> 的 image 出來，接著只要執行 <code>docker run -p 8080:8080 my/springboot:1.0.0</code>，就可以用執行該 Spring Boot 程式了，讚！</p>
+<p>此時就會在本機中生成一個 <code>my/springboot:1.0.0</code> 的 image 出來，接著只要執行 <code>docker run -p 8080:8080 my/springboot:1.0.0</code>，就可以用 docker 執行 Spring Boot 程式了，讚！</p>
 <p>
 
 <img
