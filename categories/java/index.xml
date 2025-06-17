@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on 古古的後端筆記</title><link>https://kucw.io/categories/java/</link><description>Recent content in Java on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Java - Java 8 新增的時間系列用法</title><link>https://kucw.io/blog/2020/6/java-date/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/6/java-date/</guid><description>&lt;p>在了解 Java 8 新增的時間系列之前，我們需要先了解時間相關的知識&lt;/p>
+&lt;h4 id="1-首先是要有時區的概念" class="markdown-heading-anchor">
+ 1. 首先是要有時區的概念
+ &lt;a href="#1-%e9%a6%96%e5%85%88%e6%98%af%e8%a6%81%e6%9c%89%e6%99%82%e5%8d%80%e7%9a%84%e6%a6%82%e5%bf%b5">#&lt;/a>
+&lt;/h4>&lt;p>在台灣的時區是 GMT+8，而在英國的時區為 GMT+0，所以在同一瞬間，在英國看見的時間是 2020/06/29 14:00:00，但在台灣看見的時間卻會是 2020/06/29 22:00:00&lt;/p></description></item><item><title>Java - 五分鐘學會 Lombok 用法</title><link>https://kucw.io/blog/2020/3/java-lombok/</link><pubDate>Wed, 04 Mar 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/3/java-lombok/</guid><description>&lt;p>Lombok 是一個 Java library，可以透過簡單的寫法自動生成 Java 的 code，像是 setter、getter、logger&amp;hellip;等，目的在消除冗長的 code 和提高開發效率&lt;/p></description></item><item><title>Java - 測量程式執行時間</title><link>https://kucw.io/blog/2019/11/java-time-measurment/</link><pubDate>Mon, 18 Nov 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/11/java-time-measurment/</guid><description>&lt;p>Stopwatch 是 Guava 提供，可以用來測量程式運行時間的工具（Guava 是 Google 開發的 Java library，是一個非常好用的工具包）&lt;/p>
+&lt;h3 id="常用方法" class="markdown-heading-anchor">
+ 常用方法
+ &lt;a href="#%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95">#&lt;/a>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;code>Stopwatch.creatStarted()&lt;/code> : 創建一個碼表，並且開始計時&lt;/li>
+&lt;li>&lt;code>stop()&lt;/code> : 碼表停止計時&lt;/li>
+&lt;li>&lt;code>elapsed(TimeUnit unit)&lt;/code> : 取得從開始到結束的時間&lt;/li>
+&lt;/ul>
+&lt;h3 id="具體實例" class="markdown-heading-anchor">
+ 具體實例
+ &lt;a href="#%e5%85%b7%e9%ab%94%e5%af%a6%e4%be%8b">#&lt;/a>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#cf222e">public&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#cf222e">class&lt;/span> &lt;span style="color:#1f2328">Main&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#1f2328">{&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#cf222e">public&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#cf222e">static&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#cf222e">void&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#6639ba">main&lt;/span>&lt;span style="color:#1f2328">(&lt;/span>String&lt;span style="color:#0550ae">[]&lt;/span>&lt;span style="color:#fff"> &lt;/span>args&lt;span style="color:#1f2328">)&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#1f2328">{&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>Stopwatch&lt;span style="color:#fff"> &lt;/span>stopwatch&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#0550ae">=&lt;/span>&lt;span style="color:#fff"> &lt;/span>Stopwatch&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">createStarted&lt;/span>&lt;span style="color:#1f2328">();&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>doSomething&lt;span style="color:#1f2328">();&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>stopwatch&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">stop&lt;/span>&lt;span style="color:#1f2328">();&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#cf222e">long&lt;/span>&lt;span style="color:#fff"> &lt;/span>millis&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#0550ae">=&lt;/span>&lt;span style="color:#fff"> &lt;/span>stopwatch&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">elapsed&lt;/span>&lt;span style="color:#1f2328">(&lt;/span>TimeUnit&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">MILLISECONDS&lt;/span>&lt;span style="color:#1f2328">);&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>System&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">out&lt;/span>&lt;span style="color:#1f2328">.&lt;/span>&lt;span style="color:#1f2328">println&lt;/span>&lt;span style="color:#1f2328">(&lt;/span>&lt;span style="color:#0a3069">&amp;#34;time: &amp;#34;&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#0550ae">+&lt;/span>&lt;span style="color:#fff"> &lt;/span>millis&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#0550ae">+&lt;/span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#0a3069">&amp;#34; ms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">);&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff"> &lt;/span>&lt;span style="color:#1f2328">}&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#fff">&lt;/span>&lt;span style="color:#1f2328">}&lt;/span>&lt;span style="color:#fff">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>GraalVM 介紹 + 安裝教學</title><link>https://kucw.io/blog/2019/10/java-graalvm/</link><pubDate>Wed, 09 Oct 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/10/java-graalvm/</guid><description>&lt;p>GraalVM 是 Oracle 發佈的下世代 jvm，2019.05 才發佈了第一個 release 版本，分別有 Community 版和 Enterprise 版&lt;/p></description></item><item><title>Java - Iterator 和 ListIterator</title><link>https://kucw.io/blog/2018/12/java-iterator-and-listiterator/</link><pubDate>Wed, 12 Dec 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/12/java-iterator-and-listiterator/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>Iterator 是所有 Collection 類（List、Set&amp;hellip;.）們都可以使用的迭代器，而 ListIterator 則是專門為 List 類所設計的迭代器&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Iterator 只支持 &lt;code>hasNext()&lt;/code>、&lt;code>next()&lt;/code>、&lt;code>remove()&lt;/code> 三種操作，而 ListIterator 除了原本的 3 種之外，還支持了更多操作&lt;/p></description></item><item><title>Java - 為什麼 Iterator 不提供 add（E）方法 ？</title><link>https://kucw.io/blog/2018/12/java-iterator-without-add/</link><pubDate>Thu, 06 Dec 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/12/java-iterator-without-add/</guid><description>&lt;ul>
+&lt;li>為什麼 Iterator 接口，只有 &lt;code>hasNext()&lt;/code>、&lt;code>next()&lt;/code>、&lt;code>remove()&lt;/code> 方法，而沒有 &lt;code>add(E)&lt;/code> 方法 ?
+&lt;ul>
+&lt;li>邏輯上來說，迭代器是一個一個去遍歷集合中的元素，而當前 iterator 停下的地方，就是迭代到一半的地方
+&lt;ul>
+&lt;li>如果當迭代到一半時調用 &lt;code>iterator.add()&lt;/code> 方法，理論上來說，應該是要在當前這個元素 E1 後面新增一個元素 E2，使得下次遍歷此集合時，E2 一定會出現在 E1 後面，也就是 [&amp;hellip;.E1, E2, &amp;hellip;.]&lt;/li>
+&lt;li>假設 &lt;code>add()&lt;/code> 方法是以這個語意為前提的話，那麼迭代器不提供此方法是很合理的，對於有序的集合（像是ArrayList）來說，在此元素後面新增一個元素是一個很簡單的事情，但是對於無序的集合（像是HashSet）來說，不能保證新插入的這個元素 E2 一定會在 E1 後面（因為還得計算 HashCode），如此就違反了 &lt;code>add()&lt;/code> 的語意了，這也就是為什麼 Iterator 接口不提供 &lt;code>add()&lt;/code> 方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>另一個說法是，在使用迭代器時，通常就是 &amp;ldquo;遍歷&amp;rdquo; 的場景，這種場景下很少會去使用 &lt;code>add()&lt;/code> 方法，因此 Iterator 接口沒必要提供這個方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>Java - Iterable 接口、迭代器 Iterator</title><link>https://kucw.io/blog/2018/12/java-iterator/</link><pubDate>Wed, 05 Dec 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/12/java-iterator/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>所有的集合類（List、Set&amp;hellip;）都實現自 Collection 接口，而 Collection 接口又繼承於 Iterable 接口，因此可以說所有的集合類（List、Set&amp;hellip;）都實現了 Iterable 接口&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>當某個類實現 Iterable 接口時，我們就能稱這個類是一個 &amp;ldquo;可數&amp;rdquo; 的類，也就是可以使用 &lt;code>iterator()&lt;/code> 獲取一個迭代器 Iterator，然後使用這個 Iterator 實例去遍歷這個類，因此所有的 Collection 類都能夠使用迭代器 Iterator 來遍歷&lt;/p></description></item><item><title>Java - Pass by value or Pass by reference？</title><link>https://kucw.io/blog/2018/9/java-pass-param/</link><pubDate>Mon, 10 Sep 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/9/java-pass-param/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>在探討 Java 傳遞參數是 pass by value 還是 pass by reference 之前，需要先了解 Java 中 &lt;code>=&lt;/code> 的具體細節&lt;/p></description></item><item><title>Java - ThreadLocal 類的使用</title><link>https://kucw.io/blog/2018/7/java-thread-local/</link><pubDate>Mon, 16 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/java-thread-local/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>ThreadLocal 是線程的局部變量， 是每一個線程所單獨持有的，其他線程不能對其進行訪問&lt;/p>
+&lt;ul>
+&lt;li>ThreadLocal 支持泛型，也就是支持 value 是可以設置類型的，像是 &lt;code>ThreadLocal&amp;lt;Date&amp;gt;&lt;/code> 就是設置 value 為 Date 類型&lt;/li>
+&lt;li>每個線程會有自己的一份 ThreadLocalMap 變量，去儲存這個線程自己想存放的 ThreadLocal 變量們，他內部儲存的是一個鍵值對 Map，其中 key 是某個 ThreadLocal，value 就是這個線程自己 set 的值，所以對於一個線程來說，一個 ThreadLocal 只能存一個值，而一個線程可以存放好多個 ThreadLocal&lt;/li>
+&lt;li>因此當調用 ThreadLocal &lt;code>tl&lt;/code> 的 &lt;code>tl.get()&lt;/code> 方法時，其實就是先去取得此線程的 ThreadLocalMap，然後再去查找這個 Map 中的 key 為 &lt;code>tl&lt;/code> 的那個 Entry 的 value 值&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>ThreadLocal 常用的方法&lt;/p></description></item><item><title>Java - annotation 的使用</title><link>https://kucw.io/blog/2018/6/java-annotation/</link><pubDate>Mon, 11 Jun 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/6/java-annotation/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>Java 基本內置 annotation&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>@Override&lt;/p>
+&lt;ul>
+&lt;li>@Override用在方法上，表示這個方法重寫了父方法，如toString()&lt;/li>
+&lt;li>如果父方法沒有這個方法，那麼就無法編譯過&lt;/li>
+&lt;li>如果實現接口，需要在每個實現方法都加上@Override，說明這是要實現那個接口的方法，而不是自己新創的方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>@Deprecated&lt;/p>
+&lt;ul>
+&lt;li>@Deprecated 表示這個方法已經過期，不建議開發者使用&lt;/li>
+&lt;li>暗示在將來某個不確定的版本，就有可能會被取消掉&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>@SuppressWarnings&lt;/p></description></item></channel></rss>

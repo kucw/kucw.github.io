@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring Boot on 古古的後端筆記</title><link>https://kucw.io/categories/spring-boot/</link><description>Recent content in Spring Boot on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Thu, 22 May 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml"/><item><title>為 Spring Boot 生成 Docker image（Multi-stage build）</title><link>https://kucw.io/blog/springboot-docker-image/</link><pubDate>Thu, 22 May 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot-docker-image/</guid><description>&lt;p>本文介紹要如何使用 Dockerfile 的 Multi-stage build 寫法，為 Spring Boot 生成更精簡的 Docker image。&lt;/p></description></item><item><title>Spring Boot - 監控工具 Actuator</title><link>https://kucw.io/blog/2020/7/spring-actuator/</link><pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/7/spring-actuator/</guid><description>&lt;blockquote>
+ &lt;p>本文使用的 Spring Boot 版本：3.3.2&lt;/p>
+&lt;/blockquote>
+&lt;p>Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p></description></item><item><title>SpringBoot - 解決 application.properties 中文亂碼</title><link>https://kucw.io/blog/2021/7/spring-chinese-properties/</link><pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2021/7/spring-chinese-properties/</guid><description>&lt;p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 &lt;code>@Value&lt;/code> 讀取時會產生中文亂碼&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">name&lt;/span>&lt;span style="color:#0550ae">=&lt;/span>&lt;span style="color:#0a3069">小明&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解決辦法" class="markdown-heading-anchor">
+ 解決辦法：
+ &lt;a href="#%e8%a7%a3%e6%b1%ba%e8%be%a6%e6%b3%95">#&lt;/a>
+&lt;/h3>&lt;p>在 application.properties 裡面，將「中文」轉成「Unicode」，即可解決此問題（可使用&lt;a href="https://www.chineseconverter.com/zh-tw/convert/unicode"
+ 
+ target="_blank" rel="noopener">此網頁&lt;/a>進行轉換）&lt;/p></description></item><item><title>SpringBoot - 使用 ObjectMapper 完成 json 和 Java Object 互相轉換</title><link>https://kucw.io/blog/2020/6/java-jackson/</link><pubDate>Fri, 12 Jun 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/6/java-jackson/</guid><description>&lt;p>ObjectMapper 是一款非常好用的 json 轉換工具，可以幫助我們完成 json 和 Java 的 Object 的互相轉換&lt;/p></description></item><item><title>SpringBoot - 單元測試工具 Mockito</title><link>https://kucw.io/blog/2020/2/spring-unit-test-mockito/</link><pubDate>Thu, 20 Feb 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/2/spring-unit-test-mockito/</guid><description>&lt;p>Mockito就是一種 Java mock 框架，他主要是用來做 mock 測試的，他可以模擬任何 Spring 管理的 bean、模擬方法的返回值、模擬拋出異常&amp;hellip;等，在了解 Mockito 的具體用法之前，得先了解什麼是 mock 測試&lt;/p></description></item><item><title>使用 SpringBoot 實作 OAuth 2.0 綁定 Github</title><link>https://kucw.io/blog/2019/12/spring-oauth2-bind-github/</link><pubDate>Tue, 31 Dec 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/12/spring-oauth2-bind-github/</guid><description>&lt;blockquote>
+ &lt;p>本文只講解 OAuth 2.0 的實作，有關 OAuth 1.0a 實作，可參考我的另一篇文章 &lt;a href="https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter"
+ 
+ target="_blank" rel="noopener">使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter&lt;/a>&lt;/p></description></item><item><title>使用 SpringBoot 實作 OAuth 1.0a 綁定 Twitter</title><link>https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter/</link><pubDate>Mon, 30 Dec 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/12/spring-oauth1a-bind-twitter/</guid><description>&lt;blockquote>
+ &lt;p>本文只講解 OAuth 1.0a 的實作，有關 OAuth 2.0 實作，可參考我的另一篇文章 &lt;a href="https://kucw.io/blog/2019/12/spring-oauth2-bind-github/"
+ 
+ target="_blank" rel="noopener">使用 SpringBoot 實作 OAuth 2.0 綁定 Github&lt;/a>&lt;/p></description></item><item><title>Spring Boot - 注解 vs XML 哪個好？</title><link>https://kucw.io/blog/2018/7/spring-annotation-vs-xml/</link><pubDate>Mon, 09 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/spring-annotation-vs-xml/</guid><description>&lt;ul>
+&lt;li>Spring 中，使用注解 @Autowired 進行注入好，還是使用 xml 配置進行注入好？
+&lt;ul>
+&lt;li>先講結論，使用注解 @Autowired 注入比較好&lt;/li>
+&lt;li>當時 Spring 開發的初衷是為了解決類與類之間的強耦合 &lt;code>new&lt;/code>，所以當時提出了 xml 配置注入bean的方法，就是讓代碼只關注我需要什麼 service，但此 service 是由哪個實現類提供的我並不關心
+&lt;ul>
+&lt;li>使用 xml 的好處就是，實現類更換的時候並不需要去改動代碼，只要去改動 xml 配置，將注入的 bean 改成另一個實現類就可以了，如此可以達到類與類之間的松耦合&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>但是到了 Spring3.0 之後，他們開始提出了使用 @Autowired 注解來進行 bean 的注入
+&lt;ul>
+&lt;li>有的人可能會覺得，如果使用 @Autowired、@Qualifier 來注入，那麼假設我要改注入實現類的話，得去改 java 代碼中的 @Qualifier，那這樣還是得改代碼，那這樣使用 Spring 注入和使用 &lt;code>new&lt;/code>，又有什麼差別？是不是還是使用 xml 比較好？&lt;/li>
+&lt;li>事實上，使用注解確實會有這個問題沒錯，不過經過長時間的項目經驗下來，你會發現，我們其實很少會去改注入的實現類的（天天改服務還要不要命?）&lt;/li>
+&lt;li>而注解提供的好處卻是不少，像是簡化 xml 配置的冗長、使用注解比較直觀且容易、並且是類型安全的（compiler 可以掃描注解，判斷注入的類型是否正確，但他掃描不了 xml 文件)&lt;/li>
+&lt;li>因此就算使用注解 @Autowired 去改變注入的實現類比 xml 更困難，但他其他大量的優點足以掩蓋過這個缺點，這也是為什麼 Spring 覺得使用注解配置比使用 xml 配置更好的理由&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>所以到目前為止（Spring4.0），雖然 Spring 官方本身沒有明說拋棄 xml 配置，不過事實上 Spring 已經轉往注解配置方向前進了，SpringBoot 就是最好的例子
+&lt;ul>
+&lt;li>SpringBoot 中只有一個 properties 文件負責配置一些不可避免的設定，像是數據庫連接、mvc 模板配置&amp;hellip;.，除此之外沒有任何一個 xml 文件來定義 bean，全部都是使用注解來配置&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>注解 vs xml 優缺點比較
+&lt;ul>
+&lt;li>注解
+&lt;ul>
+&lt;li>優點 : 簡化配置、使用起來直觀且容易，提升開發效率、類型安全&lt;/li>
+&lt;li>缺點 : 改變實現類比 xml 困難&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>xml
+&lt;ul>
+&lt;li>優點 : 類與類間的松耦合，容易擴展、更換、對象間的關係一目了然&lt;/li>
+&lt;li>缺點 : 配置冗長，且還要額外多維護一份配置，類型不安全，compiler 無法幫忙校驗，運行期才會發現錯誤&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

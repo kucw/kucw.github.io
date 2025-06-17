@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Intellij on 古古的後端筆記</title><link>https://kucw.io/categories/intellij/</link><description>Recent content in Intellij on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Sun, 25 Apr 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/intellij/index.xml" rel="self" type="application/rss+xml"/><item><title>IntelliJ - 折扣碼使用教學</title><link>https://kucw.io/blog/2021/4/intellij-coupon/</link><pubDate>Sun, 25 Apr 2021 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2021/4/intellij-coupon/</guid><description>&lt;p>IntelliJ 為 JetBrains 公司旗下的一個產品，因此若要使用 IntelliJ 的折扣碼，則需要同時也創建一個 JetBrains 帳號&lt;/p>
+&lt;h2 id="1-如何使用折扣碼取得免費的-intellij-訂閱" class="markdown-heading-anchor">
+ 1. 如何使用折扣碼，取得免費的 IntelliJ 訂閱？
+ &lt;a href="#1-%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%e6%8a%98%e6%89%a3%e7%a2%bc%e5%8f%96%e5%be%97%e5%85%8d%e8%b2%bb%e7%9a%84-intellij-%e8%a8%82%e9%96%b1">#&lt;/a>
+&lt;/h2>&lt;p>點擊&lt;a href="https://www.jetbrains.com/store/redeem/"
+ 
+ target="_blank" rel="noopener">此連結&lt;/a>，進入到 JetBrains 專屬的折扣碼兌換網頁，並填寫以下資訊&lt;/p></description></item><item><title>IntelliJ - Debug 的使用方法</title><link>https://kucw.io/blog/2020/2/intellij-how-to-debug/</link><pubDate>Sat, 15 Feb 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/2/intellij-how-to-debug/</guid><description>&lt;h3 id="1-什麼是-debug-模式" class="markdown-heading-anchor">
+ 1. 什麼是 Debug 模式？
+ &lt;a href="#1-%e4%bb%80%e9%ba%bc%e6%98%af-debug-%e6%a8%a1%e5%bc%8f">#&lt;/a>
+&lt;/h3>&lt;p>還記得以前不會使用 IntelliJ 的 debug 功能時，想要看某個 Variable 的值，都是在那行 code 的下面一行加上 &lt;code>System.out.println()&lt;/code>，然後運行程式，把值 print 出來，如果要看另一個 Variable，我就再加一行 &lt;code>System.out.println()&lt;/code>，所以到後來我的 code 就會長的像下圖這樣&lt;/p></description></item><item><title>IntelliJ - Remote Debug</title><link>https://kucw.io/blog/2020/1/intellij-remote-debug/</link><pubDate>Wed, 15 Jan 2020 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/1/intellij-remote-debug/</guid><description>&lt;p>如果你想要 debug 某個 run 在 server 上的 SpringBoot 或是 Spring project 時，必須先配置好 remote debug，才能夠在本地打 break point，然後透過 remote debug 傳到 server 上，去對遠端 server 上的 project debug&lt;/p></description></item><item><title>IntelliJ - 升級遇到的問題 Error: java: invalid flag: -version</title><link>https://kucw.io/blog/2018/7/intellij-update-error/</link><pubDate>Thu, 26 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/intellij-update-error/</guid><description>&lt;ul>
+&lt;li>有时候在升级 IntelliJ 時會遇到 &lt;code>Error: java: invalid flag: -version&lt;/code>
+&lt;ul>
+&lt;li>
+
+&lt;img
+ src="https://kucw.io/images/blog/idea_invalidflag1.png"
+ alt=""
+ loading="lazy"
+ data-zoomable
+ width="861"
+ height="384"
+/>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>解決辦法
+&lt;ul>
+&lt;li>打開 &lt;code>File -&amp;gt; settings&lt;/code>，搜索 &lt;code>Java compiler&lt;/code>&lt;/li>
+&lt;li>此時會發現右下角的每一個 module 裡的 &lt;code>Compilation options&lt;/code> 中，都多加了一個 &lt;code>-version&lt;/code>&lt;/li>
+&lt;li>把每個 module 的 &lt;code>-version&lt;/code> 都刪除掉，就可以正常運行了&lt;/li>
+&lt;li>
+
+&lt;img
+ src="https://kucw.io/images/blog/idea_invalidflag2.png"
+ alt=""
+ loading="lazy"
+ data-zoomable
+ width="1060"
+ height="722"
+/>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

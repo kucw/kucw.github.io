@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Other Tech on 古古的後端筆記</title><link>https://kucw.io/categories/other-tech/</link><description>Recent content in Other Tech on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Fri, 27 Oct 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/other-tech/index.xml" rel="self" type="application/rss+xml"/><item><title>關閉 MacOS Sonoma 的 Caps Lock 游標</title><link>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</link><pubDate>Fri, 27 Oct 2023 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</guid><description>&lt;p>當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock&lt;/p></description></item><item><title>工程師如何累積程式實力？</title><link>https://kucw.io/blog/2023/4/rename-iphone-photo-by-date-copy/</link><pubDate>Sun, 02 Apr 2023 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2023/4/rename-iphone-photo-by-date-copy/</guid><description>&lt;p>你是否曾經覺得，明明已經工作了 2、3 年，但是學的東西感覺都不是特別扎實？好像自己平常都只是東學一點、西學一點，程式出錯了就上網查解法，但出去面試被面試官問到技術問題時，你明明記得你看過的，卻不知道為什麼就是答不上來技術細節&lt;/p>
+&lt;p>造就這一切的原因，其實都可以歸類成：你沒有建立過自己的知識體系&lt;/p>
+&lt;h2 id="好記性不如爛筆頭" class="markdown-heading-anchor">
+ 好記性不如爛筆頭
+ &lt;a href="#%e5%a5%bd%e8%a8%98%e6%80%a7%e4%b8%8d%e5%a6%82%e7%88%9b%e7%ad%86%e9%a0%ad">#&lt;/a>
+&lt;/h2>&lt;p>俗話說「好記性不如爛筆頭」，這句話充分的強調了&lt;strong>記筆記&lt;/strong>的重要性，更何況我們生活在這個知識爆炸的時代，你就算擁有再好的記憶能力，也沒辦法保證能將每一點的知識點都記得牢固&lt;/p>
+&lt;p>而且說實在的，要能夠閉著眼睛默寫一段程式出來真的是滿難的，而且其實沒什麼意義，往後你會接觸到更多程式語言、更多框架，所以基本上是不可能把每一行程式全部背下來的&lt;/p>
+&lt;p>因此平常比較用不到的知識點，其實不需要特別去記住，只要記在你的筆記裡就行，一但要用上時，只要去你的筆記中查詢，就可以快速找到你曾經學習過的知識，將它應用到你現在遇到的問題上了&lt;/p>
+&lt;p>不過有的人可能會說：那這樣跟上網查解法有什麼不同？這個不同之處還是滿大的&lt;/p></description></item><item><title>重新命名 iPhone 照片檔名為日期時間（Mac版）</title><link>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</link><pubDate>Fri, 05 Aug 2022 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</guid><description>&lt;p>iPhone airdrop 到 Macbook 上的照片檔名為 IMG_0862.JPG，不利於照片整理，改命名成右邊這種 IMG_20220726_110204.JPG 格式會好整理很多&lt;/p>
+&lt;p>
+
+&lt;img
+ src="https://kucw.io/images/blog/iphone_photo1.png"
+ alt=""
+ loading="lazy"
+ data-zoomable
+ width="1606"
+ height="666"
+/>&lt;/p></description></item><item><title>自學程式，如何高效率的學習？</title><link>https://kucw.io/blog/2022/4/efficient-learning/</link><pubDate>Sat, 30 Apr 2022 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2022/4/efficient-learning/</guid><description>&lt;p>想要提升學習效率，不管你是使用什麼工具，只有下面這三點最重要&lt;/p>
+&lt;ol>
+&lt;li>系統化的學習&lt;/li>
+&lt;li>循序漸進&lt;/li>
+&lt;li>大量練習&lt;/li>
+&lt;/ol>
+&lt;p>系統化的學習，讓你可以在腦中組織這些內容的關係圖，而不是像背單字一樣背一個忘一個&lt;/p>
+&lt;p>循序漸進，讓你由淺入深慢慢拓展，沒有人一開始就跳過加減乘除去學微積分的對吧&lt;/p>
+&lt;p>大量練習，讓這些知識成為你的肌肉記憶，就像呼吸一樣自然，右手寫左手答&lt;/p>
+&lt;p>只要能夠掌握好這三點，不管是學習哪個領域，都可以加速你的學習效率&lt;/p>
+&lt;h2 id="什麼樣的學習管道最有效率" class="markdown-heading-anchor">
+ 什麼樣的學習管道最有效率？
+ &lt;a href="#%e4%bb%80%e9%ba%bc%e6%a8%a3%e7%9a%84%e5%ad%b8%e7%bf%92%e7%ae%a1%e9%81%93%e6%9c%80%e6%9c%89%e6%95%88%e7%8e%87">#&lt;/a>
+&lt;/h2>&lt;p>要我說，對程式語言這個領域，剛入門的人，我建議是 &lt;strong>「直接買付費的線上課程」&lt;/strong> 來學習&lt;/p></description></item><item><title>Superset 安裝教學</title><link>https://kucw.io/blog/2019/12/superset-install/</link><pubDate>Fri, 20 Dec 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/12/superset-install/</guid><description>&lt;p>安裝環境 : CentOS Linux release 7.7.1908 (Core)&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo yum install python36-pip python3-devel gcc-c++
+sudo pip3 install apache-superset
+superset db upgrade
+flask fab create-admin
+superset load_examples
+superset run -p 8088
+&lt;/code>&lt;/pre></description></item></channel></rss>

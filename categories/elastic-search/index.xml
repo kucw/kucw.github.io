@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Elastic Search on 古古的後端筆記</title><link>https://kucw.io/categories/elastic-search/</link><description>Recent content in Elastic Search on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/elastic-search/index.xml" rel="self" type="application/rss+xml"/><item><title>Elasticsearch 進階用法，如何透過 function_score 自定義排序結果？</title><link>https://kucw.io/blog/elasticsearch-function-score-intro/</link><pubDate>Tue, 22 Apr 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/elasticsearch-function-score-intro/</guid><description>&lt;p>Elasticsearch 除了可以用來實作一般的全文搜尋之外，如果想要實作「推薦排序」，針對多個維度綜合比較，Elasticsearch 也是支援這類的用法的！&lt;/p>
+&lt;p>因此這篇文章我們就來介紹一下，要如何透過 Elasticsearch 中的 &lt;code>function_score&lt;/code>，來實作自定義排序的結果吧！&lt;/p>
+
+&lt;blockquote>
+ &lt;p>補充：如果對 Elasticsearch 不太熟悉，也可以先回頭參考 Elasticsearch 的基本介紹 &lt;a href="https://kucw.io/blog/elasticsearch-intro/"
+ 
+ target="_blank" rel="noopener">Elasticsearch 是什麼？認識地表最強的全文搜尋工具！&lt;/a>。&lt;/p></description></item><item><title>Elasticsearch 是什麼？認識地表最強的全文搜尋工具！</title><link>https://kucw.io/blog/elasticsearch-intro/</link><pubDate>Tue, 08 Apr 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/elasticsearch-intro/</guid><description>&lt;p>Elasticsearch 可以說是長年霸佔「全文搜尋」排行榜的第一名，不管是在使用者的產品開發上、還是在內部的 log 系統中，也都常常能看見 Elasticsearch 的身影，因此這篇文章我們就來介紹一下，Elasticsearch 到底是什麼吧！&lt;/p>
+&lt;div class="markdown-toc">
+ &lt;div class="markdown-toc-title">目錄&lt;/div>
+ &lt;nav id="TableOfContents">
+ &lt;ul>
+ &lt;li>&lt;a href="#什麼是-elasticsearch">什麼是 Elasticsearch？&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#在以前的-sql-資料庫時代">在以前的 SQL 資料庫時代&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#使用-elasticsearch-之後">使用 Elasticsearch 之後&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#什麼是反向索引inverted-index">什麼是反向索引（Inverted Index）？&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;li>&lt;a href="#elasticsearch-介紹">Elasticsearch 介紹&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#elasticsearch-總結">Elasticsearch 總結&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#補充反向索引的實戰經驗分享">補充：反向索引的實戰經驗分享&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#結語">結語&lt;/a>&lt;/li>
+ &lt;/ul>
+&lt;/nav>
+&lt;/div>
+&lt;h2 id="什麼是-elasticsearch" class="markdown-heading-anchor">
+ 什麼是 Elasticsearch？
+ &lt;a href="#%e4%bb%80%e9%ba%bc%e6%98%af-elasticsearch">#&lt;/a>
+&lt;/h2>&lt;p>首先 Elasticsearch 其實是由兩個單字 Elastic 和 Search 所組成，因此念法上就會唸成 Elastic Search，只不過官方的產品名稱是全部縮寫在一起而已。&lt;/p></description></item><item><title>ElasticSearch - 地理座標點 geo_point</title><link>https://kucw.io/blog/2019/12/elasticsearch-geo-point/</link><pubDate>Sat, 07 Dec 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/12/elasticsearch-geo-point/</guid><description>&lt;p>在 ElasticSearch 中，提供了兩種用來表示地理位置的方式，分別是 &lt;code>geo_point&lt;/code> 和 &lt;code>geo_shape&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>用緯度、經度表示的座標點使用 &lt;code>geo_point&lt;/code> 字段類型(較常用)，&lt;code>geo_point&lt;/code> 允許你找到距離另一個座標點一定範圍內的座標點、計算出兩點之間的距離來排序或進行相關性打分、或者聚合到顯示在地圖上的一個網格&lt;/li>
+&lt;li>另一種是使用 GeoJSON 格式定義的複雜地理形狀，使用&lt;code>geo_shape&lt;/code>字段類型&lt;/li>
+&lt;/ol>
+&lt;h3 id="geo_point-經緯度座標格式" class="markdown-heading-anchor">
+ geo_point 經緯度座標格式
+ &lt;a href="#geo_point-%e7%b6%93%e7%b7%af%e5%ba%a6%e5%ba%a7%e6%a8%99%e6%a0%bc%e5%bc%8f">#&lt;/a>
+&lt;/h3>&lt;p>在 mapping 定義時將字段類型定義為 geo_point&lt;/p></description></item><item><title>ElasticSearch - 輸入即搜索 edge n-gram</title><link>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</link><pubDate>Sun, 19 Aug 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/8/elasticsearch-instant-search/</guid><description>&lt;blockquote>
+ &lt;p>閱讀本文需要先了解 Elastic Search 的 index 和 analyzer 的相關知識&lt;/p>
+&lt;/blockquote>
+
+&lt;blockquote>
+ &lt;p>&lt;a href="https://kucw.io/blog/2018/6/elasticsearch-index-mapping/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - index mapping（5.x以上）&lt;/a>&lt;/p></description></item><item><title>ElasticSearch - 批量操作 bulk</title><link>https://kucw.io/blog/2018/7/elasticsearch-bulk/</link><pubDate>Mon, 30 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-bulk/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>ES 的 &lt;code>bulk&lt;/code> 語法允許在一個請求中進行多個操作（create、index、update、delete），也就是可以在一次請求裡做很多事情&lt;/p>
+&lt;ul>
+&lt;li>也由於這個關係，因此 bulk 的請求體和其他請求的格式會有點不同&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>bulk 的請求模板&lt;/p>
+&lt;ul>
+&lt;li>分成 action 和 metadata 兩部份&lt;/li>
+&lt;li>action : 必須是以下 4 種選項之一
+&lt;ul>
+&lt;li>&lt;code>index&lt;/code>(最常用） : 如果文檔不存在就創建他，如果文檔存在就更新他&lt;/li>
+&lt;li>&lt;code>create&lt;/code> : 如果文檔不存在就創建他，但如果文檔存在就返回錯誤
+&lt;ul>
+&lt;li>使用時一定要在 metadata 設置 &lt;code>_id&lt;/code> 值，他才能去判斷這個文檔是否存在&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>update&lt;/code> : 更新一個文檔，如果文檔不存在就返回錯誤
+&lt;ul>
+&lt;li>使用時也要給 &lt;code>_id&lt;/code> 值，且後面文檔的格式和其他人不一樣&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>delete&lt;/code> : 刪除一個文檔，如果要刪除的文檔 id 不存在，就返回錯誤
+&lt;ul>
+&lt;li>使用時也必須在 metadata 中設置文檔 &lt;code>_id&lt;/code>，且後面不能帶一個 doc，因為沒意義，他是用 &lt;code>_id&lt;/code> 去刪除文檔的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>metadata : 設置這個文檔的 metadata，像是 &lt;code>_id&lt;/code>、&lt;code>_index&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">POST&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/_bulk&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">action&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">metadata&lt;/span> &lt;span style="color:#1f2328">}&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">doc&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">action&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">metadata&lt;/span> &lt;span style="color:#1f2328">}&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">doc&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">....&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>具體實例&lt;/p></description></item><item><title>ElasticSearch - 聚合 aggs</title><link>https://kucw.io/blog/2018/7/elasticsearch-aggs/</link><pubDate>Mon, 23 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-aggs/</guid><description>&lt;h3 id="聚合概念-aggs" class="markdown-heading-anchor">
+ 聚合概念 aggs
+ &lt;a href="#%e8%81%9a%e5%90%88%e6%a6%82%e5%bf%b5-aggs">#&lt;/a>
+&lt;/h3>&lt;ul>
+&lt;li>ElasticSearch 除了致力於搜索之外，也提供了聚合實時分析數據的功能
+&lt;ul>
+&lt;li>如果把搜索比喻為大海撈針（從海量的文檔中找出符合條件的那一個），那麼聚合就是去分析大海中的針們的特性，像是
+&lt;ul>
+&lt;li>在大海里有多少針？&lt;/li>
+&lt;li>針的平均長度是多少？&lt;/li>
+&lt;li>按照針的製造商來劃分，針的長度中位值是多少？&lt;/li>
+&lt;li>每月加入到海中的針有多少？&lt;/li>
+&lt;li>這裏面有異常的針麼？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>因此透過聚合，我們可以得到一個數據的概覽，聚合能做的是分析和總結全套的數據，而不是查找單個文檔（這是搜索做的事）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>聚合允許我們向數據提出一些複雜的問題，雖然他的功能完全不同於搜索，但他們其實使用了相同的數據結構，這表示聚合的執行速度很快，並且就像搜索一樣幾乎是實時的
+&lt;ul>
+&lt;li>並且由於聚合和搜索是使用同樣的數據結構，因此聚合和搜索可以是一起執行的&lt;/li>
+&lt;li>這表示我們可以在一次 json 請求裡，同時對相同的數據進行 搜索/過濾 + 分析，兩個願望一次滿足&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>聚合的兩個主要的概念，分別是 桶 和 指標
+&lt;ul>
+&lt;li>桶（Buckets）: 滿足特定條件的文檔的集合
+&lt;ul>
+&lt;li>當聚合開始被執行，每個文檔會決定符合哪個桶的條件，如果匹配到，文檔將放入相應的桶並接着進行聚合操作
+&lt;ul>
+&lt;li>像是一個員工屬於男性桶或者女性桶，日期 2014-10-28 屬於十月桶，也屬於 2014 年桶&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>桶可以被嵌套在其他桶裏面
+&lt;ul>
+&lt;li>像是北京能放在中國桶裡，而中國桶能放在亞洲桶裡&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Elasticsearch 提供了很多種類型的桶，像是時間、最受歡迎的詞、年齡區間、地理位置桶等等，不過他們在根本上都是通過同樣的原理進行操作，也就是基於條件來劃分文檔，一個文檔只要符合條件，就可以加入那個桶，因此一個文檔可以同時加入很多桶&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>指標（Metrics） : 對桶內的文檔進行統計計算
+&lt;ul>
+&lt;li>桶能讓我們劃分文檔到有意義的集合， 但是最終我們需要的是對這些桶內的文檔進行一些指標的計算&lt;/li>
+&lt;li>指標通常是簡單的數學運算（像是min、max、avg、sum），而這些是通過當前桶中的文檔的值來計算的，利用指標能讓你計算像平均薪資、最高出售價格、95 % 的查詢延遲這樣的數據&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>aggs 聚合的模板
+&lt;ul>
+&lt;li>當 query 和 aggs 一起存在時，會先執行 query 的主查詢，主查詢 query 執行完後會搜出一批結果，而這些結果才會被拿去 aggs 拿去做聚合
+&lt;ul>
+&lt;li>另外要注意 aggs 後面會先接一層自定義的這個聚合的名字，然後才是接上要使用的聚合桶&lt;/li>
+&lt;li>如果有些情況不在意查詢結果是什麼，而只在意 aggs 的結果，可以把 size 設為 0，如此可以讓返回的 hits 結果集是 0，加快返回的速度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一個 aggs 裡可以有很多個聚合，每個聚合彼此間都是獨立的，因此可以一個聚合拿來統計數量、一個聚合拿來分析數據、一個聚合拿來計算標準差&amp;hellip;，讓一次搜索就可以把想要做的事情一次做完
+&lt;ul>
+&lt;li>像是此例就定義了 3 個聚合，分別是 custom_name1、custom_name2、custom_name3&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>aggs 可以嵌套在其他的 aggs裡面，而嵌套的桶能作用的文檔集範圍，是外層的桶所輸出的結果集
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name1&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//aggs後面接著的是一個自定義的name
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> 	&lt;span style="color:#0550ae">&amp;#34;桶&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span> &lt;span style="color:#1f2328">}&lt;/span> &lt;span style="color:#57606a">//再來才是接桶
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name2&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//一個aggs裡可以有很多聚合
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;桶&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name3&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;桶&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f6f8fa;background-color:#82071e">.....&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//aggs可以嵌套在別的aggs裡面
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;in_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//記得使用aggs需要先自定義一個name
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;桶&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span> &lt;span style="color:#1f2328">}&lt;/span> &lt;span style="color:#57606a">//in_name的桶作用的文檔是custom_name3的桶的結果
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;hits&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;total&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">8&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;max_score&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;hits&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[]&lt;/span> &lt;span style="color:#57606a">//因為size設為0，所以沒有查詢結果返回
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name1&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name2&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;custom_name3&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f6f8fa;background-color:#82071e">...&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;in_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f6f8fa;background-color:#82071e">....&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br>
+&lt;h3 id="terms桶" class="markdown-heading-anchor">
+ terms桶
+ &lt;a href="#terms%e6%a1%b6">#&lt;/a>
+&lt;/h3>&lt;ul>
+&lt;li>功能 : 針對某個 field 的值進行分組，field 有幾種值就分成幾組&lt;/li>
+&lt;li>terms 桶在進行分組時，會爲此 field 中的每種值創建一個新的桶&lt;/li>
+&lt;li>要注意此 &amp;ldquo;terms桶&amp;rdquo; 和平常用在主查詢 query 中的 &amp;ldquo;查找terms&amp;rdquo; 是不同的東西&lt;/li>
+&lt;li>具體實例
+&lt;ul>
+&lt;li>首先插入幾筆數據，其中 color 是一個 keyword 類型
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;green&amp;#34;&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>執行 terms 桶聚合
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#57606a">//使用color來進行分組
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;ul>
+&lt;li>因為 color 總共有 3 種值，red、blue、green，所以 terms 桶為他們產生了 3 個 bucket，並計算了每個 bucket 中符合的文檔有哪些&lt;/li>
+&lt;li>bucket 和 bucket 間是獨立的，也就是說一個文檔可以同時符合好幾個 bucket，像是 &lt;code>{&amp;quot;color&amp;quot;: [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;]}&lt;/code> 就同時符合了 red 和 blue bucket
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span> &lt;span style="color:#57606a">//terms桶產生的buckets數組，裡面每個json對象都是一個bucket
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#57606a">//表示color為red的文檔有2個，此例中就是 {&amp;#34;color&amp;#34;: &amp;#34;red&amp;#34;} 和 {&amp;#34;color&amp;#34;: [&amp;#34;red&amp;#34;, &amp;#34;blue&amp;#34;]}這兩個文檔
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;green&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>可以在參數帶上 &lt;code>min_doc_count&lt;/code> 限制當 doc 數大於等於 n 筆時才會被搜出來，也可以帶上 &lt;code>size&lt;/code> 參數，指名要顯示 bucket 中多少筆數據，默認是 10
+&lt;div class="highlight code-no-wrap">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">100&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#57606a">//可以設置size，指定返回的桶數量，預設是10，如果總共桶數不超過100，那就會全部返回
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;min_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span> &lt;span style="color:#57606a">//bucket中只有當doc_count &amp;gt;= 2的人，才會被搜出來
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span> &lt;span style="color:#57606a">//因為設置了min_doc_count:2，所有只有red桶被搜出來
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例二
+&lt;ul>
+&lt;li>將 terms 桶搭配度量指標（avg、min、max、sum&amp;hellip;）一起使用
+&lt;ul>
+&lt;li>其實度量指標也可以看成一種&amp;quot;桶&amp;quot;，他可以和其他正常的桶們進行嵌套作用，差別只在指標關注的是這些文檔中的某個數值的統計，而桶關注的是文檔&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>首先準備數據，color 一樣為 keyword 類型，而 price 為 integer 類型
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0550ae">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">100&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;green&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0550ae">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">500&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">],&lt;/span> &lt;span style="color:#0550ae">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1000&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>將 avg 指標嵌套在 terms 桶裡一起使用
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//嵌套兩個指標avg、min在terms桶中
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;my_avg_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//my_avg_price計算每個bucket的平均price
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;avg&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;price&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_min_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//my_min_price計算每個bucket中的最小price
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> 	&lt;span style="color:#0550ae">&amp;#34;min&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;price&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span> &lt;span style="color:#57606a">//terms桶中的每個bucket都會計算avg和min兩個指標
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_avg_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//avg指標
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1000&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_min_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//min指標
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#57606a">//avg指標計算的值，因為符合color為red的文檔有兩筆，所以平均price為100+1000/2 = 550
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;my_avg_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">550&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_min_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;green&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_avg_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">500&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_min_price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;value&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">500&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例三
+&lt;ul>
+&lt;li>使用 terms 桶時，只聚合感興趣的 bucket，其他 bucket 都不聚合
+&lt;ul>
+&lt;li>使用 terms 桶支持的 &lt;code>include&lt;/code> 和 &lt;code>exclude&lt;/code> 參數來設定哪些 bucket 的值要聚合，哪些 bucket 的值不聚合
+&lt;ul>
+&lt;li>當 include 和 exclude 的規則有重疊的部份時，優先使用 exclude 的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>include&lt;/code> 和 &lt;code>exclude&lt;/code> 都支持設置特定值、數組、以及正則&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>準備數據
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;green&amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>聚合時只聚合我們感興趣的 bucket，也就是 color 為 red 的文檔有多少，其他的 bucket 不聚合
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;include&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span> &lt;span style="color:#57606a">//include也支持數組和正則
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#57606a">//本來是有三個bucket的，但是因為設置了include，所以只聚合計算了一個bucket red
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br>
+&lt;h3 id="filter桶" class="markdown-heading-anchor">
+ filter桶
+ &lt;a href="#filter%e6%a1%b6">#&lt;/a>
+&lt;/h3>&lt;ul>
+&lt;li>功能 : 一個用來過濾的桶&lt;/li>
+&lt;li>此處的 &amp;ldquo;filter 桶&amp;rdquo; 和用在主查詢 query 的 &amp;ldquo;過濾 filter&amp;rdquo; 的用法是一模一樣的，都是過濾&lt;/li>
+&lt;li>不過差別是 &amp;ldquo;filter 桶&amp;rdquo; 會自己給創建一個新的桶，而不會像 &amp;ldquo;過濾 filter&amp;rdquo; 一樣依附在 query 下
+&lt;ul>
+&lt;li>因為 filter 桶畢竟還是一個聚合桶，因此他可以和別的桶進行嵌套，但他不是依附在別的桶上&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例
+&lt;ul>
+&lt;li>取得 color 為 red 或是 blue 的文檔
+&lt;div class="highlight code-no-wrap">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//此處是一個filter桶，因為他用法跟一般的過濾filter一樣，所以也能使用bool嵌套
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;bool&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;must&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//注意此terms是查找terms，不是terms桶
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span> &lt;span style="color:#57606a">//filter桶計算出來的文檔數量
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例二
+&lt;ul>
+&lt;li>filter 桶和 terms 桶嵌套使用，先過濾出 color 為 red 或 blue 的文檔，再對這些文檔進行 color 分組
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//my_name聚合
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//filter桶
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;bool&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;must&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name2&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//my_name2聚合，嵌套在my_name聚合裡
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#57606a">//terms桶
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;ul>
+&lt;li>因為 terms 桶嵌套在 filter 桶內，所以 query 查詢出來的文檔們會先經過 filter 桶，如果符合 filter 桶，才會進入到 terms 桶內&lt;/li>
+&lt;li>此處通過 filter 桶的文檔只有兩筆，分別是 &lt;code>{&amp;quot;color&amp;quot;: &amp;quot;red&amp;quot;}&lt;/code>以及&lt;code>{&amp;quot;color&amp;quot;: [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;]}&lt;/code>，所以 terms 桶只會對這兩筆文檔做分組&lt;/li>
+&lt;li>這也是為什麼 terms 桶裡沒有出現 color 為 green 的分組，因為這個文檔在 filter 桶就被擋下來了
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#57606a">//filter桶計算的數量，通過此處的文檔只有2筆
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;my_name2&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span> &lt;span style="color:#57606a">//terms桶計算的數量
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span> &lt;span style="color:#57606a">//terms桶計算的數量
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br>
+&lt;h3 id="多桶排序" class="markdown-heading-anchor">
+ 多桶排序
+ &lt;a href="#%e5%a4%9a%e6%a1%b6%e6%8e%92%e5%ba%8f">#&lt;/a>
+&lt;/h3>&lt;ul>
+&lt;li>terms 桶、histogram 桶、data_histogram 桶這些桶屬於多值桶，也就是說他們會動態生成很多桶，對於這些生成出來的桶們，ES 默認會使用 &lt;code>doc_value&lt;/code> 進行降序排序，也就是說哪個生成桶的 &lt;code>doc_value&lt;/code> 文檔數較多，哪個生成桶就排在前面
+&lt;ul>
+&lt;li>如果想要改變這個生成桶與生成桶之間的排序，可以在使用 terms 桶、histogram 桶、data_histogram 桶時，使用 &lt;code>order&lt;/code> 進行排序&lt;/li>
+&lt;li>&lt;code>order&lt;/code> 支持的參數
+&lt;ul>
+&lt;li>&lt;code>_count&lt;/code> : 按照文檔數排序&lt;/li>
+&lt;li>&lt;code>_term&lt;/code> : 按照每個桶的字符串值的字母順序排序&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例
+&lt;ul>
+&lt;li>準備數據，color 是 keyword 類型
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0550ae">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">100&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#0550ae">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">],&lt;/span> &lt;span style="color:#0550ae">&amp;#34;price&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1000&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>使用 terms 桶進行分組，並且規定按照桶的字母順序升序，因此 a 生成桶會排在最前面而 z 生成桶會排在最後面
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">GET&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest/doc/_search&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;query&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;match_all&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;size&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;terms&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;field&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;color&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;order&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;_term&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;asc&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>結果
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0a3069">&amp;#34;aggregations&amp;#34;&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_name&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count_error_upper_bound&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;sum_other_doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">0&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;buckets&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;blue&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;key&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;red&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc_count&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0550ae">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>ElasticSearch - function_score（衰減函數 linear、exp、gauss 具體實例）</title><link>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</link><pubDate>Sun, 08 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-gauss/</guid><description>&lt;blockquote>
+ &lt;p>閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score 簡介&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>很多變量都可以影響用戶對於酒店的選擇，像是用戶可能希望酒店離市中心近一點，但是如果價格足夠便宜，也願意為了省錢，妥協選擇一個更遠的住處&lt;/p>
+&lt;ul>
+&lt;li>如果我們只是使用一個 filter 排除所有市中心方圓 100 米以外的酒店，再用一個 filter 排除每晚價格超過 100 元的酒店，這種作法太過強硬，可能有一間房在 500 米，但是超級便宜一晚只要 10 元，用戶可能會因此願意妥協住這間房&lt;/li>
+&lt;li>為了解決這個問題，因此 function_score 查詢提供了一組 衰減函數（decay functions）， 讓我們有能力在兩個滑動標準（如地點和價格）之間權衡&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>function_score 支持的衰減函數有三種，分別是 linear、exp 和 gauss&lt;/p></description></item><item><title>ElasticSearch - function_score（random_score 具體實例）</title><link>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</link><pubDate>Sat, 07 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-random_score/</guid><description>&lt;blockquote>
+ &lt;p>閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score 簡介&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>在正常的查詢下，有相同評分的 score 的文檔會每次都會以相同次序出現，但是爲了提高展現率，在此引入一些隨機性可能會是個好主意，這能保證有相同評分的文檔都能有均等相似的展現機率&lt;/p>
+&lt;ul>
+&lt;li>但是，在隨機的同時，除了想讓不同的用戶看到不同的隨機次序之外，但也希望如果是同一用戶翻頁瀏覽時，結果的相對次序能始終保持一致，這種行爲被稱爲 一致隨機（consistently random）&lt;/li>
+&lt;li>因此 random_score 加強函數除了能隨機得到一個 0 ~ 1 的分數，也會使用一個 seed 值，來保障生成隨機的順序，當 seed 值相同時，生成的隨機結果是一致的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）&lt;/p></description></item><item><title>ElasticSearch - function_score（weight 具體實例）</title><link>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</link><pubDate>Fri, 06 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/</guid><description>&lt;blockquote>
+ &lt;p>閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score 簡介&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>一樣先準備數據和索引，在 ES 插入三筆數據，其中 language 是 keyword 類型，like 是 integer 類型（代表點贊量）&lt;/p></description></item><item><title>ElasticSearch - function_score（field_value_factor 具體實例）</title><link>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</link><pubDate>Thu, 05 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/</guid><description>&lt;blockquote>
+ &lt;p>閱讀本文需要先了解 function_score 的相關知識，請看 &lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score 簡介&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>首先準備數據和索引，在ES插入三筆數據，其中 title 是 text 類型，like 是 integer 類型（代表點贊量）&lt;/p></description></item><item><title>ElasticSearch - function_score 簡介</title><link>https://kucw.io/blog/2018/7/elasticsearch-function_score/</link><pubDate>Wed, 04 Jul 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/7/elasticsearch-function_score/</guid><description>&lt;blockquote>
+ &lt;p>function_score 內容較多，此篇主要是介紹 function_score 的基本概念&lt;/p>
+&lt;p>具體實例請參考以下連接&lt;/p>
+
+&lt;blockquote>
+ &lt;p>&lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-field_value_factor/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score（field_value_factor 具體實例）&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://kucw.io/blog/2018/7/elasticsearch-function_score-weight/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - function_score（weight 具體實例）&lt;/a>&lt;/p></description></item><item><title>ElasticSearch - 解決 ES 的深分頁問題（游標 scroll）</title><link>https://kucw.io/blog/2018/6/elasticsearch-scroll/</link><pubDate>Tue, 26 Jun 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/6/elasticsearch-scroll/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>ES 為了避免深分頁，不允許使用分頁（from &amp;amp; size）查詢 10000 條以後的數據，因此如果要查詢第 10000 條以後的數據，要使用 ES 提供的 scroll 游標 來查詢&lt;/p></description></item><item><title>ElasticSearch - 嵌套對象 nested</title><link>https://kucw.io/blog/2018/6/elasticsearch-nested/</link><pubDate>Fri, 22 Jun 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/6/elasticsearch-nested/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>由於在 ES 中，所有單個文檔的增刪改都是原子性的操作，因此將相關的實體數據都儲存在同一個文檔是很好的，且由於所有信息都在一個文檔中，因此當我們查詢時就沒有必要像 mysql 一樣去關聯很多張表，只要搜一遍文檔就可以查出所有需要的數據，查詢效率非常高&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因此除了基本數據類型之外，ES 也支持使用複雜的數據類型，像是數組、內部對象，而要使用內部對象的話，需要使用 &lt;code>nested&lt;/code> 來定義索引，使文檔內可以包含一個內部對象&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>為什麼不用 object 而要使用 nested 來定義索引的原因是，object 類型會使得內部對象的關聯性丟失&lt;/p></description></item><item><title>ElasticSearch - term 和 match 的差別</title><link>https://kucw.io/blog/2018/6/elasticsearch-term-match/</link><pubDate>Wed, 20 Jun 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/6/elasticsearch-term-match/</guid><description>&lt;ul>
+&lt;li>ES 中的 term 和 match 牽扯到了分詞器、mapping、倒排索引等，如果不熟悉相關知識，請先看 &lt;a href="https://kucw.io/blog/2018/6/elasticsearch-index-mapping/"
+ 
+ target="_blank" rel="noopener">ElasticSearch - index mapping（5.x以上）&lt;/a> 這篇文章
+&lt;ul>
+&lt;li>term 是直接把 field 拿去查詢倒排索引中確切的 term&lt;/li>
+&lt;li>match 會先對 field 進行分詞操作，然後再去倒排索引中查詢&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>具體實例
+&lt;ul>
+&lt;li>假設有一個字段 nickname，存放的類型是 text，因此當新增一筆文檔時，內容會被分詞器分詞，然後才儲存進倒排索引&lt;/li>
+&lt;li>假設插入了一筆文檔，其中 &lt;code>&amp;quot;nickname&amp;quot;: &amp;quot;1 hello&amp;quot;&lt;/code>，分詞過後變為 &lt;code>1&lt;/code>、&lt;code>hello&lt;/code>，因此倒排索引中儲存的是兩筆索引 &lt;code>1&lt;/code> 和 &lt;code>hello&lt;/code>，而不是一筆索引 &lt;code>1 hello&lt;/code>&lt;/li>
+&lt;li>使用 match 做查詢
+&lt;ul>
+&lt;li>&lt;code>&amp;quot;match&amp;quot;: &amp;quot;1-hello&amp;quot;&lt;/code> : 成功，因為 match 把 &lt;code>1-hello&lt;/code> 分詞成 1、hello，而 1 和 hello 都存在在倒排索引中，所以不只能夠查到，_score 還很高&lt;/li>
+&lt;li>&lt;code>&amp;quot;match&amp;quot;: &amp;quot;1&amp;quot;&lt;/code> : 成功，1 被分詞過後還是 1，而 1 存在在倒排索引中&lt;/li>
+&lt;li>&lt;code>&amp;quot;match&amp;quot;: &amp;quot;hello how r u&amp;quot;&lt;/code> : 成功，match 把 &lt;code>hello how r u&lt;/code> 分詞成 hello、how、r、u，而 hello 存在在倒排索引中&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用 term 做查詢
+&lt;ul>
+&lt;li>&lt;code>&amp;quot;term&amp;quot;: &amp;quot;2222-hello&lt;/code> : 失敗，倒排索引只有 1、hello，並沒有 &lt;code>2222-hello&lt;/code>&lt;/li>
+&lt;li>&lt;code>&amp;quot;term&amp;quot;: &amp;quot;hello&amp;quot;&lt;/code> : 成功，因為倒排索引中有 hello&lt;/li>
+&lt;li>&lt;code>&amp;quot;term&amp;quot;: &amp;quot;1 hello&amp;quot;&lt;/code> : 失敗，雖然 &lt;code>1 hello&lt;/code> 和我們當時插入的數據一模一樣，但是因為倒排索引在建立索引時把原始的數據分詞了才儲存進索引，裡面存的是 &lt;code>1&lt;/code> 和 &lt;code>hello&lt;/code>，並沒有存放 &lt;code>1 hello&lt;/code>，因此查詢失敗&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>ElasticSearch - 自定義 analysis</title><link>https://kucw.io/blog/2018/6/elasticsearch-analysis/</link><pubDate>Sat, 09 Jun 2018 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2018/6/elasticsearch-analysis/</guid><description>&lt;ul>
+&lt;li>ElasticSearch 的 analysis 實際上是將三個功能封裝在一起，這三個功能按照順序執行，而這三個功能都是能自定義的
+&lt;ul>
+&lt;li>字符過濾器 (char_filter)
+&lt;ul>
+&lt;li>首先，字符串按順序通過每個字符過濾器，他們的任務是在分詞前整理字符串&lt;/li>
+&lt;li>一個字符過濾器可以用來去掉HTML，或者將&lt;code>&amp;amp;&lt;/code>轉化成&lt;code>and&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分詞器 (tokenizer)
+&lt;ul>
+&lt;li>其次，字符串被分詞器分爲單個的詞條，一個簡單的分詞器遇到空格和標點的時候，可能會將文本拆分成詞條&lt;/li>
+&lt;li>&lt;code>Hello how are you?&lt;/code>會被ES預設的分詞器standard分成&lt;code>hello&lt;/code>、&lt;code>how&lt;/code>、&lt;code>are&lt;/code>、&lt;code>you&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Token 過濾器 (filter)
+&lt;ul>
+&lt;li>最後，詞條按順序通過每個 token 過濾器，這個過程可能會改變詞條(Quick -&amp;gt; quick)、刪除詞條(a、an、and、the&amp;hellip;)、增加詞條(jump和leap這種同義詞)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>自定義 analysis
+&lt;ul>
+&lt;li>格式
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">PUT&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;setting&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;analysis&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;char_filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">自定義的字符過濾器&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;tokenizer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">自定義的分詞器&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">自定義的token過濾器&lt;/span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;analyzer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">自定義的分析器，可以將上面的char_filter、tokenizer、filter用不同的組合拼起來，形成不同的分析器&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>具體實例
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f6f8fa;background-color:#82071e">PUT&lt;/span> &lt;span style="color:#f6f8fa;background-color:#82071e">mytest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;settings&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;analysis&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;char_filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;&amp;amp;_to_and&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;mapping&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;mappings&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;&amp;amp;=&amp;gt; and &amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;xxx&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">....&lt;/span>&lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;yyy&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>&lt;span style="color:#f6f8fa;background-color:#82071e">....&lt;/span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;my_stopwords&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;stop&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;stopwords&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;the&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;a&amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;analyzer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#57606a">//自定義分析器，將想要的char_filter、tokenizer、filter給加載進來
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#57606a">//數組順序很重要，因為是照順序執行，先執行htmp_strip，再執行&amp;amp;_to_and，然後才去執行tokenizer
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#0550ae">&amp;#34;my_analyzer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;custom&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;char_filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;htmp_strip&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;&amp;amp;_to_and&amp;#34;&lt;/span>&lt;span style="color:#1f2328">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;tokenizer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;standard&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;filter&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">[&lt;/span>&lt;span style="color:#0a3069">&amp;#34;lowercase&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span> &lt;span style="color:#0a3069">&amp;#34;my_stopwords&amp;#34;&lt;/span>&lt;span style="color:#1f2328">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;mappings&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;doc&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;properties&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;nickname&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#1f2328">{&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;text&amp;#34;&lt;/span>&lt;span style="color:#1f2328">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#0550ae">&amp;#34;analyzer&amp;#34;&lt;/span>&lt;span style="color:#1f2328">:&lt;/span> &lt;span style="color:#0a3069">&amp;#34;my_analyzer&amp;#34;&lt;/span> &lt;span style="color:#57606a">//使用自定義的分析器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#57606a">&lt;/span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>控制分析器 search_analyzer、analyzer
+&lt;ul>
+&lt;li>
+&lt;p>分析器主要有兩種情況會被使用，一種是插入文檔時，將text類型的字段做分詞然後插入倒排索引，第二種就是在查詢時，先對要查詢的text類型的輸入做分詞，再去倒排索引搜索&lt;/p></description></item><item><title>ElasticSearch - index mapping（5.x以上）</title><link>https://kucw.io/blog/2018/6/elasticsearch-index-mapping/</link><pubDate>Thu, 07 Jun 2018 10:07:47 +0600</pubDate><guid>https://kucw.io/blog/2018/6/elasticsearch-index-mapping/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>Elasticsearch支持的基本類型&lt;/p>
+&lt;ul>
+&lt;li>字符串 : text, keyword
+&lt;ul>
+&lt;li>text : 存儲數據的時候，會自動分詞，並生成索引&lt;/li>
+&lt;li>keyword : 存儲數據的時候，不會分詞，而是直接整個詞拿去建索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>整數 : byte, short, integer, long&lt;/li>
+&lt;li>浮點數 : float, double&lt;/li>
+&lt;li>布爾型 : boolean&lt;/li>
+&lt;li>日期 : date&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>自定義 mapping&lt;/p></description></item></channel></rss>
