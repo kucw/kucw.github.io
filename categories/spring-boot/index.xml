@@ -1,7 +1,112 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring Boot on 古古的後端筆記</title><link>https://kucw.io/categories/spring-boot/</link><description>Recent content in Spring Boot on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Thu, 22 May 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/spring-boot/index.xml" rel="self" type="application/rss+xml"/><item><title>為 Spring Boot 生成 Docker image（Multi-stage build）</title><link>https://kucw.io/blog/springboot-docker-image/</link><pubDate>Thu, 22 May 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot-docker-image/</guid><description>&lt;p>本文介紹要如何使用 Dockerfile 的 Multi-stage build 寫法，為 Spring Boot 生成更精簡的 Docker image。&lt;/p></description></item><item><title>Spring Boot - 監控工具 Actuator</title><link>https://kucw.io/blog/2020/7/spring-actuator/</link><pubDate>Wed, 21 Aug 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2020/7/spring-actuator/</guid><description>&lt;blockquote>
  &lt;p>本文使用的 Spring Boot 版本：3.3.2&lt;/p>
 &lt;/blockquote>
-&lt;p>Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p></description></item><item><title>SpringBoot - 解決 application.properties 中文亂碼</title><link>https://kucw.io/blog/2021/7/spring-chinese-properties/</link><pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2021/7/spring-chinese-properties/</guid><description>&lt;p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 &lt;code>@Value&lt;/code> 讀取時會產生中文亂碼&lt;/p>
+&lt;p>Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (30) - Spring Boot 零基礎入門總結</title><link>https://kucw.io/blog/springboot/30/</link><pubDate>Tue, 30 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/30/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>終於來到本系列文的最後一個文章啦！能看到這裡的你真的非常厲害！！這篇文章會總結一下，我們在這 30 篇文章中都介紹了哪些部分，最後也會補充一些有關 Spring Boot 的學習路徑，所以我們就開始吧！&lt;/p>
+&lt;div class="markdown-toc">
+ &lt;div class="markdown-toc-title">目錄&lt;/div>
+ &lt;nav id="TableOfContents">
+ &lt;ul>
+ &lt;li>&lt;a href="#所以我們到底學到了哪些東西">所以，我們到底學到了哪些東西？&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#spring-ioc">Spring IoC&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#spring-aop">Spring AOP&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#spring-mvc">Spring MVC&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#spring-jdbc">Spring JDBC&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#實戰演練">實戰演練&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;li>&lt;a href="#spring-boot-的學習路徑">Spring Boot 的學習路徑&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#深度深入了解-spring-boot">深度：深入了解 Spring Boot&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#廣度spring-全家桶軟體工程師的通用知識">廣度：Spring 全家桶、軟體工程師的通用知識&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;li>&lt;a href="#關注我學習更多後端知識">關注我，學習更多後端知識&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#總結">總結&lt;/a>&lt;/li>
+ &lt;/ul>
+&lt;/nav>
+&lt;/div>
+&lt;h2 id="所以我們到底學到了哪些東西" class="markdown-heading-anchor">
+ 所以，我們到底學到了哪些東西？
+ &lt;a href="#%e6%89%80%e4%bb%a5%e6%88%91%e5%80%91%e5%88%b0%e5%ba%95%e5%ad%b8%e5%88%b0%e4%ba%86%e5%93%aa%e4%ba%9b%e6%9d%b1%e8%a5%bf">#&lt;/a>
+&lt;/h2>&lt;p>在最一開始，大家可能還不太熟悉 Spring Boot（甚至沒聽過 Spring Boot），不過經過了這 30 篇文章的介紹之後，大家基本上可以掌握：&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (29) - 實戰演練 - 打造一個簡單的圖書館系統</title><link>https://kucw.io/blog/springboot/29/</link><pubDate>Mon, 29 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/29/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們有介紹了 Spring Boot 中的許多用法，包含 Spring IoC、Spring AOP、Spring MVC（和前端溝通）、以及 Spring JDBC（和資料庫溝通），並且我們也介紹了 MVC 架構模式的概念，以及 Controller-Service-Dao 三層式架構的實作。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (28) - MVC 架構模式 - Controller-Service-Dao 三層式架構</title><link>https://kucw.io/blog/springboot/28/</link><pubDate>Sun, 28 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/28/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上兩篇文章中，我們有介紹了 Spring JDBC 中的兩個核心用法 &lt;code>update()&lt;/code> 和 &lt;code>query()&lt;/code>，因此大家就可以透過這兩個方法，在 Spring Boot 中執行想要執行的 SQL 語法了。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (27) - Spring JDBC 的用法（下）- 執行 SELECT SQL</title><link>https://kucw.io/blog/springboot/27/</link><pubDate>Sat, 27 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/27/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有介紹了 Spring JDBC 中的 &lt;code>update()&lt;/code> 的用法，了解要如何透過 &lt;code>update()&lt;/code> 方法，去執行 INSERT、UPDATE、DELETE 這三種 SQL 語法。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (26) - Spring JDBC 的用法（上）- 執行 INSERT、UPDATE、DELETE SQL</title><link>https://kucw.io/blog/springboot/26/</link><pubDate>Fri, 26 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/26/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有在 Spring Boot 中載入了 Spring JDBC 的功能，並且也有設定好了 MySQL 資料庫的連線資訊。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (25) - 資料庫連線設定、IntelliJ 資料庫管理工具介紹</title><link>https://kucw.io/blog/springboot/25/</link><pubDate>Thu, 25 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/25/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們先介紹了 Spring JDBC 的用途是什麼，先讓大家對 Spring JDBC 有一個簡單的認識。&lt;/p>
+&lt;p>那麼接著這篇文章，我們就會實際的去創建一個資料庫，並且將 Spring Boot 程式連線到此資料庫上，同時也會補充要如何運用 IntelliJ 中的好用工具，去管理資料庫中的數據（僅限 IntelliJ 付費版才有此功能），所以我們就開始吧！&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (24) - Spring JDBC 簡介</title><link>https://kucw.io/blog/springboot/24/</link><pubDate>Wed, 24 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/24/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們介紹了 Spring MVC 中的許多特性，因此大家現在就可以在 Spring Boot 中，透過 Spring MVC 和前端進行溝通了。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (23) - Http Status Code（Http 狀態碼）介紹</title><link>https://kucw.io/blog/springboot/23/</link><pubDate>Tue, 23 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/23/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有介紹要如何去設計和實作 RESTful API，因此大家就可以透過前面所學到的內容，實際的在 Spring Boot 中實作出 RESTful API 出來了。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (22) - RESTful API 實作 - @GetMapping、@PostMapping...</title><link>https://kucw.io/blog/springboot/22/</link><pubDate>Mon, 22 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/22/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有介紹了什麼是 RESTful API，以及在設計 RESTful API 時，需要滿足哪三個設計條件，先讓大家對 RESTful API 有基本的認識。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (21) - RESTful API 介紹</title><link>https://kucw.io/blog/springboot/21/</link><pubDate>Sun, 21 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/21/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前幾篇文章中，我們分別介紹了 Spring Boot 中「取得前端參數」的四個註解，因此大家就可以根據不同的情境，使用不同的註解來取得前端傳遞過來的參數了。&lt;/p>
+&lt;p>那麼這篇文章，我們就會介紹現今前後端開發非常流行的一種設計風格，也就是 RESTful API，所以我們就開始吧！&lt;/p>
+&lt;div class="markdown-toc">
+ &lt;div class="markdown-toc-title">目錄&lt;/div>
+ &lt;nav id="TableOfContents">
+ &lt;ul>
+ &lt;li>&lt;a href="#什麼是-api">什麼是 API？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#什麼是-restful-api">什麼是 RESTful API？&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#1-成為-restful-api-的條件之一使用-http-method表示要執行的資料庫操作">1. 成為 RESTful API 的條件之一：使用 Http method，表示要執行的資料庫操作&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#2-成為-restful-api-的條件之二使用-url-路徑描述資源之間的階層關係">2. 成為 RESTful API 的條件之二：使用 url 路徑，描述資源之間的階層關係&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#3-成為-restful-api-的條件之三response-body-返回-json-或是-xml-格式">3. 成為 RESTful API 的條件之三：Response body 返回 JSON 或是 XML 格式&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#小結滿足-restful-api-的三個條件">小結：滿足 RESTful API 的三個條件&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;li>&lt;a href="#補充restful-api-的注意事項">補充：RESTful API 的注意事項&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#總結">總結&lt;/a>&lt;/li>
+ &lt;/ul>
+&lt;/nav>
+&lt;/div>
+&lt;h2 id="什麼是-api" class="markdown-heading-anchor">
+ 什麼是 API？
+ &lt;a href="#%e4%bb%80%e9%ba%bc%e6%98%af-api">#&lt;/a>
+&lt;/h2>&lt;p>在開始介紹「RESTful API」之前，大家需要先了解「API」是什麼，要先掌握 API 的概念，才能夠學習 RESTful API 的相關知識，因此我們就先來介紹一下，API 到底是什麼。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (20) - 取得請求參數（下）- @RequestHeader、@PathVariable</title><link>https://kucw.io/blog/springboot/20/</link><pubDate>Sat, 20 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/20/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有分別介紹 &lt;code>@ReqestParam&lt;/code> 和 &lt;code>@RequestBody&lt;/code> 的用法，了解要如何透過 &lt;code>@ReqestParam&lt;/code> 取得 url 後面的參數，以及如何透過 &lt;code>@RequestBody&lt;/code> 取得 request body 中的 JSON 數據。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (19) - 取得請求參數（上）- @RequestParam、@RequestBody</title><link>https://kucw.io/blog/springboot/19/</link><pubDate>Fri, 19 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/19/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們先介紹了 Http method 的概念，並且也介紹了兩個常見的 Http method：GET 和 POST，分別了解他們是如何傳遞參數給後端的。&lt;/p>
+&lt;p>那麼接著這篇文章，我們就會回到 Spring Boot 上，來介紹一下要如何在 Spring Boot 中，去接住前端所傳過來的這些參數的值。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (18) - 常見的 Http method - GET 和 POST</title><link>https://kucw.io/blog/springboot/18/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/18/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們有介紹了 Spring MVC 的 &lt;code>@RequestMapping&lt;/code> 和 &lt;code>@RestController&lt;/code> 的用法，所以我們現在已經可以接住前端傳過來的請求，並且也能夠回傳 JSON 格式的數據給前端了。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (17) - 返回值改成 JSON 格式 - @RestController</title><link>https://kucw.io/blog/springboot/17/</link><pubDate>Wed, 17 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/17/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有介紹了 JSON 格式的寫法，所以之後我們就可以使用 JSON 格式，更簡單直覺的去呈現數據，進而提升前後端溝通的效率了。&lt;/p>
+&lt;p>那麼接著的這篇文章，我們就會回到 Spring Boot 程式中，來看一下要如何將 MyController 所回傳的值，改成是以 JSON 的格式來返回，讓前端能夠取得到 JSON 格式的數據。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (16) - 結構化的呈現數據 - JSON 格式介紹</title><link>https://kucw.io/blog/springboot/16/</link><pubDate>Tue, 16 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/16/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有去要如何使用 &lt;code>@RequestMapping&lt;/code>，將 url 路徑對應到 Spring Boot 程式的方法上。&lt;/p>
+&lt;p>那麼這篇文章，我們就接著來介紹，要如何透過 JSON 格式，結構化的去呈現返回給前端的數據。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (15) - Url 路徑對應 - @RequestMapping</title><link>https://kucw.io/blog/springboot/15/</link><pubDate>Mon, 15 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/15/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們先介紹了 Http 協議的用途，也介紹了 Http request 和 Http response 的格式規範，並且也有實際到 API Tester 中，練習去發起一個 Http request、以及查看 Http response 的返回值。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (14) - Http 協議介紹</title><link>https://kucw.io/blog/springboot/14/</link><pubDate>Sun, 14 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/14/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前一篇文章中，我們先介紹了 Spring MVC 的用途是什麼，先讓大家對 Spring MVC 有一個簡單的認識。&lt;/p>
+&lt;p>不過在我們開始介紹 Spring MVC 之前，會需要大家先對前後端溝通的協議有一些基本的認識，因此這篇文章，我們就會先來介紹前後端溝通最基礎的部分，也就是「Http 協議」。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (13) - Spring MVC 簡介</title><link>https://kucw.io/blog/springboot/13/</link><pubDate>Sat, 13 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/13/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們介紹了 Spring 框架中最重要的兩個特性：IoC 和 AOP，所以到目前為止，大家對於 Spring Boot 的基本用法，就不會那麼陌生了。&lt;/p>
+&lt;p>那麼從這篇文章開始，就會進入到下一個部分，也就是 Spring MVC 的介紹，Spring MVC 可以說是在 Spring Boot 中使用最頻繁的功能之一，所以我們就開始吧！&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (12) - Spring AOP 的用法 - @Aspect</title><link>https://kucw.io/blog/springboot/12/</link><pubDate>Fri, 12 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/12/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有去介紹了 Spring AOP 的概念和原理，讓大家先對 Spring AOP 有一個初步的認識。&lt;/p>
+&lt;p>那麼這篇文章，我們就會接著來介紹，要如何在 Spring Boot 中使用 Spring AOP 的功能。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (11) - Spring AOP 簡介</title><link>https://kucw.io/blog/springboot/11/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/11/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們有介紹了 Spring IoC 的特性，先讓大家了解要如何在 Spring Boot 中創建、注入、以及初始化 Bean，為後續的部分打穩基礎。&lt;/p>
+&lt;p>那麼從這篇文章開始，我們就會接著來介紹 Spring 框架中的另一個也很重要的特性，也就是 AOP，所以我們就開始吧！&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (10) - 讀取 Spring Boot 設定檔 - @Value、application.properties</title><link>https://kucw.io/blog/springboot/10/</link><pubDate>Wed, 10 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/10/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們已經對 Spring IoC 有了滿多的認識，並且也能夠在 Spring Boot 中應用 Spring IoC 的核心用法了。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (9) - Bean 的初始化 - @PostConstruct</title><link>https://kucw.io/blog/springboot/9/</link><pubDate>Tue, 09 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/9/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前幾篇文章中，我們分別介紹了 Bean 的相關特性，像是：&lt;/p>
+&lt;ul>
+&lt;li>創建 Bean 的方法：&lt;code>@Component&lt;/code>&lt;/li>
+&lt;li>注入 Bean 的方法：&lt;code>@Autowired&lt;/code>&lt;/li>
+&lt;li>以及指定 Bean 名字的方法：&lt;code>@Qualifier&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>所以到目前為止，我們可以說是對 Bean 有了更多的認識，並且已經可以成功的在 Spring Boot 程式中運用 Bean 了！&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (8) - 指定注入的 Bean - @Qualifier</title><link>https://kucw.io/blog/springboot/8/</link><pubDate>Mon, 08 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/8/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們介紹了如何使用 &lt;code>@Component&lt;/code> 來創建 Bean，也有介紹要如何使用 &lt;code>@Autowired&lt;/code> 來注入 Bean。&lt;/p>
+&lt;p>那麼接著這篇文章，我們就會來介紹，當 Spring 容器中有 2 個以上同樣類型的 Bean 存在時，該怎麼去選擇要注入的 Bean。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (7) - Bean 的創建和注入 - @Component、@Autowired</title><link>https://kucw.io/blog/springboot/7/</link><pubDate>Sun, 07 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/7/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有介紹了 IoC、DI、和 Bean 的概念，先帶大家了解 Spring IoC 中的重要名詞的含義。&lt;/p>
+&lt;p>那麼這篇文章，我們就會實際到 IntelliJ 中，練習要如何在 Spring Boot 程式中創建 Bean，以及要如何將 Bean 去注入到別的 class 中。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (6) - IoC、DI、Bean 的介紹</title><link>https://kucw.io/blog/springboot/6/</link><pubDate>Sat, 06 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/6/</guid><description>&lt;p>哈囉大家好，我是古古&lt;/p>
+&lt;p>在上一篇文章中，我們先介紹了 Spring IoC 的原理，以及使用 Spring IoC 的優點，讓大家先對 Spring IoC 有一個初步的認識。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (5) - Spring IoC 簡介</title><link>https://kucw.io/blog/springboot/5/</link><pubDate>Fri, 05 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/5/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前面的文章中，我們有先去安裝開發環境，並且成功使用 IntelliJ 這套軟體，去創建出了第一個 Spring Boot 程式，先對如何撰寫 Spring Boot 程式有了一個最基本的了解。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (4) - 第一個 Spring Boot 程式</title><link>https://kucw.io/blog/springboot/4/</link><pubDate>Thu, 04 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/4/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在前兩篇文章中，我們有分別去介紹了一下，要如何在 Mac 和 Windows 中架設 Spring Boot 的開發環境。&lt;/p>
+&lt;p>所以這篇文章，我們就可以來使用前面所安裝的工具，建立你的第一個 Spring Boot 程式出來了！&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (3) - 開發環境安裝（Windows 版）</title><link>https://kucw.io/blog/springboot/3/</link><pubDate>Wed, 03 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/3/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在上一篇文章中，我們有先針對 Mac 系統的使用者，介紹要如何在 Mac 系統中安裝此系列文會用到的所有開發工具。&lt;/p>
+&lt;p>所以這篇文章，我們就接著來介紹一下，要如何在 Windows 系統中安裝此系列文的開發工具。&lt;/p>
+
+&lt;blockquote>
+ &lt;p>補充：如果你是 Mac 系統的使用者，可以略過這篇文章，直接查看下一篇文章 
+&lt;a href="https://kucw.io/blog/springboot/4/" rel="noopener">Day 4 - 第一個 Spring Boot 程式&lt;/a> 的介紹。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (2) - 開發環境安裝（Mac 版）</title><link>https://kucw.io/blog/springboot/2/</link><pubDate>Tue, 02 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/2/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>在學習 Spring Boot 之前，環境的架設也是很重要的，所以這篇文章，我們就先來進行環境設定，為將來的 Spring Boot 之旅架設好開發環境。&lt;/p>
+&lt;p>不過因為 Mac 和 Windows 系統的安裝方式差異比較大，所以這邊會拆成兩篇文章來介紹。 如果你的電腦是 Mac 系統，可以直接查看這篇文章，如果你的電腦是 Windows 系統，則可以直接查看下一篇文章 
+&lt;a href="https://kucw.io/blog/springboot/3/" rel="noopener">Day 3 - 開發環境安裝（Windows 版）&lt;/a> 的介紹。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (1) - Spring Boot 簡介</title><link>https://kucw.io/blog/springboot/1/</link><pubDate>Mon, 01 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/1/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
+&lt;p>這次希望可以透過 30 天的鐵人賽文章，讓沒接觸過（甚至沒聽過）Spring Boot 的人，了解 Spring Boot 到底是什麼，以及如何運用 Spring Boot 搭建一個簡易的後端系統。&lt;/p></description></item><item><title>SpringBoot - 解決 application.properties 中文亂碼</title><link>https://kucw.io/blog/2021/7/spring-chinese-properties/</link><pubDate>Sun, 25 Jul 2021 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2021/7/spring-chinese-properties/</guid><description>&lt;p>如果在 application.properties 直接寫上中文，則 Spring Boot 在使用 &lt;code>@Value&lt;/code> 讀取時會產生中文亂碼&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#1f2328">name&lt;/span>&lt;span style="color:#0550ae">=&lt;/span>&lt;span style="color:#0a3069">小明&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解決辦法" class="markdown-heading-anchor">
  解決辦法：
