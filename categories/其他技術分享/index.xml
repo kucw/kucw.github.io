@@ -517,4 +517,21 @@
  
  target="_blank" rel="noopener">《Spring Boot 零基礎入門》&lt;/a>，當時有幸得到了《優選》的獎項（&lt;a href="https://ithelp.ithome.com.tw/2023ironman/reward"
  
- target="_blank" rel="noopener">得獎名單&lt;/a>），因此希望可以透過這篇文章，分享一些寫作心法給大家。&lt;/p></description></item></channel></rss>
+ target="_blank" rel="noopener">得獎名單&lt;/a>），因此希望可以透過這篇文章，分享一些寫作心法給大家。&lt;/p></description></item><item><title>關閉 MacOS Sonoma 的 Caps Lock 游標</title><link>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</link><pubDate>Fri, 27 Oct 2023 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2023/10/mac-sonoma-disable-caps-lock-indicator/</guid><description>&lt;p>當 Mac 升級到 Sonoma 14.0 之後，只要按下鍵盤左側的「中/英」鍵（也就是 Caps Lock 鍵），Mac 就會出現一個藍色的游標，提示你現在開啟了 Caps Lock&lt;/p></description></item><item><title>重新命名 iPhone 照片檔名為日期時間（Mac版）</title><link>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</link><pubDate>Fri, 05 Aug 2022 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2022/8/rename-iphone-photo-by-date/</guid><description>&lt;p>iPhone airdrop 到 Macbook 上的照片檔名為 IMG_0862.JPG，不利於照片整理，改命名成右邊這種 IMG_20220726_110204.JPG 格式會好整理很多&lt;/p>
+&lt;p>
+
+&lt;img
+ src="https://kucw.io/images/blog/iphone_photo1.png"
+ alt=""
+ loading="lazy"
+ data-zoomable
+ width="1606"
+ height="666"
+/>&lt;/p></description></item><item><title>Superset 安裝教學</title><link>https://kucw.io/blog/2019/12/superset-install/</link><pubDate>Fri, 20 Dec 2019 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/2019/12/superset-install/</guid><description>&lt;p>安裝環境 : CentOS Linux release 7.7.1908 (Core)&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo yum install python36-pip python3-devel gcc-c++
+sudo pip3 install apache-superset
+superset db upgrade
+flask fab create-admin
+superset load_examples
+superset run -p 8088
+&lt;/code>&lt;/pre></description></item></channel></rss>
