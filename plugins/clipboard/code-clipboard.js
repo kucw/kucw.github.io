@@ -20,7 +20,7 @@ function addCopyToClipboardButtons() {
 
     clipboard.on('success', (e) => {
         e.clearSelection();
-        setTooltip(e.trigger, '已複製!');
+        setTooltip(e.trigger, '複製成功!');
         hideTooltip(e.trigger);
     });
 

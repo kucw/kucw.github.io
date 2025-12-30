@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Android on 古古的後端筆記</title><link>https://kucw.io/categories/android/</link><description>Recent content in Android on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Mon, 29 Dec 2025 01:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/android/index.xml" rel="self" type="application/rss+xml"/><item><title>Android 零基礎入門 (2) - Jetpack Compose 介紹、@Composable、@Preview、modifier</title><link>https://kucw.io/blog/android/2/</link><pubDate>Mon, 29 Dec 2025 01:00:00 +0800</pubDate><guid>https://kucw.io/blog/android/2/</guid><description>&lt;p>TODO&lt;/p></description></item><item><title>Android 零基礎入門 (1) - 第一個 Android 程式、運行 Android</title><link>https://kucw.io/blog/android/1/</link><pubDate>Mon, 29 Dec 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/android/1/</guid><description>&lt;div class="markdown-toc">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Android on 古古的後端筆記</title><link>https://kucw.io/categories/android/</link><description>Recent content in Android on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Tue, 30 Dec 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/android/index.xml" rel="self" type="application/rss+xml"/><item><title>Android 零基礎入門 (2) - Jetpack Compose 介紹、@Composable、@Preview、modifier</title><link>https://kucw.io/blog/android/2/</link><pubDate>Tue, 30 Dec 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/android/2/</guid><description>&lt;div class="markdown-toc">
+ &lt;div class="markdown-toc-title">目錄&lt;/div>
+ &lt;nav id="TableOfContents">
+ &lt;ul>
+ &lt;li>&lt;a href="#composable創建-ui-元件">@Composable：創建 UI 元件&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#preview預覽-ui-元件">@Preview：預覽 UI 元件&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#modifier-修飾符">modifier 修飾符&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#由外部的-caller-決定-modifier-的樣式">由外部的 caller 決定 modifier 的樣式&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#給-modifier-參數一個預設值">給 modifier 參數一個預設值&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#modifier-的順序很重要">modifier 的順序很重要！&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;li>&lt;a href="#常用的-modifier-方法">常用的 modifier 方法&lt;/a>
+ &lt;ul>
+ &lt;li>&lt;a href="#大小控制">大小控制&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#邊界控制">邊界控制&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#顏色控制">顏色控制&lt;/a>&lt;/li>
+ &lt;/ul>
+ &lt;/li>
+ &lt;/ul>
+&lt;/nav>
+&lt;/div>
+&lt;h2 id="composable創建-ui-元件" class="markdown-heading-anchor">
+ @Composable：創建 UI 元件
+ &lt;a href="#composable%e5%89%b5%e5%bb%ba-ui-%e5%85%83%e4%bb%b6">#&lt;/a>
+&lt;/h2>&lt;p>在 Jetpack Compose 中，每一塊 UI 元件都是一個 Compose，所以就像是一棵很大的 UI tree 一樣，可以不斷的在裡面用其他的 UI 小元件，最終組成使用者看到的畫面。&lt;/p></description></item><item><title>Android 零基礎入門 (1) - 第一個 Android 程式、運行 Android</title><link>https://kucw.io/blog/android/1/</link><pubDate>Mon, 29 Dec 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/android/1/</guid><description>&lt;div class="markdown-toc">
  &lt;div class="markdown-toc-title">目錄&lt;/div>
  &lt;nav id="TableOfContents">
  &lt;ul>
