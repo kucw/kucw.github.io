@@ -3,30 +3,6 @@
 &lt;/blockquote>
 &lt;p>Actuator 是 Spring Boot 所提供的監控功能，可以用來查看當前的 Spring Boot 程式運行的情況，像是可以查看當前運行的健康指標、查看 Spring Boot 所創建的 beans、以及獲取當前的 applicaiton.properties 的屬性的值。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (30) - Spring Boot 零基礎入門總結</title><link>https://kucw.io/blog/springboot/30/</link><pubDate>Tue, 30 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/30/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
 &lt;p>終於來到本系列文的最後一個文章啦！能看到這裡的你真的非常厲害！！這篇文章會總結一下，我們在這 30 篇文章中都介紹了哪些部分，最後也會補充一些有關 Spring Boot 的學習路徑，所以我們就開始吧！&lt;/p>
-&lt;div class="markdown-toc">
- &lt;div class="markdown-toc-title">目錄&lt;/div>
- &lt;nav id="TableOfContents">
- &lt;ul>
- &lt;li>&lt;a href="#所以我們到底學到了哪些東西">所以，我們到底學到了哪些東西？&lt;/a>
- &lt;ul>
- &lt;li>&lt;a href="#spring-ioc">Spring IoC&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#spring-aop">Spring AOP&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#spring-mvc">Spring MVC&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#spring-jdbc">Spring JDBC&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#實戰演練">實戰演練&lt;/a>&lt;/li>
- &lt;/ul>
- &lt;/li>
- &lt;li>&lt;a href="#spring-boot-的學習路徑">Spring Boot 的學習路徑&lt;/a>
- &lt;ul>
- &lt;li>&lt;a href="#深度深入了解-spring-boot">深度：深入了解 Spring Boot&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#廣度spring-全家桶軟體工程師的通用知識">廣度：Spring 全家桶、軟體工程師的通用知識&lt;/a>&lt;/li>
- &lt;/ul>
- &lt;/li>
- &lt;li>&lt;a href="#關注我學習更多後端知識">關注我，學習更多後端知識&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#總結">總結&lt;/a>&lt;/li>
- &lt;/ul>
-&lt;/nav>
-&lt;/div>
 &lt;h2 id="所以我們到底學到了哪些東西" class="markdown-heading-anchor">
  所以，我們到底學到了哪些東西？
  &lt;a href="#%e6%89%80%e4%bb%a5%e6%88%91%e5%80%91%e5%88%b0%e5%ba%95%e5%ad%b8%e5%88%b0%e4%ba%86%e5%93%aa%e4%ba%9b%e6%9d%b1%e8%a5%bf">#&lt;/a>
@@ -42,24 +18,6 @@
 &lt;p>在上一篇文章中，我們有介紹了什麼是 RESTful API，以及在設計 RESTful API 時，需要滿足哪三個設計條件，先讓大家對 RESTful API 有基本的認識。&lt;/p></description></item><item><title>Spring Boot 零基礎入門 (21) - RESTful API 介紹</title><link>https://kucw.io/blog/springboot/21/</link><pubDate>Sun, 21 Jul 2024 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/springboot/21/</guid><description>&lt;p>哈囉大家好，我是古古。&lt;/p>
 &lt;p>在前幾篇文章中，我們分別介紹了 Spring Boot 中「取得前端參數」的四個註解，因此大家就可以根據不同的情境，使用不同的註解來取得前端傳遞過來的參數了。&lt;/p>
 &lt;p>那麼這篇文章，我們就會介紹現今前後端開發非常流行的一種設計風格，也就是 RESTful API，所以我們就開始吧！&lt;/p>
-&lt;div class="markdown-toc">
- &lt;div class="markdown-toc-title">目錄&lt;/div>
- &lt;nav id="TableOfContents">
- &lt;ul>
- &lt;li>&lt;a href="#什麼是-api">什麼是 API？&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#什麼是-restful-api">什麼是 RESTful API？&lt;/a>
- &lt;ul>
- &lt;li>&lt;a href="#1-成為-restful-api-的條件之一使用-http-method表示要執行的資料庫操作">1. 成為 RESTful API 的條件之一：使用 Http method，表示要執行的資料庫操作&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#2-成為-restful-api-的條件之二使用-url-路徑描述資源之間的階層關係">2. 成為 RESTful API 的條件之二：使用 url 路徑，描述資源之間的階層關係&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#3-成為-restful-api-的條件之三response-body-返回-json-或是-xml-格式">3. 成為 RESTful API 的條件之三：Response body 返回 JSON 或是 XML 格式&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#小結滿足-restful-api-的三個條件">小結：滿足 RESTful API 的三個條件&lt;/a>&lt;/li>
- &lt;/ul>
- &lt;/li>
- &lt;li>&lt;a href="#補充restful-api-的注意事項">補充：RESTful API 的注意事項&lt;/a>&lt;/li>
- &lt;li>&lt;a href="#總結">總結&lt;/a>&lt;/li>
- &lt;/ul>
-&lt;/nav>
-&lt;/div>
 &lt;h2 id="什麼是-api" class="markdown-heading-anchor">
  什麼是 API？
  &lt;a href="#%e4%bb%80%e9%ba%bc%e6%98%af-api">#&lt;/a>
