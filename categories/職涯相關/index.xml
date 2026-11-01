@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>職涯相關 on 古古的後端筆記</title><link>https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/</link><description>Recent content in 職涯相關 on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>如何成為資深工程師？心態最重要</title><link>https://kucw.io/blog/how-to-become-senior-developer/</link><pubDate>Wed, 08 Jan 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/how-to-become-senior-developer/</guid><description>&lt;p>其實所謂的「資深工程師」，他並不是一個突然從天而降的改變，而是一個緩慢的、融入到你工作中的微小變化。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>職涯相關 on 古古的後端筆記</title><link>https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/</link><description>Recent content in 職涯相關 on 古古的後端筆記</description><generator>Hugo</generator><language>zh-tw</language><lastBuildDate>Sun, 01 Nov 2026 00:00:00 +0800</lastBuildDate><atom:link href="https://kucw.io/categories/%E8%81%B7%E6%B6%AF%E7%9B%B8%E9%97%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>Ask 古古 Anything！的問答全記錄（2026 版）</title><link>https://kucw.io/blog/ask-me-anything-2026/</link><pubDate>Sun, 01 Nov 2026 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/ask-me-anything-2026/</guid><description>&lt;p>此文收錄 2026 年的「Ask 古古 Anything」中所回答的問題，如想提問歡迎至 &lt;a href="https://www.threads.com/@kucw.io"
+ 
+ target="_blank" rel="noopener">Threads&lt;/a> 上參與～&lt;/p>
+&lt;div class="markdown-toc">
+ &lt;div class="markdown-toc-title">目錄&lt;/div>
+ &lt;nav id="TableOfContents">
+ &lt;ul>
+ &lt;li>&lt;a href="#q1">Q1: 請問一定要刷題才能進外商嗎？因為對刷題真的沒興趣&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q2">Q2: 軟體工程師在 AI 全面取代傳統手寫 code 後，價值與職涯方向是什麼？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q3">Q3: 作為一個軟體工程師除了好奇心外，要擁有什麼樣的態度才能在繁瑣的日常與無情的競爭制度下，持續保有創造力？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q4">Q4: 現在軟體業還有前途嗎 ？感覺 AI model 的推出速度越來越快，是不是轉換到其他跑道比較好？還是可以做些什麼來維持競爭力？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q5">Q5: 想問古古工作真的很忙的時候，應該怎麼分配準備面試？最近有了 AI 之後，感覺事情變得比以前更多，下班後總是有種燃燒殆盡的感覺&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q6">Q6: 進外商會需要碩士嗎？還有現在有了 AI，刷題是否變得不需要了，反而是會現場考 AI 做出考題想要的東西出來？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q7">Q7: 對於 30 歲的後端轉職者，在學經歷並不好的情況下，有什麼能夠讓職涯變好的建議嗎？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q8">Q8: 我是非本科的後端工程師，有累積兩年的工作經驗，會想挑戰軟體外商，但不確定怎麼幫自己做合適的職涯規劃（例如該培養什麼技能，如何準備履歷投遞及面試）&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q9">Q9: 承上題，想問除了外語能力外，技術上建議增強哪部分呢？我目前約 3 年工作經驗，但技術的深度廣度都不夠，ai 工具出現後，雖然工作上效率增加，但反而對於自身技術要求更迷惘了&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q10">Q10: 外商男女生比例？外商脫單機率高嗎？有沒有可能進去外商發現英文聽力/和表達完全不在同一條線怎麼辦？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q11">Q11: 在不斷精進的過程中，當感覺到累的時候你會怎麼調適？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q12">Q12: 好奇嘗試過哪些職涯探索（不限於軟體工程師領域）？比如經營自媒體，蠻好奇心路歷程&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q13">Q13: 想問所有的在職工程師都能夠熟練的背下並使用所有的語法嗎？是要看著螢幕從頭打出來嗎，還是其實上班時可以開 ai 做查詢？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q14">Q14: 請問古古認為這個時代工程師需要產品的思維嗎？過去工程師像是傭兵一樣，完成上面要求的技術任務，但現在 ai 讓開發功能快速完成，那麼商業的決策是不是越來越重要？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q15">Q15: AI 出來後，越來越懷疑未來職涯在哪，但個人年齡已臨近 30，現在都只面的到乙方，年薪也難以談到破百，想知道提升薪資有什麼建議的方向嗎？練刷題、系統設計，還是補碩士學歷？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q16">Q16: 現在 Web 軟工面試到底該怎麼準備？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q17">Q17: 妳認為軟體工程師有分哪幾種類型? 以及在這些類型中哪些在未來發展性（工作機會、薪資）會上升，哪些則是會沒落?&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q18">Q18: 想請問在軟體工程師職涯中，如果每一兩年都換一次工作、或是一份工作待不到一年，會對職涯有影響嗎?&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#q19">Q19: 想知道古古是怎麼將一個不太好懂的知識體系吸收後，用淺顯易懂的方式輸出的呢？例如工作時，同事詢問我某地方實作的方法、或是面試時要提起我是怎麼規劃與做哪些功能時，要如何更好的表達輸出？&lt;/a>&lt;/li>
+ &lt;li>&lt;a href="#結語">結語&lt;/a>&lt;/li>
+ &lt;/ul>
+&lt;/nav>
+&lt;/div>
+&lt;h2 id="q1" class="markdown-heading-anchor">
+ Q1: 請問一定要刷題才能進外商嗎？因為對刷題真的沒興趣
+ &lt;a href="#q1">#&lt;/a>
+&lt;/h2>&lt;p>很殘酷的說，是的，想進 FAANG 就是需要刷題（對大部分人來說）。&lt;/p></description></item><item><title>如何成為資深工程師？心態最重要</title><link>https://kucw.io/blog/how-to-become-senior-developer/</link><pubDate>Wed, 08 Jan 2025 00:00:00 +0800</pubDate><guid>https://kucw.io/blog/how-to-become-senior-developer/</guid><description>&lt;p>其實所謂的「資深工程師」，他並不是一個突然從天而降的改變，而是一個緩慢的、融入到你工作中的微小變化。&lt;/p>
 &lt;ul>
 &lt;li>可能是你今天多幫同事解決了一個 bug&lt;/li>
 &lt;li>可能是你今天又多學到了一些技術&lt;/li>
